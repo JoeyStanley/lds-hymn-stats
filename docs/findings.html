@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joey Stanley">
-<meta name="dcterms.date" content="2023-09-05">
+<meta name="dcterms.date" content="2023-09-06">
 
 <title>LDS Hymn Stats - Findings</title>
 <style>
@@ -111,12 +111,26 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#most-and-least-common-hymns" id="toc-most-and-least-common-hymns" class="nav-link active" data-scroll-target="#most-and-least-common-hymns">Most and least common hymns</a>
   <ul class="collapse">
   <li><a href="#sacrament-hymns" id="toc-sacrament-hymns" class="nav-link" data-scroll-target="#sacrament-hymns">Sacrament hymns</a></li>
-  <li><a href="#frequency" id="toc-frequency" class="nav-link" data-scroll-target="#frequency">Frequency</a></li>
-  <li><a href="#non-sacrament-hymns" id="toc-non-sacrament-hymns" class="nav-link" data-scroll-target="#non-sacrament-hymns">Non-sacrament hymns</a></li>
-  <li><a href="#sacrament-hymns-sung-elsewhere" id="toc-sacrament-hymns-sung-elsewhere" class="nav-link" data-scroll-target="#sacrament-hymns-sung-elsewhere">Sacrament hymns sung elsewhere</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#the-most-common-non-sacrament-hymns" id="toc-the-most-common-non-sacrament-hymns" class="nav-link" data-scroll-target="#the-most-common-non-sacrament-hymns">The most common (non-sacrament) hymns</a></li>
+  <li><a href="#lesser-common-sacrament-hymns" id="toc-lesser-common-sacrament-hymns" class="nav-link" data-scroll-target="#lesser-common-sacrament-hymns">Lesser common sacrament hymns</a></li>
+  <li><a href="#mens-and-womens-arrangements" id="toc-mens-and-womens-arrangements" class="nav-link" data-scroll-target="#mens-and-womens-arrangements">Men’s and women’s arrangements</a></li>
+  <li><a href="#the-least-sung-hymns" id="toc-the-least-sung-hymns" class="nav-link" data-scroll-target="#the-least-sung-hymns">The least sung hymns</a></li>
   </ul></li>
-  <li><a href="#sec-holidays" id="toc-sec-holidays" class="nav-link" data-scroll-target="#sec-holidays">Holidays</a></li>
+  <li><a href="#sec-holidays" id="toc-sec-holidays" class="nav-link" data-scroll-target="#sec-holidays">Holidays</a>
+  <ul class="collapse">
+  <li><a href="#christmas" id="toc-christmas" class="nav-link" data-scroll-target="#christmas">Christmas</a></li>
+  <li><a href="#new-years" id="toc-new-years" class="nav-link" data-scroll-target="#new-years">New Year’s</a></li>
+  <li><a href="#valentines-day" id="toc-valentines-day" class="nav-link" data-scroll-target="#valentines-day">Valentine’s Day</a></li>
+  <li><a href="#easter" id="toc-easter" class="nav-link" data-scroll-target="#easter">Easter</a></li>
+  <li><a href="#mothers-day" id="toc-mothers-day" class="nav-link" data-scroll-target="#mothers-day">Mother’s Day</a></li>
+  <li><a href="#fathers-day" id="toc-fathers-day" class="nav-link" data-scroll-target="#fathers-day">Father’s Day</a></li>
+  <li><a href="#fourth-of-july" id="toc-fourth-of-july" class="nav-link" data-scroll-target="#fourth-of-july">Fourth of July</a></li>
+  <li><a href="#pioneer-day" id="toc-pioneer-day" class="nav-link" data-scroll-target="#pioneer-day">Pioneer Day</a></li>
+  <li><a href="#halloween" id="toc-halloween" class="nav-link" data-scroll-target="#halloween">Halloween</a></li>
+  <li><a href="#thanksgiving" id="toc-thanksgiving" class="nav-link" data-scroll-target="#thanksgiving">Thanksgiving</a></li>
+  <li><a href="#general-conference" id="toc-general-conference" class="nav-link" data-scroll-target="#general-conference">General Conference</a></li>
+  <li><a href="#fast-sunday" id="toc-fast-sunday" class="nav-link" data-scroll-target="#fast-sunday">Fast Sunday</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -142,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 5, 2023</p>
+      <p class="date">September 6, 2023</p>
     </div>
   </div>
     
@@ -159,9 +173,8 @@ ul.task-list li input[type="checkbox"] {
 <p>We’ll start off by looking at sacrament hymns, or rather, the hymn sung immediately before the sacrament is blessed and passed to the congregation. As far as I can tell, §19.3.2 of the <em>General Handbook</em> has the only instruction about sacrament hymns, and it says that “[t]he sacrament hymn should refer to the sacrament itself or to the sacrifice of the Savior.” This instruction is repeated on page 380 of the hymnal.</p>
 <div class="page-columns page-full"><p>In the hymnal, sacrament hymns go from 169 (<em>As Now We Take the Sacrament</em>) to 196 (<em>Jesus, Once of Humble Birth</em>), at least according to the Table of Contents. As far as I can tell, it doesn’t <em>specifically</em> state that the sacrament hymn must be one of the 28 within that range, but I think it’s a generally accepted that that’s what that phrase from the handbook means.</p><div class="no-row-height column-margin column-container"><span class="aside">In fact, I’ve had church leaders enforce this constraint. I was in a ward where a newly-called music chairperson chose reverent hymns that were outside of that range. After about two weeks, the bishop announced that we’d be singing a different hymn than what was listed on the program and he changed it to a sacrament hymn. Presumably he later explained the policy to the chorister afterwards because we sang “true” sacrament hymns from then on.</span></div></div>
 <p>As it turns out, <em>I Stand All Amazed (193)</em> is part of that group. So it should come as no surprise that a sacrament hymn is the most common hymn overall. That one in particular focuses less on the sacrament itself and more on the Atonement, so it could be used outside of sacrament contexts without feeling out of place. In fact, a quick look at the numbers suggests that it was, in fact, sung as opening and closing hymns at least three times more often than any other sacrament hymn. This may explain why it stands out as the most commonly sung hymn in sacrament meetings.</p>
-</section>
-<section id="frequency" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="frequency">Frequency</h3>
+<section id="frequency" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="frequency">Frequency</h4>
 <p>Let’s take a closer look at the sacrament hymns themselves. In theory, if a ward were to systematically cycle through all the sacrament hymns, they’d make it through all of them in a little over six months. However, <a href="#fig-sac_freqs">Figure&nbsp;1</a> shows that they’re definitely not all sung equally as often as each other.</p>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="aside">Most plots on this page are formatted just like this one here. Hymns that are less common are in the lower left and hymns that are more common are in the upper right. The numbers along the bottom refer to how many times, on average, a ward will sing that hymn within a given year.</span></div></div>
 <div id="fig-sac_freqs" class="quarto-figure quarto-figure-center anchored">
@@ -180,8 +193,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="non-sacrament-hymns" class="level3">
-<h3 class="anchored" data-anchor-id="non-sacrament-hymns">Non-sacrament hymns</h3>
+<section id="non-sacrament-hymns" class="level4">
+<h4 class="anchored" data-anchor-id="non-sacrament-hymns">Non-sacrament hymns</h4>
 <p>Once in a while, a ward will indeed sing some other hymn as a sacrament hymn. Many hymns were selected by at least one ward at least one time, but two stood out. They are <em>O Savior, Thou Who Wearest a Crown (197)</em> and <em>Gently Raise the Sacred Strain (146)</em> (<a href="#fig-sac_plus_honoraries">Figure&nbsp;3</a>). There is good reason for why these two were sung as sacrament hymns: if you look up “Sacrament” in the topical index in the back of the hymnal, it is a list of all the hymns from 169–196, but it also includes these two.</p>
 <div id="fig-sac_plus_honoraries" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -192,22 +205,86 @@ ul.task-list li input[type="checkbox"] {
 <p>Let’s start with <em>O Savior, Thou Who Wearest a Crown (197)</em>. It was sung as a sacrament hymn about once every four years per ward on average. Given that it feels like a sacrament hymn <em>and</em> like an Easter hymn, it is perfectly placed between the more on-the-nose sacrament hymns (i.e.&nbsp;those about the bread and water) and the more traditional Easter hymns (e.g.&nbsp;<em>He is Risen! (199)</em>). Perhaps some music chairpeople noticed it in the Index and chose it because of that. But, I could see a music chairperson selecting it because they perhaps thought sacrament hymns went from 169–197 instead of 169–196.</p>
 <p>The oddball though is <em>Gently Raise the Sacred Strain (146)</em>. In fact, it was sung <em>as a sacrament hymn</em> about once every two years per ward, which is just about as often as <em>O Thou, Before the World Began (189)</em>. It is not clear to me why this one is listed in the index as a sacrament hymn, but it’s not grouped together with the other sacrament hymns. The “Prayer and Supplication” category of hymns, which is what this is a part of (and rightfully so, in my opinion), is just before the “Sacrament” category. If it, like <em>O Savior, Thou Who Wearest a Crown (197)</em>, fits into both categories, then I think it should be moved to hymn 168 so that it’s less out of left field. This one really should be thought of as an honorary sacrament hymn. Perhaps we’ll see it included in the “official” list of sacrament hymns in the next hymnal.</p>
 </section>
-<section id="sacrament-hymns-sung-elsewhere" class="level3">
-<h3 class="anchored" data-anchor-id="sacrament-hymns-sung-elsewhere">Sacrament hymns sung elsewhere</h3>
+<section id="sacrament-hymns-sung-elsewhere" class="level4">
+<h4 class="anchored" data-anchor-id="sacrament-hymns-sung-elsewhere">Sacrament hymns sung elsewhere</h4>
 <p>Finally, we can look at sacrament hymns that were sung at some other point in a sacrament meeting. Unsurprisingly, <em>I Stand All Amazed (193)</em> is at the top, being sung occasionally as an opening hymn and closing hymn. At only once every 6–7 years, it’s not particularly common to see it sung this way, but it’s still not unheard of. After that, there are a few others like <em>Behold the Great Redeemer Die (191)</em> and <em>There Is a Green Hill Far Away (194)</em> were also used as one of the other hymns, but it was still quite unusual.</p>
 <p>Overall, while singing a specific sacrament hymn elsewhere in the meeting is pretty unusual, the odds of singing <em>any</em> of the sacrament hymns is more common since their frequencies add together. It happened in 61 of the 5211 sacrament meetings I have data from, or 1.1% of them. That means, on average, a ward might since hymn 169–196 at some other point in the meeting approximately once every year and ten months.</p>
 </section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<section id="conclusion" class="level4">
+<h4 class="anchored" data-anchor-id="conclusion">Conclusion</h4>
 <p>The findings in this section suggest that were have a strong tradition of singing hymns 169 through 196 in our sacrament meetings immediately before the sacrament itself. Some wards systematically cycle through them, which I believe is a perfectly appropriate thing to do to include the widest variety of hymns to the ward. Other wards pick and choose, which inevitably leads to some favorites being sung more and some lesser-known ones falling through the cracks.</p>
 <p>As we’ll see in <a href="#sec-holidays">Section&nbsp;2</a> when we look at holidays, wards do not always stick to the table of contents at the beginning of the hymnal when choosing appropriate hymns. However, in the case of the sacrament—which is the most important part of our Sunday worship and the primary reason for Sunday gatherings—it’s clear that we adhere strongly to the recommendation. Nevertheless, the addition of <em>Gently Raise the Sacred Strain (146)</em> shows that there is at least some room for thinking out of the box when selecting sacrament hymns.</p>
 </section>
 </section>
+<section id="the-most-common-non-sacrament-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="the-most-common-non-sacrament-hymns">The most common (non-sacrament) hymns</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="lesser-common-sacrament-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="lesser-common-sacrament-hymns">Lesser common sacrament hymns</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="mens-and-womens-arrangements" class="level3">
+<h3 class="anchored" data-anchor-id="mens-and-womens-arrangements">Men’s and women’s arrangements</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="the-least-sung-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="the-least-sung-hymns">The least sung hymns</h3>
+<p>Stay tuned!</p>
+</section>
+</section>
 <section id="sec-holidays" class="level2">
 <h2 class="anchored" data-anchor-id="sec-holidays">Holidays</h2>
+<section id="christmas" class="level3">
+<h3 class="anchored" data-anchor-id="christmas">Christmas</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="new-years" class="level3">
+<h3 class="anchored" data-anchor-id="new-years">New Year’s</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="valentines-day" class="level3">
+<h3 class="anchored" data-anchor-id="valentines-day">Valentine’s Day</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="easter" class="level3">
+<h3 class="anchored" data-anchor-id="easter">Easter</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="mothers-day" class="level3">
+<h3 class="anchored" data-anchor-id="mothers-day">Mother’s Day</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="fathers-day" class="level3">
+<h3 class="anchored" data-anchor-id="fathers-day">Father’s Day</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="fourth-of-july" class="level3">
+<h3 class="anchored" data-anchor-id="fourth-of-july">Fourth of July</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="pioneer-day" class="level3">
+<h3 class="anchored" data-anchor-id="pioneer-day">Pioneer Day</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="halloween" class="level3">
+<h3 class="anchored" data-anchor-id="halloween">Halloween</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="thanksgiving" class="level3">
+<h3 class="anchored" data-anchor-id="thanksgiving">Thanksgiving</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="general-conference" class="level3">
+<h3 class="anchored" data-anchor-id="general-conference">General Conference</h3>
+<p>Stay tuned!</p>
+</section>
+<section id="fast-sunday" class="level3">
+<h3 class="anchored" data-anchor-id="fast-sunday">Fast Sunday</h3>
 <p>Stay tuned!</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
