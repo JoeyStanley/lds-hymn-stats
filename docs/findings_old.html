@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2023-09-08">
 
 <title>LDS Hymn Stats - Findings</title>
 <style>
@@ -30,8 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,37 +60,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -115,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./findings.html" aria-current="page">Findings</a>
+    <a class="nav-link" href="./findings.html">Findings</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./contribute.html">Contribute</a>
@@ -136,8 +106,14 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
 <p><img src="./images/logo.jpeg" class="img-fluid"></p>
 </div></div>
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="sacrament">sacrament <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#most-and-least-common-hymns" id="toc-most-and-least-common-hymns" class="nav-link active" data-scroll-target="#most-and-least-common-hymns">Most and least common hymns</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -150,59 +126,33 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 8, 2023</p>
+    </div>
+  </div>
     
   </div>
   
 
 </header>
 
+<section id="most-and-least-common-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="most-and-least-common-hymns">Most and least common hymns</h2>
+<p>The most common hymn is <em>I Stand All Amazed (193)</em>. It is sung, on average, once every four and a half months within a given ward. It should come as no surprise that this hymn is a sacrament hymn, or rather, the second hymn sung in sacrament meeting and the one just before the blessing and passing of the sacrament. In fact, because we almost always sing one of 28 sacrament hymns every week, those hymns are going to be more common than most other hymns. So, to fully appreciate the most common hymns, let’s first talk about the sacrament hymns by themselves. We’ll then move on to the most frequent non-sacrament hymns. We’ll then move down the line to less and less frequent hymns until we get to the ones that are hardly sung at all. We’ll also take a tangent into the men’s and women’s arrangements in the back of the hymnal.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="sacrament" data-listing-date-sort="1694066400000" data-listing-file-modified-sort="1694171640010" data-listing-reading-time-sort="7.38">
-<div class="thumbnail">
-<p><a href="./posts/sacrament.html"> <img src="./images/sacrament.jpeg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/sacrament.html">
-<h3 class="no-anchor listing-title">
-What are the most and least common Sacrament Hymns?
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('sacrament'); return false;">
-sacrament
-</div>
-</div>
-<a href="./posts/sacrament.html">
-<div class="listing-description">
-<p>In this post, I dive into just the canonical sacrament hymns (i.e.&nbsp;hymns 169–196).</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/sacrament.html">
-<div class="listing-date">
-Sep 7, 2023
-</div>
-<div class="listing-author">
-Joey Stanley
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

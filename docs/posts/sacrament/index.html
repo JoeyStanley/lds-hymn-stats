@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2023-09-07">
+<meta name="description" content="In this post, I dive into just the canonical sacrament hymns (i.e.&nbsp;hymns 169–196).">
+
+<title>LDS Hymn Stats - What are the most and least common Sacrament Hymns?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html">Findings</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html">Contribute</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-most-and-least-common-hymns" id="toc-the-most-and-least-common-hymns" class="nav-link active" data-scroll-target="#the-most-and-least-common-hymns">The most and least common hymns</a>
+  <ul class="collapse">
+  <li><a href="#sacrament-hymns" id="toc-sacrament-hymns" class="nav-link" data-scroll-target="#sacrament-hymns">Sacrament hymns</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What are the most and least common Sacrament Hymns?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">sacrament</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    In this post, I dive into just the canonical sacrament hymns (i.e.&nbsp;hymns 169–196).
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 7, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="the-most-and-least-common-hymns" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-most-and-least-common-hymns">The most and least common hymns</h2>
+<p>The most common hymn is <em>I Stand All Amazed (193)</em>. It is sung, on average, once every four and a half months within a given ward. It should come as no surprise that this hymn is a sacrament hymn, or rather, the second hymn sung in sacrament meeting and the one just before the blessing and passing of the sacrament. In fact, because we almost always sing one of 28 sacrament hymns every week, those hymns are going to be more common than most other hymns. So, to fully appreciate the most common hymns, let’s first talk about the sacrament hymns by themselves. We’ll then move on to the most frequent non-sacrament hymns. We’ll then move down the line to less and less frequent hymns until we get to the ones that are hardly sung at all. We’ll also take a tangent into the men’s and women’s arrangements in the back of the hymnal.</p>
+<section id="sacrament-hymns" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="sacrament-hymns">Sacrament hymns</h3>
+<p>We’ll start off by looking at sacrament hymns, or rather, the hymn sung immediately before the sacrament is blessed and passed to the congregation. As far as I can tell, §19.3.2 of the <em>General Handbook</em> has the only instruction about sacrament hymns, and it says that “[t]he sacrament hymn should refer to the sacrament itself or to the sacrifice of the Savior.” This instruction is repeated on page 380 of the hymnal.</p>
+<div class="page-columns page-full"><p>In the hymnal, sacrament hymns go from 169 (<em>As Now We Take the Sacrament</em>) to 196 (<em>Jesus, Once of Humble Birth</em>), at least according to the Table of Contents. As far as I can tell, it doesn’t <em>specifically</em> state that the sacrament hymn must be one of the 28 within that range, but I think it’s a generally accepted that that’s what that phrase from the handbook means.</p><div class="no-row-height column-margin column-container"><span class="aside">In fact, I’ve had church leaders enforce this constraint. I was in a ward where a newly-called music chairperson chose reverent hymns that were outside of that range. After about two weeks, the bishop announced that we’d be singing a different hymn than what was listed on the program and he changed it to a sacrament hymn. Presumably he later explained the policy to the chorister afterwards because we sang “true” sacrament hymns from then on.</span></div></div>
+<p>As it turns out, <em>I Stand All Amazed (193)</em> is part of that group. So it should come as no surprise that a sacrament hymn is the most common hymn overall. That one in particular focuses less on the sacrament itself and more on the Atonement, so it could be used outside of sacrament contexts without feeling out of place. In fact, a quick look at the numbers suggests that it was, in fact, sung as opening and closing hymns at least three times more often than any other sacrament hymn. This may explain why it stands out as the most commonly sung hymn in sacrament meetings.</p>
+<section id="frequency" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="frequency">Frequency</h4>
+<p>Let’s take a closer look at the sacrament hymns themselves. In theory, if a ward were to systematically cycle through all the sacrament hymns, they’d make it through all of them in a little over six months. However, <a href="#fig-sac_freqs">Figure&nbsp;1</a> shows that they’re definitely not all sung equally as often as each other.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="aside">Most plots on this page are formatted just like this one here. Hymns that are less common are in the lower left and hymns that are more common are in the upper right. The numbers along the bottom refer to how many times, on average, a ward will sing that hymn within a given year.</span></div></div>
+<div id="fig-sac_freqs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../images/sacrament.jpeg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Sacrament hymns in order of frequency</figcaption><p></p>
+</figure>
+</div>
+<p>Joining <em>I Stand All Amazed (193)</em> as the most common ones are <em>In Humility, Our Savior (172)</em>, <em>There is a Green Hill Far Away (194)</em>, and <em>Jesus, Once of Humble Birth (196)</em>. Each one of these is sung around two or three times per year, on average, or once every four to five months.</p>
+<p>Most sacrament hymns are sung at least once a year per ward, on average, but there were some that were less common. <em>O Lord of Hosts (178)</em>, <em>Again, Our Dear Redeeming Lord (179)</em>, and <em>Again, We Meet around the Board (186)</em> each averaged somewhere between once every 13 and 17 months. The least frequent sacrament hymn though was <em>O Thou, Before the World Began (189)</em>, showing up about once every two years.</p>
+<p>Also, keep in mind that some wards in this dataset do in fact systematically cycle through all the sacrament hymns. I recalculated the numbers without those wards (<a href="#fig-sac_minus_regulars">Figure&nbsp;2</a>), and the common hymns were slightly more frequent and the uncommon ones were even rarer. For example, <em>O Thou, Before the World Began (189)</em> jumped down from once every two years to once every three years.</p>
+<div id="fig-sac_minus_regulars" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../images/sacrament_minus_regulars.jpeg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Sacrament hymns excluding wards that systematically cycle through them</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="non-sacrament-hymns" class="level4">
+<h4 class="anchored" data-anchor-id="non-sacrament-hymns">Non-sacrament hymns</h4>
+<p>Once in a while, a ward will indeed sing some other hymn as a sacrament hymn. Many hymns were selected by at least one ward at least one time, but two stood out. They are <em>O Savior, Thou Who Wearest a Crown (197)</em> and <em>Gently Raise the Sacred Strain (146)</em> (<a href="#fig-sac_plus_honoraries">Figure&nbsp;3</a>). There is good reason for why these two were sung as sacrament hymns: if you look up “Sacrament” in the topical index in the back of the hymnal, it is a list of all the hymns from 169–196, but it also includes these two.</p>
+<div id="fig-sac_plus_honoraries" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../images/sacrament_plus_honoraries.jpeg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Sacrament hymns excluding wards that systematically cycle through them</figcaption><p></p>
+</figure>
+</div>
+<p>Let’s start with <em>O Savior, Thou Who Wearest a Crown (197)</em>. It was sung as a sacrament hymn about once every four years per ward on average. Given that it feels like a sacrament hymn <em>and</em> like an Easter hymn, it is perfectly placed between the more on-the-nose sacrament hymns (i.e.&nbsp;those about the bread and water) and the more traditional Easter hymns (e.g.&nbsp;<em>He is Risen! (199)</em>). Perhaps some music chairpeople noticed it in the Index and chose it because of that. But, I could see a music chairperson selecting it because they perhaps thought sacrament hymns went from 169–197 instead of 169–196.</p>
+<p>The oddball though is <em>Gently Raise the Sacred Strain (146)</em>. In fact, it was sung <em>as a sacrament hymn</em> about once every two years per ward, which is just about as often as <em>O Thou, Before the World Began (189)</em>. It is not clear to me why this one is listed in the index as a sacrament hymn, but it’s not grouped together with the other sacrament hymns. The “Prayer and Supplication” category of hymns, which is what this is a part of (and rightfully so, in my opinion), is just before the “Sacrament” category. If it, like <em>O Savior, Thou Who Wearest a Crown (197)</em>, fits into both categories, then I think it should be moved to hymn 168 so that it’s less out of left field. This one really should be thought of as an honorary sacrament hymn. Perhaps we’ll see it included in the “official” list of sacrament hymns in the next hymnal.</p>
+</section>
+<section id="sacrament-hymns-sung-elsewhere" class="level4">
+<h4 class="anchored" data-anchor-id="sacrament-hymns-sung-elsewhere">Sacrament hymns sung elsewhere</h4>
+<p>Finally, we can look at sacrament hymns that were sung at some other point in a sacrament meeting. Unsurprisingly, <em>I Stand All Amazed (193)</em> is at the top, being sung occasionally as an opening hymn and closing hymn. At only once every 6–7 years, it’s not particularly common to see it sung this way, but it’s still not unheard of. After that, there are a few others like <em>Behold the Great Redeemer Die (191)</em> and <em>There Is a Green Hill Far Away (194)</em> were also used as one of the other hymns, but it was still quite unusual.</p>
+<p>Overall, while singing a specific sacrament hymn elsewhere in the meeting is pretty unusual, the odds of singing <em>any</em> of the sacrament hymns is more common since their frequencies add together. It happened in 61 of the 5211 sacrament meetings I have data from, or 1.1% of them. That means, on average, a ward might since hymn 169–196 at some other point in the meeting approximately once every year and ten months.</p>
+</section>
+<section id="conclusion" class="level4">
+<h4 class="anchored" data-anchor-id="conclusion">Conclusion</h4>
+<p>The findings in this section suggest that were have a strong tradition of singing hymns 169 through 196 in our sacrament meetings immediately before the sacrament itself. Some wards systematically cycle through them, which I believe is a perfectly appropriate thing to do to include the widest variety of hymns to the ward. Other wards pick and choose, which inevitably leads to some favorites being sung more and some lesser-known ones falling through the cracks.</p>
+<p>As we’ll see when we look at holidays, wards do not always stick to the table of contents at the beginning of the hymnal when choosing appropriate hymns. However, in the case of the sacrament—which is the most important part of our Sunday worship and the primary reason for Sunday gatherings—it’s clear that we adhere strongly to the recommendation. Nevertheless, the addition of <em>Gently Raise the Sacred Strain (146)</em> shows that there is at least some room for thinking out of the box when selecting sacrament hymns.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
