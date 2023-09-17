@@ -20,7 +20,7 @@ It doesn't take any specialied skills to figure out what key signature is the mo
 The most common key signature is G major, or one sharp.
 :::
 
-![Distribution of key signatures](../images/key_signatures.jpeg){#fig-key_signatures}
+![Distribution of key signatures. See @tbl-freqs for exact numbers.](../images/key_signatures.jpeg){#fig-key_signatures}
 
 If you know the hymnal well, nothing about this figure should come as a surprise. The modern hymnal tends to use key signatures that have few sharps or flats.[That wasn't necessarily true of previous versions. For example, some hymns in the previous version (the blue hymnal) were in the key of E with four sharps. Presumably they got rid of those because they were too hard for some accompaniests to play.]{.aside} There are about as many hymns in the D major as there are in C major and Eb major. There are slightly fewer hymns in F and Bb major for some reason. Eb major is the standout because even though it has more flats than Bb and F, it outnumbers those two. In general though, the further in the circle of fourths you go from G major, the fewer hymns there are.
 
@@ -34,18 +34,35 @@ For what it's worth, there is one hymn that actually changes keys partway though
 
 So we've addressed the question of what key signature the most number of hymns are set to. But, does that actually mean that's the most that we see? What's the difference? It may be the case that tons of hymns in G major are really obscure ones that hardly anyone ever sees. So, if we take frequency into account, perhaps another key is *seen* more often, even if fewer hymns are actually in it.
 
-
 ![Likelihood of key signatures](../images/key_signature_weighted.jpeg){#fig-key_signatures_weighted}
 
-@fig-key_signatures_weighted looks similar to @fig-key_signatures except I've adjusted the heights of the bars based on how frequent each hymn is. If a hymn is more common, it'll raise the bar for its key signature more. If it's less common, it'll raise it less. 
+@fig-key_signatures_weighted looks similar to @fig-key_signatures except I've adjusted the heights of the bars based on how frequent each hymn is. If a hymn is more common, it'll raise the bar for its key signature more. If it's less common, it'll raise it less.
 
-While superficially the two plots may look similar, there are some important differences. First, D major is closer in height to G major. This is likely due to some pretty common sacrament hymns like <hymn>Jesus, Once of Humble Birth (196)</hymn>, <hymn>O God, the Eternal Father (175)</hymn>, and <hymn>In Memory of the Crucified (190)</hymn> as well as some other heavy hitters like <hymn>I Believe in Christ (134)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (19)</hymn>. Meanwhile C major, F major, and especially Bb major are relatively lower than G major. 
+While superficially the two plots may look similar, there are some important differences. (See @tbl-freqs as well.) First, D major is closer in height to G major. While only about 15.6% of the hymns are in D, they're sung about 19.3% of the time. This is likely due to some pretty common sacrament hymns like <hymn>Jesus, Once of Humble Birth (196)</hymn>, <hymn>O God, the Eternal Father (175)</hymn>, and <hymn>In Memory of the Crucified (190)</hymn> as well as some other heavy hitters like <hymn>I Believe in Christ (134)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (19)</hymn>. 
 
-Perhaps the biggest change is that Eb is quite a bit more commonly seen than you'd expect based on how many hymns there are in it. Undoubtedly, it's because nine of the 28 sacrament hymns are in Eb. So, to put it another way, on average, hymns in Eb major are more common than hymns in C major. 
+Most of the other key signatures are pretty similar. C major and F major are more or less unchanged. Though 12.3% of hymns are set in Bb major, they're only sung about 9.3% of the time. And while Ab major is only used in 6.4% of the hymns, it's sung 5.2% of the time in sacrament meeting. (No doubt, <hymn>I Stand All Amazed (193)</hymn> is doing [the lion's share](/posts/most_common_hymns.qmd) of the work there.)
+
+Perhaps the biggest change is that Eb is quite a bit more commonly seen than you'd expect based on how many hymns there are in it. 14.3% of hymns are in Eb, but 17.4% of the hymns actually sung in sacrament meeting are in Eb. Undoubtedly, it's because nine of the 28 sacrament hymns are in Eb. So, to put it another way, on average, hymns in Eb major are more common than hymns in C major or even Bb major. 
 
 Finally, the fact that the keys of A and Db major are mere slivers in @fig-key_signatures_weighted reflects what was explained above that they're really uncommon. 
 
-@fig-key_signatures_weighted probably has the most useful application out of anything else in this blog post. If you're a budding musician and are still getting used to key signatures, the good news is that you don't have to learn all twelve keys to play the hymnal. If you focus your efforts on hymns in G, D, and Eb, you'll get the most milage out of your practice. 
+To put some numbers to this, interestingly, still 22% of hymns *that are actually sung in sacrament meeting* are in the key of G. D jumps  The keys of D, C, F, Bb, and Eb each have 12%--15% of the hymns. Ab is less common, with about 6% of the hymns. 
+
+@fig-key_signatures_weighted probably has the most useful application out of anything else in this blog post. If you're a budding musician and are still getting used to key signatures, the good news is that you don't have to learn all twelve keys to play the hymnal. If you focus your efforts on hymns in G, D, and Eb, you'll get the most milage out of your practice.
+
+| Key Signature  | # of hymns | % of hymnal  | % of hymns sung |
+|:----: |---:|------:|------:|
+| A     |  2 |  0.6% |  0.1% |
+| D     | 56 | 15.7% | 19.3% |
+| G     | 79 | 22.1% | 22.3% |
+| C     | 52 | 14.6% | 13.4% |
+| F     | 48 | 13.4% | 12.8% |
+| Bb    | 44 | 12.3% |  9.3% |
+| Eb    | 51 | 14.3% | 17.4% |
+| Ab    | 23 |  6.4% |  5.2% |
+| Db    |  2 |  0.6% |  0.003% |
+
+: Key Signature Frequencies {#tbl-freqs .striped .hover}
 
 
 ## Why is G major the most common?

@@ -187,7 +187,7 @@ Fun Fact
 <div id="fig-key_signatures" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../images/key_signatures.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Distribution of key signatures</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1: Distribution of key signatures. See <a href="#tbl-freqs">Table&nbsp;1</a> for exact numbers.</figcaption>
 </figure>
 </div>
 <div class="page-columns page-full"><p>If you know the hymnal well, nothing about this figure should come as a surprise. The modern hymnal tends to use key signatures that have few sharps or flats. There are about as many hymns in the D major as there are in C major and Eb major. There are slightly fewer hymns in F and Bb major for some reason. Eb major is the standout because even though it has more flats than Bb and F, it outnumbers those two. In general though, the further in the circle of fourths you go from G major, the fewer hymns there are.</p><div class="no-row-height column-margin column-container"><span class="">That wasn’t necessarily true of previous versions. For example, some hymns in the previous version (the blue hymnal) were in the key of E with four sharps. Presumably they got rid of those because they were too hard for some accompaniests to play.</span></div></div>
@@ -205,10 +205,81 @@ Fun Fact
 </figure>
 </div>
 <p><a href="#fig-key_signatures_weighted">Figure&nbsp;2</a> looks similar to <a href="#fig-key_signatures">Figure&nbsp;1</a> except I’ve adjusted the heights of the bars based on how frequent each hymn is. If a hymn is more common, it’ll raise the bar for its key signature more. If it’s less common, it’ll raise it less.</p>
-<p>While superficially the two plots may look similar, there are some important differences. First, D major is closer in height to G major. This is likely due to some pretty common sacrament hymns like <hymn>Jesus, Once of Humble Birth (196)</hymn>, <hymn>O God, the Eternal Father (175)</hymn>, and <hymn>In Memory of the Crucified (190)</hymn> as well as some other heavy hitters like <hymn>I Believe in Christ (134)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (19)</hymn>. Meanwhile C major, F major, and especially Bb major are relatively lower than G major.</p>
-<p>Perhaps the biggest change is that Eb is quite a bit more commonly seen than you’d expect based on how many hymns there are in it. Undoubtedly, it’s because nine of the 28 sacrament hymns are in Eb. So, to put it another way, on average, hymns in Eb major are more common than hymns in C major.</p>
+<p>While superficially the two plots may look similar, there are some important differences. (See <a href="#tbl-freqs">Table&nbsp;1</a> as well.) First, D major is closer in height to G major. While only about 15.6% of the hymns are in D, they’re sung about 19.3% of the time. This is likely due to some pretty common sacrament hymns like <hymn>Jesus, Once of Humble Birth (196)</hymn>, <hymn>O God, the Eternal Father (175)</hymn>, and <hymn>In Memory of the Crucified (190)</hymn> as well as some other heavy hitters like <hymn>I Believe in Christ (134)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (19)</hymn>.</p>
+<p>Most of the other key signatures are pretty similar. C major and F major are more or less unchanged. Though 12.3% of hymns are set in Bb major, they’re only sung about 9.3% of the time. And while Ab major is only used in 6.4% of the hymns, it’s sung 5.2% of the time in sacrament meeting. (No doubt, <hymn>I Stand All Amazed (193)</hymn> is doing <a href="../posts/most_common_hymns.html">the lion’s share</a> of the work there.)</p>
+<p>Perhaps the biggest change is that Eb is quite a bit more commonly seen than you’d expect based on how many hymns there are in it. 14.3% of hymns are in Eb, but 17.4% of the hymns actually sung in sacrament meeting are in Eb. Undoubtedly, it’s because nine of the 28 sacrament hymns are in Eb. So, to put it another way, on average, hymns in Eb major are more common than hymns in C major or even Bb major.</p>
 <p>Finally, the fact that the keys of A and Db major are mere slivers in <a href="#fig-key_signatures_weighted">Figure&nbsp;2</a> reflects what was explained above that they’re really uncommon.</p>
+<p>To put some numbers to this, interestingly, still 22% of hymns <em>that are actually sung in sacrament meeting</em> are in the key of G. D jumps The keys of D, C, F, Bb, and Eb each have 12%–15% of the hymns. Ab is less common, with about 6% of the hymns.</p>
 <p><a href="#fig-key_signatures_weighted">Figure&nbsp;2</a> probably has the most useful application out of anything else in this blog post. If you’re a budding musician and are still getting used to key signatures, the good news is that you don’t have to learn all twelve keys to play the hymnal. If you focus your efforts on hymns in G, D, and Eb, you’ll get the most milage out of your practice.</p>
+<div id="tbl-freqs" class="anchored">
+<table class="table-striped table-hover table">
+<caption>Table&nbsp;1: Key Signature Frequencies</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Key Signature</th>
+<th style="text-align: right;"># of hymns</th>
+<th style="text-align: right;">% of hymnal</th>
+<th style="text-align: right;">% of hymns sung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.6%</td>
+<td style="text-align: right;">0.1%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">D</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">15.7%</td>
+<td style="text-align: right;">19.3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">G</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">22.1%</td>
+<td style="text-align: right;">22.3%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">C</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">14.6%</td>
+<td style="text-align: right;">13.4%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">F</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">13.4%</td>
+<td style="text-align: right;">12.8%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Bb</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">12.3%</td>
+<td style="text-align: right;">9.3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Eb</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">14.3%</td>
+<td style="text-align: right;">17.4%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Ab</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">6.4%</td>
+<td style="text-align: right;">5.2%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Db</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.6%</td>
+<td style="text-align: right;">0.003%</td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="why-is-g-major-the-most-common" class="level2">
 <h2 class="anchored" data-anchor-id="why-is-g-major-the-most-common">Why is G major the most common?</h2>
