@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -77,25 +77,31 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../findings.html">Findings</a>
+    <a class="nav-link" href="../findings.html" rel="" target="">
+ <span class="menu-text">Findings</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../contribute.html">Contribute</a>
+    <a class="nav-link" href="../contribute.html" rel="" target="">
+ <span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">About</a>
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -126,6 +132,7 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="title">What are the most common hymns?</h1>
   <div class="quarto-categories">
     <div class="quarto-category">general</div>
+    <div class="quarto-category">frequency</div>
   </div>
   </div>
 
@@ -151,6 +158,7 @@ ul.task-list li input[type="checkbox"] {
       <p class="date">September 8, 2023</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -160,11 +168,11 @@ ul.task-list li input[type="checkbox"] {
 <p>The most common hymn is <hymn>I Stand All Amazed (193)</hymn>. Given what was discussed previously about the <a href="../posts/sacrament.html">sacrament hymns</a>, it shouldn’t come as a surprise that the most common hymn is a sacrament hymn. In fact, the top 15 most sung hymns are sacrament hymns. There is a fairly well-enforced constraint that at least one hymn per meeting “must” be one of the 28 canonical sacrament hymns (with two <a href="../posts/sacrament.html#non-sacrament-hymns">“honorary hymns”</a> as possibilities as well). We can now better appreciate the list of the most common hymns.</p>
 <section id="the-most-common-hymns" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="the-most-common-hymns">The most common hymns</h2>
-<div class="page-columns page-full"><p>The most common hymns sung in the church, according to my data, are displayed in <a href="#fig-the-favorites">Figure&nbsp;1</a>. Here, sacrament hymns are in gray and other hymns are in black. I’ve shown only the hymns that are sung, on average, one or more times per year per ward. Since <a href="../posts/sacrament.html">I’ve already posted about the sacrament hymns</a>, I’ll focus now on just the non-sacrament hymns.</p><div class="no-row-height column-margin column-container"><span class="aside">You may think that a lot of hymns that pertain to specific holidays would make it onto this list, but as we’ll see in later blog posts about annual trends, there are actually relatively few festive hymns that are sung by most wards most years.</span></div></div>
+<div class="page-columns page-full"><p>The most common hymns sung in the church, according to my data, are displayed in <a href="#fig-the-favorites">Figure&nbsp;1</a>. Here, sacrament hymns are in gray and other hymns are in black. I’ve shown only the hymns that are sung, on average, one or more times per year per ward. Since <a href="../posts/sacrament.html">I’ve already posted about the sacrament hymns</a>, I’ll focus now on just the non-sacrament hymns.</p><div class="no-row-height column-margin column-container"><span class="">You may think that a lot of hymns that pertain to specific holidays would make it onto this list, but as we’ll see in later blog posts about annual trends, there are actually relatively few festive hymns that are sung by most wards most years.</span></div></div>
 <div id="fig-the-favorites" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../images/the_favorites.jpeg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: The “favorites”: Hymns that are sung at least once per year</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;1: The “favorites”: Hymns that are sung at least once per year</figcaption>
 </figure>
 </div>
 <p>This figure shows nice list of 22 hymns that are probably well-known by most members of the church, like <hymn>I Know That My Redeemer Lives (136)</hymn>, <hymn>How Firm a Foundation (85)</hymn>, and <hymn>Because I Have Been Given Much (219)</hymn>. They are generic enough to be appropriate for most meetings. Their message is centered on Christ and other foundational tenents of our religion. Some are more common around certain holidays, like <hymn>Come, Come Ye Saints (30)</hymn> around Pioneer Day in Utah or <hymn>Love At Home (294)</hymn> around Mother’s Day, but they’re also general enough to be appropriate at other times of the year as well. Thus, what we see in <a href="#fig-the-favorites">Figure&nbsp;1</a> is a solid list of the most popular hymns in the Church of Jesus Christ of Latter-day Saints.</p>
@@ -177,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="fig-standard_vs_popular" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../images/standard_vs_popular.jpeg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Standard vs.&nbsp;Popular hymns. Here, “standard” means they’re recommended in the back of the hymnal as a well-known hymn. “Popular” means they’re sung more than once a year according to this sample. Sacrament hymns are excluded.</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Standard vs.&nbsp;Popular hymns. Here, “standard” means they’re recommended in the back of the hymnal as a well-known hymn. “Popular” means they’re sung more than once a year according to this sample. Sacrament hymns are excluded.</figcaption>
 </figure>
 </div>
 <p>However, it should be kept in mind that this isn’t exactly a fair comparison. For one, this list of “standards” is what is recommended for stake conference, which is not the same as sacrament meeting. Also, this list printed in the back of the hymnal is presumably what was recommended in 1985 when this hymnal was first published. What is considered a standard has surely changed in the past few decades. Furthermore, many of the currently most popular hymns were new additions to the 1985 hymnal, including <hymn>Because I Have Been Given Much (219)</hymn>, <hymn>I Believe in Christ (134)</hymn>, <hymn>I Am a Child of God (301)</hymn>, and <hymn>Called to Serve (249)</hymn>. It makes sense that they’re not recommended in the back of the hymnal because they were brand new when that list was published! How could they have know they’d be so popular? My recommendation for the church would be to update the list of stake conference recommendations to include these most popular hymns and to remove the ones that are less common today.</p>
@@ -214,9 +222,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -228,7 +250,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -264,24 +303,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
