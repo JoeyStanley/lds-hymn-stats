@@ -10,7 +10,7 @@ categories:
   - bass line
 ---
 
-## What key signature is most common in the hymnal? 
+## What key signature is most common in the hymnal?
 
 It doesn't take any specialied skills to figure out what key signature is the most common, nothing more than flipping through the hymnal and tallying the key signatures up. To save you a sacrament meeting distraction, I went ahead did this for you, and @fig-key_signatures shows the distribution of key signatures across the hymnal.
 
@@ -24,11 +24,11 @@ The most common key signature is G major, or one sharp.
 
 If you know the hymnal well, nothing about this figure should come as a surprise. The modern hymnal tends to use key signatures that have few sharps or flats.[That wasn't necessarily true of previous versions. For example, some hymns in the previous version (the blue hymnal) were in the key of E with four sharps. Presumably they got rid of those because they were too hard for some accompaniests to play.]{.aside} There are about as many hymns in the D major as there are in C major and Eb major. There are slightly fewer hymns in F and Bb major for some reason. Eb major is the standout because even though it has more flats than Bb and F, it outnumbers those two. In general though, the further in the circle of fourths you go from G major, the fewer hymns there are.
 
-Two key signatures are marginal in the hymnal. The key of A major, with three sharps, is only found in two hymns: the men's chorus arrangement of <hymn>An Angel from on High (328)</hymn> and <hymn>How Wondrous and Great (267)</hymn>. Since the first is a men's chorus arrangement, it was never sung in sacrament meeting in my data. The second was sung about once every 4.5--5 years, so an unusual hymn for sure, but more common than many others. 
+Two key signatures are marginal in the hymnal. The key of A major, with three sharps, is only found in two hymns: the men's chorus arrangement of <hymn>An Angel from on High (328)</hymn> and <hymn>How Wondrous and Great (267)</hymn>. Since the first is a men's chorus arrangement, it was never sung in sacrament meeting in my data. The second was sung about once every 4.5--5 years, so an unusual hymn for sure, but more common than many others.
 
-The other marginal key signature is Db and, again, just two hymns are in that key. <hymn>As the Shadows Fall (168)</hymn> was sung just four times in my data, or once every roughly 28 years. The other, <hymn>Softly Beams the Sacred Dawning (56)</hymn>, was sung just once in my sample, meaning it's sung about once every 114 years. Because of how unusual these hymns are, these numbers are very rough guesses; perhaps we can think of them as "once in a generation" and "once in a lifetime." The point is, it is *very* unusual to sing a hymn in Db. 
+The other marginal key signature is Db and, again, just two hymns are in that key. <hymn>As the Shadows Fall (168)</hymn> was sung just four times in my data, or once every roughly 28 years. The other, <hymn>Softly Beams the Sacred Dawning (56)</hymn>, was sung just once in my sample, meaning it's sung about once every 114 years. Because of how unusual these hymns are, these numbers are very rough guesses; perhaps we can think of them as "once in a generation" and "once in a lifetime." The point is, it is *very* unusual to sing a hymn in Db.
 
-For what it's worth, there is one hymn that actually changes keys partway though. <hymn>Welcome, Welcome, Sabbath Morning (280)</hymn> starts in C major, shifts to G major, and then back to C major. For the purposes of this study, I'm treating it as being in C major the entire time. 
+For what it's worth, there is one hymn that actually changes keys partway though. <hymn>Welcome, Welcome, Sabbath Morning (280)</hymn> starts in C major, shifts to G major, and then back to C major. For the purposes of this study, I'm treating it as being in C major the entire time.
 
 ## But do we actually see G major the most?
 
@@ -38,48 +38,45 @@ So we've addressed the question of what key signature the most number of hymns a
 
 @fig-key_signatures_weighted looks similar to @fig-key_signatures except I've adjusted the heights of the bars based on how frequent each hymn is. If a hymn is more common, it'll raise the bar for its key signature more. If it's less common, it'll raise it less.
 
-While superficially the two plots may look similar, there are some important differences. (See @tbl-freqs as well.) First, D major is closer in height to G major. While only about 15.6% of the hymns are in D, they're sung about 19.3% of the time. This is likely due to some pretty common sacrament hymns like <hymn>Jesus, Once of Humble Birth (196)</hymn>, <hymn>O God, the Eternal Father (175)</hymn>, and <hymn>In Memory of the Crucified (190)</hymn> as well as some other heavy hitters like <hymn>I Believe in Christ (134)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (19)</hymn>. 
+While superficially the two plots may look similar, there are some important differences. (See @tbl-freqs as well.) First, D major is closer in height to G major. While only about 15.6% of the hymns are in D, they're sung about 19.3% of the time. This is likely due to some pretty common sacrament hymns like <hymn>Jesus, Once of Humble Birth (196)</hymn>, <hymn>O God, the Eternal Father (175)</hymn>, and <hymn>In Memory of the Crucified (190)</hymn> as well as some other heavy hitters like <hymn>I Believe in Christ (134)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (19)</hymn>.
 
 Most of the other key signatures are pretty similar. C major and F major are more or less unchanged. Though 12.3% of hymns are set in Bb major, they're only sung about 9.3% of the time. And while Ab major is only used in 6.4% of the hymns, it's sung 5.2% of the time in sacrament meeting. (No doubt, <hymn>I Stand All Amazed (193)</hymn> is doing [the lion's share](/posts/most_common_hymns.qmd) of the work there.)
 
-Perhaps the biggest change is that Eb is quite a bit more commonly seen than you'd expect based on how many hymns there are in it. 14.3% of hymns are in Eb, but 17.4% of the hymns actually sung in sacrament meeting are in Eb. Undoubtedly, it's because nine of the 28 sacrament hymns are in Eb. So, to put it another way, on average, hymns in Eb major are more common than hymns in C major or even Bb major. 
+Perhaps the biggest change is that Eb is quite a bit more commonly seen than you'd expect based on how many hymns there are in it. 14.3% of hymns are in Eb, but 17.4% of the hymns actually sung in sacrament meeting are in Eb. Undoubtedly, it's because nine of the 28 sacrament hymns are in Eb. So, to put it another way, on average, hymns in Eb major are more common than hymns in C major or even Bb major.
 
-Finally, the fact that the keys of A and Db major are mere slivers in @fig-key_signatures_weighted reflects what was explained above that they're really uncommon. 
+Finally, the fact that the keys of A and Db major are mere slivers in @fig-key_signatures_weighted reflects what was explained above that they're really uncommon.
 
-To put some numbers to this, interestingly, still 22% of hymns *that are actually sung in sacrament meeting* are in the key of G. D jumps  The keys of D, C, F, Bb, and Eb each have 12%--15% of the hymns. Ab is less common, with about 6% of the hymns. 
+To put some numbers to this, interestingly, still 22% of hymns *that are actually sung in sacrament meeting* are in the key of G. D jumps The keys of D, C, F, Bb, and Eb each have 12%--15% of the hymns. Ab is less common, with about 6% of the hymns.
 
 @fig-key_signatures_weighted probably has the most useful application out of anything else in this blog post. If you're a budding musician and are still getting used to key signatures, the good news is that you don't have to learn all twelve keys to play the hymnal. If you focus your efforts on hymns in G, D, and Eb, you'll get the most milage out of your practice.
 
-| Key Signature  | # of hymns | % of hymnal  | % of hymns sung |
-|:----: |---:|------:|------:|
-| A     |  2 |  0.6% |  0.1% |
-| D     | 56 | 15.7% | 19.3% |
-| G     | 79 | 22.1% | 22.3% |
-| C     | 52 | 14.6% | 13.4% |
-| F     | 48 | 13.4% | 12.8% |
-| Bb    | 44 | 12.3% |  9.3% |
-| Eb    | 51 | 14.3% | 17.4% |
-| Ab    | 23 |  6.4% |  5.2% |
-| Db    |  2 |  0.6% |  0.003% |
+| Key Signature | \# of hymns | \% of hymnal | \% of hymns sung |
+|:-------------:|------------:|-------------:|-----------------:|
+|       A       |           2 |         0.6% |             0.1% |
+|       D       |          56 |        15.7% |            19.3% |
+|       G       |          79 |        22.1% |            22.3% |
+|       C       |          52 |        14.6% |            13.4% |
+|       F       |          48 |        13.4% |            12.8% |
+|      Bb       |          44 |        12.3% |             9.3% |
+|      Eb       |          51 |        14.3% |            17.4% |
+|      Ab       |          23 |         6.4% |             5.2% |
+|      Db       |           2 |         0.6% |           0.003% |
 
 : Key Signature Frequencies {#tbl-freqs .striped .hover}
 
-
 ## Why is G major the most common?
 
-I'm not a musicologist, but I can speculate as to why G is more common than C. It may be the case that many melodies are centered around the tonic, and extend roughly a fifth above it and roughly a fourth or fifth below it, with a total range of about an octave. If that's the case, a comfortable octave for many singers is from D to D, which means the key of G would be an appropriate key signature. A good example of this is <hymn>Love One another (308)</hymn>, in the left panel of @fig-tonic_in_ranges, which shows the distribution of notes in the melody, with the tonic highlighted in blue. 
+I'm not a musicologist, but I can speculate as to why G is more common than C. It may be the case that many melodies are centered around the tonic, and extend roughly a fifth above it and roughly a fourth or fifth below it, with a total range of about an octave. If that's the case, a comfortable octave for many singers is from D to D, which means the key of G would be an appropriate key signature. A good example of this is <hymn>Love One another (308)</hymn>, in the left panel of @fig-tonic_in_ranges, which shows the distribution of notes in the melody, with the tonic highlighted in blue.
 
-![Tonic within ranges (melody lines). Tonics are highlighted in blue. ](../images/tonic_within_ranges.jpeg){#fig-tonic_in_ranges}
+![Tonic within ranges (melody lines). Tonics are highlighted in blue.](../images/tonic_within_ranges.jpeg){#fig-tonic_in_ranges}
 
-Other melodies also span a full octave but the highest and lowest notes are the tonic itself. A good example of this is <hymn>All Creatures of Our God and King (62)</hymn>, the right panel of @fig-tonic_in_ranges. For melodies such as these, a key signature like D (or in this case, Eb) would be more appropriate so that the melody does not go too high or too low. 
+Other melodies also span a full octave but the highest and lowest notes are the tonic itself. A good example of this is <hymn>All Creatures of Our God and King (62)</hymn>, the right panel of @fig-tonic_in_ranges. For melodies such as these, a key signature like D (or in this case, Eb) would be more appropriate so that the melody does not go too high or too low.
 
-So, it may be the case then that the reason why G major is the most common key is because there are more melodies like <hymn>Love One another (308)</hymn> than like <hymn>All Creatures of Our God and King (62)</hymn>. (Looking through plots like what you see in @fig-tonic_in_ranges but for all the hymns in the key of G, it seems like pretty much all of them look similar to <hymn>Love One another (308)</hymn>.) 
+So, it may be the case then that the reason why G major is the most common key is because there are more melodies like <hymn>Love One another (308)</hymn> than like <hymn>All Creatures of Our God and King (62)</hymn>. (Looking through plots like what you see in @fig-tonic_in_ranges but for all the hymns in the key of G, it seems like pretty much all of them look similar to <hymn>Love One another (308)</hymn>.)
 
-Along similar lines, if a piece is set to the key of G, the basses get to end the piece on a strong low note that many men, particularly men who sing bass lines, can hit. It's nice to end a piece with the tonic being the lowest note of the bass line, and the entire hymn. Some examples of these hymns include <hymn>Do What is Right (237)</hymn> (shown in @fig-tonic_in_ranges_bass) and <hymn>God, Our Father, Hear Us Pray (170)</hymn>. Other hymns, such as those set in C major or Bb major, have the dominant (or fifth note of the scale) as the lowest note of the bass line, sometimes near the very end of the piece, like in <hymn>Silent Night (203)</hymn> (shown in @fig-tonic_in_ranges_bass) or <hymn>The Spirit of God (2)</hymn>. While dropping down to a low dominant (in this case F if it's in the key of Bb) can be a nice way to close a piece, I think a stronger finish is to end with the lowest note being the dominant, hence the greater number of hymns set in the key of G. 
+Along similar lines, if a piece is set to the key of G, the basses get to end the piece on a strong low note that many men, particularly men who sing bass lines, can hit. It's nice to end a piece with the tonic being the lowest note of the bass line, and the entire hymn. Some examples of these hymns include <hymn>Do What is Right (237)</hymn> (shown in @fig-tonic_in_ranges_bass) and <hymn>God, Our Father, Hear Us Pray (170)</hymn>. Other hymns, such as those set in C major or Bb major, have the dominant (or fifth note of the scale) as the lowest note of the bass line, sometimes near the very end of the piece, like in <hymn>Silent Night (203)</hymn> (shown in @fig-tonic_in_ranges_bass) or <hymn>The Spirit of God (2)</hymn>. While dropping down to a low dominant (in this case F if it's in the key of Bb) can be a nice way to close a piece, I think a stronger finish is to end with the lowest note being the dominant, hence the greater number of hymns set in the key of G.
 
-![Tonic within ranges (bass lines). Tonics are highlighted in blue. ](../images/tonic_within_ranges_bass.jpeg){#fig-tonic_in_ranges_bass}
-
-
+![Tonic within ranges (bass lines). Tonics are highlighted in blue.](../images/tonic_within_ranges_bass.jpeg){#fig-tonic_in_ranges_bass}
 
 ## What about minor keys?
 
@@ -89,12 +86,12 @@ Along similar lines, if a piece is set to the key of G, the basses get to end th
 Exactly five hymns are set in a minor key.
 :::
 
-You can see the five hymns in a minor key in @fig-minor. The most common is, perhaps unsurprisingly, <hymn>If You Could Hie to Kolob (284)</hymn> although it's not especially frequent and is only sung about once every two and a half years or so.[Although, if your ward ever does one of those musical testimony meetings where people get up and say what their favorite hymn is and then everyone sings a verse of that, I suspect you're pretty much guaranteed to sing it then.]{.aside} Next is the New Year's Day hymn, <hymn>Ring Out, Wild Bells (215)</hymn>. We'll talk more about holidays later on, but it's only sung by 39% of wards around New Year's Day. A distant third is <hymn>That Easter Morn (198)</hymn> which, from my intuition, is punching above its weight because only 16% of wards sing it around Easter. The last two, <hymn>Lord, We Come Before Thee Now (162)</hymn> and <hymn>How Long, O Lord Most Holy and True? (126) </hymn> are pretty unusual and are sung about once every 13 years and once every 60 years or so, respectively. 
+You can see the five hymns in a minor key in @fig-minor. The most common is, perhaps unsurprisingly, <hymn>If You Could Hie to Kolob (284)</hymn> although it's not especially frequent and is only sung about once every two and a half years or so.[Although, if your ward ever does one of those musical testimony meetings where people get up and say what their favorite hymn is and then everyone sings a verse of that, I suspect you're pretty much guaranteed to sing it then.]{.aside} Next is the New Year's Day hymn, <hymn>Ring Out, Wild Bells (215)</hymn>. We'll talk more about holidays later on, but it's only sung by 39% of wards around New Year's Day. A distant third is <hymn>That Easter Morn (198)</hymn> which, from my intuition, is punching above its weight because only 16% of wards sing it around Easter. The last two, <hymn>Lord, We Come Before Thee Now (162)</hymn> and <hymn>How Long, O Lord Most Holy and True? (126) </hymn> are pretty unusual and are sung about once every 13 years and once every 60 years or so, respectively.
 
 ![Hymns set in a minor key](../images/minor.jpeg){#fig-minor}
 
-So, if you sing a hymn in a minor key, it's probably one of the two holiday ones or <hymn>If You Could Hie to Kolob (284)</hymn>. I can't help but think that the reason <hymn>If You Could Hie to Kolob (284)</hymn> is so popular is *because* it's set in a minor key. It's a pretty obscure piece of doctrine that it's talking about and I wonder if it were set to a different tune if it'd be as popular. In other words, do people like it because of the words or because of the music? Also, for what it's worth, the distribution of notes looks very much like <hymn>Love One another (308)</hymn> (the left panel in @fig-tonic_in_ranges). 
+So, if you sing a hymn in a minor key, it's probably one of the two holiday ones or <hymn>If You Could Hie to Kolob (284)</hymn>. I can't help but think that the reason <hymn>If You Could Hie to Kolob (284)</hymn> is so popular is *because* it's set in a minor key. It's a pretty obscure piece of doctrine that it's talking about and I wonder if it were set to a different tune if it'd be as popular. In other words, do people like it because of the words or because of the music? Also, for what it's worth, the distribution of notes looks very much like <hymn>Love One another (308)</hymn> (the left panel in @fig-tonic_in_ranges).
 
 ## Conclusion
 
-So that's it for key signatures for now. 
+So that's it for key signatures for now.
