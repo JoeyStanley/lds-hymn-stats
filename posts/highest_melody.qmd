@@ -1,0 +1,110 @@
+---
+title: "What are the highest notes in the melodies?"
+description: "What hymn has the highest melody note? What is a typical highest note for a sopranot line? What is the lowest highest note for a melody? If you can only sing up to a C, what proportion of hymns would you be able to sing melody on?"
+author: "Joey Stanley"
+date: "10/06/2023"
+categories:
+  - melody
+  - musicology
+---
+
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
+library(gm)
+```
+
+In addition to collecting data on how often hymns are sung in sacrament meeting, I have also gone through the rather painstaking process of quantifying all the actual music of the hymns. What I mean is that for every part (soprano, alto, tenor, and bass) for every hymn, I went through and wrote down the pitch and duration of every note in a spreadsheet. With this music now reduced down to numbers, I can analyze it quantitatively. This post is the first of many that will present a numeric analysis of the music of the hymns themselves. I've started with the soprano line since it's what is most familiar to most people, but I'll eventually do similar posts on alto, tenor, and bass lines as well.
+
+## Highest melody notes
+
+The first question we can ask is this: what is the highest note a melody goes up to?
+
+::: {.callout-tip icon="false"}
+#### Fun Fact
+
+The highest (non-optional) melody note is an F♯5 , which is found in <hymn>Lean on My Ample Arm (120)</hymn>.
+:::
+
+That of course excludes the optional G5 at the end of <hymn>Carry On (255)</hymn>. What's worse about the the F♯5 in <hymn>Lean on My Ample Arm (120)</hymn> is that it's a sustained note---there's nowhere to hide! However, it is very unlikely that you'll sing it in church.[For what it's worth, a combined choir from BYU sang it in General Conference in April 2008 and it was beautiful.]{.aside} In all the data I have, it was only sung four times, which means it's sung about once every 29 years. Another way of putting it is that the hymn is sung in sacrament meeting about once a generation. So, if you can't quite reach that F♯5, don't worry because you will likely never need to.
+
+Well then, what is a typical highest note for a soprano line? 
+
+::: {.callout-tip icon="false"}
+#### Fun Fact
+
+The majority of hymns have D5 as their highest note.
+:::
+
+![](../images/highest_soprano_notes.jpeg)
+
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
+library(tidyverse)
+read_csv("/Users/joeystan/Desktop/Projects/Hymns/data/cleaned_notes_data.csv", 
+                  show_col_types = FALSE) %>%
+    filter(voice == "soprano") %>%
+    group_by(name_num) %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    ungroup() %>%
+    distinct(name_num, note_label, midi) %>%
+    count(midi, note_label) %>%
+    select(-midi) %>%
+    mutate(`Percentage of Hymnal` = scales::percent(n/sum(n))) %>%
+    rename(`Highest Note` = note_label, `Number of Hymns` = n) %>%
+    knitr::kable(align = c("c", "r", "r"))
+```
+
+There are another five hymns that have melody lines that go up to an F5. But, as seen below, the only one that is moderatly common is <hymn>The Morning Breaks (1)</hymn>. The others are sung so infrequently, that their presence in sacrament meetings is negligible. <hymn>Great Is the Lord (77)</hymn> was sung just four times in my sample and both <hymn>The Wintry Day, Descending to Its Close (37)</hymn> and <hymn>Ye Simple Souls Who Stray (118)</hymn> were each sung only twice. And <hymn>Sweet Is the Work (317)</hymn> is a women's choir arrangement so, [as I've discussed already](../posts/mens_womens_arrangements.qmd), it's not sung very much.
+
+| Hymn                                         | How often it's sung  |
+|----------------------------------------------|----------------------|
+| The Morning Breaks (1)                       | Once every 3.5 years |
+| Great Is the Lord (77)                       | Once every 30 years  |
+| The Wintry Day, Descending to Its Close (37) | Once every 60 years  |
+| Ye Simple Souls Who Stray (118)              | Once every 60 years  |
+| Sweet Is the Work (317)                      | Never?               |
+
+: Hymns with melodies that go up to an F5
+
+So, six of the 341 hymns on our current hymnal go up to an F5 or F♯5, which is 1.76% of the hymnal. If all hymns were sung equally often as each other, we'd then expect that 1.76% of sacrament meeting hymns to go up to an F5 or F♯5. In reality, only 0.24% of them do, which means these six hymns are less common than expected. On average, you'll encounter one maybe once every two and a half years. And if you do, three-quarters of the time it'll be <hymn>The Morning Breaks (1)</hymn>.
+
+I can't help but wonder whether that high melody note is the reason these hymns are so uncommon. It may be the case that they are unusual hymns anyway that for whatever reason are not sung very often. But I think that these hymns are uncommon at least partially because of these high notes. A music chairperson might consider selecting one of these for their ward to sing in sacrament meeting, but for the sake of everyone's voices, ultimately decides against it. Thus, the high note perpetuates the rarity of the hymn. We saw this with the [key signatures](../posts/key_signatures.qmd) as well: hymns with marginally-attested phenomena (in this case, the keys of A and Db) are rarer than they would be due to chance alone.
+
+## Not the highest, but still pretty high melody notes
+
+Okay, so melodies that go up to an F5 or higher are just not that common. Once we start looking at the E5 and E♭5 territory, there are many more hymns that include notes in that range, and some of those hymns are pretty common.
+
+There are 54 hymns have E5 as the highest note in their melody, including some of the more common ones like <hymn>High on the Mountain Top (5)</hymn>, <hymn>Our Savior's Love (113)</hymn>, <hymn>Let Us All Press On (243)</hymn>, and <hymn>Praise to the Man (27)</hymn>. Collectively, these 54 hymns make up 15.84% of the hymnal. 12.21% of the hymns sung in my sample of sacrament meetings are one of these 54, so you'll see an E5 about once every 2.5 weeks. The following table shows these hymns in order of frequency and how often they're sung.
+
+![](../images/soprano_E5.jpeg){#tab-soprano-E5}
+
+As far as hymns that have E♭5 as the highest note, there are 58 of them, or 18.18% of the hymns. Some of the more common ones include <hymn>I Stand All Amazed (193)</hymn>, <hymn>The Spirit of God (2)</hymn> and a handful of other sacrament hymns. The following table shows these hymns in order of frequency and how often they're sung.
+
+![](../images/soprano_Eb5.jpeg)
+
+In total, 115 hymns, or 35.9% of the hymnal go up to an E$\flat$ or higher.
+
+
+## Typical highest notes for a melody
+
+However, D5, or the D an octave and one note above middle C, is by far the most common highest note for the melody in the hymnal. 164 hymns---that's 51.3\% of the hymnal!---have this as the highest note, including <hymn>I Know That My Redeemer Lives (136)</hymn>, <hymn>I Believe in Christ (148)</hymn>, and several sacrament hymns. I can't show all of them in a single plot, but here are the most common ones and how often they typically occur in sacrament meeting in a ward in a year.
+
+![](../images/soprano_D5.jpeg)
+
+## Hymns where the melody doesn't go very high
+
+The remaining 13\% of the hymns have melodies that don't go as high. There are only 6 that go up to a C♯ or D♭, including <hymn>Because I Have Been Given Much (219)</hymn>. The figure below shows all of them and how often they occur. It's interesting that even though there are six hymns that fall into this category, two are sacrament hymns and one is a very common one. So even though they make up just 1.76% of the hymnal, they make up about 2.65% of the hymns sung in church. You're likely to see one every 11 or so weeks on average. 
+
+![](../images/soprano_Db5.jpeg)
+
+I think there are relatively few that have this particular note simply because of [what key signatures are most common](../posts/key_signatures.qmd). It's probably not a coincidence that one of the two hymns in D♭ are in this category. Most of the others are in A♭. If there were more hymns in D♭ major, or even A♭ we might see more hymns where the highest note is D♭5.  
+
+
+Another 30 hymns only go as high as a C5, including <hymn>Choose the Right (239)</hymn> and <hymn>Come, Follow Me (116)</hymn>. They make up 8.8% of the hymnal but 11.7% of the hymns sung in sacrament meeting.
+
+![](../images/soprano_C5.jpeg)
+
+
+There are five hymns don't ever go higher than the middle of the treble clef. The two that only go to a B4 are both pretty well known: <hymn>Secret Prayer (144)</hymn> and <hymn>Lead, Kindly Light (197)</hymn>. The only one that has B♭4 as the highest note is for men, <hymn>Ye Who Are Called to Labor (321)</hymn>, so it might not even count as a "soprano" note. Finally, two hymns have A♭4 as the highest note, the rare <hymn>God Moves in a Mysterious Way (285)</hymn> and the extremely rare <hymn>Now the Day is Over (159)</hymn>. These are low enough that even a good tenor could sing the melody in the right octave! In total, there are just 41 hymns that don't reach a D, which is only 12\% of the hymnal. But these 41 hymns account for 14.4\% of the hymns sung in sacrament meeting, which means you're likely to encounter one of them about every two weeks. So, if you don't have a very high range, at least a couple times a month, you're likely to be able to sing melody. 
+
+## Summary
+
+The highest note in the soprano line is an F♯5. About half of the hymns go up to D5, with many more going a little higher than that. Fewer never reach a D5. The lowest highest note in the soprano line is an A♭4. For what it's worth, I rarely sing melody because I have trouble hitting a D, so I personally would appreciate it if many of these hymns were transposed down a little bit. 
