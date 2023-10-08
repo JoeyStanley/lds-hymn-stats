@@ -6,7 +6,7 @@ date: 9/8/23
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 library(tidyverse)
-freqs <- read_csv("/Users/joeystan/Desktop/Projects/Hymns/data/freqs.csv", show_col_types = FALSE) %>%
+freqs <- read_csv("data/freqs.csv", show_col_types = FALSE) %>%
     mutate(date = as.Date(date))
 n_meetings <- length(unique(freqs$meeting_id))
 n_wards    <- length(unique(freqs$ward))

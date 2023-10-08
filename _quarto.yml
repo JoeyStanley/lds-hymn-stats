@@ -37,8 +37,10 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
+editor: source
 
 resources:
   - CNAME
 
+execute:
+  freeze: true

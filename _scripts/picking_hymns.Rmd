@@ -1,0 +1,51 @@
+---
+title: "Picking Hymns"
+author: "Joey Stanley"
+date: "2023-09-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Since I might be music chairperson, might as well use this data to inform my hymn selection!
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+ward <- read_csv("../data/freqs.csv", show_col_types = FALSE) %>%
+    filter(ward == "Spanish Trails") %>%
+    print()
+name_num_lookup <- read_csv("../data/name_num_lookup.csv", show_col_types = FALSE) %>%
+    print()
+overall_freqs <- read_csv("../data/freqs.csv", show_col_types = FALSE) %>%
+    count(hymn_name, hymn_num) %>%
+    arrange(n) %>%
+    rowid_to_column("rank") %>%
+    mutate(percentile = rank / max(rank)) %>%
+    print()
+```
+
+```{r}
+prophets <- c(12, 21, 10, 24, 77, 53, 271, 27, 274, 279, 23, 22, 19, 47)
+sacrament <- c(146, 169:196)
+```
+
+```{r}
+last_time_sung <- ward %>%
+    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
+    arrange(date) %>%
+    filter(hymn_num %in% sacrament) %>%
+    group_by(hymn_name, hymn_num) %>%
+    summarize(most_recent = max(date)) %>%
+    left_join(overall_freqs, by = c("hymn_name", "hymn_num")) %>%
+    arrange(most_recent, -percentile) %>%
+    print()
+```
+
+```{r}
+service <- c(20, 130, 219, 138, 249, 263, 223, 281, 224, 270, 139, 45, 243, 220, 153, 308, 64, 252, 230, 147, 36, 157, 218, 155, 260, 228)
+```

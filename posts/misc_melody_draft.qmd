@@ -1,0 +1,91 @@
+---
+title: "High and Low Melodies"
+author: "Joey Stanley"
+draft: true
+---
+
+
+
+There's a bell curve, and that's always going to be true based on stats.
+
+## Highest "average" notes
+
+Okay, but the highest note isn't everything. A melody may pop up to a high note once in the song but be relatively low for the rest. Or, a hymn may "feel" high because it's consistently in an upper register, even if the highest note isn't record-breaking. We quantify how high a hymn "feels" by taking the "average" note in the melody.
+
+::: {.callout-caution collapse="true"}
+### Technical details for nerds :)
+
+To calculate the average note, I converted each note to its MIDI value, which is a number between 0 and 127 that is assigned to each pitch. Middle C has a MIDI value of 60. The C$\sharp$ above it has a value of 61. The D above that has a value of 62. And so on. There's nothing special about MIDI values but it's a convenient way to turn notes into numeric values.
+
+So, let's take a simple C arpeggio, starting with Middle C. The notes would have the values 60, 64, 67, 72. The average of those four notes is 65.5, which would be halfway between the F and F$\sharp$. The average note may not be as easy to intuit as a set of numbers because major and minor scales contain a mixture of whole steps and half steps, which are represented visually equidistant on a staff but are acoustically different sizes.
+
+However, I can't just take the average of the pitches because duration plays an important part. As mentioned already, <hymn>Lean on My Ample Arm (120)</hymn> sits on its highest note for a dotted half note and a fermata. Meanwhile, <hymn>The Morning Breaks (1)</hymn> goes up to an F$5$, but it's only for an eighth note. That dotted half note should be weighted differently than an eighth note when calculating average pitches.
+
+So, what I've done is I've taken a weighted average, with longer notes carrying more weight than shorter notes, within the context of a single hymn. So if we take that same C arpeggio of note values 60, 64, 67, and 72, but we hold the last note out for three times as long, the average note should be higher. The way I've calculated this by multiplying each note's midi value by how many beats that note's duration is. So quarter notes are unaffected, eighth notes get the MIDI value cut in half, half notes get it doubled, etc. Then for each hymn, I take the average of those weighted note values. I then divide it by the average duration of notes.
+
+So, for the C arpeggio, here's the step-by-step process:
+
+1.  Multiply each note's MIDI value by its duration. If we're assuming I have three quarter notes and a dotted half note, then it'll be $60\times 1=60$, $64\times 1=64$, $67\times 1=67$, $72\times 3=216$.
+
+2.  Take the average of those values. $\frac{60+64+67+216}{4} = 101.75$
+
+3.  Find the average duration: $\frac{1 + 1 + 1 + 3}{4} = 1.5$
+
+4.  Divide the average value by the average duration: $\frac{101.75}{1.5} = 67.833$
+
+So, the average value would be five-sixths of the way between note 67 (G$4$) and 68 (G$\sharp4$). Compare that to the unweighted mean of 65.5. So the held high note did indeed bring the average note up a bit.
+
+This was a simple example, but it can be easily extended to entire melody lines. And, as we'll see in later blog posts, to harmony lines as well.
+:::
+
+So, what hymn has the highest average note in the soprano line?
+
+::: {.callout-tip icon="false"}
+#### Fun Fact
+
+The melody with the highest average note is <hymn>True to the Faith 254</hymn>.
+:::
+
+The melody to <hymn>True to the Faith 254</hymn> is consistently rather high. The average note is a little higher than a B4.[It's average was a 71.324, which is about quarter of of the way between B4 and C5]{.aside} As we'll see later, there are hymns that don't even reach the middle of the treble clef, so it's surprising that there's this one that *averages* higher than that.
+
+There is only one other hymn that averages higher than a B4, and that's the soprano line of <hymn>What Was Witnessed in the Heavens? (11)</hymn>. If you consider the part where the men sing without the women as the melody, the number changes, but we're strictly speaking looking at soprano parts. [Its average is 71.14, or 14% of the way between B4 and C5.]{.aside}
+
+Another nine hymns have average notes somewhere between B4 and B$\flat4$. The following table lists them, along with the two hymns previously mentioned. 
+
+| Hymn Name                          | Hymn Number | Average Note |
+|------------------------------------|-------------|--------------|
+| True to the Faith                  | 254         | 71.24        |
+| What Was Witnessed in the Heavens? | 11          | 71.14        |
+| Awake, Ye Saints of God, Awake!    | 17          | 70.64        |
+| The Lord Is My Shepherd            | 108         | 70.59        |
+| Come, Ye Children of the Lord      | 58          | 70.53        |
+| The Morning Breaks                 | 1           | 70.51        |
+| Jehovah, Lord of Heaven and Earth  | 269         | 70.44        |
+| How Wondrous and Great             | 267         | 70.38        |
+| The Happy Day at Last Has Come     | 32          | 70.27        |
+| Jesus, Savior, Pilot Me            | 104         | 70.24        |
+| As the Dew from Heaven Distilling  | 149         | 70.15        |
+
+: Hymns with soprano lines that average at a B$\flat4$ or higher. Note that B$\flat4$ is 70 and B$4$ is 71. 
+
+So what does this mean? Well, it means that if you're singing the melody to any of these hymns, you're going to feel like the hymn is pretty high. It may not have the highest notes in the hymnal (note that <hymn>Lean on My Ample Arm (120)</hymn> isn't on this list!), but you go high and stay there pretty consistently without much of a break. 
+
+## Conclusion
+
+I'm not saying that all hymns need to be restricted to the same range of notes, or that we need to sing everything lower. But, in this post, I've highlighted a few hymns that might benefit from being transposed down a bit, either permanently in the next hymnal, or as needed by the organist.
+
+::: {.callout-tip icon="false"}
+#### Recommendation for the next hymnal
+
+Lower these hymns a key or two so that they don't feel as high for people who sing the melody.
+:::
+
+::: {.callout-tip icon="false"}
+#### Recommendation for organists
+
+If there is an easy way to transpose the hymns, whether it be on the organ itself or through the church's website, turn these hymns down a key or two.
+:::
+
+
+
+

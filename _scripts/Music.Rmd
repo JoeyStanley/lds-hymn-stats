@@ -1,0 +1,1107 @@
+---
+title: "Reshape Raw Music Data"
+author: "Joey Stanley"
+date: "04/01/2019"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+        collapsed: true
+    theme: simplex
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(dplyr.summarise.inform = FALSE)
+```
+
+This script takes the prepared music data and does the analysis.
+
+## Preliminaries
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(ggthemes)
+library(patchwork)
+```
+
+Part of this analysis was done as early as April 2019. But now that a draft of the frequency portion of the book is done, I can start to work on this in earnest.
+
+```{r}
+export_for_latex <- function(name, ...) {
+    path <- paste0("../documents/latex/images/", name, ".pdf")
+    
+    path_website <- paste0("/Users/joeystan/GitHub/lds-hymn-stats/images/", name, ".jpeg")
+    ggsave(filename = path_website, ...)
+}
+```
+
+This function lets you see the frequency for a list of hymns pooled together. So, while it may be once every three years that hymn X is sung, it might be once every 2 years that any of the hymns x, y, z are sung. It's flexible so that I can pass in a vector of numbers, or I can just pass in a tibble with a column named `hymn_num`.
+
+```{r}
+freqs <- read_csv("../data/freqs.csv", show_col_types = FALSE) %>%
+    mutate(date = as.Date(date))
+
+freq_for_any <- function(.hymns) {
+    if ("tbl" %in% class(.hymns)) {
+        .hymns <- unique(.hymns$hymn_num)
+    }
+    
+    just_these_hymns <- freqs %>%
+        filter(hymn_num %in% .hymns)
+    
+    count_of_just_these <- nrow(just_these_hymns)
+    print(paste("These hymns were sung a total of", count_of_just_these, "times in this sample."))
+    print(paste0("That's ", round(count_of_just_these/nrow(freqs), 5)*100, "%"))
+    
+    prop_of_meetings <- count_of_just_these/get_n_distinct_meetings()
+    years <- 1/(prop_of_meetings*48)
+    print(paste("That means one of them is sung, on average, once every", round(years, 3), "years."))
+    print(paste("   Or once every", round(years * 12, 3), "months."))
+    print(paste("   Or once every", round(years * 48, 3), "weeks"))
+}
+freq_for_any(c(1, 37, 77, 118, 120, 317))
+
+freqs %>%
+    filter(hymn_num %in% c(1, 37, 77, 118, 120, 317)) %>%
+    freq_for_any()
+```
+
+### Load the data
+
+```{r}
+notes <- read_csv("../data/cleaned_notes_data.csv", 
+                  show_col_types = FALSE) %>%
+    
+    # Get the factor levels right
+    mutate(voice = factor(voice, levels = c("soprano", "alto", "tenor", "bass")),
+           key_signature = factor(key_signature, levels = c("A", "D", "G", "C", "F", 
+                                                            "Bb", "Eb", "Ab", "Db"))) %>%
+    
+    arrange(midi) %>%
+    mutate(note_label = fct_inorder(note_label)) %>%
+    arrange(hymn_num, voice, id) %>%
+    
+    print()
+```
+
+Generate some lookup tables. This one is useful for plotting.
+
+```{r}
+note_name_midi_lookup <- notes %>%
+    mutate(note_label = paste0(note, octave)) %>%
+    filter(!is.na(midi)) %>%
+    distinct(note_label, midi) %>%
+    arrange(midi) %>%
+    mutate(note_label = fct_inorder(note_label)) %>%
+    print()
+```
+
+## Key Signatures
+
+How many songs are there in each key signature?
+
+```{r}
+# read_excel("../data/music_quantified.xlsx", sheet = "Key Signature Lookup") %>%
+#     mutate(key_signature = factor(key_signature, levels = c("A", "D", "G", "C", "F", 
+#                                                             "Bb", "Eb", "Ab", "Db"))) %>%
+#     group_by(key_signature) %>%
+#     tally(n_hymns) %>%
+
+notes %>%
+    filter(!is.na(key_signature)) %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature) %>%
+    print() %>%
+    ggplot(aes(key_signature, n)) + 
+    geom_col() + 
+    scale_y_continuous(expand = expansion(mult = 0, add = c(0, 5))) + 
+    labs(x = "Key Signature", 
+         y = "Number of Hymns") + 
+    theme_minimal()
+export_for_latex("key_signatures", height = 3.5, width = 6.5)
+```
+
+Cumulatives
+
+```{r}
+notes %>%
+    filter(!is.na(key_signature)) %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature, sort = TRUE) %>%
+    mutate(cumsum = cumsum(n),
+           prop = n/sum(n),
+           cumprop = cumsum/sum(n)) %>% 
+    print() 
+```
+
+```{r}
+notes %>%
+    distinct(name_num, key_signature) %>%
+    filter(key_signature %in% c("A", "Db"))
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(56, 168, 267, 328)) %>%
+    cleveland_plot(return = "both",
+                   breaks = 0.1)
+```
+
+```{r}
+search_titles("welcome")
+```
+
+### Key signatures with freqs
+
+Basically, weight them by frequency.
+
+```{r}
+freqs %>%
+    count(name_num, name = "freq") %>%
+    right_join(notes, by = "name_num") %>%
+    distinct(name_num, key_signature, freq) %>%
+    count(key_signature, wt = freq) %>%
+    filter(!is.na(key_signature)) %>%
+    print() %>%
+    ggplot(aes(key_signature, n)) + 
+    geom_col() + 
+    scale_y_continuous(expand = expansion(mult = 0, add = c(0, 5)),
+                       breaks = c()) + 
+    labs(x = "Key Signature", 
+         y = "Likelihood",
+         title = NULL) + 
+    theme_minimal()
+export_for_latex("key_signature_weighted", height = 3.5, width = 6.5)
+```
+
+This is cool and there are some fun differences. Look at cumulatives now.
+
+```{r}
+freqs %>%
+    count(name_num, name = "freq") %>%
+    right_join(notes, by = "name_num") %>%
+    distinct(name_num, key_signature, freq) %>%
+    count(key_signature, wt = freq) %>%
+    mutate(cumsum = cumsum(n),
+           prop = n/sum(n),
+           cumprop = cumsum/sum(n)) %>% 
+    print() 
+```
+
+So what are the more common hymsn in each key signature?
+
+```{r}
+freqs %>%
+    count(name_num, name = "freq") %>%
+    right_join(notes, by = "name_num") %>%
+    filter(key_signature == "Eb") %>%
+    arrange(-freq) %>%
+    distinct(name_num, freq)
+```
+
+## Notes
+
+### Overall distribution
+
+```{r, fig.height = 5, fig.width = 15}
+notes %>%
+    filter(!is.na(midi)) %>%
+    count(voice, note_label) %>%
+    # pivot_wider(names_from = voice, values_from = n, values_fill = 0) %>%
+    ggplot(aes(note_label, n)) + 
+    geom_col() + 
+    facet_wrap(~voice, ncol = 1)
+```
+
+Are basses simply an octave lower than altos? Are tenors simply an octave lower than sopranos? *t*-test time!
+
+```{r}
+notes %>%
+    filter(!is.na(midi),
+           voice %in% c("tenor", "soprano")) %>%
+    mutate(midi = if_else(voice == "soprano", midi - 12, midi)) %>%
+    ggplot(aes(midi, fill = voice)) + 
+    geom_bar(position = position_dodge()) +
+    scale_fill_ptol() + 
+    labs(title = "Sopranos and Tenors") + 
+    theme_minimal()
+notes %>%
+    filter(!is.na(midi),
+           voice %in% c("alto", "bass")) %>%
+    mutate(midi = if_else(voice == "alto", midi - 12, midi)) %>%
+    ggplot(aes(midi, fill = voice)) + 
+    geom_bar(position = position_dodge()) +
+    scale_fill_ptol() + 
+    labs(title = "Altos and Basses") + 
+    theme_minimal()
+```
+
+```{r}
+notes %>%
+    filter(!is.na(midi),
+           voice %in% c("tenor", "soprano")) %>%
+    mutate(midi = if_else(voice == "soprano", midi - 12, midi)) %>%
+    kruskal.test(midi ~ voice, data = .)
+notes %>%
+    filter(!is.na(midi),
+           voice %in% c("alto", "bass")) %>%
+    mutate(midi = if_else(voice == "alto", midi - 12, midi)) %>%
+    kruskal.test(midi ~ voice, data = .)
+```
+
+Cool, so on average the tenors are higher than the sopranos. Meanwhile, the altos and basses have the same average, but their variances must be different.
+
+### Highest and Lowest notes
+
+#### Highest note functions
+
+A histogram of highest notes. I've added some extra arguments to make it a bit more flexible.
+
+```{r}
+get_highest_notes <- function(remove_unusual = FALSE, remove_soprano_alto_unison = FALSE){
+    df <- notes %>%
+        filter(!is.na(note)) %>%
+        mutate(in_unison = !(sop_alto_unis_len <= 3 | is.na(sop_alto_unis_len)))
+    
+    if (remove_unusual) {
+        df <- df %>% filter(!unusual)
+    }
+    
+    no_unisons_df <- df %>%
+        filter(!in_unison) %>%
+        group_by(voice, name_num) %>%
+        filter(midi == max(midi, na.rm = TRUE)) %>%
+        distinct(name_num, hymn_num, midi, note_label)
+    
+    all_notes_df <- df %>%
+        group_by(voice, name_num) %>%
+        filter(midi == max(midi, na.rm = TRUE)) %>%
+        distinct(name_num, hymn_num, midi, note_label)
+    
+    bind_rows("no_unisons" = no_unisons_df,
+              "all_notes" = all_notes_df,
+              .id = "unisons_removed") %>%
+        ungroup() %>%
+        mutate(unisons_removed = unisons_removed == "no_unisons") %>%
+        arrange(hymn_num, voice, unisons_removed) %>%
+        
+        # Find the ones that are different
+        group_by(name_num, voice) %>%
+        mutate(n_distinct = length(unique(note_label))) %>%
+        ungroup() %>%
+        # Mark `unisons_removed` as NA if there is no difference
+        mutate(unisons_removed = if_else(n_distinct == 1, NA, unisons_removed)) %>%
+        distinct() %>%
+        return()
+    
+}
+get_highest_notes() %>%
+    filter(hymn_num == 37)
+# get_highest_notes(remove_soprano_alto_unison = TRUE)
+```
+
+Test to make sure things work
+
+```{r}
+get_highest_notes(remove_soprano_alto_unison = FALSE) %>%
+    ggplot(aes(midi)) +
+    geom_bar() +
+    facet_wrap(~voice, ncol = 1, scales = "free_y") +
+    scale_x_continuous(breaks = note_name_midi_lookup$midi,
+                       labels = note_name_midi_lookup$note_label) +
+    theme_bw()
+```
+
+#### Lowest note functions
+
+```{r}
+get_lowest_notes <- function(remove_unusual = FALSE, remove_soprano_alto_unison = FALSE){
+    df <- notes %>%
+        filter(!is.na(note)) %>%
+        mutate(in_unison = !(sop_alto_unis_len <= 3 | is.na(sop_alto_unis_len)))
+    
+    if (remove_unusual) {
+        df <- df %>% filter(!unusual)
+    }
+    
+    no_unisons_df <- df %>%
+        filter(!in_unison) %>%
+        group_by(voice, name_num) %>%
+        filter(midi == min(midi, na.rm = TRUE)) %>%
+        distinct(name_num, hymn_num, midi, note_label)
+    
+    all_notes_df <- df %>%
+        group_by(voice, name_num) %>%
+        filter(midi == min(midi, na.rm = TRUE)) %>%
+        distinct(name_num, hymn_num, midi, note_label)
+    
+    bind_rows("no_unisons" = no_unisons_df,
+              "all_notes" = all_notes_df,
+              .id = "unisons_removed") %>%
+        ungroup() %>%
+        mutate(unisons_removed = unisons_removed == "no_unisons") %>%
+        arrange(hymn_num, voice, unisons_removed) %>%
+        
+        # Find the ones that are different
+        group_by(name_num, voice) %>%
+        mutate(n_distinct = length(unique(note_label))) %>%
+        ungroup() %>%
+        # Mark `unisons_removed` as NA if there is no difference
+        mutate(unisons_removed = if_else(n_distinct == 1, NA, unisons_removed)) %>%
+        distinct() %>%
+        return()
+    
+}
+get_lowest_notes() %>%
+    filter(hymn_num == 37)
+```
+
+Functions to make sure it works.
+
+```{r}
+get_lowest_notes() %>%
+    ggplot(aes(midi, fill = unisons_removed)) + 
+    geom_bar() + 
+    facet_wrap(~voice, ncol = 1, scales = "free_y") + 
+    scale_x_continuous(breaks = note_name_midi_lookup$midi, 
+                       labels = note_name_midi_lookup$note_label) + 
+    theme_bw()
+```
+
+#### Both functions
+
+```{r}
+highest_lowest_note_stats <- function(.voice, .note, .extreme = "high", 
+                                      .return = c("table", "summary", "plot"), 
+                                      .cleveland_return = "plot", ...) {
+    
+    if (.extreme == "high") { 
+        this_df <- get_highest_notes(...)
+    } else { 
+        this_df <- get_highest_notes(...)
+    }
+    
+    list_of_hymns <- this_df %>%
+        filter(voice == .voice) %>%
+        arrange(voice, -midi) %>%
+        filter(note_label %in% .note)
+    
+    freqs_data <- freqs %>%
+        filter(name_num %in% list_of_hymns$name_num)
+    
+    if (length(.return) == 1 && "table" == .return) {
+        return(list_of_hymns)
+    } else if ("table" %in% .return) {
+        print(list_of_hymns)
+    }
+
+    if ("summary" %in% .return) {
+        n_hymns <- nrow(list_of_hymns)
+        print(paste0("In total, there are ", n_hymns, " that are included here (",
+                     round(n_hymns/341, 5)*100, "% of the hymnal)."))
+
+        n_hymn_unisons_removed <- list_of_hymns %>% filter(unisons_removed | is.na(unisons_removed)) %>% nrow()
+        print(paste0("   But if you ignore the unison passages, there are ", n_hymn_unisons_removed, " hymns (",
+                     round(n_hymn_unisons_removed/341, 5)*100, "% of the hymnal)."))
+
+        freq_for_any(freqs_data)
+    }
+    
+    if (length(.return) == 1 && "plot" == .return) {
+        return(cleveland_plot(freqs_data, return = .cleveland_return, ...) )
+    } else if ("plot" %in% .return) {
+        cleveland_plot(freqs_data, return = .cleveland_return, ...) 
+    }
+}
+highest_lowest_note_stats("soprano", "F5", "high", .return = "plot", .cleveland_return = "both")
+
+freqs %>%
+    filter(hymn_num == 37)
+```
+
+### High and low per part
+
+#### Soprano high notes
+
+```{r}
+notes %>%
+    filter(voice == "soprano") %>%
+    group_by(name_num) %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    ungroup() %>%
+    distinct(name_num, note_label, midi) %>%
+    count(midi, note_label) %>%
+    ggplot(aes(midi, n)) + 
+    geom_col() + 
+    scale_x_continuous(breaks = note_name_midi_lookup$midi,
+                       labels = note_name_midi_lookup$note_label,
+                       expand = expansion(0, 0)) + 
+    scale_y_continuous(expand = expansion(0, c(0, 5)),
+                       breaks = seq(0, 200, 20)) + 
+    labs(x = "highest note",
+         y = "number of hymns",
+         title = "Distribution of highest notes in the soprano line") + 
+    theme_minimal() + 
+    theme(panel.grid.major.x = element_blank())
+export_for_latex("highest_soprano_notes", width = 6.5, height = 3)
+```
+
+```{r}
+notes %>%
+    count(voice, hymn_num, hymn_name) %>%
+    pivot_wider(names_from = voice, values_from = n)
+
+
+notes %>%
+    filter(voice == "soprano") %>%
+    group_by(name_num) %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    ungroup() %>%
+    distinct(name_num, note_label, midi) %>%
+    count(midi, note_label, sort = TRUE) %>%
+    mutate(cumsum = cumsum(n),
+           prop = n/sum(n),
+           cumprop = cumsum/max(cumsum)) %>%
+    print()
+```
+
+Highest single note.
+
+```{r}
+highest_lowest_note_stats("soprano", "F#5", "high")
+highest_lowest_note_stats("soprano", "F5", "high")
+highest_lowest_note_stats("soprano", c("F5", "F#5"), "high")
+```
+
+```{r}
+highest_lowest_note_stats("soprano", "E5", "high")
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "E5", "high", .return = "table")$hymn_num) %>%
+    cleveland_plot(breaks = 0.2, x_buffer = 0.5, 
+                   title = "Frequency of hymns with melodies that go up to an E5",
+                   subtitle = NULL, 
+                   export = TRUE, name = "soprano_E5", width = 6.5, height = 6)
+```
+
+```{r}
+highest_lowest_note_stats("soprano", "Eb5", "high")
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "Eb5", "high", .return = "table")$hymn_num) %>%
+    cleveland_plot(breaks = 0.2, x_buffer = 0.8, 
+                   title = "Frequency of hymns with melodies that go up to an Eb5",
+                   subtitle = NULL, 
+                   export = TRUE, name = "soprano_Eb5", width = 6.5, height = 7)
+```
+
+```{r}
+highest_lowest_note_stats("soprano", "D5", "high")
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "D5", "high", .return = "table")$hymn_num) %>%
+    cleveland_plot(breaks = 0.2, x_buffer = 0.9, 
+                   title = "Frequency of the most common hymns\nwith melodies that go up to a D5",
+                   subtitle = NULL, 
+                   filter_n = 125,
+                   export = TRUE, name = "soprano_D5", width = 6.5, height = 4)
+```
+
+```{r}
+highest_lowest_note_stats("soprano", "C#5", "high")
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "C#5", "high", .return = "table")$hymn_num) %>%
+    cleveland_plot(breaks = 0.2, x_buffer = 0.9, 
+                   title = "Frequency of the hymns with melodies that go up to an Db5",
+                   subtitle = NULL, 
+                   export = TRUE, name = "soprano_Db5", width = 6.5, height = 2.5)
+```
+
+```{r}
+highest_lowest_note_stats("soprano", "C5", "high")
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "C5", "high", .return = "table")$hymn_num) %>%
+    cleveland_plot(breaks = 0.2, x_buffer = 1.1, 
+                   title = "Frequency of the hymns with melodies that go up to a C5",
+                   subtitle = NULL, 
+                   export = TRUE, name = "soprano_C5", width = 6.5, height = 4)
+```
+
+```{r}
+highest_lowest_note_stats("soprano", "B4", "high")
+highest_lowest_note_stats("soprano", "Bb4", "high")
+highest_lowest_note_stats("soprano", "Ab4", "high")
+
+highest_lowest_note_stats("soprano", c("B4", "Bb4", "Ab4"), "high")
+```
+
+```{r}
+single_hymn_lookup(120)
+```
+
+```{r}
+highest_lowest_note_stats("soprano", "F5", "high")
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "F5", "high", .return = "table")$hymn_num) %>%
+    cleveland_plot(return = "table")
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "F5", "high", .return = "table")$hymn_num) %>%
+    cleveland_plot(breaks = 0.05, x_buffer = 0.1, 
+                   title = "Hymns that go up to an F5", subtitle = NULL)
+```
+
+```{r}
+highest_lowest_note_stats("soprano", c("F5", "F#5"), "high", .return = "plot", .cleveland_return = "table")
+```
+
+Highest average, weighted and unweighted.
+
+```{r}
+soprano_stats <- notes %>%
+    filter(voice == "soprano",
+           !unusual,
+           !is.na(note)) %>%
+    select(-matches("_diff"), -matches("_len"), -unusual) %>%
+    mutate(weight = midi * dur) %>%
+    group_by(name_num) %>%
+    summarize(n = n(),
+              max = max(midi, na.rm = TRUE),
+              min = min(midi),
+              range = max - min,
+              sd = sd(midi),
+              mean_weight = mean(weight),
+              mean_dur = mean(dur),
+              unweighted_mean = mean(midi),
+              med = median(midi)) %>%
+    mutate(weighted_mean = mean_weight / mean_dur) %>%
+    arrange(-weighted_mean) %>%
+    select(-mean_weight, -mean_dur) %>%
+    print()
+```
+
+```{r}
+ggplot(soprano_stats, aes(weighted_mean)) +
+    geom_histogram(binwidth = 0.2, fill = "white", color = "black")
+soprano_stats %>%
+    pull(weighted_mean) %>%
+    shapiro.test()
+soprano_stats %>%
+    summarize(across(weighted_mean, c(mean, sd)))
+```
+
+The highest soprano notes follow a normal distribution with a mean of 67.834 and a standard deviation of 1.223. Pretty cool that it's normal! So, I can use that to look at two standard deviations.
+
+```{r}
+soprano_stats %>%
+    filter(weighted_mean >= mean(.$weighted_mean) + 2 * sd(.$weighted_mean) | 
+               weighted_mean <= mean(.$weighted_mean) - 2 * sd(.$weighted_mean))
+```
+
+#### Soprano low notes.
+
+```{r}
+notes %>%
+    filter(voice == "soprano") %>%
+    group_by(name_num) %>%
+    filter(midi == min(midi)) %>%
+    ungroup() %>%
+    distinct(name_num, note_label, midi) %>%
+    count(midi, note_label) %>%
+    ggplot(aes(midi, n)) + 
+    geom_col() + 
+    scale_x_continuous(breaks = note_name_midi_lookup$midi,
+                       labels = note_name_midi_lookup$note_label)
+```
+
+Above average.
+
+```{r}
+highest_lowest_note_stats("soprano", "F#4", "low")
+highest_lowest_note_stats("soprano", "F4", "low")
+highest_lowest_note_stats("soprano", "E4", "low")
+highest_lowest_note_stats("soprano", "Eb4", "low")
+
+highest_lowest_note_stats("soprano", c("F#4", "F4", "E4", "Eb4"), "low")
+```
+
+Average
+
+```{r}
+highest_lowest_note_stats("soprano", "D4", "low")
+highest_lowest_note_stats("soprano", "C#4", "low")
+highest_lowest_note_stats("soprano", "C4", "low")
+
+highest_lowest_note_stats("soprano", c("D", "C#4", "C4"), "low")
+```
+
+Lower than average
+
+```{r}
+highest_lowest_note_stats("soprano", "B3", "low")
+highest_lowest_note_stats("soprano", "Bb3", "low")
+highest_lowest_note_stats("soprano", "A3", "low")
+highest_lowest_note_stats("soprano", "Ab3", "low", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+
+highest_lowest_note_stats("soprano", c("B", "B3", "A3", "Ab3"), "low")
+```
+
+#### Alto high notes
+
+```{r}
+notes %>%
+    filter(hymn_num == 186,
+           voice == "alto") %>%
+    print()
+```
+
+```{r}
+highest_lowest_note_stats("alto", "D5", "high")
+highest_lowest_note_stats("alto", "C5", "high")
+highest_lowest_note_stats("alto", "C5", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "B4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "Bb4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+
+highest_lowest_note_stats("alto", c("C#5", "C5", "B4", "Bb4"), "high", 
+                          remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", c("C#5", "C5", "B4", "Bb4"), "high", remove_soprano_alto_unison = TRUE)
+```
+
+```{r}
+highest_lowest_note_stats("alto", "A4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "Ab4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "G4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+
+highest_lowest_note_stats("alto", c("A4", "Ab4", "G4"), "high", 
+                          remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", c("A4", "Ab4", "G4"), "high", 
+                          remove_soprano_alto_unison = TRUE)
+```
+
+```{r}
+get_highest_notes() %>%
+    filter(hymn_num == 159)
+highest_lowest_note_stats("alto", "F#4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "F4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "E4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "Eb4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto", "D4", "high", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+
+highest_lowest_note_stats("alto", c("F#4", "F4", "E4", "Eb4", "D4"), "high", 
+                          remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto",  c("F#4", "F4", "E4", "Eb4", "D4"), "high", 
+                          remove_soprano_alto_unison = TRUE)
+highest_lowest_note_stats("alto",  c("F#4", "F4", "E4", "Eb4", "D4"), "high")
+```
+
+There are two hymns that are otherwise low if you disregard the unison lines.
+
+```{r}
+notes %>%
+    filter(voice == "alto") %>%
+    mutate(is_unison = if_else(sop_alto_diff == 0, "unison", "part")) %>%
+    filter(!is.na(is_unison)) %>% # removes hymns without alto lines
+    group_by(name_num, is_unison) %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    distinct(name_num, is_unison, `note` = note_label, midi) %>%
+    pivot_wider(names_from = is_unison, values_from = c(note, midi)) %>%
+    filter(!is.na(note_unison)) %>% # removes hymns without any unison notes
+    filter(midi_unison > midi_part) %>%
+    # filter(midi_part <= 66) %>% # just ones where the part is no higher than an F#4
+    print()
+    
+```
+
+#### Alto low notes
+
+#### Tenor high notes
+
+#### Tenor low notes
+
+#### Bass high notes
+
+#### Bass low notes
+
+### Other high/low stats
+
+#### Cumulative frequencies
+
+Cumulative frequencies of high and low notes.
+
+```{r}
+cumfreq_high_low <- function(.voice, .extreme, .remove_unisons = FALSE, .filename_suffix = "", ... ) {
+    this_df <- if(.extreme == "high") { 
+        get_highest_notes(...) 
+    } else { 
+        get_lowest_notes(...) 
+    }
+    .extreme <- paste0(.extreme, "est")
+    
+    cumfreq_table <- this_df %>%
+        filter(voice == .voice) %>%
+        arrange(voice, -midi) %>%
+        count(unisons_removed, note_label, midi) %>%
+        arrange(midi) %>%
+        mutate(prop = n / sum(n),
+               cumsum = cumsum(n),
+               cumprop = cumsum / max(cumsum, na.rm = TRUE),
+               unisons_removed = case_when(is.na(unisons_removed) ~ "doesn't matter",
+                                           TRUE ~ "only in unison passages",
+                                           FALSE  ~ "only in harmony lines"),
+               unisons_removed = factor(unisons_removed, 
+                                        levels = c("doesn't matter", "only in harmony lines", "only in unison passages"))) %>%
+        print()
+    
+    counts <- cumfreq_table %>%
+        group_by(note_label, midi) %>%
+        summarize(n = sum(n))
+    
+    p <- ggplot(cumfreq_table, aes(midi, n)) +
+        geom_col(aes(fill = unisons_removed)) +
+        geom_text(data = counts, aes(label = n), nudge_y = 5) +
+        scale_x_continuous(breaks = note_name_midi_lookup$midi,
+                           labels = note_name_midi_lookup$note_label,
+                           expand = expansion(0, 0.5)) +
+        scale_y_continuous(expand = expansion(0, c(0, 5))) +
+        scale_fill_ptol() + 
+        labs(x = paste(.extreme, "note"), y = "number of hymns") +
+        theme_minimal(base_size = 12) +
+        theme(panel.grid.major.x = element_blank(),
+              panel.grid.minor.x = element_blank())
+    export_for_latex(paste0(.extreme, "_", .voice, "_notes", .filename_suffix), p, height = 3, width = 6.5)
+
+    p
+}
+
+get_highest_notes() %>%
+    filter(hymn_num == 91)
+cumfreq_high_low("soprano", "high")
+cumfreq_high_low("soprano", "low")
+cumfreq_high_low("alto", "high", remove_unusual = TRUE)
+cumfreq_high_low("alto", "high", .filename_suffix = "_no_unison", remove_unusual = TRUE, remove_soprano_alto_unison = TRUE)
+cumfreq_high_low("alto", "low")
+cumfreq_high_low("tenor", "high")
+cumfreq_high_low("tenor", "low")
+cumfreq_high_low("bass", "high")
+cumfreq_high_low("bass", "low")
+```
+
+#### Split alto lines
+
+```{r}
+notes %>%
+    filter(str_detect(hymn_name, "Alto")) %>%
+    count(name_num, hymn_num) %>%
+    arrange(hymn_num)
+```
+
+#### Optional notes.
+
+#### Men's and women's choir sections.
+
+#### How does that change with frequency?
+
+## Tonic within ranges
+
+```{r}
+plot_tonic_in_ranges <- function(.hymn_num, .voice = "soprano") {
+    this_title <- notes %>%
+        filter(hymn_num == .hymn_num) %>% 
+        pull(hymn_name) %>%
+        head(1)
+    notes %>%
+        filter(voice == .voice) %>%
+        filter(hymn_num == .hymn_num) %>%
+        mutate(is_tonic = note == key_signature) %>%
+        ggplot(aes(midi, fill = is_tonic)) + 
+        geom_bar() + 
+        scale_x_continuous(breaks = note_name_midi_lookup$midi,
+                           labels = note_name_midi_lookup$note_label) + 
+        scale_y_continuous(expand = expansion(0, add = c(0, 2))) + 
+        scale_fill_manual(values = c("gray50", ptol_blue)) + 
+        labs(x = "note",
+             y = "number of notes",
+             title = this_title) +
+        theme_bw() + 
+        theme(legend.position = "none")
+}
+plot_tonic_in_ranges(62)
+search_titles("creatures")
+
+p1 <- plot_tonic_in_ranges(308)
+p2 <- plot_tonic_in_ranges(62)
+p1 + p2
+export_for_latex("tonic_within_ranges", height = 4, width = 9)
+```
+
+What do all hymns in G look like?
+
+```{r}
+notes %>%
+    filter(key_signature == "D") %>%
+    distinct(name_num, hymn_num) %>%
+    mutate(plot = map(hymn_num, plot_tonic_in_ranges)) %>%
+    pull(plot) %>%
+    print()
+```
+
+```{r}
+plot_tonic_in_ranges(284)
+```
+
+```{r}
+search_titles("right")
+plot_tonic_in_ranges(237, "bass")
+plot_tonic_in_ranges(2, "bass")
+notes %>%
+    filter(key_signature == "G") %>%
+    distinct(name_num, hymn_num) %>%
+    print() %>%
+    mutate(plot = map(hymn_num, plot_tonic_in_ranges, "bass")) %>%
+    pull(plot) %>%
+    print()
+```
+
+```{r}
+p1 <- plot_tonic_in_ranges(170, "bass")
+p2 <- plot_tonic_in_ranges(204, "bass")
+p1 + p2
+export_for_latex("tonic_within_ranges_bass", height = 4, width = 9)
+```
+
+## Visualizations
+
+### Sparklines
+
+The main visual I'd like to do are sparklines. I think they're the best way to show the most amount of information at once. Plus they can be easily overlapped.
+
+So here is the spreadsheet for sparklines.
+
+```{r}
+sparklines <- hymns_tall %>%
+    
+    # Get the correct notes
+    left_join(notes_lookup, by = c("note", "octave")) %>%
+    select(-typed) %>%
+    
+    # Just one point per note
+    filter(held == FALSE) %>%
+    
+    # Create a line ID for voice + hymn for geom_line
+    unite(line_id, hymn_num, voice, remove = FALSE) %>%
+    # Create a label for display purposes only
+    mutate(label = paste0(title, " (", hymn_num, ")")) %>%
+    
+    group_by(hymn_num, voice) %>%
+    
+    # Get cumuative and relative durations
+    mutate(cume_dur = lag(cumsum(dur), default = 0),
+           rel_dur = cume_dur / max(cume_dur, na.rm = TRUE),
+           # normalize the notes
+           actual_z = scale(actual)) %>%
+    ungroup() %>%
+    print()
+```
+
+There's messiness in the data, so this is a quick way to see which hymns have mismatched durations. Right now, 55 of them do.
+
+```{r}
+sparklines %>%
+    group_by(hymn_num, voice) %>%
+    summarize(cume_dur = max(cume_dur, na.rm = TRUE)) %>%
+    spread(voice, cume_dur) %>%
+    mutate(all_match = near(soprano, alto) & near(soprano, tenor) & near(soprano, bass)) %>%
+    filter(!all_match) %>%
+    print()
+```
+
+```{r}
+sparklines %>%
+    count(dur) %>%
+    print() %>%
+    ggplot(aes(dur, n)) + 
+    geom_point() + 
+    theme_bw()
+```
+
+I've checked them all as of Oct 31, 2021.
+
+```{r, warning=FALSE, fig.height = 6, fig.width = 12}
+sparklines_plot <- function(.hymn) {
+  sparklines %>%
+    filter(hymn_num == .hymn) %>%
+    mutate(label = paste0(title, " (", hymn_num, ")")) %>%
+    ggplot(aes(cume_dur, actual, color = voice)) + 
+    geom_hline(yintercept = c(0, 12, -12), color = "grey75", linetype = "dashed") +
+    geom_hline(yintercept = c(0, 12, -12), color = "grey75", linetype = "dashed") +
+    geom_path(aes(group = voice)) + 
+    #geom_label(aes(size = dur, label = note)) + 
+    geom_point(aes(size = dur)) + 
+    facet_wrap(~label, ncol = 1, scales = "free") + 
+    scale_size_continuous(range = c(3, 6)) + 
+    scale_color_ptol() +
+    scale_x_continuous(expand = expansion(mult=c(0,0), add = c(1,1))) + 
+    theme_classic(base_size = 20) + 
+    theme(legend.position = "bottom")
+}
+sparklines_plot(341)
+```
+
+```{r}
+sparklines %>%
+    filter(hymn_num == 105) %>%
+    group_by(voice) %>%
+    summarize(sum_dur = sum(dur))
+```
+
+Here, I can get the "average" line for each part. Do to this, I'm scaling the notes per part. Unfortunately, this is a *lot* less interesting than I expected.
+
+```{r, warning=FALSE, fig.height = 10, fig.width = 6}
+sparklines %>%
+    #filter(hymn_num %in% c(1:11)) %>%
+    # Create a line ID for voice + hymn
+    unite(line_id, hymn_num, voice, remove = FALSE) %>%
+    # Create a label for display purposes only
+    mutate(label = paste0(title, " (", hymn_num, ")")) %>%
+    # Get the relative duration, which has to be done via grouping
+    group_by(hymn_num) %>%
+    mutate(rel_dur = cume_dur / max(cume_dur, na.rm = TRUE)) %>%
+    ungroup() %>%
+    group_by(line_id) %>%
+    mutate(actual_z = scale(actual)) %>%
+    ungroup() %>%
+    
+    # Plot it
+    ggplot(aes(rel_dur, actual_z, color = voice)) + 
+    #geom_path(aes(group = line_id), alpha = 0.10) + 
+    stat_smooth() + 
+    scale_size_continuous(range = c(1, 3)) + 
+    scale_color_ptol() +
+    facet_wrap(~voice, ncol = 1) + 
+    theme_classic()
+```
+
+## Analysis of Chords
+
+Note that this is mostly questionble until I clean up the data. Edit: It's now clean!
+
+```{r}
+chords <- hymns_with_notes %>%
+    
+    # Turn NAs to underscores
+    # If the in-scale note is NA, turn it into a space
+    mutate(across(c(ends_with("note"), ends_with("octave"), ends_with("inscale")), 
+                  ~if_else(is.na(.), "_", as.character(.)))) %>%
+    
+    # Turn G + 4 into G4
+    mutate(sop_full_note  = paste0(sop_note,  sop_octave),
+           alto_full_note = paste0(alto_note, alto_octave),
+           ten_full_note  = paste0(ten_note,  ten_octave),
+           bass_full_note = paste0(bass_note, bass_octave)) %>%
+    
+    # If a higher part is the same lower part, turn note into a dash
+    mutate(sop_inscale  = if_else(sop_full_note  == alto_full_note & sop_inscale != "_", 
+                                  "-", as.character(sop_inscale)),
+           alto_inscale = if_else(alto_full_note == ten_full_note & alto_inscale != "_",
+                                  "-", as.character(alto_inscale)),
+           ten_inscale  = if_else(ten_full_note  == bass_full_note & ten_inscale != "_", 
+                                  "-", as.character(ten_inscale))) %>%
+    
+    # Finally, get the two chords
+    mutate(chord        = paste(bass_full_note, ten_full_note, alto_full_note, sop_full_note),
+           chord_in_key = paste(bass_inscale,   ten_inscale,   alto_inscale,   sop_inscale)) %>%
+    
+    
+    select(id, hymn_num, title, key_signature, chord, chord_in_key, ends_with("full_note")) %>%
+    print()
+```
+
+### What chord are common and uncommon?
+
+See what chords are common and rare!
+
+```{r}
+chords_frequency <- chords %>%
+    group_by(chord_in_key) %>%
+    count() %>%
+    arrange(-n) %>%
+    rowid_to_column("rank") %>%
+    print()
+```
+
+Look up songs with specific chords
+
+```{r}
+chords %>%
+    filter(chord_in_key == "1 1 2.5 5.5") %>%
+    select(id, hymn_num, title, key_signature, chord, chord_in_key)
+```
+
+Can I standardize the chords in some way?
+
+```{r}
+num_lookup <- read_excel("../data/Music-Quantified.xlsx", sheet = "Convert Numbers") %>%
+  select(-typed, -benchmark) %>%
+  unite(note, note, octave, sep = "") %>%
+  print()
+chords %>%
+  left_join(num_lookup, by = c("sop_full_note" = "note")) %>%
+  rename(sop_note = actual) %>%
+  left_join(num_lookup, by = c("alto_full_note" = "note")) %>%
+  rename(alto_note = actual) %>%
+  left_join(num_lookup, by = c("ten_full_note" = "note")) %>%
+  rename(ten_note = actual) %>%
+  left_join(num_lookup, by = c("bass_full_note" = "note")) %>%
+  rename(bass_note = actual) %>%
+  mutate(across(matches("note"), replace_na, "_")) %>%
+  unite(chord_notes, sop_note, alto_note, ten_note, bass_note, sep = " ") %>%
+  relocate(chord_notes, .after = chord_in_key) %>%
+  print()
+```
+
+### What hymns have intersting chords?
+
+See which songs are most typical and least typical. If the hymn has lots of common chords, it'll score higher. IF it has uncommon chords, it'll score lower.
+
+```{r}
+hymns_with_chord_freq <- chords %>%
+    filter(hymn_num <= 103) %>%
+    left_join(chords_frequency, by = "chord_in_key") %>%
+    group_by(title, hymn_num) %>%
+    summarize(median_freq = median(n),
+              median_rank = median(rank)) %>%
+    arrange(-median_rank) %>%
+    print()
+```
+
+```{r}
+chords %>%
+    left_join(chords_frequency, by = "chord_in_key") %>%
+    filter(hymn_num == 97)
+```
+
+## Random small analyses
+
+### Find 16th notes
+
+```{r}
+hymns_quantified %>%
+    select(song_row_id, hymn_num, title, ends_with("dur")) %>%
+    filter(sop_dur == lead(sop_dur),
+           sop_dur <= 0.25) %>%
+    
+    # filter(sop_dur == 0.25) %>%
+    # filter(if_any(ends_with("dur"), .fns = ~. == 0.25)) %>%
+    # filter(song_row_id == lag(song_row_id)) %>%
+    print()
+```
+
+### Cb, B#, Fb, or E
+
+### Longest drone
+
+### Where within the song is the highest note
+
+### Tenor above the staff
+
+### Alto below the staff

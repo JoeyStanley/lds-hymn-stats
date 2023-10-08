@@ -1,0 +1,3076 @@
+---
+title: "The Frequency Study"
+author: "Joey Stanley"
+date: "04/01/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A first draft of this analysis was completed July 18, 2023.
+
+## Prep and load data
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(lubridate)
+library(ggthemes)
+library(DescTools)
+
+# Part of tidymodels
+library(infer) # for chisq_test()
+```
+
+Actually read in the data. All the prepping, auditing, and querying is done in reshaperaw_freq_data.Rmd.
+
+```{r}
+freqs <- read_csv("../data/freqs.csv", show_col_types = FALSE) %>%
+    mutate(date = as.Date(date),
+           type = factor(type, levels = c("Opening", "Sacrament", "Intermediate", "Closing"))) %>%
+    print()
+```
+
+Also load this lookup table.
+
+```{r}
+name_num_lookup <- read_csv("../data/name_num_lookup.csv", show_col_types = FALSE) 
+```
+
+### Export functions
+
+```{r}
+export_for_latex <- function(name, ...) {
+    path <- paste0("../documents/latex/images/", name, ".pdf")
+    ggsave(filename = path, device = cairo_pdf, ...)
+    
+    path_website <- paste0("/Users/joeystan/GitHub/lds-hymn-stats/images/", name, ".jpeg")
+    ggsave(filename = path_website, ...)
+}
+```
+
+```{r}
+export_table_for_website <- function(df, .name) {
+    path <- paste0("/Users/joeystan/GitHub/lds-hymn-stats/tables/", .name, ".html")
+    df %>%
+        mutate(across(is.double, ~round(., digits = 2))) %>%
+        select(-label, -n) %>%
+        select(`Hymn` = hymn_name, 
+               `Num` = hymn_num, 
+               `Avg. per year` = avg_per_year,
+               `every x weeks` = every_x_weeks,
+               `every x months` = every_x_months,
+               `every x years` = every_x_years) %>%
+        # kableExtra::kable() %>%
+        # kableExtra::kable_styling("striped") %>%
+        # kableExtra::save_kable(path, self_contained = FALSE)
+        gt::gt() %>%
+        gt::gtsave(path)
+}
+
+# freqs %>%
+#     filter(hymn_num %in% 169:196) %>%
+#     cleveland_plot(return = "table") %>%
+#     export_table_for_website("sacrament_hymns")
+```
+
+### Cleveland plot
+
+```{r}
+# First, calculate the number of weeks I have data for given the input dataset
+get_n_distinct_meetings <- function(df = freqs) {
+    df %>%
+        select(date, ward) %>%
+        distinct() %>%
+        nrow()
+}
+get_n_distinct_meetings()
+```
+
+```{r}
+cleveland_plot <- function(df, 
+                           return = "plot", export = FALSE,
+                           title = "Average number of times hymns are sung per year per ward", 
+                           subtitle = "", 
+                           unique_meetings = get_n_distinct_meetings(), 
+                           filter_n = 0, 
+                           max_n = 1E5,
+                           x_buffer = 1,
+                           breaks = 0.5,
+                           base_size = 12,
+                           extra_cols, 
+                           inverse_x = FALSE,
+                           ...) {
+    
+    # Get number of times each hymn was sing per year
+    this_avg_per_year_lookup <- df %>%
+        filter(hymn_num != 0) %>%
+        count(hymn_num) %>%
+        mutate(avg_per_year = n / unique_meetings * 48,
+               every_x_weeks = 48 / avg_per_year,
+               every_x_months = every_x_weeks / 48 * 12,
+               every_x_years  = 1 / avg_per_year) %>%
+        arrange(-avg_per_year) %>%
+        select(-n)
+
+    this_freq_info <- df %>%
+        count(hymn_num, sort = TRUE) %>%
+        filter(n >= filter_n,
+               n <= max_n) %>%
+        left_join(name_num_lookup, by = "hymn_num") %>%
+        left_join(this_avg_per_year_lookup, by = "hymn_num") %>%
+        mutate(hymn_num = factor(hymn_num),
+               hymn_num = fct_inorder(hymn_num),
+               hymn_num = fct_rev(hymn_num),
+               label = paste0(hymn_name, " (", hymn_num, ")"))
+    
+    # If I need to retain any rows for some plot aesthetic, this is how those are kept.
+    if (!missing(extra_cols)) { 
+        extra_cols_to_join <- df %>%
+            select(hymn_num, {{extra_cols}}) %>%
+            mutate(hymn_num = factor(hymn_num)) %>%
+            distinct()
+        
+        this_freq_info <- this_freq_info %>%
+            left_join(extra_cols_to_join, by = "hymn_num")
+    }
+
+    max_x <- max(this_freq_info$avg_per_year) + x_buffer
+    this_nudge_x <- max(this_freq_info$avg_per_year) / 60 # 3.5 turns to 0.05
+
+    # The lines for the plot
+    this_lines <- this_freq_info %>%
+        mutate(line_start = 0) %>%
+        pivot_longer(cols = c(line_start, avg_per_year), names_to = "line_position", values_to = "value")
+
+
+    p <- ggplot(this_freq_info, aes(avg_per_year, hymn_num, ...)) +
+        geom_point() +
+        geom_text(aes(label = label), nudge_x = this_nudge_x, 
+                  hjust = 0, family = "Avenir", size = 3, show.legend = FALSE) +
+        geom_line(data = this_lines, aes(x = value, group = hymn_num)) +
+        scale_x_continuous(limits = c(0, max_x), breaks = seq(0, 5, breaks),
+                           expand = expansion(add = c(0, 0), mult = c(0,0))) +
+        labs(x = "number of times sung per year per ward, on average",
+             y = NULL,
+             title = title,
+             subtitle = subtitle) +
+        theme_minimal(base_size = base_size, base_family = "Avenir") + 
+        theme(axis.ticks.y = element_blank(),
+              axis.text.y = element_blank(),
+              axis.line.y = element_line(color = "gray80"),
+              panel.grid.major.y = element_blank(),
+              panel.grid.minor.y = element_blank())
+    
+    if (export) {
+        export_for_latex(..., plot = p)
+    }
+
+    if (return == "plot") {
+        return(p)
+    }
+    if (return == "table") {
+        return(this_freq_info)
+    }
+    if (return == "both") {
+        return(list(this_freq_info, p))
+    }
+}
+freqs %>%
+    filter(hymn_num %in% 1:20) %>%
+    cleveland_plot()
+```
+
+#### Attempts at years version
+
+```{r, eval = FALSE}
+cleveland_plot_years <- function(df, 
+                                 return = "plot", export = FALSE,
+                                 title = "", subtitle = "", 
+                                 unique_meetings = get_n_distinct_meetings(), 
+                                 filter_n = 0, 
+                                 max_n = 1E5,
+                                 x_buffer = 1,
+                                 breaks = 0.5,
+                                 base_size = 12,
+                                 extra_cols, 
+                                 ...) {
+    
+    # Get number of times each hymn was sing per year
+    this_avg_per_year_lookup <- df %>%
+        filter(hymn_num != 0) %>%
+        count(hymn_num) %>%
+        mutate(avg_per_year = n / unique_meetings * 48,
+               every_x_weeks = 48 / avg_per_year,
+               every_x_months = every_x_weeks / 48 * 12,
+               every_x_years  = 1 / avg_per_year) %>%
+        arrange(-avg_per_year) %>%
+        select(-n)
+    
+    this_freq_info <- df %>%
+        count(hymn_num, sort = TRUE) %>%
+        filter(n >= filter_n,
+               n <= max_n) %>%
+        left_join(name_num_lookup, by = "hymn_num") %>%
+        left_join(this_avg_per_year_lookup, by = "hymn_num") %>%
+        mutate(hymn_num = factor(hymn_num),
+               hymn_num = fct_inorder(hymn_num),
+               hymn_num = fct_rev(hymn_num),
+               label = paste0(hymn_name, " (", hymn_num, ")"))
+    
+    # If I need to retain any rows for some plot aesthetic, this is how those are kept.
+    if (!missing(extra_cols)) {
+        extra_cols_to_join <- df %>%
+            select(hymn_num, {{extra_cols}}) %>%
+            mutate(hymn_num = factor(hymn_num)) %>%
+            distinct()
+
+        this_freq_info <- this_freq_info %>%
+            left_join(extra_cols_to_join, by = "hymn_num")
+    }
+
+    max_x <- max(this_freq_info$avg_per_year) + x_buffer
+    this_nudge_x <- max(this_freq_info$avg_per_year) / 60 # 3.5 turns to 0.05
+
+    # The lines for the plot
+    this_lines <- this_freq_info %>%
+        mutate(line_start = 0) %>%
+        pivot_longer(cols = c(line_start, avg_per_year), names_to = "line_position", values_to = "value")
+
+
+    p <- ggplot(this_freq_info, aes(every_x_years, hymn_num, ...)) +
+        geom_point() +
+        # geom_text(aes(label = label), nudge_x = this_nudge_x, hjust = 0, family = "Avenir", size = 3) +
+        # geom_line(data = this_lines, aes(x = value, group = hymn_num)) +
+        # # scale_x_continuous(limits = c(0, max_x), breaks = seq(0, 5, breaks),
+        # #                    expand = expansion(add = c(0, 0), mult = c(0,0))) +
+        scale_x_continuous(trans = c("log10", "reverse")) +
+
+        # labs(x = "number of times sung",
+        #      y = NULL,
+        #      title = "Average number of times hymns are sung per year per ward",
+        #      subtitle = subtitle) +
+        theme_minimal(base_size = base_size, base_family = "Avenir") +
+        theme(axis.ticks.y = element_blank(),
+              axis.text.y = element_blank(),
+              axis.line.y = element_line(color = "gray80"))
+
+    if (export) {
+        export_for_latex(..., plot = p)
+    }
+
+    if (return == "plot") {
+        return(p)
+    }
+    if (return == "table") {
+        return(this_freq_info)
+    }
+    # if (return == "both") {
+    #     return(list(this_freq_info, p))
+    # }
+}
+
+# freqs %>%
+#     filter(hymn_num %in% :1) %>%
+#     cleveland_plot_years(return = "plot")
+```
+
+```{r, eval = FALSE}
+temp <- freqs %>%
+    filter(hymn_num %in% 1:20) %>%
+    count(name_num) %>%
+    mutate(avg_per_year = n / get_n_distinct_meetings() * 48,
+           every_x_weeks = 48 / avg_per_year,
+           every_x_months = every_x_weeks / 48 * 12,
+           every_x_years  = 1 / avg_per_year) %>%
+    arrange(-avg_per_year) %>%
+    select(-n) %>%
+    arrange(-every_x_years) %>%
+    mutate(name_num = fct_inorder(name_num)) %>%
+    print()
+    
+ggplot(temp, aes(log10(every_x_years), name_num)) + 
+    geom_point() + 
+    scale_x_continuous(trans = c("reverse"), 
+                       breaks = log10(c(1, 3, 10, 30)),
+                       labels = c(1, 3, 10, 30),
+                       name = "years")
+
+# This is supposed to work, but it doesn't: https://stackoverflow.com/questions/11053899/how-to-get-a-reversed-log10-scale-in-ggplot2/72506926#72506926
+ggplot(temp, aes(every_x_years, name_num)) + 
+    # geom_point() + 
+    geom_text(aes(label = round(every_x_years, 2))) + 
+    scale_x_continuous(trans = c("reciprocal"), breaks = c(1, 3, 10, 30))
+
+ggplot(temp, aes(avg_per_year, name_num)) + 
+    geom_point()
+```
+
+```{r, eval = FALSE}
+p <- tibble(x = c(1, 3, 10, 30),
+            y = 1:4) %>%
+    ggplot(aes(x, y, label = x)) + 
+    geom_text()
+p
+
+p + scale_x_continuous(breaks = c(1, 10, 30))
+p + scale_x_continuous(trans = "log10", breaks = c(1, 10, 30))
+p + scale_x_continuous(trans = "reciprocal", breaks = c(1, 10, 30))
+```
+
+#### A sample
+
+A sample, for the methods section
+
+```{r}
+freqs %>%
+    filter(hymn_num == 2)
+freqs %>%
+    filter(hymn_num < 20) %>%
+    cleveland_plot(title = "", return = "table")
+freqs %>%
+    filter(hymn_num < 20) %>%
+    cleveland_plot(return = "both")
+
+freqs %>%
+    filter(hymn_num <= 20,
+           !is.na(hymn_name)) %>%
+    cleveland_plot(return = "both", subtitle = "Hymns 1–20", 
+                   export = TRUE, name = "first_20", height = 3.5, width = 6)
+
+freqs %>%
+    cleveland_plot(filter_n = 20, max_n = 30, inverse_x = FALSE)
+```
+
+### The "Davies Method"
+
+This function takes a date range and finds which hymns are most common in that range, disregarding common hymns anyway. The `.range` argument is something like `month == 2 & day %in% 7:14`. The `.compare` argument is optional and is the same format as `.range`. If it's not there, it'll just look at the logical opposite of `.range`. There is a `.bonus` argument, but I'm not sure what it does.
+
+The function prints two things. First, it'll show the hymns most common in `.range`. Then it'll show the hymns that stand out, according to the Davies method.
+
+```{r}
+davies_method <- function(.range, .compare, .bonus = 0.5, .df = freqs) {
+    within_range <- .df %>%
+        filter({{.range}}) %>%
+        count(hymn_name, hymn_num, sort = TRUE) %>%
+        mutate(within_range = n/sum(n) * 100) %>%
+        arrange(-within_range) %>%
+        filter(n > max(n)/4) %>%
+        select(-n)
+    
+    if (missing(.compare)) {
+        compare_fn <- function(df) { filter(df, !{{.range}}) }
+    } else {
+        compare_fn <- function(df) { filter(df, {{.compare}}) }
+    }
+    
+    not_within_range <- .df %>%
+        compare_fn() %>%
+        count(hymn_name, hymn_num, sort = TRUE) %>%
+        mutate(not_within_range = n/sum(n) * 100) %>%
+        arrange(-not_within_range) %>%
+        filter(n > max(n)/4) %>%
+        select(-n)
+
+    valentines <- left_join(within_range, not_within_range, by = c("hymn_name", "hymn_num")) %>%
+        mutate(not_within_range = replace_na(not_within_range, .bonus)) %>%
+        mutate(prop = within_range / not_within_range) %>%
+        arrange(-prop) %>%
+        print()
+
+
+}
+davies_method(month == 2 & day %in% 7:14, month == 2 & day %in% 15:22)
+```
+
+### Look up one hymn
+
+Just look up the stats for one hymn for my own curiosity.
+
+```{r}
+single_hymn_lookup <- function(.hymn_num, show_context = FALSE) {
+    
+    if (show_context == TRUE) {
+        this_row_num <- freqs %>% 
+            cleveland_plot(return = "table") %>%
+            rowid_to_column("id") %>%
+            filter(hymn_num %in% .hymn_num) %>%
+            pull(id)
+        freqs %>% 
+            cleveland_plot(return = "table") %>%
+            rowid_to_column("id") %>%
+            filter(id >= this_row_num-9,
+                   id <= this_row_num+9) %>%
+            View()
+    } else {
+        freqs %>%
+            cleveland_plot(return = "table") %>%
+            filter(hymn_num %in% .hymn_num) %>%
+            print()
+    }
+    
+    freqs %>%
+        filter(hymn_num %in% .hymn_num) %>%
+        count(week) %>%
+        ggplot(aes(week, n)) + 
+        geom_point() + 
+        geom_path() + 
+        theme_bw()
+    
+    freqs %>%
+        filter(hymn_num %in% .hymn_num,
+               !is.na(type)) %>%
+        count(type) %>%
+        mutate(prop = n/sum(n)) %>%
+        mutate(type = factor(type, levels = c("Opening", "Sacrament", "Intermediate", "Closing"))) %>%
+        print() %>%
+        ggplot(aes(type, n)) +
+        geom_col() +
+        theme_minimal()
+}
+single_hymn_lookup(2)
+single_hymn_lookup(193)
+single_hymn_lookup(201)
+single_hymn_lookup(255)
+# single_hymn_lookup(34, show_context = TRUE)
+# single_hymn_lookup(33, show_context = TRUE)
+```
+
+### Other Functions
+
+```{r}
+get_hymn_name <- function(x) {
+    freqs %>%
+        select(hymn_name, hymn_num) %>%
+        distinct() %>%
+        filter(hymn_num == x) %>%
+        pull(hymn_name)
+}
+get_hymn_name(308)
+
+search_titles <- function(x) {
+     freqs %>%
+        select(hymn_name, hymn_num) %>%
+        distinct() %>%
+        filter(str_detect(tolower(hymn_name), tolower(x))) %>%
+        arrange(hymn_num)
+}
+search_titles("Love")
+search_titles("Green")
+search_titles("fathers")
+```
+
+### Preloaded colors
+
+```{r}
+ptol_red <- "#EE6677"
+ptol_green <- "#228833"
+ptol_blue <- "#4477AA"
+ptol_grey <- "#777777"
+```
+
+## Cumulative sums by hymn
+
+Helpful for saying like "if you learn X hymns you'll be good Y% of the time." Perhaps more useful in the reverse: "If we cut the bottom 100 hymns, we'd only lose Y% of the usage."
+
+```{r}
+freqs %>%
+    count(name_num, sort = TRUE) %>%
+    rowid_to_column("id") %>%
+    mutate(cumsum = cumsum(n),
+           cumprop = cumsum/sum(n)) %>%
+    print()
+```
+
+## Stats about individual wards
+
+### Amount of data
+
+```{r}
+freqs %>%
+    count(meeting_id, ward) %>%
+    count(ward, sort = TRUE, name = "n_meetings") %>%
+    rowid_to_column("rank") %>%
+    mutate(percentile = 1-(rank / max(rank))) %>%
+    print()
+```
+
+### Hymns per meeting
+
+Overall. 3 = all musical numbers. 4 = no musical numbers.
+
+```{r}
+nrow(freqs) / get_n_distinct_meetings()
+```
+
+Stats per ward and percentiles. Higher percentile means more special musical numbers.
+
+```{r}
+freqs %>%
+    group_by(ward) %>%
+    summarize(n_hymns = n(),
+              n_meetings = length(unique(meeting_id)),
+              hymns_per_meeting = n_hymns / n_meetings) %>%
+    filter(n_meetings >= 24) %>%
+    arrange(hymns_per_meeting) %>%
+    rowid_to_column("rank") %>%
+    mutate(percentile = 1-(rank / max(rank))) %>%
+    print()
+```
+
+#### Change from pre/post 2019
+
+As Tanya suggested, does that change from pre/post 2019.
+
+```{r}
+freqs %>%
+    mutate(blocks = if_else(year >= 2019, "two-hour church", "three-hour church")) %>%
+    group_by(blocks) %>%
+    summarize(n_hymns = n(),
+              n_meetings = length(unique(meeting_id)),
+              hymns_per_meeting = n_hymns / n_meetings) %>%
+    print()
+```
+
+Oh! There may be a difference!
+
+Let's look at that in more detail.
+
+```{r}
+freqs %>%
+    # group_by(date) %>%
+    mutate(month_year = lubridate::my(paste(month, year))) %>%
+    group_by(month_year)  %>%
+    summarize(
+        unique_wards = length(unique(ward)),
+        n_hymns = n(),
+        n_meetings = length(unique(meeting_id)),
+        hymns_per_meeting = n_hymns / n_meetings) %>%
+    filter(unique_wards > 1) %>%
+    print() %>%
+    ggplot(aes(month_year, hymns_per_meeting)) +
+    stat_smooth() +
+    geom_point()
+```
+
+### Raing a ward's variety
+
+Focus for now on wards with at least a year's worth of data.
+
+```{r}
+wards_with_1_year <- freqs %>%
+    count(ward, meeting_id) %>%
+    count(ward) %>%
+    filter(n > 48) %>%
+    pull(ward) %>%
+    print()
+```
+
+See how many unique hymns a ward might sing in a year. The following block isn't great though because the more data you have the more hymns you'll sing.
+
+```{r}
+freqs %>%
+    filter(ward %in% wards_with_1_year) %>%
+    group_by(ward) %>%
+    summarize(unique_hymns = length(unique(name_num)),
+              unique_meetings = length(unique(meeting_id))) %>%
+    mutate(hymns_per_meeting = unique_hymns / unique_meetings,
+            hymns_per_year = hymns_per_meeting * 48) %>%
+    arrange(hymns_per_year) %>%
+    rowid_to_column("rank") %>%
+    print() %>%
+    ggplot(aes(unique_meetings, hymns_per_year)) + 
+    geom_point() + 
+    labs(title = "Number of unique hymns per year by how much data I have per ward",
+         subtitle = "It very neatly follows some sort of exponential curve!",
+         x = "Unique meetings I have data from",
+         y = "Unique hymns per year") + 
+    theme_minimal()
+# export_for_latex(name = "hymns-per-year_by_amount-of-data", height = 4, width = 7)
+```
+
+We'll have to do a rolling average. Can't seem to figure that out though.
+
+```{r}
+# freqs %>%
+#     filter(ward %in% wards_with_1_year) %>%
+#     arrange(ward, date) %>%
+#     print() %>%
+#     group_by(ward) %>%
+#     mutate(rollsum = RcppRoll::roll_sum(name_num, n = 3)) %>%
+#     print()
+```
+
+Try random sampling then? Yes! That works I think.
+
+```{r}
+bootstrap_hymns <- function(df) {
+    meeting_id_sample <- df %>%
+        pull(meeting_id) %>%
+        unique() %>%
+        sample(48, replace = FALSE)
+    
+    df %>%
+        filter(meeting_id %in% meeting_id_sample) %>%
+        pull(name_num) %>%
+        unique() %>%
+        length()
+}
+
+set.seed(1)
+bootstrapped <- freqs %>%
+    filter(ward %in% wards_with_1_year) %>%
+    group_by(ward) %>%
+    nest() %>%
+    crossing(iteration = 1:100) %>%
+    mutate(n_unique_hymns = map_int(data, bootstrap_hymns)) %>%
+    select(-data) %>%
+    group_by(ward) %>%
+    summarize(across(n_unique_hymns, .fns = list(`mean` = mean, `min` = min, `max` = max, `sd` = sd))) %>%
+    arrange(-n_unique_hymns_mean) %>%
+    rowid_to_column("rank") %>%
+    mutate(percentile = 1-(rank/max(rank))) %>%
+    print() 
+summary(bootstrapped)
+```
+
+This is a very cool piece of information. The average number of unique hymns per ward per year is about 107. I actually wrote this code very late on a Saturday night (September 9, 2023) and was able to tell people that number the next day while waiting for tithing settlement. It's an interesting number!
+
+Some wards are more adventurous and sing more variety (up to 131). Others less so (90).
+
+If you think about it, there are 48 sacrament meetings per year. Four hymns per meeting is 196 max. Substract 12 for Fast Sunday, and that's an absolute max of 184 hymns per year, and that's if there are zero special musical numbers. Well, 48 of those hymns have to come from 169--196, so assuming you hit all 28 of those (which is not a given!), that means 48 of your 184 have only 28 unique hymns. That leaves 136 slots for other hymns. If you didn't repeat anything whatsoever, that means you could sing a max of 136 + 28 = 164 unique hymns per year.
+
+The fact that we have a ward that did 131 is pretty good. 90 implies a lot of repetition because it's slightly more than half as many as could have been done.
+
+### Rating a ward's adventureness
+
+I had a formula for ranking a ward and how "adventurous" it was. I think I just the rank of all the hymns, got the median of their hymns or something? Let's try it.
+
+```{r}
+hymns_ranked <- freqs %>%
+    count(name_num, sort = TRUE) %>%
+    rowid_to_column("rank") %>%
+    
+    # Make ties the same rank
+    group_by(n) %>%
+    mutate(rank = min(rank)) %>%
+    ungroup() %>%
+    
+    print()
+```
+
+Find the average rank per ward. Larger numbers mean less common hymns. So, higher rank means more adventurous.
+
+```{r}
+freqs %>%
+    left_join(hymns_ranked, by = "name_num") %>%
+    group_by(ward) %>%
+    filter(type != "sacrament") %>%
+    summarize(n_hymns = n(),
+              n_meetings = length(unique(meeting_id)),
+              across(rank, list(`mean` = mean, `med` = median, `max` = max))) %>%
+    arrange(-rank_mean) %>%
+    filter(n_meetings >= 48) %>%
+    rowid_to_column("rank") %>%
+    mutate(percentile = 1-rank/max(rank)) %>%
+    print()
+```
+
+Look up a single ward to send to them via email.
+
+```{r}
+freqs %>%
+    left_join(hymns_ranked, by = "name_num") %>%
+    filter(ward == "Maple Meadows 2nd") %>%
+    arrange(-rank) %>%
+    select(name_num, date, rank, n)
+
+single_hymn_lookup(61)
+```
+
+## Most frequent (general)
+
+```{r}
+freqs %>%
+    count(hymn_name, hymn_num) %>%
+    arrange(hymn_num) %>%
+    filter(hymn_num <= 342,
+           hymn_num != 0) %>%
+    arrange(-n) %>%
+    mutate(prop = n / sum(n) * 100) %>%
+    print()
+```
+
+```{r}
+freqs %>%
+    cleveland_plot(return = "table")
+```
+
+What proportion of the data is from each category?
+
+```{r}
+freqs %>%
+    cleveland_plot(return = "table") %>%
+    mutate(freq_category = case_when(every_x_years <=  1 ~ "favorites",
+                                     every_x_years <=  2 ~ "regulars",
+                                     every_x_years <=  4 ~ "less commons",
+                                     every_x_years <= 20 ~ "rares",
+                                     TRUE ~ "almost missing"),
+           freq_category = fct_inorder(freq_category)) %>%
+    group_by(freq_category) %>%
+    summarize(n_hymns = n(),
+              n_times_sung = sum(n),
+              prop_of_data = n_times_sung/nrow(freqs)) %>%
+    ungroup() %>%
+    mutate(cum_prop = cumsum(prop_of_data))
+```
+
+### The favorites
+
+Hymns sung at least once per year.
+
+```{r}
+single_hymn_lookup(193)
+```
+
+Table for LaTeX?
+
+```{r}
+# freqs %>%
+#     cleveland_plot(return = "table") %>%
+#     relocate(n, .after = hymn_name) %>%
+#     select(-label, -every_x_months, -every_x_years) %>%
+#     filter(avg_per_year > 1) %>%
+#     print()
+    # xtable::xtable()
+```
+
+```{r}
+freqs %>%
+    mutate(is_sacrament = hymn_num %in% 169:196) %>%
+    cleveland_plot(filter_n = 109, extra_cols = is_sacrament, color = is_sacrament, base_size = 10,
+                   title = "The \"favorites\": The most common hymns in the church",
+                   subtitle = "Defined as hymns sung more than once per year per ward, on average") + 
+    scale_color_manual(values = c("black", "gray75"), name = NULL, labels = c("Non-sacrament hymn", "Sacrament hymn")) + 
+    theme(legend.position = "bottom")
+export_for_latex("the_favorites", height = 7, width = 6.5)
+```
+
+```{r}
+freqs %>%
+    filter(!hymn_num %in% 169:196) %>%
+    cleveland_plot(return = "table") %>%
+    filter(avg_per_year > 1)
+```
+
+How much of the data do these account for?
+
+```{r}
+the_favorites <- freqs %>%
+    cleveland_plot(filter_n = 109, return = "table") %>%
+    pull(hymn_num) %>%
+    print()
+length(the_favorites)
+freqs %>%
+    summarize(is_favorite = hymn_num %in% the_favorites) %>%
+    count(is_favorite) %>%
+    mutate(prop = n/sum(n))
+```
+
+Hm, 46 hymns for 43% of the meetings? That's not quite as good of milage as I was expecting.
+
+#### Popular vs. Standard
+
+The back of the hymnal has a list of standards. Let's compare that to what is most popular now.
+
+```{r}
+standards <- c(30, 59, 58, 241, 237, 83, 5, 85, 301, 136, 243, 3, 27, 252, 6, 147, 2, 19)
+```
+
+Popular but not standard
+
+```{r}
+sort(setdiff(as.numeric(as.character(the_favorites)), standards)) %>%
+    single_hymn_lookup() %>%
+    filter(!hymn_num %in% 169:196)
+```
+
+Popular and standard
+
+```{r}
+sort(intersect(as.numeric(as.character(the_favorites)), standards)) %>%
+    single_hymn_lookup()
+```
+
+Standard but not popular
+
+```{r}
+sort(setdiff(standards, as.numeric(as.character(the_favorites))))  %>%
+    single_hymn_lookup()
+```
+
+A plot showing the union of them.
+
+```{r}
+freqs %>%
+    mutate(standard_vs_popular = case_when(hymn_num %in% the_favorites & hymn_num %in% standards ~ "both",
+                                           hymn_num %in% the_favorites ~ "popular",
+                                           hymn_num %in% standards     ~ "standard")) %>%
+    filter(!is.na(standard_vs_popular),
+           !hymn_num %in% 169:196) %>%
+    cleveland_plot(extra_cols = standard_vs_popular, color = standard_vs_popular, 
+                   title = "Standard vs. Popular hymns", subtitle = "Excluding sacrament hymns",
+                   x_buffer = 1.25) + 
+    scale_color_manual(name = NULL,
+                       breaks = c("popular", "standard", "both"),
+                       values = c("#377eb8", "#e41a1c", "#984ea3")) # from color brewer Set1
+export_for_latex("standard_vs_popular", height = 4.25, width = 6.5)
+```
+
+```{r}
+export_table_for_website <- function(df, .name) {
+    path <- paste0("/Users/joeystan/GitHub/lds-hymn-stats/tables/", .name, ".html")
+    df %>%
+        mutate(across(is.double, ~round(., digits = 2))) %>%
+        select(-label, -n) %>%
+        select(`Hymn` = hymn_name, 
+               `Num` = hymn_num, 
+               `Avg. per year` = avg_per_year,
+               `every x weeks` = every_x_weeks,
+               `every x months` = every_x_months,
+               `every x years` = every_x_years) %>%
+        gt::gt() %>%
+        gt::gtsave(path)
+}
+freqs %>%
+    filter(hymn_num %in% the_favorites) %>%
+    cleveland_plot(return = "table") %>%
+    export_table_for_website("the_favorites")
+```
+
+### The regulars
+
+At least once every two years.
+
+```{r, fig.height = 15, fig.width = 7}
+freqs %>%
+    mutate(holiday = fct_collapse(as.factor(hymn_num), 
+                                  "Valentine's Day" = c(113, 308),
+                                  "Easter" = 197:200,
+                                  "Mother's Day" = c(294, 298, 304, 292, 300),
+                                  "Father's Day" = c(296, 300, 297),
+                                  "Fourth of July" = c(338:340, 60, 78, 80),
+                                  "Pioneer Day" = c(30, 36, 34, 35, 255),
+                                  "Thanksgiving" = c(92:95, 241),
+                                  "Christmas"    = 201:214,
+                                  other_level = "non-holiday"),
+           holiday = if_else(holiday == "non-holiday", "non-holiday", "holiday")) %>%
+    cleveland_plot(filter_n = 55, max_n = 109, base_size = 10, 
+                   extra_cols = holiday, color = holiday,
+                   title = "The \"regulars\": Hymns sung at least once every two years",
+                   subtitle = "Hymns linked to certain holidays are in gray",
+                   return = "plot") + 
+    scale_color_manual(name = "Holiday-oriented?", 
+                       breaks = c("holiday", "non-holiday"),
+                       values = c("gray75", "black")) + 
+    theme(legend.position = "none")
+
+export_for_latex(name = "the_regulars", height = 8, width = 6.5)
+```
+
+### The less commons
+
+At least once every four years.
+
+```{r, fig.height = 15, fig.width = 7}
+freqs %>%
+    mutate(holiday = fct_collapse(as.factor(hymn_num), 
+                                  "Valentine's Day" = c(113, 308),
+                                  "Easter" = 197:200,
+                                  "Mother's Day" = c(294, 298, 304, 292, 300),
+                                  "Father's Day" = c(296, 300, 297),
+                                  "Fourth of July" = c(338:340, 60, 78, 80),
+                                  "Pioneer Day" = c(30, 36, 34, 35, 255),
+                                  "Thanksgiving" = c(92:95, 241),
+                                  "Christmas"    = 201:214,
+                                  other_level = "non-holiday"),
+           holiday = if_else(holiday == "non-holiday", "non-holiday", "holiday")) %>%
+    cleveland_plot(filter_n = 28, max_n = 54, 
+                   breaks = 0.2,
+                   extra_cols = holiday, color = holiday,
+                   title = "Hymns sung once every two to four years",
+                   subtitle = "Hymns linked to certain holidays are in gray",
+                   return = "plot") + 
+    scale_color_manual(name = "Holiday-oriented?", 
+                       breaks = c("holiday", "non-holiday"),
+                       values = c("gray75", "black")) + 
+    theme(legend.position = "none")
+export_for_latex("between_two_and_four_years", height = 9, width = 6.5)
+```
+
+### The rares
+
+```{r, fig.height = 15, fig.width = 6}
+freqs %>%
+    filter(!is.na(hymn_name)) %>%
+    cleveland_plot(filter_n = 6, max_n = 27, return = "both")
+export_for_latex("at_most_once_every_twenty_years", height = 9, width = 6.5)
+```
+
+There are 31,330 wards and branches in the world. That means there are that many sacrament meetings happening each week, almost six times as much data as I have combined. So, for these very uncommon hymns, we could extrapolate and say that a hymn like Like Ten Thousand Legions Marching is sung six times a week across the whole world, and 48x6 = 288 times per year (a generous estimate because it discounts holidays). Compare that to I Stand All Amazed, which is sung 1700 times per week and 82000 times per year.
+
+```{r}
+freqs %>%
+    cleveland_plot(return = "table")
+```
+
+### The Almost missing
+
+```{r}
+freqs %>%
+    cleveland_plot(max_n = 5, return = "both")
+```
+
+### The missing
+
+Which hymns are not sung at all?
+
+```{r}
+not_sung <- freqs %>%
+    pull(hymn_num) %>%
+    unique() %>%
+    setdiff(1:341, .)
+length(not_sung)
+not_sung
+```
+
+So 309--317 are the women's arrangements. The only one that had any currency was Love at Home (318). More of the men's ones had currency (Ye Elders of Israel, Coe All Ye Sons of God, Rise Up O Men of God, See the Mighty Priesthood Gathered, Go Ye Messengers of Heaven, Brightly Beams Our Father's Mercy, School Thy Feelings) were sung.
+
+```{r}
+search_titles("O Home")
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% 309:337,
+           !is.na(hymn_name)) %>%
+    mutate(gender = if_else(hymn_num %in% 309:318, "women", "men")) %>%
+    cleveland_plot(breaks = 0.05, x_buffer = 0.15, extra_cols = gender, color = gender, title = NULL) + 
+    scale_color_ptol(breaks = c("women", "men"))
+export_for_latex("womens_mens", height = 4, width = 6.5)
+
+freqs %>%
+    filter(hymn_num %in% 309:337,
+           !is.na(hymn_name)) %>%
+    mutate(gender = if_else(hymn_num %in% 309:318, "women", "men")) %>%
+    cleveland_plot(return = "table")
+
+freqs %>%
+    filter(hymn_num == 309)
+freqs %>%
+    filter(hymn_num == 318)
+```
+
+```{r}
+single_hymn_lookup(309, show_context = TRUE)
+```
+
+```{r}
+freqs %>%
+    filter(meeting_id == "2019-08-25_Spanish Fields 1st")
+```
+
+## Sacrament Hymns
+
+Look at sacrament hymns generally.
+
+I'm trying to calculate the average number of times you'd sing a hymn. I'm having a hard time trying to figure it out.
+
+I have 923 unique dates. But that doens't mean much because ward submitted it across those. Looks like I have data from 5211 sacrament meetings. That helps. I guess now just divide the raw freq of each hymn by that, and then multiply by 48.
+
+```{r, fig.height = 5, fig.width = 6}
+freqs %>%
+    filter(hymn_num %in% 169:196) %>%
+    cleveland_plot(title = "Sacrament hymns", 
+                   subtitle = "Includes hymns 169 through 196", 
+                   name = "sacrament", export = TRUE, 
+                   height =  5, width = 6,
+                   return = "both")
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% 169:196) %>%
+    cleveland_plot(return = "table") %>%
+    export_table_for_website("sacrament_hymns")
+```
+
+### Exclude regulars
+
+Can I exclude wards that systematically cycle through them?
+
+```{r, fig.height = 20, fig.width = 10}
+freqs %>%
+    filter(hymn_num %in% 169:196) %>%
+    count(ward, hymn_num, name = "times_sung") %>%
+    add_count(ward, name = "hymns_per_ward") %>%
+    filter(hymns_per_ward > 15) %>%
+    ggplot(aes(hymn_num, times_sung)) + 
+    geom_col() + 
+    facet_wrap(~ward, scales = "free", ncol = 3)
+
+freqs %>% 
+    filter(ward == "Post Falls 4th Ward", type == "Sacrament") %>%
+    print()
+```
+
+Same code as above, but filtered.
+
+```{r}
+non_systematic_ward_df <- freqs %>%
+    filter(hymn_num %in% 169:197) %>%
+    filter(!ward %in% c("Holt Ward", 
+                        "Bloomington Hills 4th Ward", 
+                        "Butterfield Canyon 6th Ward", 
+                        "Diamond Valley Branch",
+                        "Kelso Ward", 
+                        "Post Falls 4th Ward",
+                        "Slate Canyon 10th",
+                        "Spanish Ridge Ward", 
+                        "Washington Fields 11th Ward",
+                        "Western Springs 2nd Ward")) %>%
+    print()
+distinct_meetings_non_systematic_wards <- non_systematic_ward_df %>%
+    count(meeting_id) %>%
+    nrow() %>%
+    print()
+non_systematic_ward_df %>%
+    cleveland_plot(title = "Sacrament hymns", 
+                   subtitle = "Excludes wards that systematically cycle through the hymns", 
+                   unique_meetings = distinct_meetings_non_systematic_wards,
+                   return = "both",
+                   x_buffer = 1.2, 
+                   export = TRUE, name = "sacrament_minus_regulars", height = 5, width = 6)
+```
+
+### Non-sacrament second-sung hymns
+
+Look at non-sacrament hymns and, more specifically, hymns that were sung second.
+
+```{r, fig.height = 3, fig.width = 6.5}
+freqs %>%
+    filter(type == "Sacrament",
+           hymn_num != 0,
+           !hymn_num %in% 169:196) %>%
+    cleveland_plot(return = "plot", 
+                   extra_cols = regular, color = regular,
+                   title = "Sacrament hymns", 
+                   subtitle = "Includes hymns 169 through 196, plus 146 and 197", 
+                   filter_n = 3, x_buffer = 0.2) + 
+    scale_color_ptol() + 
+    theme(legend.position = "bottom")
+```
+
+```{r}
+freqs %>%
+    filter(type == "Sacrament",
+           hymn_num != 0,
+           hymn_num %in% c(146, 169:197)) %>%
+    mutate(regular = if_else(hymn_num %in% c(146, 197), 
+                             "\"honorary\" sacrament hymn", 
+                             "\"official\" sacrament hymn")) %>%
+    cleveland_plot(return = "plot", 
+                   extra_cols = regular, color = regular,
+                   title = "Sacrament hymns including \"honorary\" sacrament hymns", 
+                   subtitle = "Includes hymns 169 through 196, plus 146 and 197", 
+                   filter_n = 3, x_buffer = 1.1) + 
+    scale_color_manual(values = c(ptol_blue, "gray30"),
+                       name = NULL) + 
+    theme(legend.position = "bottom")
+export_for_latex("sacrament_plus_honoraries", height = 6, width = 6)
+```
+
+### Sacrament sung elsewhere
+
+```{r}
+freqs %>%
+    filter(type != "Sacrament",
+           hymn_num != 0,
+           hymn_num %in% 169:196) %>%
+    count(hymn_name, hymn_num, type) %>%
+    pivot_wider(names_from = type, values_from = n) %>%
+    select(hymn_num, hymn_name, "Opening", "Intermediate", "Closing") %>%
+    rowwise() %>%
+    mutate(total = sum(Opening, Intermediate, Closing, na.rm = TRUE)) %>%
+    arrange(-total) 
+
+freqs %>%
+    filter(type != "Sacrament",
+           hymn_num != 0,
+           hymn_num %in% 169:196) %>%
+    arrange(hymn_num, week)
+
+freqs %>%
+    filter(type != "Sacrament",
+           hymn_num != 0,
+           hymn_num %in% 169:196) %>% 
+    ggplot(aes(week)) + 
+    geom_histogram(binwidth = 1) + 
+    facet_wrap(~name_num)
+
+freqs %>%
+    filter(type != "Sacrament",
+           hymn_num != 0,
+           hymn_num %in% 169:196) %>%
+    cleveland_plot(return = "table") 
+
+freqs %>%
+    filter(type != "Sacrament",
+           hymn_num != 0,
+           hymn_num %in% 169:196) %>%
+    cleveland_plot(return = "plot", x_buffer = 0.1, breaks = 0.05) 
+```
+
+How often will a ward do this, on average, across all sacrament hymns?
+
+```{r}
+freqs %>%
+    filter(type != "Sacrament",
+           hymn_num %in% 169:196) %>%
+    select(date, ward) %>%
+    distinct() %>%
+    nrow()
+freqs %>%
+    filter(type != "Sacrament") %>%
+    select(date, ward) %>%
+    distinct() %>%
+    nrow()
+
+61/get_n_distinct_meetings()
+1/(61/get_n_distinct_meetings() * 48) * 12
+```
+
+## General annual trends
+
+```{r}
+freqs %>%
+    count(year)
+```
+
+```{r}
+all_dates <- freqs %>%
+    select(day, month) %>%
+    distinct() %>%
+    arrange(month, day) %>%
+    crossing(year = 1976:2031) %>%
+    unite(dmy, day, month, year, remove = FALSE, sep = "/") %>%
+    mutate(dmy = dmy(dmy)) %>%
+    mutate(week = week(dmy)) %>%
+    
+    # Get fast sundays
+    mutate(wday = wday(dmy, label = TRUE)) %>%
+    filter(wday == "Sun") %>%
+    group_by(year, month) %>%
+    mutate(week_this_month = week - min(week) + 1) %>%
+    mutate(first_sunday = week == min(week)) %>%
+    ungroup() %>%
+    arrange(dmy) %>%
+    print()
+
+all_dates %>%
+    filter(month == 2,
+           day == 14) %>%
+    count(week)
+
+all_dates %>%
+    filter(month == 12,
+           day == 25) %>%
+    count(week)
+
+all_dates %>%
+    filter(month == 4,
+           first_sunday) %>%
+    count(week)
+
+all_dates %>%
+    filter(month == 11,
+           week_this_month == 4) %>%
+    count(week)
+```
+
+```{r}
+freqs %>%
+    filter(month == 7,
+           day == 4) %>%
+    count(week)
+```
+
+### Variation per week
+
+First, how many meetings do I have data for, per week, on average?
+
+```{r}
+freqs %>%
+    select(meeting_id, week) %>%
+    distinct() %>%
+    count(week) %>%
+    pull(n) %>%
+    summary()
+
+get_n_distinct_meetings() / 48
+```
+
+Number of distinct hymns sung per week num.
+
+```{r}
+freqs %>%
+    count(hymn_num, week) %>%
+    count(week, sort = TRUE) %>%
+    filter(!week %in% c(14, 40, 53)) %>% # <- general conference and last week
+    mutate(line_id = case_when(week < 14 ~ "before",
+                               week < 40 ~ "middle",
+                               TRUE ~ "after")) %>%
+    arrange(week) %>%
+    ggplot(aes(week, n, group = line_id)) + 
+    geom_point() + 
+    geom_line() +
+    
+    # Annotations
+    annotate(geom = "curve", x = 16, y = 90, xend = 18.5, yend = 112, color = "gray50", 
+             curvature = -0.3, arrow = arrow(length = unit(2, "mm"))) + 
+    annotate(geom = "text", x = 13, y = 85, label = "Mother's Day", hjust = "left", color = "gray50") + 
+    
+    annotate(geom = "curve", x = 30, y = 80, xend = 27.5, yend = 101, color = "gray50", 
+             curvature = .3, arrow = arrow(length = unit(2, "mm"))) + 
+    annotate(geom = "text", x = 29, y = 75, label = "4th of July", hjust = "left", color = "gray50") + 
+    
+    annotate(geom = "curve", x = 43, y = 90, xend = 46.5, yend = 120, color = "gray50", 
+             curvature = -0.3, arrow = arrow(length = unit(2, "mm"))) + 
+    annotate(geom = "text", x = 43, y = 85, label = "Thanksgiving", color = "gray50") + 
+    
+    annotate(geom = "curve", x = 47, y = 30, xend = 48.5, yend = 61, color = "gray50", 
+             curvature = -0.3, arrow = arrow(length = unit(2, "mm"))) + 
+    annotate(geom = "curve", x = 47, y = 30, xend = 49.5, yend = 55, color = "gray50", 
+             curvature = -0.3, arrow = arrow(length = unit(2, "mm"))) + 
+    annotate(geom = "curve", x = 47, y = 30, xend = 50.25, yend = 51.5, color = "gray50", 
+             curvature = -0.3, arrow = arrow(length = unit(2, "mm"))) + 
+    annotate(geom = "text", x = 47, y = 25, label = "Christmas", hjust = 0.5, color = "gray50") + 
+    
+    
+    labs(caption = "Weeks 14 and 40 are skipped because they usually correspond to General Conference.",
+         x = "week numnber",
+         y = "number of hymns") + 
+    scale_x_continuous(limits = c(1, 52),
+                       expand = expansion(mult = 0, add = 0.5),
+                       breaks = seq(0, 60, 5),
+                       minor_breaks = 1:60) + 
+    scale_y_continuous(limits = c(0, 170),
+                       minor_breaks = seq(0, 170, 10)) +
+    theme_minimal()
+
+export_for_latex("weekly_variation", height = 4, width = 6)
+```
+
+This is fascinating! I can get a feel for how variable each week is. There is an obvious trend downward in December showing that there is very little variation around Christmastime: we all sing the same stuff.
+
+There are also noticeable dips around Thanksgiving, 4th of July, and Mother's Day.
+
+In general, there are dips around Fast Sunday too.
+
+I've excluded General Conference weeks and "week 53" since that's not present in all years.
+
+Might be a fluke, but end of August and early september have the most variation, followed closely by the week after the 4th of July.
+
+```{r}
+# Mothers Day + Fast Sunday
+freqs %>%
+    filter(week == 19) %>%
+    count(date)
+
+# 4th of July + Fast Sunday
+freqs %>%
+    filter(week == 27) %>%
+    count(date)
+
+# Thanksgiving
+freqs %>%
+    filter(week == 47) %>%
+    count(date)
+
+# Week after Thanksgiving
+freqs %>%
+    filter(week == 48) %>%
+    count(date)
+```
+
+Try the Gini coefficient instead. Pros: not dependent on how much data I have. Cons: less interpretable.
+
+```{r, fig.height = 2, fig.width = 4}
+temp <- freqs %>%
+    filter(week == 47) %>%
+    count(hymn_num) %>%
+    arrange(-n) %>%
+    print()
+Gini(temp$n)
+
+all_possible <- crossing(hymn_num = as.character(1:341),
+                       week = as.character(1:53))
+
+freqs_temp <- freqs %>%
+    mutate(hymn_num = factor(hymn_num, levels = as.character(1:341)),
+           week = factor(week, levels = as.character(1:53))) %>%
+    count(hymn_num, week) %>%
+    print()
+
+all_possible %>%
+    left_join(freqs_temp) %>%
+    mutate(n = replace_na(n, 0)) %>%
+    group_by(week) %>%
+    summarize(gini = Gini(n)) %>%
+    ungroup() %>%
+    filter(!week %in% c(14, 53, 40)) %>%
+    mutate(week = as.numeric(as.character(week))) %>%
+    arrange(gini) %>%
+    ggplot(aes(week, gini, group = 1)) + 
+    geom_point() + 
+    geom_line() + 
+    theme_minimal()
+export_for_latex("weekly_variation_gini", height = 3, width = 6)
+```
+
+### Random weeks
+
+```{r}
+this_month <- 10
+this_sunday <- 2
+# What weeks of the year are we looking at?
+freqs %>%
+    filter(month == this_month, nth_sunday == this_sunday) %>% 
+    count(week)
+# Anything stand out from the Davies method?
+davies_method(month == this_month, nth_sunday == this_sunday)
+# How many hymns
+freqs %>%
+    filter(month == this_month, nth_sunday == this_sunday) %>%
+    nrow()
+# Hosw many sacrament meetings?
+freqs %>%
+    filter(month == this_month, nth_sunday == this_sunday) %>%
+    distinct(meeting_id) %>%
+    nrow()
+# How many unique hymns?
+freqs %>%
+    filter(month == this_month, nth_sunday == this_sunday) %>%
+    distinct(name_num) %>%
+    nrow()
+# Visualize
+freqs %>%
+    filter(month == this_month,
+           nth_sunday == this_sunday) %>%
+    cleveland_plot(return = "both",
+                   breaks = 0.1,
+                   filter_n = 5)
+```
+
+```{r, fig.height = 4, fig.width = 15}
+nth_week_stats <- freqs %>%
+    group_by(month, nth_sunday) %>%
+    summarize(n_observations = n(),
+              n_meetings = length(unique(meeting_id)),
+              unique_hymns    = length(unique(name_num))) %>%
+    mutate(hymns_per_meeting = unique_hymns / n_meetings) %>%
+    filter(nth_sunday != 5) %>%
+    arrange(month, nth_sunday) %>%
+    unite(month_sunday, month, nth_sunday) %>%
+    mutate(month_sunday = fct_inorder(month_sunday)) %>%
+    filter(!month_sunday %in% c("4_1", "10_1")) %>%
+    print()
+ggplot(nth_week_stats, aes(month_sunday, n_observations)) + 
+    geom_point() + 
+    geom_line(aes(group = 1))
+ggplot(nth_week_stats, aes(month_sunday, n_meetings)) + 
+    geom_point() + 
+    geom_line(aes(group = 1))
+ggplot(nth_week_stats, aes(month_sunday, unique_hymns)) + 
+    geom_point() + 
+    geom_line(aes(group = 1))
+ggplot(nth_week_stats, aes(month_sunday, hymns_per_meeting)) + 
+    geom_point() + 
+    geom_line(aes(group = 1))
+```
+
+Same as above, but week numbers so that 5th sundays don't throw things off.
+
+```{r}
+weeknum_stats <- freqs %>%
+    group_by(week) %>%
+    summarize(n_observations = n(),
+              n_meetings = length(unique(meeting_id)),
+              unique_hymns    = length(unique(name_num))) %>%
+    mutate(hymns_per_meeting = unique_hymns / n_meetings) %>%
+    print()
+ggplot(weeknum_stats, aes(week, n_observations)) + 
+    geom_point() + 
+    geom_line(aes(group = 1)) + 
+    scale_x_continuous(breaks = seq(0, 100, 5), 
+                       minor_breaks = 1:100)
+ggplot(weeknum_stats, aes(week, n_meetings)) + 
+    geom_point() + 
+    geom_line(aes(group = 1)) +     
+    scale_x_continuous(breaks = seq(0, 100, 5), 
+                       minor_breaks = 1:100)
+ggplot(weeknum_stats, aes(week, unique_hymns)) + 
+    geom_point() + 
+    geom_line(aes(group = 1)) + 
+    scale_x_continuous(breaks = seq(0, 100, 5), 
+                       minor_breaks = 1:100)
+ggplot(weeknum_stats, aes(week, hymns_per_meeting)) + 
+    geom_point() + 
+    geom_line(aes(group = 1)) +     
+    scale_x_continuous(breaks = seq(0, 100, 5), 
+                       minor_breaks = 1:100)
+
+weeknum_stats %>%
+    filter(!week %in% c(14, 40, 53)) %>%
+    summary()
+```
+
+## Christmas
+
+### Raw look at Christmas hymns
+
+Just a raw look at hymns 201 through 214.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(201:214)) %>%
+    cleveland_plot(return = "table")
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(201:214)) %>%
+    cleveland_plot(subtitle = "Christmas Hymns",
+                   x_buffer = 0.4, breaks = 0.2)
+export_for_latex("christmas", height = 3, width = 6)
+```
+
+### Limbo period
+
+It's a little hard to pin down when Christmas time starts. If Thanksgiving is the 4th Thursday of November, that means it could be as early as the 22nd or as late as the 28th. That means the Sunday after Thanksgiving could be as early as the 25th or as late as December 1st. In my experience, we start singing Christmas hymns possibly the Sunday after Thanksgiving but for sure by the first week of December. So for most years, there's sort of this limbo week where it's after Thanksgiving but not yet December, but once every seven years or so we skip that limbo.
+
+So the question is what hymns do we sing between November 25th and December 1st? For now, I'll use the preloaded list of Gratitude hymns. It's more complicated than that as we'll see in the Thanksgiving section, but this will do for now.
+
+```{r, fig.height = 3, fig.width = 6}
+gratitude_hymns <- c(62, 219, 158, 138, 65, 167, 94, 241, 154, 91, 92, 35, 297, 76, 78,
+                     306, 222, 193, 139, 95, 93, 61, 66, 112, 227, 247, 19)
+unique_limbo_meetings <- freqs %>%
+    filter(country == "USA") %>%
+    get_n_distinct_meetings()
+
+freqs %>%
+    mutate(month = month(date),
+           day   = day(date)) %>%
+    filter(month == 11, 
+           day %in% 25:30,
+           country == "USA",
+           !hymn_num %in% 169:196) %>%
+    mutate(hymn_type = case_when(hymn_num %in% 201:214 ~ "Christmas",
+                                 hymn_num %in% gratitude_hymns ~ "Thanksgiving",
+                                 TRUE ~ "Other"),
+           hymn_type = factor(hymn_type, levels = c("Christmas", "Thanksgiving", "Other"))) %>%
+    cleveland_plot(subtitle = "Hymns sung in the last Sunday of November", 
+                   filter_n = 3, unique_meetings = unique_limbo_meetings,
+                   x_buffer = 0.1, breaks = 0.05,
+                   extra_cols = hymn_type, color = hymn_type) + 
+    labs(color = "Theme") + 
+    scale_color_manual(values = c(`Christmas` = ptol_red,
+                                  `Thanksgiving` = ptol_blue,
+                                  `Other` = ptol_grey))
+export_for_latex("limbo", height = 4, width = 6)
+```
+
+### Sacrament hymns
+
+```{r}
+freqs %>%
+    filter(type == "Sacrament",
+           hymn_num %in% 169:196,
+           week %in% 48:52) %>%
+    cleveland_plot(subtitle = "Sacrament Hymns during Christmastime",
+                   x_buffer = 0.25, breaks = 0.2)
+export_for_latex("christmas_sacrament", height = 4, width = 6)
+```
+
+### Non-Christmas hymns in December
+
+Nothing really here.
+
+```{r, fig.width = 4, fig.height = 2}
+freqs %>%
+    filter(!hymn_num %in% c(201:214),
+           !hymn_num %in% gratitude_hymns,
+           !hymn_num %in% 169:196,
+           week %in% 48:52) %>%
+    cleveland_plot(subtitle = "Non-Christmas Hymns in December",
+                   filter_n = 4,
+                   x_buffer = 0.45, breaks = 0.2)
+```
+
+### Christmas hymns outside of December
+
+Virtually unattested.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(201:214),
+           !week %in% 48:52) %>%
+    cleveland_plot(subtitle = "Christmas Hymns outside of Christmastime",
+                   filter_n = 4,
+                   x_buffer = 0.45, breaks = 0.2)
+```
+
+### Trends within December
+
+Weeks leading up to Christmas (better version).
+
+```{r, fig.height = 3, fig.width = 5}
+trends_within_december <- freqs %>%
+    filter(hymn_num %in% 201:214) %>%
+    arrange(hymn_num) %>%
+    mutate(week2 = case_when(month == 12 & day >= 25 ~ "12/25–\n12/31",
+                             month == 12 & day >= 18 ~ "12/18–\n12/24",
+                             month == 12 & day >= 11 ~ "12/11–\n12/17",
+                             month == 12 & day >=  4 ~ "12/4–\n12/10",
+                             month == 12 ~ "11/24–\n12/3",
+                             month == 11 & day >= 24 ~ "11/24–\n12/3"),
+           week2 = factor(week2, levels = c("11/24–\n12/3", "12/4–\n12/10", 
+                                            "12/11–\n12/17", "12/18–\n12/24", "12/25–\n12/31")),
+           label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) %>%
+    filter(!is.na(week2)) %>%
+    count(week2, label) %>%
+    group_by(week2) %>%
+    mutate(n_data = sum(n)) %>%
+    ungroup() %>%
+    mutate(prop = n/n_data) %>%
+    print()
+
+ggplot(trends_within_december, aes(week2, prop, group = label)) +
+    geom_line() +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    facet_wrap(~label, ncol = 3) +
+    labs(x = NULL, y = "Percent of the data in that week") + 
+    theme_bw(base_size = 7.5)
+
+export_for_latex("christmas_december_trends", height = 5, width = 6)
+```
+
+Raw week number (not as good).
+
+```{r, fig.height = 3, fig.width = 5}
+freqs %>%
+    arrange(hymn_num) %>%
+    filter(week >= 48,
+           hymn_num %in% 201:214) %>%
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label),
+           week_fct = as.factor(week)) %>%
+    count(week, label) %>%
+    print() %>%
+    ggplot(aes(week, n)) + 
+    geom_path() + 
+    facet_wrap(~label, ncol = 3) +
+    theme_minimal()
+```
+
+Generate a most typical Christmastime.
+
+```{r}
+trends_within_december %>%
+    group_by(label) %>%
+    arrange(prop) %>%
+    top_n(1) %>%
+    arrange(week2, -prop) %>%
+    print()
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% 201:214) %>%
+    arrange(hymn_num) %>%
+    mutate(week2 = case_when(month == 12 & day >= 25 ~ "12/25–\n12/31",
+                             month == 12 & day >= 18 ~ "12/18–\n12/24",
+                             month == 12 & day >= 11 ~ "12/11–\n12/17",
+                             month == 12 & day >=  4 ~ "12/4–\n12/10",
+                             month == 12 ~ "11/24–\n12/3",
+                             month == 11 & day >= 24 ~ "11/24–\n12/3"),
+           week2 = factor(week2, levels = c("11/24–\n12/3", "12/4–\n12/10", 
+                                            "12/11–\n12/17", "12/18–\n12/24", "12/25–\n12/31")),
+           label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) %>%
+    filter(!is.na(week2)) %>%
+    
+    # None had this, but seven had two
+    # filter(week2 == "11/24–\n12/3") %>%
+    # filter(hymn_num %in% c(201, 210, 205)) %>%
+    # count(year, ward) %>%
+    # filter(n > 1) %>%
+    
+    # None had this, but seven had two
+    # filter(week2 == "12/4–\n12/10") %>%
+    # filter(hymn_num %in% c(203, 212, 206)) %>%
+    # count(year, ward) %>%
+    # filter(n > 1) %>%
+    
+    # None had this, but six had two of them
+    # filter(week2 == "12/11–\n12/17") %>%
+    # filter(hymn_num %in% c(207, 211, 213)) %>%
+    # count(year, ward) %>%
+    # filter(n > 1) %>%
+    
+    # Two wards had this
+    # filter(week2 == "12/18–\n12/24") %>%
+    # filter(hymn_num %in% c(204, 208, 202)) %>%
+    # count(year, ward) %>%
+    # filter(n > 2) %>%
+    
+    # Three wards had this
+    # filter(week2 == "12/25–\n12/31") %>%
+    # filter(hymn_num %in% c(214, 209)) %>%
+    # count(year, ward) %>%
+    # filter(n > 1) %>%
+    print()
+```
+
+## Other Holidays
+
+### New Year's
+
+Here, I'm looking at everything between December 26th and January 7th.
+
+```{r}
+davies_method((month == 1 & day %in% 1:7) | (month == 12 & day %in% 26:31))
+```
+
+Pretty unsurprising results. Hymns 214 (I Heard the Bell on Christmas Day), 215 (Ring Out, Wild Bells), and 217 (Come, Let Us Anew) are the most common. I've already talked about 214. For 215 and 217, those are the two that are listed in the back of the hymnal. So, no surprises.
+
+What proportion of meetings in that time had at least one of those hymns?
+
+```{r}
+freqs %>%
+    filter((month == 1 & day %in% 1:7) | (month == 12 & day %in% 26:31)) %>%
+    group_by(meeting_id) %>%
+    summarize(sang_a_new_years_hymn = sum(hymn_num %in% c(215, 217))) %>%
+    count(sang_a_new_years_hymn) %>%
+    mutate(cumsum = cumsum(n),
+           cumprop = cumsum / sum(n))
+```
+
+```{r, fig.height = 2, fig.width = 5}
+freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    cleveland_plot(subtitle = "New Year's Hymns",
+                   filter_n = 4,
+                   x_buffer = 0.25, breaks = 0.1,
+                   name = "new_years", export = TRUE, height =  2, width = 6)
+```
+
+Are those hymns sung outside of those two weeks? Looks like a few times later in January and a few times in November. Of the 101 times those were sung, they were done so 13 times outside of that range, which is a little more than I expected.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    nrow()
+freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    filter(!((month == 1 & day %in% 1:7) | (month == 12 & day %in% 26:31))) %>%
+    arrange(month, day) %>%
+    print()
+```
+
+Let's see if certain dates get them more than others.
+
+```{r, fig.height = 3, fig.width = 6}
+freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    mutate(new_week = case_when(month == 12 & day >= 26 ~ "after Christmas",
+                                month == 1  & day <= 7  ~ "after New Years",
+                                month > 7 ~ "before Christmas",
+                                month <= 7 ~ "later in January"),
+           new_week = factor(new_week, 
+                             levels = c("before Christmas", "after Christmas",
+                                        "after New Years", "later in January"))) %>%
+    count(hymn_num, new_week) %>%
+    ggplot(aes(new_week, n)) + 
+    geom_col() + 
+    facet_wrap(~hymn_num) + 
+    theme_minimal()
+
+export_for_latex("215_and_217", height = 4, width = 9)
+```
+
+Okay, so here we see that 215 is sung slightly more often before New Years and 217 is sung slightly more often after New Years. (Could it be because it's first?) 217 is the only one sung later in January and is slightly more common anyway.
+
+If we just focus on the week surrounding New Years... yes, a chi-squared test confirms that there is an association. Cool.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    filter((month == 1 & day %in% 1:7) | (month == 12 & day %in% 26:31)) %>%
+    mutate(new_week = if_else(month == 12, "December", "January")) %>%
+    chisq_test(name_num ~ new_week)
+```
+
+Okay, so how often are these two sung in the same week?
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    count(hymn_num, meeting_id) %>%
+    count(meeting_id) %>%
+    count(n) %>%
+    print()
+```
+
+Okay, so of the 89 meetings whereat least one of these hymns were sung, both of them were sung in 12 of them (13.4%).
+
+Were they sung as Opening or Closing hymns?
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(215, 217),
+           !is.na(type)) %>%
+    count(hymn_num, type) %>%
+    pivot_wider(names_from = hymn_num, values_from = n) %>%
+    mutate(type = factor(type, levels = c("Opening", "Sacrament", "Intermediate", "Closing"))) %>%
+    mutate(across(c(`215`, `217`), ~./sum(.), .names = "{.col}_prop")) %>%
+    
+    arrange(type)
+freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    filter(type %in% c("Opening", "Closing")) %>%
+    mutate(hymn_num = factor(hymn_num)) %>%
+    chisq_test(type ~ hymn_num)
+```
+
+These hymns are typically opening or closing hymns. When 217 was sung, it was done so as an opening hymn 56% of the time. Meanwhile, 215 pretty evenly split between opening and closing. There's a slight preference for singing 215 as an intermediate hymn. These preferences were not statistically significant though, according to a chi-squared test.
+
+When are these hymns sung when they are sung together?
+
+```{r}
+very_new_years_meetings <- freqs %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    count(hymn_num, meeting_id) %>%
+    count(meeting_id) %>%
+    filter(n == 2) %>%
+    pull(meeting_id)
+freqs %>%
+    filter(meeting_id %in% very_new_years_meetings) %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    count(hymn_num, type) %>%
+    pivot_wider(names_from = hymn_num, values_from = n)
+```
+
+Perhaps unsurprisingly, because it comes first, 215 is more often an opening hymn.
+
+Finally, what sacrament hymns are sung at this time? Looks like 170 and 184 is slightly favored.
+
+```{r}
+davies_method((month == 1 & day %in% 1:7) | (month == 12 & day %in% 26:31)) %>%
+    filter(hymn_num %in% 169:196)
+```
+
+### Valentine's Day
+
+Today is Valentine's Day (2021) and I'm playing piano and they didn't pick any festive songs, so I should look at which ones I could do as prelude.
+
+```{r}
+davies_method(month == 2 & day %in% 8:15, country == "USA")
+
+freqs %>%
+    filter(hymn_num %in% c(113, 308, 294, 177), country == "USA") %>%
+    count(week, hymn_num, hymn_name) %>%
+    ggplot(aes(week, n, group = hymn_num)) + 
+    geom_path() + 
+    facet_wrap(~hymn_name, ncol = 1) + 
+    theme_minimal()
+
+n_meetings_before_vday <- freqs %>%
+    filter(month == 2, day %in% c(8:14), country == "USA") %>%
+    get_n_distinct_meetings() %>%
+    print()
+
+freqs %>%
+    filter(hymn_num %in% c(113, 308), 
+           month == 2, day %in% c(8:14),
+           country == "USA") %>%
+    pull(meeting_id) %>%
+    length() %>%
+    print()
+
+12 / 79
+```
+
+```{r}
+search_titles("Love")
+```
+
+### Easter
+
+#### What are the Easter hymns
+
+Officially, the easter Hymns are 197--200, based on the Table of Contents.
+
+```{r}
+easter_toc <- 197:200
+easter_index <- c(62, 69, 134:136, 173:174, 191:192, 197:200)
+ressurection_index <- c(55, 107, 122, 135:136, 173:174, 191:192, 198:200, 283)
+sacrament_index <- c(146, 169:197)
+
+# These ones are Easter but not Ressurrection
+setdiff(easter_index, ressurection_index)
+
+# These ones are Ressurrection but not Easter
+setdiff(ressurection_index, easter_index)
+```
+
+That's a pretty complicated list. It'd be nice to have a Venn Diagram or something. Here's a table for now.
+
+```{r}
+bind_rows(data.frame(easter_toc = easter_toc),
+          data.frame(easter_index = easter_index),
+          data.frame(ressurrection = ressurection_index),
+          data.frame(sacrament = sacrament_index)) %>%
+    rowid_to_column("id") %>%
+    pivot_longer(cols = -id, names_to = "category", values_to = "hymn_num") %>%
+    filter(!is.na(hymn_num)) %>%
+    pivot_wider(names_from = category, values_from = id) %>%
+    arrange(hymn_num) %>%
+    print()
+```
+
+#### When is Easter?
+
+Looks like it's not easy to determine. I'll just get all the dates since 2002 from [Wikipedia](https://en.wikipedia.org/wiki/List_of_dates_for_Easter).
+
+```{r}
+easters <- data.frame(date = c("2001-04-15",
+                               "2002-03-31",
+                               "2003-04-20",
+                               "2004-04-11",
+                               "2005-03-27",
+                               "2006-04-16",
+                               "2007-04-08",
+                               "2008-03-23",
+                               "2009-04-12",
+                               "2010-04-04",
+                               "2011-04-24",
+                               "2012-04-08",
+                               "2013-03-31",
+                               "2014-04-20",
+                               "2015-04-05",
+                               "2016-03-27",
+                               "2017-04-16",
+                               "2018-04-01",
+                               "2019-04-21",
+                               "2020-04-12",
+                               "2021-04-04")) %>%
+    mutate(date = as.Date(date)) %>%
+    print()
+
+
+freqs_easters <- freqs %>%
+    mutate(date_date = ymd(date),
+           easter = case_when(date_date %in%   easters$date ~ "easter", 
+                              date_date %in% c(easters$date -  7) ~ "week before",
+                              # date_date %in% c(easters$date - 14) ~ "two weeks before",
+                              # date_date %in% c(easters$date - 21) ~ "three weeks before",
+                              date_date %in% c(easters$date +  7) ~ "week after",
+                              TRUE ~ "not Easter")) %>%
+    print()
+```
+
+#### What's sung around Easter?
+
+Looks like two weeks before, we don't see any Easter hymns and certainly not three before.
+
+```{r}
+freqs_easters %>%
+    filter(easter == "two weeks before") %>%
+    count(hymn_name, hymn_num) %>%
+    filter(!hymn_num %in% c(sacrament_index)) %>%
+    arrange(-n)
+freqs_easters %>%
+    filter(easter == "three weeks before") %>%
+    count(hymn_name, hymn_num) %>%
+    filter(!hymn_num %in% c(sacrament_index)) %>%
+    arrange(-n)
+```
+
+There are a few the week after and a fair number the week before.
+
+```{r}
+freqs_easters %>%
+    filter(easter == "week after") %>%
+    count(hymn_name, hymn_num) %>%
+    filter(!hymn_num %in% c(sacrament_index)) %>%
+    arrange(-n)
+freqs_easters %>%
+    filter(easter == "week before") %>%
+    count(hymn_name, hymn_num) %>%
+    filter(!hymn_num %in% c(sacrament_index)) %>%
+    arrange(-n)
+freqs_easters %>%
+    filter(easter == "easter") %>%
+    count(hymn_name, hymn_num) %>%
+    filter(!hymn_num %in% c(sacrament_index)) %>%
+    arrange(-n)
+```
+
+What hymns are sung around Easter then?
+
+```{r}
+hymns_around_easter <- freqs_easters %>%
+    filter(easter %in% c("easter", "week before", "week after")) %>%
+    count(easter, hymn_name, hymn_num) %>%
+    # filter(!hymn_num %in% c(sacrament_index)) %>%
+    arrange(-n) %>%
+    pivot_wider(names_from = easter, values_from = n) %>%
+    select(hymn_num, hymn_name, `week before`, easter, `week after`) %>%
+    mutate(topic = case_when(hymn_num %in% easter_toc ~ "easter TOC",
+                             hymn_num %in% easter_index ~ "easter index",
+                             hymn_num %in% ressurection_index ~ "ressurrection",
+                             hymn_num %in% sacrament_index ~ "sacrament"),
+           .before = hymn_num) %>%
+    print()
+```
+
+Okay! So tree from the Table of Contents are the most common. There are several sacrament hymns that are common, but I think it's just because they're sacrament hymns. 62, 136, 69, and 135 are the next most common and they're all from the Easter Index. We then get the last "official" Easter hymn (197), and then two more Easter Index ones (174, 192), which are both sacrament hymns.
+
+On Easter day though, things shift around a little bit. More Easter hymns are sung.
+
+I think one of the more interesting patterns is that while the other three "official" Easter hymns are sung occasionally after Easter, *That Easter Morn* is not.
+
+```{r}
+davies_method(easter == "easter", easter != "easter", .bonus = 0.5, .df = freqs_easters)
+```
+
+If we take the Davies method though, really the only ones that matter are 198 through 200. Interesting that 197 doesn't make the cut here.
+
+```{r}
+davies_method( easter %in% c("easter", "week before", "week after"), 
+              !easter %in% c("easter", "week before", "week after"), 
+              .df = freqs_easters) %>% 
+    mutate(topic = case_when(hymn_num %in% easter_toc ~ "easter TOC",
+                             hymn_num %in% easter_index ~ "easter index",
+                             hymn_num %in% ressurection_index ~ "ressurrection",
+                             hymn_num %in% sacrament_index ~ "sacrament"),
+           .before = hymn_num)
+```
+
+If we extend it to the week before and week after, we get two more: 136, which is in the Easter index, and then a random Sacrament hymn.
+
+```{r}
+freqs_easters %>%
+    filter(easter %in% c("easter", "week before", "week after")) %>%
+    mutate(topic = case_when(hymn_num %in% easter_toc ~ "easter TOC",
+                             hymn_num %in% easter_index ~ "easter index",
+                             hymn_num %in% ressurection_index ~ "ressurrection",
+                             hymn_num %in% sacrament_index ~ "sacrament",
+                             TRUE ~ "other"),
+           .before = hymn_num) %>%
+    cleveland_plot(filter_n = 10, 
+                   subtitle = "Easter, give or take one week", 
+                   extra_cols = topic, color = topic,
+                   x_buffer = 0.25, breaks = 0.2) + 
+    scale_color_ptol()
+    
+```
+
+Okay, so I think one of the takeaways here is that hardly anyone us using the Resurrection topic in the index. However, there might be some indication that the Easter index is used, because of 62 and potentially 136, although anything that is also with Fast Sunday maybe a confounding variable there. (Thanks, Kelso Ward.) It also seems like people aren't the Sacrament hymns that appear to be especially appropriate for Easter (173, 174, 192, 193), which is perhaps a missed opportunity.
+
+We've also got some iinterferance for General Conference. We Thank Thee O God would have been next on this chart. Then, admittedly 174, which is an Easter sacrament hymn, but then there are just a bunch of random sacrament and other hymns.
+
+Here's a plot that is just Easter Sunday.
+
+```{r}
+freqs_easters %>%
+    filter(easter == "easter") %>%
+    mutate(topic = case_when(hymn_num %in% easter_toc ~ "easter TOC",
+                             hymn_num %in% easter_index ~ "easter index",
+                             hymn_num %in% ressurection_index ~ "ressurrection",
+                             hymn_num %in% sacrament_index ~ "sacrament",
+                             TRUE ~ "other"),
+           .before = hymn_num) %>%
+    cleveland_plot(filter_n = 3, 
+                   subtitle = "Easter Sunday", 
+                   extra_cols = topic, color = topic,
+                   x_buffer = 0.25, breaks = 0.1) + 
+    scale_color_ptol()
+```
+
+It's a bit more Eastery. 197 has not made the cut. We also get some of the Easter sacrament hymns (174, 191, 192).
+
+### Mother's Day
+
+First work in a while (2023). Let's look at Mother's day.
+
+```{r}
+# Second Sunday in May
+davies_method(month == 5 & day %in% 8:14)
+```
+
+So we've got four hymns that stand out as being Mother's Day hymns.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(294, 298, 304, 292, 300)) %>%
+    count(week, hymn_num, hymn_name) %>%
+    ggplot(aes(week, n, group = hymn_num)) + 
+    geom_path() + 
+    facet_wrap(~hymn_name, ncol = 1) + 
+    theme_minimal()
+```
+
+```{r}
+n_meetings_before_vday <- freqs %>%
+    filter(month == 5, day %in% c(8:14)) %>%
+    get_n_distinct_meetings() %>%
+    print()
+
+freqs %>%
+    filter(hymn_num %in% c(294, 298, 304, 292), 
+           month == 5, day %in% c(8:14)) %>%
+    pull(meeting_id) %>%
+    length() %>%
+    print()
+
+114 / 130
+```
+
+The Cleveland dot plot shows that Familes can be together forever while the Davies Method didn't catch that.
+
+```{r}
+freqs %>%
+    filter(month == 5,
+           day %in% 8:14,
+           !hymn_num %in% 169:196) %>%
+    cleveland_plot(filter_n = 6,
+                   subtitle = "Mother'sDay", 
+                   x_buffer = 0.25, breaks = 0.1)
+freqs %>%
+       filter(hymn_num %in% c(294, 298, 304, 292, 300)) %>%
+    cleveland_plot(filter_n = 6,
+                   subtitle = "Mother's Day", 
+                   x_buffer = 0.25, breaks = 0.1)
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(294, 298, 304, 292, 300)) %>%
+    mutate(mothers_day = if_else(month == 5 & day %in% 8:14, "mothers_day", "not_mothers_day")) %>%
+    count(name_num, mothers_day) %>%
+    pivot_wider(names_from = mothers_day, values_from = n) %>%
+    rowwise() %>%
+    mutate(prop_mothers = `mothers_day` / sum(c(`not_mothers_day`, `mothers_day`))) %>%
+    arrange(-prop_mothers)
+```
+
+### Father's Day
+
+Third Sunday in June. So June 15--21.
+
+```{r}
+davies_method(month == 6 & day %in% 15:21)
+```
+
+```{r}
+freqs %>%
+    filter(month == 6,
+           day %in% 15:21) %>%
+    cleveland_plot(filter_n = 4,
+                   subtitle = "Father's Day", 
+                   x_buffer = 0.25, breaks = 0.1)
+```
+
+```{r, fig.height = 4, fig.width = 4}
+freqs %>%
+    filter(hymn_num %in% c(292, 296, 300, 175, 304, 302, 170, 294, 78, 76, 297, 298, 249)) %>%
+    count(week, hymn_num, name_num) %>%
+    ggplot(aes(week, n, group = hymn_num)) + 
+    geom_vline(xintercept = 25, color = "gray25", linetype = "dotted") + 
+    geom_path() + 
+    geom_point() + 
+    facet_wrap(~name_num, ncol = 2, scales = "free_y") + 
+    theme_bw()
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% 292:304) %>%
+    cleveland_plot(return = "table")
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(292, 296, 300, 175, 304, 302, 170, 294, 78, 76, 297, 298)) %>%
+    mutate(fathers_day = if_else(month == 6 & day %in% 15:21, "fathers_day", "not_fathers_day")) %>%
+    count(name_num, fathers_day) %>%
+    pivot_wider(names_from = fathers_day, values_from = n) %>%
+    rowwise() %>%
+    mutate(prop_fathers = `fathers_day` / sum(c(`not_fathers_day`, `fathers_day`))) %>%
+    arrange(-prop_fathers)
+```
+
+### 4th of July
+
+A little tricky to define a "season", but let's say it's within six days of the 4th. That's June 28th through July 10th. As far as what songs are sung when, it's exactly what you'd expect. If we look before the 28th, none of the patriotic hymns show up. Surprisingly, there is still some patriotic songs as late as July 12th and 13th.
+
+```{r}
+davies_method((month == 7 & day %in% 1:13) |
+                  (month == 6 & day >= 28),
+              country == "USA")
+davies_method(month == 6 & day %in% 20:27)
+davies_method(month == 7 & day %in% 14:16)
+```
+
+```{r}
+freqs %>%
+    mutate(yearday = if_else(year %% 4 == 0, yearday - 1, yearday)) %>% 
+    # July 4 is 185
+    
+    filter(abs(yearday - 185) <= 6, # within X days of 4th of July
+           country == "USA",
+           hymn_num %in% c(338, 339, 340, 60, 78, 80),
+           !hymn_num %in% c(169:196)) %>%
+    cleveland_plot(filter_n = 1, x_buffer = 0.5, breaks = 0.2)
+export_for_latex("4th_of_july", height = 2.5, width = 6)
+```
+
+How common is it to sing any patriotic hymn at all? Looks like it's not super common. Maybe half the time?
+
+```{r}
+freqs %>%
+    mutate(yearday = if_else(year %% 4 == 0, YearDay(date) - 1, YearDay(date))) %>% 
+    # July 4 is 185
+    filter(abs(yearday - 185) <= 6) %>% # within X days of 4th of July
+    mutate(yearday = yearday - 185) %>%
+    filter(country == "USA") %>%
+    
+    mutate(patriotic = hymn_num %in% c(60, 338:440)) %>%
+    
+    group_by(meeting_id) %>%
+    summarize(n_hymns = n(),
+              n_patriotic = sum(patriotic)) %>%
+    # arrange(-n_patriotic)
+    count(n_patriotic) %>%
+    pivot_wider(names_from = n_patriotic, values_from = n, values_fill = 0) %>%
+    relocate(`0`, .before = `1`) %>%
+    rowwise() %>%
+    mutate(sum = `0`+`1`+`2`+`3`) %>%
+    mutate(across(c(`0`, `1`, `2`, `3`), ~./sum))
+```
+
+But it probably varies by yearday.
+
+```{r, fig.height = 2, fig.width = 6}
+freqs %>%
+    filter(country == "USA") %>%
+    mutate(yearday = if_else(year %% 4 == 0, YearDay(date) - 1, YearDay(date))) %>% 
+    # July 4 is 185
+    filter(abs(yearday - 185) <= 10) %>%
+    mutate(yearday = yearday - 185) %>%
+    
+    # Get the patriotic hymns
+    mutate(patriotic = hymn_num %in% c(60, 338:440)) %>%
+    group_by(meeting_id, yearday) %>%
+    summarize(n_hymns = n(),
+              n_patriotic = sum(patriotic)) %>%
+    ungroup() %>%
+    
+    count(yearday, n_hymns, n_patriotic) %>%
+    
+    # Now get the average (it's basically the same if I split up 3- and 4-hymn sundays)
+    filter(n_hymns %in% 3:4) %>%
+    mutate(weight = n_patriotic * n) %>%
+    group_by(yearday) %>%
+    summarize(mean_patriotic = sum(weight)/sum(n)) %>%
+    
+    # Convert yearday back to dates
+    arrange(yearday) %>%
+    mutate(date = yearday + 4,
+           date = ifelse(date >= 1, 
+                         paste("July", date, "2023"), 
+                         paste("June", date + 30, "2023")),
+           date = mdy(date)) %>%
+    print() %>%
+    
+    ggplot(aes(date, mean_patriotic)) +
+    geom_point() +
+    geom_line(aes(group = 1)) + 
+    scale_x_date(date_breaks = "3 days", date_minor_breaks = "1 day", date_labels = "%B %d") + 
+    labs(y = "number of hymns",
+         x = NULL,
+         title = "Average number of patriotic hymns sung by date") + 
+    theme_minimal(base_size = 12, base_family = "Avenir")
+export_for_latex(name = "4th_of_july_by_date", height = 2, width = 6)
+```
+
+```{r, fig.height = 3, fig.width = 8}
+freqs %>%
+    filter(country == "USA") %>%
+    mutate(days_since_4th = case_when(month == 7 ~ day - 4,
+                                      month == 6 ~ day - 34,
+                                      TRUE ~ NA)) %>%
+    filter(abs(days_since_4th) < 15) %>%
+    
+    # Normalize by how much data I have for that particular day of the year.
+    arrange(month, day) %>%
+    add_count(days_since_4th, name = "n_per_yearday") %>%
+    
+    filter(hymn_num %in% c(60, 338:340)) %>%
+    
+    group_by(name_num, days_since_4th) %>%
+    summarize(prop = n() / n_per_yearday) %>%
+    ungroup() %>%
+    print() %>%
+    ggplot(aes(days_since_4th, prop, group = name_num, color = name_num)) +
+    geom_point() +
+    geom_path()
+```
+
+```{r}
+freqs %>%
+    filter(country == "England") %>%
+    count(date)
+```
+
+Opening/closing around the 4th.
+
+```{r}
+freqs %>%
+    filter(country == "USA") %>%
+    mutate(yearday = if_else(year %% 4 == 0, YearDay(date) - 1, YearDay(date))) %>% 
+    # July 4 is 185
+    filter(abs(yearday - 185) <= 10) %>%
+    mutate(yearday = yearday - 185) %>%
+    
+    # Get the patriotic hymns
+    filter(hymn_num %in% c(60, 338:440),
+           !is.na(type)) %>%
+    count(name_num, type) %>%
+    ggplot(aes(name_num, y = n, fill = type)) + 
+    geom_col(position = position_dodge()) + 
+    coord_flip()
+```
+
+What about God of Our Fathers (80 and 78)?
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(78, 80),
+           country == "USA") %>%
+     mutate(yearday = if_else(year %% 4 == 0, yearday - 1, yearday)) %>% 
+    # filter(hymn_num == 78, yearday == 228)
+    count(name_num, yearday) %>%
+    print() %>%
+    ggplot(aes(yearday, n)) + 
+    geom_point() + 
+    geom_path() + 
+    facet_wrap(~name_num, ncol = 1)
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num == 78) %>%
+    mutate(within_4th = abs(yearday - 185) >= 6) %>%
+    count(within_4th) %>%
+    mutate(prop = n/sum(n)) %>%
+    print()
+```
+
+### Pioneer Day
+
+A quick and dirty look at what sungs are the most Pioneer-y.
+
+```{r}
+davies_method((month == 7 & day %in% 18:30),
+              state == "Utah")
+```
+
+Unsurprisingly, Come Come Ye Saints and They, the Builders of the Nation. The other two are sacrament. Interesting. I thought there would be more.
+
+```{r}
+freqs %>%
+    filter(month == 7,
+           day %in% 18:30,
+           country == "USA",
+           state == "Utah",
+           !hymn_num %in% 169:196) %>%
+    cleveland_plot(filter_n = 5, breaks = 0.1, x_buffer = 0.25)
+export_for_latex("pioneer_day", height = 2.5, width = 6)
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num == 37)
+get_n_distinct_meetings()
+```
+
+How many sing any of those hymns?
+
+```{r}
+freqs %>%
+    filter(month == 7,
+           day %in% 18:30,
+           country == "USA",
+           state == "Utah") %>%
+    
+    mutate(pioneer = hymn_num %in% c(30, 34:36, 255)) %>%
+    
+    group_by(meeting_id) %>%
+    summarize(n_hymns = n(),
+              n_pioneer = sum(pioneer)) %>%
+    # arrange(-n_patriotic)
+    count(n_pioneer) %>%
+    pivot_wider(names_from = n_pioneer, values_from = n, values_fill = 0) %>%
+    rowwise() %>%
+    mutate(sum = `0`+`1`+`2`+`3`) %>%
+    mutate(across(c(`0`, `1`, `2`, `3`), ~./sum))
+```
+
+```{r}
+freqs %>%
+    filter(month == 7,
+           day %in% 18:30,
+           country == "USA",
+           state != "Utah",
+           !hymn_num %in% 169:196) %>%
+    cleveland_plot(filter_n = 4, breaks = 0.1, x_buffer = 0.25, return = "table")
+export_for_latex("pioneer_day_outside_Utah", height = 2.5, width = 6)
+```
+
+```{r}
+freqs %>%
+    filter(month == 7,
+           day %in% 18:30,
+           country == "USA",
+           state != "Utah") %>%
+    
+    mutate(pioneer = hymn_num %in% c(30, 34:36, 255)) %>%
+    
+    group_by(meeting_id) %>%
+    summarize(n_hymns = n(),
+              n_pioneer = sum(pioneer)) %>%
+    # arrange(-n_patriotic)
+    count(n_pioneer) %>%
+    pivot_wider(names_from = n_pioneer, values_from = n, values_fill = 0) %>%
+    rowwise() %>%
+    mutate(sum = `0`+`1`+`2`+`3`) %>%
+    mutate(across(c(`0`, `1`, `2`, `3`), ~./sum))
+```
+
+```{r}
+freqs %>%
+    filter(month == 7,
+           day %in% 18:30,
+           country == "USA",
+           state != "Utah",
+           hymn_num %in% c(30, 36)) %>%
+    count(state, sort = TRUE)
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(30, 34:36, 255),
+           country == "USA") %>%
+    mutate(yearday = if_else(year %% 4 == 0, yearday - 1, yearday)) %>% 
+    count(name_num, yearday) %>%
+    print() %>%
+    ggplot(aes(yearday, n)) + 
+    geom_point() + 
+    geom_path() + 
+    facet_wrap(~name_num, ncol = 1)
+
+freqs %>%
+    filter(hymn_num %in% c(30, 34:36, 255, 252, 81, 84, 255, 243, 246, 252),
+           country == "USA") %>%
+     mutate(yearday = if_else(year %% 4 == 0, yearday - 1, yearday)) %>% 
+    count(name_num, yearday) %>%
+    mutate(pioneer_season = abs(yearday - 205) < 6) %>%
+    count(name_num, pioneer_season) %>%
+    group_by(name_num) %>%
+    mutate(prop = n/sum(n)) %>%
+    select(-n) %>%
+    ungroup() %>%
+    pivot_wider(names_from = pioneer_season, values_from = prop) %>%
+    arrange(-`TRUE`) %>%
+    print() 
+```
+
+### Halloween
+
+```{r}
+davies_method((month == 10 & day %in% 25:31)) %>%
+    arrange(hymn_num)
+
+davies_method((month == 10 & day %in% 30:31))
+```
+
+```{r}
+freqs %>%
+    filter(month == 10,
+           day %in% 25:31) %>%
+    count(name_num, sort = TRUE)
+```
+
+### Thanksgiving
+
+#### Its relation to Christmas
+
+In my mind, the unofficial Thanksgiving hymns are 91:95. These are the five listed in the category "Thanksgiving" in the back of the hymnal. The hymnal has the category "Praise and Thanksgiving" which goes from 62:96. However, if we look up "Gratitude" there are many more:
+
+```{r}
+gratitude_hymns <- c(62, 219, 158, 138, 65, 167, 94, 241, 154, 91, 92, 35, 297, 76, 78,
+                     306, 222, 193, 139, 95, 93, 61, 66, 112, 227, 247, 19)
+```
+
+Let's take a look at what is sung in November in the United States.
+
+```{r, fig.height = 4, fig.width = 10}
+unique_thanksgiving_meetings <- freqs %>%
+    filter(country == "USA") %>%
+    get_n_distinct_meetings()
+freqs %>%
+    mutate(month = month(date),
+           day   = day(date)) %>%
+    filter(month == 11, 
+           country == "USA",
+           !hymn_num %in% 169:196) %>%
+    add_count(hymn_num) %>%
+    mutate(is_thanksgiving = hymn_num %in% 91:95) %>%
+    cleveland_plot(subtitle = "November", filter_n = 7, 
+                   x_buffer = 0.2, breaks = 0.25,
+                   unique_meetings = unique_thanksgiving_meetings,
+                   extra_cols = is_thanksgiving, color = is_thanksgiving) +
+    scale_color_ptol()
+```
+
+Seems a little low. There's not a guarantee that each ward will sing 93 and 94 during November? Let's look at that further. I'll look at USA wards where we have a complete set of data from November. How many times were those 5 hymns sung in each of those wards?
+
+```{r}
+wards_with_complete_months <- freqs %>%
+    filter(month == 11, country == "USA") %>%
+    unite(month_year, month, year, remove = FALSE) %>%
+    group_by(ward, month_year, date) %>%
+    count() %>%
+    group_by(ward, month_year) %>%
+    count() %>%
+    filter(n >= 4) %>%
+    print()
+
+freqs %>%
+    filter(country == "USA") %>%
+    unite(month_year, month, year, remove = FALSE) %>%
+    semi_join(wards_with_complete_months, by = c("ward", "month_year")) %>%
+    group_by(ward, month_year) %>%
+    summarize(has_91 = sum(hymn_num == 91),
+              has_92 = sum(hymn_num == 92),
+              has_93 = sum(hymn_num == 93),
+              has_94 = sum(hymn_num == 94),
+              has_95 = sum(hymn_num == 95)) %>%
+    ungroup() %>%
+    summarize(across(starts_with("has"), mean))
+```
+
+Alright, it checks out. In USA wards, only about 2/3 of the Novembers saw 93. Crazy! I thought it'd be much higher than that, like at least 85%.
+
+#### Stand-alone analysis
+
+[This](https://en.wikipedia.org/wiki/Thanksgiving_(United_States)#Table_of_dates_(1946–2057)) handy Wikipedia table shows that Thankssgiving is between the 22nd and the 28th, and is either during week 47 or 48.
+
+That means that the Sunday before will be between the 18th (week 47) and the 24th (week 48). The Sunday after would then be between the 25th (week 48) and December 1st (week 49).
+
+```{r}
+davies_method(month == 11, country == "USA")
+davies_method(c(month == 11 & day >= 18) | (month == 12 & day == 1), country == "USA")
+```
+
+```{r}
+freqs %>%
+    filter(month == 11, 
+           country == "USA") %>%
+    cleveland_plot(filter_n = 21)
+
+# Objetively the top 5
+freqs %>%
+    filter(c(month == 11 & day >= 18) | (month == 12 & day == 1),
+           country == "USA") %>%
+    cleveland_plot(filter_n = 11, x_buffer = 0.25, breaks = 0.1)
+export_for_latex("thanksgiving", height = 2.5, width = 6)
+
+# Top give plus 91
+freqs %>%
+    filter(c(month == 11 & day >= 18) | (month == 12 & day == 1),
+           country == "USA",
+           hymn_num %in% c(241, 91:95)) %>%
+    cleveland_plot(x_buffer = 0.25, breaks = 0.1)
+```
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(91:95, 241), 
+           country == "USA") %>%
+    count(name_num, week) %>%
+    ggplot(aes(week, n, group = name_num)) + 
+    geom_vline(xintercept = 47.5, color = "pink") + 
+    geom_point() + 
+    geom_path() + 
+    facet_wrap(~name_num, ncol = 2) + 
+    theme_bw()
+
+freqs %>%
+    filter(hymn_num %in% c(91:95, 241),
+           country == "USA") %>%
+    mutate(thanksgivingtide = week %in% 45:48) %>% # 45 for November, 47 for Thanksgiving
+    count(name_num, thanksgivingtide) %>%
+    pivot_wider(names_from = c(thanksgivingtide), values_from = n, values_fill = 0) %>%
+    rowwise() %>%
+    mutate(prop_thanksgiving = `TRUE` / (`FALSE` + `TRUE`)) %>%
+    arrange(-prop_thanksgiving) %>%
+    print()
+```
+
+Same thing but for other gratitude hymns. Fascinating that none peaked around Thanksgiving.
+
+```{r, fig.height = 18, fig.width = 6}
+freqs %>%
+    filter(hymn_num %in% setdiff(gratitude_hymns, c(241, 91:95))) %>%
+    count(name_num, week) %>%
+    ggplot(aes(week, n, group = name_num)) + 
+    geom_vline(xintercept = 47.5, color = "pink") + 
+    geom_point() + 
+    geom_path() + 
+    facet_wrap(~name_num, ncol = 2) + 
+    theme_bw()
+```
+
+How many Thanksgiving hymns per sacrament meeting. (For some reason, this is hard to do because I have to assume a ward gave me enough data to work with.)
+
+```{r}
+freqs %>%
+    filter(country == "USA",
+           week %in% 47:48) %>%
+    
+    # Only wards with data from both those meetings
+    add_count(ward, year) %>%
+    filter(n > 4) %>%
+    
+    mutate(thanks = hymn_num %in% c(91:95, 241)) %>%
+    
+    group_by(ward, year) %>%
+    summarize(n_hymns = n(),
+              n_thanks = sum(thanks)) %>%
+    ungroup() %>%
+    arrange(-n_thanks) %>%
+    print() %>%
+    count(n_thanks) %>%
+    mutate(prop = n/sum(n)) %>%
+    ungroup() %>%
+    pivot_wider(names_from = n_thanks, values_from = c(n, prop), values_fill = 0) %>%
+    print()
+```
+
+Seriously a third of the wards don't sing Thanksgiving hymns?
+
+```{r}
+freqs %>%
+    filter(ward == "Holt Ward")
+freqs %>%
+    filter(ward == "Santa Cruz Ward",
+           month == 11)
+freqs %>%
+    filter(ward == "Taylorsville Gardens", 
+           month == 11)
+```
+
+### General Conference
+
+#### General look at the numbers
+
+Exclude easter and fast sundays
+
+```{r}
+davies_method((month == 3 & day %in% 25:31) | 
+               (month == 4 & nth_sunday == 2) | 
+               (month == 9 & day %in% 24:30) | 
+               (month == 10 & nth_sunday == 2)) %>%
+    filter(!hymn_num %in% c(62, 197:200, 169:196, 134:139))
+```
+
+```{r}
+freqs %>%
+    filter((month == 3 & day %in% 25:31) | 
+               (month == 4 & nth_sunday == 2) | 
+               (month == 9 & day %in% 24:30) | 
+               (month == 10 & nth_sunday == 2)) %>%
+    filter(!hymn_num %in% c(62, 92, 197:200, 169:196, 134:139)) %>%
+    cleveland_plot(filter_n = 10, breaks = 0.1, x_buffer = 0.2, return = "both")
+```
+
+```{r}
+single_hymn_lookup(19, show_context = TRUE)
+single_hymn_lookup(21, show_context = TRUE)
+```
+
+Looks like it's just those two.
+
+#### Days since GenConf
+
+First week of april is week 13--14, October is 39--40.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(19, 21)) %>%
+    count(name_num, week) %>%
+    print() %>%
+    ggplot(aes(week, n)) + 
+    annotate(geom = "rect", xmin = 13, xmax = 15, ymin = 0, ymax = 12, fill = ptol_blue, alpha = 0.5) + 
+    annotate(geom = "rect", xmin = 39, xmax = 41, ymin = 0, ymax = 12, fill = ptol_blue, alpha = 0.5) + 
+    # geom_vline(xintercept = c(13, 15, 39, 41), color = "gray60") + 
+    # geom_vline(xintercept = c(14, 40), color = "gray85") + 
+    geom_point() + 
+    geom_path() + 
+    facet_wrap(~name_num, ncol = 1) + 
+    scale_y_continuous(limits = c(0, 12), 
+                       breaks = seq(0, 12, 2),
+                       expand = expansion(0, 0)) + 
+    scale_x_continuous(expand = expansion(0, 0.5)) + 
+    labs(title = "Annual trends of General Conference hymns",
+         subtitle = "General Conference itself falls within the blue shaded region.",
+         x = "Week of the year",
+         y = "Number of wards") + 
+    theme_bw() 
+```
+
+Maybe a better analysis would look at days leading up to the first Sunday of the months? Here's a df with the list of General Conference Sundays.
+
+```{r}
+genconf_dates <- crossing(year = 2002:2023,
+       month = 1:12,
+       day = 1:31) %>%
+    # Turn those into a date class
+    mutate(across(c(month, day), str_pad, width = 2, side = "left", pad = "0")) %>%
+    unite(date, day, month, year, sep = "/") %>%
+    mutate(date = dmy(date)) %>%
+    # exclude nonsensical combinations like Feb 31
+    filter(!is.na(date)) %>%
+    # fill in other date info
+    mutate(year = year(date),
+           month = month(date, label = TRUE),
+           day = day(date),
+           weekday = wday(date, label = TRUE)) %>%
+    mutate(nth_week = ceiling(day/7)) %>%
+    
+    # Now just keep General Conference days
+    filter(month %in% c("Apr", "Oct"),
+           nth_week == 1,
+           weekday == "Sun") %>%
+    
+    # Keep just the columns I need
+    select(`genconf_date` = date, year, -weekday, -nth_week) %>%
+    print()
+```
+
+A function to use that as a lookup and find the one closest.
+
+```{r}
+days_to_closest_genconf <- function(.date) {
+    genconf_dates %>%
+        mutate(date = date(.date),
+           diff = as.numeric(genconf_date - date),
+           abs_diff = abs(diff)) %>%
+    filter(abs_diff == min(abs_diff)) %>%
+    pull(diff) %>%
+    head(1)
+}
+days_since_genconf <- freqs %>%
+    filter(hymn_num %in% c(19, 21)) %>%
+    
+    # Find how many days it is since the closest General Conference
+    mutate(days_since_genconf = map_dbl(date, days_to_closest_genconf),
+           weeks_since_genconf = days_since_genconf/7) %>%
+    
+    # Split it up by April and October General conferences (I'll fudge this)
+    mutate(genconf_session = if_else(month %in% 1:6, "April", "October")) %>%
+
+    print()
+```
+
+Now plot that.
+
+```{r}
+days_since_genconf %>%
+    count(name_num, weeks_since_genconf, genconf_session) %>% 
+    mutate(name_num = fct_rev(name_num)) %>%
+    ggplot(aes(weeks_since_genconf, n)) + 
+    annotate(geom = "rect", xmin = -1, xmax = 1, ymin = 0, ymax = 12, fill = ptol_blue, alpha = 0.5) + 
+    geom_vline(xintercept = 0, linetype = "dashed", color = ptol_blue) + 
+    geom_point() + 
+    geom_path() + 
+    facet_grid(name_num ~ genconf_session) + 
+    scale_y_continuous(limits = c(0, 12), 
+                       breaks = seq(0, 12, 2),
+                       expand = expansion(0, 0)) + 
+    scale_x_continuous(expand = expansion(0, 0.5)) + 
+    labs(title = "Annual trends of General Conference hymns",
+         x = "Weeks until/since General Conference",
+         y = "Number of wards") + 
+    theme_bw() + 
+    theme(strip.text.y = element_text(angle = 0, hjust = 0),
+          strip.background.y = element_blank())
+export_for_latex(name = "genconf_annual", height = 4, width = 9.5)
+```
+
+#### Other hymns?
+
+```{r}
+prophet_hymns <- c(18, 22, 23, 24, 25,
+                           10, 77, 53, 271, 27, 273, 279, 12, 23, 47)
+freqs %>%
+    filter(hymn_num %in% prophet_hymns) %>%
+    cleveland_plot(return = "both", x_buffer = 0.25, breaks = 0.1)
+```
+
+```{r, fig.height = 12, fig.width = 6}
+freqs %>%
+    filter(hymn_num %in% prophet_hymns) %>%
+    add_count(name_num, sort = TRUE) %>%
+    arrange(n) %>%
+    mutate(name_num = fct_inorder(name_num)) %>%
+    
+    # Find how many days it is since the closest General Conference
+    mutate(days_since_genconf = map_dbl(date, days_to_closest_genconf),
+           weeks_since_genconf = days_since_genconf/7) %>%
+    arrange(days_since_genconf) %>%
+    
+    # Split it up by April and October General conferences (I'll fudge this)
+    mutate(genconf_session = if_else(month %in% 1:6, "April", "October")) %>%
+
+    # Tally
+    count(name_num, weeks_since_genconf, genconf_session) %>% 
+    mutate(name_num = fct_rev(name_num)) %>%
+    
+    # Plot
+    ggplot(aes(weeks_since_genconf, n)) + 
+    annotate(geom = "rect", xmin = -1, xmax = 1, ymin = 0, ymax = 10, fill = ptol_blue, alpha = 0.5) + 
+    geom_vline(xintercept = 0, linetype = "dashed", color = ptol_blue) + 
+    geom_point() + 
+    geom_path() + 
+    facet_grid(name_num ~ genconf_session) + 
+    scale_y_continuous(limits = c(0, 10), 
+                       breaks = c(5, 10),
+                       expand = expansion(0, 0)) + 
+    scale_x_continuous(expand = expansion(0, 0.5)) + 
+    labs(title = "Annual trends of prophet-related hymns",
+         x = "Weeks until/since General Conference",
+         y = "Number of wards") + 
+    theme_bw() + 
+    theme(strip.text.y = element_text(angle = 0, hjust = 0),
+          strip.background.y = element_blank())
+export_for_latex(name = "genconf_annual_others", height = 12, width = 9.5)
+```
+
+#### More analysis
+
+How prototypical are they?
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(19, 21)) %>%
+    mutate(is_conference = week %in% c(13:15, 39:41)) %>%
+    count(name_num, is_conference) %>%
+    group_by(name_num) %>%
+    mutate(prop = n / sum(n)) %>%
+    pivot_wider(names_from = is_conference, values_from = c(n, prop)) %>%
+    arrange(-prop_TRUE) %>%
+    print()
+```
+
+How many wards?
+
+```{r}
+freqs %>%
+    mutate(period = case_when(week %in% 13:15 ~ "April",
+                              week %in% 39:41 ~ "October",
+                              TRUE ~ "between")) %>%
+    group_by(ward, year, period) %>%
+    summarize(prophet_hymns = sum(hymn_num %in% c(19, 21))) %>%
+   
+    # this analysis 
+    ungroup() %>%
+    pivot_wider(names_from = period, values_from = prophet_hymns, values_fill = 0) %>%
+
+    
+    # or this one
+    # filter(period != "between") %>%
+    # group_by(period) %>%
+    # summarize(prophet_hymns = mean(prophet_hymns)) %>%
+    print()
+
+
+freqs %>%
+    mutate(period = case_when(week %in% 13:15 ~ "April",
+                              week %in% 39:41 ~ "October",
+                              TRUE ~"between")) %>%
+    filter(period != "between", 
+           hymn_num %in% c(19, 21)) %>%
+    count(ward, year, period, hymn_num) %>%
+    pivot_wider(names_from = c(hymn_num, period), values_from = n, values_fill = 0) %>%
+    summarize(across(c(-ward, -year), mean)) %>%
+    print()
+```
+
+#### Opening hymns?
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(19, 21),
+           type != "Sacrament",
+           !is.na(type)) %>%
+    count(name_num, type)
+
+freqs %>%
+    filter(hymn_num %in% c(19, 21),
+           type != "Sacrament",
+           !is.na(type)) %>%
+    mutate(type = factor(type, levels = c("Opening", "Intermediate", "Closing")),
+           name_num = fct_rev(name_num)) %>%
+    mutate(genconf_session = if_else(month %in% 1:6, "April", "October")) %>% # no difference
+    ggplot(aes(type)) + 
+    geom_bar() + 
+    facet_grid(~name_num) + 
+    labs(title = "When during sacrament meeting are General Conference hymns sung?",
+         x = NULL,
+         y = "number of wards") + 
+    theme_bw()
+export_for_latex("genconf_by_type", height = 4, width = 6.5)
+```
+
+Statistically significant? No.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(19, 21),
+           type != "Sacrament",
+           !is.na(type)) %>%
+    mutate(type = factor(type, levels = c("Opening", "Intermediate", "Closing"))) %>%
+    chisq_test(type ~ name_num)
+```
+
+Split it up by proximity to conference.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(19, 21),
+           type != "Sacrament",
+           !is.na(type)) %>%
+    mutate(type = factor(type, levels = c("Opening", "Intermediate", "Closing")),
+           name_num = fct_rev(name_num)) %>%
+    mutate(days_since_genconf = map_dbl(date, days_to_closest_genconf),
+           weeks_since_genconf = days_since_genconf/7) %>%
+    mutate(weeks_categories = case_when(weeks_since_genconf < -3 ~ "earlier",
+                                        weeks_since_genconf > 3. ~ "later",
+                                        TRUE ~ as.character(weeks_since_genconf)),
+           weeks_categories = factor(weeks_categories, levels = c("earlier", "-3", "-2", "-1", "1", "2", "3", "later"))) %>%
+    filter(!weeks_categories %in% c("earlier", "later", "-3", "3")) %>%
+    mutate(genconf_session = if_else(month %in% 1:6, "April", "October")) %>%
+    ggplot(aes(type)) + 
+    geom_bar(position = position_dodge2()) + 
+    facet_grid(name_num~weeks_categories) + 
+    labs(title = "When during sacrament meeting are General Conference hymns sung?",
+         subtitle = "Split by weeks leading up to and following",
+         x = NULL,
+         y = "number of wards") + 
+    theme_bw()
+export_for_latex("genconf_by_type_by_week", height = 6, width = 8.5)
+```
+
+What about the other hymns?
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% prophet_hymns,
+           type != "Sacrament",
+           !is.na(type)) %>%
+    mutate(type = factor(type, levels = c("Opening", "Intermediate", "Closing"))) %>%
+    ggplot(aes(type)) + 
+    geom_bar() + 
+    facet_wrap(~name_num)
+```
+
+### Fast Sundays
+
+Hard to pin down. Will exclude April and October, sacrament hymns, Christmas hymns, New Years hymns, an patriotic hymns.
+
+```{r}
+first_weeks <- freqs %>%
+    mutate(nth_sunday = ceiling(day/7)) %>%
+    filter(nth_sunday == 1 | 
+               (month == 3 & day %in% 25:31) | 
+               (month == 4 & nth_sunday == 2) | 
+               (month == 9 & day %in% 24:30) | 
+               (month == 10 & nth_sunday == 2)) %>%
+    distinct(year, month, day, week) %>%
+    count(week, month) %>% 
+    print() %>%
+    pull(week) 
+```
+
+```{r}
+freqs %>%
+    mutate(nth_sunday = ceiling(day/7)) %>%
+    filter(nth_sunday == 1,
+           !month %in% c(4, 10),
+           !hymn_num %in% c(169:196, 338:340, 201:214, 215:217)) %>%
+    cleveland_plot(filter_n = 20)
+export_for_latex("fast_sunday", height = 3.5, width = 6)
+```
+
+It appears that we have seven that stand out. And yeah, it looks like these are very often sung on Fast Sundays.
+
+```{r, fig.height = 6, fig.width = 10}
+fast_test_hymns <- c(138, 139, 136, 137, 219, 134, 89)
+
+freqs %>%
+    filter(hymn_num %in% fast_test_hymns) %>%
+    count(name_num, week) %>%
+    print() %>%
+    ggplot(aes(week, n)) +
+    geom_vline(xintercept = first_weeks, color = "gray75") + 
+    geom_point() + 
+    geom_line() + 
+    facet_wrap(~name_num, ncol = 2) + 
+    theme_bw()
+```
+
+Let's see how "fasty" they are.
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(fast_test_hymns, 135, 302)) %>%
+    count(name_num, week) %>%
+    mutate(is_fast = week %in% first_weeks) %>%
+    group_by(name_num, is_fast) %>%
+    summarize(n = sum(n)) %>%
+    mutate(prop = n/sum(n)) %>%
+    pivot_wider(names_from = is_fast, values_from = c(n, prop)) %>%
+    arrange(-prop_TRUE) %>%
+    print() 
+```
+
+Can we drill down on those top two and see if there's any explanation for the others?
+
+```{r}
+freqs %>%
+    filter(hymn_num == 139,
+           !week %in% first_weeks) %>%
+    arrange(month, day)
+freqs %>%
+    filter(hymn_num == 138,
+           !week %in% first_weeks) %>%
+    arrange(month, day)
+```
+
+## Misc Analyses
+
+### Opening/Closing
+
+What are the most quinticcesntial opening/closing/intermediate hymns. By that I mean which ones are most often sung as one or the other and rarely another?
+
+```{r}
+type_props <- freqs %>%
+    filter(!is.na(type)) %>%
+    count(name_num, type) %>%
+    mutate(prop = n/sum(n), 
+           total_n = sum(n),
+           .by = name_num) %>%
+    pivot_wider(names_from = type,
+                values_from = c(prop, n),
+                values_fill = 0) %>%
+    print()
+```
+
+These hymns are the most often sung as Opening
+
+```{r}
+type_props %>%
+    filter(total_n >= 5) %>%
+    arrange(-prop_Opening)
+```
+
+These are not open-y, but may be one or more of the others.
+
+```{r}
+type_props %>%
+    filter(total_n >= 5) %>%
+    arrange(prop_Opening)
+```
+
+```{r}
+type_props %>%
+    filter(total_n >= 5) %>%
+    arrange(-prop_Intermediate)
+```
+
+```{r}
+type_props %>%
+    # filter(total_n >= 5) %>%
+    arrange(-prop_Closing)
+```
+
+```{r, fig.height = 100, fig.width = 10}
+freqs %>%
+    filter(!is.na(type)) %>%
+    count(name_num, type) %>%
+    mutate(prop = n/sum(n), 
+           total_n = sum(n),
+           .by = name_num) %>%
+    mutate(type = factor(type, levels = c("Opening", "Sacrament", "Intermediate", "Closing"))) %>%
+    ggplot(aes(type, prop)) + 
+    geom_col() + 
+    facet_wrap(~name_num, ncol = 5)
+```
+
+I wonder if these props correlate with frequency! In other words, do we sing common hymns as opening hymns and uncommon hymns as intermediate hymns? (Or something like that?)
+
+```{r}
+freqs %>%
+    filter(!is.na(type)) %>%
+    count(name_num, type) %>%
+    mutate(prop = n/sum(n), 
+           total_n = sum(n),
+           .by = name_num) %>%
+    left_join(hymns_ranked, by = "name_num") %>%
+    rename(n_type = n.x) %>%
+    select(-n.y) %>%
+    ggplot(aes(rank, prop)) + 
+    geom_point() + 
+    facet_wrap(~type)
+```
+
+I don't see anything that stands out. That's fine.
+
+### Major and minor hymns
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% c(198, 215, 284, 162, 126)) %>%
+    cleveland_plot(x_buffer = 0.25, breaks = 0.1,
+                   title = "Hymns set in a minor key", subtitle = NULL,
+                   return = "both")
+export_for_latex("minor", height = 2, width = 6.5)
+```

@@ -1,0 +1,956 @@
+---
+title: "Reshape Raw Data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This script preps the frequency data. One large chunk of the data reshapes the new spreadsheets I've gotten. The other reads in the prepared data from me/Samuel.
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(lubridate)
+library(janitor)
+```
+
+## Reshape raw data
+
+### Individual Wards
+
+I can save time by reshaping the raw datasets so that they're closer to how I want them formated. The aim is not to match Samuel's, but to match my own.
+
+A lookup table for hymn names with numbers, for spreadsheets with numbers only. It's based on Samual's stuff, but I've manually cleaned this up and filled in any gaps.
+
+```{r}
+name_num_lookup <- read_csv("../data/name_num_lookup.csv", show_col_types = FALSE) %>%
+    print()
+```
+
+#### Marion Indiana (done)
+
+```{r}
+marion <- read_excel("../data/wards/Marion Indiana.xlsx",
+                     skip = 1, 
+                     col_names = c("Opening_num",  "Sacrament_num",  "Intermediate_num",  "Closing_num", 
+                                   "Opening_name", "Sacrament_name", "Intermediate_name", "Closing_name", 
+                                   "date")) %>%
+    unite(Opening,   Opening_name,   Opening_num) %>%
+    unite(Sacrament, Sacrament_name, Sacrament_num) %>%
+    unite(Intermediate, Intermediate_name, Intermediate_num) %>%
+    unite(Closing, Closing_name, Closing_num) %>%
+    pivot_longer(cols = -date,
+                 names_to = "type",
+                 values_to = "name_num") %>%
+    separate(name_num, c("hymn_name", "hymn_num"), sep = "_") %>%
+    mutate(hymn_num = as.numeric(hymn_num)) %>%
+    mutate(ward = "Marion Indiana",
+           city = "Marion",
+           state = "Indiana", 
+           country = "USA",
+           date = as.Date(date)) %>%
+    print()
+```
+
+#### Spanish Fields 1st (done)
+
+2021 data is a simple spreadsheet.
+
+```{r}
+spanish_fields_1st_2021 <- read_excel("../data/wards/Spanish Fields 1st/Spanish Fields 1st 2021.xlsx", 
+                                      sheet = 1,
+                                      skip = 1,
+                                      col_names = c("date", 
+                                                    "Opening_name", "Opening_num", "Intermediate_name", "Intermediate_num", 
+                                                    "Closing_name", "Closing_num", "Sacrament_name",    "Sacrament_num", 
+                                                    "notes")) %>%
+    select(-notes) %>%
+    unite(Opening,   Opening_name,   Opening_num) %>%
+    unite(Sacrament, Sacrament_name, Sacrament_num) %>%
+    unite(Intermediate, Intermediate_name, Intermediate_num) %>%
+    unite(Closing, Closing_name, Closing_num) %>%
+    pivot_longer(cols = -date,
+                 names_to = "type",
+                 values_to = "name_num") %>%
+    separate(name_num, c("hymn_name", "hymn_num"), sep = "_") %>%
+    mutate(across(c(hymn_name, hymn_num), na_if, "NA")) %>%
+    mutate(hymn_num = as.numeric(hymn_num)) %>%
+    filter(!is.na(hymn_num)) %>%
+    print()
+```
+
+2019 data was in microsoft Word. I copied and pasted it into the spreadsheet. I did most of the cleaning here, but occasional typos and inconsistencies in formatting (13 or so) I just did myself in the original file.
+
+```{r}
+spanish_fields_1st_2019_temp <- read_excel("../data/wards/Spanish Fields 1st/Spanish Fields 1st 2021.xlsx", 
+                                      sheet = 2,
+                                      col_names = c("data")) %>%
+    filter(!is.na(data)) %>%
+    
+    # Add a date ID by detecting numbers and then doing a cumulative sum of the TRUEs
+    mutate(is_new_date = str_detect(data, "\\A\\d+\\Z"),
+           date_id = cumsum(is_new_date)) %>%
+    select(-is_new_date) %>%
+    print()
+
+# date and type still in one column. Rather than resolve through pipeline, use a lookup
+date_id_lookup <- spanish_fields_1st_2019_temp %>%
+    filter(str_detect(data, "\\A\\d+\\Z")) %>%
+    rename(date = data) %>%
+    print()
+
+spanish_fields_1st_2019 <- spanish_fields_1st_2019_temp %>%
+    
+    # split type, name, and num into three columns
+    separate(data, c("type", "name_num"), sep = ":\\s+") %>%
+    mutate(name_num = str_replace(name_num, "Pg.", "pg.")) %>%
+    separate(name_num, c("hymn_name", "hymn_num"), sep = " pg\\. ") %>%
+    mutate(hymn_num = as.numeric(hymn_num)) %>%
+    
+    # Filter out the dates and fix the types
+    filter(!str_detect(type, "\\A\\d+\\Z")) %>%
+    arrange(date_id, type) %>%
+    
+    # Add the dates
+    left_join(date_id_lookup, by = "date_id") %>%
+    mutate(date = as.Date(as.numeric(date), origin = "1897-12-29")) %>% # <- this origin date is fudged to get it to match the original)
+    select(-date_id) %>%
+    
+    print()
+```
+
+```{r}
+spanish_fields_1st <- bind_rows(spanish_fields_1st_2021, spanish_fields_1st_2019) %>%
+    mutate(ward = "Spanish Fields 1st",
+           city = "Spanish Fork",
+           state = "Utah", 
+           country = "USA",
+           date = as.Date(date)) %>%
+    filter(!is.na(type)) %>%
+    print()
+```
+
+#### Spanish Fields 2nd (done)
+
+These dates are indeed from 2021, even though it's not explicit.
+
+```{r}
+spanish_fields_2nd <- read_excel("../data/wards/Spanish Fields 2nd.xlsx",
+                                 col_names = c("date_type", "hymn_num", "hymn_name", "temp")) %>%
+    select(-temp) %>%
+    
+    # Separate the date from the hymn_type 
+    mutate(date = if_else(str_detect(date_type, "\\A\\d+\\Z"), date_type, "NA"),
+           date = na_if(date, "NA")) %>%
+    fill(date) %>%
+    filter(!is.na(hymn_num), !str_detect(date_type, "\\A\\d+\\Z")) %>%
+    rename(type = date_type) %>%
+    
+    # Convert date from excel numbers ({{janitor}}, FTW!)
+    mutate(date = excel_numeric_to_date(as.numeric(date))) %>%
+    
+    # Add the rest
+    mutate(ward = "Spanish Fields 2nd",
+           city = "Spanish Fork",
+           state = "Utah",
+           country = "United States") %>%
+    
+    print()
+```
+
+#### River View Ward (done)
+
+One week per row. Separate columns for numbers and names of each of the Opening, Sacrament, and Closing.
+
+Years were not provided, so Excel assumes it's all 2021. In reality, it starts partway through 2020. So I'll change it so that anything after July of "2021" is actually 2020.
+
+```{r}
+river_view <- read_excel("../data/wards/River View.xlsx") %>%
+    clean_names() %>%
+    select(-organist, -theme, -special_musical_number) %>%
+    
+    rename(opening_num = number_3,
+           opening_name = opening,
+           sacrament_num = number_5,
+           sacrament_name = sacrament, 
+           closing_num = number_8,
+           closing_name = closing) %>%
+    
+    # tidy
+    mutate(across(-date, as.character)) %>%
+    pivot_longer(cols = -date,
+                 names_to = c("type", ".value"),
+                 names_sep = "_",
+                 values_to = "value") %>%
+    rename(hymn_num = num,
+           hymn_name = name) %>%
+    
+    # Clean up
+    filter(!is.na(hymn_num)) %>%
+    mutate(date = as.Date(date),
+           date = if_else(date > ymd("2021-08-01"), date - years(1), date),
+           hymn_num = as.numeric(hymn_num)) %>%
+    
+    # The rest of the info
+    mutate(ward = "River View",
+           city = "Spanish Fork",
+           state = "Utah",
+           country = "United States") %>%
+    
+    print()
+```
+
+#### Taylorsville Gardens (done)
+
+One row per hymn. Separate column for each time the hymn is sung. Easy to keep track of how many times each one is done, but not a tidy format. Fortunately, `pivot_longer` handles it just fine!
+
+What is missing from this format is what *type* of hymn it is (opening, closing, etc.)
+
+```{r}
+taylorsville_gardens <- read_excel("../data/wards/taylorsville_gardens.xlsx") %>%
+    clean_names() %>%
+    select(-number_times, -last_time, -type) %>%
+    
+    # reformat
+    pivot_longer(cols = -matches("hymn"), names_to = "nth_time", values_to = "date") %>%
+    filter(!is.na(date)) %>%
+    select(-nth_time) %>%
+    arrange(date) %>%
+    mutate(date = as.Date(date)) %>%
+    rename(hymn_num = hymn_number) %>%
+    
+    # Add the extra stuff
+    mutate(type = NA,
+           ward = "Taylorsville Gardens",
+           city = "Taylorsville",
+           state = "Utah",
+           country = "United States") %>%
+    
+    print()
+```
+
+#### Slate Canyon 10th Ward (Done)
+
+Very similar format to Taylorsville Gardens above.
+
+```{r}
+slate_canyon_10th <- read_excel("../data/wards/Slate Canyon 10th Ward.xlsx") %>%
+    clean_names() %>%
+    
+    # Tidy
+    pivot_longer(cols = -matches("hymn"),
+                 names_to = "nth_time",
+                 values_to = "date") %>%
+    filter(!is.na(date)) %>%
+    select(-nth_time) %>%
+    
+    # Clean up
+    rename(hymn_name = hymn_title) %>%
+    
+     # Add the extra stuff
+    mutate(type = NA,
+           ward = "Slate Canyon 10th",
+           city = "Provo",
+           state = "Utah",
+           country = "United States") %>%
+
+    print()
+```
+
+#### Spanish Trails (my ward)
+
+I have the google docs, but I just copied them over to a spreadsheet. They overwrote 2022, so this is more permenant anyway.
+
+```{r}
+spanish_trails <- read_excel("../data/wards/Spanish Trails.xlsx") %>%
+    clean_names() %>%
+    
+     # Tidy
+    fill(date, .direction = "down") %>%
+
+    # Clean up
+    mutate(type = fct_recode(type, 
+                             "opening" = "o",
+                             "sacrament" = "s",
+                             "intermediate" = "i",
+                             "closing" = "c"),
+           date = as.Date(date)) %>%
+    filter(!is.na(hymn_num)) %>%
+    
+    left_join(name_num_lookup, by = "hymn_num") %>%
+
+     # Add the extra stuff
+    mutate(type = NA,
+           ward = "Spanish Trails",
+           city = "Spanish Fork",
+           state = "Utah",
+           country = "United States") %>%
+
+    print()
+```
+
+#### Fort Meade, MD
+
+This is from Stephen Hunsaker, September 2023 after my facebook post. This was converted from a PDF to Word, and transferred to an Excel spreadsheet, and lighty edited.
+
+```{r}
+fort_meade <- read_excel("../data/wards/Fort Meade/FortMeadeWardMD.xlsx") %>%
+    clean_names() %>%
+    
+    # Rename
+    rename(opening = opening_hymn,
+           intermediate = rest_hymn_choir_s,
+           closing = closing_hymn) %>%
+    select(-starts_with("notes")) %>%
+    
+    # Tidy
+    mutate(across(c(intermediate, opening), as.numeric)) %>%
+    pivot_longer(cols = -matches("date"),
+                 names_to = "type", 
+                 values_to = "hymn_num") %>%
+    filter(!is.na(hymn_num)) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    mutate(date = as.Date(date)) %>%
+
+     # Add the extra stuff
+    mutate(ward = "Fort Meade",
+           city = "Odentin",
+           state = "Maryland",
+           country = "United States") %>%
+
+    print()
+```
+
+#### Cedar City SA Ward
+
+A random email I got out of the blue on September 12, 2023. I guess my online presence is working! This goes from all of 2019 through January 2021, with a covid break.
+
+```{r}
+cedarcitySA_2021 <- read_excel("../data/wards/Cedar_City_SA_Ward.xlsx", sheet = 1, n_max = 10) %>%
+    clean_names() %>%
+    select(-x7, -attendance) %>%
+    rename(month = x1, intermediate = rest) %>%
+    
+    # Fix the dates
+    fill(month) %>%
+    mutate(date = paste0(tolower(month), " ", date, ", 2021")) %>%
+    select(-month) %>%
+    mutate(date = as.Date(date, format = c("%B %d, %Y"))) %>%
+    
+    # Make things consistent
+    mutate(intermediate = as.numeric(intermediate)) %>%
+    print()
+```
+
+```{r}
+cedarcitySA_2020 <- read_excel("../data/wards/Cedar_City_SA_Ward.xlsx", sheet = 3) %>%
+    clean_names() %>%
+    select(-notes_suggestions, -mtg_topic) %>%
+    rename(month = x1, intermediate = rest) %>%
+    # Fix the dates
+    fill(month) %>%
+    mutate(date = paste0(tolower(month), " ", date, ", 2021")) %>%
+    select(-month) %>%
+    mutate(date = as.Date(date, format = c("%B %d, %Y"))) %>%
+    # Make things consistent
+    mutate(intermediate = as.numeric(intermediate)) %>%
+    
+    # filter NAs (from suspended meetings) 
+    filter(!is.na(date)) %>%
+    print()
+```
+
+```{r}
+cedarcitySA_2019 <- read_excel("../data/wards/Cedar_City_SA_Ward.xlsx", sheet = 4) %>%
+    clean_names() %>%
+    select(-notes_suggestions, -mtg_topic) %>%
+    rename(intermediate = rest) %>%
+    mutate(intermediate = as.numeric(intermediate)) %>%
+    
+    # Some wonky dates but I got there eventually.
+    mutate(date = if_else(str_detect(date, "/"), str_remove(date, "\\A\\w+"), date),
+           date1 = mdy(date),
+           date2 = ifelse(str_detect(date, "/"), NA, date),
+           date2 = janitor::convert_to_date(date2),
+           date = if_else(is.na(date1), date2, date1)) %>%
+    select(-date1, -date2) %>%
+    print()
+```
+
+```{r}
+cedarcitySA <- bind_rows(cedarcitySA_2019, cedarcitySA_2020, cedarcitySA_2021) %>%
+
+    # Tidy
+    pivot_longer(cols = -matches("date"),
+                 names_to = "type",
+                 values_to = "hymn_num") %>%
+    filter(!is.na(hymn_num)) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    mutate(date = as.Date(date)) %>%
+
+     # Add the extra stuff
+    mutate(ward = "Cedar City Single Adult Ward",
+           city = "Cedar City",
+           state = "Utah",
+           country = "United States") %>%
+
+    print()
+```
+
+#### Brenner Pass
+
+This is Laurel's ward. The chairperson shared a Google Spreadsheet. Clearly, they aim to vary the hymns because they've got formulas and stuff in there to keep track of them.
+
+```{r}
+brenner_pass <- read_excel("../data/wards/Brenner Pass Ward.xlsx") %>%
+    clean_names() %>%
+    select(date = x2, opening, sacrament, intermediate, closing) %>%
+    
+    
+    # Tidy
+    mutate(date = as.Date(date),
+           across(c(intermediate, closing), as.numeric)) %>%
+    pivot_longer(cols = -matches("date"),
+                 names_to = "type",
+                 values_to = "hymn_num") %>%
+    filter(!is.na(hymn_num)) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    
+     # Add the extra stuff
+    mutate(ward = "Brenner Pass Ward",
+           city = "San Tan Valley",
+           state = "Arizona",
+           country = "United States") %>%
+    
+    print()
+```
+
+#### Maple Meadows 2nd
+
+This is from Lori Jones, who sent it to me via email October 6, 2023.
+
+```{r}
+mm2_2022 <- read_excel("../data/wards/Maple Meadows 2nd.xlsx", sheet = 2) %>%
+    clean_names() %>%
+    select(-program_missionary) %>%
+    filter(!is.na(date)) %>%
+
+    # Clean up the hymn nums
+    rename(month = date, day = x2, intermediate_hymn = musical_number_or_rest_hymn) %>%
+    pivot_longer(cols = ends_with("_hymn"), names_to = "type", values_to = "num_name") %>%
+    mutate(type = str_remove(type, "_hymn"), 
+           hymn_num = str_extract(num_name, "\\A\\d{1,3}")) %>%
+    select(-num_name) %>%
+    filter(!is.na(hymn_num)) %>%
+    mutate(hymn_num = as.numeric(hymn_num)) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+
+    # Clean up the dates
+    unite(md, month, day, sep = " ") %>%
+    mutate(mdy = paste(md, "2022"),
+           date = mdy(mdy)) %>%
+    select(-md, -mdy) %>%
+    print()
+
+mm2_2023 <- read_excel("../data/wards/Maple Meadows 2nd.xlsx", sheet = 1) %>%
+    clean_names() %>%
+    rename(date = x1, intermediate_hymn = musical_number_or_rest_hymn) %>%
+    select(-matches("x\\d")) %>%
+    
+    # Fix the hymn nums
+    pivot_longer(cols = ends_with("_hymn"), names_to = "type", values_to = "num_name") %>%
+    mutate(type = str_remove(type, "_hymn"), 
+           hymn_num = str_extract(num_name, "\\A\\d{1,3}")) %>%
+    filter(!is.na(date)) %>%
+    select(-num_name) %>%
+    filter(!is.na(hymn_num)) %>%
+    mutate(hymn_num = as.numeric(hymn_num)) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    print()
+
+mm2 <- bind_rows(mm2_2022, mm2_2023) %>%
+    mutate(date = as.Date(date)) %>%
+    
+    # Add the extra stuff
+    mutate(ward = "Maple Meadows 2nd",
+           city = "Spanish Fork",
+           state = "Utah",
+           country = "United States") %>%
+    print()
+```
+
+#### Misc
+
+I have a new spreadsheet (September 10, 2023) that has any miscelleneous hymns I get. Small things people send me, etc.
+
+```{r}
+misc <- read_excel("../data/wards/misc_donors.xlsx") %>%
+    select(date, type, hymn_num, ward, city, state, country) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    mutate(date = as.Date(date)) %>%
+    print()
+```
+
+### Combine all this new data
+
+Basic requirements
+
+-   `date`: formatted with `as.Date`.
+-   `type`: opening, sacrament, intermediate, closing. The rest of the formatting I can do here.
+-   `hymn_name`: As written in the hymnal
+-   `hymn_num`: As in the hymnal.
+-   `ward`, `city`, `state`, `country`: added for each ward individually
+
+```{r}
+new_data <- bind_rows(marion, 
+                      spanish_fields_1st,
+                      spanish_fields_2nd,
+                      river_view,
+                      taylorsville_gardens,
+                      slate_canyon_10th,
+                      spanish_trails,
+                      fort_meade,
+                      cedarcitySA,
+                      brenner_pass,
+                      mm2,
+                      misc) %>%
+    mutate(type = as_factor(tolower(type)),
+           type = fct_recode(type, "intermediate" = "rest"),
+           type = factor(str_to_title(type), levels = c("Opening", "Sacrament", "Intermediate", "Closing")),
+           hymn_num = as.numeric(hymn_num),
+           date = as.Date(date)) %>%
+    filter(!is.na(hymn_num)) %>%
+    print()
+```
+
+Clean up
+
+```{r}
+rm(marion, 
+   spanish_fields_1st,
+   spanish_fields_1st_2019,
+   spanish_fields_1st_2019_temp,
+   spanish_fields_1st_2021,
+   date_id_lookup,
+   spanish_fields_2nd,
+   river_view,
+   taylorsville_gardens,
+   slate_canyon_10th,
+   spanish_trails,
+   fort_meade,
+   cedarcitySA,
+   cedarcitySA_2019,
+   cedarcitySA_2020,
+   cedarcitySA_2021,
+   brenner_pass,
+   mm2_2023,
+   mm2_2022,
+   mm2,
+   misc)
+```
+
+### Audit just this data
+
+Check the hymn names. Mostly typos with missing commas, capitalization, or something else. I can get the official names from my master spreadsheet.
+
+However, if I spot something where an incorrect number is there, I'll need to fix it.
+
+```{r, eval = FALSE}
+new_data %>%
+    count(hymn_name, hymn_num) %>%
+    add_count(hymn_num, name = "unique_titles_per_num") %>%
+    filter(unique_titles_per_num > 1,
+           !is.na(hymn_num)) %>%
+    arrange(hymn_num)
+```
+
+As of the first six spreadsheets, 3, 4, and 8 are fine. It's only the pairs that contain bad ones.
+
+I'll calculate Levenshtein Distances to find the actual bad ones.
+
+```{r, eval = FALSE}
+new_data %>%
+    count(hymn_name, hymn_num) %>%
+    add_count(hymn_num, name = "unique_titles_per_num") %>%
+    filter(unique_titles_per_num == 2,
+           !is.na(hymn_num)) %>%
+    arrange(hymn_num) %>%
+
+    # Prep for Levenshtein Distance
+    select(hymn_name, hymn_num) %>%
+    mutate(version = rep(c("v1", "v2"), times = nrow(.)/2)) %>%
+    pivot_wider(names_from = version, values_from = hymn_name) %>%
+    rowwise() %>%
+
+    # Levenshtein Distance
+    mutate(lev_dist = adist(v1, v2)) %>%
+    arrange(-lev_dist) %>%
+    View()
+```
+
+Oh yeah, that makes it so easy to spot with problematic ones. Since I have a master spreadsheet, I'll just replace the names with what I have from that. But for the ones that are way off, I'll remove them entirely since there's no way to know what they meant.
+
+```{r}
+new_data_clean <- new_data %>%
+    filter(!(hymn_num == 159 & hymn_name == "Hope of Israel"),
+           !(hymn_num == 134 & hymn_name == "He Is Risen!"),
+           !(hymn_num ==  99 & hymn_name == "Rejoice, the Lord Is King!"),
+           !(hymn_num == 225 & hymn_name == "Carry On")) %>%
+    select(-hymn_name) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    relocate(hymn_name, .before = hymn_num) %>%
+    print()
+```
+
+Clean up
+
+```{r}
+rm(new_data)
+```
+
+## Previous data
+
+This is the dataset I had in like 2016 and that I shared with Sam. I don't remember the original format, but I sent it to Sam and got it back from him.
+
+### Read in data
+
+First, read in the combined data from me and Samuel. 14855 observations.
+
+```{r}
+combined_data <- read_excel("../data/samuel_plus_joey_pre2017.xlsx", sheet = "Combined Hymns Data", range = "A1:P15612",
+                    col_types = c("numeric", "date", "numeric", "text", "text", "text", "text", "text", "text", 
+                                  "text", "text", "numeric", "numeric", "text", "logical", "numeric")) %>%
+    select(hymn_num = SHymnNumber_English, hymn_name = USoName, 
+           `date` = SHymnDate, `type` = SHymnType,
+           `ward` = WardName, city = WardCity, state = WardState, country = WardCountry) %>%
+    mutate(country = ifelse(country == "USA", "United States", country)) %>%
+    mutate(hymn_name = case_when(hymn_num ==  68 ~ "A Mighty Fortress Is Our God",
+                                 hymn_num ==  69 ~ "All Glory, Laud, and Honor",
+                                 hymn_num ==  70 ~ "Sing Praise to Him",
+                                 hymn_num ==  72 ~ "Praise to the Lord, the Almighty",
+                                 hymn_num ==  83 ~ "Guide Us, O Though Great Jehovah",
+                                 hymn_num ==  86 ~ "How Great Thou Art",
+                                 hymn_num ==  93 ~ "Prayer of Thanksgiving",
+                                 hymn_num ==  95 ~ "Now Thank We All Our God",
+                                 hymn_num == 124 ~ "Be Still, My Soul",
+                                 hymn_num == 141 ~ "Jesus, the Very Thought of Thee",
+                                 hymn_num == 197 ~ "O Savior, Thou Who Wearest a Crown",
+                                 hymn_num == 202 ~ "Oh, Come, All Ye Faithful",
+                                 hymn_num == 203 ~ "Angels We Have Heard on High",
+                                 hymn_num == 204 ~ "Silent Night",
+                                 hymn_num == 264 ~ "Hark, All Ye Nations!",
+                                 hymn_num == 290 ~ "Children of Our Heavenly Father",
+                                 TRUE ~ hymn_name)) %>%
+    # I'll worry about Special Musical numbers and non-canonical hymns later
+    filter(type != "Special",
+           type != "Practice",
+           hymn_num != 0) %>%
+    print()
+```
+
+Now combine them.
+
+```{r}
+freqs <- bind_rows(combined_data, new_data_clean) %>%
+    
+    select(-hymn_name) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    
+    # Get a name + number (for displaying)
+    unite(name_num, hymn_name, hymn_num, sep = " ", remove = FALSE) %>%
+
+    # Dates
+    mutate(year = year(date),
+           month = month(date),
+           day = day(date),
+           week = week(date), 
+           yearday = yday(date),
+           .after = date) %>%
+    
+    # meeting ID
+    unite(meeting_id, date, ward, remove = FALSE) %>%
+    rowid_to_column("id") %>%
+    
+    # nth Sunday
+    mutate(nth_sunday = ceiling(day/7)) %>%
+    
+    # Fix the country
+    mutate(country = ifelse(country == "United States", "USA", country)) %>%
+    
+    print()
+```
+
+Add the source.
+
+```{r}
+freqs %>%
+    filter(ward == "Maple Meadows 2nd")
+```
+
+```{r}
+joeys_wards <- c("Athens 1st Ward",     # 973
+                 "Athens 2nd Ward",     # 8
+                 "Athens University Branch", #12
+                 "Austin",  # 3
+                 "Brenner Pass Ward", # 139
+                 "Bristol 2nd Ward", #
+                 "Cedar City Single Adult Ward", #303
+                 "Collins Hill",
+                 "Dardenne Creek Ward", # 36
+                 "Draper 5th Ward",     # 49
+                 "Draper 6th Ward",     # 670
+                 "East Millcreek 9th",
+                 "Fort Meade",          # 116
+                 "Fredericton Ward",     # 1530
+                 "Glendale 9th", 
+                 "Heber 7th Ward", # 141
+                 "Holt Ward",  # 337
+                 "Kelso Ward", # 625
+                 "Maple Meadows 2nd",
+                 "Marion Indiana", # 348,
+                 "Provo YSA 123rd Ward", #340
+                 "Provo YSA 196th Ward", #159
+                 "Quincy 1st",
+                 "River Trail", 
+                 "River View", # 59
+                 "Sioux City 1st Ward", # 708
+                 "Slate Canyon 10th", # 1406
+                 "Spanish Fields 1st", # 205
+                 "Spanish Field 2nd",  # 24
+                 "Spanish Trails", # 300
+                 "Sunset 11th",
+                 "Taylorsville Gardens", # 701
+                 "Winnebago YSA Branch", #314
+                 "Wolf Creek Ward")  # 30
+freqs <- freqs %>%
+    mutate(source = if_else(ward %in% joeys_wards, "joey", "samuel"))
+```
+
+Clean up
+
+```{r}
+rm(combined_data, new_data_clean, joeys_wards)
+```
+
+### Audit
+
+There should not be more than 341 unique name_num combinations.
+
+```{r}
+freqs %>%
+    select(hymn_num, hymn_name) %>%
+    distinct() %>%
+    arrange(hymn_num)
+```
+
+Check if any rows have missing hymn names.
+
+```{r}
+freqs %>%
+    count(hymn_num, hymn_name) %>%
+    filter(is.na(hymn_name)) %>%
+    print()
+```
+
+## Export
+
+Export the data for other scripts.
+
+```{r}
+write_csv(freqs, "../data/freqs.csv")
+```
+
+## Audit/Query
+
+### Regions
+
+Countries
+
+```{r}
+freqs %>%
+    select(meeting_id, city, state, country) %>%
+    count(country, sort = TRUE) %>%
+    mutate(cumsum = cumsum(n),
+           prop = n / sum(n),
+           cumprop = cumsum/max(cumsum))
+```
+
+States in the US
+
+```{r}
+freqs %>%
+    filter(country == "USA") %>%
+    select(meeting_id, city, state, country) %>%
+    count(state, sort = TRUE) %>%
+    mutate(cumsum = cumsum(n),
+           prop = n / sum(n),
+           cumprop = cumsum/max(cumsum))
+```
+
+Cities in Utah
+
+```{r}
+freqs %>%
+    filter(state %in% c("Utah")) %>%
+    select(meeting_id, city, state, country) %>%
+    count(city, sort = TRUE) %>%
+    mutate(cumsum = cumsum(n),
+           prop = n / sum(n),
+           cumprop = cumsum/max(cumsum))
+```
+
+### Joey vs. Samuel
+
+Number of sacrament meetings by contributor.
+
+```{r}
+freqs %>%
+    count(source, meeting_id) %>%
+    count(source, name = "unique sacrament meetings") %>%
+    mutate(prop = `unique sacrament meetings` / sum(`unique sacrament meetings`))
+```
+
+Number of wards by contributor.
+
+```{r}
+freqs %>%
+    count(source, ward) %>%
+    count(source, name = "unique wards") %>%
+    mutate(prop = `unique wards` / sum(`unique wards`))
+```
+
+### How much data
+
+How many hymns?
+
+```{r}
+nrow(freqs)
+```
+
+How many total wards?
+
+```{r}
+freqs %>%
+    count(ward) %>%
+    nrow()
+```
+
+How many total meetings?
+
+```{r}
+freqs %>%
+    count(meeting_id) %>%
+    nrow()
+```
+
+How many years would you have to live to see that much data?
+
+```{r}
+freqs %>%
+    count(meeting_id) %>% 
+    nrow() / 48
+```
+
+### Data per ward
+
+How many hymns did each ward contribute?
+
+```{r}
+freqs %>%
+    count(ward, meeting_id) %>%
+    count(ward) %>%
+    arrange(-n) %>%
+    summarize(mean = mean(n),
+              median = median(n),
+              min = min(n),
+              max = max(n),
+              n = n())
+```
+
+How much data did each ward contribute?
+
+```{r}
+freqs %>%
+    count(ward, meeting_id) %>%
+    group_by(ward) %>%
+    summarize(n_meetings = n(),
+              n_years = n_meetings / 48,
+              n_hymns = sum(n)) %>%
+    arrange(-n_meetings) %>%
+    rowid_to_column("rank") %>%
+    mutate(percentile = 1 - rank/max(rank)) %>%
+    print()
+```
+
+A distribution plot of the amount of data each ward contributed.
+
+```{r}
+freqs %>%
+    count(ward, meeting_id) %>%
+    group_by(ward) %>%
+    summarize(n_meetings = n(),
+              n_years = n_meetings / 48,
+              n_hymns = sum(n)) %>%
+    ungroup() %>%
+    arrange(-n_years) %>%
+    mutate(ward = fct_inorder(ward)) %>%
+    print() %>%
+    ggplot(aes(ward, n_meetings+1, group = 1)) + 
+    geom_line() + 
+    scale_y_log10() + 
+    theme(axis.text.x = element_text(angle = 270, hjust = 0, size = 2))
+```
+
+### Dates
+
+```{r}
+freqs %>%
+    count(meeting_id, date) %>%
+    count(date) %>%
+    nrow()
+```
+
+How is that distributed? Yeah, major spike from when Samuel collected his data. Another small hump in 2013--2014 from when I first started the project.
+
+```{r}
+freqs %>%
+    count(meeting_id, date) %>%
+    count(date) %>%
+    mutate(date = ymd(date)) %>%
+    ggplot(aes(date, n)) + 
+    geom_line() + 
+    labs(title = "Number of meetings by date",
+         subtitle = "You can certainly see when I (or Samuel) collected the most data") + 
+    scale_x_date(date_breaks = "2 years", date_labels = "%Y") + 
+    theme_minimal()
+```
+
+How is the distribution across months? Predictably, a dip in April and October because of General Conference.
+
+```{r}
+freqs %>%
+    count(meeting_id, month) %>%
+    count(month) %>%
+    print() %>%
+    ggplot(aes(month, n)) + 
+    geom_col() + 
+    scale_x_continuous(breaks = 1:12) + 
+    theme_minimal()
+```
+
+Cumulative amount of data per year.
+
+```{r}
+freqs %>%
+    select(year, meeting_id) %>%
+    distinct() %>%
+    count(year) %>%
+    mutate(prop = n / sum(n),
+           cumsum = cumsum(n),
+           cumprop = cumsum / max(cumsum)) %>%
+    print() %>%
+    ggplot(aes(year, cumsum)) + 
+    geom_point()
+```

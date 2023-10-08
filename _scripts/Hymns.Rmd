@@ -1,0 +1,31 @@
+---
+title: "Hymns"
+author: "Joey Stanley"
+date: "12/30/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This is my hymns project and the R code used to analyze the data that I have. There are two main projects going on here:
+
+1. The main one is trying to figure out the frequency of the hymns. This involved collecting hymns data from many wards. I collected my own data, and I also got a lot from Samual Bradshaw. Whether I incorporate his data in with mine, I'm not sure. I can at least treat it separately. Regardless, he has results on his own webpage, and I need to present some original findings. And, because I have R, I can make some interesting visualizations and come up with more sophisticated results---something more than just what a pivot table could tell me.
+
+1. The secondary project is the music portion. I've already converted all the hymn data into numbers, but as I go through the code, I'm having a difficult time wrangling that into tidy data. I'd really like to do some really cool visualizations with sparklines, especially overalapping ones to see general trends. I would also like to analyze the chords and music lines themselves. No one else knows about this part of the project, so I think it would be really cool to present. I know there'll be a lot of data cleaning, because I've found errors in the first few hymns already. 
+
+So this RMarkdown file will serve as the place where I analyze the data. This can be a nice Sunday project. Hopefully I can submit something to the church.
+
+I started this project---and got quite a lot done---before I knew any R or statistical analysis. I did pretty much everything in Excel. So all my data (which isn't tidy) is in the same files as the analyses. As I transition to a completely R-based study, I'll need to make those changes. 
+
+## Samuel's Data
+
+Okay, so Samuel and I agreed to share data. That's fine. That happened in like 2014 though. As I look through his website, it looks like he can continued to collect quite a bit more data. He did the survey again in 2017, and Kjerste Christensen of all people contributed data to his thing too. As I look through the wards that contributed the most data, it looks like Fort Yargo on on the top 10. I ended up with 6K observations with a goal of 50K. It looks like he as 58K! Wow. And it looks like he got about 120 wards per week, which is about 400 observations a week. So, he has taken this project to the next level. Congrats, though I kinda wish he'd at least keep me in the loop.
+
+I don't think I can compete with his data. He's got 10 times as me, and has been going for many years. Although, we approach things differently: I look for spreadsheets that already exist, and he looks for weekly contributors. So he has data from many wards, but not a lot of consistency. Meanwhile, I've got relatively few wards, but like several years of data from each one. I wonder how that might change the results.
+
+I do like his finding though that there were just 3 hymns that were never sung in all his data, and several more only once or twice. With 10 times as much data, those are more reliable numbers than the 40 or so that are missing in my data. 
+

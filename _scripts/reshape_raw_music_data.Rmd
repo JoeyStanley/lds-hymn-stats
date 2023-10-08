@@ -1,0 +1,488 @@
+---
+title: "Reshape Raw Music Data"
+author: "Joey Stanley"
+date: "04/01/2019"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+        collapsed: true
+    theme: simplex
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This script takes in the music data and massages it into the final form I want it to be in.
+
+## Preliminaries
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(ggthemes)
+```
+
+## Data prep
+
+Unlike the frequency portion, all my music data is in one file, `music_quantified.xlsx`, specifically, the 2nd sheet. It's not in a tidy format, so I need to to a bit of data cleaning before I can work on it.
+
+### Read in the full data
+
+This chunk turns the original data into a tidy format.
+
+```{r}
+hymns_quantified <- read_excel("../data/music_quantified.xlsx", sheet = "Raw Data",
+                               
+                               # Column names were spread over two rows, so provide my own
+                               skip = 2, 
+                               col_names = c("sop_typed",  "sop_num",  "sop_dur",  "sop_val",
+                                             "alto_typed", "alto_num", "alto_dur", "alto_val",
+                                             "ten_typed",  "ten_num",  "ten_dur",  "ten_val",
+                                             "bass_typed", "bass_num", "bass_dur", "bass_val")) %>%
+    # Add a unique id per row
+    rowid_to_column("id") %>%
+
+    # New hymns were indicated with a merged cell across all of them.
+    # First, locate those rows
+    mutate(hymn = if_else(str_detect(sop_typed, "—"), sop_typed, NA)) %>%
+    # Fill them down
+    fill(hymn) %>%
+
+    # Remove those rows
+    filter(is.na(sop_typed) | sop_typed != hymn) %>%
+
+    # Get the hymn title and number
+    mutate(hymn = if_else(str_detect(hymn, "^H"), str_sub(hymn, 6), hymn)) %>%
+    separate(hymn, c("hymn_num", "hymn_name"), sep = "—", convert = TRUE) %>%
+    select(-hymn_name) %>%
+    left_join(read_csv("../data/name_num_lookup.csv", show_col_types = FALSE), by = "hymn_num") %>%
+    mutate(name_num = paste(hymn_name, hymn_num)) %>%
+
+    # Add a unique id per row per hymn. Remove the last row since it was just the filler
+    group_by(hymn_num, hymn_name) %>%
+    mutate(song_row_id = row_number()) %>%
+    add_count() %>%
+    filter(song_row_id != n) %>%
+    select(-n) %>%
+    ungroup() %>%
+
+    # There's an error in the Excel Spreadsheet. If the note is blank, the default value was a zero instead of an empty string.
+    # I fixed this in Hymn 6, and it worked fine, but I don't want to mess with the original. So I'll modify it here.
+    mutate(across(c(sop_val,  sop_num),  ~ifelse(is.na(sop_typed),  NA, .))) %>%
+    mutate(across(c(alto_val, alto_num), ~ifelse(is.na(alto_typed), NA, .))) %>%
+    mutate(across(c(ten_val,  ten_num),  ~ifelse(is.na(ten_typed),  NA, .))) %>%
+    mutate(across(c(bass_val, bass_num), ~ifelse(is.na(bass_typed), NA, .))) %>%
+
+    select(id, song_row_id, hymn_num, hymn_name, everything()) %>%
+    
+    print()
+```
+
+So the `hymns_quantified` object is now a relatively tidy version of the full spreadsheet.
+
+### Key Signatures and Transposition Values
+
+When I typed this data out, I did so sort of transposing them. This means I mentally converted them into a single key signature. To reproject these numbers into actual notes, I had a key signature numbers at the top of each hymn that would be added to the values. In most cases, it was the same for all four parts (the key of D was 2 2 2 2), but in some cases, like in the key of G, it was easier to do like 7 -5 7 -5. So I need to pull those numbers out.
+
+In the original spreadsheet, these numbers were merged cells underneath the hymn name. Now that the data has been cleaned up in R, they are currently the first row in each hymn.
+
+```{r}
+transpose_values <- hymns_quantified %>%
+    group_by(hymn_num) %>%
+    summarize(sop_key  = first(sop_typed),
+              alto_key = first(alto_typed),
+              ten_key  = first(ten_typed),
+              bass_key = first(bass_typed)) %>%
+    arrange(hymn_num) %>%
+    ungroup() %>%
+    print()
+```
+
+So now I have a spreadsheet that has the transposition values for each hymn. I'll use this later on. Note that I'll remove those rows of data later.
+
+For now, I can examine it. First, I can see which transposition values are the most common. I have code for doing this in R, but the information is already in the "Key Signature Lookup" sheet in the `Music-Quantified.xlsx` file.
+
+```{r}
+transpose_lookup <- read_excel("../data/music_quantified.xlsx", sheet = "Key Signature Lookup") %>%
+    print()
+```
+
+This can be used to help identify which songs had what sequence of transpose keys.
+
+```{r}
+key_signature_lookup <- transpose_values %>%
+    mutate(transpose_seq = paste(sop_key, alto_key, ten_key, bass_key)) %>%
+    left_join(transpose_lookup, by = "transpose_seq") %>%
+    select(-ends_with("key"), -notes, -n_hymns) %>%
+    arrange(transpose_seq, hymn_num) %>%
+    print()
+```
+
+Now I'll add all this information back into the original spreadsheet. It gets a little messy with the transposition sequence (first I had to create it, then fill down, then remove the first rnow), but then it's not bad.
+
+```{r}
+# A new version of the data with the key signature information
+hymns_with_keys <- hymns_quantified %>%
+    
+    # Same technique as before, but with the key signature information
+    # First, locate those rows
+    mutate(transpose_seq = if_else(!is.na(sop_typed) & is.na(sop_num),
+                                   paste(sop_typed, alto_typed, ten_typed, bass_typed), NA)) %>%
+    # Fill them down
+    fill(transpose_seq) %>%
+    # Remove those rows
+    filter(song_row_id != 1) %>%
+
+    # Get the key signature with this transpose sequence
+    left_join(key_signature_lookup, by = c("hymn_num", "transpose_seq")) %>%
+
+    # Now split up the trans_seq
+    separate(transpose_seq, into = c("sop_key", "alto_key", "ten_key", "bass_key"), sep = " ") %>%
+    select(id, hymn_num, hymn_name, starts_with("sop"), starts_with("alto"),
+           starts_with("ten"), starts_with("bass"), everything()) %>%
+    print()
+```
+
+### Convert typed notes to real notes
+
+Now I need to work on the notes. First, I'll read in a one of the sheets in the original spreadsheet. It has all the actual music notes. Mentally, I converted each song to the key of C, so I typed them relative to this. With this and the transposition notes, I'll be able to convert the music into actual notes.
+
+The important part here is that if a note dipped below C, it was negative, but still in that scale. So if a C was 1 and a D is 2, a B was -7 because it was below C, but the 7th note of the scale.
+
+```{r}
+notes_lookup <- read_excel("../data/music_quantified.xlsx", sheet = "Convert Numbers") %>%
+    select(-benchmark) %>%
+    print()
+```
+
+So now I read in a spreadsheet that acts as a lookup for the relative note in the scale, the key signature, and what the actual note is. In other words, given that I typed a 3 and the key was D, I'd get an F#. Instead of matrix style, I convert this to a tall format.
+
+```{r}
+note_in_key_lookup <- read_excel("../data/music_quantified.xlsx", sheet = "Note In Key Lookup") %>%
+    pivot_longer(cols = -note, names_to = "key", values_to = "value") %>%
+    mutate(key = factor(key, levels = c("A", "D", "G", "C", "F", "Bb", "Eb", "Ab", "Db"))) %>%
+    select(key, note, value) %>%
+    print()
+```
+
+Now, with this data ready, I need to add that information to the full spreadsheet.
+
+```{r}
+# Add the note name (*_note) and the note in the scale (*_inscale) columns.
+hymns_with_notes <- hymns_with_keys %>%
+   # filter(hymn_num == 4) %>%
+    
+    # Get the actual note value.
+    # I might be able to do this by making it tall and doing it all in one, but I'll just do this four times
+    left_join(select(notes_lookup, -typed), by = c("sop_num"  = "actual")) %>%
+    rename(sop_note = note, sop_octave = octave, sop_midi = midi) %>%
+    left_join(select(notes_lookup, -typed), by = c("alto_num" = "actual")) %>%
+    rename(alto_note = note, alto_octave = octave, alto_midi = midi) %>%
+    left_join(select(notes_lookup, -typed), by = c("ten_num"  = "actual")) %>%
+    rename(ten_note = note, ten_octave = octave, ten_midi = midi) %>%
+    left_join(select(notes_lookup, -typed), by = c("bass_num" = "actual")) %>%
+    rename(bass_note = note, bass_octave = octave, bass_midi = midi) %>%
+
+    # Get the note in the key
+    left_join(note_in_key_lookup, by = c("key_signature" = "key", "sop_note" = "note")) %>%
+    rename(sop_inscale = value) %>%
+    left_join(note_in_key_lookup, by = c("key_signature" = "key", "alto_note" = "note")) %>%
+    rename(alto_inscale = value) %>%
+    left_join(note_in_key_lookup, by = c("key_signature" = "key", "ten_note" = "note")) %>%
+    rename(ten_inscale = value) %>%
+    left_join(note_in_key_lookup, by = c("key_signature" = "key", "bass_note" = "note")) %>%
+    rename(bass_inscale = value) %>%
+
+
+    # Lower octave for tenors and basses.
+    mutate(ten_octave  = ten_octave  - 1,
+           bass_octave = bass_octave - 1,
+           ten_midi  = ten_midi  - 12,
+           bass_midi = bass_midi - 12) %>%
+    select(id, hymn_num, hymn_name, name_num, key_signature,
+           starts_with("sop"), starts_with("alto"), starts_with("ten"), starts_with("bass")) %>%
+    
+    # Lose the columns I don't need anymore and then reorder the columns.
+    select(id, hymn_num, hymn_name, name_num, key_signature,
+           ends_with("_note"), ends_with("octave"), ends_with("midi"), ends_with("inscale"), ends_with("_dur")) %>%
+
+    print()
+```
+
+Okay, so now I have a spreadsheet that has lots of information. The typed notes were converted into their actual note values. Those are in the `*_note` columns. After that, are the octaves those notes are in (`*_octave`). Then are the where in the scale those notes are (`*_inscale`). Last is the duration (`*_dur`).
+
+However, because durations aren't the same for all parts, I have to turn it tall.
+
+```{r}
+make_each_part_wide <- function(df, part) {
+    
+    # Convert "soprano" to "sop" and "tenor" to "ten", but leave "bass" and "alto" as they are
+    abb <- if_else(nchar(part) > 4, str_sub(part, 0, 3), part)
+    
+    
+    df %>%
+        
+        # Since we're just focusing on one part, just keep those columns
+        select(id, hymn_num, hymn_name, name_num, key_signature, starts_with(abb)) %>%
+        
+        # Rename those with the part's name/abbreviation
+        rename_with(.cols = starts_with(abb), 
+                    .fn = ~str_replace(., paste0(abb, "_"), "")) %>%
+        
+        # add rest and held columns
+        # I had to adjust this because rests in The Morning Breaks weren't right
+        mutate(voice = part,
+               held = is.na(dur),
+               is_rest = case_when(!is.na(note) ~ FALSE,
+                                   is.na(note) & !is.na(dur) ~ TRUE)) %>%
+        
+        # fill down, so that sustained notes get filled in
+        # Grouped so that Carry On doesn't spill over into As Zion's Youth
+        group_by(name_num) %>%
+        fill(note, octave, midi, inscale, is_rest) %>%
+        ungroup() %>%
+        
+        # But if it's a rest, turn it into NAs
+        mutate(across(c(note, octave, inscale, midi), replace, is_rest, NA))
+}
+
+# Do the above function for all four parts and combine all the output together.
+hymns_with_notes_tall <- bind_rows(make_each_part_wide(hymns_with_notes, "soprano"),
+                                   make_each_part_wide(hymns_with_notes, "alto"),
+                                   make_each_part_wide(hymns_with_notes, "tenor"),
+                                   make_each_part_wide(hymns_with_notes, "bass")) %>%
+    mutate(voice = factor(voice, levels = c("soprano", "alto", "tenor", "bass"))) %>%
+    relocate(hymn_name, hymn_num, .after = is_rest) %>%
+
+    print()
+```
+
+### Note names
+
+Create a lookup table for note labels and midi values. This is useful for plotting later on.
+
+```{r}
+note_name_midi_lookup <- hymns_with_notes_tall %>%
+    mutate(note_label = paste0(note, octave)) %>%
+    filter(!is.na(midi)) %>%
+    distinct(note_label, midi) %>%
+    arrange(midi) %>%
+    mutate(note_label = fct_inorder(note_label)) %>%
+    print()
+```
+
+```{r}
+notes_with_labels <- hymns_with_notes_tall %>%
+    mutate(note_label = paste0(note, octave), .after = octave,
+           note_label = factor(note_label, levels = note_name_midi_lookup$note_label)) %>%
+    print()
+```
+
+### Differences between parts
+
+Detect unison notes. Instead of a binary unison/not, I think it would be more useful to get differences because I can get intervals or crossing parts.
+
+```{r}
+difference_lookup <- notes_with_labels %>%
+    select(id, name_num, midi, voice) %>%
+    pivot_wider(names_from = voice, values_from = midi) %>%
+    mutate(sop_alto_diff  = soprano - alto,
+           sop_ten_diff   = soprano - tenor,
+           sop_bass_diff  = soprano - bass,
+           alto_ten_diff  = alto    - tenor,
+           alto_bass_diff = alto    - bass,
+           ten_bass_diff  = tenor   - bass) %>%
+    select(-name_num, -soprano, -alto, -tenor, -bass) %>%
+    print()
+```
+
+This code appears to work, but it might yield strange results due to data error. I'll need to audit this.
+
+### Unison passages
+
+Also, it might be good to differntiate between one-off unison notes and entire lines of unison. Let's see if I can find a boundary. 3?
+
+```{r}
+notes_with_diffs <- notes_with_labels %>%
+    left_join(difference_lookup, by = "id") %>%
+    print()
+```
+
+This took a LONG time to figure out, but I got it.
+
+```{r}
+detect_unison_lengths <- function(df, .col, .new_col_name) {
+    
+    df %>%
+        filter(!held) %>%
+        group_by(name_num, voice) %>%
+        
+        # See if they're in unison
+        mutate(is_unison = {{.col}} == 0) %>%
+        # Detect the start of the unison passages
+        mutate(start_of_unison = case_when(is.na(lag(is_unison)) ~ is_unison, # for the first row
+                                           is_unison & !lag(is_unison) ~ TRUE,
+                                           TRUE ~ FALSE)) %>%
+        # Increment every time there's a change, but ignore if it's not unison
+        mutate(unison_group = if_else(is_unison, cumsum(start_of_unison), NA)) %>%
+        # Group by those new incremental groups, and count them
+        add_count(unison_group, name = "length_of_unison") %>%
+        # Since NA is considered a group, convert any non-unison row to 0
+        mutate({{.new_col_name}} := if_else(is_unison, length_of_unison, 0)) %>%
+        # I did it!
+        
+        # Clean up
+        select(-is_unison, -start_of_unison, -unison_group, -length_of_unison) %>%
+        ungroup()
+}
+
+notes_with_unisons <- notes_with_diffs %>%
+    detect_unison_lengths(sop_alto_diff,  "sop_alto_unis_len") %>%
+    detect_unison_lengths(sop_ten_diff,   "sop_ten_unis_len") %>%
+    detect_unison_lengths(sop_bass_diff,  "sop_bass_unis_len") %>%
+    detect_unison_lengths(alto_ten_diff,  "alto_ten_unis_len") %>%
+    detect_unison_lengths(alto_bass_diff, "alto_bass_unis_len") %>%
+    detect_unison_lengths(ten_bass_diff,  "ten_bass_unis_len") %>%
+    print()
+```
+
+```{r}
+notes_with_unisons %>%
+    filter(hymn_num == 1,
+           voice == "soprano") %>%
+    print()
+```
+
+Anything longer than 15 are the hymns where part is in unison but then it breaks into parts later on. Anything that is unison throughout doesn't have an alto line.
+
+```{r}
+notes_with_unisons %>%
+    filter(sop_alto_unis_len < 15,
+           sop_alto_unis_len > 1,
+           voice == "soprano") %>%
+    distinct(name_num, sop_alto_unis_len) %>%
+    arrange(-sop_alto_unis_len) %>%
+    print()
+```
+
+Anything that is four or more notes long appears to be a legitimate unison passage. Of the many 3-note ones, here are the legit ones \* Hail to the Brightness of Zion's Glad Morning! 42 \* With Songs of Praise 71 \* Great Is the Lord 77 \* O Little Town of Bethlehem 208 \* Thy Servants Are Prepared 261
+
+### Misc Processing
+
+```{r}
+notes <- notes_with_unisons %>%
+    
+    # Flag interesting hymns
+    mutate(unusual = case_when(
+        
+        # Parentheses, for "(low alto)" or something
+        str_detect(hymn_name, "\\(") ~ TRUE,
+        
+        # The women's trios and men's quartets
+        hymn_num %in% c(312:318, 323, 325:337) ~ TRUE,
+        
+        # everything else is fine
+        TRUE ~ FALSE)) %>%
+    
+    print()
+```
+
+## Audit
+
+Are all the hymns accounted for?
+
+```{r}
+notes %>%
+    count(hymn_num)
+
+notes %>%
+    count(hymn_num, name_num)
+```
+
+Make sure the ones that are flagged as unusual are indeed unusual.
+
+```{r}
+notes %>%
+    distinct(name_num, unusual) %>%
+    filter(unusual)
+```
+
+```{r}
+notes_with_diffs %>%
+    filter(sop_bass_diff == max(sop_bass_diff, na.rm = TRUE)) %>%
+    arrange(id)
+```
+
+### Sparklines
+
+The main visual I'd like to do are sparklines. I think they're the best way to show the most amount of information at once. Plus they can be easily overlapped.
+
+So here is the spreadsheet for sparklines.
+
+```{r}
+sparklines <- notes_with_diffs %>%
+    
+    # Just one point per note
+    filter(held == FALSE) %>%
+    
+    # Create a line ID for voice + hymn for geom_line
+    unite(line_id, hymn_num, voice, remove = FALSE) %>%
+    # Create a label for display purposes only
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")")) %>%
+
+    group_by(hymn_num, voice) %>%
+
+    # Get cumuative and relative durations
+    mutate(cume_dur = lag(cumsum(dur), default = 0),
+           rel_dur = cume_dur / max(cume_dur)) %>%
+    ungroup()
+```
+
+There's messiness in the data, so this is a quick way to see which hymns have mismatched durations. If there are mismatches in the parts, it's a sign that something's not right in the data. The only ones that show up on this list are ones where there is a moving line in at least one of the parts in the last note or for ones with a split alto part or something. I can check these with the sparknotes plot below.
+
+```{r}
+sparklines %>%
+    group_by(hymn_num, voice) %>%
+    summarize(cume_dur = max(cume_dur)) %>%
+    spread(voice, cume_dur) %>%
+    mutate(all_match = near(soprano, alto) & near(soprano, tenor) & near(soprano, bass)) %>%
+    filter(!all_match) %>%
+    print()
+```
+
+I've checked them all as of Oct 31, 2021.
+
+```{r, warning=FALSE, fig.height = 6, fig.width = 12}
+sparklines_plot <- function(.hymn) {
+    sparklines %>%
+        filter(hymn_num == .hymn) %>%
+        
+        # Extra column needed to make the line segments
+        mutate(xend = cume_dur + dur) %>%
+        
+        
+        ggplot(aes(cume_dur, midi, color = voice)) +
+        geom_hline(yintercept = c(48, 60, 72), color = "grey75", linetype = "dashed") + # Cs
+        geom_hline(yintercept = c(48, 60, 72)+7, color = "grey75", linetype = "dotted") + # Gs
+        geom_segment(aes(group = id, xend = xend, yend = midi), size = 3) + 
+        geom_point(shape = "|", size = 5) +
+        facet_wrap(~label, ncol = 1, scales = "free") +
+        scale_color_ptol() +
+        scale_x_continuous(expand = expansion(mult=c(0,0), add = c(1,1))) +
+        theme_bw(base_size = 20) +
+        theme(legend.position = "bottom",
+              panel.grid.major.y = element_blank(),
+              panel.grid.minor.y = element_blank())
+}
+sparklines_plot(159)
+```
+
+## Export
+
+```{r}
+write_csv(notes, "../data/cleaned_notes_data.csv")
+```
