@@ -10,7 +10,453 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.433</generator>
-<lastBuildDate>Fri, 06 Oct 2023 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 09 Oct 2023 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>What are the least common hymns?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/least-common-hymns/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p><a href="../../posts/most_common_hymns">Previously</a>, I’ve posted about the most popular hymns. In this post, I’ll look at the opposite end of the spectrum: what hymns are hardly ever sung at all? Ones that, if they end up being cut from the hymnal, hardly anyone would even notice.</p>
+<p>Let me first mention my methods for how I’m calculating how often a hymn is sung, on average, per ward. I currently have data from 5,659 sacrament meetings. A ward will meet together for sacrament meeting usually 48 times in a year (52 weeks minus two for General Conference and minus two for Stake Conference). 5,659 meetings divided by 48 meetings in a year is about 117 years’ worth of sacrament meetings—more than any one person would likely attend in their lifetime, even if you doubled up for a couple decades. So, if there’s a hymn that’s sung in just one of those sacrament meetings, that means it’s sung, on average per ward, once every 117 years. If a hymn is sung 100 times in my dataset, it’s sung on average once every <code>5659 / 48 / 100 =</code> 1.17 years per ward.</p>
+<p>Because I’m dealing with very sparse numbers in this post, the numbers may fluctuate wildly. So for example, a hymn that’s sung in three of my sacrament meetings comes out to an average of once every 39.3 years. Meanwhile a hymns that’s sung in just two of them is once every 58.9 years. That’s a big jump for a single meeting. So, what I’m saying is you should take these numbers with a large grain of salt they mostly reflect how much data I have. Instead, I’ll group them into broad categories of “once a decade,” “once a generation,” and “once in a lifetime.”</p>
+<p>So, with that in mind, let’s most on to the least common hymns.</p>
+<section id="once-a-decade" class="level2">
+<h2 class="anchored" data-anchor-id="once-a-decade">Once a decade</h2>
+<p>Let’s start with hymns that are sung once every 10 to about 23 years or so.In other words, these are ones that were sung between about 6 to 11 times in the entire dataset. In my current dataset, there are 29 hymns that fit into this category. The following table shows these hymns in order of appearance in the hymnal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 67%">
+<col style="width: 18%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Hymn</th>
+<th style="text-align: right;">Every X Years</th>
+<th style="text-align: right;">Times Sung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">What Was Witnessed in the Heavens? (11)</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">The Voice of God Again Is Heard (18)</td>
+<td style="text-align: right;">19.6</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">The Happy Day at Last Has Come (32)</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Our Mountain Home So Dear (33)</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">O Saints of Zion (39)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hail to the Brightness of Zion’s Glad Morning! (42)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">We Will Sing of Zion (47)</td>
+<td style="text-align: right;">13.1</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Come, Though Glorious Day of Promise (50)</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">We’re Not Ashamed to Own Our Lord (57)</td>
+<td style="text-align: right;">19.6</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Raise Your Voices to the Lord (61)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Great King of Heaven (63)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">With Songs of Praise (71)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">God of Our Fathers, Known of Old (80)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cast Thy Burden Upon the Lord (110)</td>
+<td style="text-align: right;">13.1</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Come, Ye Disconsolate (115)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">God Is in His Holy Temple (132)</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Now the Day Is Over (159)</td>
+<td style="text-align: right;">19.6</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">The Lord Be with Us (161)</td>
+<td style="text-align: right;">13.1</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lord, We Come Before Thee Now (162)</td>
+<td style="text-align: right;">13.1</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hear Thou Our Hymn, O Lord (222)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nay, Speak No Ill (233)</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Should You Feel Inclined to Censure (235)</td>
+<td style="text-align: right;">13.1</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lord, Accept into Thy Kingdom (236)</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Come Along, Come Along (244)</td>
+<td style="text-align: right;">10.7</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Arise, O God, and Shine (265)</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rejoice, Ye Saints of Latter Days (290)</td>
+<td style="text-align: right;">19.6</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">God’s Daily Care (306)</td>
+<td style="text-align: right;">19.6</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">As Sisters in Zion (309)</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ye Elders of Israel (319)</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>As an LDS musician basically my entire life, I can tell you that I could probably sing the melody for just a few of these: <hymn>What Was Witnessed in the Heavens? (11)</hymn>, <hymn>Should You Feel Inclined to Censure (235)</hymn>, <hymn>As Sisters in Zion (309)</hymn>, and <hymn>Ye Elders of Israel (319)</hymn>. Those last two are understandably rare for a general sacrament meeting because they more pertain to either men or women and <a href="../../posts/mens_womens_arrangements.html">it would be somewhat strange to sing it if you’re not of that gender</a>. Most of the hymns in the first half the hymnal, I hardly recognize at all. Meanwhile, the ones in the second half of the hymnal are ones that I recognize only because they’re interspersed among some of the more common, upbeat hymns in the 200-range. Overall, there is nothing too surprising here: there aren’t any hymns that I feel like are more popular than they really are.</p>
+</section>
+<section id="once-a-generation" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="once-a-generation">Once a generation</h2>
+<p>The next table shows ones that are sung about once every <em>generation</em>. I’m defining these are those that are sung, on average per ward, once every 23 to 40 years. In my data, they show up in just 3–5 sacrament meetings. There are twenty hymns in this category, which you can see in the following table.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 63%">
+<col style="width: 20%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Hymn</th>
+<th style="text-align: right;">Every X Years</th>
+<th style="text-align: right;">Times Sung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">’Twas Witnessed in the Morning Sky (12)</td>
+<td style="text-align: right;">23.6</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arise, O Glorious Zion (40)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Glorious Things Are Sung of Zion (48)</td>
+<td style="text-align: right;">23.6</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lo, the Mighty God Appearing! (55)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Praise Ye the Lord (74)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Great Is the Lord (77)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">With All the Power of Heart and Tongue (79)</td>
+<td style="text-align: right;">23.6</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">From All That Dwell below the Skies (90)</td>
+<td style="text-align: right;">39.3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lean on My Ample Arm (120)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">We Meet, Dear Lord (151)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Father, This Hour Has Been One of Joy (154)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Softly Now the Light of Day (160)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">As the Shadows Fall (168)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jesus, Mighty King in Zion (234)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Behold Thy Sons and Daughters, Lord (238)</td>
+<td style="text-align: right;">39.3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Up, Awake, Ye Defenders of Zion (248)</td>
+<td style="text-align: right;">39.3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Come, All Whose Souls Are Lighted (268)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Men Are That They Might Have Joy (275)</td>
+<td style="text-align: right;">39.3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Come Away to the Sunday School (276)</td>
+<td style="text-align: right;">23.6</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">The Glorious Gospel Light Has Shone (283)</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="page-columns page-full"><p>Among this set of hymns, I only recognize a few, and not because I’ve sung them in church, but because they stand out for other reasons. First, is <hymn>Lean on My Ample Arm (120)</hymn> which is my favorite hymn. There’s <hymn>Softly Now the Light of Day (160)</hymn> which, at only two lines and one verse, is tied with <hymn>Praise God, from Whom All Blessings Flow (242)</hymn> for the shortest hymn in the hymnal.. There’s also <hymn>As the Shadows Fall (168)</hymn>, which I recognize because it’s one of <a href="../../posts/key_signatures.html">only two hymns in the key of D♭</a>. As far as the rest go, I don’t even recognize their titles for a lot of them.</p><div class="no-row-height column-margin column-container"><span class="">If you want to get really technical, Hymn 242 is shorter because its suggested tempo marking includes slower tempos.</span></div></div>
+<p>The wild thing is that the current hymnal was published in 1985, which is 38 years ago. If these numbers are accurate, it means that these hymns might have been sung just once or twice in the entire lifetime of the hymnal!</p>
+</section>
+<section id="once-in-a-lifetime" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="once-in-a-lifetime">Once in a lifetime</h2>
+<p>Finally, we get to the hymns that are sung once or never in the 5659 sacrament meetings I have data from. Again, keep in mind that because I’m dealing with such sparse data, saying something is sung once every 117 years is very approximate and just reflects how much data I have total. Instead, you should just think of these hymns as being sung once-in-a-lifetime.</p>
+<p>Please note that I have removed the men’s and women’s arrangements that would be on this list (hymns 309–337) because, as I’ve <a href="../../mens_womens_arrangements">already written</a>, they’re probably not really intended or appropriate for sacrament meeting.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Hymn</th>
+<th style="text-align: left;">Every X Years</th>
+<th style="text-align: right;">Times Sung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sons of Michael, He Approaches (51)</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Softly Beams the Sacred Dawning (56)</td>
+<td style="text-align: left;">117.9</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Great God, to Thee My Evening Song (164)</td>
+<td style="text-align: left;">117.9</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">This House We Dedicate to Thee (245)</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Like Ten Thousand Legions Marching (253)</td>
+<td style="text-align: left;">117.9</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Thy Servants Are Prepared (261)</td>
+<td style="text-align: left;">117.9</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Go, Ye Messengers of Glory (262)</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">We Meet Again in Sabbath School (282)</td>
+<td style="text-align: left;">117.9</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">God Save the King (341)</td>
+<td style="text-align: left;">unknown</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>If the previous category of hymns (the “once in a generation” ones) were rare, these are even rarer. Another way of thinking about these is that in the lifetime of a physical copy of a hymnal, there is a decent chance that most of these nine hymns were <em>ever</em> sung.</p>
+<div class="page-columns page-full"><p>Some of these can be explained a little bit. <hymn>We Meet Again in Sabbath School (282)</hymn> makes sense for being on this list because it’s likely intended to be an opening hymn for Sunday School, and not sacrament meeting. It’s also not surprising that <hymn>God Save the King (341)</hymn> isn’t represented in my sample, partially because I only have data from a single ward in the United Kingdom, and while it was several years’ worth, it is just one ward <em>and</em> the reigning monarch the entire time was a queen rather than a king. Finally, it seems like <hymn>This House We Dedicate to Thee (245)</hymn> is intended for a building dedication which probably not very many people actually get to attend in their lifetimes. It’s a perfectly good hymn and very appropriate for the occasion—but regular sacrament meeting is not such an occasion.</p><div class="no-row-height column-margin column-container"><span class="">Although, we don’t start Sunday School with hymns anymore, so it’s likely not getting any currency anymore.</span></div></div>
+</section>
+<section id="overall-frequency" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="overall-frequency">Overall Frequency</h2>
+<p>To me, it is wild to think that these nine hymns (plus many of the men’s and women’s arrangements) have been printed in tens of thousands of hymnals for the past nearly 40 years and have hardly ever been used by anyone. On the plus side, these lists are somewhat small, especially the “once in a lifetime” list. It appears to be the case then that pretty much every hymn is sung at least a little bit. So, inflated claims along the lines of “there are 100 hymns that literally no one sings” simply aren’t accurate. They’re not common, but they are sung.</p>
+<p>In fact, if we take all 73 hymns that I’ve listed on this page, and count up how many times they were sung, it comes out to 352 times in this sample, which is 1.85% of all the data. That means you might sing one of these 73 hymns once every four months. Or about as often as <a href="../../posts/most_common_hymns.html"><hymn>I Stand All Amazed (193)</hymn></a>. Another way of thinking about it is that we could cut these 73 hymns, and it would affect about one meeting every four months.</p>
+<div class="page-columns page-full"><p>Perhaps a better way of looking at this is to think about how many wards sing a given hymn around the world. There are around 31,330 wards and branches across the world. Let’s say that the 5,659 meetings I have data from are a representative sample. That’s 18% of the congregations around the whole world. If one of them sings something like <hymn>Like Ten Thousand Legions Marching (253)</hymn>, we might therefore assume that perhaps 5–6 congregations around the world will sing that hymn in a given week. For comparison, if we apply the same logic, <hymn>I Stand All Amazed (193)</hymn> would be sung in 1733 congregations every week.</p><div class="no-row-height column-margin column-container"><span class="">See more facts and figures published by the church <a href="https://newsroom.churchofjesuschrist.org/facts-and-statistics/country/united-states">here</a>.</span></div></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caveats
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You should take that claim about how many wards around the world sing these hymns with a monster grain of salt for at least the following reasons:</p>
+<ol type="1">
+<li><p>The wards I have data from are not representative of units across the world. Roughly 75% of my data comes from the US, for example, while less than half the congregations in the world come from the US.</p></li>
+<li><p>We can’t assume the 5,659 meetings are independent of each other because most wards contributed data from more than one sacrament meeting. So we can’t interpret them as coming from 5,659 independent wards in the same week.</p></li>
+<li><p>As we’ll see in later posts, holidays matter, and the likelihood of singing any one hymn goes up and down depending on things like holidays, Fast Sundays, and proximity to <a href="../../posts/general_conference.html">General Conference</a>. So the odds of singing these unusual hymns is basically zero the week before Christmas, but slightly higher in a random week in September or something.</p></li>
+</ol>
+<p>I wanted to point out these caveats, but it’s still interesting to think about how many times these hymns are sung around the world on a given Sunday.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="concluding-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-thoughts">Concluding thoughts</h2>
+<p>In this blog post, I took a closer look at hymns that are sung at most once a decade. Many of them were sung less often that that, if they were sung at all.</p>
+<p>But <em>should</em> we cut these hymns? Unless there are issues with the text, message, or doctrine, I don’t see any reason why we should remove hymns <em>per se</em>. In fact, some hymns, like <hymn>We Meet Again in Sabbath School (282)</hymn> or <hymn>This House We Dedicate to Thee (245)</hymn> are/were quite appropriate in very specific, albeit infrequent, circumstances. So, should they be printed in tens of thousands of hymnals? In my opinion, probably not.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Recommendation for the next hymnal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Put these special hymns into an online supplement to the hymnal, like <a href="../../posts/mens_womens_arrangements.html#my-recommendations-for-the-next-hymnal">what I recommend for the men’s and women’s arrangements</a>. Make it clear that these are approved for use in the church and part of the “canon” but are simply not printed for practical reasons.</p>
+<p>As for the special hymns that are useful for certain occasions, set them aside in a section called “special occasions” or something that would catch people’s attention. We don’t want them to be overlooked when those special occasions do arise. It would be a shame to lose these hymns simply because the occasions they are written for don’t happen very often.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Recommendation to music chairpeople
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is unlikely that many people in your ward will be familiar with more than a few hymns listed on this page. If you want to be adventurous and try a really uncommon hymm, these are the ones to choose from. But, it might be good to help the ward out a little bit by having the ward choir sing it first, having the organist play it for prelude a few weeks prior, having the organist play the entire hymn as an introduction, and having the organist use play the melody on the swell (or use a melody coupler) with a reed stop pulled to make it easier to hear.</p>
+<p>Regardless of whether you use these hymns, you should get familiar with these techniques for introducing hymns to ward members because we’ll all likely need to start using them when we get the new hymnal anyway.</p>
+</div>
+</div>
+<p>If you have sung one of these 73 hymns recently in your ward, that’s pretty cool because few people can sasy they have!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>frequency</category>
+  <category>general</category>
+  <guid>https://hymnstats.joeystanley.com/posts/least-common-hymns/index.html</guid>
+  <pubDate>Mon, 09 Oct 2023 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What are the highest notes in the melodies?</title>
   <dc:creator>Joey Stanley</dc:creator>
