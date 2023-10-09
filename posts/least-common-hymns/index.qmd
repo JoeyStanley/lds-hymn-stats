@@ -15,6 +15,8 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 
 [Previously](/posts/most_common_hymns), I've posted about the most popular hymns. In this post, I'll look at the opposite end of the spectrum: what hymns are hardly ever sung at all? Ones that, if they end up being cut from the hymnal, hardly anyone would even notice. 
 
+## A brief note about my calculations
+
 Let me first mention my methods for how I'm calculating how often a hymn is sung, on average, per ward. I currently have data from 5,659 sacrament meetings. A ward will meet together for sacrament meeting usually 48 times in a year (52 weeks minus two for General Conference and minus two for Stake Conference). 5,659 meetings divided by 48 meetings in a year is about 117 years' worth of sacrament meetings---more than any one person would likely attend in their lifetime, even if you doubled up for a couple decades. So, if there's a hymn that's sung in just one of those sacrament meetings, that means it's sung, on average per ward, once every 117 years. If a hymn is sung 100 times in my dataset, it's sung on average once every `5659 / 48 / 100 = ` 1.17 years per ward. 
 
 Because I'm dealing with very sparse numbers in this post, the numbers may fluctuate wildly. So for example, a hymn that's sung in three of my sacrament meetings comes out to an average of once every 39.3 years. Meanwhile a hymns that's sung in just two of them is once every 58.9 years. That's a big jump for a single meeting. So, what I'm saying is you should take these numbers with a large grain of salt they mostly reflect how much data I have. Instead, I'll group them into broad categories of "once a decade," "once a generation," and "once in a lifetime."
