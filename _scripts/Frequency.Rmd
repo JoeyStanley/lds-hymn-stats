@@ -683,7 +683,7 @@ Look up a single ward to send to them via email.
 ```{r}
 freqs %>%
     left_join(hymns_ranked, by = "name_num") %>%
-    filter(ward == "Maple Meadows 2nd") %>%
+    filter(ward == "SSH") %>%
     arrange(-rank) %>%
     select(name_num, date, rank, n)
 
