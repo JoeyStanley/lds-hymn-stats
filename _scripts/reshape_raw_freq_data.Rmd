@@ -481,6 +481,94 @@ mm2 <- bind_rows(mm2_2022, mm2_2023) %>%
     print()
 ```
 
+#### Wills Point Ward
+
+Yvonne Dixon sent this (Oct 9, 2023) based on a facebook comment. She said they only listened to the sacrament hymns and did not sing, so in most of the 2020 data, there is just a sacrament hymn. Then there were a few months in 2021 without sacrament hymns for some reason.
+
+```{r}
+willis_point_2020 <- read_excel("../data/wards/Wills Point Ward.xlsx", sheet = "2020", 
+                         col_names = c("date", "opening", "opening_name", "sacrament", "sacrament_name", "closing", "closing_name")) %>%
+    clean_names() %>%
+    select(date, opening, sacrament, closing) %>%
+    print()
+willis_point_2021 <- read_excel("../data/wards/Wills Point Ward.xlsx", sheet = "2021") %>%
+    clean_names() %>%
+    select(date = x2, opening, sacrament, `intermediate` = rest_hymn, closing) %>%
+    mutate(opening = as.numeric(opening)) %>%
+    print()
+willis_point_2022 <- read_excel("../data/wards/Wills Point Ward.xlsx", sheet = "2022") %>%
+    clean_names() %>%
+    select(date = x2, opening, sacrament, `intermediate` = special_number, closing) %>%
+    filter(!is.na(date)) %>%
+    mutate(across(c(opening, intermediate), as.numeric)) %>%
+    print()
+willis_point_2023 <- read_excel("../data/wards/Wills Point Ward.xlsx", sheet = "2023") %>%
+    clean_names() %>%
+    select(date = x2, opening, sacrament, `intermediate` = special_number, closing) %>%
+    mutate(across(c(opening, intermediate), as.numeric)) %>%
+    print()
+
+willis_point <- bind_rows(willis_point_2020, willis_point_2021, willis_point_2022, willis_point_2023) %>%
+    pivot_longer(cols = -date, names_to = "type", values_to = "hymn_num") %>%
+    filter(!is.na(hymn_num)) %>%
+    mutate(date = as.Date(date)) %>%
+    left_join(name_num_lookup, by = "hymn_num") %>%
+    
+     # Add the extra stuff
+    mutate(ward = "Wills Point",
+           city = "Wills Point",
+           state = "Texas",
+           country = "United States") %>%
+    print()
+```
+
+#### SSH
+
+Wendy Hickman sent this to me October 9, 2023. Probably the trickiest format I've seen, but it has data from 2017 through 2023!
+
+```{r}
+ssh <- read_csv("../data/wards/ssh3.csv", show_col_types = FALSE) %>%
+    clean_names() %>%
+    select(date = x1, hymns) %>%
+    
+    # First, extract the year
+    mutate(year = str_extract(date, "\\d{4}")) %>%
+    fill(year) %>%
+    filter(!str_detect(date, "\\d{4}")) %>%
+    
+    # Remove covid dates
+    filter(!str_detect(date, ":")) %>%
+    
+    # now the dates
+    mutate(day = str_extract(date, "\\d{1,2}"),
+           month = str_extract(date, "[a-zA-Z]+")) %>%
+    unite(date, year, month, day) %>%
+    mutate(date = ymd(date)) %>%
+
+    # Now the hymns
+    filter(!is.na(hymns)) %>%
+    mutate(hymns = str_remove_all(hymns, "[^0-9\\s]"), # strip everything but numbers and spaces
+           hymns = str_remove(hymns, "\\A\\s+"), # strip leading spaces
+           hymns = str_remove(hymns, "\\s+\\Z"), # strip trailing spaces
+           hymns = str_replace_all(hymns, "\\s+", " ")) %>%  # consolidate spaces
+    separate(hymns, into = c("opening", "sacrament", "other"), extra = "merge") %>%
+    separate(other, into = c("intermediate", "closing"), fill = "left") %>%
+    
+    # final formatting
+    mutate(date = as.Date(date)) %>%
+    arrange(date) %>%
+    pivot_longer(cols = -date, names_to = "type", values_to = "hymn_num") %>%
+    filter(!is.na(hymn_num)) %>%
+    mutate(ward = "SSH",
+           city = "Unknown",
+           state = "Unknown",
+           country = "United States") %>%
+    mutate(hymn_num = as.double(hymn_num)) %>%
+    print()
+```
+
+Note that there a few warnings introduced in the separate function from other to intermediate and closing. I checked and they're all legit. 
+
 #### Misc
 
 I have a new spreadsheet (September 10, 2023) that has any miscelleneous hymns I get. Small things people send me, etc.
@@ -515,6 +603,8 @@ new_data <- bind_rows(marion,
                       cedarcitySA,
                       brenner_pass,
                       mm2,
+                      willis_point,
+                      ssh,
                       misc) %>%
     mutate(type = as_factor(tolower(type)),
            type = fct_recode(type, "intermediate" = "rest"),
@@ -540,14 +630,11 @@ rm(marion,
    slate_canyon_10th,
    spanish_trails,
    fort_meade,
-   cedarcitySA,
-   cedarcitySA_2019,
-   cedarcitySA_2020,
-   cedarcitySA_2021,
+   cedarcitySA, cedarcitySA_2019, cedarcitySA_2020, cedarcitySA_2021,
    brenner_pass,
-   mm2_2023,
-   mm2_2022,
-   mm2,
+   mm2_2023, mm2_2022, mm2,
+   willis_point_2020, willis_point_2021, willis_point_2022, willis_point_2023, willis_point,
+   ssh,
    misc)
 ```
 
@@ -686,7 +773,7 @@ Add the source.
 
 ```{r}
 freqs %>%
-    filter(ward == "Maple Meadows 2nd")
+    filter(ward == "Wills Point Ward")
 ```
 
 ```{r}
@@ -699,6 +786,7 @@ joeys_wards <- c("Athens 1st Ward",     # 973
                  "Cedar City Single Adult Ward", #303
                  "Collins Hill",
                  "Dardenne Creek Ward", # 36
+                 "Wills Point Ward",
                  "Draper 5th Ward",     # 49
                  "Draper 6th Ward",     # 670
                  "East Millcreek 9th",
@@ -720,6 +808,7 @@ joeys_wards <- c("Athens 1st Ward",     # 973
                  "Spanish Fields 1st", # 205
                  "Spanish Field 2nd",  # 24
                  "Spanish Trails", # 300
+                 "SSH",
                  "Sunset 11th",
                  "Taylorsville Gardens", # 701
                  "Winnebago YSA Branch", #314
