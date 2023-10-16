@@ -10,7 +10,259 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.433</generator>
-<lastBuildDate>Mon, 09 Oct 2023 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 12 Oct 2023 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>What are the lowest notes in the melodies?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/lowest_melody/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Previously, I wrote about <a href="../../posts/highest_melody">the highest notes the soprano line has to sing</a>. In this post, we’ll explore the <em>lowest</em> notes the soprano line sings. As a reminder, in addition to collecting frequency data about how often hymns are sung, I have also analyzed the notes and rhythms in the hymnal. Mark Mitchell has already done <a href="https://markmitchell-music.com/music/documents/HymnStats.pdf">fantastic work</a> related to this. I hope to add to what he’s reported already.</p>
+<section id="lowest-melody-notes" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="lowest-melody-notes">Lowest melody notes</h2>
+<p>When we think of sopranos, we often think of high notes. We’ve already seen that the soprano line goes up to an F♯5 in <hymn>Lead on My Ample Arm (#120)</hymn>, but it typically goes up to a D5. But, sopranos do have to sing low sometimes too.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The lowest melody note is an A♭3, which is found in <hymn>The Star-Spangled Banner (340)</hymn> and <hymn>Ye Simple Souls Who Stray (118)</hymn></p>
+</div>
+</div>
+<p>It is worth noting that that A♭3 in both songs is in a unison passage. In the <hymn>The Star-Spangled Banner (340)</hymn> all four parts are in unison and the soprano has to hit that note four times. That melody is notorious for being difficult for a normal person to sing because of its octave and a half range, so presumably they didn’t want to raise the key too much otherwise it would end up going very high. Its a lose-lose I guess.</p>
+<div class="page-columns page-full"><p>For <hymn>Ye Simple Souls Who Stray (118)</hymn>, the soprano and altos are in unison for the entire first half of the hymn. If you look at the same hymn in the 1948 hymnal (#290), you’ll see first off that it’s a “Choir” arrangement—yes, they had full-on choir arrangements in the back of the hymnal—so it’s probably a little more difficult to sing and maybe not intended for congregational singing. Furthermore, that lower melody line in the first half of the hymn is only written for the altos to sing. There may be a remnant of that in the 1985 hymnal because, if you compare the phrases where sopranos and altos are in unison in <hymn>Ye Simple Souls Who Stray (118)</hymn> to <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, you’ll see that in the latter, we have stems in the notes going in both directions, suggesting soprano and alto in unison. However, in the former, you only see one stem. Perhaps then, the intention is for altos to sing that first half of the hymn and for the sopranos to come in later.</p><div class="no-row-height column-margin column-container"><span class="">Please note the copy that I have is the 11th printing, dated 1957. It has a red cover. I don’t know enough about the various printings of that hymnal to know what differences there are between them.</span></div></div>
+<p>Regardless, this low A♭3 is, for both hymns, pretty exceptional.</p>
+<p>How often will a congregation see one of these two hymns? Well, spoiling a bit of a futhre 4th of July post, I’ll go ahead and say that it looks like only about a third of the wards in the US sing <hymn>The Star-Spangled Banner (340)</hymn> every year. To put it another way, one ward might sing it once every three years, on average. Meanwhile, <hymn>Ye Simple Souls Who Stray (118)</hymn> is one of <a href="../../posts/least-common-hymns">the rarest hymns in the hymnal</a> and is basically a once(-or-twice)-in-a-lifetime kind of hymn. So, sopranos, don’t sweat it if you can’t quite hit that A♭3.</p>
+</section>
+<section id="other-low-melody-notes" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="other-low-melody-notes">Other low melody notes</h2>
+<section id="a3" class="level3">
+<h3 class="anchored" data-anchor-id="a3">A3</h3>
+<p>Not too many hymns even approach that low A♭3. Just one hymn goes down to an A3. <hymn>Zion Stands with Hills Surrounded (#43)</hymn> just pops down there one time, unison with the altos, and never really comes close to it again. It is also extremely rare, being sung about as often as <hymn>Ye Simple Souls Who Stray (118)</hymn>, which is hardly ever.</p>
+</section>
+<section id="b3" class="level3">
+<h3 class="anchored" data-anchor-id="b3">B♭3</h3>
+<p>Fourteen hymns have the sopranos going down to a Bb3. In all cases, the soprano line is in unison with the alto line, meaning there is no lower alto note being sung at that time. In some hymns, all four parts are unison when that B♭3 is being sung. We get that in <hymn>Awake and Arise (#8)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Hail to the Brightness of Zion’s Glad Morning! (#42)</hymn>, <hymn>’Tis Sweet to Sing the Matchless Love (#177)</hymn>, and <hymn>Ye Elders of Israel (#319)</hymn>. In the case of <hymn>Because I Have Been Given Much (#219)</hymn>, there is technically no alto part since it is marked as unison, but there is a G3 below it that could very well be an alto line.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>It is interesting to note where in the melody these Bb3 notes come. For some hymns, it’s the first note of the song, it’s usually the dominant, and it never goes that low again. We see that in <hymn>Awake and Arise (#8)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Hail to the Brightness of Zion’s Glad Morning! (#42)</hymn>, <hymn>As Now We Take the Sacrament (#169)</hymn>, and <hymn>As Zion’s Youth in Latter Days (#256)</hymn>. In <hymn>Joseph Smith’s First Prayer (#26)</hymn> and <hymn>Silent Night (#204)</hymn>, it’s in the key of Bb and the last note of the hymn is the lowest one. The rest have the low note somewhere else in the middle, but usually only one time. The hymn <hymn>Ye Elders of Israel (#319)</hymn> has that low note integrated throughout, including the beginning, a few times in the middle, and also near the end. Of course, it’s intended for men to sing, so we might not be right in calling it a “soprano” line.</p>
+<p>However, given that some of these hymns are fairly common, it is not unusual to see this B♭3. We have two <a href="../../posts/sacrament.qmd">sacrament hymns</a>, a popular Christmas hymn, and three other very popular hymns. The other seven are not very common. But, collectively, these 14 hymns make up 5.1% of the hymns sung in sacrament meeting. That means you’re likely to encounter one about once every 5.75 weeks on average. So, unless someone happens to know that <hymn>The Star-Spangled Banner (340)</hymn> goes down to an A♭3 <em>and</em> be familiar with two very infrequent hymns, I’m guessing a typical church-goer may think that a Bb3 is the lowest soprano note.[Y’know, in case typical church-goers think about these things!]</p>
+</section>
+<section id="b4" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="b4">B4</h3>
+<p>Only 11 hymns have B3 as the lowest note in the melody. It is here that we finally get an alto note below the melody’s lowest note. In <hymn>There Is Sunshine in My Soul Today (#227)</hymn>, as the melody goes down to a B3 in the chorus, the alto is below that on a G3. In all other cases, the alto note is unison with the melody still.</p>
+<div class="page-columns page-full"><p>It is interesting to note though that as far as where in the melody that lowest note comes is quite different from where we saw the B♭3s in the previous section. Just one hymn, <hymn>How Long, O Lord Most Holy and True? (#126)</hymn>, has the B3 as the first note. In all other cases, the lowest note comes in the middle of a phrase, usually near the middle of the hymn. I suspect this has to do with the <a href="../../posts/key_signatures">key signatures</a> that are most common in the hymnal. Since we have no hymns in B major, we don’t see B3 as the dominant, and since we have no hymns in E major, we don’t see it as the subdominant, with the exception of <hymn>How Long, O Lord Most Holy and True? (#126)</hymn>. Instead, we’re seeing it as random notes of the melody. We get it as the mediant in hymns in G major (<hymn>Testimony (#137)</hymn>, <hymn>Dear to the Heart of the Shepherd (#221)</hymn>, <hymn>There Is Sunshine in My Soul Today (#227)</hymn>, <hymn>Know This, That Every Soul Is Free (#240)</hymn>), the submediant for hymns in D major (<hymn>Where Can I Turn for Peace? (#129)</hymn> and <hymn>Onward, Christian Soldiers (#246)</hymn>), a leading tone for <hymn>Be Thou Humble (#130)</hymn>, which is in C major, and as an accidental in <hymn>The Wintry Day, Descending to Its Close (#37)</hymn> and <hymn>Up, Awake, Ye Defenders of Zion (#248)</hymn>.</p><div class="no-row-height column-margin column-container"><span class="">Incidentally, Hymn #126 is one of only five hymns in a <a href="../../posts/key_signatures.html#what-about-minor-keys">minor key</a>.</span><span class="">I 100% had to look these terms up.</span></div></div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>How often are you likely to see a B3 in the melody? Well, none of these 11 are sacrament hymns, so it’s not going to be as likely as B♭3. But, there are some well-known ones. Collectively, these hymns make up 3.16% of the hymns sung in sacrament meeting, meaning you’re likely to see one about once every 9.4 weeks or so.</p>
+<p><br><br><br><br><br></p>
+</section>
+</section>
+<section id="template" class="level2">
+<h2 class="anchored" data-anchor-id="template">Template ▼</h2>
+<p>Well then, what is a typical highest note for a soprano line?</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The majority of hymns have D5 as their highest note.</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Highest Note</th>
+<th style="text-align: right;">Number of Hymns</th>
+<th style="text-align: right;">Percentage of Hymnal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Ab4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.61%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Bb4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.31%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">B4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.61%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">C5</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">9.17%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C#5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.83%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">D5</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">50.15%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Eb5</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">18.96%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">E5</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">16.51%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">F5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1.53%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">F#5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.31%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>There are another five hymns that have melody lines that go up to an F5. But, as seen below, the only one that is moderately common is <hymn>The Morning Breaks (1)</hymn>. The others are sung so infrequently, that their presence in sacrament meetings is negligible. <hymn>Great Is the Lord (77)</hymn> was sung just four times in my sample and both <hymn>The Wintry Day, Descending to Its Close (37)</hymn> and <hymn>Ye Simple Souls Who Stray (118)</hymn> were each sung only twice. And <hymn>Sweet Is the Work (317)</hymn> is a women’s choir arrangement so, <a href="../../posts/mens_womens_arrangements.html">as I’ve discussed already</a>, it’s not sung very much.</p>
+<table class="table">
+<caption>Hymns with melodies that go up to an F5</caption>
+<thead>
+<tr class="header">
+<th>Hymn</th>
+<th>How often it’s sung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The Morning Breaks (1)</td>
+<td>Once every 3.5 years</td>
+</tr>
+<tr class="even">
+<td>Great Is the Lord (77)</td>
+<td>Once every 30 years</td>
+</tr>
+<tr class="odd">
+<td>The Wintry Day, Descending to Its Close (37)</td>
+<td>Once every 60 years</td>
+</tr>
+<tr class="even">
+<td>Ye Simple Souls Who Stray (118)</td>
+<td>Once every 60 years</td>
+</tr>
+<tr class="odd">
+<td>Sweet Is the Work (317)</td>
+<td>Never?</td>
+</tr>
+</tbody>
+</table>
+<p>So, six of the 341 hymns on our current hymnal go up to an F5 or F♯5, which is 1.76% of the hymnal. If all hymns were sung equally often as each other, we’d then expect that 1.76% of sacrament meeting hymns to go up to an F5 or F♯5. In reality, only 0.24% of them do, which means these six hymns are less common than expected. On average, you’ll encounter one maybe once every two and a half years. And if you do, three-quarters of the time it’ll be <hymn>The Morning Breaks (1)</hymn>.</p>
+<p>I can’t help but wonder whether that high melody note is the reason these hymns are so uncommon. It may be the case that they are unusual hymns anyway that for whatever reason are not sung very often. But I think that these hymns are uncommon at least partially because of these high notes. A music coordinator might consider selecting one of these for their ward to sing in sacrament meeting, but for the sake of everyone’s voices, ultimately decides against it. Thus, the high note perpetuates the rarity of the hymn. We saw this with the <a href="../../posts/key_signatures.html">key signatures</a> as well: hymns with marginally-attested phenomena (in this case, the keys of A and Db) are rarer than they would be due to chance alone.</p>
+</section>
+<section id="not-the-highest-but-still-pretty-high-melody-notes" class="level2">
+<h2 class="anchored" data-anchor-id="not-the-highest-but-still-pretty-high-melody-notes">Not the highest, but still pretty high melody notes</h2>
+<p>Okay, so melodies that go up to an F5 or higher are just not that common. Once we start looking at the E5 and E♭5 territory, there are many more hymns that include notes in that range, and some of those hymns are pretty common.</p>
+<p>There are 54 hymns have E5 as the highest note in their melody, including some of the more common ones like <hymn>High on the Mountain Top (5)</hymn>, <hymn>Our Savior’s Love (113)</hymn>, <hymn>Let Us All Press On (243)</hymn>, and <hymn>Praise to the Man (27)</hymn>. Collectively, these 54 hymns make up 15.84% of the hymnal. 12.21% of the hymns sung in my sample of sacrament meetings are one of these 54, so you’ll see an E5 about once every 2.5 weeks. The following figure shows these hymns in order of frequency and how often they’re sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>As far as hymns that have E♭5 as the highest note, there are 58 of them, or 18.18% of the hymns. Some of the more common ones include <hymn>I Stand All Amazed (193)</hymn>, <hymn>The Spirit of God (2)</hymn> and a handful of other sacrament hymns. The following table shows these hymns in order of frequency and how often they’re sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>In total, 115 hymns, or 35.9% of the hymnal go up to an E<img src="https://latex.codecogs.com/png.latex?%5Cflat"> or higher.</p>
+</section>
+<section id="typical-highest-notes-for-a-melody" class="level2">
+<h2 class="anchored" data-anchor-id="typical-highest-notes-for-a-melody">Typical highest notes for a melody</h2>
+<p>However, D5, or the D an octave and one note above middle C, is by far the most common highest note for the melody in the hymnal. 164 hymns—that’s 51.3% of the hymnal!—have this as the highest note, including <hymn>I Know That My Redeemer Lives (136)</hymn>, <hymn>I Believe in Christ (148)</hymn>, and several sacrament hymns. I can’t show all of them in a single plot, but here are the most common ones and how often they typically occur in sacrament meeting in a ward in a year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+</section>
+<section id="hymns-where-the-melody-doesnt-go-very-high" class="level2">
+<h2 class="anchored" data-anchor-id="hymns-where-the-melody-doesnt-go-very-high">Hymns where the melody doesn’t go very high</h2>
+<p>The remaining 13% of the hymns have melodies that don’t go as high. There are only 6 that go up to a C♯ or D♭, including <hymn>Because I Have Been Given Much (219)</hymn>. The figure below shows all of them and how often they occur. It’s interesting that even though there are six hymns that fall into this category, two are sacrament hymns and one is a very common one. So even though they make up just 1.76% of the hymnal, they make up about 2.65% of the hymns sung in church. You’re likely to see one every 11 or so weeks on average.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>I think there are relatively few that have this particular note simply because of <a href="../../posts/key_signatures.html">what key signatures are most common</a>. It’s probably not a coincidence that one of the two hymns in D♭ are in this category. Most of the others are in A♭. If there were more hymns in D♭ major, or even A♭ we might see more hymns where the highest note is D♭5.</p>
+<p>Another 30 hymns only go as high as a C5, including <hymn>Choose the Right (239)</hymn> and <hymn>Come, Follow Me (116)</hymn>. They make up 8.8% of the hymnal but 11.7% of the hymns sung in sacrament meeting.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_melody/index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>There are five hymns don’t ever go higher than the middle of the treble clef. The two that only go to a B4 are both pretty well known: <hymn>Secret Prayer (144)</hymn> and <hymn>Lead, Kindly Light (197)</hymn>. The only one that has B♭4 as the highest note is for men, <hymn>Ye Who Are Called to Labor (321)</hymn>, so it might not even count as a “soprano” note.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The lowest highest melody note is an A♭4, which is found in the rare <hymn>God Moves in a Mysterious Way (285)</hymn> and the extremely rare <hymn>Now the Day is Over (159)</hymn>.</p>
+</div>
+</div>
+<p>These two hymns are low enough that even a good tenor could sing the melody in the right octave! In total, there are just five hymns that don’t reach a C5, which is only 1.5% of the hymnal. And they’re rarer hymns, so they only make up 0.72% of the hymns sung in sacrament meeting. So, if your highest note is a B, you might be able to sing melody once every 10 months or so. At least these lower hymns are more common that the hymns that go up to an F5 or F♯5!</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>The highest note in the soprano line is an F♯5. About half of the hymns go up to D5, with many more going a little higher than that. Fewer never reach a D5. The lowest highest note in the soprano line is an A♭4.</p>
+<p>Personally, singing above about a B is not easy for me. So, if I were in charge, I’d selfishly transpose many of these hymns down a bit so that their highest note is in a more comfortable range for me. But, I know many other people have no problem singing a D or even an E, so I’m not recommending that the hymnal lower any of these hymns.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>melody</category>
+  <category>musicology</category>
+  <guid>https://hymnstats.joeystanley.com/posts/lowest_melody/index.html</guid>
+  <pubDate>Thu, 12 Oct 2023 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What are the least common hymns?</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -1401,7 +1653,7 @@ Fun Fact
 <p>I was talking to someone about this project, and they said something like, “Our ward does a good job at singing unusual hymns. We probably get through the entire hymnal every year.” I can tell you now that’s impossible. Let’s explore that a little bit.</p>
 <div class="page-columns page-full"><p>There are 52 weeks in a year. Subtract two for General Conference and subtract two for Stake Conference. You’re left with 48 sacrament meetings per year. If you sang an opening, sacrament, intermediate, and closing hymn in all 48 of those meetings, that’s 196 hymns. But, subtract 12 for Fast Sundays, which have no intermediate hymn. So, you’re left with a maximum of 184 sung per year per ward. That’s assuming zero special musical numbers ever.</p><div class="no-row-height column-margin column-container"><span class="">Okay, some years have 53 Sundays, but for simplicity, we’ll keep it at 52</span><span class="">For what it’s worth, I assume 48 sacrament meetings per year for everything in this project.</span></div></div>
 <p>Well, right off the bat, we know that you can’t possibly get through the entire hymnal in a year, because there are 341 hymns! Even if you exclude the men’s and women’s arrangements in the back and <hymn>God Save the King</hymn>, that’s 310 hymns.</p>
-<p>But, let’s not forget that sacrament hymns almost always have to be one of the hymns in the 169–196 range. There are 28 of them. We’ll assume you get through all 28 of them, but not all wards do because there are a few that are <a href="../posts/sacrament.html#frequency">clearly less popular than others</a>. So, if 48 of your 184 hymns are tied up as sacrament hymns, that means you’ll have to repeat some. That leaves 136 remaining opening, intermediate, and closing hymn slots. If you didn’t repeat any <em>and</em> had zero special musical numbers, then yes, you could sing 136 unique hymns, plus the 28 sacrament hymns, for a total of 164 unique hymns per year. That is the maximum any ward could do.</p>
+<p>But, let’s not forget that sacrament hymns almost always have to be one of the hymns in the 169–196 range. There are 28 of them. We’ll assume you get through all 28 of them, but not all wards do because there are a few that are <a href="../posts/sacrament.qmd#frequency">clearly less popular than others</a>. So, if 48 of your 184 hymns are tied up as sacrament hymns, that means you’ll have to repeat some. That leaves 136 remaining opening, intermediate, and closing hymn slots. If you didn’t repeat any <em>and</em> had zero special musical numbers, then yes, you could sing 136 unique hymns, plus the 28 sacrament hymns, for a total of 164 unique hymns per year. That is the maximum any ward could do.</p>
 <p>If you really were determined to all 310 hymns without repeating, except for sacrament hymns, it would take 94 weeks to do so, or just shy of two years, under perfect conditions. But having special musical numbers and ward choirs makes it impossible to reach that goal. I currently have 17,993 hymns from 5,345 sacrament meetings. Simple division shows that…</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1474,7 +1726,7 @@ Technical details for nerds :)
 
 
 
-<p>The most common hymn is <hymn>I Stand All Amazed (193)</hymn>. Given what was discussed previously about the <a href="../posts/sacrament.html">sacrament hymns</a>, it shouldn’t come as a surprise that the most common hymn is a sacrament hymn. In fact, the top 15 most sung hymns are sacrament hymns. There is a fairly well-enforced constraint that at least one hymn per meeting “must” be one of the 28 canonical sacrament hymns (with two <a href="../posts/sacrament.html#non-sacrament-hymns">“honorary hymns”</a> as possibilities as well). We can now better appreciate the list of the most common hymns.</p>
+<p>The most common hymn is <hymn>I Stand All Amazed (193)</hymn>. Given what was discussed previously about the <a href="../posts/sacrament.qmd">sacrament hymns</a>, it shouldn’t come as a surprise that the most common hymn is a sacrament hymn. In fact, the top 15 most sung hymns are sacrament hymns. There is a fairly well-enforced constraint that at least one hymn per meeting “must” be one of the 28 canonical sacrament hymns (with two <a href="../posts/sacrament.qmd#non-sacrament-hymns">“honorary hymns”</a> as possibilities as well). We can now better appreciate the list of the most common hymns.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1490,7 +1742,7 @@ Note
 </div>
 <section id="the-most-common-hymns" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="the-most-common-hymns">The most common hymns</h2>
-<div class="page-columns page-full"><p>The most common hymns sung in the church, according to my data, are displayed in Figure&nbsp;1. Here, sacrament hymns are in gray and other hymns are in black. I’ve shown only the hymns that are sung, on average, one or more times per year per ward. Since <a href="../posts/sacrament.html">I’ve already posted about the sacrament hymns</a>, I’ll focus now on just the non-sacrament hymns.</p><div class="no-row-height column-margin column-container"><span class="">You may think that a lot of hymns that pertain to specific holidays would make it onto this list, but as we’ll see in later blog posts about annual trends, there are actually relatively few festive hymns that are sung by most wards most years.</span></div></div>
+<div class="page-columns page-full"><p>The most common hymns sung in the church, according to my data, are displayed in Figure&nbsp;1. Here, sacrament hymns are in gray and other hymns are in black. I’ve shown only the hymns that are sung, on average, one or more times per year per ward. Since <a href="../posts/sacrament.qmd">I’ve already posted about the sacrament hymns</a>, I’ll focus now on just the non-sacrament hymns.</p><div class="no-row-height column-margin column-container"><span class="">You may think that a lot of hymns that pertain to specific holidays would make it onto this list, but as we’ll see in later blog posts about annual trends, there are actually relatively few festive hymns that are sung by most wards most years.</span></div></div>
 <div id="fig-the-favorites" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="https://hymnstats.joeystanley.com/images/the_favorites.jpeg" class="img-fluid figure-img"></p>
@@ -1525,55 +1777,380 @@ Note
 <item>
   <title>What are the most and least common Sacrament Hymns?</title>
   <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/sacrament.html</link>
+  <link>https://hymnstats.joeystanley.com/posts/sacrament/index.html</link>
   <description><![CDATA[ 
 
 
 
 <p>We’ll start off by looking at sacrament hymns, or rather, the hymn sung immediately before the sacrament is blessed and passed to the congregation. As far as I can tell, §19.3.2 of the <em>General Handbook</em> has the only instruction about sacrament hymns, and it says that “[t]he sacrament hymn should refer to the sacrament itself or to the sacrifice of the Savior.” This instruction is repeated on page 380 of the hymnal.</p>
 <div class="page-columns page-full"><p>In the hymnal, sacrament hymns go from 169 (<hymn>As Now We Take the Sacrament</hymn>) to 196 (<hymn>Jesus, Once of Humble Birth</hymn>), at least according to the Table of Contents. As far as I can tell, it doesn’t <em>specifically</em> state that the sacrament hymn must be one of the 28 within that range, but I think it’s a generally accepted that that’s what that phrase from the handbook means.</p><div class="no-row-height column-margin column-container"><span class="">In fact, I’ve had church leaders enforce this constraint. I was in a ward where a newly-called music coordinator chose reverent hymns that were outside of that range. After about two weeks, the bishop announced that we’d be singing a different hymn than what was listed on the program and he changed it to a sacrament hymn. Presumably he later explained the policy to the chorister afterwards because we sang “true” sacrament hymns from then on.</span></div></div>
-<p>As it turns out, <hymn>I Stand All Amazed (193)</hymn>, which is <a href="../posts/most_common_hymns.html">the most common hymn overall</a>, is part of that group. So it should come as no surprise that a sacrament hymn is the most common hymn overall. That one in particular focuses less on the sacrament itself and more on the Atonement, so it could be used outside of sacrament contexts without feeling out of place. In fact, a quick look at the numbers suggests that it was, in fact, sung as opening and closing hymns at least three times more often than any other sacrament hymn. This may explain why it stands out as the most commonly sung hymn in sacrament meetings.</p>
+<p>As <a href="../../posts/most_common_hymns.html">I’ve written already</a>), <hymn>I Stand All Amazed (193)</hymn> is the most common hymn overall. So it should come as no surprise that a sacrament hymn is the most common hymn overall. It focuses less on the sacrament itself and more on the Atonement, so it could be used outside of sacrament contexts without feeling out of place. In fact, a quick look at the numbers suggests that it was, in fact, sung as opening and closing hymns at least three times more often than any other sacrament hymn. This may explain why it stands out as the most commonly sung hymn in sacrament meetings.</p>
 <section id="frequency" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="frequency">Frequency</h2>
-<p>Let’s take a closer look at the sacrament hymns themselves. In theory, if a ward were to systematically cycle through all the sacrament hymns, they’d make it through all of them in a little over six months. However, Figure&nbsp;1 shows that they’re definitely not all sung equally as often as each other.</p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">Most plots on this page are formatted just like this one here. Hymns that are less common are in the lower left and hymns that are more common are in the upper right. The numbers along the bottom refer to how many times, on average, a ward will sing that hymn within a given year.</span></div></div>
-<div id="fig-sac_freqs" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/images/sacrament.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Sacrament hymns in order of frequency</figcaption>
-</figure>
+<p>Let’s take a closer look at the sacrament hymns themselves. In theory, if a ward were to systematically cycle through all the sacrament hymns, they’d make it through all of them in a little over six months. However, this plot shows that they’re definitely not all sung equally as often as each other.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">Many plots throughout this blog are formatted just like this one here. Hymns that are less common are in the lower left and hymns that are more common are in the upper right. The numbers along the bottom refer to how many times, on average, a ward will sing that hymn within a given year.</span></div></div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/sacrament/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
 </div>
-<!-- :::{.callout-tip collapse="true"} -->
-<!-- ### Click to show the raw data -->
-
-<!-- {{< include ../tables/sacrament_hymns.html >}} -->
-<!-- ::: -->
-<p>Joining <hymn>I Stand All Amazed (193)</hymn> as the most common ones are <hymn>In Humility, Our Savior (172)</hymn>, <hymn>There is a Green Hill Far Away (194)</hymn>, and <hymn>Jesus, Once of Humble Birth (196)</hymn>. Each one of these is sung around two or three times per year, on average, or once every four to five months.</p>
-<p>Most sacrament hymns are sung at least once a year per ward, on average, but there were some that were less common. <hymn>O Lord of Hosts (178)</hymn>, <hymn>Again, Our Dear Redeeming Lord (179)</hymn>, and <hymn>Again, We Meet around the Board (186)</hymn> each averaged somewhere between once every 13 and 17 months. The least frequent sacrament hymn though was <hymn>O Thou, Before the World Began (189)</hymn>, showing up about once every two years.</p>
-<p>Also, keep in mind that some wards in this dataset do in fact systematically cycle through all the sacrament hymns. I recalculated the numbers without those wards (Figure&nbsp;2), and the common hymns were slightly more frequent and the uncommon ones were even rarer. For example, <hymn>O Thou, Before the World Began (189)</hymn> jumped down from once every two years to once every three years.</p>
-<div id="fig-sac_minus_regulars" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/images/sacrament_minus_regulars.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Sacrament hymns excluding wards that systematically cycle through them</figcaption>
-</figure>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to show the summarized data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 33%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Rank</th>
+<th style="text-align: left;">Title</th>
+<th style="text-align: left;">Number</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Average per year</th>
+<th style="text-align: right;">Every X weeks</th>
+<th style="text-align: right;">Every X months</th>
+<th style="text-align: right;">Every X years</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">I Stand All Amazed</td>
+<td style="text-align: left;">193</td>
+<td style="text-align: right;">1003</td>
+<td style="text-align: right;">2.700</td>
+<td style="text-align: right;">17.780</td>
+<td style="text-align: right;">4.445</td>
+<td style="text-align: right;">0.370</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">In Humility, Our Savior</td>
+<td style="text-align: left;">172</td>
+<td style="text-align: right;">911</td>
+<td style="text-align: right;">2.452</td>
+<td style="text-align: right;">19.575</td>
+<td style="text-align: right;">4.894</td>
+<td style="text-align: right;">0.408</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Jesus, Once of Humble Birth</td>
+<td style="text-align: left;">196</td>
+<td style="text-align: right;">877</td>
+<td style="text-align: right;">2.361</td>
+<td style="text-align: right;">20.334</td>
+<td style="text-align: right;">5.084</td>
+<td style="text-align: right;">0.424</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">There Is a Green Hill Far Away</td>
+<td style="text-align: left;">194</td>
+<td style="text-align: right;">862</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">20.688</td>
+<td style="text-align: right;">5.172</td>
+<td style="text-align: right;">0.431</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">As Now We Take the Sacrament</td>
+<td style="text-align: left;">169</td>
+<td style="text-align: right;">829</td>
+<td style="text-align: right;">2.231</td>
+<td style="text-align: right;">21.511</td>
+<td style="text-align: right;">5.378</td>
+<td style="text-align: right;">0.448</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">How Great the Wisdom and the Love</td>
+<td style="text-align: left;">195</td>
+<td style="text-align: right;">799</td>
+<td style="text-align: right;">2.151</td>
+<td style="text-align: right;">22.319</td>
+<td style="text-align: right;">5.580</td>
+<td style="text-align: right;">0.465</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">God Loved Us, So He Sent His Son</td>
+<td style="text-align: left;">187</td>
+<td style="text-align: right;">757</td>
+<td style="text-align: right;">2.038</td>
+<td style="text-align: right;">23.557</td>
+<td style="text-align: right;">5.889</td>
+<td style="text-align: right;">0.491</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">God, Our Father, Hear Us Pray</td>
+<td style="text-align: left;">170</td>
+<td style="text-align: right;">756</td>
+<td style="text-align: right;">2.035</td>
+<td style="text-align: right;">23.589</td>
+<td style="text-align: right;">5.897</td>
+<td style="text-align: right;">0.491</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">O God, the Eternal Father</td>
+<td style="text-align: left;">175</td>
+<td style="text-align: right;">748</td>
+<td style="text-align: right;">2.013</td>
+<td style="text-align: right;">23.841</td>
+<td style="text-align: right;">5.960</td>
+<td style="text-align: right;">0.497</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">We’ll Sing All Hail to Jesus’ Name</td>
+<td style="text-align: left;">182</td>
+<td style="text-align: right;">743</td>
+<td style="text-align: right;">2.000</td>
+<td style="text-align: right;">24.001</td>
+<td style="text-align: right;">6.000</td>
+<td style="text-align: right;">0.500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">Jesus of Nazareth, Savior and King</td>
+<td style="text-align: left;">181</td>
+<td style="text-align: right;">740</td>
+<td style="text-align: right;">1.992</td>
+<td style="text-align: right;">24.099</td>
+<td style="text-align: right;">6.025</td>
+<td style="text-align: right;">0.502</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">Father in Heaven, We Do Believe</td>
+<td style="text-align: left;">180</td>
+<td style="text-align: right;">735</td>
+<td style="text-align: right;">1.978</td>
+<td style="text-align: right;">24.263</td>
+<td style="text-align: right;">6.066</td>
+<td style="text-align: right;">0.505</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">Upon the Cross of Calvary</td>
+<td style="text-align: left;">184</td>
+<td style="text-align: right;">665</td>
+<td style="text-align: right;">1.790</td>
+<td style="text-align: right;">26.817</td>
+<td style="text-align: right;">6.704</td>
+<td style="text-align: right;">0.559</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">With Humble Heart</td>
+<td style="text-align: left;">171</td>
+<td style="text-align: right;">663</td>
+<td style="text-align: right;">1.785</td>
+<td style="text-align: right;">26.897</td>
+<td style="text-align: right;">6.724</td>
+<td style="text-align: right;">0.560</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">Behold the Great Redeemer Die</td>
+<td style="text-align: left;">191</td>
+<td style="text-align: right;">663</td>
+<td style="text-align: right;">1.785</td>
+<td style="text-align: right;">26.897</td>
+<td style="text-align: right;">6.724</td>
+<td style="text-align: right;">0.560</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">Reverently and Meekly Now</td>
+<td style="text-align: left;">185</td>
+<td style="text-align: right;">661</td>
+<td style="text-align: right;">1.779</td>
+<td style="text-align: right;">26.979</td>
+<td style="text-align: right;">6.745</td>
+<td style="text-align: right;">0.562</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">While of These Emblems We Partake</td>
+<td style="text-align: left;">174</td>
+<td style="text-align: right;">599</td>
+<td style="text-align: right;">1.612</td>
+<td style="text-align: right;">29.771</td>
+<td style="text-align: right;">7.443</td>
+<td style="text-align: right;">0.620</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">In Memory of the Crucified</td>
+<td style="text-align: left;">190</td>
+<td style="text-align: right;">599</td>
+<td style="text-align: right;">1.612</td>
+<td style="text-align: right;">29.771</td>
+<td style="text-align: right;">7.443</td>
+<td style="text-align: right;">0.620</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">He Died! The Great Redeemer Died</td>
+<td style="text-align: left;">192</td>
+<td style="text-align: right;">584</td>
+<td style="text-align: right;">1.572</td>
+<td style="text-align: right;">30.536</td>
+<td style="text-align: right;">7.634</td>
+<td style="text-align: right;">0.636</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">’Tis Sweet to Sing the Matchless Love</td>
+<td style="text-align: left;">177</td>
+<td style="text-align: right;">553</td>
+<td style="text-align: right;">1.488</td>
+<td style="text-align: right;">32.248</td>
+<td style="text-align: right;">8.062</td>
+<td style="text-align: right;">0.672</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">In Remembrance of Thy Suffering</td>
+<td style="text-align: left;">183</td>
+<td style="text-align: right;">467</td>
+<td style="text-align: right;">1.257</td>
+<td style="text-align: right;">38.186</td>
+<td style="text-align: right;">9.547</td>
+<td style="text-align: right;">0.796</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">’Tis Sweet to Sing the Matchless Love</td>
+<td style="text-align: left;">176</td>
+<td style="text-align: right;">460</td>
+<td style="text-align: right;">1.238</td>
+<td style="text-align: right;">38.767</td>
+<td style="text-align: right;">9.692</td>
+<td style="text-align: right;">0.808</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">Thy Will, O Lord, Be Done</td>
+<td style="text-align: left;">188</td>
+<td style="text-align: right;">450</td>
+<td style="text-align: right;">1.211</td>
+<td style="text-align: right;">39.629</td>
+<td style="text-align: right;">9.907</td>
+<td style="text-align: right;">0.826</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">While of These Emblems We Partake</td>
+<td style="text-align: left;">173</td>
+<td style="text-align: right;">438</td>
+<td style="text-align: right;">1.179</td>
+<td style="text-align: right;">40.715</td>
+<td style="text-align: right;">10.179</td>
+<td style="text-align: right;">0.848</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">O Lord of Hosts</td>
+<td style="text-align: left;">178</td>
+<td style="text-align: right;">378</td>
+<td style="text-align: right;">1.017</td>
+<td style="text-align: right;">47.177</td>
+<td style="text-align: right;">11.794</td>
+<td style="text-align: right;">0.983</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">Again, Our Dear Redeeming Lord</td>
+<td style="text-align: left;">179</td>
+<td style="text-align: right;">321</td>
+<td style="text-align: right;">0.864</td>
+<td style="text-align: right;">55.555</td>
+<td style="text-align: right;">13.889</td>
+<td style="text-align: right;">1.157</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">Again We Meet Around the Board</td>
+<td style="text-align: left;">186</td>
+<td style="text-align: right;">295</td>
+<td style="text-align: right;">0.794</td>
+<td style="text-align: right;">60.451</td>
+<td style="text-align: right;">15.113</td>
+<td style="text-align: right;">1.259</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">28</td>
+<td style="text-align: left;">O Thou, Before the World Began</td>
+<td style="text-align: left;">189</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">0.606</td>
+<td style="text-align: right;">79.258</td>
+<td style="text-align: right;">19.814</td>
+<td style="text-align: right;">1.651</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Joining <hymn>I Stand All Amazed (193)</hymn> as the most common ones are <hymn>In Humility, Our Savior (172)</hymn>, <hymn>Jesus, Once of Humble Birth (196)</hymn>, and <hymn>There is a Green Hill Far Away (194)</hymn>. These and a few others are each sung around two or three times per year, on average, or once every three and a half to four and a half months.</p>
+<p>Most sacrament hymns are sung at least once a year per ward, on average, but there were some that were less common. <hymn>O Lord of Hosts (178)</hymn>, <hymn>Again, Our Dear Redeeming Lord (179)</hymn>, and <hymn>Again, We Meet around the Board (186)</hymn> each averaged somewhere between once every 11 and 15 months. The least frequent sacrament hymn though was <hymn>O Thou, Before the World Began (189)</hymn>, showing up a little more often than once every two years.</p>
 </section>
 <section id="non-sacrament-hymns" class="level2">
 <h2 class="anchored" data-anchor-id="non-sacrament-hymns">Non-sacrament hymns</h2>
-<p>Once in a while, a ward will indeed sing some other hymn as a sacrament hymn. Many hymns were selected by at least one ward at least one time, but two stood out. They are <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn> and <hymn>Gently Raise the Sacred Strain (146)</hymn> (Figure&nbsp;3). There is good reason for why these two were sung as sacrament hymns: if you look up “Sacrament” in the topical index in the back of the hymnal, it is a list of all the hymns from 169–196, but it also includes these two.</p>
-<div id="fig-sac_plus_honoraries" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/images/sacrament_plus_honoraries.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Sacrament hymns excluding wards that systematically cycle through them</figcaption>
-</figure>
+<p>Once in a while, a ward will indeed sing some other hymn as a sacrament hymn. Many hymns were selected by at least one ward at least one time, but two stood out. They are <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn> and <hymn>Gently Raise the Sacred Strain (146)</hymn>. There is good reason for why these two were sung as sacrament hymns: if you look up “Sacrament” in the topical index in the back of the hymnal, it is a list of all the hymns from 169–196, but it also includes these two.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/sacrament/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="768"></p>
 </div>
-<p>Let’s start with <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn>. It was sung as a sacrament hymn about once every four years per ward on average. Given that it feels like a sacrament hymn <em>and</em> like an Easter hymn, it is perfectly placed between the more on-the-nose sacrament hymns (i.e.&nbsp;those about the bread and water) and the more traditional Easter hymns (e.g.&nbsp;<hymn>He is Risen! (199)</hymn>). Perhaps some music coordinators noticed it in the Index and chose it because of that. But, I could see a music coordinator selecting it because they perhaps thought sacrament hymns went from 169–197 instead of 169–196.</p>
-<p>The oddball though is <hymn>Gently Raise the Sacred Strain (146)</hymn>. In fact, it was sung <em>as a sacrament hymn</em> about once every two years per ward, which is just about as often as <hymn>O Thou, Before the World Began (189)</hymn>. It is not clear to me why this one is listed in the index as a sacrament hymn, but it’s not grouped together with the other sacrament hymns. The “Prayer and Supplication” category of hymns, which is what this is a part of (and rightfully so, in my opinion), is just before the “Sacrament” category. If it, like <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn>, fits into both categories, then I think it should be moved to hymn 168 so that it’s less out of left field. This one really should be thought of as an honorary sacrament hymn. Perhaps we’ll see it included in the “official” list of sacrament hymns in the next hymnal.</p>
+</div>
+<p>Let’s start with <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn>. It was sung <em>as a sacrament hymn</em> about once every two per ward on average. Given that it feels like a sacrament hymn <em>and</em> like an Easter hymn, it is perfectly placed between the more on-the-nose sacrament hymns (i.e.&nbsp;those about the bread and water) and the more traditional Easter hymns (e.g.&nbsp;<hymn>He is Risen! (199)</hymn>). Perhaps some music coordinators noticed it in the Index and chose it because of that. But, I could see a music coordinator selecting it because they perhaps thought sacrament hymns went from 169–197 instead of 169–196.</p>
+<p>The oddball though is <hymn>Gently Raise the Sacred Strain (146)</hymn>. In fact, it was sung <em>as a sacrament hymn</em> about once every 2.6 years per ward, which is only a little less often than <hymn>O Thou, Before the World Began (189)</hymn>. It is not clear to me why this one is listed in the index as a sacrament hymn, but it’s not grouped together with the other sacrament hymns. The “Prayer and Supplication” category of hymns, which is what this is a part of (and rightfully so, in my opinion), is just before the “Sacrament” category. If it, like <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn>, fits into both categories, then I think it should be moved to hymn 168 so that it’s less out of left field. This one really should be thought of as an honorary sacrament hymn. Perhaps we’ll see it included in the “official” list of sacrament hymns in the next hymnal.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Recommendation for the next hymnal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider putting <hymn>O Thou, Before the World Began (189)</hymn> immediately before the list of sacrament hymns.</p>
+</div>
+</div>
 </section>
 <section id="sacrament-hymns-sung-elsewhere" class="level2">
 <h2 class="anchored" data-anchor-id="sacrament-hymns-sung-elsewhere">Sacrament hymns sung elsewhere</h2>
-<p>Finally, we can look at sacrament hymns that were sung at some other point in a sacrament meeting. Unsurprisingly, <hymn>I Stand All Amazed (193)</hymn> is at the top, being sung occasionally as an opening hymn and closing hymn. At only once every 6–7 years, it’s not particularly common to see it sung this way, but it’s still not unheard of. After that, there are a few others like <hymn>Behold the Great Redeemer Die (191)</hymn> and <hymn>There Is a Green Hill Far Away (194)</hymn> were also used as one of the other hymns, but it was still quite unusual.</p>
-<p>Overall, while singing a specific sacrament hymn elsewhere in the meeting is pretty unusual, the odds of singing <em>any</em> of the sacrament hymns is more common since their frequencies add together. It happened in 61 of the 5211 sacrament meetings I have data from, or 1.1% of them. That means, on average, a ward might since hymn 169–196 at some other point in the meeting approximately once every year and ten months.</p>
+<p>How often will a ward do this, on average, across all sacrament hymns?</p>
+<p>Finally, we can look at sacrament hymns that were sung at some other point in a sacrament meeting. Unsurprisingly, <hymn>I Stand All Amazed (193)</hymn> is at the top, being sung occasionally as an opening hymn and closing hymn. At only once every 5–6 years, it’s not particularly common to see it sung this way, but it’s still not unheard of. After that, there are a few others like <hymn>’Tis Sweet to Sing the Matchless Love (177)</hymn> and <hymn>Reverently and Meekly Now (185)</hymn> were also used as one of the other hymns, but it was still quite unusual.</p>
+<p>Overall, while singing a specific sacrament hymn elsewhere in the meeting is pretty unusual, the odds of singing <em>any</em> of the sacrament hymns is more common since their frequencies add together. It happened in 226 of the 17,833 sacrament meetings I have data from, or 1.3% of them. That means, on average, a ward might since hymn 169–196 at some other point in the meeting approximately once every year and 8 months.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
@@ -1586,7 +2163,7 @@ Note
  ]]></description>
   <category>sacrament</category>
   <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/sacrament.html</guid>
+  <guid>https://hymnstats.joeystanley.com/posts/sacrament/index.html</guid>
   <pubDate>Thu, 07 Sep 2023 06:00:00 GMT</pubDate>
 </item>
 </channel>
