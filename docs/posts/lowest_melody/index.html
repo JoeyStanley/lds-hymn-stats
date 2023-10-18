@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2023-10-12">
+<meta name="description" content="What hymn has the lowest soprano note? What is a typical lowest note for a soprano line? What is the highest lowest note for a soprano? If you can only sing down to a C, what proportion of hymns would you be able to sing melody on?">
+
+<title>LDS Hymn Stats - What are the sopranos’ lowest notes?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="LDS Hymn Stats - What are the sopranos’ lowest notes?">
+<meta property="og:description" content="What hymn has the lowest soprano note? What is a typical lowest note for a soprano line? What is the highest lowest note for a soprano? If you can only sing down to a C, what proportion of hymns would you be able to sing melody on?">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/lowest_melody/star-spangled_banner.png">
+<meta property="og:site-name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="692">
+<meta property="og:image:width" content="2127">
+<meta name="twitter:title" content="LDS Hymn Stats - What are the sopranos’ lowest notes?">
+<meta name="twitter:description" content="What hymn has the lowest soprano note? What is a typical lowest note for a soprano line? What is the highest lowest note for a soprano? If you can only sing down to a C, what proportion of hymns would you be able to sing melody on?">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/lowest_melody/star-spangled_banner.png">
+<meta name="twitter:image-height" content="692">
+<meta name="twitter:image-width" content="2127">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html" rel="" target="">
+ <span class="menu-text">Findings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html" rel="" target="">
+ <span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lowest-melody-notes" id="toc-lowest-melody-notes" class="nav-link active" data-scroll-target="#lowest-melody-notes">Lowest melody notes</a></li>
+  <li><a href="#other-low-melody-notes" id="toc-other-low-melody-notes" class="nav-link" data-scroll-target="#other-low-melody-notes">Other low melody notes</a>
+  <ul class="collapse">
+  <li><a href="#a3" id="toc-a3" class="nav-link" data-scroll-target="#a3">A3</a></li>
+  <li><a href="#b3" id="toc-b3" class="nav-link" data-scroll-target="#b3">B♭3</a></li>
+  <li><a href="#b3-1" id="toc-b3-1" class="nav-link" data-scroll-target="#b3-1">B3</a></li>
+  <li><a href="#summary-of-low-melodies" id="toc-summary-of-low-melodies" class="nav-link" data-scroll-target="#summary-of-low-melodies">Summary of low melodies</a></li>
+  </ul></li>
+  <li><a href="#typical-lowest-notes" id="toc-typical-lowest-notes" class="nav-link" data-scroll-target="#typical-lowest-notes">Typical lowest notes</a></li>
+  <li><a href="#lowest-notes-that-arent-all-that-low" id="toc-lowest-notes-that-arent-all-that-low" class="nav-link" data-scroll-target="#lowest-notes-that-arent-all-that-low">Lowest notes that aren’t all that low</a>
+  <ul class="collapse">
+  <li><a href="#e4" id="toc-e4" class="nav-link" data-scroll-target="#e4">E♭4</a></li>
+  <li><a href="#e4-1" id="toc-e4-1" class="nav-link" data-scroll-target="#e4-1">E4</a></li>
+  <li><a href="#f4" id="toc-f4" class="nav-link" data-scroll-target="#f4">F4</a></li>
+  <li><a href="#f4-1" id="toc-f4-1" class="nav-link" data-scroll-target="#f4-1">F♯4</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What are the sopranos’ lowest notes?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">melody</div>
+    <div class="quarto-category">musicology</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    What hymn has the lowest soprano note? What is a typical lowest note for a soprano line? What is the highest lowest note for a soprano? If you can only sing down to a C, what proportion of hymns would you be able to sing melody on?
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Previously, I wrote about <a href="../../posts/highest_melody">the highest notes the soprano line has to sing</a>. In this post, we’ll explore the <em>lowest</em> notes the soprano line sings. As a reminder, in addition to collecting frequency data about how often hymns are sung, I have also analyzed the notes and rhythms in the hymnal. Mark Mitchell has already done <a href="https://markmitchell-music.com/music/documents/HymnStats.pdf">fantastic work</a> related to this. I hope to add to what he’s reported already.</p>
+<section id="lowest-melody-notes" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="lowest-melody-notes">Lowest melody notes</h2>
+<p>When we think of sopranos, we often think of high notes. We’ve already seen that while <a href="../../posts/highest_melody">the soprano line can go as high as an F♯5</a> in <hymn>Lead on My Ample Arm (#120)</hymn>, it typically goes up to a D5. But, sopranos do have to sing low sometimes too.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The lowest melody note is an A♭3, which is found in <hymn>The Star-Spangled Banner (340)</hymn> and <hymn>Ye Simple Souls Who Stray (118)</hymn>.</p>
+</div>
+</div>
+<p>It is worth noting that that A♭3 in both songs is in a unison passage. In the <hymn>The Star-Spangled Banner (340)</hymn> all four parts are in unison and the soprano has to hit that note four times. That melody is notorious for being difficult for a normal person to sing because of its octave and a half range, so presumably they didn’t want to raise the key too much otherwise it would end up going very high. Its a lose-lose I guess.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="star-spangled_banner.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">The Star-Spangled Banner (#340)</figcaption>
+</figure>
+</div>
+<div class="page-columns page-full"><p>For <hymn>Ye Simple Souls Who Stray (118)</hymn>, the soprano and altos are in unison for the entire first half of the hymn. If you look at the same hymn in the 1948 hymnal (#290), you’ll see first off that it’s a “Choir” arrangement—yes, they had full-on choir arrangements in the back of the hymnal—so it’s probably a little more difficult to sing and maybe not intended for congregational singing. Furthermore, that lower melody line in the first half of the hymn is only written for the altos to sing. There may be a remnant of that in the 1985 hymnal because, if you compare the phrases where sopranos and altos are in unison in <hymn>Ye Simple Souls Who Stray (#118)</hymn> to <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, you’ll see that in the latter, we have stems in the notes going in both directions, suggesting soprano and alto in unison. However, in the former, you only see one stem. Perhaps then, the intention is for altos to sing that first half of the hymn and for the sopranos to come in later.</p><div class="no-row-height column-margin column-container"><span class="">Please note the copy that I have is the 11th printing, dated 1957. It has a red cover. I don’t know enough about the various printings of that hymnal to know what differences there are between them.</span></div></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ye-simple-souls.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Ye Simple Souls Who Stray (#118)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="wintry-sample.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">The Wintry Day, Descending to Its Close (#37)</figcaption>
+</figure>
+</div>
+<p>Regardless, this low A♭3 is, for both hymns, pretty exceptional.</p>
+<p>How often will a congregation see one of these two hymns? Well, spoiling a bit of a future 4th of July post, I’ll go ahead and say that it looks like only about a third of the wards in the US sing <hymn>The Star-Spangled Banner (340)</hymn> every year. To put it another way, one ward might sing it once every three years, on average. Meanwhile, <hymn>Ye Simple Souls Who Stray (118)</hymn> is one of <a href="../../posts/least-common-hymns">the rarest hymns in the hymnal</a> and is basically a once- or twice-in-a-lifetime kind of hymn. So, sopranos, don’t sweat it if you can’t quite hit that A♭3.</p>
+</section>
+<section id="other-low-melody-notes" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="other-low-melody-notes">Other low melody notes</h2>
+<section id="a3" class="level3">
+<h3 class="anchored" data-anchor-id="a3">A3</h3>
+<p>Not too many hymns even approach that low A♭3. Just one hymn goes down to an A3. <hymn>Zion Stands with Hills Surrounded (#43)</hymn> just pops down there one time, unison with the altos, and never really comes close to it again. It is also extremely rare, being sung about once a generation or so.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="zion-stands.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Zion Stands with Hills Surrounded (#43)</figcaption>
+</figure>
+</div>
+</section>
+<section id="b3" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="b3">B♭3</h3>
+<p>Fourteen hymns have the sopranos going down to a Bb3. In all cases, the soprano line is in unison with the alto line, meaning there is no lower alto note being sung at that time. In some hymns, all four parts are unison when that B♭3 is being sung. We get that in <hymn>Awake and Arise (#8)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Hail to the Brightness of Zion’s Glad Morning! (#42)</hymn>, <hymn>’Tis Sweet to Sing the Matchless Love (#177)</hymn>, and <hymn>Ye Elders of Israel (#319)</hymn>. In the case of <hymn>Because I Have Been Given Much (#219)</hymn>, there is technically no alto part since it is marked as unison, but there is a G3 below it that could very well be an alto line.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see those hymns
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="awake.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Awake and Arise (#8)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="for-the-strength.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">For the Strength of the Hills (#35)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="hail.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Hail to the Brightness of Zion’s Glad Morning! (#42)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tis-sweet.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">’Tis Sweet to Sing the Matchless Love (#177)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ye-elders.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Ye Elders of Israel (#319)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<p>It is interesting to note where in the melody these B♭3 notes come. For some hymns, it’s the first note of the song, it’s usually the dominant, and it never goes that low again. We see that in <hymn>Awake and Arise (#8)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Hail to the Brightness of Zion’s Glad Morning! (#42)</hymn>, <hymn>As Now We Take the Sacrament (#169)</hymn>, and <hymn>As Zion’s Youth in Latter Days (#256)</hymn>. In <hymn>Joseph Smith’s First Prayer (#26)</hymn> and <hymn>Silent Night (#204)</hymn>, it’s in the key of Bb and the last note of the hymn is the lowest one. The rest have the low note somewhere else in the middle, but usually only one time. The hymn <hymn>Ye Elders of Israel (#319)</hymn> has that low note integrated throughout, including the beginning, a few times in the middle, and also near the end. Of course, it’s intended for men to sing, so we might not be right in calling it a “soprano” line.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see those hymns
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="first-prayer.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Joseph Smith’s First Prayer (#26)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="silent-night.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Silent Night (#204)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>However, given that some of these hymns are fairly common, it is not unusual to see this B♭3. We have two <a href="../../posts/sacrament">sacrament hymns</a>, a popular Christmas hymn, and three other very popular hymns. The other seven are not very common. But, collectively, these 14 hymns make up 5.2% of the hymns sung in sacrament meeting. That means you’re likely to encounter one about once every 5.5 weeks on average. So, unless someone happens to know that <hymn>The Star-Spangled Banner (340)</hymn> goes down to an A♭3 <em>and</em> be familiar with two very infrequent hymns, I’m guessing a typical church-goer may think that a Bb3 is the lowest soprano note.</p><div class="no-row-height column-margin column-container"><span class="">Y’know, in case typical church-goers think about these things!</span></div></div>
+</section>
+<section id="b3-1" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="b3-1">B3</h3>
+<p>Only 11 hymns have B3 as the lowest note in the melody. It is here that we finally get alto notes below the melody’s lowest note. For example, in <hymn>There Is Sunshine in My Soul Today (#227)</hymn>, as the melody goes down to a B3 in the chorus, the alto is below that on a G3. We also see that same thing in <hymn>There Is Sunshine in My Soul Today (#227)</hymn> and <hymn>Up, Awake, Ye Defenders of Zion (#248)</hymn>. And in <hymn>Onward, Christian Soldiers (#246)</hymn>, the altos are holding an A3. In all other cases, the alto note is unison with the melody still.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sunshine.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">There Is Sunshine in My Soul Today (#227)</figcaption>
+</figure>
+</div>
+<div class="page-columns page-full"><p>It is interesting to note though that as far as where in the melody that lowest note comes is quite different from where we saw the B♭3s in the previous section. Just one hymn, <hymn>How Long, O Lord Most Holy and True? (#126)</hymn>, has the B3 as the first note. In all other cases, the lowest note comes in the middle of a phrase, usually near the middle of the hymn. I suspect this has to do with the <a href="../../posts/key_signatures">key signatures</a> that are most common in the hymnal. Since we have no hymns in B major, we don’t see B3 as the dominant, and since we have no hymns in E major, we don’t see it as the subdominant, with the exception of <hymn>How Long, O Lord Most Holy and True? (#126)</hymn>. Instead, we’re seeing it as random notes of the melody. We get it as the mediant in hymns in G major (<hymn>Testimony (#137)</hymn>, <hymn>Dear to the Heart of the Shepherd (#221)</hymn>, <hymn>There Is Sunshine in My Soul Today (#227)</hymn>, and <hymn>Know This, That Every Soul Is Free (#240)</hymn>), the submediant for hymns in D major (<hymn>Where Can I Turn for Peace? (#129)</hymn> and <hymn>Onward, Christian Soldiers (#246)</hymn>), a leading tone for <hymn>Be Thou Humble (#130)</hymn> and <hymn>Called to Serve (#249)</hymn>, which are in C major, and as an accidental in <hymn>The Wintry Day, Descending to Its Close (#37)</hymn> and <hymn>Up, Awake, Ye Defenders of Zion (#248)</hymn>.</p><div class="no-row-height column-margin column-container"><span class="">Incidentally, Hymn #126 is one of only five hymns in a <a href="../../posts/key_signatures.html#what-about-minor-keys">minor key</a>.</span><span class="">I 100% had to look these terms up.</span></div></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see those hymns
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="how-long.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">How Long, O Lord Most Holy and True? (#126)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="testimony.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Testimony (#137)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dear-to-the-heart.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Dear to the Heart of the Shepherd (#221)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sunshine.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">There Is Sunshine in My Soul Today (#227)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="where.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Where Can I Turn for Peace? (#129)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="onward.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Onward, Christian Soldiers (#246)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="be-thou.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Be Thou Humble (#130)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="called.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Called to Serve (#249)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="wintry.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">The Wintry Day, Descending to Its Close (#37)</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="defenders.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Up, Awake, Ye Defenders of Zion (#248)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<p>How often are you likely to see a B3 in the melody? Well, none of these 11 are sacrament hymns, so it’s not going to be as likely as B♭3. But, there are some well-known ones. Collectively, these hymns make up 3.16% of the hymns sung in sacrament meeting, meaning you’re likely to see one about once every 9.4 weeks or so.</p>
+</section>
+<section id="summary-of-low-melodies" class="level3">
+<h3 class="anchored" data-anchor-id="summary-of-low-melodies">Summary of low melodies</h3>
+<p>So, if we summarize these exceptionally low soprano lines, there are only 28 hymns (8.2% of the hymnal) that dip below a C4. If you have quite a high voice (or perhaps are looking for a hymn that a child could sing) and can’t sing below a C4, you’ll be able to sing the soprano line about 91% of the time.</p>
+</section>
+</section>
+<section id="typical-lowest-notes" class="level2">
+<h2 class="anchored" data-anchor-id="typical-lowest-notes">Typical lowest notes</h2>
+<p>If melodies that go down to an A♭3, A3, B♭3, and B3 are all pretty unusual, does that mean the typical lowest note for a melody is a C4? Not quite. This figure shows the distribution of lowest notes for the soprano lines in the hymnal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The typical lowest note for a melody is D4.</p>
+</div>
+</div>
+<p>This figure shows that the majority of hymns have their lowest note at a D4. There are 147 hymns like this, which is 43.1% of the hymnal. It is interesting that this parallels <a href="../../posts/highest_melody">the highest notes in melodies</a>, where D5 was the most common high note. In second place is C4, with 89 hymns or 26.1% of the hymnal.</p>
+<p>Similar to the highest notes, relatively few hymns have C♯3 as the lowest note, again, likely due to the distribution of <a href="../../posts/key_signatures.html">key signatures</a> in the hymnal. It does include two sacrament hymns, <hymn>O God, the Eternal Father (#175)</hymn> and <hymn>In Memory of the Crucified</hymn> and a few other relatively common hymns. On average, you’ll see that C♯4 or D♭4 about once every 5.76 weeks.</p>
+</section>
+<section id="lowest-notes-that-arent-all-that-low" class="level2">
+<h2 class="anchored" data-anchor-id="lowest-notes-that-arent-all-that-low">Lowest notes that aren’t all that low</h2>
+<p>Let’s continue to work our way up to see what hymns have relatively high notes as their lowest notes.</p>
+<section id="e4" class="level3">
+<h3 class="anchored" data-anchor-id="e4">E♭4</h3>
+<p>There are 26 hymns that have E♭4 as their lowest note, including five sacrament hymns. Almost all of these 26 hymns are in the key of E♭ major and almost all of those have E♭4 as their highest notes. The exceptions are <hymn>We Have Partaken of Thy Love (#155)</hymn> and <hymn>Now the Day Is Over (#159)</hymn>, which are in the key of A♭ major making the lowest note the dominant instead of the tonic, and all three of the women’s choir arrangements that are on this list: <hymn>God Is Love (#313)</hymn>, <hymn>Sweet Is the Work (#317)</hymn>, <hymn>Love at Home (#318)</hymn>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</section>
+<section id="e4-1" class="level3">
+<h3 class="anchored" data-anchor-id="e4-1">E4</h3>
+<p>Just 13 hymns have E4 as their lowest note. Many of these are in the key of C major, but otherwise there’s nothing noteworthy to say about these hymns other than the most common of them is the only one sung on average once every two years. So, you’ll encounter one of these hymns maybe once every 14 weeks.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</section>
+<section id="f4" class="level3">
+<h3 class="anchored" data-anchor-id="f4">F4</h3>
+<p>Only nine hymns have F4 as their lowest notes. We’ll see in a later blog post that when the melody never goes too low, it makes the whole hymn “feel” high, even if none of the notes are especially high. <hymn>Come, Ye Children of the Lord (58)</hymn> and <hymn>What Was Witnessed in the Heavens? (11)</hymn> are the hymns with the highest “average” note, and not dipping below F4 certainly contributes to that.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</section>
+<section id="f4-1" class="level3">
+<h3 class="anchored" data-anchor-id="f4-1">F♯4</h3>
+<p>Finally we get to the confusingly worded “highest lowest notes” in the hymnal. Here, <em>lowest notes</em> refers to the lowest notes of the melody within each song out of all the other notes in that song. But if we take all those lowest notes and put them in order from low to high, one of them is going to be the highest. So, <em>highest</em> here refers to the highest across all the lowest notes. Thus, we have the highest lowest notes in the soprano line.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Two hymns have soprano lines that go no lower than an F♯4: <hymn>Awake, Ye Saints of God, Awake! (#17)</hymn> and <hymn>Raise Your Voices to the Lord (#61)</hymn>.</p>
+</div>
+</div>
+<p>If you haven’t heard of either of these hymns, it’s probably because they’re not very common. <hymn>Awake, Ye Saints of God, Awake! (#17)</hymn> is sung about once every 8.6 years, typically as an opening hymn. However, though the soprano line indeed never dips below an F♯4, the <em>melody</em> goes lower. For one portion the sopranos have rests while the altos carry the melody. In the 1948 version of the hymnal, it was #229 and was a “Choir” arrangement, more or less unchanged except in the key of D major. So, this hymn only makes it to the top of this list because of a technicality, and my guess is a typical ward member people will sing that alto line anyway.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="awake-ye-saints.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Awake, Ye Saints of God, Awake! (#17)</figcaption>
+</figure>
+</div>
+<p>The other hymn, <hymn>Raise Your Voices to the Lord (#61)</hymn>, has an F♯4 as its lowest note fair and square. In fact, I wonder if setting this hymn in a relatively high key may have been intentional: it is called “<em>Raise</em> Your Voices” after all. In fact, when comparing the current arrangement to the one in the 1948 hymnal, I think there are cases where they deliberately made the parts higher. The bass line currently has C3 as its lowest note instead of the G2 in the previous version and the tenor line is pretty consistently above the bass clef. (The alto line is in about the same range and is is only different because the chords have changed a little bit.) So while none of the parts have extremely high notes, they are often in the upper parts of their ranges. If this was on purpose, that is some nice word painting. It’s too bad hardly anyone gets to enjoy that though because this short hymn is sung about once every 10.6 years, typically as a closing hymn.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="raise.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Raise Your Voices to the Lord (#61)</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>The lowest a soprano note goes is A♭3, but only when it’s in unison with other parts. Melodies typically to go about a D4 or a C4, but sometimes they only go down to an F♯4.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
