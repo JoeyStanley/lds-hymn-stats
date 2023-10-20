@@ -1,0 +1,839 @@
+---
+title: "What are the most common final chords?"
+subtitle: "And everything else you may want to know about final chords!"
+description: "How many hymns have melodies that don't end on the tonic? What parts of the chord does each part tend to sing? How many hymns end on moving lines? What are the most common configurations for final chords and how does that relate to key signatures? "
+author: "Joey Stanley"
+date: "10/18/2023"
+categories:
+  - melody
+  - alto line
+  - tenor line
+  - bass line
+  - musicology
+knitr:
+  opts_chunk:
+    out.width: "100%"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      fig.width = 6.5)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+soprano <- notes %>% filter(voice == "soprano")
+final_notes <- notes %>%
+    filter(!is_rest, 
+           !(voice != "soprano" & hymn_num == 249)) %>% # called to serve is weird
+    filter(id == max(id), .by = c(name_num, voice)) %>%
+    mutate(is_tonic = note == key_signature, .after = name_num,
+           note = fct_recode(as.factor(inscale), "root" = "1", "third" = "3", "fifth" = "5")) %>%
+    print()
+```
+
+In this post, I do a really deep dive into the final chords of hymns. Everything you'd ever want to know---and a lot of stuff you don't want to know! First, I look at individual parts and their relationship to the overall chord, and then I look at all the different voicings found in final chords.
+
+## Hymns that don't end on the tonic
+
+First, what hymns have a melody line that does not end of the tonic? By this, I mean that, if a hymn is in the key of G major, are there hymns that do not end on a G? As it turns out, there are 16 of them! 
+
+```{r}
+# I've already checked the hymns in a minor key.
+minor_hymns <- c(284, 215, 198, 162, 126)
+nontonics <- final_notes %>%
+    filter(voice == "soprano",
+           note != "root",
+           !hymn_num %in% minor_hymns) %>%
+    select(name_num, key_signature, note_label, note) %>%
+    print()
+
+freqs %>%
+    filter(name_num %in% nontonics$name_num) %>%
+    cleveland_plot(return = "table") %>%
+    full_join(nontonics, by = c("label" = "name_num")) %>%
+    arrange(note, -avg_per_year) %>%
+    print()
+```
+
+Twelve of these 16 hymns end on the third of the chord. The most common is <hymn>Thy Will, O Lord, Be Done (#188)</hymn>, which is a sacrament hymn, albeit [one of the lesser common ones](/posts/sacrament). Most of the others are not unusual and they include ones like <hymn>The First Noel (#298)</hymn>, <hymn>Secret Prayer (#225)</hymn>, and <hymn>Master, the Tempest Is Raging (#105)</hymn>. 
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![Thy Will, O Lord, Be Done (#188)](thy-will.png)
+
+---
+
+![The First Noel (#213)](first-noel.png)
+
+---
+
+![Testimony (#137)](testimony.png)
+
+---
+
+![I Know My Father Lives (#302)](i-know.png)
+
+---
+
+![Secret Prayer (#144)](secret.png)
+
+---
+
+![God Speed the Right (#106)](god-speed.png)
+
+---
+
+![O Savior, Thou Who Wearest a Crown (#197)](wearest.png)
+
+---
+
+![Master, the Tempest Is Raging (#105)](master.png)
+
+---
+
+![Oh, May My Soul Commune with Thee (123)](commune.png)
+
+---
+
+![We Ever Pray for Thee (#23)](we-ever.png)
+
+---
+
+![Lean on My Ample Arm (#120)](lean.png)
+
+---
+
+![We Ever Pray for Thee (312)](we-ever-women.png)
+:::
+
+
+
+The other four hymns end on the fifth of the chord. We get another sacrament hymn, <hymn>While of These Emblems We Partake (#173)</hymn>, as well as <hymn>Carry On (#255)</hymn>, <hymn>Does the Journey Seem Long? (#127)</hymn>, and <hymn>Now the Day Is Over (#159)</hymn>. 
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![While of These Emblems We Partake (#173)](while.png)
+
+---
+
+![Carry On (#255)](carry.png)
+
+---
+
+![Does the Journey Seem Long? (#127)](journey.png)
+
+---
+
+![Now the Day Is Over (#159)](now.png)
+
+
+:::
+
+So, overall, relatively few hymns end on the third or the fifth of the chord, just 4.6% of the hymnal. But, because a few sacrament hymns are on this list, as well as several relatively well-known hymns, it's not a terribly unusual thing to see. In fact, you're likely to see one of these 16 hymns about once every six weeks or so. 
+
+```{r}
+16 / 341
+freqs %>%
+    filter(name_num %in% nontonics$name_num) %>%
+    distinct(hymn_num) %>%
+    pull(hymn_num) %>%
+    freq_for_any()
+```
+
+
+
+
+
+
+
+
+## What part of the chord does each part end on?
+
+Now that we've established that the melody typically lands on the root of the chord, let's look briefly at the other parts. The following figure shows how many hymns end on which note of the scale, with each part on its own plot.
+
+```{r, include=TRUE, echo = FALSE, fig.height = 5}
+final_notes %>%
+    filter(!hymn_num %in% minor_hymns,
+           !hymn_num %in% 309:337,
+           !is.na(note)) %>%
+    select(name_num, voice, note) %>%
+    count(voice, note) %>%
+    mutate(prop = n/sum(n), .by = voice) %>%
+    ggplot(aes(note, n)) + 
+    geom_col() + 
+    geom_text(aes(label = n), nudge_y = 20) + 
+    labs(x = "note of the scale",
+         y = "number of hymns",
+         title = "Final chord notes by part",
+         caption = "Women's and men's arrangements (hymns 309–337) are excluded.\nHymns that lack a particular part are not included for that part, so totals may not add up to 341.") + 
+    facet_wrap(~voice) + 
+    theme_bw()
+```
+
+It should come as no surprise that every single bass line ends on the tonic. What is more interesting is the two middle parts. The alto line is nearly evenly split between ending on the tonic, the third note of the scale, or the fifth note of the scale, with a very slight preference for the root. Meanwhile, the tenor line ends on the third 64% of the time, and is otherwise evenly split between the root and the fifth. I'm not quite sure what anyone might do with this information, but it's interesting to see nonetheless!
+
+Overall, if you were to sing all four parts of all the hymns (again, excluding the men's and women's arrangements at the back), you'll end on the tonic 62.7% of the time, the third 25.0% of the time, and the fifth just 12.3% of the time.
+
+
+::: callout-tip
+### Recommendation for the next hymnal
+
+Add fifths to more final chords.
+:::
+
+
+```{r}
+final_notes %>%
+    filter(!hymn_num %in% minor_hymns,
+           !hymn_num %in% 309:337,
+           !is.na(note)) %>%
+    count(note) %>%
+    mutate(prop = n/sum(n)) %>%
+    print()
+```
+
+
+## Hymns that end in moving lines
+
+Another ending that is pretty unusual is one where not all four parts sing their final note at the same time. In some hymns, at least one part sustains its last note while at least one other part resolves a chord or moves in some other way. There are eight hymns that do this. 
+
+```{r}
+sustaineds <- final_notes %>%
+    filter(length(unique(dur)) != 1, .by = name_num) %>%
+    pull(hymn_num)
+```
+
+Two of these hymns, <hymn>He Died! The Great Redeemer Died (#192)</hymn> and <hymn>As the Shadows Fall (#168)</hymn> end with a Sus4 chord resolving to the tonic chord, with the tenor line responsible for the resolution. The latter of those two has a fifth in the chord, creating some nice close harmony between the tenor and alto line, while the former lacks the fifth and has a more open sound. 
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![He Died! The Great Redeemer Died (#192)](died.png)
+
+---
+
+![As the Shadows Fall (#168)](shadows.png)
+
+:::
+
+Another type of movement we see is when the four parts land on a tonic chord, but then the tenors and altos move to the subdominant and then back to the tonic. In <hymn>Keep the Commandments (#303)</hymn>, the two inner lines move down and then back up to return to the original notes.[I don't know enough about music theory to say for sure of the penultimate chord in <hymn>Keep the Commandments (#303)</hymn> is a subdominant or something else.]{.aside} In <hymn>Behold! A Royal Army (#251)</hymn>, they both jump up a fourth and then back down a second, creating a different voicing of the tonic chord than what they started on. In the case of <hymn>Come unto Jesus (#117)</hymn>, the alto line has a little passing tone. 
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![Keep the Commandments (#303)](keep.png)
+
+---
+
+![Behold! A Royal Army (#251)](royal.png)
+
+---
+
+![Come unto Jesus (#117)](come.png)
+
+:::
+
+<hymn>We Have Partaken of Thy Love (#155)</hymn> is very similar, except instead of going from the tonic to the subdominant to the tonic again, it is just the subdominant to the tonic. There is just one move. 
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see this hymn
+
+![We Have Partaken of Thy Love (#155)](partaken.png)
+
+
+:::
+
+Finally, two hymns just do their own thing. In <hymn>Let Us All Press On (#243)</hymn>, the alto and tenor finish their final phrase. And in <hymn>How Long, O Lord Most Holy and True? (#126)</hymn> has a unique chord progression with some nice tension resolution.[Again, I don't know enough about music theory to say what is going on here.]{.aside}
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![Let Us All Press On (#243)](press.png)
+
+---
+
+![How Long, O Lord Most Holy and True? (#126)](how-long.png)
+
+:::
+
+```{r}
+freqs %>%
+    filter(hymn_num %in% sustaineds) %>%
+    cleveland_plot(return = "both")
+freq_for_any(sustaineds)
+```
+
+Overall, these eight hymns make up about 2.6% of the hymns sung in sacrament, and most of that is thanks to the sacrament hymn <hymn>He Died! The Great Redeemer Died (#192)</hymn>. Overall, you'll see one of these hymns about once every 11 weeks or so. 
+
+
+
+## Final chords
+
+We now turn to the topic of the final chords themselves, rather than individual parts or notes. As established already, all hymns end in a major or minor chord[Since two of [the five hymns set in a minor key](/posts/key_signatures.html#what-about-minor-keys) end in picardy thirds, there are only two hymns that truly end in a minor chord.]{.aside}, so the only options are roots, thirds, and fifths of chords. Logically, there are $3\times 3\times 3\times 3=81$ possible ways to use those three notes, if you ignore octave differences and good musical taste. Of course, the hymnal uses far fewer than that. 
+
+Let me pause briefly to explain the notation I'll be using. I'll describe the voicing of the chord using the numbers 1, 3, or 5, from lowest (bass) to highest (soprano). So if we're in the key of C major, `1-5-3-1` would mean the basses are on a C3, the tenors a G3 above that, the altos on an E4 above that, and the sopranos on a C5 above that. If a part sings in unison with the part below it, I replace its number with an asterisk. This figure shows the twelve configurations found in the hymnal, in order of frequency. Let's dive into each one of these. 
+
+```{r}
+final_chords <- final_notes %>%
+    select(name_num, hymn_num, voice, inscale, `label` = note_label, midi) %>%
+    pivot_wider(names_from = voice, values_from = c(inscale, label, midi)) %>%
+    
+    # Account for large intervals
+    mutate(sop_alt_int = midi_soprano - midi_alto,
+           alt_ten_int = midi_alto    - midi_tenor,
+           ten_bas_int = midi_tenor   - midi_bass) %>%
+    
+    # Account for unisons
+    mutate(label_soprano = case_when(label_soprano == label_alto ~ "*",
+                                     is.na(label_alto) ~ label_soprano,
+                                     TRUE ~ label_soprano),
+           label_alto    = case_when(label_alto    == label_tenor ~ "*",
+                                     is.na(label_tenor) ~ label_alto,
+                                     TRUE ~ label_alto),
+           label_tenor   = case_when(label_tenor   == label_bass  ~ "*",
+                                     is.na(label_bass) ~ label_tenor,
+                                     TRUE ~ label_tenor)) %>%
+    mutate(inscale_soprano = ifelse(label_soprano == "*", "*", inscale_soprano),
+           inscale_alto    = ifelse(label_alto    == "*", "*", inscale_alto),
+           inscale_tenor   = ifelse(label_tenor   == "*", "*", inscale_tenor)) %>%
+
+    # Combine them
+    mutate(chord_voice = paste(inscale_bass, inscale_tenor, inscale_alto, inscale_soprano, sep = "-")) %>%
+    mutate(chord_note  = paste(label_bass, label_tenor, label_alto, label_soprano, sep = "-")) %>%
+    mutate(chord_interval = paste(ten_bas_int, alt_ten_int, sop_alt_int, sep = "-")) %>%
+    select(-matches("inscale"), -matches("label"), -ends_with("_int"), -matches("midi")) %>%
+
+    # Adjust minors
+    mutate(chord_voice = case_when(chord_voice == "6-1-3-6" ~ "1-3-5-1",
+                                   chord_voice == "6-1-6 *" ~ "1-3-1-*",
+                                   TRUE ~ chord_voice)) %>%
+    print()
+```
+```{r}
+final_chord_tallys <- final_chords %>%
+    filter(!hymn_num %in% 309:337) %>%
+    count(chord_voice, sort = TRUE) %>%
+    mutate(chord_voice = str_replace_all(chord_voice, "NA-", ""),
+           chord_voice = fct_inorder(chord_voice)) %>%
+    print()
+```
+
+
+```{r, include = TRUE, echo = FALSE, fig.height = 3}
+ggplot(final_chord_tallys, aes(chord_voice, n)) + 
+    geom_col() + 
+    geom_text(aes(label = n), nudge_y = 5) + 
+    scale_y_continuous(expand = expansion(0, c(0, 10))) + 
+    labs(title = "Final chord configurations",
+         x = "Configuration", y = "Number of Hymns") + 
+    theme_minimal()
+```
+
+```{r}
+final_chord_subtypes <- final_chords %>%
+    count(chord_voice, chord_interval) %>%
+    mutate(total_n = sum(n), .by = chord_voice) %>%
+    arrange(-total_n, -n) %>%
+    print()
+```
+
+```{r}
+final_notes %>%
+    filter(voice == "bass",
+           !hymn_num %in% 309:337) %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    print()
+```
+
+
+
+### 1-3-1-* endings
+
+The most common voicings to end a hymn on is `1-3-1-*`. The bass line ends on the tonic, the tenor a third above, and the alto and soprano lines in unison on the root of the chord (an octave higher). The most common non-sacrament hymn to end on this voicing is <hymn>Lord, I Would Follow Thee (#220)</hymn>, shown below.
+
+![Lord, I Would Follow Thee (#220)](follow.png)
+
+```{r}
+final_chord_subtypes %>%
+    filter(chord_voice == "1-3-1-*")
+final_chords %>%
+    filter(chord_interval == "16-8-0")
+```
+
+Almost all the hymns that fit this `1-3-1-*` description look just like <hymn>Lord, I Would Follow Thee (#220)</hymn>, but two hymns are slightly different in that the bass note is down an octave. We get this in <hymn>O My Father (#292)</hymn> and <hymn>The Voice of God Again Is Heard (#18)</hymn>.
+
+![O My Father (#292)](o-my.png)
+
+
+Because there are 97 hymns that are voiced as `1-3-1-*`, I'm not going to show all of them, but here is a plot that shows the most common ones and how often they are sung in a year. 
+
+```{r, include = TRUE, echo=FALSE, fig.height = 3.5}
+chords_131_ <- final_chords %>%
+    filter(!hymn_num %in% 309:337) %>%
+    filter(chord_voice == "1-3-1-*") %>%
+    select(-hymn_num) %>%
+    left_join(freqs, by = "name_num")
+
+chords_131_ %>%
+    cleveland_plot(filter_n = 371,
+                   title = "Most common hymns ending in a 1-3-1-* chord",
+                   subtitle = NULL) %>%
+    print()
+```
+
+If we just look at the key signatures of the hymns that fall into this category, we get pretty much all of them. But when we arrange those key signatures in order, we see a pretty clear pattern. Basically, the key of D major is the ideal key to end with this chord, and the closer a key signature is to D, the more likely it is to also use this chord. For keys further away, you're less likely to see this voicing. For whatever reason, it's just not ideal to have a hymn in the key of G end with this voicing. 
+
+```{r, include = TRUE, echo = FALSE, fig.height = 3}
+key_signature_freqs <- notes %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature, name = "total")
+notes %>%
+    semi_join(chords_131_, by = "name_num") %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature) %>%
+    left_join(key_signature_freqs, by = "key_signature") %>%
+    mutate(prop = n / total,
+           key_signature = factor(key_signature, levels = c("Bb", "C", "Db", "D", "Eb", "F", "G", "Ab", "A"))) %>%
+    arrange(-prop) %>%
+    # print() %>%
+    ggplot(aes(key_signature, prop)) + 
+    geom_col() + 
+    geom_text(aes(label = paste0("(", n, ")")), nudge_y = 0.05) + 
+    scale_x_discrete(drop = FALSE) + 
+    scale_y_continuous(labels = scales::percent,
+                       breaks = seq(0, 1, 0.1), 
+                       # limits = c(0, 1),
+                       expand = expansion(0, c(0, 0.1))) + 
+    labs(title = "Percentage of hymns per key that end in a 1-3-1-* chord",
+         subtitle = "Number of hymns shown in parentheses above",
+         x = "Key Signature",
+         y = "Percentage") + 
+    theme_minimal()
+```
+
+The lowest version of this voicing are the two hymns in the key of B♭ major, <hymn>Silent Night (#204)</hymn> and <hymn>Joseph Smith’s First Prayer (#26)</hymn> which are the lowest final notes for the soprano line and [as mentioned already](/posts/lowest_melody) are among the lowest soprano notes in the hymnal. Meanwhile, the highest instance is in A♭ in <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, making that A♭3 the highest note the alto line ends on and the A♭4 the highest final bass note (which probably explains the optional lower note). 
+
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![Joseph Smith's First Prayer (#26)](first-prayer.png)
+
+---
+
+![Silent Night (#204)](silent-night.png)
+
+---
+
+![The Wintry Day, Descending to Its Close (#37)](wintry.png)
+
+:::
+
+
+How often are you likely to see this voicing? Well, since there are 97 hymns that fit this category, including many sacrament hymns, pretty likely. Based on the 17,833 sacrament meetings I have data from, 33.0% of the hymns sung in sacrament meeting use this voicing, which means odds are pretty good that on any given Sunday, you'll see at least one hymn ending in `1-3-1-*`. 
+
+```{r}
+get_n_distinct_meetings()
+chords_131_ %>%
+    pull(hymn_num) %>%
+    freq_for_any()
+```
+
+### 1-3-5-1 endings
+
+The `1-3-5-1` ending is basically tied for first place as the most common ending. In its most basic form, it's a triad with the tonic repeated on top. 96 hymns end with this voicing. One of the most common non-sacrament ones is <hymn>High on the Mountain Top (#5)</hymn>.
+
+![High on the Mountain Top (#5)](high.png)
+
+```{r}
+final_chord_subtypes %>%
+    filter(chord_voice == "1-3-5-1")
+final_chords %>%
+    filter(chord_interval == "16-3-5")
+```
+
+83 hymns look just like <hymn>High on the Mountain Top (#5)</hymn> above. But, like what we saw with `1-3-1-*`, there is a subtype where the bass note is down an octave, creating a large interval between the bass and tenor notes. A common one is <hymn>How Firm a Foundation (#85)</hymn>, which you can see below. Besides this one, there are another 14 hymns with this configuration. 
+
+![How Firm a Foundation (#85)](how-firm.png)
+
+Again, there are too many hymns that are `1-3-5-1`, so I won't show all of them. But here are plots that show the most common ones and how often they are sung in a year. 
+
+```{r, include = TRUE, echo=FALSE, fig.height = 3}
+chords_1351_compressed <- final_chords %>%
+    filter(!hymn_num %in% 309:337) %>%
+    filter(chord_voice == "1-3-5-1",
+           chord_interval %in% c("4-3-5", "3-4-5")) %>%
+    select(-hymn_num) %>%
+    left_join(freqs, by = "name_num")
+
+chords_1351_compressed %>%
+    # cleveland_plot(return = "table") %>%
+    cleveland_plot(filter_n = 371,
+                   title = "Most common hymns ending in a 1-3-5-1 chord",
+                   subtitle = "Higher bass note") %>%
+    print()
+```
+
+```{r, include = TRUE, echo=FALSE, fig.height = 3}
+chords_1351_expanded <- final_chords %>%
+    filter(!hymn_num %in% 309:337) %>%
+    filter(chord_voice == "1-3-5-1",
+           chord_interval == "16-3-5") %>%
+    select(-hymn_num) %>%
+    left_join(freqs, by = "name_num")
+
+chords_1351_expanded %>%
+    cleveland_plot(title = "Hymns ending in a 1-3-5-1 chord",
+                   subtitle = "Bass note down an octave") %>%
+    print()
+```
+
+If we just look at the key signatures of the hymns that fall into this category, we get `1-3-5-1` endings in most keys. While the `1-3-1-*` voicing above appeared to be centered around D major, this one appears to be more common in slightly higher keys. The reason is likely the alto voice: anything lower would put it pretty low. In fact, the one instance in D♭ is in <hymn>As the Shadows Fall (#168)</hymn>, which makes that A♭3 the lowest final note for the alto line in the hymnal.
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![As the Shadows Fall (#168)](shadows2.png)
+
+
+:::
+
+
+```{r, include = TRUE, echo = FALSE, fig.height = 5}
+notes %>%
+    distinct(name_num, key_signature) %>%
+    mutate(total_per_key = n(), .by = key_signature) %>%
+    left_join(final_chords, by = "name_num") %>%
+    filter(chord_voice == "1-3-5-1") %>%
+    mutate(subtype = if_else(chord_interval == "16-3-5", "low bass note", "high bass note")) %>%
+    count(key_signature, total_per_key, subtype) %>%
+    mutate(prop = n / total_per_key,
+           key_signature = factor(key_signature, levels = c("C", "Db", "D", "Eb", "F", "G", "Ab", "A", "Bb"))) %>%
+    arrange(total_per_key, -prop) %>%
+    # print() %>%
+    ggplot(aes(key_signature, prop, group = subtype)) +
+    geom_col() +
+    geom_text(aes(label = paste0("(", n, ")")), nudge_y = 0.1) +
+    scale_x_discrete(drop = FALSE) +
+    scale_y_continuous(labels = scales::percent,
+                       breaks = seq(0, 1, 0.1),
+                       # limits = c(0, 1),
+                       expand = expansion(0, c(0, 0.1))) +
+    labs(title = "Percentage of hymns per key that end in a 1-3-5-1 chord, by subtype",
+         subtitle = "Number of hymns shown in parentheses above",
+         x = "Key Signature",
+         y = "Percentage") +
+    facet_wrap(~subtype, ncol = 1) + 
+    theme_bw()
+```
+
+Looking at the differences between the two types (whethe the bass note is high or low), we see that the low bass note version of `1-3-5-1` is most common among hymns in G major, with just a handful scattered among other keys. The one hymn that uses it in E♭ is <hymn>Thy Holy Word (#279)</hymn> and has the lowest bass note in the hymnal. The `1-3-5-1` final chord in B♭ also results in the highest final note for a tenor part, a D4 in <hymn>Let Zion in Her Beauty Rise (#41)</hymn>.
+
+
+```{r}
+notes %>%
+    filter(midi == min(midi, na.rm = TRUE))
+final_notes %>%
+    filter(voice == "soprano") %>%
+    filter(midi == max(midi))
+```
+
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![Thy Holy Word (#279)](holy-word.png)
+
+---
+
+![Let Zion in Her Beauty Rise (#41)](let-zion.png)
+:::
+
+How often are you likely to see a `1-3-5-1` hymn? Again, there are many of them, including sacrament hymns, so it's going to be pretty likely. Based on the 17,833 sacrament meetings I have data from, 31.5% of the hymns sung in sacrament meeting use this voicing, which means odds are pretty good that, like `1-3-1-*` discussed already, you'll see at least one hymn ending in `1-3-3-5`  on any given Sunday.
+
+```{r}
+get_n_distinct_meetings()
+bind_rows(chords_1351_expanded, chords_1351_compressed) %>%
+    pull(hymn_num) %>%
+    freq_for_any()
+```
+
+
+
+### 1-1-3-1 endings
+
+The next most common way to end a hymn is to use the `1-1-3-1` voicing. The bass, tenor, and soprano line are in three octaves, and the alto line sings the third of the chord below the soprano line. The most common non-sacrament hymn to end on this voicing is <hymn>For the Beauty of the Earth (#93)</hymn>, shown below.
+
+![For the Beauty of the Earth (#93)](for-the.png)
+
+```{r}
+final_chord_subtypes %>%
+    filter(chord_voice == "1-1-3-1")
+```
+
+A related ending is the one instance `1-*-1-3` in the hymn <hymn>Thy Will, O Lord, Be Done (#188)</hymn>. That C3 in the tenors is the lowest final tenor note in the hymnal.
+
+
+
+:::{.callout-tip}
+
+#### Click to see those hymns
+
+![Thy Will, O Lord, Be Done (#188)](thy-will2.png)
+
+:::
+
+
+54 hymns end in `1-1-3-1`, so again, I'm not going to show all of them, but this plot shows how often the most common ones are sung in a year. 
+
+```{r, include = TRUE, echo=FALSE, fig.height = 3.5}
+chords_1131 <- final_chords %>%
+    filter(!hymn_num %in% 309:337) %>%
+    filter(chord_voice == "1-1-3-1") %>%
+    select(-hymn_num) %>%
+    left_join(freqs, by = "name_num")
+
+chords_1131 %>%
+    cleveland_plot(filter_n = 175,
+                   title = "Most common hymns ending in a 1-1-3-1 chord",
+                   subtitle = NULL) %>%
+    print()
+```
+
+Looking at the key signatures of the hymns that end in this voicing, we see basically the opposite pattern from `1-3-1-*` above. The hymns that use the `1-1-3-1` voicing are mostly in the G, A♭, B♭ range. 
+
+```{r, include = TRUE, echo = FALSE, fig.height = 3}
+key_signature_freqs <- notes %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature, name = "total")
+notes %>%
+    semi_join(chords_1131, by = "name_num") %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature) %>%
+    left_join(key_signature_freqs, by = "key_signature") %>%
+    mutate(prop = n / total,
+           key_signature = factor(key_signature, levels = c("Eb", "F", "G", "Ab", "A", "Bb", "C", "Db", "D"))) %>%
+    arrange(-prop) %>%
+    # print() %>%
+    ggplot(aes(key_signature, prop)) + 
+    geom_col() + 
+    geom_text(aes(label = paste0("(", n, ")")), nudge_y = 0.05) + 
+    scale_x_discrete(drop = FALSE) + 
+    scale_y_continuous(labels = scales::percent,
+                       breaks = seq(0, 1, 0.1), 
+                       # limits = c(0, 1),
+                       expand = expansion(0, c(0, 0.1))) + 
+    labs(title = "Percentage of hymns per key that end in a 1-1-3-1 chord",
+         subtitle = "Number of hymns shown in parentheses above",
+         x = "Key Signature",
+         y = "Percentage") + 
+    theme_minimal()
+```
+
+```{r}
+final_chords %>%
+    filter(chord_voice == "1-1-3-1",
+           str_detect(chord_note, "\\AC")) %>%
+    print()
+```
+
+The lowest iteration of `1-1-3-1` is in F major, which is found in six hymns, three of which are Christmas hymns. The highest version is in C major, as in <hymn>The Morning Breaks (#1)</hymn>.
+
+Since there are fewer of these hymns, the odds of seeing them is slightly lower. They made up 15.8% of the dataset that I have, so you'll likely to sing one about every two weeks. 
+
+```{r}
+get_n_distinct_meetings()
+chords_1131 %>%
+    pull(hymn_num) %>%
+    freq_for_any()
+```
+
+### 1-5-3-1 endings
+
+The final type of final chord that has a significant presence in the hymnal is `1-5-3-1`. It also spans two octaves, like other endings, but the voices are more evenly spaced. In my mind, this is the "Ice Cream" voicing because in *The Music Man*, it's the chord that the barbershop quartet sings when Herold Hill is teaching them to sing for the first time and he gets them to sing sustained notes while saying "ice cream." We see this voicing at the end of 42 hymns, including <hymn>Now Let Us Rejoice (#3)</hymn>. 
+
+![Now Let Us Rejoice (#3)](let-us.png)
+
+
+```{r}
+final_chord_subtypes %>%
+    filter(chord_voice == "1-5-3-1")
+final_chords %>%
+    filter(chord_interval == "7-9--4")
+```
+
+I should mention too that <hymn>Ye Elders of Israel (#319)</hymn> fits into this category, but the alto is voiced above the soprano line (and thus making it truer to how barbershop is typically voiced). 
+
+![Now Let Us Rejoice (#319)](ye-elders.png)
+
+Here are the most common hymns that fit this category, sorted by how often they're sung per year. 
+
+```{r, include = TRUE, echo=FALSE, fig.height = 2.5}
+chords_1531 <- final_chords %>%
+    filter(!hymn_num %in% 309:337) %>%
+    filter(chord_voice == "1-5-3-1") %>%
+    select(-hymn_num) %>%
+    left_join(freqs, by = "name_num")
+
+chords_1531 %>%
+    cleveland_plot(filter_n = 175,
+                   title = "Most common hymns ending in a 1-5-3-1 chord",
+                   subtitle = NULL) %>%
+    print()
+```
+
+Like the other final chords we've examined so far, it seems like there are some key signatures in which they're more common. In the case of `1-5-3-1`, it's most common in B♭ major and C major, but we do get it in a handful of other keys as well.
+
+```{r, include = TRUE, echo= FALSE, fig.height = 3}
+key_signature_freqs <- notes %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature, name = "total")
+notes %>%
+    semi_join(chords_1531, by = "name_num") %>%
+    distinct(name_num, key_signature) %>%
+    count(key_signature) %>%
+    left_join(key_signature_freqs, by = "key_signature") %>%
+    mutate(prop = n / total,
+           key_signature = factor(key_signature, levels = c("F", "G", "Ab", "A", "Bb", "C", "Db", "D", "Eb"))) %>%
+    arrange(-prop) %>%
+    # print() %>%
+    ggplot(aes(key_signature, prop)) + 
+    geom_col() + 
+    geom_text(aes(label = paste0("(", n, ")")), nudge_y = 0.05) + 
+    scale_x_discrete(drop = FALSE) + 
+    scale_y_continuous(labels = scales::percent,
+                       breaks = seq(0, 1, 0.1), 
+                       # limits = c(0, 1),
+                       expand = expansion(0, c(0, 0.1))) + 
+    labs(title = "Percentage of hymns per key that end in a 1-5-3-1 chord",
+         subtitle = "Number of hymns shown in parentheses above",
+         x = "Key Signature",
+         y = "Percentage") + 
+    theme_minimal()
+```
+
+```{r}
+final_chords %>%
+    filter(chord_voice == "1-5-3-1",
+           str_detect(chord_note, "\\AF"))
+```
+
+The one hymn in the key of E♭ is <hymn>What Was Witnessed in the Heavens? (#11)</hymn>. This is the highest version of this chord, and it means the soprano line ends on an E♭5, the highest final soprano note in the hymnal. The lowest version of this chord is in the key of F in <hymn>We're Not Ashamed to Own Our Lord (#57)</hymn>, which makes that C4 in the tenors the lowest final tenor note in the hymnal.
+
+
+
+:::{.callout-tip collapse="true"}
+
+#### Click to see those hymns
+
+![What Was Witnessed in the Heavens? (#11)](what-was.png)
+
+---
+
+![We're Not Ashamed to Own Our Lord (#57)](were-not.png)
+
+:::
+
+
+
+
+Since there are only 42 of these hymns, again, the odds of seeing them is lower. They made up 11.0% of the dataset that I have, so you'll likely to sing one about every two or three weeks. 
+
+```{r}
+get_n_distinct_meetings()
+chords_1531 %>%
+    pull(hymn_num) %>%
+    freq_for_any()
+```
+
+### Non-tonic soprano final chords
+
+The remaining final chord voices are all pretty unusual and are only found in a handful of hymns. We've already seen that 16 hymns end the soprano line something other than the tonic and that all hymns end the bass line on the tonic. Of those 16, there are four different voicings. Here, we'll ignore briefly the two that don't have full SATB harmonies. 
+
+```{r}
+final_chord_subtypes %>%
+    print()
+final_chords %>%
+    filter(str_detect(chord_voice, "3\\Z")) %>%
+    count(chord_voice)
+final_chords %>%
+    filter(str_detect(chord_voice, "5\\Z")) %>%
+    count(chord_voice)
+final_chords %>%
+    filter(chord_voice == "1-1-3-5")
+```
+
+[I won't post images of the hymns since these are all shown already.]{.aside}Nine hymns end with `1-5-1-3`: <hymn>We Ever Pray for Thee (#23)</hymn>, <hymn>Master, the Tempest Is Raging (#105)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>Lean on My Ample Arm (#120)</hymn>, <hymn>Oh, May My Soul Commune with Thee (#123)</hymn>, <hymn>Testimony (#137)</hymn>, <hymn>Secret Prayer (#144)</hymn>, <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, and <hymn>The First Noel (#213)</hymn>. There is only one other hymn that ends with the melody on the third, <hymn>Thy Will, O Lord, Be Done (#188)</hymn> and it has a `1-*-1-3` voicing. 
+
+Of the hymns that have the melody end on the fifth, there are two voicing configurations. Three hymns use the `1-3-1-5` voicing: <hymn>Does the Journey Seem Long? (#127)</hymn>, <hymn>While of These Emblems We Partake (#173)</hymn>, and <hymn>Carry On (#255)</hymn>. Finally, <hymn>Now the Day Is Over (159)</hymn> ends with `1-1-3-5`. 
+
+
+### Duets and Unisons
+
+A few hymns have specific instructions to sing it as a duet or in unison. I'll probably do a more thorough treatment of those hymns in a later blog post, but for now, we'll just focus on how they end. 
+
+```{r}
+final_chords %>%
+    filter(str_detect(chord_voice, "\\ANA-NA-\\d")) %>%
+    count(chord_voice)
+final_chords %>%
+    # filter(hymn_num )
+    filter(chord_voice == "NA-NA-3-1")
+```
+
+Though seven hymns begin as duets, five of them go into full harmony partway through. They are <hymn>Jesus, Lover of My Soul (#102)</hymn>, <hymn>I Stand All Amazed (#193)</hymn>, <hymn>Dear to the Heart of the Shepherd (#221)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, and <hymn>Truth Reflects upon Our Senses (#273)</hymn>. However, two hymns are duets the whole way through. <hymn>Keep the Commandments (#303)</hymn> ends in a `3-1` voicing. The other is <hymn>Love One Another (#308)</hymn> which is marked as a duet, but at the end breaks into three parts (`3-5-1`).
+
+Finally, we get to the hymns that have at least some portion marked as unison. The hymns <hymn>Ye Simple Souls Who Stray (#118)</hymn>, <hymn>I Know That My Redeemer Lives (#136)</hymn>, <hymn>Behold! A Royal Army (#251)</hymn>, and <hymn>Carry On (#255)</hymn>, start in unison and then break into harmony, so they've been discussed above where appropriate. <hymn>Called to Serve (#249)</hymn> starts in harmony and then goes to unison. Other stay unison throughout the entirety of the hymn. <hymn>Come, Rejoice (#9)</hymn>, <hymn>As Zion's Youth in Latter Days (#256)</hymn>, <hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>I Know My Father Lives (#302)</hymn>, <hymn>Teach Me to Walk in the Light (#304)</hymn>, <hymn>God's Daily Care (#306)</hymn>, and <hymn>The Priesthood of Our Lord (#320)</hymn> all end on the tonic while <hymn>I Know My Father Lives (#302)</hymn> ends on the third. 
+
+## Summary
+
+Sopranos almost always end on the tonic, and basses always do. Altos end on the root, third, or fifth all about equally, while tenors favor the third. A handful of hymns end with at least one moving part. There are four main final chords the hymnbook uses, with most of the exceptions being from non-tonic-ending soprano lines, duets, and unisons. These main four tend to be used more with certain key signatures, summarized in the figure below.
+
+```{r, include=TRUE, echo=FALSE, fig.height=3.5}
+notes %>%
+    distinct(name_num, key_signature) %>%
+    mutate(total_per_key = n(), .by = key_signature) %>%
+    left_join(final_chords, by = "name_num") %>%
+    filter(chord_voice %in% c("1-3-1-*", "1-3-5-1", "1-1-3-1", "1-5-3-1")) %>%
+    count(key_signature, total_per_key, chord_voice) %>%
+    mutate(prop = n / total_per_key,
+           key_signature = factor(key_signature, levels = c("C", "Db", "D", "Eb", "F", "G", "Ab", "A", "Bb"))) %>%
+    arrange(chord_voice, key_signature) %>%
+    
+    ggplot(aes(key_signature, prop, color = chord_voice, fill = chord_voice)) +
+    geom_point() + 
+    geom_path(aes(group = chord_voice)) +
+    geom_label(data = tibble(chord_voice = c("1-3-1-*", "1-3-5-1", "1-1-3-1", "1-5-3-1"),
+                            key_signature = c(2.2, 5, 8, 9),
+                            prop = c(0.6, 0.52, 0.54, 0.27)),
+              aes(label = chord_voice), fill = "white") + 
+    scale_color_ptol() + 
+    scale_y_continuous(labels = scales::percent,
+                       limits = c(0, 0.62),
+                       breaks = seq(0, 1, 0.1),
+                       expand = expansion(0, c(0, 0.02))) +
+    labs(title = "Percentage of hymns per key per final chord voicing",
+         x = "Key Signature",
+         y = "Percentage") +
+    # facet_wrap(~subtype, ncol = 1) +
+    theme_bw() + 
+    theme(legend.position = "none")
+```
+
+What I think is coolest finding---and maybe this is old news for musicologists and choral arrangers---is that the final chord voicing is somewhat predictable by the key signature. Hymns in the D♭--d range are often `1-3-1-*`, hymns in the E♭--G range are often `1-3-5-1`, hymns in the A♭--B♭ range are often `1-1-3-1`, and while never the majority, hymns in the B♭--C range are often `1-5-3-1`. 
