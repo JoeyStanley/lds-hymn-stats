@@ -4,18 +4,13 @@ author: "Joey Stanley"
 date: 9/8/23
 ---
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-library(tidyverse)
-freqs <- read_csv("data/freqs.csv", show_col_types = FALSE) %>%
-    mutate(date = as.Date(date))
-n_meetings <- length(unique(freqs$meeting_id))
-n_wards    <- length(unique(freqs$ward))
-min_year <- year(min(freqs$date))
-n_countries <- length(unique(freqs$country))
-n_years <- floor(n_meetings/48)
+```{r, include = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+freqs <- readr::read_csv("data/freqs.csv", show_col_types = FALSE)
+(n_meetings <- length(unique(freqs$meeting_id)))
+(n_wards    <- length(unique(freqs$ward)))
 ```
 
-Welcome to the LDS Hymn Stats project! The purpose of this project is to discover what hymns are most commonly sung generally and in certain times of the year in sacrament meetings of the Church of Jesus Christ of Latter-day Saints. I have gathered information on what hymns were sung in `r n_meetings` sacrament meetings from `r n_wards` wards. This site gives some of the more important findings; I am writing a short book that contains more detailed results.
+Welcome to the LDS Hymn Stats project! The purpose of this project is to discover what hymns are most commonly sung generally and in certain times of the year in sacrament meetings of the Church of Jesus Christ of Latter-day Saints. I have gathered information on what hymns were sung in `r scales::comma(n_meetings)` sacrament meetings from `r scales::comma(n_wards)` wards. This site gives some of the more important findings; I am writing a short book that contains more detailed results.
 
 ## Project Overview
 
