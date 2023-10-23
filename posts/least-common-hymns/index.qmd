@@ -14,7 +14,7 @@ knitr::opts_chunk$set(include = FALSE,
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 ```
 
-[Previously](/posts/most_common_hymns), I've posted about the most popular hymns. In this post, I'll look at the opposite end of the spectrum: what hymns are hardly ever sung at all? Ones that, if they end up being cut from the hymnal, hardly anyone would even notice.
+[Previously](/posts/most_common), I've posted about the most popular hymns. In this post, I'll look at the opposite end of the spectrum: what hymns are hardly ever sung at all? Ones that, if they end up being cut from the hymnal, hardly anyone would even notice.
 
 ::: callout-note
 I will update the results on this page from time to time as I collect more data. The first update happened just a few hours after my original post because I had recieved an additional 10 years of data from generous contributors. 
@@ -146,7 +146,7 @@ freqs %>%
 freq_for_any(193)
 ```
 
-In fact, if we take all 65 hymns that I've listed on this page, and count up how many times they were sung, it comes out to 363 times in this sample, which is 1.78% of all the data. That means you might sing one of these 65 hymns once every four months, or about as often as [<hymn>I Stand All Amazed (193)</hymn>](/posts/most_common_hymns.qmd). Another way of thinking about it is that we could cut these 65 hymns, and it would affect about one meeting every four months.
+In fact, if we take all 65 hymns that I've listed on this page, and count up how many times they were sung, it comes out to 363 times in this sample, which is 1.78% of all the data. That means you might sing one of these 65 hymns once every four months, or about as often as [<hymn>I Stand All Amazed (193)</hymn>](/posts/most_common). Another way of thinking about it is that we could cut these 65 hymns, and it would affect about one meeting every four months.
 
 ```{r}
 6122/31330
