@@ -10,7 +10,207 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.433</generator>
-<lastBuildDate>Wed, 18 Oct 2023 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 23 Oct 2023 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>What hymns are sung in October as a result of the Primary Program?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/primary-program/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>October is peak Primary Program season. According to the Handbook, the “Children’s Sacrament Meeting Presentation” is held annually “during the last few months of the year.” The wards I’ve been in typically do it in October or late September. So, since we’re approaching the end of October, I thought I’d take a look at what congregational hymns are sung around this time of year, likely as a result of the Primary Program. It’s a little difficult to see what hymns are sung the most in October, because we have several other things going on, including <a href="../../posts/general_conference.html">General Conference</a> and a Fast Sunday. So, if we ignore those for now, we can start to see what hymns emerge as being the most autumnal hymn.</p>
+<p>The following table shows the top ten most common hymns sung in October, excluding sacrament hymns and General Conference–related hymns. The numbers are not huge—it’s not like we’re seeing a very obvious trend going on across the church. But, it is probably not a coincidence that <hymn>I Am a Child of God (#301)</hymn> and <hymn>Teach Me to Walk in the Light (#304)</hymn> are among the Top 3. These are most likely related to the Primary Programs.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Hymn</th>
+<th style="text-align: left;">Wards that sang it in October</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I Am a Child of God (301)</td>
+<td style="text-align: left;">4.63%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Come, Follow Me (116)</td>
+<td style="text-align: left;">4.17%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Teach Me to Walk in the Light (304)</td>
+<td style="text-align: left;">4.17%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I Know That My Redeemer Lives (136)</td>
+<td style="text-align: left;">3.65%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Because I Have Been Given Much (219)</td>
+<td style="text-align: left;">3.52%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">How Firm a Foundation (85)</td>
+<td style="text-align: left;">3.13%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I Believe in Christ (134)</td>
+<td style="text-align: left;">3.13%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Choose the Right (239)</td>
+<td style="text-align: left;">3.13%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lord, I Would Follow Thee (220)</td>
+<td style="text-align: left;">3.06%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">The Lord Is My Light (89)</td>
+<td style="text-align: left;">2.87%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>But, raw frequency doesn’t tell the whole story. You can see on this list that the other eight of the top ten most common hymns in October are hymns that are common throughout the year. In other words, of course <hymn>Because I Have Been Given Much (#219)</hymn> is common in October: <a href="../../posts/sacrament">it’s the most common non-sacrament hymn</a>! In fact, those eight other hymns are among the top 13 most common non-sacrament hymns. So, this table doesn’t say too much by itself.</p>
+<p>So, as a way to control for how popular a hymn is overall, I’ve done a different calculation that accounts for how much the hymn is sung within a particular range compared to not within a range.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Technical details for nerds :)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Take <hymn>I Am a Child of God (#301)</hymn> and the month of October. In my 18,368 sacrament meetings, I have 63,818 individual hymns. 5,213 of those are in the month of October. Among those, <hymn>I Am a Child of God (#301)</hymn> was sung 71 times, or 1.36% of the data. Outside of October, I have 58,605 data points, 313 of which are <hymn>I Am a Child of God (#301)</hymn>, or 0.53%. So, even though 313 times outside of October is a larger number than 71 times inside of October, you have to keep in mind that there are just 3–4 weeks in October where it could be sung, and around 48 weeks that it could be sung during the rest of the year. So that 313 is spread more thinly over those 48 weeks and the 71 times in October is more concentrated. So, if we divide the first percentage by the second percentage, we get 2.56. We can interpret that to mean that to mean that <hymn>I Am a Child of God (#301)</hymn> is 2.56 times more likely to be sung in a random week in October than in a random week during the rest of the year.</p>
+<p>For comparison, <hymn>Because I Have Been Given Much (#219)</hymn> was sung 54 times in October (1.10%) and 557 times during the rest of year (0.95%). Dividing those two, we get 1.17, meaning it’s only 1.17 times more likely to be sung in October compared to the rest of the year. So even though it’s a more common hymn, it’s nothing special in October.</p>
+<p>However, sample size affects these calculations. The hymn that actually has the highest October-to-not-October ratio is <hymn>Arise, O God, and Shine (#265)</hymn>, which is not sung very often (about once every 9.3 years). I can’t think of a good reason for why that hymn would be more popular in October, and it’s likely just because of a fluke in the data. And with smaller sample sizes, flukes appear bigger. I considered filtering the data to only include hymns that have been sung a certain number of times, but that wasn’t good because some infrequent hymns may indeed be specific to certain times.</p>
+<p>The solution I came up with was to do count how many times hymn was sung in October and not October, count up all the other data I have, and <img src="https://latex.codecogs.com/png.latex?chi%5E2"> on the two. So, in the case of <hymn>I Am a Child of God (#301)</hymn> above, the <img src="https://latex.codecogs.com/png.latex?2%5Ctimes2"> table would look like this:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Hymn 301</th>
+<th>All other hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>October</td>
+<td>71</td>
+<td>5,142</td>
+</tr>
+<tr class="even">
+<td>Not October</td>
+<td>313</td>
+<td>58,292</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> test on this table shows that there is an association between October and Hymn 301 (<img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> = 53.48, df = 1, <em>p &lt; -0.001</em>). So, after calculating the October-to-not-October ratio for all hymns, I then ran a <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> test on each one to see which differences were statistically significant.</p>
+<p>But, you can’t just go around making hundreds of comparisons without the chance of a bunch of false positives. Assuming an <img src="https://latex.codecogs.com/png.latex?%5Calpha"> level of 0.95, we’d expect 5% of the comparisions to appear statistically significant, even though thy’re not. So, a basic solution is to add a Bonferroni correction, which is to divide the base level <em>p</em>-value (0.05) by the number of comparisons being made (in this case, 233, since that’s how many unique hymns were sung in October at some point), producing a new <em>p</em>-value threshold of about 0.000021.</p>
+<p>So, the following table shows only those hymns that have a <em>p</em>-value that are smaller than the new corrected threshold.</p>
+</div>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><span class="callout-1-contents callout-collapse collapse callout-margin-content">My understanding is the the Bonferroni correction is critiqued as being too harsh. In this case, it seems to work pretty well.</span></div><p>The following table shows the hymns that are quite a bit more likely to be sung in October than in other months of the year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Hymn</th>
+<th style="text-align: right;">Sung in October</th>
+<th style="text-align: left;">Percent of October</th>
+<th style="text-align: right;">Sung not in October</th>
+<th style="text-align: left;">Percent not in October</th>
+<th style="text-align: right;">Times more likely in October</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I Am a Child of God (301)</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: left;">1.36%</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: left;">0.53%</td>
+<td style="text-align: right;">2.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">As I Search the Holy Scriptures (277)</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">0.77%</td>
+<td style="text-align: right;">224</td>
+<td style="text-align: left;">0.38%</td>
+<td style="text-align: right;">2.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Teach Me to Walk in the Light (304)</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: left;">1.23%</td>
+<td style="text-align: right;">389</td>
+<td style="text-align: left;">0.66%</td>
+<td style="text-align: right;">1.85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Come, Follow Me (116)</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: left;">1.23%</td>
+<td style="text-align: right;">396</td>
+<td style="text-align: left;">0.68%</td>
+<td style="text-align: right;">1.82</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>As you can see <hymn>I Am a Child of God (#301)</hymn> makes the cut and it sung 2.55 times more likely to be sung in October than elsewhere during the year. Another children’s hymn, <hymn>Teach Me to Walk in the Light (#304)</hymn>, is about 1.85 times as likely. As for the two other hymns, <hymn>As I Search the Holy Scriptures (#277)</hymn> and <hymn>Come, Follow Me (#116)</hymn>, it’s not obvious to me why those might be sung more in October than in other months.</p>
+<p>For what it’s worth, there are other children’s hymns that are more common in October, but didn’t make the cut because they’re more common during other months.</p>
+<ul>
+<li><hymn>Dearest Children, God Is Near You (#96)</hymn>, <hymn>In Our Lovely Deseret (#307), and <hymn>Keep the Commandments (#303) are common in October, as well as September. So, they have a little more broad usage.</hymn></hymn></li>
+<li><hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>Teach Me to Walk in the Light (#304)</hymn>, and <hymn>I Know My Father Lives (#302)</hymn> have slight spikes in October, but they’re overshadowed by their currency around Mother’s Day and/or Father’s Day, which will be the topic of a later post.</li>
+<li>Other children’s hymns like <hymn>The Light Divine (#305)</hymn> and <hymn>God’s Daily Care (#306)</hymn> don’t really seem to be more common in the fall than in other times of the year.</li>
+</ul>
+<p>The following plot shows these select children’s hymns and how often they were sung throughout the year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/primary-program/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<p>So, other <hymn>I Am a Child of God (#301)</hymn> appears to be the most October-concentrated hymn. A few other children hymns are also popular, but they’re either not frequent enough to be statistically significant, or they’re overshadowed by their usage in other parts of the year.</p>
+<section id="halloween" class="level2">
+<h2 class="anchored" data-anchor-id="halloween">Halloween?</h2>
+<p>Out of curiosity, I checked to see if there were any hymns sung more around Halloween. I think there’s a joke that goes around that hymns like <hymn>He is Risen! (#199)</hymn> or other resurrection-themed hymns would be funny to sing on Halloween as a reference to zombies, but there is no indication that anyone acts on that in this dataset. I have data from 421 sacrament meetings that are the last Sunday in October. In none of them do I find any Easter hymns, with the exception being <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn> as a <a href="../../posts/sacrament">sacrament hymn</a> in five of them. So, I see no evidence of any Halloween-themed sacrament meeting hymns.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>frequency</category>
+  <category>holidays</category>
+  <guid>https://hymnstats.joeystanley.com/posts/primary-program/index.html</guid>
+  <pubDate>Mon, 23 Oct 2023 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What are the most common final chords?</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -2343,7 +2543,7 @@ Fun Fact
 <item>
   <title>How many unique hymns does a ward sing in a year?</title>
   <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/unique_hymns_per_year.html</link>
+  <link>https://hymnstats.joeystanley.com/posts/hymns_per_year/index.html</link>
   <description><![CDATA[ 
 
 
@@ -2351,10 +2551,11 @@ Fun Fact
 <section id="how-many-hymns-could-a-ward-sing-per-year" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="how-many-hymns-could-a-ward-sing-per-year">How many hymns <em>could</em> a ward sing per year?</h2>
 <p>I was talking to someone about this project, and they said something like, “Our ward does a good job at singing unusual hymns. We probably get through the entire hymnal every year.” I can tell you now that’s impossible. Let’s explore that a little bit.</p>
-<div class="page-columns page-full"><p>There are 52 weeks in a year. Subtract two for General Conference and subtract two for Stake Conference. You’re left with 48 sacrament meetings per year. If you sang an opening, sacrament, intermediate, and closing hymn in all 48 of those meetings, that’s 196 hymns. But, subtract 12 for Fast Sundays, which have no intermediate hymn. So, you’re left with a maximum of 184 sung per year per ward. That’s assuming zero special musical numbers ever.</p><div class="no-row-height column-margin column-container"><span class="">Okay, some years have 53 Sundays, but for simplicity, we’ll keep it at 52</span><span class="">For what it’s worth, I assume 48 sacrament meetings per year for everything in this project.</span></div></div>
-<p>Well, right off the bat, we know that you can’t possibly get through the entire hymnal in a year, because there are 341 hymns! Even if you exclude the men’s and women’s arrangements in the back and <hymn>God Save the King</hymn>, that’s 310 hymns.</p>
-<p>But, let’s not forget that sacrament hymns almost always have to be one of the hymns in the 169–196 range. There are 28 of them. We’ll assume you get through all 28 of them, but not all wards do because there are a few that are <a href="../posts/sacrament/index.html#frequency">clearly less popular than others</a>. So, if 48 of your 184 hymns are tied up as sacrament hymns, that means you’ll have to repeat some. That leaves 136 remaining opening, intermediate, and closing hymn slots. If you didn’t repeat any <em>and</em> had zero special musical numbers, then yes, you could sing 136 unique hymns, plus the 28 sacrament hymns, for a total of 164 unique hymns per year. That is the maximum any ward could do.</p>
-<p>If you really were determined to all 310 hymns without repeating, except for sacrament hymns, it would take 94 weeks to do so, or just shy of two years, under perfect conditions. But having special musical numbers and ward choirs makes it impossible to reach that goal. I currently have 17,993 hymns from 5,345 sacrament meetings. Simple division shows that…</p>
+<div class="page-columns page-full"><p>There are 52 weeks in a year. Subtract two for General Conference and subtract two for Stake Conference. You’re left with 48 sacrament meetings per year. If you sang an opening, sacrament, intermediate, and closing hymn in all 48 of those meetings, that’s 196 hymns. But, subtract 12 for Fast Sundays, which have no intermediate hymn. So, you’re left with a maximum of 184 congregational hymns per year per ward. That’s assuming zero special musical numbers ever.</p><div class="no-row-height column-margin column-container"><span class="">Okay, some years have 53 Sundays, but for simplicity, we’ll keep it at 52</span><span class="">For what it’s worth, I assume 48 sacrament meetings per year for everything in this project.</span></div></div>
+<p>Well, right off the bat, we know that you can’t possibly get through the entire hymnal in a year, because there are 341 hymns! Even if you exclude the men’s and women’s arrangements in the back, <a href="../../posts/mens_womens_arrangements.html">which are hardly ever sung</a>, and (for American wards) <hymn>God Save the King (#341)</hymn>, that’s 310 hymns.</p>
+<p>But, let’s not forget that sacrament hymns almost always have to be one of the hymns in the 169–196 range. There are 28 of them. We’ll assume you get through all 28 of them, but not all wards do because there are a few that are <a href="../../posts/sacrament/index.html#frequency">clearly less popular than others</a>. So, 48 of your 184 hymns are tied up as sacrament hymns, some of which will have to be repeated. That leaves 136 remaining opening, intermediate, and closing hymn slots. If you didn’t repeat any <em>and</em> had zero special musical numbers, then yes, you could sing 136 unique hymns, plus the 28 sacrament hymns, for a total of 164 unique hymns per year. That is the maximum any ward could do.</p>
+<p>If you really were determined to all 310 hymns without repeating, except for sacrament hymns, it would take 94 weeks to do so, or just shy of two years, under perfect conditions. But having special musical numbers and ward choirs makes it impossible to reach that goal. (And I’d encourage you to not deny people the opportunity to do a special musical number just so you can hit this goal!)</p>
+<p>I currently have 63,307 hymns from 18,218 sacrament meetings. With this data, I can calculate how often wards typically sing intermediate hymns by simply dividing those two numbers. If the number is close to 3, then most wards sing 3 congregational hymns a week, meaning there’s a special musical number or for whatever reason the intermediate hymn is not sung. If the number is close to 4, then most wards sing four congregational hymns: opening, sacrament, intermediate, and closing. As it turns out, it’s around 3.47.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2365,13 +2566,13 @@ Fun Fact
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The average number of hymns sung in sacrament meeting is 3.37.</p>
+<p>The average number of hymns sung in sacrament meeting is 3.47.</p>
 </div>
 </div>
-<p>That means—across my dataset—only about a third of the time will a ward sing an intermediate hymn. If, across a few weeks or months, your ward has a lower number than that, then you have more special musical numbers than a typical ward. If your average is higher, it means you have fewer.</p>
-<p>Let’s recalculate our numbers then. If there are 48 weeks, and 3.37 hymns per week, that’s a max of 162 (I’ll round up) total hymns sung per ward per year. 48 of those are chewed up by the 28 sacrament hymns, so you’re left with 114 slots for the rest of the hymnal. If you didn’t repeat any and add back the 28 sacrament hymns, that’s a max of 142 unique hymns per year. And if you’re only able to get through 2.37 new hymns per week, and there are 282 non-sacrament hymns to get through, it would take 119 weeks to get through all of them, or just about two and a half years.</p>
+<p>This means that means—across my dataset—only about half of the time does a ward sing an intermediate hymn. If, across a few weeks or months, your ward has a lower number than that, then you have more special musical numbers than a typical ward. If your average is higher, it means you have fewer.</p>
+<p>Let’s recalculate our numbers then. If there are 48 weeks, and 3.47 hymns per week, that’s a max of 167 (I’ll round up) total hymns sung per ward per year. 48 of those are chewed up by the 28 sacrament hymns, so you’re left with 119 slots for the rest of the hymnal. If you didn’t repeat any and add back the 28 sacrament hymns, that’s a max of 147 unique hymns per year. And if you’re only able to get through 2.47 new hymns per week, and there are 282 non-sacrament hymns to get through, it would take 114 weeks to get through all of them, or just about two years and four months.</p>
 </section>
-<section id="so-how-many-hymns-do-wards-sing-per-year" class="level2">
+<section id="so-how-many-hymns-do-wards-sing-per-year" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="so-how-many-hymns-do-wards-sing-per-year">So how many hymns <em>do</em> wards sing per year?</h2>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2383,7 +2584,7 @@ Fun Fact
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Most wards sing around 107 unique hymns per year.</p>
+<p>Most wards sing around 105 unique hymns per year.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -2398,24 +2599,50 @@ Technical details for nerds :)
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>To get this number, I started off with the 20 wards from which I have at least a year’s worth of data. I didn’t want to base the calculation on wards that contributed less data because it messes with the results.</p>
-<p>But, even with these 20 wards, I can’t simply divide the number of unique hymns by the number of sacrament meetings because the more data I have from a ward, the more likely they are to sing a rather unusual hymn. It pretty neatly follows some sort of exponential distribution.</p>
-<p><img src="https://hymnstats.joeystanley.com/images/hymns-per-year_by_amount-of-data.jpeg" class="img-fluid"></p>
-<p>So, because of <em>math</em>, it’s not meaningful to compare six years of data from one ward to one year of data from another ward.</p>
-<p>I tried a rolling cumulative sum of unique hymns, but I didn’t know how to implement that in R. So instead, I implemented a bootstrapping technique and sampled 48 meetings, without replacement, 100 times per ward, and got that average. The standard deviation was 3.68—a surprisingly narrow distribution if you ask me.</p>
+<p>To get this number, I started off with the 108 wards from which I have at least a year’s worth of data. I didn’t want to base the calculation on wards that contributed less data because it messes with the results.</p>
+<p>But, even with these 108 wards, I can’t simply divide the number of unique hymns by the number of sacrament meetings because the more data I have from a ward, the more likely they are to repeat hymns, especially common ones and around holidays. Yes, I am also more likely to see an unusual hymn if I have more data from them, but it seems like the repeated hymns has a stronger effect. It appears to follow some sort of exponential distribution.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 108 × 6
+    rank ward      unique_hymns unique_meetings hymns_per_meeting hymns_per_year
+   &lt;int&gt; &lt;chr&gt;            &lt;int&gt;           &lt;int&gt;             &lt;dbl&gt;          &lt;dbl&gt;
+ 1     1 Pueblo W…          237             695             0.341           16.4
+ 2     2 Apex Ward          273             713             0.383           18.4
+ 3     3 Draper 6…          203             392             0.518           24.9
+ 4     4 Bristol …          168             304             0.553           26.5
+ 5     5 Frederic…          232             414             0.560           26.9
+ 6     6 Slate Ca…          253             441             0.574           27.5
+ 7     7 Oquirrh …          209             302             0.692           33.2
+ 8     8 Sioux Ci…          147             208             0.707           33.9
+ 9     9 Sunset H…          214             295             0.725           34.8
+10    10 Madison …          205             265             0.774           37.1
+# ℹ 98 more rows</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>So, because of <em>probability</em>, it’s not meaningful to compare six years of data from one ward to one year of data from another ward.</p>
+<p>I tried a rolling cumulative sum of unique hymns, but I didn’t know how to implement that in R. So instead, I implemented a bootstrapping technique and sampled 48 meetings, without replacement, 100 times per ward, and got that average. The standard deviation was 3.16—a surprisingly narrow distribution if you ask me.</p>
 </div>
 </div>
 </div>
-<p>Assuming about 24–28 of those are sacrament hymns, that means most wards only sing about 80 or so unique non-sacrament hymns per year. Furthermore, 28 of those 80 hymns are repeated each year.</p>
-<p>The most variety of hymns I have in my dataset is 130 unique hymns per ward. That’s pretty good, and certainly much better than average. The year with the least variety was one ward that sang just 90 unique hymns in a year. Considering that many of the holiday hymns aren’t going to be repeated, it means that many (and perhaps most) of the non-festive hymns were repeated that year.</p>
-<p>These numbers should be taken with a grain of salt because it’s only based on 20 wards. If you have access to a year’s worth of data from your ward, please visit the <a href="../contribute.html">contribute</a> page!</p>
+<p>Assuming about 24–28 of those are sacrament hymns, that means most wards only sing about 80 or so unique non-sacrament hymns per year. It appears then that another 28 of those 80 hymns are repeated each year.</p>
+<p>The most variety of hymns I have in my dataset is 131 unique hymns per ward. That’s pretty good, and certainly much better than average. The year with the least variety was one ward that sang just 66 unique hymns in a year. Considering that many of the holiday hymns aren’t going to be repeated, it means that many (and perhaps most) of the non-festive hymns were repeated that year.</p>
+<div class="page-columns page-full"><p>These numbers should be taken with a grain of salt because it’s only based on 108 wards. If you have access to a year’s worth of data from your ward, please visit the <a href="../../contribute.html">contribute</a> page!</p><div class="no-row-height column-margin column-container"><span class="">For what it’s worth, a previous version of this blog post was written based on a much smaller sample of 20 wards. The numbers are more or less the same, which leads me to believe they’re reasonably accurate.</span></div></div>
+</section>
+<section id="are-there-fewer-intermediate-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="are-there-fewer-intermediate-hymns">Are there fewer intermediate hymns?</h2>
+<p>As Tanya suggested, does that change from pre/post 2019.</p>
+<p>Oh! There may be a difference!</p>
+<p>Let’s look at that in more detail.</p>
 
 
 </section>
 
  ]]></description>
   <category>general</category>
-  <guid>https://hymnstats.joeystanley.com/posts/unique_hymns_per_year.html</guid>
+  <guid>https://hymnstats.joeystanley.com/posts/hymns_per_year/index.html</guid>
   <pubDate>Sun, 10 Sep 2023 06:00:00 GMT</pubDate>
 </item>
 <item>
