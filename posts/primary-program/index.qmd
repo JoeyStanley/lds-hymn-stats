@@ -103,7 +103,7 @@ single_hymn_lookup(265)
 
 However, sample size affects these calculations. The hymn that actually has the highest October-to-not-October ratio is <hymn>Arise, O God, and Shine (#265)</hymn>, which is not sung very often (about once every 9.3 years). I can't think of a good reason for why that hymn would be more popular in October, and it's likely just because of a fluke in the data. And with smaller sample sizes, flukes appear bigger. I considered filtering the data to only include hymns that have been sung a certain number of times, but that wasn't good because some infrequent hymns may indeed be specific to certain times.
 
-The solution I came up with was to do count how many times hymn was sung in October and not October, count up all the other data I have, and $chi^2$ on the two. So, in the case of <hymn>I Am a Child of God (#301)</hymn> above, the $2\times2$ table would look like this:
+The solution I came up with was to do count how many times hymn was sung in October and not October, count up all the other data I have, and $\chi^2$ on the two. So, in the case of <hymn>I Am a Child of God (#301)</hymn> above, the $2\times2$ table would look like this:
 
 |             | Hymn 301 | All other hymns |
 |-------------|----------|-----------------|

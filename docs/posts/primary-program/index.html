@@ -251,7 +251,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <td style="text-align: left;">3.06%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">The Lord Is My Light (89)</td>
+<td style="text-align: left;">The Spirit of God (2)</td>
 <td style="text-align: left;">2.87%</td>
 </tr>
 </tbody>
@@ -275,7 +275,7 @@ Technical details for nerds :)
 <p>Take <hymn>I Am a Child of God (#301)</hymn> and the month of October. In my 18,368 sacrament meetings, I have 63,818 individual hymns. 5,213 of those are in the month of October. Among those, <hymn>I Am a Child of God (#301)</hymn> was sung 71 times, or 1.36% of the data. Outside of October, I have 58,605 data points, 313 of which are <hymn>I Am a Child of God (#301)</hymn>, or 0.53%. So, even though 313 times outside of October is a larger number than 71 times inside of October, you have to keep in mind that there are just 3–4 weeks in October where it could be sung, and around 48 weeks that it could be sung during the rest of the year. So that 313 is spread more thinly over those 48 weeks and the 71 times in October is more concentrated. So, if we divide the first percentage by the second percentage, we get 2.56. We can interpret that to mean that to mean that <hymn>I Am a Child of God (#301)</hymn> is 2.56 times more likely to be sung in a random week in October than in a random week during the rest of the year.</p>
 <p>For comparison, <hymn>Because I Have Been Given Much (#219)</hymn> was sung 54 times in October (1.10%) and 557 times during the rest of year (0.95%). Dividing those two, we get 1.17, meaning it’s only 1.17 times more likely to be sung in October compared to the rest of the year. So even though it’s a more common hymn, it’s nothing special in October.</p>
 <p>However, sample size affects these calculations. The hymn that actually has the highest October-to-not-October ratio is <hymn>Arise, O God, and Shine (#265)</hymn>, which is not sung very often (about once every 9.3 years). I can’t think of a good reason for why that hymn would be more popular in October, and it’s likely just because of a fluke in the data. And with smaller sample sizes, flukes appear bigger. I considered filtering the data to only include hymns that have been sung a certain number of times, but that wasn’t good because some infrequent hymns may indeed be specific to certain times.</p>
-<p>The solution I came up with was to do count how many times hymn was sung in October and not October, count up all the other data I have, and <span class="math inline">\(chi^2\)</span> on the two. So, in the case of <hymn>I Am a Child of God (#301)</hymn> above, the <span class="math inline">\(2\times2\)</span> table would look like this:</p>
+<p>The solution I came up with was to do count how many times hymn was sung in October and not October, count up all the other data I have, and <span class="math inline">\(\chi^2\)</span> on the two. So, in the case of <hymn>I Am a Child of God (#301)</hymn> above, the <span class="math inline">\(2\times2\)</span> table would look like this:</p>
 <table class="table">
 <thead>
 <tr class="header">
