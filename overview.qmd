@@ -1,0 +1,51 @@
+---
+title: "Overview"
+author: "Joey Stanley"
+date: "10/23/2023"
+---
+
+```{r, include = FALSE}
+rmarkdown::render("_scripts/analysis_functions.Rmd")
+```
+
+This page just has a data dump of all the hymns and their frequency stats. I will update this page regularly as I collect more data. 
+
+## Quick Facts
+
+I currently have data from `r scales::comma(get_n_distinct_meetings())` sacrament meetings. If you were to attend that many, it would take roughly `r round(get_n_distinct_meetings()/48, 1)` years---so, more than a couple lifetimes' worth of data. It's also the equivalent of the entire 38-year lifetime of the 1985 hymnal in 10 wards. This data comes from `r length(unique(freqs$ward))` wards, mostly in the United States. Across all these meetings, there is data about `r scales::comma(nrow(freqs))` hymns. 
+
+
+
+## Frequencies
+
+```{r, include = TRUE, echo = FALSE}
+freqs %>%
+    cleveland_plot(return = "table") %>%
+    mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
+    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
+    select(`#` = hymn_num,
+           `Hymn` = hymn_name,
+           `Times Sung` = n,
+           `Avg per Year` = avg_per_year,
+           `Every X Weeks` = every_x_weeks,
+           `Every X Months` = every_x_months,
+           `Every X Years`  = every_x_years) %>%
+    mutate(across(c(`Avg per Year`:`Every X Years`), ~round(., 3))) %>%
+
+    # Make ties the same rank
+    rowid_to_column("Rank") %>%
+    mutate(Rank = min(Rank), .by = `Times Sung`) %>%
+# print()
+    knitr::kable()
+```
+
+
+Here is the same information, but as a plot.
+
+```{r, echo = FALSE, fig.height = 40}
+freqs %>%
+    cleveland_plot(return = "plot", 
+                   title = "Frequency of all hymns",
+                   subtitle = NULL)
+```
+
