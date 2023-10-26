@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2023-09-16">
+<meta name="description" content="Which key signatures are the most common and why? Which ones are people most likely to see? What hymns are in a minor key?">
+
+<title>LDS Hymn Stats - What are the most common key signatures?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="LDS Hymn Stats - What are the most common key signatures?">
+<meta property="og:description" content="Which key signatures are the most common and why? Which ones are people most likely to see? What hymns are in a minor key?">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/key_signatures/index_files/figure-html/fig-key_sigs-1.png">
+<meta property="og:site-name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="672">
+<meta property="og:image:width" content="1248">
+<meta name="twitter:title" content="LDS Hymn Stats - What are the most common key signatures?">
+<meta name="twitter:description" content="Which key signatures are the most common and why? Which ones are people most likely to see? What hymns are in a minor key?">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/key_signatures/index_files/figure-html/fig-key_sigs-1.png">
+<meta name="twitter:image-height" content="672">
+<meta name="twitter:image-width" content="1248">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html" rel="" target="">
+ <span class="menu-text">Findings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../overview.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html" rel="" target="">
+ <span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-key-signature-is-most-common-in-the-hymnal" id="toc-what-key-signature-is-most-common-in-the-hymnal" class="nav-link active" data-scroll-target="#what-key-signature-is-most-common-in-the-hymnal">What key signature is most common in the hymnal?</a></li>
+  <li><a href="#but-do-we-actually-see-g-major-the-most" id="toc-but-do-we-actually-see-g-major-the-most" class="nav-link" data-scroll-target="#but-do-we-actually-see-g-major-the-most">But do we actually see G major the most?</a></li>
+  <li><a href="#why-is-g-major-the-most-common" id="toc-why-is-g-major-the-most-common" class="nav-link" data-scroll-target="#why-is-g-major-the-most-common">Why is G major the most common?</a></li>
+  <li><a href="#what-about-minor-keys" id="toc-what-about-minor-keys" class="nav-link" data-scroll-target="#what-about-minor-keys">What about minor keys?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What are the most common key signatures?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">key signatures</div>
+    <div class="quarto-category">musicology</div>
+    <div class="quarto-category">melody</div>
+    <div class="quarto-category">bass line</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Which key signatures are the most common and why? Which ones are people most likely to see? What hymns are in a minor key?
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 16, 2023</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 25, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="what-key-signature-is-most-common-in-the-hymnal" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-key-signature-is-most-common-in-the-hymnal">What key signature is most common in the hymnal?</h2>
+<p>It doesn’t take any specialized skills to figure out what key signature is the most common, nothing more than flipping through the hymnal and tallying the key signatures up. To save you a sacrament meeting distraction, I went ahead did this for you, and <a href="#fig-key_sigs">Figure&nbsp;1</a> shows the distribution of key signatures across the hymnal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-key_sigs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-key_sigs-1.png" class="img-fluid figure-img" width="624"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Frequency of key signatures</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The most common key signature is G major, or one sharp.</p>
+</div>
+</div>
+<div class="page-columns page-full"><p>If you know the hymnal well, nothing about <a href="#fig-key_sigs">Figure&nbsp;1</a> should come as a surprise. The modern hymnal tends to use key signatures that have few sharps or flats. There are about as many hymns in the D major as there are in C major and E♭ major. There are slightly fewer hymns in F and B♭ major for some reason. E♭ major is the standout because even though it has more flats than B♭ and F, it outnumbers those two. In general though, the further in the circle of fourths you go away from G major, the fewer hymns there are.</p><div class="no-row-height column-margin column-container"><span class="">That wasn’t necessarily true of previous versions. For example, some hymns in the previous version (the blue hymnal) were in the key of E major with four sharps. Presumably they got rid of those because they were too hard for some accompanists to play.</span></div></div>
+<p>Two key signatures are marginal in the hymnal. The key of A major, with three sharps, is only found in two hymns: the men’s chorus arrangement of <hymn>An Angel from on High (#328)</hymn> and <hymn>How Wondrous and Great (#267)</hymn>. Since the first is a men’s chorus arrangement, <a href="../../posts/mens_womens_arrangements.html">it was never sung in sacrament meeting</a> in my data. The second was sung about once every 4ish years, so a less common hymn for sure, but more common than many others.</p>
+<p>The other marginal key signature is D♭ and, again, just two hymns are in that key. <hymn>As the Shadows Fall (#168)</hymn> was sung just 11 times in my data, or once every roughly 35 years. The other, <hymn>Softly Beams the Sacred Dawning (#56)</hymn>, was sung just five times in my sample, meaning it’s sung about once every 76 years. Because of how unusual these hymns are, these numbers are very rough guesses; perhaps we can think of them as “once in a generation” and “once in a lifetime.” The point is, it is <em>very</em> unusual to sing a hymn in D♭.</p>
+<p>For what it’s worth, there is one hymn that actually changes keys partway though. <hymn>Welcome, Welcome, Sabbath Morning (#280)</hymn> starts in C major, shifts to G major, and then back to C major. For the purposes of this study, I’m treating it as being in C major the entire time.</p>
+</section>
+<section id="but-do-we-actually-see-g-major-the-most" class="level2">
+<h2 class="anchored" data-anchor-id="but-do-we-actually-see-g-major-the-most">But do we actually see G major the most?</h2>
+<p>So we’ve addressed the question of what key signature the most number of hymns are set to. But, does that actually mean that’s the most that we see? What’s the difference? It may be the case that tons of hymns in G major are really obscure ones that hardly anyone ever sees. So, if we take frequency into account, perhaps another key is <em>seen</em> more often, even if fewer hymns are actually in it.</p>
+<p>(An analogy here is that <a href="#fig-key_sigs">Figure&nbsp;1</a> is like the Senate: equal representation of all states, regardless of population. In this case, all hymns are treated equally, regardless of how often they’re sung. <a href="#fig-weighted">Figure&nbsp;2</a> is like the House of Representatives: representation based on population, or in this case, how often a hymn is sung.)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-weighted" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-weighted-1.png" class="img-fluid figure-img" width="624"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Frequency of key signatures, weighted based on hymn popularity</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-weighted">Figure&nbsp;2</a> looks similar to <a href="#fig-key_sigs">Figure&nbsp;1</a> except I’ve adjusted the heights of the bars based on how frequent each hymn is. If a hymn is more common, it’ll raise the bar for its key signature more. If it’s less common, it’ll raise it less.</p>
+<p>While superficially the two plots may look similar, there are some important differences. (See <a href="#tbl-key-signature-freqs">Table&nbsp;1</a> as well.) First, D major is closer in height to G major. While only about 16.5% of the hymns are in D, they’re sung about 18.3% of the time. This is likely due to some pretty common sacrament hymns like <hymn>Jesus, Once of Humble Birth (#196)</hymn>, <hymn>O God, the Eternal Father (#175)</hymn>, and <hymn>In Memory of the Crucified (#190)</hymn> as well as some other heavy hitters like <hymn>I Believe in Christ (#134)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn>.</p>
+<p>Most of the other key signatures are pretty similar. C major and F major are more or less unchanged. Though 11.47% of hymns are set in B♭ major, they’re only sung about 10.34% of the time. And while A♭ major is only used in 5.59% of the hymns, it’s sung 4.85% of the time in sacrament meeting. (No doubt, <hymn>I Stand All Amazed (#193)</hymn> is doing <a href="../../posts/most_common">the lion’s share</a> of the work there.)</p>
+<p>Perhaps the biggest change is that E♭ is a bit more commonly seen than you’d expect based on how many hymns there are in it. 14.41% of hymns are in E♭, but 16.91% of the hymns actually sung in sacrament meeting are in E♭. Undoubtedly, it’s because nine of the 28 sacrament hymns are in E♭. So, to put it another way, on average, hymns in E♭ major are more common than hymns in C major or even B♭ major.</p>
+<p>Finally, the fact that the keys of A and D♭ major are mere slivers in <a href="#fig-weighted">Figure&nbsp;2</a> reflects what was explained above that they’re really uncommon.</p>
+<p><a href="#fig-weighted">Figure&nbsp;2</a> probably has the most useful application out of anything else in this blog post. If you’re a budding musician and are still getting used to key signatures, the good news is that you don’t have to learn all twelve keys to play the hymnal. If you focus your efforts on hymns in G, D, and E♭, you’ll get the most mileage out of your practice.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-key-signature-freqs" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Key signature frequencies</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Key Signature</th>
+<th style="text-align: right;"># of hymns</th>
+<th style="text-align: left;">% of hymnal</th>
+<th style="text-align: left;">% of hymns sung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.59%</td>
+<td style="text-align: left;">0.14%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: left;">16.47%</td>
+<td style="text-align: left;">18.34%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">G</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: left;">22.35%</td>
+<td style="text-align: left;">21.51%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">14.41%</td>
+<td style="text-align: left;">13.97%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: left;">14.12%</td>
+<td style="text-align: left;">13.90%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bb</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: left;">11.47%</td>
+<td style="text-align: left;">10.34%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eb</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">14.41%</td>
+<td style="text-align: left;">16.91%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ab</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">5.59%</td>
+<td style="text-align: left;">4.85%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Db</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.59%</td>
+<td style="text-align: left;">0.03%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="why-is-g-major-the-most-common" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-g-major-the-most-common">Why is G major the most common?</h2>
+<p>I’m not a musicologist, but I can speculate as to why G is more common than C. It may be the case that many melodies are centered around the tonic, and extend roughly a fifth above it and roughly a fourth or fifth below it, with a total range of about an octave. If that’s the case, and a comfortable octave for many singers is from D to D, that means the key of G would be an appropriate key signature. A good example of this is <hymn>Love One another (#308)</hymn>, in the left panel of <a href="#fig-sopranos">Figure&nbsp;3</a>, which shows the distribution of notes in the melody, with the tonic highlighted in blue.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sopranos" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-sopranos-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Soprano ranges for two representative hymns</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Other melodies also span a full octave but the highest and lowest notes are the tonic itself. A good example of this is <hymn>All Creatures of Our God and King (#62)</hymn>, the right panel of <a href="#fig-sopranos">Figure&nbsp;3</a>. For melodies such as these, a key signature like D (or in this case, E♭) would be more appropriate so that the melody does not go too high or too low.</p>
+<p>So, it may be the case then that the reason why G major is the most common key is because there are more melodies like <hymn>Love One another (#308)</hymn> than like <hymn>All Creatures of Our God and King (#62)</hymn>. (Looking through plots like what you see in <a href="#fig-sopranos">Figure&nbsp;3</a>, but for all the hymns in the key of G, it seems like pretty much all of them look similar to <hymn>Love One another (#308)</hymn>.)</p>
+<p>Along similar lines, if a piece is set to the key of G, the basses get to end the piece on a strong low note that many men, particularly men who sing bass lines, can hit. It’s nice to end a piece with the tonic being the lowest note of the bass line, and the entire hymn. Some examples of these hymns include <hymn>Do What is Right (#237)</hymn> (shown in the left panel of <a href="#fig-basses">Figure&nbsp;4</a>) and <hymn>God, Our Father, Hear Us Pray (#170)</hymn>. Other hymns, such as those set in C major or B♭ major, have the dominant (or fifth note of the scale) as the lowest note of the bass line, sometimes near the very end of the piece, like in <hymn>Silent Night (#203)</hymn> (shown in the right panel of <a href="#fig-basses">Figure&nbsp;4</a>) or <hymn>The Spirit of God (#2)</hymn>. While dropping down to a low dominant (in this case F if it’s in the key of B♭) can be a nice way to close a piece, I think a stronger finish is to end with the lowest note being the dominant, hence the greater number of hymns set in the key of G.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-basses" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-basses-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Bass ranges for two representative hymns</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="what-about-minor-keys" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-about-minor-keys">What about minor keys?</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Exactly five hymns are set in a minor key.</p>
+</div>
+</div>
+<div class="page-columns page-full"><p>You can see the five hymns in a minor key in <a href="#fig-minors">Figure&nbsp;5</a>. The most common is the New Year’s Day hymn, <hymn>Ring Out, Wild Bells (#215)</hymn>. We’ll talk more about holidays later on, but it’s only sung by 45% of wards around New Year’s Day. The next most common is <hymn>If You Could Hie to Kolob (#284)</hymn> although it’s not especially frequent and is only sung about once every 3.1 years or so. Third is <hymn>That Easter Morn (#198)</hymn> which, from my intuition, is punching above its weight because only 22% of wards sing it around Easter. The last two, <hymn>Lord, We Come Before Thee Now (#162)</hymn> and <hymn>How Long, O Lord Most Holy and True? (#126)</hymn> are pretty unusual and are sung about once every 15 years and once every 48 years or so, respectively.</p><div class="no-row-height column-margin column-container"><span class="">Although, if your ward ever does one of those musical testimony meetings where people get up and say what their favorite hymn is and then everyone sings a verse of that, I suspect you’re pretty much guaranteed to sing it then.</span></div></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-minors" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-minors-1.png" class="img-fluid figure-img" width="624"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Frequency of hymns in a minor key</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>So, if you sing a hymn in a minor key, it’s probably one of the two holiday ones or <hymn>If You Could Hie to Kolob (#284)</hymn>. I can’t help but think that the reason <hymn>If You Could Hie to Kolob (#284)</hymn> is so popular is <em>because</em> it’s set in a minor key. It’s a pretty obscure piece of doctrine that it’s talking about and I wonder if it were set to a different tune if it’d be as popular. In other words, do people like it because of the words or because of the music? Also, for what it’s worth, the distribution of notes looks very much like <hymn>Love One another (#308)</hymn> (the left panel in <a href="#fig-sopranos">Figure&nbsp;3</a>).</p><div class="no-row-height column-margin column-container"><span class="">In fact, it <em>was</em> set to a different tune, in a major key, in the 1948 hymnal. It’s hymn #257. I don’t know how popular it was prior to 1985 though.</span></div></div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The most common key signature in the hymnal and in the hymns that we sing in church is G major. It may be because many melodies are centered around the tonic and span about half an octave below it and half an octave above it.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
