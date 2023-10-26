@@ -115,7 +115,7 @@ highest_lowest_note_stats("soprano", c("F5", "F#5"), "high")
 
 So, six of the 341 hymns on our current hymnal go up to an F5 or F♯5, which is 1.76% of the hymnal. If all hymns were sung equally often as each other, we'd then expect that 1.76% of sacrament meeting hymns to go up to an F5 or F♯5. In reality, only 0.24% of them do, which means these six hymns are less common than expected. On average, you'll encounter one maybe once every two and a half years. And if you do, three-quarters of the time it'll be <hymn>The Morning Breaks (1)</hymn>.
 
-I can't help but wonder whether that high melody note is the reason these hymns are so uncommon. It may be the case that they are unusual hymns anyway that for whatever reason are not sung very often. But I think that these hymns are uncommon at least partially because of these high notes. A music coordinator might consider selecting one of these for their ward to sing in sacrament meeting, but for the sake of everyone's voices, ultimately decides against it. Thus, the high note perpetuates the rarity of the hymn. We saw this with the [key signatures](/posts/key_signatures.qmd) as well: hymns with marginally-attested phenomena (in this case, the keys of A and Db) are rarer than they would be due to chance alone.
+I can't help but wonder whether that high melody note is the reason these hymns are so uncommon. It may be the case that they are unusual hymns anyway that for whatever reason are not sung very often. But I think that these hymns are uncommon at least partially because of these high notes. A music coordinator might consider selecting one of these for their ward to sing in sacrament meeting, but for the sake of everyone's voices, ultimately decides against it. Thus, the high note perpetuates the rarity of the hymn. We saw this with the [key signatures](/posts/key_signatures) as well: hymns with marginally-attested phenomena (in this case, the keys of A and Db) are rarer than they would be due to chance alone.
 
 ## Not the highest, but still pretty high melody notes
 
@@ -190,7 +190,7 @@ freqs %>%
 ```
 
 
-I think there are relatively few that have this particular note simply because of [what key signatures are most common](/posts/key_signatures.qmd). It's probably not a coincidence that one of the two hymns in D♭ are in this category. Most of the others are in A♭. If there were more hymns in D♭ major, or even A♭ we might see more hymns where the highest note is D♭5.
+I think there are relatively few that have this particular note simply because of [what key signatures are most common](/posts/key_signatures). It's probably not a coincidence that one of the two hymns in D♭ are in this category. Most of the others are in A♭. If there were more hymns in D♭ major, or even A♭ we might see more hymns where the highest note is D♭5.
 
 ```{r}
 highest_lowest_note_stats("soprano", "C5", "high", .return = c("table", "summary"))

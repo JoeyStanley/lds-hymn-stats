@@ -274,7 +274,7 @@ highest_lowest_note_stats("soprano", "C4", "low")
 
 This figure shows that the majority of hymns have their lowest note at a D4. There are 147 hymns like this, which is 43.1% of the hymnal. It is interesting that this parallels [the highest notes in melodies](/posts/highest_melody), where D5 was the most common high note. In second place is C4, with 89 hymns or 26.1% of the hymnal. 
 
-Similar to the highest notes, relatively few hymns have C♯3 as the lowest note, again, likely due to the distribution of [key signatures](/posts/key_signatures.qmd) in the hymnal. It does include two sacrament hymns, <hymn>O God, the Eternal Father (#175)</hymn> and <hymn>In Memory of the Crucified</hymn> and a few other relatively common hymns. On average, you'll see that C♯4 or D♭4 about once every 5.76 weeks. 
+Similar to the highest notes, relatively few hymns have C♯3 as the lowest note, again, likely due to the distribution of [key signatures](/posts/key_signatures) in the hymnal. It does include two sacrament hymns, <hymn>O God, the Eternal Father (#175)</hymn> and <hymn>In Memory of the Crucified</hymn> and a few other relatively common hymns. On average, you'll see that C♯4 or D♭4 about once every 5.76 weeks. 
 
 ```{r}
 highest_lowest_note_stats("soprano", "C#4", "low")
