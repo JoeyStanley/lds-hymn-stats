@@ -2,7 +2,7 @@
 title: "What are the least common hymns?"
 author: "Joey Stanley"
 date: 2023-10-09
-date-modified: last-modified
+date-modified: 2023-10-27
 categories:
     - frequency
     - general
@@ -17,14 +17,28 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 [Previously](/posts/most_common), I've posted about the most popular hymns. In this post, I'll look at the opposite end of the spectrum: what hymns are hardly ever sung at all? Ones that, if they end up being cut from the hymnal, hardly anyone would even notice.
 
 ::: callout-note
-I will update the results on this page from time to time as I collect more data. The first update happened just a few hours after my original post because I had recieved an additional 10 years of data from generous contributors. 
+I will update the results on this page from time to time as I collect more data. The first update happened just a few hours after my original post because I had received an additional 10 years of data from generous contributors. Another update happened after I got an enormous addition to my dataset from Samuel Bradshaw.
 :::
 
 ## A brief note about my calculations
 
-Let me first mention my methods for how I'm calculating how often a hymn is sung, on average, per ward. I currently have data from 6,122 sacrament meetings. A ward will meet together for sacrament meeting usually 48 times in a year (52 weeks minus two for General Conference and minus two for Stake Conference). 6,122 meetings divided by 48 meetings in a year is about 127 years' worth of sacrament meetings---more than any one person would likely attend in their lifetime, even if you doubled up for a couple decades. So, if there's a hymn that's sung in just one of those sacrament meetings, that means it's sung, on average per ward, once every 127 years. If a hymn is sung 100 times in my dataset, it's sung on average once every `6122 / 48 / 100 =` 1.27 years per ward.
+```{r}
+get_n_distinct_meetings()
+get_n_distinct_meetings()/48
+```
 
-Because I'm dealing with very sparse numbers in this post, the numbers may fluctuate wildly. So for example, a hymn that's sung in three of my sacrament meetings comes out to an average of once every 42.5 years. Meanwhile a hymns that's sung in just two of them is once every 63.8 years. That's a big jump for a single data point. So, what I'm saying is you should take these numbers with a large grain of salt they mostly reflect how much data I have. Instead, I'll group them into broad categories of "once a decade," "once a generation," and "once in a lifetime."
+
+```{r}
+get_n_distinct_meetings() 
+get_n_distinct_meetings() / 48
+get_n_distinct_meetings() / 48 / 100
+get_n_distinct_meetings() / 48 / 3
+get_n_distinct_meetings() / 48 / 2
+```
+
+Let me first mention my methods for how I'm calculating how often a hymn is sung, on average, per ward. I currently have data from 18,369 sacrament meetings. A ward will meet together for sacrament meeting usually 48 times in a year (52 weeks minus two for General Conference and minus two for Stake Conference). 18,369 meetings divided by 48 meetings in a year is about 382 years' worth of sacrament meetings---far more than any one person could attend in their lifetime. So, if there's a hymn that's sung in just one of those sacrament meetings, that means it's sung, on average per ward, once every 382 years. If a hymn is sung 100 times in my dataset, it's sung on average once every `18369 / 48 / 100 =` 3.82 years per ward.
+
+Because I'm dealing with very sparse numbers in this post, the numbers may fluctuate wildly. As I [collect more data](/contribute), the exact numbers jump around quite a bit when we get to the very infrequent hymns. For example, if a hymn is sung three times in my dataset, that comes out to once every 127 years. If it's sung just twice, it's once every 191 years. That's a big jump for a single data point. So, you should take these numbers with a grain of salt they mostly reflect how much data I have. Instead, I'll group them into broad categories of "once a decade," "once a generation," and "once in a lifetime."
 
 Please note that I have removed the men's and women's arrangements (hymns 309--337) from these lists because, as I've [already written](/mens_womens_arrangements), they're probably not really intended or appropriate for sacrament meeting.
 
@@ -33,30 +47,22 @@ So, with that in mind, let's most on to the least common hymns.
 ## Once a decade
 
 ```{r}
-get_n_distinct_meetings() 
-get_n_distinct_meetings() / 48
-get_n_distinct_meetings() / 48 / 100
-get_n_distinct_meetings() / 48 / 3
-get_n_distinct_meetings() / 48 / 2
-
-```
-
-```{r}
 freqs %>%
     cleveland_plot(return = "table") %>%
     filter(every_x_years >= 10,
+           every_x_years < 25,
            !hymn_num %in% 309:337) %>%
     select(-avg_per_year, -every_x_weeks, -every_x_months) %>%
     print()
 ```
 
-Let's start with hymns that are sung once every 10 to about 25 years or so. In other words, these are ones that were sung between about 5 to 12 times in the entire sample. In my current dataset, there are 33 hymns that fit into this category. The following table shows these hymns in order of appearance in the hymnal.
+Let's start with hymns that are sung once every 10 to about 25 years or so. In other words, these are ones that were sung between about 16 to 38 times in the entire sample. In my current dataset, there are 37 hymns that fit into this category. The following table shows these hymns in order of appearance in the hymnal.
 
 ```{r, include = TRUE, echo = FALSE}
 freqs %>%
     cleveland_plot(return = "table") %>%
     filter(every_x_years >= 10,
-           every_x_years <= 26,
+           every_x_years <= 25,
            !hymn_num %in% 309:337) %>%
     arrange(as.integer(as.character(hymn_num))) %>%
     select(`Hymn` = label, `Every X Years` = every_x_years, `Times Sung` = n) %>%
@@ -64,17 +70,28 @@ freqs %>%
     knitr::kable()
 ```
 
-As an LDS musician basically my entire life, I can tell you that I could probably sing the melody for two of these: <hymn>What Was Witnessed in the Heavens? (11)</hymn> and <hymn>Should You Feel Inclined to Censure (235)</hymn>. Most of the hymns in the first half the hymnal, I hardly recognize at all. Meanwhile, the ones in the second half of the hymnal are ones that I recognize only because they're interspersed among some of the more common, upbeat hymns in the 200-range. Overall, there is nothing too surprising here: there aren't any hymns that I feel like are more popular than they really are.
+As an LDS musician basically my entire life, I can tell you that I could probably sing the melody for only a few of these: <hymn>What Was Witnessed in the Heavens? (#11)</hymn>, <hymn>I Saw a Mighty Angel Fly (#15)<hymn>, <hymn>Adam-ondi-Ahman (#49)</hymn>, <hymn>Should You Feel Inclined to Censure (#235)</hymn>. I like to think of <hymn>The Wintry Day, Descending to Its Close (37)</hymn> as being "famous for not being famous," particularly among LDS musicians, and with its [high melody](/posts/highest_melody) and tenor lines, unusual chords, and potentially offensive lyrics, it's no surprise that it's not sung very often. Some of these hymns are ones that the Tabernacle Choir sings but that I otherwise don't recognize. Most of the hymns in the first half the hymnal, I hardly recognize at all. Meanwhile, the ones in the second half of the hymnal are ones that I recognize only because they're interspersed among some of the more common, upbeat hymns in the 200-range. Overall, there is nothing too surprising here: there aren't any hymns that I feel like are more popular than they really are.
 
 ## Once a generation
 
-The next table shows ones that are sung about once every *generation* or two. I'm defining these are those that are sung, on average per ward, once every 25 to 45 years. In my data, they show up in just 3--4 sacrament meetings. There are 18 hymns in this category, which you can see in the following table.
+The next table shows ones that are sung about once every *generation* or two. I'm defining these are those that are sung, on average per ward, once every 25 to 45 years. In my data, they show up in just 9--15 sacrament meetings. There are 13 hymns in this category, which you can see in the following table.
+
+```{r}
+freqs %>%
+    cleveland_plot(return = "table") %>%
+    filter(every_x_years >= 25,
+           every_x_years < 45,
+           !hymn_num %in% 309:337) %>%
+    pull(n) %>%
+    range()
+```
+
 
 ```{r, include = TRUE, echo = FALSE}
 freqs %>%
     cleveland_plot(return = "table") %>%
-    filter(every_x_years >= 26,
-           every_x_years <= 45,
+    filter(every_x_years >= 25,
+           every_x_years < 45,
            !hymn_num %in% 309:337) %>%
     arrange(as.integer(as.character(hymn_num))) %>%
     select(`Hymn` = label, `Every X Years` = every_x_years, `Times Sung` = n) %>%
@@ -82,23 +99,19 @@ freqs %>%
     knitr::kable()
 ```
 
-Among this set of hymns, I only recognize a few, and not because I've sung them in church, but because they stand out for other reasons. First, is <hymn>Lean on My Ample Arm (120)</hymn> which is my favorite hymn. There's <hymn>Softly Now the Light of Day (160)</hymn> which, at only two lines and one verse, is tied with the once-every-seven-years <hymn>Praise God, from Whom All Blessings Flow (242)</hymn> for the shortest hymn in the hymnal.[If you want to get really technical, Hymn 242 is shorter because its suggested tempo marking includes slower tempos.]{.aside}. There's also <hymn>As the Shadows Fall (168)</hymn>, which I recognize because it's one of [only two hymns in the key of D♭](/posts/key_signatures). As far as the rest go, I don't even recognize the titles for a lot of them.
-
-```{r}
-single_hymn_lookup(242)
-```
+Among this set of hymns, I only recognize one, <hymn>As the Shadows Fall (168)</hymn>, and not because I've sung it in church, but because it's one of [only two hymns in the key of D♭](/posts/key_signatures). As far as the rest go, I don't even recognize their titles.
 
 The wild thing is that the current hymnal was published in 1985, which is 38 years ago. If these numbers are accurate, it means that these hymns might have been sung maybe once or twice in the entire lifetime of the hymnal!
 
 ## Once in a lifetime
 
-Finally, we get to the eighteen hymns that are sung at most two times in the 6,122 sacrament meetings I have data from. Again, keep in mind that because I'm dealing with such sparse data, saying something is sung once every 127 years is very approximate and just reflects how much data I have total. Instead, you should just think of these hymns as being sung once-in-a-lifetime.
+Finally, we get to the seventeen hymns that are sung at most eight times in the 18,369 sacrament meetings I have data from. Again, keep in mind that because I'm dealing with such sparse data, saying something is sung once every 382 years is very approximate and just reflects how much data I have total. Instead, you should just think of these hymns as being sung once-in-a-lifetime.
 
 ```{r, include = TRUE, echo = FALSE}
 once <- freqs %>%
     cleveland_plot(return = "table") %>%
     mutate(hymn_num = as.integer(as.character(hymn_num))) %>%
-    filter(n %in% 1:2) %>%
+    filter(n %in% 1:8) %>%
     select(`Hymn` = label, `Every X Years` = every_x_years, `Times Sung` = n, hymn_num) %>%
     mutate(`Every X Years` = as.character(round(`Every X Years`, 1)))
 never <- freqs %>%
@@ -115,25 +128,32 @@ bind_rows(once, never) %>%
     knitr::kable()
 ```
 
-If the previous category of hymns (the "once in a generation" ones) were rare, these are even rarer. Another way of thinking about these is that in the lifetime of a physical copy of a hymnal, there is a decent chance that most of these nine hymns were *ever* sung.
+If the previous category of hymns (the "once in a generation" ones) were rare, these are even rarer. Another way of thinking about these is that in the lifetime of a physical copy of a hymnal, there is a decent chance that most of these nine hymns were *never* sung.
 
-Some of these can be explained a little bit.
+
+```{r}
+single_hymn_lookup(242)
+```
+
+I recognize two of these hymns because they stand out in interesting ways. First, is <hymn>Lean on My Ample Arm (120)</hymn> which is my favorite hymn. There's also <hymn>Softly Now the Light of Day (160)</hymn> which, at only two lines and one verse, is tied with the once-every-six-years <hymn>Praise God, from Whom All Blessings Flow (242)</hymn> for the shortest hymn in the hymnal.[If you want to get really technical, Hymn 242 is shorter because its suggested tempo marking includes slower tempos.]{.aside}. 
+
+Others in this list can be explained a little bit.
 
 -   Here we get [the other hymn in D♭](/posts/key_signatures), <hymn>Softly Beams the Sacred Dawning (56)</hymn>.
-
--   I like to describe <hymn>The Wintry Day, Descending to Its Close (37)</hymn> as being "famous for not being famous," particularly among LDS musicians, and with its [high melody](/posts/highest_melody) and tenor lines, unusual chords, and potentially offensive lyrics, it's no surprise that it's not sung very often.
 
 -   <hymn>We Meet Again in Sabbath School (282)</hymn> makes sense for being on this list because it's likely intended to be an opening hymn for Sunday School, and not sacrament meeting. Although, we don't start Sunday School with hymns anymore, so it's likely not getting any currency anymore.
 
 -   The hymn <hymn>Come, Let Us Sing an Evening Hymn (167)</hymn> makes sense since most wards meet in the morning.
 
--   It's also not surprising that <hymn>God Save the King (341)</hymn> isn't represented in my sample, partially because I only have data from a single ward in the United Kingdom, and while it was several years' worth, it is just one ward *and* the reigning monarch the entire time was a queen rather than a king.
+-   It's also not surprising that <hymn>God Save the King (341)</hymn> is hardly sung in my sample,[When I was a teenager, we actually sang <hymn>God Save the King (#341)</hymn> in Priesthood Opening Exercises, back when they had those. We did it becauase one of the young women from the ward was sitting in because she needed to make an announcement, so the Bishop asked her to give the prayer, because, how often do you see a young woman give the opening prayer in a Priesthood meeting? So, while we're seeing things we've never seen before, we sang <hymn>God Save the King (#341)</hymn>.]{.aside} partially because I don't have a lot of data from the UK and the reigning monarch the entire time was a queen rather than a king.
 
--   Finally, it seems like <hymn>This House We Dedicate to Thee (245)</hymn> is intended for a building dedication which probably not very many people actually get to attend in their lifetimes. It's a perfectly good hymn and very appropriate for the occasion---but regular sacrament meeting is not such an occasion.
+-   Finally, it seems like <hymn>This House We Dedicate to Thee (#245)</hymn> is intended for a building dedication which probably not very many people actually get to attend in their lifetimes. It's a perfectly good hymn and very appropriate for the occasion---but regular sacrament meeting is not such an occasion.
+
+It is interesting to note that, with a large enough sample and if you ignore the men's and women's arrangements in the back, I was able to find evidence of every hymn being sung at least once in some meeting somewhere. 
 
 ## Overall Frequency
 
-To me, it is wild to think that these 18 hymns (plus many of the men's and women's arrangements) have been printed in tens of thousands of hymnals for the past nearly 40 years and have hardly ever been used by anyone. On the plus side, these lists are somewhat small, especially the list of hymns never sung at all. It appears to be the case then that pretty much every hymn is sung at least a little bit. So, inflated claims along the lines of "there are 100 hymns that literally no one sings" simply aren't accurate. They're not common, but they are sung.
+To me, it is wild to think that these 17 hymns (plus many of the men's and women's arrangements) have been printed in tens of thousands of hymnals for the past nearly 40 years and have hardly ever been used by anyone. On the plus side, these lists are somewhat small, especially the list of hymns never sung at all. It appears to be the case then that pretty much every hymn is sung at least a little bit. So, inflated claims along the lines of "there are 100 hymns that literally no one sings" simply aren't accurate. They're not common, but they are sung.
 
 ```{r}
 freqs %>%
@@ -146,23 +166,25 @@ freqs %>%
 freq_for_any(193)
 ```
 
-In fact, if we take all 65 hymns that I've listed on this page, and count up how many times they were sung, it comes out to 363 times in this sample, which is 1.78% of all the data. That means you might sing one of these 65 hymns once every four months, or about as often as [<hymn>I Stand All Amazed (193)</hymn>](/posts/most_common). Another way of thinking about it is that we could cut these 65 hymns, and it would affect about one meeting every four months.
+In fact, if we take all 67 hymns that I've listed on this page, and count up how many times they were sung, it comes out to 1,180 times in this sample, which is 1.85% of all the data. That means you might sing one of these 67 hymns once every four months, or about as often as [<hymn>I Stand All Amazed (193)</hymn>](/posts/most_common). Another way of thinking about it is that we could cut these 67 hymns, and it would affect about one meeting every four months.
 
 ```{r}
-6122/31330
-363 / 6122 * 31330
+18369/31330
+single_hymn_lookup(193)
+get_n_distinct_meetings()
+1029 / 18369 * 31330
 ```
 
-Perhaps a better way of looking at this is to think about how many wards sing a given hymn around the world. There are around 31,330 wards and branches across the world.[See more facts and figures published by the church [here](https://newsroom.churchofjesuschrist.org/facts-and-statistics/country/united-states).]{.aside} Let's say that the 6,122 meetings I have data from are a representative sample. That's 19.5% of the congregations around the whole world. If one of them sings something like <hymn>Like Ten Thousand Legions Marching (253)</hymn>, we might therefore assume that perhaps five congregations around the world will sing that hymn in a given week. For comparison, if we apply the same logic, <hymn>I Stand All Amazed (193)</hymn> would be sung in 1,857 different congregations every week.
+Perhaps a better way of looking at this is to think about how many wards sing a given hymn around the world. There are around 31,330 wards and branches across the world.[See more facts and figures published by the church [here](https://newsroom.churchofjesuschrist.org/facts-and-statistics/country/united-states).]{.aside} Let's say that the 18,369 meetings I have data  are a representative sample with one ward contributing data all in the same week. That would be 58.6% of the congregations around the whole world. If one of them sings something like <hymn>Sons of Michael, He Approaches (#51)</hymn>, we might therefore assume that perhaps maybe one other congregation around the world will sing that hymn in a given week. For comparison, if we apply the same logic, <hymn>I Stand All Amazed (#193)</hymn> would be sung in 1,755 different congregations every week.
 
 ::: {.callout-warning collapse="true"}
 ### Caveats
 
 You should take that claim about how many wards around the world sing these hymns with a monster grain of salt for at least the following reasons:
 
-1.  The wards I have data from are not representative of units across the world. Roughly 75% of my data comes from the US, for example, while less than half the congregations in the world come from the US.
+1.  The wards I have data from are not representative of units across the world. Roughly 85% of my data comes from the US, for example, while less than half the congregations in the world come from the US.
 
-1.  We can't assume the 5,659 meetings are independent of each other because most wards contributed data from more than one sacrament meeting. So we can't interpret them as coming from 5,659 independent wards in the same week.
+1.  We can't assume the 18,369 meetings are independent of each other because most wards contributed data from more than one sacrament meeting. So we can't interpret them as coming from 18,369 independent wards in the same week.
 
 1.  As we'll see in later posts, holidays matter, and the likelihood of singing any one hymn goes up and down depending on things like holidays, Fast Sundays, and proximity to [General Conference](/posts/general_conference.qmd). So the odds of singing these unusual hymns is basically zero the week before Christmas, but slightly higher in a random week in September or something.
 
@@ -175,7 +197,7 @@ I wanted to point out these caveats, but it's still interesting to think about h
 
 In this blog post, I took a closer look at hymns that are sung at most once a decade. Many of them were sung less often that that, if they were sung at all.
 
-But *should* we cut these hymns? Unless there are issues with the text, message, or doctrine, I don't see any reason why we should remove hymns *per se*. In fact, some hymns, like <hymn>We Meet Again in Sabbath School (282)</hymn> or <hymn>This House We Dedicate to Thee (245)</hymn> are/were quite appropriate in very specific, albeit infrequent, circumstances. So, should they be printed in tens of thousands of hymnals? In my opinion, probably not.
+But *should* we cut these hymns? Unless there are issues with the text, message, or doctrine, I don't see any reason why we should remove hymns *per se*. In fact, some hymns, like <hymn>We Meet Again in Sabbath School (#282)</hymn> or <hymn>This House We Dedicate to Thee (#245)</hymn> are/were quite appropriate in very specific, albeit infrequent, circumstances. So, should they be printed in tens of thousands of hymnals? In my opinion, probably not.
 
 ::: callout-tip
 ### Recommendation for the next hymnal
@@ -188,9 +210,9 @@ As for the special hymns that are useful for certain occasions, set them aside i
 ::: callout-tip
 ### Recommendation to music coordinators
 
-It is unlikely that many people in your ward will be familiar with more than a few hymns listed on this page. If you want to be adventurous and try a really uncommon hymm, these are the ones to choose from. But, it might be good to help the ward out a little bit by having the ward choir sing it first, having the organist play it for prelude a few weeks prior, having the organist play the entire hymn as an introduction, and having the organist use play the melody on the swell (or use a melody coupler) with a reed stop pulled to make it easier to hear.
+It is unlikely that many people in your ward will be familiar with more than a few hymns listed on this page. If you want to be adventurous and try a really uncommon hymm, these are the ones to choose from. But, it might be good to help the ward out a little bit by having the ward choir sing it first, having the organist play it for prelude a few weeks prior, having the organist play the entire hymn as an introduction, and having the organist use play the melody on the swell (or use a melody coupler) with a reed stop pulled to make it easier to hear.[Funny story. Someone contributed a couple years' worth of data from their ward and I mentioned that they sang three of the most unusual hymns in the span of two weeks. The sister wrote back saying the music coordinator was released right after that and she was called with a special request from her bishop to sing songs people were familiar with. So, if you go too overboard, it might cost you your calling!]{.aside}
 
 Regardless of whether you use these hymns, you should get familiar with these techniques for introducing hymns to ward members because we'll all likely need to start using them when we get the new hymnal anyway.
 :::
 
-If you have sung one of these 65 hymns recently in your ward, that's pretty cool because few people can sasy they have!
+If you have sung one of these 67 hymns recently in your ward, that's pretty cool because few people can sasy they have!
