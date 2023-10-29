@@ -97,7 +97,7 @@ bootstrapped <- freqs %>%
     mutate(percentile = 1-(rank/max(rank))) %>%
     print() 
 summary(bootstrapped)
-
+sd(bootstrapped$n_unique_hymns_mean)
 ```
 
 
@@ -126,7 +126,7 @@ freqs %>%
             hymns_per_year = hymns_per_meeting * 48) %>%
     arrange(hymns_per_year) %>%
     rowid_to_column("rank") %>%
-    print() %>%
+    # print() %>%
     ggplot(aes(unique_meetings, hymns_per_year)) + 
     geom_point() + 
     scale_y_continuous(breaks = seq(0, 200, 20)) + 
@@ -143,6 +143,8 @@ I tried a rolling cumulative sum of unique hymns, but I didn't know how to imple
 :::
 
 Assuming about 24--28 of those are sacrament hymns, that means most wards only sing about 80 or so unique non-sacrament hymns per year. It appears then that another 28 of those 80 hymns are repeated each year.
+
+The average is around 105, but that doesn't mean all wards were close to that. 50% of wards were between about 97 and 111 hymns per year. Others do more and others do fewer. If you're not sure whether your ward has enough variety, count the number of unique hymns in a 1-year period and if it's in the low 100s, you're doing alright.  
 
 The most variety of hymns I have in my dataset is 131 unique hymns per ward. That's pretty good, and certainly much better than average. The year with the least variety was one ward that sang just 66 unique hymns in a year. Considering that many of the holiday hymns aren't going to be repeated, it means that many (and perhaps most) of the non-festive hymns were repeated that year.
 
