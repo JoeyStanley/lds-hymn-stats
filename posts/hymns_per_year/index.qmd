@@ -3,7 +3,7 @@ title: "How many unique hymns does a ward sing in a year?"
 description: "Let's say you're an ambitious music coordinator and you want to sing as many different hymns as possible. How many could you get through in a year? How many hymns do wards typically get through in a year?"
 author: "Joey Stanley"
 date: 9/10/23
-date-modified: 10/20/23
+date-modified: 10/29/23
 alises:
     "/posts/unique_hymns_per_year"
 categories:
@@ -148,32 +148,34 @@ The most variety of hymns I have in my dataset is 131 unique hymns per ward. Tha
 
 These numbers should be taken with a grain of salt because it's only based on 108 wards.[For what it's worth, a previous version of this blog post was written based on a much smaller sample of 20 wards. The numbers are more or less the same, which leads me to believe they're reasonably accurate.]{.aside} If you have access to a year's worth of data from your ward, please visit the [contribute](/contribute.qmd) page!
 
-## Are there fewer intermediate hymns?
+## Are there fewer intermediate hymns in two-hour church?
 
-Someone suggested to me one time that the number of intermediate hymns we sing may have shifted once we switched to two-hour church (and thus a slightly shorter sacrament meeting). In their ward, they sense that intermediate hymns are being sung less, not because of more special musical numbers, but because it cut into the speakers' talks and there just wasn't enough time. 
+Someone suggested to me one time that the number of intermediate hymns we sing may have shifted once we switched to two-hour church (and thus a slightly shorter sacrament meeting) in January 2019. In their ward, they sense that intermediate hymns are being sung less, not because of more special musical numbers, but because it cut into the speakers' talks and there just wasn't enough time.[The Sunday I wrote this section, my ward did this very thing: we had not intermdiate hymn because we had three adult speakers.]{.aside} This is a tricky question to answer because for much of the time since 2019 has been during covid. But, enough time has passed that we can try to answer this question. 
 
-```{r}
+The following table summaries how many hymns per sacrament meeting were sung in three periods: three-hour church (before January 2019), the "covid era" (March--December 2020), and two-hour church (all of 2019, January--February 2020, and January 2021 through now). Here we can see that the average number of congregational hymns sung in three-hour church was 3.36 and the average number of hymns sung in two-hour church was 3.24---a drop of about 0.12 hymns per week, or about one less intermediate hymn every eight or so weeks. 
+
+```{r, include = TRUE, echo = FALSE}
 freqs %>%
     filter(!is.na(ward),
            !ward %in% c("Anonymous", "Foxcroft Ward")) %>%
-    mutate(blocks = case_when(year == 2020 ~ "covid", 
-                              year >= 2019 ~ "two-hour church", 
-                              TRUE ~ "three-hour church")) %>%
+    mutate(blocks = case_when(year == 2020 & month >= 3 ~ "covid",
+                              year >= 2019 ~ "two-hour church",
+                              TRUE ~ "three-hour church"),
+           blocks = factor(blocks, levels = c("three-hour church", "covid", "two-hour church"))) %>%
     group_by(blocks) %>%
-    summarize(n_hymns = n(),
-              n_meetings = length(unique(meeting_id)),
-              hymns_per_meeting = n_hymns / n_meetings) %>%
-    print()
+    summarize(`number of hymns` = n(),
+              `number of meetings` = length(unique(meeting_id)),
+              `hymns per meeting` = round(`number of hymns` / `number of meetings`, 3)) %>%
+    knitr::kable()
 ```
 
-Oh! There may be a difference!
+Here is a plot that shows this trend across time, that might shed a little light on these numbers. Since I have data spanning over 20 years, we can see a long period of stability prior to 2019. Covid definitely disrupted the status quo; many ward only sang just one hymn as they resumed in-person meetings. However, 2019 numbers look pretty similar to the years before it. And there has been a noticeable increase since 2021. Only recently does it look to be as high as the pre-2019 era. 
 
-Let's look at that in more detail.
-
-```{r}
+```{r, include = TRUE, echo = FALSE, fig.height = 4, warning=FALSE, message=FALSE}
 freqs %>%
     filter(!is.na(ward),
-           !ward %in% c("Anonymous", "Foxcroft Ward")) %>%
+           !ward %in% c("Anonymous", "Foxcroft Ward"),
+           !(year == 2023 & month == 12)) %>%
     mutate(month_year = lubridate::my(paste(month, year))) %>%
     group_by(month_year)  %>%
     summarize(
@@ -182,7 +184,7 @@ freqs %>%
         n_meetings = length(unique(meeting_id)),
         hymns_per_meeting = n_hymns / n_meetings) %>%
     filter(unique_wards > 1) %>%
-    print() %>%
+    # print() %>%
     ggplot(aes(month_year, hymns_per_meeting)) +
     geom_vline(xintercept = as.Date("2019-01-01")) + 
     annotate(geom = "rect", xmin = as.Date("2020-03-15"), xmax = as.Date("2020-12-31"), ymin = 1, max = 4, 
@@ -191,6 +193,10 @@ freqs %>%
     geom_point() + 
     scale_x_date(date_breaks = "1 year",
                  date_labels = "%y") + 
+    labs(x = "Year",
+         y = "average number of hymns per meeting",
+         title = "Average number of hymns per meeting across time",
+         subtitle = "The covid era is in gray") + 
     theme_minimal()
 ```
 
@@ -215,3 +221,6 @@ freqs %>%
     filter(year == 2018)
 ```
 
+Again, singing only thee congregational hymns on a Sunday instead of four may be because a special musical number took the place of an intermediate hymn. But it could be because the bishopric simply chose not to sing a fourth hymn. With the data I have, I have no way of knowing. I'll let you interpret these numbers as you will. But, it's interesting to see the kind of lasting effect that covid had!
+
+So, do we have fewer intermediate hymns since we shifted to two-hour church? Yes, but I think it's because of covid than the length of sacrament meeting.
