@@ -163,10 +163,10 @@ highest_lowest_note_stats("soprano", "D5", "high", .return = c("table", "summary
 
 However, D5, or the D an octave and one note above middle C, is by far the most common highest note for the melody in the hymnal. 164 hymns---that's 51.3% of the hymnal!---have this as the highest note, including <hymn>I Know That My Redeemer Lives (136)</hymn>, <hymn>I Believe in Christ (148)</hymn>, and several sacrament hymns. I can't show all of them in a single plot, but here are the most common ones and how often they typically occur in sacrament meeting in a ward in a year.
 
-```{r, include = TRUE, echo = FALSE, fig.height = 4}
+```{r, include = TRUE, echo = FALSE, fig.height = 10}
 freqs %>%
     filter(hymn_num %in% highest_lowest_note_stats("soprano", "D5", "high", .return = "table")$hymn_num) %>%
-    cleveland_plot(breaks = 0.2, x_buffer = 0.9, 
+    cleveland_plot(breaks = 0.2, x_buffer = 1, 
                    title = "Frequency of common hymns with melodies that go up to a D5",
                    subtitle = NULL, 
                    filter_n = 125)
@@ -181,7 +181,7 @@ highest_lowest_note_stats("soprano", "C#5", "high", .return = c("table", "summar
 
 The remaining 13% of the hymns have melodies that don't go as high. There are only 6 that go up to a C♯ or D♭, including <hymn>Because I Have Been Given Much (219)</hymn>. The figure below shows all of them and how often they occur. It's interesting that even though there are six hymns that fall into this category, two are sacrament hymns and one is a very common one. So even though they make up just 1.76% of the hymnal, they make up about 2.65% of the hymns sung in church. You're likely to see one every 11 or so weeks on average.
 
-```{r, include = TRUE, echo = FALSE, fig.height = 2}
+```{r, include = TRUE, echo = FALSE, fig.height = 1.5}
 freqs %>%
     filter(hymn_num %in% highest_lowest_note_stats("soprano", "C#5", "high", .return = "table")$hymn_num) %>%
     cleveland_plot(breaks = 0.2, x_buffer = 1, 
