@@ -1,7 +1,8 @@
 ---
 title: "Overview"
 author: "Joey Stanley"
-date: "10/23/2023"
+date: 2023-10-23
+date-modified: 2023-10-29
 ---
 
 ```{r, include = FALSE}
@@ -17,6 +18,9 @@ I currently have data from `r scales::comma(get_n_distinct_meetings())` sacramen
 
 
 ## Frequencies
+
+
+
 
 ```{r, include = TRUE, echo = FALSE}
 freqs %>%
@@ -42,7 +46,7 @@ freqs %>%
 
 Here is the same information, but as a plot.
 
-```{r, echo = FALSE, fig.height = 40}
+```{r, echo = FALSE, fig.height = 40, fig.width = 6}
 freqs %>%
     cleveland_plot(return = "plot", 
                    title = "Frequency of all hymns",
