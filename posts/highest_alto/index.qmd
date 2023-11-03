@@ -1,0 +1,723 @@
+---
+title: "What are the highest notes in alto lines?"
+description: ""
+author: "Joey Stanley"
+date: 2023-11-02
+categories:
+  - alto line
+  - musicology
+  - highest notes
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 6.5)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+Previously, I've discussed in depth the [highest](/posts/highest_melody) and [lowest](/posts/lowest_melody) notes a soprano line is expected to go. In this post, I'll explore the highest notes alto are expected to sing. 
+
+## The highest alto notes
+
+The first question is this: what is the highest note for an alto line? As it turns out, it depends on what you consider an alto line!
+
+```{r}
+notes %>%
+    filter(voice == "alto") %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    count(name_num)
+```
+
+::: {.callout-tip icon="false"}
+#### Fun Fact
+
+The highest alto note is a D5, which is found in five hymns: <hymn>Saints, Behold How Great Jehovah (#28)</hymn>, <hymn>Arise, O Glorious Zion (#40)</hymn>, <hymn>Father, Thy Children to Thee Now Raise (#91)</hymn>, and <hymn>Come, Let Us Anew (#217)</hymn>, and the women's arrangement of <hymn>The Lord Is My Shepherd (#316)</hymn>.
+:::
+
+However, we may have to qualify those a little bit. In the first four hymns, the alto is in unison with the soprano. I think it's noteworthy that the alto only goes that high if it's singing the melody (i.e. the soprano line) in unison for whatever musical purposes the arranger intended. I'll leave it up to you about whether you want to consider that a true "alto" line, but I think it's worth mentioning that detail.
+
+:::{.callout-tip collapse="true"}
+
+### Click to see those hymns
+
+![Saints, Behold How Great Jehovah (#28)](saints.png)
+
+---
+
+![Arise, O Glorious Zion (#40)](arise.png)
+
+---
+
+![Father, Thy Children to Thee Now Raise (#91)](father.png)
+
+---
+
+![Come, Let Us Anew (#217)](anew.png)
+
+:::
+
+```{r}
+notes %>%
+    filter(voice == "alto") %>%
+    filter(sop_alto_diff > 0) %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    # count(name_num)
+    print()
+```
+
+The only other hymn that has an alto line that goes up to a D5 is in a really nice close harmony in the women's arrangement of <hymn>The Lord Is My Shepherd (#316)</hymn>. In this case, it is true that the alto line is not in unison with the soprano. But again, this is an exceptional case because it's a women's *arrangement*: there is another alto line below it (so maybe this is a second soprano line instead?) and it's not intended for sacrament meeting. 
+
+![The Lord Is My Shepherd (#316)](shepherd.png)
+
+
+```{r}
+notes %>%
+    filter(voice == "alto") %>%
+    filter(sop_alto_diff > 0) %>%
+    filter(!hymn_num %in% 309:337) %>%
+    filter(midi == max(midi, na.rm = TRUE)) %>%
+    print()
+```
+
+Okay fine, so if we ignore alto lines that are in unison with sopranos *and* the women's arrangements in the back of the book, the highest alto note is actually a C5, which is found in three hymns: <hymn>Again We Meet Around the Board (#186)</hymn>, <hymn>We Meet Again in Sabbath School (#282)</hymn>, and <hymn>The Star-Spangled Banner (#340)</hymn>.[As it turns out, there are a six of other hymns that have alto notes going up to a C5, but it's only when in unison with sopranos again. They are <hymn>Saints, Behold How Great Jehovah (#28)</hymn>, <hymn>Rejoice, the Lord Is King! (#66)</hymn>, <hymn>Glory to God on High (#67)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>O Thou Rock of Our Salvation (#258)</hymn>, and <hymn>America the Beautiful (#338)</hymn>.]{.aside}
+
+:::{.callout-tip collapse="true"}
+
+### Click to see those hymns
+
+![Again We Meet Around the Board (#186)](again.png)
+
+---
+
+![We Meet Again in Sabbath School (#282)](meet.png)
+
+---
+
+![The Star-Spangled Banner (#340)](star.png)
+:::
+
+```{r}
+notes %>%
+    filter(voice == "alto") %>%
+    filter(note_label == "C5", 
+           sop_alto_diff == 0) %>%
+    count(name_num)
+```
+
+```{r}
+notes %>%
+    filter(voice == "alto") %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = name_num) %>%
+    filter(note_label %in% c("D5", "C5")) %>%
+    distinct(hymn_num) %>%
+    pull() %>%
+    freq_for_any()
+```
+
+How often are you likely to encounter these highest alto notes? That high D5? Probably once a year. Looking at the C5 and D5 together, and that's about once every nine weeks or so. So if you're an alto and struggle to hit those higher notes, I'm sorry to say that you'll probably see them a few times a year. 
+
+So there you have it. The highest notes in the hymnal are a D5, but that's only in unison with sopranos or in a women's arrangement, and a C5 in normal circumstances. Going forward, I'll split the discussion into those groups (unison with soprano and harmony lines) where necessary, and will largely ignore the women's arrangements since they are not really meant for congregational singing. 
+
+
+## Overall distribution of highest alto notes
+
+Now that we've established what notes are the highest, let's look at the distribution of highest alto notes across the hymnal. First, @fig-distribution-raw shows the distribution of highest notes in an alto line, excluding the women's arrangements.
+
+```{r, include = TRUE, echo = FALSE, fig.height = 4, fig.width = 8}
+#| label: fig-distribution-raw
+#| fig-cap: Distribution of highest alto notes (women's arrangements excluded)
+
+x_labels <- note_name_midi_lookup %>%
+    filter(midi %in% 62:74)
+
+highest_with_unisons <- notes %>%
+    filter(voice == "alto",
+           !hymn_num %in% 309:337) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = name_num) %>%
+    distinct(name_num, note_label, midi) %>%
+    count(note_label, midi) 
+highest_without_unisons <- notes %>%
+    filter(voice == "alto",
+           !hymn_num %in% 309:337) %>%
+    filter(sop_alto_diff != 0) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = name_num) %>%
+    distinct(name_num, note_label, midi) %>%
+    count(note_label)
+bind_rows(`unisons included` = highest_with_unisons,
+          `unisons ignored` = highest_without_unisons,
+          .id = "type") %>%
+    ggplot(aes(note_label, n, fill = type)) + 
+    geom_col(position = position_dodge2()) +
+    geom_text(aes(label = n), position = position_dodge2(width = 1), vjust = -0.4) + 
+    scale_x_discrete(limits = x_labels$note_label, drop = FALSE) + 
+    scale_y_continuous(expand = expansion(0, 8),
+                       breaks = seq(0, 120, 30),
+                       minor_breaks = seq(0, 120, 10)) + 
+    scale_fill_ptol() +
+    labs(x = "note",
+         y = "number of hymns",
+         fill = NULL) + 
+    theme_minimal() + 
+    theme(legend.position = "bottom")
+```
+
+Here we see something close to a pretty decent bell curve. It's centered around G4, with some going as high as D5 as we've seen already, and some only going as high as D4 (we'll get to those later). G4 is the most typical highest note for an alto line, with a whopping 125 or 111 hymns, depending on how you count them. Even though G4 and A4 are the most common, we have relatively few that have F♯4 and A♭4 as their highest notes, but, like we saw with the [sopranos' highest notes](/posts/highest_soprano), this is likely because of [the key signatures that are most common](/posts/key_signatures) in the hymnal. My guess is if all 12 keys were more evenly represented, we might see a better-looking bell curve. 
+
+For almost every note, we see a few differences in height, based on whether we ignore unison passages or not, just like what was shown above with D5, where four of them only go that high when in unison with soprano, and only one is a "true" alto note. The next few sections walk through each of these notes, pointing out what hymns have what highest note and how the list changes depending on if we're counting unison passages. Since we've already mentioned the hymns with D5 and C5 as the highest notes, we'll start with B4. 
+
+```{r}
+alto <- notes %>%
+    filter(!hymn_num %in% 309:337,
+           voice == "alto")
+```
+
+
+## B4
+
+Exactly 11 hymns have B4 (the middle of the treble clef) as the highest alto note. The most common is <hymn>Love at Home (#294)</hymn> with <hymn>I Am a Child of God (#301)</hymn> as a close second. The least common is <hymn>Nay, Speak No Ill (#233)</hymn>. All 11 are plotted in @fig-b4_cleveland, in order of frequency. 
+
+
+```{r, include = TRUE, fig.height = 3}
+#| label: fig-b4_cleveland
+#| fig-cap: Frequency of hymns with B4 as the highest alto note
+alto %>%
+    filter(sop_alto_diff != 0) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = name_num) %>%
+    count(name_num, hymn_num, note_label) %>%
+    filter(note_label == "B4") %>%
+    # print() %>%
+    inner_join(freqs, by = c("name_num", "hymn_num")) %>%
+    cleveland_plot(return = "plot", x_buffer = 0.35, breaks = 0.2,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+:::{.callout-tip collapse="true"}
+
+### Click to see a sample of those hymns
+
+![Love at Home (#294)](love.png)
+
+---
+
+![I Am a Child of God (#301)](child.png)
+
+:::
+
+There are some similarities across these hymns. Most of them are in the key of G major, and the soprano note at the point where the alto sings the B4 is a D5. Another thing they pretty much all have in common is that for most of the phrase that the altos sing the B4 in, the sopranos and altos are in parallel thirds.[This pattern of high alto notes only being found in passages with parallel thirds extends to the three cases of C5 as well.]{.aside} We see this in <hymn>Love at Home (#294)</hymn> and <hymn>I Am a Child of God (#301)</hymn>. Here's another example in <hymn>Come Along, Come Along (#244)</hymn>.
+
+![Come Along, Come Along (#244)](come.png)
+
+The exception to this is in <hymn>Have I Done Any Good? (#223)</hymn> where the altos have an interesting moving line while the sopranos are on the same note. 
+
+![Have I Done Any Good? (#223)](done.png)
+
+## B♭4
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is Bb but only in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "Bb4", with_is_higher) %>%
+    
+    # Highest note is Bb and the soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "Bb4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is Bb. There is a higher unison note.
+    # filter(without_unisons == "Bb4", with_is_higher) %>%
+    
+    print()
+```
+
+
+```{r}
+alto %>%
+    filter(sop_alto_diff != 0) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = name_num) %>%
+    count(name_num, hymn_num, note_label) %>%
+    filter(note_label == "Bb4") %>%
+    print() %>%
+    inner_join(freqs, by = c("name_num", "hymn_num")) %>%
+    cleveland_plot(return = "plot", x_buffer = 0.35, breaks = 0.2,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+
+We now move on to the 22 hymns that have B♭4 as the highest note for the alto line. Half of these only go that high because they're singing the melody in unison with the sopranos, like in <hymn>'Tis Sweet to Sing the Matchless Love (#177)</hymn> and <hymn>Hope of Israel (#259)</hymn>. 
+
+
+:::{.callout-tip collapse="true"}
+
+### Click to see those hymns
+
+!['Tis Sweet to Sing the Matchless Love (#177)](sweet.png)
+
+---
+
+![Hope of Israel (#259)](hope.png)
+:::
+
+
+What about the 11 that have a B♭4 as the highest note with a soprano note above it? They include some sacrament hymns, some otherwise common hymns, and some less-common hymns. Most of the time, the sopranos are singing a D5 above the B♭4, but not always, like in <hymn>All Creatures of Our God and King (#62)</hymn> and <hymn>As the Shadows Fall (#168)</hymn>.
+
+:::{.callout-tip collapse="true"}
+
+### Click to see those hymns
+
+![As Now We Take the Sacrament (#169)](as-now.png)
+
+---
+
+![Hark! The Herald Angels Sing (#209)](hark.png)
+
+---
+
+![As The Shadows Fall (#168)](shadows.png)
+:::
+
+Finally, @fig-bb4_cleveland shows all 22 hymns that have B♭ as the highest note for the altos, regardless of whether they're in unison or not. 
+
+```{r, include = TRUE, fig.height = 3.5}
+#| label: fig-bb4_cleveland
+#| fig-cap: Frequency of hymns with Bb4 as the highest alto note
+alto %>%
+    mutate(sop_alto_unison = if_else(sop_alto_diff == 0, "unisions included", "unisons ignored")) %>%
+    filter(!is.na(sop_alto_unison)) %>% # ignore NAs, which are when one or both parts are not singing
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, sop_alto_unison)) %>%
+    count(name_num, hymn_num, sop_alto_unison, note_label) %>%
+    filter(note_label == "Bb4") %>%
+    arrange(sop_alto_unison) %>%
+    inner_join(freqs, by = c("name_num", "hymn_num")) %>%
+    cleveland_plot(return = "plot", x_buffer = 0.8, breaks = 0.2,
+                   extra_cols = sop_alto_unison, color = sop_alto_unison,
+                   title = NULL,
+                   subtitle = NULL) + 
+    scale_color_manual(values = c("gray50", ptol_blue), name = NULL) + 
+    theme(legend.position = "bottom")
+```
+
+
+## A4
+
+@fig-distribution-raw showed that there are many hymns that have A4 as the highest alto note. I'm not going to dive into each one, but I can explain a few from each of the different categories. 
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "A4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "A4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    filter(without_unisons == "A4", with_is_higher) %>%
+    
+    print()
+```
+
+The first are the six hymns that have A4 as the highest note but only when it's singing the melody in unison with the sopranos. Here, we're starting to get into the sticky area of what is unison with the sopranos because of a stylistic choice, verses unison because it made the most sense to do so for just one note. In something like <hymn>O God, the Eternal Father (#175)</hymn>, it's clearly a deliberate choice because all four parts are in unison. However, in something like <hymn>High on the Mountain Top (#5)</hymn>, it's technically in unison with the sopranos, but only because it would have created awkward voice leading to do otherwise. So, maybe I'm splitting hairs by creating these separate categories, but it's hard to programatically determine which of these types of unisons we're looking at without going through every hymn, and I don't particularly want to go through every hymn.
+
+
+:::{.callout-tip collapse="true"}
+
+### Click to see those hymns
+
+![O God, the Eternal Father (#175)](o-god.png)
+
+---
+
+![High on the Mountain Top (#5)](high.png)
+
+:::
+
+Fortunately, there are relatively few hymns that have the alto line going up to an A4 only during unison passages. A full 54 hymns have "legitimate" alto lines---with soprano notes above them---that only go up to an A4. Instead of going through all of them, I'll just show them here in @fig-a4_cleveland.
+
+```{r, include = TRUE, fig.height = 7, message=TRUE, warning=TRUE}
+#| label: fig-a4_cleveland
+#| fig-cap: Frequency of hymns with A4 as the highest alto note
+alto %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num)) %>%
+    filter(note_label == "A4") %>%
+    distinct(name_num) %>%
+    left_join(freqs, by = "name_num") %>%
+    cleveland_plot(return = "plot", x_buffer = 1,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+I will mention that we now have a third category of hymns: hymns that have A4 as the highest note in the alto line *if you ignore the unison passages*. There are just two, and neither of them are very common hymns: <hymn>With Songs of Praise (#71)</hymn>, which goes up to a B4 when singing the melody, and <hymn>Arise, O Glorious Zion (#40)</hymn>, which goes up to a D5. The former is a clearer example of what I'm talking about. Again, technically, the alto is expected to sing up to a B4, but because that's part of a unison passage with the sopranos (and all other parts), I'm ignoring it, and after I do, we see that A4 is otherwise the highest note. 
+
+![With Songs of Praise (#71)](songs.png)
+
+To summarize briefly the A4 hymns, there are 54 that for sure count. Another six fall into this category if we don't mind including unison passages. Another two fall into this category if we ignore the unison passages and look at the next highest note.  
+
+## A♭4 
+
+As we saw in @fig-distribution-raw, there are far fewer hymns that have A♭4 as the highest alto note, likely because A♭s don't come up as often in the most common key signatures in the hymnal. 
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "Ab4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "Ab4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    filter(without_unisons == "Ab4", with_is_higher) %>%
+    
+    print()
+```
+
+I would start with hymns with alto lines that go up to A♭ only when in unison with the sopranos, but there are none; instead we'll look at the 10 hymns where A♭4 is the highest and there are soprano notes higher than it. @fig-a4_cleveland shows these hymns in order. There's not much to be said about these, other than <hymn>Prayer of Thanksgiving (#93)</hymn> technically has a G♯ instead of an A♭, but that's not a big deal. 
+
+
+```{r, include = TRUE, fig.height = 2, message=TRUE, warning=TRUE}
+#| label: fig-ab4_cleveland
+#| fig-cap: Frequency of hymns with A♭4 as the highest alto note
+alto %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num),
+           !hymn_num == 219) %>%
+    filter(note_label == "Ab4") %>%
+    distinct(name_num) %>%
+    left_join(freqs, by = "name_num") %>%
+    cleveland_plot(return = "plot", x_buffer = 1,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+:::{.callout-tip collapse="true"}
+
+### Click to see some of these hymns
+
+![Each Life that Touches Ours for Good (#293)](each.png)
+
+---
+
+![Prayer of Thanksgiving (#93)](prayer.png)
+
+:::
+
+There are another three hymns that do have alto lines going higher than A♭4, but only in unison passages with the sopranos. Ignoring those passages, their highest alto notes are A♭4. They include <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Abide with Me; 'Tis Eventide (#165)</hymn>, and <hymn>Home Can Be a Heaven on Earth (#298)</hymn>. Again, though, we're splitting hairs a little bit, and these three really nice exemplify the continuum of how "unison" should be defined. <hymn>For the Strength of the Hills (#35)</hymn> is a great example of a case where the alto line goes high when singing melody, but not as high otherwise. <hymn>Home Can Be a Heaven on Earth (#298)</hymn> is a case where the highest note really shouldn't be considered a melody passage and is only technically unison because of voice leading. Meanwhile, <hymn>Abide with Me; 'Tis Eventide (#165)</hymn> is somewhere in the middle. It only goes up to that B♭4 for just one note, but all voices are unison there, so it appears to have been a stylistic choice rather than for some voice leading reason. 
+
+:::{.callout-tip collapse="true"}
+
+### Click to see those hymns
+
+![Clear jump to the melody in For the Strength of the Hills (#35)](for-the.png)
+
+---
+
+![Brief unison for stylistic reasons in Abide with Me; 'Tis Eventide (#165)](abide.png)
+
+---
+
+![Unison only for voice leading reasons in Home Can Be a Heaven on Earth (#298)](home.png)
+
+:::
+
+
+## G4
+
+We now move on to the most common highest note for alto lines, G4. @fig-distribution-raw shows that there are well over a hundred hymns have have G4 has the highest note in the alto line, regardless of how you count them. All three categories of "highest notes" that we saw with the A4 hymns above are represented here though, so let's look at each one of those. 
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "G4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "G4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    filter(without_unisons == "G4", with_is_higher) %>%
+    
+    print()
+```
+
+
+First, we can look at the hymns that have G4, but only when singing melody in unison with sopranos. Of the four potentials, <hymn>Come, Listen to a Prophet's Voice (#21)</hymn> is the only one that has a clear unison passage. The other three (<hymn>Praise Ye the Lord (#74)</hymn>, <hymn>How Great the Wisdom and the Love (195)</hymn>, and <hymn>We Are Marching On to Glory (#225)</hymn>) are only in this category because of voice leading. As far as I can tell, this is the  lowest alto line like this, where its highest note is in unison with the sopranos. 
+
+![Come, Listen to a Prophet's Voice (#21)](listen.png)
+
+The largest category is the most boring: hymns that have G4 as the highest note in the alto line while having a higher soprano note. There are many of these, and I won't go into detail about them. But @fig-g4_cleveland shows them in order of frequency. 
+
+```{r, include = TRUE, fig.height = 12, message=TRUE, warning=TRUE}
+#| label: fig-g4_cleveland
+#| fig-cap: Frequency of hymns with G4 as the highest alto note
+alto %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num)) %>%
+    filter(note_label == "G4") %>%
+    distinct(name_num) %>%
+    left_join(freqs, by = "name_num") %>%
+    cleveland_plot(return = "plot", x_buffer = 1.2,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+Finally we have hymns that have G4 as the highest alto note if you ignore the unison passages. A really good example of this is <hymn>Saints, Behold How Great Jehovah (#28)</hymn>. It goes up to a D5---the highest note for an alto in the hymnal---when in unison, but only to a G4 otherwise. There are a handful of others like this, <hymn>Now We'll Sing with One Accord (#25)</hymn>, <hymn>Let Zion in Her Beauty Rise (#41)</hymn>, <hymn>Rejoice, the Lord Is King! (#66)</hymn>, <hymn>Glory to God on High (#67)</hymn>, <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>O God, the Eternal Father (#175)</hymn>, <hymn>'Tis Sweet to Sing the Matchless Love (#177)</hymn>, <hymn>Jesus, Once of Humble Birth (#196)</hymn>, <hymn>O Thou Rock of Our Salvation (#258)</hymn>, and <hymn>Hope of Israel (#259)</hymn>, plus two marginal cases in <hymn>From Homes of Saints Glad Songs Arise (#297)</hymn> and <hymn>America the Beautiful (#338)</hymn>.
+
+![Saints, Behold How Great Jehovah (#28)](behold.png)
+
+## F♯4
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "F#4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "F#4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    filter(without_unisons == "F#4", with_is_higher) %>%
+    
+    print()
+```
+
+There are far fewer hymns that never even reach a G4. Only about seven hymns have F♯4 as their highest note and there's a soprano note above it. The most common is <hymn>Upon the Cross of Calvary (#184)</hymn>.
+
+```{r, include = TRUE, fig.height = 2, message=TRUE, warning=TRUE}
+#| label: fig-fsharp4_cleveland
+#| fig-cap: Frequency of hymns with F#4 as the highest alto note
+alto %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num)) %>%
+    filter(note_label == "F#4") %>%
+    distinct(name_num) %>%
+    left_join(freqs, by = "name_num") %>%
+    cleveland_plot(return = "plot", x_buffer = 1.2,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+![Upon the Cross of Calvary (#184)](upon.png)
+
+Two hymns go higher than an F♯4 in melody passages, but otherwise only to an F♯4. One is <hymn>Come, Listen to a Prophet's Voice (#21)</hymn>, but the other (and perhaps widest difference between unison highest notes and regular highest notes) is <hymn>Father, Thy Children to Thee Now Raise (#91)</hymn>, which goes up to a D5 in the first note, but then never again gets higher than an F♯4 and otherwise has a pretty limited range of just a fourth. To put it another way, the top five highest notes in the alto line in that hymn are the first five notes of the hymn. 
+
+![Father, Thy Children to Thee Now Raise (#91)](raise.png)
+
+
+## F4
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "F4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "F4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    # filter(without_unisons == "F4", with_is_higher) %>%
+    
+    print()
+```
+
+After G4 and A4, the next most common highest note for an alto line is F4. About 27 hymns fall into this category, all of which are shown in @fig-f4_cleveland. <hymn>Come, Follow Me (#116)</hymn> is shown below as an example of these lower hymns. 
+
+```{r, include = TRUE, fig.height = 4, message=TRUE, warning=TRUE}
+#| label: fig-f4_cleveland
+#| fig-cap: Frequency of hymns with F4 as the highest alto note
+alto %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num)) %>%
+    filter(note_label == "F4") %>%
+    distinct(name_num) %>%
+    left_join(freqs, by = "name_num") %>%
+    cleveland_plot(return = "plot", x_buffer = 1.2,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+![Come, Follow Me (#116)](follow.png)
+
+## E4
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "E4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "E4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    filter(without_unisons == "E4", with_is_higher) %>%
+    
+    print()
+```
+
+Now that we're below F4, we're into the marginal cases of alto lines that hardly go very high at all. Decent tenors could sing these alto lines. Since alto lines don't go especially low, these lines tend to have rather narrow ranges (which will be covered in later blog posts). 
+
+One example of such a hymn is <hymn>They, the Builders of the Nation (#36)</hymn>. In my opinion, this hymn is set in too low of a key. The text and music suggest an upbeat, energetic hymn. The tempo marking even suggests to sing/play it "vigorously." And yet, the alto line sits below the staff in a rather drone-like line, only reaching its highest note in the last line. I think it's hard to sing too vigorously with such a line. The 1948 hymnal actually had this in B♭ major---a step and a half higher! Because of all this, I'm going to say something I *rarely* ever do, and that is I actually think this hymn should be transposed *up* from where it is! Perhaps the issue was that the tenor line was consistently too high. (I think the same thing could be said of <hymn>Scatter Sunshine (#230)</hymn>.)
+
+![They, the Builders of the Nation (#36)](builders.png)
+
+As for the sacrament hymns that only have E4 as the highest alto note, I'm fine with that. The purpose of those hymns is to contemplative, so in my opinion, singing in a lower register fits with that. You can see the hymns that only go up to E4 in @fig-e4_cleveland.
+
+```{r, include = TRUE, fig.height = 2.75, message=TRUE, warning=TRUE}
+#| label: fig-e4_cleveland
+#| fig-cap: Frequency of hymns with E4 as the highest alto note
+alto %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num)) %>%
+    filter(note_label == "E4") %>%
+    distinct(name_num) %>%
+    left_join(freqs, by = "name_num") %>%
+    cleveland_plot(return = "plot", x_buffer = 1.2,
+                   title = NULL,
+                   subtitle = NULL)
+```
+
+## E♭4
+
+Just six hymns have E♭4 as the highest note for altos. They include <hymn>Lord, Dismiss Us with Thy Blessing (#163)</hymn>, which is unique in its extremely narrow range (its lowest note is just a half step lower than its highest note!). <hymn>Adam-ondi-Ahman (#49)</hymn> is generally low for all parts. The most common one here by a long shot is <hymn>A Poor Wayfaring Man of Grief (#29)</hymn>. If you've sung the alto line, you'll understand that it's not the most exciting line and could really use some of the movement that the tenors get. In all six cases, the altos hang around on that E♭4 for a while, unlike the higher hymns discussed above where they just pop up there once or twice. 
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    filter(with_unisons == "Eb4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    # filter(without_unisons == "Eb4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    # filter(without_unisons == "Eb4", with_is_higher) %>%
+    
+    print()
+```
+
+In contrast to <hymn>They, the Builders of the Nation (#36)</hymn> that I discussed above, I think <hymn>Now the Day Is Over (#159)</hymn> is in the appropriate key. It sings like a lullaby, and I think singing in a lower register for all parts is appropriate, given the text and feel of the hymn. The highest notes in this one are in unison with the sopranos, but I'd interpret that as being more for voice leading purposes. 
+
+![Now the Day Is Over (#159)](over.png)
+
+
+## D4
+
+```{r}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(name_num, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_is_higher = as.numeric(with_unisons) > as.numeric(without_unisons)) %>%
+    
+    # Highest note is in a unison line. Highest harmony note is lower.    
+    # filter(with_unisons == "D4", with_is_higher) %>%
+    
+    # Highest note this note and soprano is higher. Highest unison is as high (mention) or lower (nothing special).
+    filter(without_unisons == "D4", !with_is_higher) %>%
+
+    # Highest note in a harmony line is this note. There is a higher unison note.
+    # filter(without_unisons == "D4", with_is_higher) %>%
+    
+    print()
+```
+
+Finally, we get to the "lowest highest note" for the altos. The "highest note" referring to the highest note within a hymn, and the "lowest highest" referring to the lowest of all the highest notes across all hymns. Just two hymns have alto lines that never go higher than a D4: <hymn>Testimony (#137)</hymn> and <hymn>Improve the Shining Moments (#226)</hymn>. I'm okay with the former, but the latter suffers from the same thing that <hymn>They, the Builders of the Nation (#36)</hymn> does, where it's a more upbeat hymn, but the alto line is low and boring. 
+
+
+![Testimony (#137)](testimony.png)
+
+---
+
+![Improve the Shining Moments (#226)](improve.png)
+
+As we'll see in a later blog post, the alto line doesn't get too much lower than this, so these hymns really hang out in the lower register for altos pretty much the whole time, often while the other parts are more exciting and have wider ranges. 
+
+```{r}
+notes %>%
+    filter(voice == "alto") %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = name_num) %>%
+    # filter(note_label %in% c("D4")) %>%
+    filter(note_label %in% c("D4", "E4", "Eb4")) %>%
+    distinct(hymn_num) %>%
+    pull() %>%
+    freq_for_any()
+single_hymn_lookup(226)
+```
+
+How likely are you to see these low alto lines? Well, <hymn>Testimony (#137)</hymn> is a fairly common hymn, and <hymn>Improve the Shining Moments (#226)</hymn> is not unusual. So you might see one of these two once every 9--10 months or so. If we add in the E♭4 and E4 hymns, there are a handful of common ones, so you're likely to see one or two a month. 
+
+## Summary
+
+Most alto lines max out at around a G4, then A4, and then F4. Some go as high as a D5, but only when singing the melody with the sopranos; C5 when in harmony with the sopranos. Some hymns have alto lines only go as high as a D4, and are typically low and a little monotonous.
+
+::: callout-tip
+### Recommendation for the next hymnal
+
+Transpose <hymn>They, the Builders of the Nation (#36)</hymn> back up to B♭ major and reharmonize the alto, tenor, and bass parts so that they're more varied and cover a wider range. The altos can go higher and the basses can occasionally drop down to an F2. Similar things could be done with <hymn>Improve the Shining Moments (#226)</hymn> and a few other hymns with lower alto lines. 
+:::
+
+## Data
+
+For anyone who is interested, here is a raw spreadsheet of the highest notes. There are 306 rows in this table; some hymns are excluded because they do not have alto lines, either because they are written as unison lines or because they are men's choir arrangements. In the `highest with unisons` column, a blank appears if there are no alto notes that are in unison with the soprano line. 
+
+```{r, include = TRUE}
+alto %>%
+    mutate(unisons = if_else(sop_alto_diff == 0, "with_unisons", "without_unisons"))  %>%
+    filter(!is.na(unisons)) %>%
+    filter(midi == max(midi, na.rm = TRUE), .by = c(name_num, unisons)) %>%
+    distinct(hymn_num, hymn_name, note_label, unisons) %>%
+    pivot_wider(names_from = unisons, values_from = note_label) %>%
+    mutate(with_unisons = if_else(is.na(with_unisons), "", as.character(with_unisons))) %>%
+    rename(number = hymn_num, name = hymn_name, `highest excluding unisions` = without_unisons, `highest with unisons` = with_unisons) %>%
+    knitr::kable()
+```
+
