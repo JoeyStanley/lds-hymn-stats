@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2023-10-06">
+<meta name="description" content="What hymn has the highest melody note? What is a typical highest note for a soprano line? What is the lowest highest note for a melody? If you can only sing up to a C, what proportion of hymns would you be able to sing melody on?">
+
+<title>LDS Hymn Stats - What are the highest notes in the soprano lines?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="LDS Hymn Stats - What are the highest notes in the soprano lines?">
+<meta property="og:description" content="What hymn has the highest melody note? What is a typical highest note for a soprano line? What is the lowest highest note for a melody? If you can only sing up to a C, what proportion of hymns would you be able to sing melody on?">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/highest_soprano/index_files/figure-html/unnamed-chunk-5-1.png">
+<meta property="og:site-name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="1248">
+<meta name="twitter:title" content="LDS Hymn Stats - What are the highest notes in the soprano lines?">
+<meta name="twitter:description" content="What hymn has the highest melody note? What is a typical highest note for a soprano line? What is the lowest highest note for a melody? If you can only sing up to a C, what proportion of hymns would you be able to sing melody on?">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/highest_soprano/index_files/figure-html/unnamed-chunk-5-1.png">
+<meta name="twitter:image-height" content="768">
+<meta name="twitter:image-width" content="1248">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html" rel="" target="">
+ <span class="menu-text">Findings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../overview.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html" rel="" target="">
+ <span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#highest-melody-notes" id="toc-highest-melody-notes" class="nav-link active" data-scroll-target="#highest-melody-notes">Highest melody notes</a></li>
+  <li><a href="#not-the-highest-but-still-pretty-high-melody-notes" id="toc-not-the-highest-but-still-pretty-high-melody-notes" class="nav-link" data-scroll-target="#not-the-highest-but-still-pretty-high-melody-notes">Not the highest, but still pretty high melody notes</a></li>
+  <li><a href="#typical-highest-notes-for-a-melody" id="toc-typical-highest-notes-for-a-melody" class="nav-link" data-scroll-target="#typical-highest-notes-for-a-melody">Typical highest notes for a melody</a></li>
+  <li><a href="#hymns-where-the-melody-doesnt-go-very-high" id="toc-hymns-where-the-melody-doesnt-go-very-high" class="nav-link" data-scroll-target="#hymns-where-the-melody-doesnt-go-very-high">Hymns where the melody doesn’t go very high</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What are the highest notes in the soprano lines?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">soprano line</div>
+    <div class="quarto-category">musicology</div>
+    <div class="quarto-category">highest notes</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    What hymn has the highest melody note? What is a typical highest note for a soprano line? What is the lowest highest note for a melody? If you can only sing up to a C, what proportion of hymns would you be able to sing melody on?
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 6, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In addition to collecting data on how often hymns are sung in sacrament meeting, I have also gone through the rather painstaking process of quantifying all the actual music of the hymns. What I mean is that for every part (soprano, alto, tenor, and bass) for every hymn, I went through and wrote down the pitch and duration of every note in a spreadsheet. With this music now reduced down to numbers, I can analyze it quantitatively. This post is the first of many that will present a numeric analysis of the music of the hymns themselves. I’ve started with the soprano line since it’s what is most familiar to most people, but I’ll eventually do similar posts on alto, tenor, and bass lines as well.</p>
+<section id="highest-melody-notes" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="highest-melody-notes">Highest melody notes</h2>
+<p>The first question we can ask is this: what is the highest note a melody goes up to?</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The highest (non-optional) melody note is an F♯5, which is found in <hymn>Lean on My Ample Arm (120)</hymn>.</p>
+</div>
+</div>
+<div class="page-columns page-full"><p>That of course excludes the optional G5 at the end of <hymn>Carry On (255)</hymn>. What’s worse about the the F♯5 in <hymn>Lean on My Ample Arm (120)</hymn> is that it’s a sustained note—there’s nowhere to hide! However, it is very unlikely that you’ll sing it in church. In all the data I have, it was only sung four times, which means it’s sung about once every 29 years. Another way of putting it is that the hymn is sung in sacrament meeting about once a generation. So, if you can’t quite reach that F♯5, don’t worry because you will likely never need to.</p><div class="no-row-height column-margin column-container"><span class="">For what it’s worth, a combined choir from BYU sang it in General Conference in April 2008 and it was beautiful.</span></div></div>
+<p>Well then, what is a typical highest note for a soprano line?</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The majority of hymns have D5 as their highest note.</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Highest Note</th>
+<th style="text-align: right;">Number of Hymns</th>
+<th style="text-align: right;">Percentage of Hymnal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Ab4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.61%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Bb4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.31%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">B4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.61%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">C5</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">9.17%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C#5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.83%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">D5</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">50.15%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Eb5</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">18.96%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">E5</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">16.51%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">F5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1.53%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">F#5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.31%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>There are another five hymns that have melody lines that go up to an F5. But, as seen below, the only one that is moderately common is <hymn>The Morning Breaks (1)</hymn>. The others are sung so infrequently, that their presence in sacrament meetings is negligible. <hymn>Great Is the Lord (77)</hymn> was sung just four times in my sample and both <hymn>The Wintry Day, Descending to Its Close (37)</hymn> and <hymn>Ye Simple Souls Who Stray (118)</hymn> were each sung only twice. And <hymn>Sweet Is the Work (317)</hymn> is a women’s choir arrangement so, <a href="../../posts/mens_womens_arrangements.html">as I’ve discussed already</a>, it’s not sung very much.</p>
+<table class="table">
+<caption>Hymns with melodies that go up to an F5</caption>
+<thead>
+<tr class="header">
+<th>Hymn</th>
+<th>How often it’s sung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The Morning Breaks (1)</td>
+<td>Once every 3.5 years</td>
+</tr>
+<tr class="even">
+<td>Great Is the Lord (77)</td>
+<td>Once every 30 years</td>
+</tr>
+<tr class="odd">
+<td>The Wintry Day, Descending to Its Close (37)</td>
+<td>Once every 60 years</td>
+</tr>
+<tr class="even">
+<td>Ye Simple Souls Who Stray (118)</td>
+<td>Once every 60 years</td>
+</tr>
+<tr class="odd">
+<td>Sweet Is the Work (317)</td>
+<td>Never?</td>
+</tr>
+</tbody>
+</table>
+<p>So, six of the 341 hymns on our current hymnal go up to an F5 or F♯5, which is 1.76% of the hymnal. If all hymns were sung equally often as each other, we’d then expect that 1.76% of sacrament meeting hymns to go up to an F5 or F♯5. In reality, only 0.24% of them do, which means these six hymns are less common than expected. On average, you’ll encounter one maybe once every two and a half years. And if you do, three-quarters of the time it’ll be <hymn>The Morning Breaks (1)</hymn>.</p>
+<p>I can’t help but wonder whether that high melody note is the reason these hymns are so uncommon. It may be the case that they are unusual hymns anyway that for whatever reason are not sung very often. But I think that these hymns are uncommon at least partially because of these high notes. A music coordinator might consider selecting one of these for their ward to sing in sacrament meeting, but for the sake of everyone’s voices, ultimately decides against it. Thus, the high note perpetuates the rarity of the hymn. We saw this with the <a href="../../posts/key_signatures">key signatures</a> as well: hymns with marginally-attested phenomena (in this case, the keys of A and Db) are rarer than they would be due to chance alone.</p>
+</section>
+<section id="not-the-highest-but-still-pretty-high-melody-notes" class="level2">
+<h2 class="anchored" data-anchor-id="not-the-highest-but-still-pretty-high-melody-notes">Not the highest, but still pretty high melody notes</h2>
+<p>Okay, so melodies that go up to an F5 or higher are just not that common. Once we start looking at the E5 and E♭5 territory, there are many more hymns that include notes in that range, and some of those hymns are pretty common.</p>
+<p>There are 54 hymns have E5 as the highest note in their melody, including some of the more common ones like <hymn>High on the Mountain Top (5)</hymn>, <hymn>Our Savior’s Love (113)</hymn>, <hymn>Let Us All Press On (243)</hymn>, and <hymn>Praise to the Man (27)</hymn>. Collectively, these 54 hymns make up 15.84% of the hymnal. 12.21% of the hymns sung in my sample of sacrament meetings are one of these 54, so you’ll see an E5 about once every 2.5 weeks. The following figure shows these hymns in order of frequency and how often they’re sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>As far as hymns that have E♭5 as the highest note, there are 58 of them, or 18.18% of the hymns. Some of the more common ones include <hymn>I Stand All Amazed (193)</hymn>, <hymn>The Spirit of God (2)</hymn> and a handful of other sacrament hymns. The following table shows these hymns in order of frequency and how often they’re sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>In total, 115 hymns, or 35.9% of the hymnal go up to an E<span class="math inline">\(\flat\)</span> or higher.</p>
+</section>
+<section id="typical-highest-notes-for-a-melody" class="level2">
+<h2 class="anchored" data-anchor-id="typical-highest-notes-for-a-melody">Typical highest notes for a melody</h2>
+<p>However, D5, or the D an octave and one note above middle C, is by far the most common highest note for the melody in the hymnal. 164 hymns—that’s 51.3% of the hymnal!—have this as the highest note, including <hymn>I Know That My Redeemer Lives (136)</hymn>, <hymn>I Believe in Christ (148)</hymn>, and several sacrament hymns. I can’t show all of them in a single plot, but here are the most common ones and how often they typically occur in sacrament meeting in a ward in a year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+</section>
+<section id="hymns-where-the-melody-doesnt-go-very-high" class="level2">
+<h2 class="anchored" data-anchor-id="hymns-where-the-melody-doesnt-go-very-high">Hymns where the melody doesn’t go very high</h2>
+<p>The remaining 13% of the hymns have melodies that don’t go as high. There are only 6 that go up to a C♯ or D♭, including <hymn>Because I Have Been Given Much (219)</hymn>. The figure below shows all of them and how often they occur. It’s interesting that even though there are six hymns that fall into this category, two are sacrament hymns and one is a very common one. So even though they make up just 1.76% of the hymnal, they make up about 2.65% of the hymns sung in church. You’re likely to see one every 11 or so weeks on average.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>I think there are relatively few that have this particular note simply because of <a href="../../posts/key_signatures">what key signatures are most common</a>. It’s probably not a coincidence that one of the two hymns in D♭ are in this category. Most of the others are in A♭. If there were more hymns in D♭ major, or even A♭ we might see more hymns where the highest note is D♭5.</p>
+<p>Another 30 hymns only go as high as a C5, including <hymn>Choose the Right (239)</hymn> and <hymn>Come, Follow Me (116)</hymn>. They make up 8.8% of the hymnal but 11.7% of the hymns sung in sacrament meeting.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>There are five hymns don’t ever go higher than the middle of the treble clef. The two that only go to a B4 are both pretty well known: <hymn>Secret Prayer (144)</hymn> and <hymn>Lead, Kindly Light (197)</hymn>. The only one that has B♭4 as the highest note is for men, <hymn>Ye Who Are Called to Labor (321)</hymn>, so it might not even count as a “soprano” note.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The lowest highest melody note is an A♭4, which is found in the rare <hymn>God Moves in a Mysterious Way (285)</hymn> and the extremely rare <hymn>Now the Day is Over (159)</hymn>.</p>
+</div>
+</div>
+<p>These two hymns are low enough that even a good tenor could sing the melody in the right octave! In total, there are just five hymns that don’t reach a C5, which is only 1.5% of the hymnal. And they’re rarer hymns, so they only make up 0.72% of the hymns sung in sacrament meeting. So, if your highest note is a B, you might be able to sing melody once every 10 months or so. At least these lower hymns are more common that the hymns that go up to an F5 or F♯5!</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>The highest note in the soprano line is an F♯5. About half of the hymns go up to D5, with many more going a little higher than that. Fewer never reach a D5. The lowest highest note in the soprano line is an A♭4.</p>
+<p>Personally, singing above about a B is not easy for me. So, if I were in charge, I’d selfishly transpose many of these hymns down a bit so that their highest note is in a more comfortable range for me. But, I know many other people have no problem singing a D or even an E, so I’m not recommending that the hymnal lower any of these hymns.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
