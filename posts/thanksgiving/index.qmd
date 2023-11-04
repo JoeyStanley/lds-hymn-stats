@@ -149,7 +149,7 @@ freqs %>%
     geom_path() + 
     scale_x_continuous(breaks = seq(0, 60, 10)) +
     labs(x = "week of the year",
-         y = "number of times sung (in this sample)") + 
+         y = "times sung") + 
     theme_bw()
 ```
 
@@ -378,6 +378,37 @@ freqs %>%
          y = "percent of wards") +
     theme_bw()
 ```
+
+```{r}
+#| label: fig-prop_wards_per_day
+#| fig-cap: Percentage of wards that sing at least one Thanksgiving hymn by week
+freqs %>%
+    filter(country == "United States",
+           month == 11) %>%
+    left_join(thanksgiving_lookup, by = "year") %>%
+    mutate(days_until = thanksgiving_day - date) %>%
+    mutate(is_thanksgiving = hymn_num %in% c(91:95, 62, 241, 219)) %>%
+    summarize(n_thanksgiving = sum(is_thanksgiving, na.rm = TRUE), .by = c(meeting_id, days_until)) %>%
+    summarize(n = n(),
+             include_thanksgiving = sum(n_thanksgiving > 0),
+             .by = days_until) %>%
+    mutate(prop = include_thanksgiving / n) %>%
+    arrange(days_until) %>%
+    # print()
+    ggplot(aes(days_until, prop)) +
+    geom_line() +
+    geom_point() +
+    scale_x_reverse() +
+    scale_y_continuous(expand = expansion(0, c(0.01, 0.05)),
+                       breaks = seq(0, 1, 0.1),
+                       limits = c(0, 0.8),
+                       labels = scales::percent_format()) +
+    labs(x = "days until Thanksgiving",
+         y = "percent of wards") +
+    theme_bw()
+# Here's a plot for days until, but I guess I don't have enough data across enough years to show the plot I wanted to
+```
+
 
 So, perhaps a better way to look at the data is to change the percentages. @fig-props_across_november shows the same data as @fig-within_november, but instead of the data within each panel adding up to 100%, the data within each week (4 weeks before, 3 weeks before, etc) add up to 100% across all eight panels. So, the way you interpret this is that given all the Thanksgiving hymns sung, for example, four weeks before Thanksgiving, a quarter of them will be <hymn>Because I Have Been Given Much (#219)</hymn>. Given all the Thanksgiving hymns the Sunday before Thanksgiving, about a quarter of them will be <hymn>Prayer of Thanksgiving (#93)</hymn>. So, the higher a number is on any one of these panels, the more typical it is for it to be sung that week. 
 
