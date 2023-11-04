@@ -129,9 +129,12 @@ freqs %>%
     geom_path() + 
     scale_x_continuous(breaks = seq(0, 60, 10)) +
     facet_wrap(~name_num, ncol = 2) + 
-    labs(x = "week of the year",
+    labs(title = "Annual trends for Thanksgiving and gratitude hymns",
+         subtitle = "Thanksgiving marked in <span style = 'color: #FFC0CB;'>pink</span>",
+         x = "week of the year",
          y = "number of times sung (in this sample)") + 
-    theme_bw()
+    theme_bw() + 
+    theme(plot.subtitle = element_markdown())
 ```
 
 @fig-thanksgiving_annual makes it pretty clear that hymns 91--95 really are mostly sung in November and really not very often outside of November. The others that made the cut as being Thanksgiving hymns have a burst of currency in November, but not quite as large. <hymn>All Creatures of Our God and King (#62)</hymn> is also common around Easter and <hymn>Because I Have Been Given Much (#219)</hymn> and <hymn>Count Your Blessings (#241)</hymn> are common all year but especially in November. All the other hymns in @fig-thanksgiving_annual either peak at other times of the year (the topic of which will be the subject of later blog posts) and/or have no apparent jump in frequency in November whatsoever. 
@@ -152,9 +155,12 @@ freqs %>%
     geom_point() + 
     geom_path() + 
     scale_x_continuous(breaks = seq(0, 60, 10)) +
-    labs(x = "week of the year",
+    labs(title = "Annual trend for We Thank Thee, O God, for a Prophet",
+         subtitle = "Thanksgiving marked in <span style = 'color: #FFC0CB;'>pink</span>",
+         x = "week of the year",
          y = "times sung") + 
-    theme_bw()
+    theme_bw() + 
+    theme(plot.subtitle = element_markdown())
 ```
 
 ```{r}
