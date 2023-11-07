@@ -17,9 +17,7 @@ I currently have data from `r scales::comma(get_n_distinct_meetings())` sacramen
 
 
 
-## Frequencies
-
-
+## Frequency Table
 
 
 ```{r, include = TRUE, echo = FALSE}
@@ -44,12 +42,15 @@ freqs %>%
 ```
 
 
+## Visualization
+
 Here is the same information, but as a plot.
 
-```{r, echo = FALSE, fig.height = 40, fig.width = 6}
+```{r, echo = FALSE, fig.height = 40, fig.width = 8}
 freqs %>%
     cleveland_plot(return = "plot", 
                    title = "Frequency of all hymns",
-                   subtitle = NULL)
+                   subtitle = NULL,
+                   x_buffer = 0.7)
 ```
 
