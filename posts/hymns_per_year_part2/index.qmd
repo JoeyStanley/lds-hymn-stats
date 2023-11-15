@@ -1,0 +1,783 @@
+---
+title: "How many unique hymns does a ward sing in a year? Part 2"
+subtitle: "A much nerdier and more nitty-gritty analysis of trends over several years."
+author: "Joey Stanley"
+date: 11/12/23
+categories:
+  - general
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+I was recently asked something along the lines of "how many hymns does a ward sing through?" Previously, I wrote that [ward sing through about 105 unique hymns per year](/posts/hymns_per_year). However, the original question is slightly different than "how many does a ward sing in a year," and the way it was asked implies that there are a certain set of hymns that a ward will pull from, amd that there is essentially a "sealed portion": hymns that are, for all intents and purposes, not in the hymnal. My initial response was that there aren't really hymns that are never used, it's that not enough time has passed for them to be used. And then I thought it might make for an interesting blog post. So, let's look at that a little more.
+
+## The leveling out effect 
+
+First, let's think about what we expect to see. Given one year of data from a ward, we'd expect around 105 unique hymns. But, how many unique hymns would we expect in a two-year period? More than 105, but probably not 210. We'll almost certainly be repeating sacrament hymns, most of the holiday hymns, and probably a fair number of well-known familiar hymns as well. So let's say we sing maybe another 30 hymns in Year 2 that we didn't sing in Year 1. What about a three-year period? How many hymns do we sing in that third year that we hadn't already sung in Years 1 and 2? Probably not many at this point. Maybe another 10? How about a fourth year? A fifth year? 
+
+So, with each additional year of data, the number of new hymns being sung goes down. Eventually it'll come close to leveling out, with maybe one new hymn a year or less. Mathematically, it has to level out because there are a finite number of hymns to choose from. But I don't know of any ward that has sung all 341 hymns, so since there will almost always be at least one hymn that a ward has never sung, then it technically hasn't zeroed out yet. 
+
+```{r}
+hymns_per_year <- freqs %>%
+    filter(!ward %in% c("NA", "Anonymous"),
+           !is.na(date),
+           !is.na(ward)) %>%
+    group_by(ward) %>%
+    summarize(dates = length(unique(date)),
+              hymns = length(unique(hymn_num))) %>%
+    group_by(dates) %>%
+    summarize(mean_unique_hymns = mean(hymns),
+              sd_hymns = sd(hymns)) %>%
+    mutate(hymns_per_date = mean_unique_hymns / dates) %>%
+    print()
+```
+
+
+We can see this in the aggregate in this data. @fig-unique_by_data shows how many unique hymns are sung, based on how much data I have from that ward. Each dot represents a ward and all wards in the entire dataset are plotted here. Most wards have less than a year's worth of data, so they're all plotted on top of each other in the lower left portion of the plot. But some wards have many more, and yes, I have almost 15 years of sacrament meetings from two wards!
+
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 4}
+#| label: fig-unique_by_data
+#| fig-cap: Number of unique hymns by years of data
+ggplot(hymns_per_year, aes(dates, mean_unique_hymns)) + 
+    geom_point() + 
+    stat_smooth(method = "loess") + 
+    scale_x_continuous(breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, 5)) + 
+    scale_y_continuous(breaks = seq(0, 350, 20),
+                       expand = expansion(0, 0)) + 
+    labs(x = "years",
+         y = "unique hymns",
+         title = "Number of unique hymns by years of data per ward") + 
+    theme_minimal()
+```
+
+What we see is the leveling effect I described above. Most wards are around 105 or so after one year of data, which coincides with my previous blog post. By the two-year mark, the blue line, which shows something like the average, is around 150 unique hymns. But, the data has fanned out a bit, so there's more variation in how many hymns a ward will sing in two years. Some wards are higher (up to 180 unique hymns in two years) and others are lower (around 120). 
+
+```{r}
+# There we go. That's the plot I want
+make_the_plot <- function(.ward) {
+    freqs %>%
+        filter(ward == .ward) %>%
+        select(-ward) %>%
+        arrange(date) %>%
+        
+        # nth meeting
+        mutate(date_id = cur_group_id(), .by = date) %>%
+        
+        # sequentially number the unique hymns 
+        mutate(nth_unique_hymn = cur_group_id(), .by = name_num) %>%
+        # sequentially number the instance of singing each hymn
+        mutate(time = row_number(), .by = nth_unique_hymn) %>%
+        # Just keep the first 
+        filter(time == 1) %>%
+        
+        return()
+        # print() %>%
+        # ggplot(aes(date_id, nth_unique_hymn)) + 
+        # geom_point() + 
+        # scale_x_continuous(name = "years", 
+        #                    breaks = seq(0, 4800, 48),
+        #                    labels = 0:100) +
+        # scale_y_continuous(breaks = seq(0, 350, 20)) + 
+        # theme_minimal()
+}
+set.seed(231114)
+uniques_over_time <- freqs %>%
+    count(meeting_id, ward, sort = TRUE) %>%
+    count(ward, sort = TRUE) %>%
+    filter(n >= 48*3) %>%
+    mutate(color = sample(scales::hue_pal()(nrow(.))),
+           nym = fct_recode(ward, 
+                            "Southern Ward" = "Apex Ward",
+                            "Rocky Mountain Ward" = "Pueblo West 2nd Ward",
+                            "Provo Ward" = "Slate Canyon 10th Ward", 
+                            "Married Student Ward" = "Provo Married Student 41st Ward",
+                            "Atlantic Province Ward" = "Fredericton Ward", 
+                            "Salt Lake County Ward" = "Draper 6th Ward",
+                            "England Ward" = "Bristol 2nd Ward",
+                            "Single Adult Ward" = "Oquirrh Mountain SA Ward",
+                            "North Utah County Ward" = "Sunset Hills 3rd Ward",
+                            "Southest Ward" = "Athens 1st Ward",
+                            "Upper Midwest Ward" = "Madison 1st Ward",
+                            "North Salt Lake County Ward" = "Yale Ward",
+                            "Urban Texas Ward" = "Bedford 2nd Ward",
+                            "Northeast Ward" = "Pasadena Ward",
+                            "Central Salt Lake County Ward" = "Taylorsville Gardens Ward",
+                            "Midwest Ward" = "Sioux City 1st Ward",
+                            "Pacific Northwest Ward" = "Kelso Ward",
+                            "Rural Texas Ward" = "Wills Point Ward",
+                            "East Salt Lake County Ward" = "East Mill Creek 9th Ward",
+                            "Davies County Ward" = "Roy 1st Ward")) %>%
+    print() %>%
+    rowwise() %>%
+    mutate(data = map(ward, make_the_plot)) %>%
+    unnest(data) %>%
+    mutate(ward = str_remove(ward, " Ward")) %>%
+    print()
+```
+
+### Looking at specific wards
+
+Let's look at how this plays out within the context of a single ward. @fig-pnw shows the pattern for a single ward in the Pacific Northwest, which, for anonymity, we'll just call the "Pacific Northwest Ward."[I don't know if I should be sharing ward names, so I'll err on the safe side.]{.aside} From left to right are the four or so years of sacrament meetings. The line goes up if that ward sings a hymn it hasn't sung before based on the data that I have. It might be useful to think of the point on the left being the first Sunday after the ward was organized, moving right is how many years has passed since it was organized, and from bottom to top is how many unique hymns that was has *ever* sung since it's organization. The line then goes up every time the ward sings a hymn for the first time in that ward. This is essentially what it shows, except the point furthest to the left is not from the ward's organization but from the earliest sacrament meeting I have data from. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-pnw
+#| fig-cap: Unique hymns over time in a Pacific Northwest ward.
+uniques_over_time %>% 
+    filter(ward == "Kelso") %>%
+    ggplot(aes(date_id, nth_unique_hymn, color = color)) +
+    geom_text(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = ward),
+              aes(label = nym),
+              size = 2, hjust = 0) +
+    geom_path(aes(group = ward), alpha = 0.5) + 
+    # stat_smooth(formula = y ~ log(x), color = "black") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 40))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year in a Pacific Northwest ward") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+The general trend is that, as time passes, the ward will see fewer and fewer unique hymns. During the first six months, the line goes up pretty steeply---about as steeply as it can given the constraint of singing only about four hymns per week---because there are relatively few repeats in a six month period in this ward (and indeed in most wards). However, towards the end of the first year, the line gets a little less steep as some of the [most popular hymns](/posts/most_common) and [sacrament hymns](/posts/sacrament) are repeated. At the one-year mark, the Pacific Northwest ward has sung exactly 100 unique hymns. Going into the second year, the line is noticeably flatter, and at two years, this ward has sung 140 unique hymns. So, during the second year, the ward sang about 40 hymns that it didn't sing in the first year. The third year is more shallow still, and crosses the third-year mark at 165 hymns, meaning during that third year it sang about 25 hymns that it hadn't already sung in the previous two years. At the end of Year 4, it's at about 185, so it sang another 20 new hymns. 
+
+So, again, as more time passes, there are fewer new hymns. Now, that's not to say that the longer a music coordinator is in their calling they choose fewer new hymns. Or that older wards have more repetition. Or that the first six months of a ward are the most interesting. It's just that, with enough data, a ward will make it through more and more hymns, and so there are fewer new hymns to draw from. If I were to put the dates in a random order, we'd see more or less the same curve. There are diminishing returns when more time passes by. 
+
+@fig-pnw_cali_midwest overlays two more wards to the previous plot, one from the Northeast and one from the Midwest. As you can see, the trend is generally the same: a steeper include in the beginning and a shallower rise after a year or two. The first six months look pretty much the same across these three wards, but after about a year, they begin to diverge. The music coordinator in the Northeast ward appears to have made more of an effort to not repeat hymns, while the Midwest ward sang some familiar hymns more often. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-pnw_cali_midwest
+#| fig-cap: Unique hymns over time in a Pacific Northwest, Northeast, and Midwest ward.
+uniques_over_time %>% 
+    filter(ward %in% c("Kelso", "Pasadena", "Sioux City 1st")) %>%
+    ggplot(aes(date_id, nth_unique_hymn, color = color, group = nym)) +
+    geom_text(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = ward),
+              aes(label = nym),
+              size = 2, hjust = 0) +
+    geom_path(aes(group = nym), alpha = 0.5) + 
+    # stat_smooth(formula = y ~ log(x), color = "black") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 40))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year in three wards") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+
+@fig-three_years_over_time overlays even more wards. In fact, all 20 of the wards that have contributed three or more years of data are shown here in this plot. We see that in all these wards, the general pattern holds true. The first six months to a year are remarkably consistent for each ward and most of them are between about 100 and 110 unique hymns. From there, they really begin to fan out, and I think that's where the effort that music coordinators starts to become more apparent. Most wards slow down at the pace that the Pacific Northwest ward shown above are at. Some repeat hymns more often, meaning they sing fewer new hymns, so their line levels off sooner. Some sing a wider variety of hymns, so their line is steeper. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-three_years_over_time
+#| fig-cap: Unique hymns over time in 20 wards.
+uniques_over_time %>%
+    filter(ward != "Wills Point") %>%
+    ggplot(aes(date_id, nth_unique_hymn, color = color)) +
+    geom_text(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = nym),
+              aes(label = nym),
+              size = 2, hjust = 0) +
+    geom_path(aes(group = nym), alpha = 0.75) + 
+    geom_point(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = nym),
+               size = 1) + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 75))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year",
+         subtitle = "Based on the 20 wards with 3+ years of data") + 
+    # facet_wrap(~ward, scales = "free", ncol = 2) + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+
+```{r}
+uniques_over_time %>%
+    filter(nym == "Southern Ward")
+freqs %>%
+    filter(ward == "Apex Ward") %>%
+    count(hymn_name, hymn_num) %>%
+    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
+    filter(is.na(n),
+           !str_detect(hymn_name, "\\[")) %>%
+    arrange(hymn_num) %>%
+    print()
+```
+
+The one ward that has contributed the most data (we'll call it the "Southern Ward") is also remarkable because they have sung the most unique hymns. Over 14 years, any ward is like to get through most of the hymns, but the Southern Ward showed signs early on that they tried not to repeat hymns. Even in the first year, their line rose more steeply than the others, which means they were repeating hymns less often. And their line rose about as quickly during the second year---by the end of two years they had sung 210 unique hymns which is quite remarkable. That's more than most other wards had finished after several more years than that. In fact, we can compare to the other ward that contributed 14+ years of data, shown here in light purple, (we'll call it the "Rocky Mountain Ward"): it took Rocky Mountain Ward *ten years* to sing the same number of unique hymns that the Southern Ward sang in two years.
+
+```{r}
+uniques_over_time %>%
+    filter(nym == "Rocky Mountain Ward") %>%
+    mutate(year_time = date_id / 48)
+```
+
+The Southern Ward leveled off though. In the last six or so years of data, they only sang about five hymns they hadn't sung in the previous nine years. But, looking through their data, there are still 40 hymns (excluding the men's and women's arrangements in the back) that they hadn't sung in those 15 years, so in theory, the line could still go up if they continue to contribute data. 
+
+The Rocky Mountain Ward came close to leveling off as well, and in years 5--12, they only sang about 30 new hymns. The most recent data I have from them, it looks like they made an effort to sing hymns they had never sung before. I don't know the history of that ward, but the sheer fact that I have this data means they kept track of it. And if they kept track of it, perhaps they reorganized their spreadsheet in such a way that highlights hymns they hadn't sung yet and they purposely chose to include those where appropriate. 
+
+```{r}
+uniques_over_time %>%
+    filter(ward == "Slate Canyon 10th") %>%
+    mutate(year_time = date_id / 48)
+uniques_over_time %>%
+    filter(nym == "Married Student Ward") %>%
+    mutate(year_time = date_id / 48)
+```
+
+Each ward has its own story, but a few other wards are worth pointing out. @fig-three_more_wards shows three other wards' data.
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-three_more_wards
+#| fig-cap: Unique hymns over time in a Pacific Northwest, California, and Midwest ward
+uniques_over_time %>% 
+    filter(ward %in% c("Slate Canyon 10th", "Fredericton", "Provo Married Student 41st")) %>%
+    ggplot(aes(date_id, nth_unique_hymn, color = color, group = nym)) +
+    geom_text(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = ward),
+              aes(label = nym),
+              size = 2, hjust = 0) +
+    geom_path(aes(group = ward), alpha = 0.5) + 
+    # stat_smooth(formula = y ~ log(x), color = "black") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 40))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year in three wards") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+
+The Provo Ward contributed about nine years total, but their rise was inconsistent. They showed early signs of singing relatively few unique hymns and they began to level off by around three years. After two years, they had only sung 112 unique hymns, which is only a few more than what most other wards sing in one year. In their third year, they sang just nine new hymns. But then in their fourth year, they sang 30 new hymns and then leveled off again. For a year and a half (6.5--8 years in), they didn't sing any new hymns. Then, they entered another phase of singing new hymns, and over the next year they sang 26 hymns that they hadn't ever sung in the previous eight years. This is a very peculiar trend, and one that doesn't just happen naturally. (A few other wards show similar patterns of leveling off and then rising again.) My guess is we're seeing three different music coordinators over the course of these nine years, and the second two made a conscious effort to sing new hymns based on the spreadsheet that had been passed around. 
+
+```{r}
+uniques_over_time %>%
+    filter(nym == "Atlantic Province Ward") %>%
+    mutate(year_time = date_id / 48)
+```
+
+
+Another interesting one is the Atlantic Province Ward, the largest contribution I have from Canada. They generally followe the same trend as other wards, but at around six years in, they seem to have short bursts of new hymns. Looking through their data more carefully, it seems like about every two weeks, the music coordinator chose a new hymn to sing. But then every about six months, two new hymns were introduced in a single meeting. The regularity of these busts suggests that this was a conscious effort by the coordinator. 
+
+Finally, I show the Married Student Ward, not because it's interesting, but because it's remarkably regular. It started out steep as expected and gradually leveled off with hardly any deviations from the general pattern in over nine years. To me, this is indicative that whatever system that ward uses to keep track of and decide their hymns hasn't changed in nine years.
+
+Overall, most wards have leveled off by around five years. Not too many wards have contributed more than that though so I can't say for sure. But I think leveling off that is apparent in finally gets at what the original question that sparked this blog post. For about 15 years, the Southern Ward sang only about 273 different hymns out of about 313 they could have sung. Rocky Mountain Ward drew from a smaller pool, about 244 hymns, in about 14 years. The Provo  Ward leveled off for about a year and a half at 227 hymns and the Married Student Ward is close to leveling off at 208 hymns. 
+
+### Conclusion
+
+So, I can now answer the question of "how many hymns does a ward sing through?" I'll say that a ward sings through roughly 210--275 hymns after several years. Of course, as I mentioned in the post about [the least popular hymns](posts/least-common-hymns/), I have evidence that every hymn is sung at least once. So, not all wards draw from the same list of 210--275 hymns: some wards' lists might be different than others. So, the ones that one ward will likely never sing will be sung in some other ward at some point. Together, they fill in each other's gaps and collectively cover the entire hymnal.
+
+
+
+
+## Actual numbers
+
+But what are those actual numbers? How long does it take to get to, say, 150 unique hymns in a ward? Unfortunately, because I have relatively few wards that have hit that threshold, the data gets a little sparse, but hopefully I can provide a number that gets close. 
+
+@fig-milestones_years shows how many hymns these wards sang after a certain number of years. For each year, there is a boxplot that shows where most of the data lie, with the thick black line being the typical number. There is a clear leveling off effect as the years progress. I've only shown through seven years because any more than that and the data gets too sparse. 
+
+
+```{r}
+# How many hymns per year
+year_summaries <- uniques_over_time %>%
+    mutate(year_id = date_id/48,
+           year_id_floor = floor(year_id)) %>%
+    filter(year_id_floor > 0,
+           year_id_floor <= 7) %>%
+    filter(year_id == min(year_id, na.rm = TRUE), .by = c(ward, year_id_floor)) %>%
+    arrange(year_id_floor, nth_unique_hymn) %>%
+    print()
+```
+
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-milestones_years
+#| fig-cap: How many hymns have wards sung by a certain number of years?
+ggplot(year_summaries, aes(year_id_floor, nth_unique_hymn, group = year_id_floor)) + 
+    geom_boxplot() + 
+    scale_x_continuous(breaks = 0:10,
+                       expand = expansion(0, 0.25)) + 
+    scale_y_continuous(breaks = seq(0, 300, 20),
+                       expand = expansion(0, 5)) + 
+    labs(x = "years",
+         y = "unique hymns",
+         title = "How many hymns have wards sung by a certain number of years?") + 
+    theme_bw()
+```
+
+
+```{r, include = TRUE}
+#| label: tbl-unique_hymns_per_year
+#| tbl-cap: number of unique hymns per year
+year_summaries %>%
+    summarize(median = round(mean(nth_unique_hymn), 0), .by = year_id_floor) %>%
+    mutate(increase = median - lag(median, default = 0)) %>%
+    rename(year = year_id_floor,
+           `median number of total unique hymns` = median) %>%
+    knitr::kable()
+```
+
+
+Another way of looking at the same data is to turn it sideways and ask how long it takes a ward to hit a particular milestone of, say, 150 hymns or 200 hymns. @fig-milestones_hymns shows those results based on the wards in this sample. Up until about 180 hymns, there is a pretty regular pattern. After that, we run into data sparsity issues, so the results are a little wonky. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-milestones_hymns
+#| fig-cap: How long do wards take to sing a certain number of hymns?
+# How long does it take to get to certain milestones?
+uniques_over_time %>%
+    filter(nth_unique_hymn %% 20 == 0,
+           date_id <= 480) %>%
+    ggplot(aes(nth_unique_hymn, date_id, group = nth_unique_hymn)) + 
+    geom_boxplot() + 
+    scale_x_continuous(breaks = seq(0, 300, 20),
+                       expand = expansion(0, 5)) + 
+    scale_y_continuous(breaks = seq(0, 700, 48),
+                       labels = 0:14,
+                       expand = expansion(0, 24)) + 
+    labs(x = "unique hymns",
+         y = "years",
+         title = "How long do wards take to sing a certain number of hymns?") + 
+    theme_bw()
+```
+
+@tbl-years_per_milestone shows the same data, but in a table format. So, it'll take a ward roughly a little over two years to sing 150 unique hymns. And about four and a half years to sing its 200th hymn. 
+
+```{r, include = TRUE}
+#| label: tbl-years_per_milestone
+#| tbl-cap: number of years needed to hit certain milestones
+y_to_ym <- function(.y) {
+    years <-  floor(.y)
+    year_unit <- if_else(years == 1, "year", "years")
+    year_string = if_else(years == 0, "", paste(years, year_unit))
+    
+    months <- round((.y - years) * 12, 0) 
+    month_unit <- if_else(months == 1, "month", "months")
+    month_string = if_else(months == 0, "", paste(months, month_unit))
+    
+    paste(year_string, month_string)
+}
+uniques_over_time %>%
+    filter(nth_unique_hymn %% 20 == 0,
+           date_id <= 480) %>%
+    summarize(median = mean(date_id), .by = nth_unique_hymn) %>%
+    mutate(median = round(median/48, 2),
+           increase = median - lag(median, default = 0),
+           increase = if_else(increase < 0, 0, increase)) %>%
+    mutate(across(c(median, increase), y_to_ym)) %>%
+    rename(`unique hymns` = nth_unique_hymn,
+           `time needed` = median,
+           `additional time` = increase) %>%
+    knitr::kable()
+```
+
+
+
+## Simulations
+
+```{r}
+odds_of_intermediate <- nrow(freqs)/length(unique(freqs$meeting_id)) - 3
+sample_freqs <- function(.type) {
+    # Return NA for intermediate hymn some of the time
+    if (.type == "Intermediate") {
+        r <- runif(1)
+        if (r > odds_of_intermediate) {
+            return(NA)
+        }
+    }
+    freqs %>%
+        filter(type == .type,
+               !hymn_num %in% 309:337) %>%
+        slice_sample(n = 1) %>%
+        pull(name_num) %>%
+        return()
+}
+```
+
+If you've made it this far, it means you care about this topic a lot. It also means you're somewhat statistically literate. In this final section, it's going to get even more technical. So, if you enjoy this kind of stuff, buckle up because it's going to get fun. 
+
+Since I have data on [how often every hymn is sung](/overview.qmd), I can treat those frequencies as probabilities. Since <hymn>I Stand All Amazed (#193)</hymn> is the most common, it's most likely to be sung. Well, what if I randomly drew three hymns, with their probability of being drawn proportionate to how often they're sung? If I do, I can get a random sacrament meeting like this:
+
+```{r}
+set.seed(6)
+crossing(week = 1:4, 
+         type = "Opening") %>%
+    mutate(name_num_weighted = map_chr(type, sample_freqs),
+           type = c("Opening", "Sacrament", "Intermediate", "Closing")) %>%
+    select(-week) %>%
+    rename(hymn = name_num_weighted) %>%
+    knitr::kable()
+```
+
+Okay, so it's a bit silly because we have a Christmas hymn as the closing hymn, a Thanksgiving hymn as the sacrament hymn, and no real sacrament hymn. Well, what if I change the parameters so that it only selects sacrament hymns for the sacrament hymns? And since we don't always sing intermediate congregational hymns each week, I can have it return an NA about 46% of the time to match how often intermediate hymns are actually sung. With those, I can get a perhaps more plausible selection:
+
+```{r}
+set.seed(1)
+crossing(week = 1, 
+         type = c("Opening", "Sacrament", "Intermediate", "Closing")) %>%
+    mutate(type = factor(type, levels = c("Opening", "Sacrament", "Intermediate", "Closing"))) %>%
+    arrange(type) %>%
+    mutate(name_num_weighted = map_chr(type, sample_freqs)) %>%
+    select(-week) %>%
+    rename(hymn = name_num_weighted) %>%
+    knitr::kable()
+```
+
+
+For now, I'm not going to worry about holiday hymns because it'd be too much of a hassle. But, with this random hymn generator, I can quickly simulate a sacrament meeting's hymn selections. Well, what if I repeat that many times? Like 48 times? That's a year's worth of sacrament meetings. I can do that 100 times and that's 100 years of sacrament meetings---which is nonsensical because the current hymnal has only been out since 1985. But, I can simulate it anyway to see what happens. 
+
+```{r, cache = TRUE}
+set.seed(1)
+generated <- crossing(week = 1:(48*1000),
+                      type = c("Opening", "Sacrament", "Intermediate", "Closing")) %>%
+    mutate(name_num_weighted = map_chr(type, sample_freqs),
+           hymn_num_random   = sample(c(1:308, 338:341), size = nrow(.), replace = TRUE)) %>%
+    print()
+```
+
+Well, so that's what I did. I simulated 100 years' worth of sacrament hymns for a ward. The hymns are randomly selected, with more commonly sung hymns in real life being more likely to be selected in the simulation. I then went through the same calculations as I did with the wards shown in @fig-three_years_over_time to see how this simulated ward compared. @fig-simulated_weighted shows what this simulated data looks like. For now, I'll just show the first seven years of the simulation since that's about as far as we could do with the real data. 
+
+```{r}
+# Make the plot I use a function for above
+weighted_summarized <- generated %>%
+    # nth meeting
+    mutate(date_id = cur_group_id(), .by = week) %>%
+    mutate(year = date_id/48) %>%
+    # sequentially number the unique hymns 
+    mutate(nth_unique_hymn = cur_group_id(), .by = name_num_weighted) %>%
+    # sequentially number the instance of singing each hymn
+    mutate(time = row_number(), .by = nth_unique_hymn) %>%
+    # Just keep the first 
+    filter(time == 1) %>%
+    filter(nth_unique_hymn <= 313) %>%
+    select(-hymn_num_random) %>%
+    rename(name_num = name_num_weighted)
+```
+
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-simulated_weighted
+#| fig-cap: Unique hymns by year if hymns are randomly selected based on observed frequencies
+weighted_summarized %>%
+    filter(year <= 7) %>%
+    ggplot(aes(date_id, nth_unique_hymn)) +
+    geom_path(aes(group = 1), alpha = 0.5) + 
+    geom_point(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn)),
+               size = 1) + 
+    # geom_hline(yintercept = 341 - 28, linetype = "dashed") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 40))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20),
+                       expand = expansion(0, 2)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year if hymns are randomly selected based on observed frequencies") +
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+As expected, the leveling off looks very much like what most of the wards shown above look like. The first year sees the most number of hymns and with each passing year, the line gets shallower and shallower. After about seven years, this simulated ward has sung 243 unique hymns, which is in line with what was mentioned above about how many hymns a ward sings before leveling out. We see such a pattern in real-life too: the Married Student Ward shown above looks very much like this, though the line doesn't quite get so high as in this simulation. 
+
+However, this ward doesn't appear to be leveling out. It's still going up. How long did it take for the leveling out to happen? Better yet, how long did it take for all 313 of the hymns to be sung? Since this is simulated data, I can just generate some more data. @fig-simulated_weighted_full includes the full dataset. Here, I've added a horizontal dashed line at 313 to show the target. It took this simulated ward 213 years(!) to sing all 313 hymns. It made it to 300 hymns in 37 years, 308 hymns in 70 years, and from there at least a decade passed before hitting each of the remaining five hymns. The last hymn was what is currently the rarest hymn in my sample, <hymn>Sons of Michael, He Approaches (51)</hymn>. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-simulated_weighted_full
+#| fig-cap: Unique hymns by year if hymns are randomly selected based on observed frequencies
+ggplot(weighted_summarized, aes(date_id, nth_unique_hymn)) +
+    geom_path(aes(group = 1), alpha = 0.5) + 
+    geom_point(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn)),
+               size = 1) + 
+    geom_hline(yintercept = 341 - 28, linetype = "dashed") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800*10, 48*10),
+                       labels = 0:100*10,
+                       expand = expansion(0, c(5, 300))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20),
+                       expand = c(0, 2)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year if hymns are randomly selected based on observed frequencies") +
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+
+Since those last few hymns were so infrequent, it makes sense that they took so long for simulation to get them. So, just to see what would happen, I changed the parameters of the simulation so that all hymns are equally common. How does that change the simulation? Interestingly, it just so happens that it took exactly 10 years to hit that 313th hymn. @fig-simulated_random shows that it takes far less time to reach the goal of 313 hymns. In this simulation, it took about nine years to sing all 313 hymns. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-simulated_random
+#| fig-cap: Unique hymns by year if hymns are randomly selected with equal probabilities
+# Wow, I got it in exactly 10 years.
+random_summarized <- generated %>%
+    # nth meeting
+    mutate(date_id = cur_group_id(), .by = week) %>%
+    mutate(year = date_id/48) %>%
+    # sequentially number the unique hymns 
+    mutate(nth_unique_hymn = cur_group_id(), .by = hymn_num_random) %>%
+    # sequentially number the instance of singing each hymn
+    mutate(time = row_number(), .by = nth_unique_hymn) %>%
+    # Just keep the first 
+    filter(time == 1) %>%
+    filter(nth_unique_hymn <= 313) %>%
+    select(-name_num_weighted) %>%
+    rename(hymn_num = hymn_num_random)
+
+ggplot(random_summarized, aes(date_id, nth_unique_hymn)) +
+    geom_path(aes(group = 1), alpha = 0.5) + 
+    geom_point(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn)),
+               size = 1) + 
+    geom_hline(yintercept = 341 - 28, linetype = "dashed") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 40))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20),
+                       expand = c(0, 2)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year if hymns are randomly selected based on equal probabilities") +
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+So, I have two versions of simulated wards. What I can now do is overlay that over the actual data, as in @fig-simulated_plus_real. Here we see some pretty interesting comparisions. Obviously, the simulated ward that treated all hymns as equal skyrockets to the top and hits the 313th hymn sooner than other wards even hit (or are projected to hit) their 213th hymn. Even within the first year, we see that that Unweighted Simulation ward is ahead of the curve and hits 146 unique hymns by the end of the first year. By the end of the second year, it's at 225 hymns, which is 75 hymns more than what real wards typically are at at that point, and is more than where most wards get even with many more years of data. Obviously, this is unrealistic and no one should compare their ward to this one; it really should be treated as the fastest a ward could reasonably sing all the hymns, barring systematic cycling through them.
+
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-simulated_plus_real
+#| fig-cap: Real data compared to simulated data
+bind_rows(uniques_over_time, 
+          mutate(random_summarized, 
+                 nym = "Unweighted Simulation",
+                 ward = nym,
+                 color = "gray20") %>%
+              filter(year < 15),
+          mutate(weighted_summarized, 
+                 nym = "Weighted Simulation",
+                 ward = nym,
+                 color = "black") %>%
+              filter(year < 15)) %>%
+    filter(ward != "Wills Point") %>%
+    ggplot(aes(date_id, nth_unique_hymn, color = color)) +
+    geom_text(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = nym),
+              aes(label = nym),
+              size = 2, hjust = 0) +
+    geom_path(aes(group = nym), alpha = 0.75) +
+    geom_point(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = nym),
+               size = 1) +
+    geom_hline(yintercept = 341 - 28, linetype = "dashed") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 75))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20)) +
+    scale_color_identity() + 
+    labs(title = "Unique hymns by year",
+         subtitle = "Based on the 20 wards with 3+ years of data, plus two simulated wards") + 
+    # facet_wrap(~ward, scales = "free", ncol = 2) + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+Perhaps more intersting is to look at the "Weighted Simulation Ward." At one year, it is exactly on par with real wards. In fact, at two, three, and four years, it's in the middle of the pack. After that point, real wards begin to level out while the simulated ward continues to rise. It only crosses the Southern Ward---which I've already pointed out as being pretty ambitious at singing through all the hymns---after about 15 years. 
+
+So, how do we interpret this data? The Weighted Simulation Ward pulls ahead of the pack after a while while most real wards slow down. What is the difference then between the Weighted Simulation and the real wards? Well, real wards are run by real people. I do not want to discount any inspiration or spiritual promptings that may guide music coordinators in their decisions. But, real people have biases. And based on everything we've seen on this blog post, it appears that these biases mean that some music coordinators just don't want to sing a certain set of hymns. Since the simulation has no such bias, it's going to pick those unfamiliar hymns whenever the random number generator tells it to. So while the simulated ward pulls ahead, occasionally singing new hymns every once every few months or years, the real wards slow down and level off. As discussed already, some wards level off sooner than others, indicating that the avoidance of hymns is stronger in some people. 
+
+
+```{r, eval = FALSE}
+# Bigger simulation
+set.seed(1)
+big_generated <- crossing(week = 1:(48*15),
+                      ward = LETTERS,
+                      type = c("Opening", "Sacrament", "Intermediate", "Closing")) %>%
+    mutate(name_num_weighted = map_chr(type, sample_freqs),
+           hymn_num_random   = sample(c(1:308, 338:341), size = nrow(.), replace = TRUE)) %>%
+    print()
+```
+
+
+```{r, eval = FALSE}
+sequentially_number <- function() {
+    
+}
+big_generated %>%
+    select(-hymn_num_random) %>%
+    rename(name_num = name_num_weighted) %>%
+    filter(!is.na(name_num)) %>%
+    filter(ward %in% c("A", "B")) %>%
+    arrange(ward, week, type) %>%
+     # nth meeting
+    mutate(date_id = cur_group_id(), .by = c(week)) %>%
+    mutate(year = date_id/48) %>%
+    
+    
+    # sequentially number the unique hymns
+    # mutate(nth_unique_hymn = cur_group_id(), .by = c(name_num)) %>%
+    mutate(nth_unique_hymn = ~map2(date_id, name_num, sequentially_number))
+    
+    
+    
+    # sequentially number the instance of singing each hymn
+    mutate(time = row_number(), .by = c(nth_unique_hymn, ward)) %>%
+    # Just keep the first
+    filter(time == 1) %>%
+    filter(nth_unique_hymn <= 313) %>%
+    mutate(nym = ward) %>%
+    ggplot(aes(date_id, nth_unique_hymn, color = ward)) +
+    geom_text(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = nym),
+              aes(label = nym),
+              size = 2, hjust = 0) +
+    geom_path(aes(group = nym), alpha = 0.75) +
+    geom_point(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = nym),
+               size = 1) +
+    geom_hline(yintercept = 341 - 28, linetype = "dashed") + 
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 75))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 350, 20)) +
+    # labs(title = "Unique hymns by year",
+    #      subtitle = "Based on the 20 wards with 3+ years of data, plus two simulated wards") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+
+The last thing I want to do is simulate what these plots might look like ten years after the release of the [new hymnal](https://newsroom.churchofjesuschrist.org/article/sacred-hymnbook-to-help-unite-uplift-latter-day-saints-of-all-ages-worldwide). I haven't done much speculation about the new hymnal yet, but simulations are an interesting way to maybe see what the future might hold. The new one is supposed to have 450--500 hymns because it includes primary songs as well. I don't know how that'll work, like if the primary hymns will be intended to be sung in sacrament meeting or not, but let's say they are. That means we'll have well over 100 more hymns to draw from in the coming years.
+
+The obstacle I have right now in my simulations is that I don't have any information about how common those new hymns are. My probabilities for the existing hymns are based on frequencies, but I can't do the same thing for hymns that haven't been released yet! So, what I've done is essentially put the existing hymns in order of frequency, and then randomly intersperse another 163 more pretend-hymns and just assume that their frequency is the same as hymns nearby on the list. So, some new hymns will catch on and will be very common while others won't. This brings the total number of hymns up to 475, which is in the middle of the expected range. If a new hymn was randomly placed immediately below a sacrament hymn, I considered that new hymn to be a sacrament hymn as well. I then simulated another 10 years of sacrament hymns from a single ward. @fig-simulated_500 compares this simulation to the existing simulation based on the existing hymnal.
+
+```{r}
+set.seed(1) 
+# Get 160 new hymns to bring the total to 472
+new_hymns <- tibble(name_num = paste0("Unnamed New Hymn (", 342:504, ")")) %>%
+    mutate(order = runif(nrow(.)))
+probs500 <- freqs %>%
+    filter(!hymn_num %in% 309:337) %>%
+    mutate(is_sacrament = hymn_num %in% c(146, 169:197)) %>%
+    count(name_num, is_sacrament, sort = TRUE) %>%
+    # Put them in order
+    mutate(order = 1:312/312) %>%
+    # Intersperse the new hymn
+    bind_rows(new_hymns) %>%
+    arrange(order) %>%
+    # Give the new hymns the frequency of the one above it
+    fill(n) %>%
+    fill(is_sacrament) %>%
+    print()
+freqs500 <- probs500 %>%
+    mutate(instance = map(n, ~1:.)) %>%
+    select(-n, -order) %>%
+    unnest(instance) %>%
+    print()
+```
+
+```{r, cache = TRUE}
+#| label: fig-simulated_500
+#| fig-cap: Predicted unique hymns per year for the new, larger hymnal
+sample_500_freqs <- function(.type) {
+    # Return NA for intermediate hymn some of the time
+    if (.type == "Intermediate") {
+        r <- runif(1)
+        if (r > odds_of_intermediate) {
+            return(NA)
+        }
+    }
+    
+    if (.type == "Sacrament") {
+        this_sample <- probs500 %>% 
+            filter(is_sacrament)
+    } else {
+        this_sample <- probs500 %>% 
+            filter(!is_sacrament)
+    }
+    this_sample %>%
+        slice_sample(n = 1) %>%
+        pull(name_num) %>%
+        return()
+}
+set.seed(1)
+generated_500 <- crossing(week = 1:(48*10),
+                      type = c("Opening", "Sacrament", "Intermediate", "Closing")) %>%
+    mutate(name_num = map_chr(type, sample_500_freqs)) %>%
+    filter(!is.na(name_num)) %>%
+    print()
+
+# Make the plot I use a function for above
+summarized500 <- generated_500 %>%
+    # nth meeting
+    mutate(date_id = cur_group_id(), .by = week) %>%
+    mutate(year = date_id/48) %>%
+    # sequentially number the unique hymns 
+    mutate(nth_unique_hymn = cur_group_id(), .by = name_num) %>%
+    # sequentially number the instance of singing each hymn
+    mutate(time = row_number(), .by = nth_unique_hymn) %>%
+    # Just keep the first 
+    filter(time == 1)
+two_sims <- bind_rows(`larger` = summarized500,
+                      `current` = weighted_summarized,
+                      .id = "hymnal") %>%
+    print()
+```
+
+
+```{r, include = TRUE, fig.height = 4}
+two_sims %>%
+    filter(year <= 10) %>%
+    ggplot(aes(date_id, nth_unique_hymn, group = hymnal, color = hymnal)) +
+    geom_path(alpha = 0.5) + 
+    geom_text(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = hymnal),
+              aes(label = hymnal),
+              hjust = 0, nudge_x = 5) +
+    geom_point(data = . %>% filter(date_id == max(date_id), nth_unique_hymn == max(nth_unique_hymn), .by = hymnal),
+               size = 1) +
+    scale_x_continuous(name = "years",
+                       breaks = seq(0, 4800, 48),
+                       labels = 0:100,
+                       expand = expansion(0, c(5, 40))) +
+    scale_y_continuous(name = "nth unique hymn",
+                       breaks = seq(0, 500, 20),
+                       expand = expansion(0, c(5, 20))) +
+    scale_color_ptol() + 
+    labs(title = "Predicted unique hymns per year for the new, larger hymnal",
+         subtitle = "The \"Larger\" hymnal has about 475 hymns in it") +
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+Okay, so we immediately see that if there are more hymns to choose from, the number of unique hymns per ward increases. This makes sense: there are more to draw from so there's less repetition. After a year, instead of having sung around 100 hymns, the new hymnal simulation suggests we'll be at around 130 or so, which is quite a bit more than normal. Keep in mind that the simulation based on the existing hymnal was pretty close to what actual wards do for the first few years, so we can expect the same to be true of this new simulation. The only ward that hit 130 unique hymns in the first year was that Southern Ward, which, as already mentioned, appears to make an effort to sing many different hymns. So, once the novelty of the new hymnal comes out and things settle down into a new normal (so, maybe by the mid 2030s), we might expect that the diversity of sacrament hymns in a typical ward would be similar to what this one exceptional ward is doing now. 
+
+The difference between the current and new hymnal simulations gets greater as more time passes. By two years, the typical ward might have sung more hymns than any ward I have data for. After a few more years, the simulation likely overestimates theh number of hymns sung in a ward because that's what we saw with the other simulation. But, if I were to hazard a guess, I'd say after five or so years, a typical ward might settle on an expanded list of 325 hymns rather than the current observation of around 240. 
+
+
+
+## Conclusion
+
+So, let's go back to the original question once again: "how many hymns does a ward sing through?" What seemed like an innocent question actually turned out to uncover some interesting patterns. What we've found is that it takes at least five years for a ward to "settle" on the set of hymns that they ultimately draw from, which is roughly 240 hymns give or take a couple dozen. Some wards will make efforts to sing more, while others have a larger list of hymns they'll likely never sing. We observe a natural leveling out over time, so that fewer new hymns are sung the longer data is kept. Disruptions in this leveling out are likely due to changes in personnel and (my guess) probably involve careful notes about hymns that have been sung. Since new hymns typically appear gradually less often, it takes longer to hit milestones. It takes just one year to sing 100 hymns, about two to sing 150, and four to sing through 200 hymns. 
+
+Simulated data further reveals these biases that humans have. Assuming hymns are all eligible to be selected for sacrament meeting, with probabilities mirroring their frequencies, the simulated ward is on par with the real wards in this sample, but only for the first few years. After that, the real wards level out, suggesting that, at some point, music coordinators are opting to repeat a hymn rather than introduce a new one. The simulated ward continues to sing new hymns, but it took over 200 years to finally get to all of them! To me, this suggests that unless a ward makes a conscientious effort to sing every hymn, it is *highly* unlikely that you'll sing all the hymns in the hymnal, even if you tracked them for you whole life! The simulations also reveal that once the new hymnal is introduced, we will likely see a wider variety of hymns being sung in sacrament meeting, with fewer repetitions.
+
+This was a long and technical post, but I hope you enjoyed reading it as much as I enjoyed writing it!

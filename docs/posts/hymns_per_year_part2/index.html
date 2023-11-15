@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2023-11-12">
+
+<title>LDS Hymn Stats - How many unique hymns does a ward sing in a year? Part 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="LDS Hymn Stats - How many unique hymns does a ward sing in a year? Part 2">
+<meta property="og:description" content="A much nerdier and more nitty-gritty analysis of trends over several years.">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-unique_by_data-1.png">
+<meta property="og:site-name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="1536">
+<meta name="twitter:title" content="LDS Hymn Stats - How many unique hymns does a ward sing in a year? Part 2">
+<meta name="twitter:description" content="A much nerdier and more nitty-gritty analysis of trends over several years.">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-unique_by_data-1.png">
+<meta name="twitter:image-height" content="768">
+<meta name="twitter:image-width" content="1536">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../overview.html" rel="" target="">
+ <span class="menu-text">Summarized Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html" rel="" target="">
+ <span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-leveling-out-effect" id="toc-the-leveling-out-effect" class="nav-link active" data-scroll-target="#the-leveling-out-effect">The leveling out effect</a>
+  <ul class="collapse">
+  <li><a href="#looking-at-specific-wards" id="toc-looking-at-specific-wards" class="nav-link" data-scroll-target="#looking-at-specific-wards">Looking at specific wards</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  <li><a href="#actual-numbers" id="toc-actual-numbers" class="nav-link" data-scroll-target="#actual-numbers">Actual numbers</a></li>
+  <li><a href="#simulations" id="toc-simulations" class="nav-link" data-scroll-target="#simulations">Simulations</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How many unique hymns does a ward sing in a year? Part 2</h1>
+<p class="subtitle lead">A much nerdier and more nitty-gritty analysis of trends over several years.</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">general</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 12, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>I was recently asked something along the lines of “how many hymns does a ward sing through?” Previously, I wrote that <a href="../../posts/hymns_per_year">ward sing through about 105 unique hymns per year</a>. However, the original question is slightly different than “how many does a ward sing in a year,” and the way it was asked implies that there are a certain set of hymns that a ward will pull from, amd that there is essentially a “sealed portion”: hymns that are, for all intents and purposes, not in the hymnal. My initial response was that there aren’t really hymns that are never used, it’s that not enough time has passed for them to be used. And then I thought it might make for an interesting blog post. So, let’s look at that a little more.</p>
+<section id="the-leveling-out-effect" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-leveling-out-effect">The leveling out effect</h2>
+<p>First, let’s think about what we expect to see. Given one year of data from a ward, we’d expect around 105 unique hymns. But, how many unique hymns would we expect in a two-year period? More than 105, but probably not 210. We’ll almost certainly be repeating sacrament hymns, most of the holiday hymns, and probably a fair number of well-known familiar hymns as well. So let’s say we sing maybe another 30 hymns in Year 2 that we didn’t sing in Year 1. What about a three-year period? How many hymns do we sing in that third year that we hadn’t already sung in Years 1 and 2? Probably not many at this point. Maybe another 10? How about a fourth year? A fifth year?</p>
+<p>So, with each additional year of data, the number of new hymns being sung goes down. Eventually it’ll come close to leveling out, with maybe one new hymn a year or less. Mathematically, it has to level out because there are a finite number of hymns to choose from. But I don’t know of any ward that has sung all 341 hymns, so since there will almost always be at least one hymn that a ward has never sung, then it technically hasn’t zeroed out yet.</p>
+<p>We can see this in the aggregate in this data. <a href="#fig-unique_by_data">Figure&nbsp;1</a> shows how many unique hymns are sung, based on how much data I have from that ward. Each dot represents a ward and all wards in the entire dataset are plotted here. Most wards have less than a year’s worth of data, so they’re all plotted on top of each other in the lower left portion of the plot. But some wards have many more, and yes, I have almost 15 years of sacrament meetings from two wards!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-unique_by_data" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-unique_by_data-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Number of unique hymns by years of data</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>What we see is the leveling effect I described above. Most wards are around 105 or so after one year of data, which coincides with my previous blog post. By the two-year mark, the blue line, which shows something like the average, is around 150 unique hymns. But, the data has fanned out a bit, so there’s more variation in how many hymns a ward will sing in two years. Some wards are higher (up to 180 unique hymns in two years) and others are lower (around 120).</p>
+<section id="looking-at-specific-wards" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="looking-at-specific-wards">Looking at specific wards</h3>
+<div class="page-columns page-full"><p>Let’s look at how this plays out within the context of a single ward. <a href="#fig-pnw">Figure&nbsp;2</a> shows the pattern for a single ward in the Pacific Northwest, which, for anonymity, we’ll just call the “Pacific Northwest Ward.” From left to right are the four or so years of sacrament meetings. The line goes up if that ward sings a hymn it hasn’t sung before based on the data that I have. It might be useful to think of the point on the left being the first Sunday after the ward was organized, moving right is how many years has passed since it was organized, and from bottom to top is how many unique hymns that was has <em>ever</em> sung since it’s organization. The line then goes up every time the ward sings a hymn for the first time in that ward. This is essentially what it shows, except the point furthest to the left is not from the ward’s organization but from the earliest sacrament meeting I have data from.</p><div class="no-row-height column-margin column-container"><span class="">I don’t know if I should be sharing ward names, so I’ll err on the safe side.</span></div></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pnw" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-pnw-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Unique hymns over time in a Pacific Northwest ward.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The general trend is that, as time passes, the ward will see fewer and fewer unique hymns. During the first six months, the line goes up pretty steeply—about as steeply as it can given the constraint of singing only about four hymns per week—because there are relatively few repeats in a six month period in this ward (and indeed in most wards). However, towards the end of the first year, the line gets a little less steep as some of the <a href="../../posts/most_common">most popular hymns</a> and <a href="../../posts/sacrament">sacrament hymns</a> are repeated. At the one-year mark, the Pacific Northwest ward has sung exactly 100 unique hymns. Going into the second year, the line is noticeably flatter, and at two years, this ward has sung 140 unique hymns. So, during the second year, the ward sang about 40 hymns that it didn’t sing in the first year. The third year is more shallow still, and crosses the third-year mark at 165 hymns, meaning during that third year it sang about 25 hymns that it hadn’t already sung in the previous two years. At the end of Year 4, it’s at about 185, so it sang another 20 new hymns.</p>
+<p>So, again, as more time passes, there are fewer new hymns. Now, that’s not to say that the longer a music coordinator is in their calling they choose fewer new hymns. Or that older wards have more repetition. Or that the first six months of a ward are the most interesting. It’s just that, with enough data, a ward will make it through more and more hymns, and so there are fewer new hymns to draw from. If I were to put the dates in a random order, we’d see more or less the same curve. There are diminishing returns when more time passes by.</p>
+<p><a href="#fig-pnw_cali_midwest">Figure&nbsp;3</a> overlays two more wards to the previous plot, one from the Northeast and one from the Midwest. As you can see, the trend is generally the same: a steeper include in the beginning and a shallower rise after a year or two. The first six months look pretty much the same across these three wards, but after about a year, they begin to diverge. The music coordinator in the Northeast ward appears to have made more of an effort to not repeat hymns, while the Midwest ward sang some familiar hymns more often.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pnw_cali_midwest" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-pnw_cali_midwest-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Unique hymns over time in a Pacific Northwest, Northeast, and Midwest ward.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-three_years_over_time">Figure&nbsp;4</a> overlays even more wards. In fact, all 20 of the wards that have contributed three or more years of data are shown here in this plot. We see that in all these wards, the general pattern holds true. The first six months to a year are remarkably consistent for each ward and most of them are between about 100 and 110 unique hymns. From there, they really begin to fan out, and I think that’s where the effort that music coordinators starts to become more apparent. Most wards slow down at the pace that the Pacific Northwest ward shown above are at. Some repeat hymns more often, meaning they sing fewer new hymns, so their line levels off sooner. Some sing a wider variety of hymns, so their line is steeper.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-three_years_over_time" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-three_years_over_time-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Unique hymns over time in 20 wards.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The one ward that has contributed the most data (we’ll call it the “Southern Ward”) is also remarkable because they have sung the most unique hymns. Over 14 years, any ward is like to get through most of the hymns, but the Southern Ward showed signs early on that they tried not to repeat hymns. Even in the first year, their line rose more steeply than the others, which means they were repeating hymns less often. And their line rose about as quickly during the second year—by the end of two years they had sung 210 unique hymns which is quite remarkable. That’s more than most other wards had finished after several more years than that. In fact, we can compare to the other ward that contributed 14+ years of data, shown here in light purple, (we’ll call it the “Rocky Mountain Ward”): it took Rocky Mountain Ward <em>ten years</em> to sing the same number of unique hymns that the Southern Ward sang in two years.</p>
+<p>The Southern Ward leveled off though. In the last six or so years of data, they only sang about five hymns they hadn’t sung in the previous nine years. But, looking through their data, there are still 40 hymns (excluding the men’s and women’s arrangements in the back) that they hadn’t sung in those 15 years, so in theory, the line could still go up if they continue to contribute data.</p>
+<p>The Rocky Mountain Ward came close to leveling off as well, and in years 5–12, they only sang about 30 new hymns. The most recent data I have from them, it looks like they made an effort to sing hymns they had never sung before. I don’t know the history of that ward, but the sheer fact that I have this data means they kept track of it. And if they kept track of it, perhaps they reorganized their spreadsheet in such a way that highlights hymns they hadn’t sung yet and they purposely chose to include those where appropriate.</p>
+<p>Each ward has its own story, but a few other wards are worth pointing out. <a href="#fig-three_more_wards">Figure&nbsp;5</a> shows three other wards’ data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-three_more_wards" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-three_more_wards-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Unique hymns over time in a Pacific Northwest, California, and Midwest ward</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The Provo Ward contributed about nine years total, but their rise was inconsistent. They showed early signs of singing relatively few unique hymns and they began to level off by around three years. After two years, they had only sung 112 unique hymns, which is only a few more than what most other wards sing in one year. In their third year, they sang just nine new hymns. But then in their fourth year, they sang 30 new hymns and then leveled off again. For a year and a half (6.5–8 years in), they didn’t sing any new hymns. Then, they entered another phase of singing new hymns, and over the next year they sang 26 hymns that they hadn’t ever sung in the previous eight years. This is a very peculiar trend, and one that doesn’t just happen naturally. (A few other wards show similar patterns of leveling off and then rising again.) My guess is we’re seeing three different music coordinators over the course of these nine years, and the second two made a conscious effort to sing new hymns based on the spreadsheet that had been passed around.</p>
+<p>Another interesting one is the Atlantic Province Ward, the largest contribution I have from Canada. They generally followe the same trend as other wards, but at around six years in, they seem to have short bursts of new hymns. Looking through their data more carefully, it seems like about every two weeks, the music coordinator chose a new hymn to sing. But then every about six months, two new hymns were introduced in a single meeting. The regularity of these busts suggests that this was a conscious effort by the coordinator.</p>
+<p>Finally, I show the Married Student Ward, not because it’s interesting, but because it’s remarkably regular. It started out steep as expected and gradually leveled off with hardly any deviations from the general pattern in over nine years. To me, this is indicative that whatever system that ward uses to keep track of and decide their hymns hasn’t changed in nine years.</p>
+<p>Overall, most wards have leveled off by around five years. Not too many wards have contributed more than that though so I can’t say for sure. But I think leveling off that is apparent in finally gets at what the original question that sparked this blog post. For about 15 years, the Southern Ward sang only about 273 different hymns out of about 313 they could have sung. Rocky Mountain Ward drew from a smaller pool, about 244 hymns, in about 14 years. The Provo Ward leveled off for about a year and a half at 227 hymns and the Married Student Ward is close to leveling off at 208 hymns.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>So, I can now answer the question of “how many hymns does a ward sing through?” I’ll say that a ward sings through roughly 210–275 hymns after several years. Of course, as I mentioned in the post about <a href="posts/least-common-hymns/">the least popular hymns</a>, I have evidence that every hymn is sung at least once. So, not all wards draw from the same list of 210–275 hymns: some wards’ lists might be different than others. So, the ones that one ward will likely never sing will be sung in some other ward at some point. Together, they fill in each other’s gaps and collectively cover the entire hymnal.</p>
+</section>
+</section>
+<section id="actual-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="actual-numbers">Actual numbers</h2>
+<p>But what are those actual numbers? How long does it take to get to, say, 150 unique hymns in a ward? Unfortunately, because I have relatively few wards that have hit that threshold, the data gets a little sparse, but hopefully I can provide a number that gets close.</p>
+<p><a href="#fig-milestones_years">Figure&nbsp;6</a> shows how many hymns these wards sang after a certain number of years. For each year, there is a boxplot that shows where most of the data lie, with the thick black line being the typical number. There is a clear leveling off effect as the years progress. I’ve only shown through seven years because any more than that and the data gets too sparse.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-milestones_years" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-milestones_years-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: How many hymns have wards sung by a certain number of years?</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-unique_hymns_per_year" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: number of unique hymns per year</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">median number of total unique hymns</th>
+<th style="text-align: right;">increase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">111</td>
+<td style="text-align: right;">111</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">194</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">201</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">214</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Another way of looking at the same data is to turn it sideways and ask how long it takes a ward to hit a particular milestone of, say, 150 hymns or 200 hymns. <a href="#fig-milestones_hymns">Figure&nbsp;7</a> shows those results based on the wards in this sample. Up until about 180 hymns, there is a pretty regular pattern. After that, we run into data sparsity issues, so the results are a little wonky.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-milestones_hymns" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-milestones_hymns-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: How long do wards take to sing a certain number of hymns?</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#tbl-years_per_milestone">Table&nbsp;2</a> shows the same data, but in a table format. So, it’ll take a ward roughly a little over two years to sing 150 unique hymns. And about four and a half years to sing its 200th hymn.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-years_per_milestone" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: number of years needed to hit certain milestones</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">unique hymns</th>
+<th style="text-align: left;">time needed</th>
+<th style="text-align: left;">additional time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">2 months</td>
+<td style="text-align: left;">2 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">3 months</td>
+<td style="text-align: left;">2 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">6 months</td>
+<td style="text-align: left;">2 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">80</td>
+<td style="text-align: left;">8 months</td>
+<td style="text-align: left;">3 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">11 months</td>
+<td style="text-align: left;">3 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">1 year 4 months</td>
+<td style="text-align: left;">5 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">140</td>
+<td style="text-align: left;">1 year 11 months</td>
+<td style="text-align: left;">7 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">160</td>
+<td style="text-align: left;">2 years 4 months</td>
+<td style="text-align: left;">6 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">180</td>
+<td style="text-align: left;">3 years 2 months</td>
+<td style="text-align: left;">10 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">4 years 6 months</td>
+<td style="text-align: left;">1 year 4 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">220</td>
+<td style="text-align: left;">4 years 6 months</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">240</td>
+<td style="text-align: left;">5 years 7 months</td>
+<td style="text-align: left;">1 year 1 month</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">260</td>
+<td style="text-align: left;">7 years 6 months</td>
+<td style="text-align: left;">1 year 11 months</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="simulations" class="level2">
+<h2 class="anchored" data-anchor-id="simulations">Simulations</h2>
+<p>If you’ve made it this far, it means you care about this topic a lot. It also means you’re somewhat statistically literate. In this final section, it’s going to get even more technical. So, if you enjoy this kind of stuff, buckle up because it’s going to get fun.</p>
+<p>Since I have data on <a href="../../overview.html">how often every hymn is sung</a>, I can treat those frequencies as probabilities. Since <hymn>I Stand All Amazed (#193)</hymn> is the most common, it’s most likely to be sung. Well, what if I randomly drew three hymns, with their probability of being drawn proportionate to how often they’re sung? If I do, I can get a random sacrament meeting like this:</p>
+<p>Okay, so it’s a bit silly because we have a Christmas hymn as the closing hymn, a Thanksgiving hymn as the sacrament hymn, and no real sacrament hymn. Well, what if I change the parameters so that it only selects sacrament hymns for the sacrament hymns? And since we don’t always sing intermediate congregational hymns each week, I can have it return an NA about 46% of the time to match how often intermediate hymns are actually sung. With those, I can get a perhaps more plausible selection:</p>
+<p>For now, I’m not going to worry about holiday hymns because it’d be too much of a hassle. But, with this random hymn generator, I can quickly simulate a sacrament meeting’s hymn selections. Well, what if I repeat that many times? Like 48 times? That’s a year’s worth of sacrament meetings. I can do that 100 times and that’s 100 years of sacrament meetings—which is nonsensical because the current hymnal has only been out since 1985. But, I can simulate it anyway to see what happens.</p>
+<p>Well, so that’s what I did. I simulated 100 years’ worth of sacrament hymns for a ward. The hymns are randomly selected, with more commonly sung hymns in real life being more likely to be selected in the simulation. I then went through the same calculations as I did with the wards shown in <a href="#fig-three_years_over_time">Figure&nbsp;4</a> to see how this simulated ward compared. <a href="#fig-simulated_weighted">Figure&nbsp;8</a> shows what this simulated data looks like. For now, I’ll just show the first seven years of the simulation since that’s about as far as we could do with the real data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_weighted" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-simulated_weighted-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;8: Unique hymns by year if hymns are randomly selected based on observed frequencies</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, the leveling off looks very much like what most of the wards shown above look like. The first year sees the most number of hymns and with each passing year, the line gets shallower and shallower. After about seven years, this simulated ward has sung 243 unique hymns, which is in line with what was mentioned above about how many hymns a ward sings before leveling out. We see such a pattern in real-life too: the Married Student Ward shown above looks very much like this, though the line doesn’t quite get so high as in this simulation.</p>
+<p>However, this ward doesn’t appear to be leveling out. It’s still going up. How long did it take for the leveling out to happen? Better yet, how long did it take for all 313 of the hymns to be sung? Since this is simulated data, I can just generate some more data. <a href="#fig-simulated_weighted_full">Figure&nbsp;9</a> includes the full dataset. Here, I’ve added a horizontal dashed line at 313 to show the target. It took this simulated ward 213 years(!) to sing all 313 hymns. It made it to 300 hymns in 37 years, 308 hymns in 70 years, and from there at least a decade passed before hitting each of the remaining five hymns. The last hymn was what is currently the rarest hymn in my sample, <hymn>Sons of Michael, He Approaches (51)</hymn>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_weighted_full" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-simulated_weighted_full-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Unique hymns by year if hymns are randomly selected based on observed frequencies</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Since those last few hymns were so infrequent, it makes sense that they took so long for simulation to get them. So, just to see what would happen, I changed the parameters of the simulation so that all hymns are equally common. How does that change the simulation? Interestingly, it just so happens that it took exactly 10 years to hit that 313th hymn. <a href="#fig-simulated_random">Figure&nbsp;10</a> shows that it takes far less time to reach the goal of 313 hymns. In this simulation, it took about nine years to sing all 313 hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_random" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-simulated_random-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;10: Unique hymns by year if hymns are randomly selected with equal probabilities</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>So, I have two versions of simulated wards. What I can now do is overlay that over the actual data, as in <a href="#fig-simulated_plus_real">Figure&nbsp;11</a>. Here we see some pretty interesting comparisions. Obviously, the simulated ward that treated all hymns as equal skyrockets to the top and hits the 313th hymn sooner than other wards even hit (or are projected to hit) their 213th hymn. Even within the first year, we see that that Unweighted Simulation ward is ahead of the curve and hits 146 unique hymns by the end of the first year. By the end of the second year, it’s at 225 hymns, which is 75 hymns more than what real wards typically are at at that point, and is more than where most wards get even with many more years of data. Obviously, this is unrealistic and no one should compare their ward to this one; it really should be treated as the fastest a ward could reasonably sing all the hymns, barring systematic cycling through them.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_plus_real" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-simulated_plus_real-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;11: Real data compared to simulated data</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Perhaps more intersting is to look at the “Weighted Simulation Ward.” At one year, it is exactly on par with real wards. In fact, at two, three, and four years, it’s in the middle of the pack. After that point, real wards begin to level out while the simulated ward continues to rise. It only crosses the Southern Ward—which I’ve already pointed out as being pretty ambitious at singing through all the hymns—after about 15 years.</p>
+<p>So, how do we interpret this data? The Weighted Simulation Ward pulls ahead of the pack after a while while most real wards slow down. What is the difference then between the Weighted Simulation and the real wards? Well, real wards are run by real people. I do not want to discount any inspiration or spiritual promptings that may guide music coordinators in their decisions. But, real people have biases. And based on everything we’ve seen on this blog post, it appears that these biases mean that some music coordinators just don’t want to sing a certain set of hymns. Since the simulation has no such bias, it’s going to pick those unfamiliar hymns whenever the random number generator tells it to. So while the simulated ward pulls ahead, occasionally singing new hymns every once every few months or years, the real wards slow down and level off. As discussed already, some wards level off sooner than others, indicating that the avoidance of hymns is stronger in some people.</p>
+<p>The last thing I want to do is simulate what these plots might look like ten years after the release of the <a href="https://newsroom.churchofjesuschrist.org/article/sacred-hymnbook-to-help-unite-uplift-latter-day-saints-of-all-ages-worldwide">new hymnal</a>. I haven’t done much speculation about the new hymnal yet, but simulations are an interesting way to maybe see what the future might hold. The new one is supposed to have 450–500 hymns because it includes primary songs as well. I don’t know how that’ll work, like if the primary hymns will be intended to be sung in sacrament meeting or not, but let’s say they are. That means we’ll have well over 100 more hymns to draw from in the coming years.</p>
+<p>The obstacle I have right now in my simulations is that I don’t have any information about how common those new hymns are. My probabilities for the existing hymns are based on frequencies, but I can’t do the same thing for hymns that haven’t been released yet! So, what I’ve done is essentially put the existing hymns in order of frequency, and then randomly intersperse another 163 more pretend-hymns and just assume that their frequency is the same as hymns nearby on the list. So, some new hymns will catch on and will be very common while others won’t. This brings the total number of hymns up to 475, which is in the middle of the expected range. If a new hymn was randomly placed immediately below a sacrament hymn, I considered that new hymn to be a sacrament hymn as well. I then simulated another 10 years of sacrament hymns from a single ward. <strong>?@fig-simulated_500</strong> compares this simulation to the existing simulation based on the existing hymnal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Okay, so we immediately see that if there are more hymns to choose from, the number of unique hymns per ward increases. This makes sense: there are more to draw from so there’s less repetition. After a year, instead of having sung around 100 hymns, the new hymnal simulation suggests we’ll be at around 130 or so, which is quite a bit more than normal. Keep in mind that the simulation based on the existing hymnal was pretty close to what actual wards do for the first few years, so we can expect the same to be true of this new simulation. The only ward that hit 130 unique hymns in the first year was that Southern Ward, which, as already mentioned, appears to make an effort to sing many different hymns. So, once the novelty of the new hymnal comes out and things settle down into a new normal (so, maybe by the mid 2030s), we might expect that the diversity of sacrament hymns in a typical ward would be similar to what this one exceptional ward is doing now.</p>
+<p>The difference between the current and new hymnal simulations gets greater as more time passes. By two years, the typical ward might have sung more hymns than any ward I have data for. After a few more years, the simulation likely overestimates theh number of hymns sung in a ward because that’s what we saw with the other simulation. But, if I were to hazard a guess, I’d say after five or so years, a typical ward might settle on an expanded list of 325 hymns rather than the current observation of around 240.</p>
+</section>
+<section id="conclusion-1" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-1">Conclusion</h2>
+<p>So, let’s go back to the original question once again: “how many hymns does a ward sing through?” What seemed like an innocent question actually turned out to uncover some interesting patterns. What we’ve found is that it takes at least five years for a ward to “settle” on the set of hymns that they ultimately draw from, which is roughly 240 hymns give or take a couple dozen. Some wards will make efforts to sing more, while others have a larger list of hymns they’ll likely never sing. We observe a natural leveling out over time, so that fewer new hymns are sung the longer data is kept. Disruptions in this leveling out are likely due to changes in personnel and (my guess) probably involve careful notes about hymns that have been sung. Since new hymns typically appear gradually less often, it takes longer to hit milestones. It takes just one year to sing 100 hymns, about two to sing 150, and four to sing through 200 hymns.</p>
+<p>Simulated data further reveals these biases that humans have. Assuming hymns are all eligible to be selected for sacrament meeting, with probabilities mirroring their frequencies, the simulated ward is on par with the real wards in this sample, but only for the first few years. After that, the real wards level out, suggesting that, at some point, music coordinators are opting to repeat a hymn rather than introduce a new one. The simulated ward continues to sing new hymns, but it took over 200 years to finally get to all of them! To me, this suggests that unless a ward makes a conscientious effort to sing every hymn, it is <em>highly</em> unlikely that you’ll sing all the hymns in the hymnal, even if you tracked them for you whole life! The simulations also reveal that once the new hymnal is introduced, we will likely see a wider variety of hymns being sung in sacrament meeting, with fewer repetitions.</p>
+<p>This was a long and technical post, but I hope you enjoyed reading it as much as I enjoyed writing it!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

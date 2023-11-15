@@ -10,7 +10,2068 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.433</generator>
-<lastBuildDate>Sat, 04 Nov 2023 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 12 Nov 2023 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>How many unique hymns does a ward sing in a year? Part 2</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>I was recently asked something along the lines of “how many hymns does a ward sing through?” Previously, I wrote that <a href="../../posts/hymns_per_year">ward sing through about 105 unique hymns per year</a>. However, the original question is slightly different than “how many does a ward sing in a year,” and the way it was asked implies that there are a certain set of hymns that a ward will pull from, amd that there is essentially a “sealed portion”: hymns that are, for all intents and purposes, not in the hymnal. My initial response was that there aren’t really hymns that are never used, it’s that not enough time has passed for them to be used. And then I thought it might make for an interesting blog post. So, let’s look at that a little more.</p>
+<section id="the-leveling-out-effect" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-leveling-out-effect">The leveling out effect</h2>
+<p>First, let’s think about what we expect to see. Given one year of data from a ward, we’d expect around 105 unique hymns. But, how many unique hymns would we expect in a two-year period? More than 105, but probably not 210. We’ll almost certainly be repeating sacrament hymns, most of the holiday hymns, and probably a fair number of well-known familiar hymns as well. So let’s say we sing maybe another 30 hymns in Year 2 that we didn’t sing in Year 1. What about a three-year period? How many hymns do we sing in that third year that we hadn’t already sung in Years 1 and 2? Probably not many at this point. Maybe another 10? How about a fourth year? A fifth year?</p>
+<p>So, with each additional year of data, the number of new hymns being sung goes down. Eventually it’ll come close to leveling out, with maybe one new hymn a year or less. Mathematically, it has to level out because there are a finite number of hymns to choose from. But I don’t know of any ward that has sung all 341 hymns, so since there will almost always be at least one hymn that a ward has never sung, then it technically hasn’t zeroed out yet.</p>
+<p>We can see this in the aggregate in this data. Figure&nbsp;1 shows how many unique hymns are sung, based on how much data I have from that ward. Each dot represents a ward and all wards in the entire dataset are plotted here. Most wards have less than a year’s worth of data, so they’re all plotted on top of each other in the lower left portion of the plot. But some wards have many more, and yes, I have almost 15 years of sacrament meetings from two wards!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-unique_by_data" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-unique_by_data-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Number of unique hymns by years of data</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>What we see is the leveling effect I described above. Most wards are around 105 or so after one year of data, which coincides with my previous blog post. By the two-year mark, the blue line, which shows something like the average, is around 150 unique hymns. But, the data has fanned out a bit, so there’s more variation in how many hymns a ward will sing in two years. Some wards are higher (up to 180 unique hymns in two years) and others are lower (around 120).</p>
+<section id="looking-at-specific-wards" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="looking-at-specific-wards">Looking at specific wards</h3>
+<div class="page-columns page-full"><p>Let’s look at how this plays out within the context of a single ward. Figure&nbsp;2 shows the pattern for a single ward in the Pacific Northwest, which, for anonymity, we’ll just call the “Pacific Northwest Ward.” From left to right are the four or so years of sacrament meetings. The line goes up if that ward sings a hymn it hasn’t sung before based on the data that I have. It might be useful to think of the point on the left being the first Sunday after the ward was organized, moving right is how many years has passed since it was organized, and from bottom to top is how many unique hymns that was has <em>ever</em> sung since it’s organization. The line then goes up every time the ward sings a hymn for the first time in that ward. This is essentially what it shows, except the point furthest to the left is not from the ward’s organization but from the earliest sacrament meeting I have data from.</p><div class="no-row-height column-margin column-container"><span class="">I don’t know if I should be sharing ward names, so I’ll err on the safe side.</span></div></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pnw" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-pnw-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Unique hymns over time in a Pacific Northwest ward.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The general trend is that, as time passes, the ward will see fewer and fewer unique hymns. During the first six months, the line goes up pretty steeply—about as steeply as it can given the constraint of singing only about four hymns per week—because there are relatively few repeats in a six month period in this ward (and indeed in most wards). However, towards the end of the first year, the line gets a little less steep as some of the <a href="../../posts/most_common">most popular hymns</a> and <a href="../../posts/sacrament">sacrament hymns</a> are repeated. At the one-year mark, the Pacific Northwest ward has sung exactly 100 unique hymns. Going into the second year, the line is noticeably flatter, and at two years, this ward has sung 140 unique hymns. So, during the second year, the ward sang about 40 hymns that it didn’t sing in the first year. The third year is more shallow still, and crosses the third-year mark at 165 hymns, meaning during that third year it sang about 25 hymns that it hadn’t already sung in the previous two years. At the end of Year 4, it’s at about 185, so it sang another 20 new hymns.</p>
+<p>So, again, as more time passes, there are fewer new hymns. Now, that’s not to say that the longer a music coordinator is in their calling they choose fewer new hymns. Or that older wards have more repetition. Or that the first six months of a ward are the most interesting. It’s just that, with enough data, a ward will make it through more and more hymns, and so there are fewer new hymns to draw from. If I were to put the dates in a random order, we’d see more or less the same curve. There are diminishing returns when more time passes by.</p>
+<p>Figure&nbsp;3 overlays two more wards to the previous plot, one from the Northeast and one from the Midwest. As you can see, the trend is generally the same: a steeper include in the beginning and a shallower rise after a year or two. The first six months look pretty much the same across these three wards, but after about a year, they begin to diverge. The music coordinator in the Northeast ward appears to have made more of an effort to not repeat hymns, while the Midwest ward sang some familiar hymns more often.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pnw_cali_midwest" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-pnw_cali_midwest-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Unique hymns over time in a Pacific Northwest, Northeast, and Midwest ward.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure&nbsp;4 overlays even more wards. In fact, all 20 of the wards that have contributed three or more years of data are shown here in this plot. We see that in all these wards, the general pattern holds true. The first six months to a year are remarkably consistent for each ward and most of them are between about 100 and 110 unique hymns. From there, they really begin to fan out, and I think that’s where the effort that music coordinators starts to become more apparent. Most wards slow down at the pace that the Pacific Northwest ward shown above are at. Some repeat hymns more often, meaning they sing fewer new hymns, so their line levels off sooner. Some sing a wider variety of hymns, so their line is steeper.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-three_years_over_time" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-three_years_over_time-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Unique hymns over time in 20 wards.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The one ward that has contributed the most data (we’ll call it the “Southern Ward”) is also remarkable because they have sung the most unique hymns. Over 14 years, any ward is like to get through most of the hymns, but the Southern Ward showed signs early on that they tried not to repeat hymns. Even in the first year, their line rose more steeply than the others, which means they were repeating hymns less often. And their line rose about as quickly during the second year—by the end of two years they had sung 210 unique hymns which is quite remarkable. That’s more than most other wards had finished after several more years than that. In fact, we can compare to the other ward that contributed 14+ years of data, shown here in light purple, (we’ll call it the “Rocky Mountain Ward”): it took Rocky Mountain Ward <em>ten years</em> to sing the same number of unique hymns that the Southern Ward sang in two years.</p>
+<p>The Southern Ward leveled off though. In the last six or so years of data, they only sang about five hymns they hadn’t sung in the previous nine years. But, looking through their data, there are still 40 hymns (excluding the men’s and women’s arrangements in the back) that they hadn’t sung in those 15 years, so in theory, the line could still go up if they continue to contribute data.</p>
+<p>The Rocky Mountain Ward came close to leveling off as well, and in years 5–12, they only sang about 30 new hymns. The most recent data I have from them, it looks like they made an effort to sing hymns they had never sung before. I don’t know the history of that ward, but the sheer fact that I have this data means they kept track of it. And if they kept track of it, perhaps they reorganized their spreadsheet in such a way that highlights hymns they hadn’t sung yet and they purposely chose to include those where appropriate.</p>
+<p>Each ward has its own story, but a few other wards are worth pointing out. Figure&nbsp;5 shows three other wards’ data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-three_more_wards" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-three_more_wards-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Unique hymns over time in a Pacific Northwest, California, and Midwest ward</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The Provo Ward contributed about nine years total, but their rise was inconsistent. They showed early signs of singing relatively few unique hymns and they began to level off by around three years. After two years, they had only sung 112 unique hymns, which is only a few more than what most other wards sing in one year. In their third year, they sang just nine new hymns. But then in their fourth year, they sang 30 new hymns and then leveled off again. For a year and a half (6.5–8 years in), they didn’t sing any new hymns. Then, they entered another phase of singing new hymns, and over the next year they sang 26 hymns that they hadn’t ever sung in the previous eight years. This is a very peculiar trend, and one that doesn’t just happen naturally. (A few other wards show similar patterns of leveling off and then rising again.) My guess is we’re seeing three different music coordinators over the course of these nine years, and the second two made a conscious effort to sing new hymns based on the spreadsheet that had been passed around.</p>
+<p>Another interesting one is the Atlantic Province Ward, the largest contribution I have from Canada. They generally followe the same trend as other wards, but at around six years in, they seem to have short bursts of new hymns. Looking through their data more carefully, it seems like about every two weeks, the music coordinator chose a new hymn to sing. But then every about six months, two new hymns were introduced in a single meeting. The regularity of these busts suggests that this was a conscious effort by the coordinator.</p>
+<p>Finally, I show the Married Student Ward, not because it’s interesting, but because it’s remarkably regular. It started out steep as expected and gradually leveled off with hardly any deviations from the general pattern in over nine years. To me, this is indicative that whatever system that ward uses to keep track of and decide their hymns hasn’t changed in nine years.</p>
+<p>Overall, most wards have leveled off by around five years. Not too many wards have contributed more than that though so I can’t say for sure. But I think leveling off that is apparent in finally gets at what the original question that sparked this blog post. For about 15 years, the Southern Ward sang only about 273 different hymns out of about 313 they could have sung. Rocky Mountain Ward drew from a smaller pool, about 244 hymns, in about 14 years. The Provo Ward leveled off for about a year and a half at 227 hymns and the Married Student Ward is close to leveling off at 208 hymns.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>So, I can now answer the question of “how many hymns does a ward sing through?” I’ll say that a ward sings through roughly 210–275 hymns after several years. Of course, as I mentioned in the post about <a href="posts/least-common-hymns/">the least popular hymns</a>, I have evidence that every hymn is sung at least once. So, not all wards draw from the same list of 210–275 hymns: some wards’ lists might be different than others. So, the ones that one ward will likely never sing will be sung in some other ward at some point. Together, they fill in each other’s gaps and collectively cover the entire hymnal.</p>
+</section>
+</section>
+<section id="actual-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="actual-numbers">Actual numbers</h2>
+<p>But what are those actual numbers? How long does it take to get to, say, 150 unique hymns in a ward? Unfortunately, because I have relatively few wards that have hit that threshold, the data gets a little sparse, but hopefully I can provide a number that gets close.</p>
+<p>Figure&nbsp;6 shows how many hymns these wards sang after a certain number of years. For each year, there is a boxplot that shows where most of the data lie, with the thick black line being the typical number. There is a clear leveling off effect as the years progress. I’ve only shown through seven years because any more than that and the data gets too sparse.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-milestones_years" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-milestones_years-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: How many hymns have wards sung by a certain number of years?</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-unique_hymns_per_year" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: number of unique hymns per year</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">median number of total unique hymns</th>
+<th style="text-align: right;">increase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">111</td>
+<td style="text-align: right;">111</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">194</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">201</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">214</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Another way of looking at the same data is to turn it sideways and ask how long it takes a ward to hit a particular milestone of, say, 150 hymns or 200 hymns. Figure&nbsp;7 shows those results based on the wards in this sample. Up until about 180 hymns, there is a pretty regular pattern. After that, we run into data sparsity issues, so the results are a little wonky.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-milestones_hymns" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-milestones_hymns-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: How long do wards take to sing a certain number of hymns?</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Table&nbsp;2 shows the same data, but in a table format. So, it’ll take a ward roughly a little over two years to sing 150 unique hymns. And about four and a half years to sing its 200th hymn.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-years_per_milestone" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: number of years needed to hit certain milestones</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">unique hymns</th>
+<th style="text-align: left;">time needed</th>
+<th style="text-align: left;">additional time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">2 months</td>
+<td style="text-align: left;">2 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">3 months</td>
+<td style="text-align: left;">2 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">6 months</td>
+<td style="text-align: left;">2 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">80</td>
+<td style="text-align: left;">8 months</td>
+<td style="text-align: left;">3 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">11 months</td>
+<td style="text-align: left;">3 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">1 year 4 months</td>
+<td style="text-align: left;">5 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">140</td>
+<td style="text-align: left;">1 year 11 months</td>
+<td style="text-align: left;">7 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">160</td>
+<td style="text-align: left;">2 years 4 months</td>
+<td style="text-align: left;">6 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">180</td>
+<td style="text-align: left;">3 years 2 months</td>
+<td style="text-align: left;">10 months</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">4 years 6 months</td>
+<td style="text-align: left;">1 year 4 months</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">220</td>
+<td style="text-align: left;">4 years 6 months</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">240</td>
+<td style="text-align: left;">5 years 7 months</td>
+<td style="text-align: left;">1 year 1 month</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">260</td>
+<td style="text-align: left;">7 years 6 months</td>
+<td style="text-align: left;">1 year 11 months</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="simulations" class="level2">
+<h2 class="anchored" data-anchor-id="simulations">Simulations</h2>
+<p>If you’ve made it this far, it means you care about this topic a lot. It also means you’re somewhat statistically literate. In this final section, it’s going to get even more technical. So, if you enjoy this kind of stuff, buckle up because it’s going to get fun.</p>
+<p>Since I have data on <a href="../../overview.html">how often every hymn is sung</a>, I can treat those frequencies as probabilities. Since <hymn>I Stand All Amazed (#193)</hymn> is the most common, it’s most likely to be sung. Well, what if I randomly drew three hymns, with their probability of being drawn proportionate to how often they’re sung? If I do, I can get a random sacrament meeting like this:</p>
+<p>Okay, so it’s a bit silly because we have a Christmas hymn as the closing hymn, a Thanksgiving hymn as the sacrament hymn, and no real sacrament hymn. Well, what if I change the parameters so that it only selects sacrament hymns for the sacrament hymns? And since we don’t always sing intermediate congregational hymns each week, I can have it return an NA about 46% of the time to match how often intermediate hymns are actually sung. With those, I can get a perhaps more plausible selection:</p>
+<p>For now, I’m not going to worry about holiday hymns because it’d be too much of a hassle. But, with this random hymn generator, I can quickly simulate a sacrament meeting’s hymn selections. Well, what if I repeat that many times? Like 48 times? That’s a year’s worth of sacrament meetings. I can do that 100 times and that’s 100 years of sacrament meetings—which is nonsensical because the current hymnal has only been out since 1985. But, I can simulate it anyway to see what happens.</p>
+<p>Well, so that’s what I did. I simulated 100 years’ worth of sacrament hymns for a ward. The hymns are randomly selected, with more commonly sung hymns in real life being more likely to be selected in the simulation. I then went through the same calculations as I did with the wards shown in Figure&nbsp;4 to see how this simulated ward compared. Figure&nbsp;8 shows what this simulated data looks like. For now, I’ll just show the first seven years of the simulation since that’s about as far as we could do with the real data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_weighted" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_weighted-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;8: Unique hymns by year if hymns are randomly selected based on observed frequencies</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, the leveling off looks very much like what most of the wards shown above look like. The first year sees the most number of hymns and with each passing year, the line gets shallower and shallower. After about seven years, this simulated ward has sung 243 unique hymns, which is in line with what was mentioned above about how many hymns a ward sings before leveling out. We see such a pattern in real-life too: the Married Student Ward shown above looks very much like this, though the line doesn’t quite get so high as in this simulation.</p>
+<p>However, this ward doesn’t appear to be leveling out. It’s still going up. How long did it take for the leveling out to happen? Better yet, how long did it take for all 313 of the hymns to be sung? Since this is simulated data, I can just generate some more data. Figure&nbsp;9 includes the full dataset. Here, I’ve added a horizontal dashed line at 313 to show the target. It took this simulated ward 213 years(!) to sing all 313 hymns. It made it to 300 hymns in 37 years, 308 hymns in 70 years, and from there at least a decade passed before hitting each of the remaining five hymns. The last hymn was what is currently the rarest hymn in my sample, <hymn>Sons of Michael, He Approaches (51)</hymn>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_weighted_full" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_weighted_full-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Unique hymns by year if hymns are randomly selected based on observed frequencies</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Since those last few hymns were so infrequent, it makes sense that they took so long for simulation to get them. So, just to see what would happen, I changed the parameters of the simulation so that all hymns are equally common. How does that change the simulation? Interestingly, it just so happens that it took exactly 10 years to hit that 313th hymn. Figure&nbsp;10 shows that it takes far less time to reach the goal of 313 hymns. In this simulation, it took about nine years to sing all 313 hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_random" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_random-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;10: Unique hymns by year if hymns are randomly selected with equal probabilities</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>So, I have two versions of simulated wards. What I can now do is overlay that over the actual data, as in Figure&nbsp;11. Here we see some pretty interesting comparisions. Obviously, the simulated ward that treated all hymns as equal skyrockets to the top and hits the 313th hymn sooner than other wards even hit (or are projected to hit) their 213th hymn. Even within the first year, we see that that Unweighted Simulation ward is ahead of the curve and hits 146 unique hymns by the end of the first year. By the end of the second year, it’s at 225 hymns, which is 75 hymns more than what real wards typically are at at that point, and is more than where most wards get even with many more years of data. Obviously, this is unrealistic and no one should compare their ward to this one; it really should be treated as the fastest a ward could reasonably sing all the hymns, barring systematic cycling through them.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simulated_plus_real" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_plus_real-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;11: Real data compared to simulated data</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Perhaps more intersting is to look at the “Weighted Simulation Ward.” At one year, it is exactly on par with real wards. In fact, at two, three, and four years, it’s in the middle of the pack. After that point, real wards begin to level out while the simulated ward continues to rise. It only crosses the Southern Ward—which I’ve already pointed out as being pretty ambitious at singing through all the hymns—after about 15 years.</p>
+<p>So, how do we interpret this data? The Weighted Simulation Ward pulls ahead of the pack after a while while most real wards slow down. What is the difference then between the Weighted Simulation and the real wards? Well, real wards are run by real people. I do not want to discount any inspiration or spiritual promptings that may guide music coordinators in their decisions. But, real people have biases. And based on everything we’ve seen on this blog post, it appears that these biases mean that some music coordinators just don’t want to sing a certain set of hymns. Since the simulation has no such bias, it’s going to pick those unfamiliar hymns whenever the random number generator tells it to. So while the simulated ward pulls ahead, occasionally singing new hymns every once every few months or years, the real wards slow down and level off. As discussed already, some wards level off sooner than others, indicating that the avoidance of hymns is stronger in some people.</p>
+<p>The last thing I want to do is simulate what these plots might look like ten years after the release of the <a href="https://newsroom.churchofjesuschrist.org/article/sacred-hymnbook-to-help-unite-uplift-latter-day-saints-of-all-ages-worldwide">new hymnal</a>. I haven’t done much speculation about the new hymnal yet, but simulations are an interesting way to maybe see what the future might hold. The new one is supposed to have 450–500 hymns because it includes primary songs as well. I don’t know how that’ll work, like if the primary hymns will be intended to be sung in sacrament meeting or not, but let’s say they are. That means we’ll have well over 100 more hymns to draw from in the coming years.</p>
+<p>The obstacle I have right now in my simulations is that I don’t have any information about how common those new hymns are. My probabilities for the existing hymns are based on frequencies, but I can’t do the same thing for hymns that haven’t been released yet! So, what I’ve done is essentially put the existing hymns in order of frequency, and then randomly intersperse another 163 more pretend-hymns and just assume that their frequency is the same as hymns nearby on the list. So, some new hymns will catch on and will be very common while others won’t. This brings the total number of hymns up to 475, which is in the middle of the expected range. If a new hymn was randomly placed immediately below a sacrament hymn, I considered that new hymn to be a sacrament hymn as well. I then simulated another 10 years of sacrament hymns from a single ward. <strong>?@fig-simulated_500</strong> compares this simulation to the existing simulation based on the existing hymnal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Okay, so we immediately see that if there are more hymns to choose from, the number of unique hymns per ward increases. This makes sense: there are more to draw from so there’s less repetition. After a year, instead of having sung around 100 hymns, the new hymnal simulation suggests we’ll be at around 130 or so, which is quite a bit more than normal. Keep in mind that the simulation based on the existing hymnal was pretty close to what actual wards do for the first few years, so we can expect the same to be true of this new simulation. The only ward that hit 130 unique hymns in the first year was that Southern Ward, which, as already mentioned, appears to make an effort to sing many different hymns. So, once the novelty of the new hymnal comes out and things settle down into a new normal (so, maybe by the mid 2030s), we might expect that the diversity of sacrament hymns in a typical ward would be similar to what this one exceptional ward is doing now.</p>
+<p>The difference between the current and new hymnal simulations gets greater as more time passes. By two years, the typical ward might have sung more hymns than any ward I have data for. After a few more years, the simulation likely overestimates theh number of hymns sung in a ward because that’s what we saw with the other simulation. But, if I were to hazard a guess, I’d say after five or so years, a typical ward might settle on an expanded list of 325 hymns rather than the current observation of around 240.</p>
+</section>
+<section id="conclusion-1" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-1">Conclusion</h2>
+<p>So, let’s go back to the original question once again: “how many hymns does a ward sing through?” What seemed like an innocent question actually turned out to uncover some interesting patterns. What we’ve found is that it takes at least five years for a ward to “settle” on the set of hymns that they ultimately draw from, which is roughly 240 hymns give or take a couple dozen. Some wards will make efforts to sing more, while others have a larger list of hymns they’ll likely never sing. We observe a natural leveling out over time, so that fewer new hymns are sung the longer data is kept. Disruptions in this leveling out are likely due to changes in personnel and (my guess) probably involve careful notes about hymns that have been sung. Since new hymns typically appear gradually less often, it takes longer to hit milestones. It takes just one year to sing 100 hymns, about two to sing 150, and four to sing through 200 hymns.</p>
+<p>Simulated data further reveals these biases that humans have. Assuming hymns are all eligible to be selected for sacrament meeting, with probabilities mirroring their frequencies, the simulated ward is on par with the real wards in this sample, but only for the first few years. After that, the real wards level out, suggesting that, at some point, music coordinators are opting to repeat a hymn rather than introduce a new one. The simulated ward continues to sing new hymns, but it took over 200 years to finally get to all of them! To me, this suggests that unless a ward makes a conscientious effort to sing every hymn, it is <em>highly</em> unlikely that you’ll sing all the hymns in the hymnal, even if you tracked them for you whole life! The simulations also reveal that once the new hymnal is introduced, we will likely see a wider variety of hymns being sung in sacrament meeting, with fewer repetitions.</p>
+<p>This was a long and technical post, but I hope you enjoyed reading it as much as I enjoyed writing it!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>general</category>
+  <guid>https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index.html</guid>
+  <pubDate>Sun, 12 Nov 2023 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>How much data do I have and where did it all come from?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/data/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>In this post, I’ll explain a bit more about the data itself. You’re not going to see any interesting findings about hymn stats here; instead, this page will be mostly to satisfy people that are curious about the project itself. How much data do I have? Where did it all come from? What is the nature of the data?</p>
+<p>For this project, I have two main datasets. One is the <code>Frequency</code> data, which I use to answer questions like, “What is the most common hymn?”, “What hymns are hardly ever sung?” or “What hymns are popular around Valentine’s Day?”. The other is the <code>Notes</code> data, which I use to answer questions like, “What is the highest alto note?” or “What is the widest range a single part has to sing?”, or “What is the most common final chord?”. I’ll explain each of these separately, starting with the <code>Frequency</code> data.</p>
+<section id="the-frequency-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-frequency-data">The <code>Frequency</code> data</h2>
+<p>The dataset I’m calling the <code>Frequency</code> data is which is collected by having people in other wards and branches submit to me what hymns they sing in sacrament meeting. I use it to answer questions about how common or uncommon a hymn is or anything about annual trends. Let’s look at how how I got it and how much data I have</p>
+<section id="where-did-the-data-come-from" class="level3">
+<h3 class="anchored" data-anchor-id="where-did-the-data-come-from">Where did the data come from?</h3>
+<p>The data presented in this project comes from about five different sources. Let me go through each one individually.</p>
+<section id="joeys-2015-collection" class="level4">
+<h4 class="anchored" data-anchor-id="joeys-2015-collection">Joey’s 2015 collection</h4>
+<p>I first began this project sometime around 2013. I had the idea to collect as much data as I could from as many wards as I could to answer the question of what hymn is most common and what hymns are the least common.</p>
+<p>In my project planning phase, I considered setting up a survey that people could quickly take every week to report their hymns. However, I didn’t think I could get very many people to commit to that kind of consistency. So, I decided that rather than collecting hymns from the <em>next</em> 52 weeks, what if I collected hymns from the <em>past</em> 52 weeks? I figure many wards have a spreadsheet of some sort that they use to keep track of hymns. If not a spreadsheet, then at least copies of old sacrament meeting programs, or notes that the Bishopric uses when conducting. All I’d need then is for someone from each ward to send me their data once, rather than consistently.</p>
+<p>So I started asking around in online spaces where LDS music people might gather, but I soon found out it was going to be harder than I expected to get people to send me their data. After a few weeks, I was able to get data from 21 wards, ranging from a few months to several years. My own ward’s clerk was cleaning out old files and found years of sacrament meeting programs, and sent them to me. I call this chunk of the overall sample, the <code>Joey2015</code> data.</p>
+<p>Figure&nbsp;1 shows how this <code>Joey2015</code> sample is distributed over time. In this plot, the height of each bar represents how many sacrament meetings I had data from within each month. You can tell that most of the recruitment efforts were done in 2014 since that’s when the most data comes from. There’s a recency effect here: if I put a call out to people in June 2014, I’ll get a lot of data from the weeks and months leading up to June 2014, and less data the further back I go because fewer wards keep records for that long.</p>
+<div class="cell" data-fig-caption="Sacrament meetings per month in the Joey 2015 sample">
+<div class="cell-output-display">
+<div id="fig-joey2015_time" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/data/index_files/figure-html/fig-joey2015_time-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="joeys-2023-collection" class="level4">
+<h4 class="anchored" data-anchor-id="joeys-2023-collection">Joey’s 2023 collection</h4>
+<p>My interest in the project waned after about 2017, partly because I was in graduate school and was starting a family, and partly because I was having a hard time collecting more data. In 2023 though, my interest was revitalized, coincidentally right before the church announced the new hymnal. I figured since I had been working on this for over a decade and since I’ve collected so much data, I might as well get the results out before it all becomes irrelevant. It’s probably too late to send these findings to the church in case they want to use them to help make decisions about the new hymnal.</p>
+</section>
+</section>
+<section id="how-much-data-do-i-have" class="level3">
+<h3 class="anchored" data-anchor-id="how-much-data-do-i-have">How much data do I have?</h3>
+<p>At the time of writing this description, the <code>Frequency</code> dataset has information from 18,968 sacrament meetings. The whole spreadsheet has 65,757 rows in it, each representing a congregational hymn sung in some ward or branch sometime in the past 20 years somewhere in the world. Table&nbsp;1 shows just a snapshot of what the raw dataset looks like under the hood.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-raw_sample" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: A sample of the raw dataset</caption>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 33%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">ward</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: right;">hymn_num</th>
+<th style="text-align: left;">hymn_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">4115</td>
+<td style="text-align: left;">Apex Ward</td>
+<td style="text-align: left;">Opening</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: left;">We’re Not Ashamed to Own Our Lord</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">13945</td>
+<td style="text-align: left;">Ashcroft Ward</td>
+<td style="text-align: left;">Sacrament</td>
+<td style="text-align: right;">197</td>
+<td style="text-align: left;">O Savior, Thou Who Wearest a Crown</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17741</td>
+<td style="text-align: left;">Gouda Wijk</td>
+<td style="text-align: left;">Closing</td>
+<td style="text-align: right;">134</td>
+<td style="text-align: left;">I Believe in Christ</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">29089</td>
+<td style="text-align: left;">Midvale 4th Ward</td>
+<td style="text-align: left;">Sacrament</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: left;">While of These Emblems We Partake</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">29887</td>
+<td style="text-align: left;">Manchester YSA Ward</td>
+<td style="text-align: left;">Opening</td>
+<td style="text-align: right;">259</td>
+<td style="text-align: left;">Hope of Israel</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">37497</td>
+<td style="text-align: left;">Southshore YSA Ward</td>
+<td style="text-align: left;">Sacrament</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: left;">We’ll Sing All Hail to Jesus’ Name</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">48417</td>
+<td style="text-align: left;">West Chester Ward</td>
+<td style="text-align: left;">Opening</td>
+<td style="text-align: right;">264</td>
+<td style="text-align: left;">Hark, All Ye Nations!</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">56259</td>
+<td style="text-align: left;">La Mesa 1st Ward</td>
+<td style="text-align: left;">Closing</td>
+<td style="text-align: right;">215</td>
+<td style="text-align: left;">Ring Out, Wild Bells</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">64747</td>
+<td style="text-align: left;">Spanish Trails Ward</td>
+<td style="text-align: left;">Sacrament</td>
+<td style="text-align: right;">176</td>
+<td style="text-align: left;">’Tis Sweet to Sing the Matchless Love</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">65391</td>
+<td style="text-align: left;">Provo Married Student 41st Ward</td>
+<td style="text-align: left;">Opening</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">High on the Mountain Top</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>As you can see, it’s pretty straightforward dat. I have columns for the ward name, what I’m calling the “type” (which is just whether it’s the opening, sacrament, intermediate, or closing hymn), the hymn number and the hymn name. The first column, “id”, is simply a unique identifier for each row in the spreadsheet.</p>
+<p>For the most part, there are no partial rows in this spreadsheet. However, a few wards have organized their spreadsheets in such a way that I can recover the dates, but not the “type.” For such wards, I have put an NA in the “type” column and they are excluded from any sort of analysis that uses those types. In a few instances, I’m sent data that has partial information about a sacrament meeting, such as just the opening hymn but not the others. In such cases, I toss the data because I only want to include complete sacrament meetings.</p>
+</section>
+<section id="geographic-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="geographic-distribution">Geographic Distribution</h3>
+<p>For each ward/branch I have a separate spreadsheet that includes basic metadata about them. Table&nbsp;2 shows that I have the name (for simplcity, I call it “ward” even though branches are included), and the city, state, and country.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-ward_sample" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: A sample of the ward metadata</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ward</th>
+<th style="text-align: left;">city</th>
+<th style="text-align: left;">state</th>
+<th style="text-align: left;">country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Brighton Gardens Branch</td>
+<td style="text-align: left;">Salt Lake City</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Corning Branch</td>
+<td style="text-align: left;">Painted Post</td>
+<td style="text-align: left;">New York</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Edison Ward</td>
+<td style="text-align: left;">Kennewick</td>
+<td style="text-align: left;">Washington</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Palo Alto 2nd Ward</td>
+<td style="text-align: left;">Palo Alto</td>
+<td style="text-align: left;">California</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">St George SA Ward</td>
+<td style="text-align: left;">St.&nbsp;George</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manti 1st Ward</td>
+<td style="text-align: left;">Manti</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rifle 1st Ward</td>
+<td style="text-align: left;">Rifle</td>
+<td style="text-align: left;">Colorado</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alpine 9th Ward</td>
+<td style="text-align: left;">Alpine</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lakeside 6th Ward</td>
+<td style="text-align: left;">Provo</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Olive Ward</td>
+<td style="text-align: left;">Mesa</td>
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: left;">United States</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>I currently have data from 59 countries, however, about 84% of the data comes from the United States. A fair amount also comes from Canada, the United Kingdom, and Australia. Table&nbsp;3 (click to expand) shows the full breakdown of how much data I have from each country, in terms of how many hymns, how many sacrament meetings, and how many wards. So, the US is over-represented in this dataset, compared to how members of the church are distributed around the world. This makes sense given that recruitment efforts were based in the United States and were in English. Therefore, while I can’t say that the patterns here do not represent wards outside of the US, any extrapolation of these patterns to other countries should be taken with a grain of salt.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see the breakdown by country
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-countries" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;3: Countries in the dataset</caption>
+<colgroup>
+<col style="width: 42%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 7%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">hymns</th>
+<th style="text-align: right;">meetings</th>
+<th style="text-align: right;">wards</th>
+<th style="text-align: left;">percent of full dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">United States</td>
+<td style="text-align: right;">55318</td>
+<td style="text-align: right;">15974</td>
+<td style="text-align: right;">763</td>
+<td style="text-align: left;">84.12%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Canada</td>
+<td style="text-align: right;">2964</td>
+<td style="text-align: right;">830</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">4.51%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">United Kingdom</td>
+<td style="text-align: right;">1828</td>
+<td style="text-align: right;">501</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">2.78%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">France</td>
+<td style="text-align: right;">865</td>
+<td style="text-align: right;">245</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">1.32%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Netherlands</td>
+<td style="text-align: right;">467</td>
+<td style="text-align: right;">138</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">0.71%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Australia</td>
+<td style="text-align: right;">436</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">0.66%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Denmark</td>
+<td style="text-align: right;">413</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.63%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Northern Mariana Islands</td>
+<td style="text-align: right;">354</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.54%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mexico</td>
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">0.48%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Taiwan</td>
+<td style="text-align: right;">254</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.39%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Spain</td>
+<td style="text-align: right;">251</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.38%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">201</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.31%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.27%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Democratic Republic of the Congo</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.25%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Germany</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">0.24%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Zealand</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.23%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.23%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chile</td>
+<td style="text-align: right;">146</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.22%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ghana</td>
+<td style="text-align: right;">145</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">0.22%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Japan</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.14%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">0.12%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Philippines</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.12%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finland</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.11%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Liberia</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.10%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Trinidad and Tobago</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">0.10%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Uganda</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.10%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Italy</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.08%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Samoa</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.07%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sweden</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.07%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bulgaria</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.06%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ecuador</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.06%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Colombia</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.05%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Guyana</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">0.04%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paraguay</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.04%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vanuatu</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.03%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peru</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.03%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">French Polynesia</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Poland</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">China</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Caledonia</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jordan</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Uruguay</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Belgium</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Puerto Rico</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">India</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Suriname</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aruba</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dominican Republic</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Guam</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Guatemala</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Israel</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nigeria</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Panama</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">South Africa</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">American Samoa</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dominica</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Switzerland</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Thailand</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Within the United States, I have data from 47 states and the District of Columbia, as seen in Table&nbsp;4. The only states I don’t have data from are Arkansas, Delaware, and North Dakota. Unsurprisingly, the bulk of the data (41%) comes from Utah. Other western states are well-represented, but so are Texas, North Carolina, and Georgia. Georgia is probably so high on this list because I lived there and contributed many years’ worth of data from my own wards. Again, this is not representative of the distribution of church members in the US. Especially for the states that have less data, the influence of a large contribution by a single ward can have an overwhelming influence on the overall results for that state. For that reason, I do very little geographic analysis in this blog.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see the breakdown by state
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-states" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;4: US states in the dataset</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">state</th>
+<th style="text-align: right;">hymns</th>
+<th style="text-align: right;">meetings</th>
+<th style="text-align: right;">wards</th>
+<th style="text-align: left;">percent of US data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: right;">22893</td>
+<td style="text-align: right;">6701</td>
+<td style="text-align: right;">296</td>
+<td style="text-align: left;">41.38%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Colorado</td>
+<td style="text-align: right;">3444</td>
+<td style="text-align: right;">1004</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">6.23%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Texas</td>
+<td style="text-align: right;">2589</td>
+<td style="text-align: right;">785</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">4.68%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">North Carolina</td>
+<td style="text-align: right;">2512</td>
+<td style="text-align: right;">783</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">4.54%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">California</td>
+<td style="text-align: right;">2435</td>
+<td style="text-align: right;">696</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: left;">4.40%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Washington</td>
+<td style="text-align: right;">2107</td>
+<td style="text-align: right;">653</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">3.81%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Idaho</td>
+<td style="text-align: right;">2082</td>
+<td style="text-align: right;">625</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: left;">3.76%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Georgia</td>
+<td style="text-align: right;">1977</td>
+<td style="text-align: right;">571</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">3.57%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">1596</td>
+<td style="text-align: right;">477</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">2.89%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: right;">1354</td>
+<td style="text-align: right;">413</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">2.45%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wisconsin</td>
+<td style="text-align: right;">1265</td>
+<td style="text-align: right;">369</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">2.29%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Iowa</td>
+<td style="text-align: right;">1262</td>
+<td style="text-align: right;">374</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">2.28%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Florida</td>
+<td style="text-align: right;">1038</td>
+<td style="text-align: right;">303</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">1.88%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Illinois</td>
+<td style="text-align: right;">851</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">1.54%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oregon</td>
+<td style="text-align: right;">760</td>
+<td style="text-align: right;">234</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">1.37%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Michigan</td>
+<td style="text-align: right;">742</td>
+<td style="text-align: right;">224</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">1.34%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wyoming</td>
+<td style="text-align: right;">652</td>
+<td style="text-align: right;">191</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">1.18%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">611</td>
+<td style="text-align: right;">184</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">1.10%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Virginia</td>
+<td style="text-align: right;">542</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">0.98%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New York</td>
+<td style="text-align: right;">527</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">0.95%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nevada</td>
+<td style="text-align: right;">411</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">0.74%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Louisiana</td>
+<td style="text-align: right;">407</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.74%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indiana</td>
+<td style="text-align: right;">394</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">0.71%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Missouri</td>
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">0.69%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maine</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.61%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hawaii</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">0.57%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pennsylvania</td>
+<td style="text-align: right;">265</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">0.48%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Connecticut</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">0.48%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New Mexico</td>
+<td style="text-align: right;">243</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">0.44%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ohio</td>
+<td style="text-align: right;">209</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">0.38%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oklahoma</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.32%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kentucky</td>
+<td style="text-align: right;">137</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.25%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nebraska</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.25%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Hampshire</td>
+<td style="text-align: right;">121</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.22%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">South Dakota</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.10%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alaska</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.08%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kansas</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.08%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minnesota</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.08%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alabama</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.03%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Montana</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">0.03%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">District of Columbia</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mississippi</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rhode Island</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Jersey</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">South Carolina</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vermont</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">West Virginia</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Massachusetts</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Since Canada is the second largest country in this dataset, it’s worth a look to see how that data is broken down (Table&nbsp;5). Only five provinces are represnted in this sample, and they definitely don’t reflect the distribution of members there. About half the Canadian data comes from a single contribution of over eight years of data from a ward in New Brunswick. So even though there are many more members in Alberta, that one ward overwhelms the rest of the Canadian sample.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see the breakdown by Canadian province
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-canada" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;5: Canadian provinces in the dataset</caption>
+<colgroup>
+<col style="width: 31%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">state</th>
+<th style="text-align: right;">hymns</th>
+<th style="text-align: right;">meetings</th>
+<th style="text-align: right;">wards</th>
+<th style="text-align: left;">percent of Canadian data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">New Brunswick</td>
+<td style="text-align: right;">1618</td>
+<td style="text-align: right;">444</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">54.59%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alberta</td>
+<td style="text-align: right;">1193</td>
+<td style="text-align: right;">345</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">40.25%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quebec</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">3.04%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nova Scotia</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">1.99%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Prince Edward Island</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.13%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Within Utah, we can even break it down by city. Table&nbsp;6 shows that Provo has the largest representation. A big chunk of these come from YSA and Married Student wards. This again makes sense since much of the recruitment efforts took place in Provo. Spanish Fork is high on the list because that’s where I currently live.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand to see the breakdown by city in Utah
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-utah" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;6: Utah cities in the dataset</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">city</th>
+<th style="text-align: right;">hymns</th>
+<th style="text-align: right;">meetings</th>
+<th style="text-align: right;">wards</th>
+<th style="text-align: left;">percent of Utah data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Provo</td>
+<td style="text-align: right;">5220</td>
+<td style="text-align: right;">1591</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: left;">24.09%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salt Lake City</td>
+<td style="text-align: right;">2109</td>
+<td style="text-align: right;">648</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">9.73%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Spanish Fork</td>
+<td style="text-align: right;">1337</td>
+<td style="text-align: right;">407</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">6.17%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">American Fork</td>
+<td style="text-align: right;">1282</td>
+<td style="text-align: right;">381</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">5.92%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Draper</td>
+<td style="text-align: right;">1263</td>
+<td style="text-align: right;">416</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">5.83%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">West Jordan</td>
+<td style="text-align: right;">991</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">4.57%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Taylorsville</td>
+<td style="text-align: right;">794</td>
+<td style="text-align: right;">245</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">3.66%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">West Valley City</td>
+<td style="text-align: right;">675</td>
+<td style="text-align: right;">198</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">3.12%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lehi</td>
+<td style="text-align: right;">630</td>
+<td style="text-align: right;">203</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">2.91%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Payson</td>
+<td style="text-align: right;">509</td>
+<td style="text-align: right;">158</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">2.35%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Roy</td>
+<td style="text-align: right;">509</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">2.35%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mount Pleasant</td>
+<td style="text-align: right;">502</td>
+<td style="text-align: right;">143</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">2.32%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Orem</td>
+<td style="text-align: right;">436</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">2.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cedar City</td>
+<td style="text-align: right;">333</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1.54%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Herriman</td>
+<td style="text-align: right;">303</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1.40%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Logan</td>
+<td style="text-align: right;">268</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">1.24%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">South Jordan</td>
+<td style="text-align: right;">260</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1.20%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bountiful</td>
+<td style="text-align: right;">247</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">1.14%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Huntsville</td>
+<td style="text-align: right;">223</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">1.03%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pleasant Grove</td>
+<td style="text-align: right;">222</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">1.02%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Coalville</td>
+<td style="text-align: right;">221</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">1.02%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sunset</td>
+<td style="text-align: right;">217</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">1.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">St.&nbsp;George</td>
+<td style="text-align: right;">214</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">0.99%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Centerville</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.94%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">North Logan</td>
+<td style="text-align: right;">203</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.94%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bluffdale</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.81%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Layton</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.79%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Moab</td>
+<td style="text-align: right;">154</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.71%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Washington</td>
+<td style="text-align: right;">154</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.71%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Harrisville</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.71%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">West Haven</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.68%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Heber City</td>
+<td style="text-align: right;">141</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.65%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Manti</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">0.63%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ogden</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.57%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Saratoga Springs</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.49%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Springville</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">0.45%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Farmington</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.43%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Woods Cross</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.42%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oakley</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.41%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Riverton</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.35%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sandy</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">0.34%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tremonton</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.32%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eagle Mountain</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.30%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alpine</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.19%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eden</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.15%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Midvale</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.15%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Santaquin</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.13%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Syracuse</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.13%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Smithfield</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.13%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Murray</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.11%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brigham City</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.06%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fruit Heights</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.06%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Highland</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.06%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salem</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.06%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">West Point</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0.06%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clinton</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.05%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fountain Green</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0.04%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hoytsville</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.04%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Plain City</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.03%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">North Salt Lake</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.03%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clearfield</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hyde Park</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maple Mountain</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paradise</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.02%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alton</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bennion</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Elwood</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Enoch</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ephraim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kearns</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Monticello</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pleasant View</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Riverdale</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sterling</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tooele</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Marion</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.00%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>So, at all levels of geography, there are sampling errors, many of them biased towards where the recruitment has happened. There’s not much I can do about that, but it’s still useful to see where the data comes from.</p>
+</section>
+<section id="distribution-across-time" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-across-time">Distribution across time</h3>
+<p>The oldest datapoint in this sample comes from April 28th, 2002 and the newest comes from November 5th, 2023 (two days before the time of writing). So, the data spans over twenty years. Considering I started data collection in 2013, it’s amazing that I have data from 2002 and 2003 at all—amazing that someone held on to those records for so long, that they happened to hear about the project, and that they were willing to contribute it all! If we ignore a few gaps in 2002 and 2003 and the second quarter of 2020 when in-person sacrament meetings were suspended, I have a nearly unbroken line of data spanning two decades.</p>
+<p>Of course, like the geographic distribution, the temporal distribution of this dataset, is not even. Figure&nbsp;2 shows that there is a major spike in data in the mid-2010s. The project started in 2013, so anything from before then is from old spreadsheets that people sent us, and unsurprisingly, the further back you go the less data I have. In 2013 and 2014 it picks up as I began my recruitment efforts. Samuel’s first survey explains the increase in 2015. And his 2017 survey, which began in the second half of 2016, explains the monstrous spike that year. Samuel stopped collecting data in early 2018, and I only recently started getting more in late 2023, so anything from 2018 on is mostly from spreadsheets collected in 2023.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-years" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/data/index_files/figure-html/fig-years-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Sacrament meetings by year</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>So, like the geographic data, it’s a wide sample, but very highly biased towards when and where data collection was happening. For that reason, I am hesitant to make any claims about changes over time. Especially because the early years are only represented by a few wards.</p>
+</section>
+</section>
+<section id="the-notes-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-notes-data">The <code>Notes</code> data</h2>
+<p>The other dataset I have is one that I call my <code>Notes</code> data, which is basically every note of every hymn turned into a number and organized into a spreadsheet. I use this to answer questions about the hymns themselves like highest and lowest notes, ranges, and chords.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>meta</category>
+  <guid>https://hymnstats.joeystanley.com/posts/data/index.html</guid>
+  <pubDate>Tue, 07 Nov 2023 07:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What hymns are sung around Thanksgiving?</title>
   <dc:creator>Joey Stanley</dc:creator>
