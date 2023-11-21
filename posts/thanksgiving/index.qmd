@@ -103,7 +103,7 @@ However, I had to do that for all 242 hymns that were ever sung in November in t
 
 (I'll be honest, I'm not sure if $\chi^2$-tests should be done with the sample size is so large or if they're so disproportionate. Please let me know if there's a different test I could use!)
 
-What is very interesting to me is that one other hymn stood out as being sung statistically significantly more in November than in the rest of the year: <hymn>Silent Night (#203)</hymn>. Of course it's sung more in December too. But of all the Christmas hymns, <hymn>Silent Night (#203)</hymn> appears to be one to kick off the Christmas season. I'll do a whole blog post about the Sunday after Thanksgiving and whether people sing Thanksgiving or Christmas hymns then. 
+What is very interesting to me is that one other hymn stood out as being sung statistically significantly more in November than in the rest of the year: <hymn>Silent Night (#203)</hymn>. Of course it's sung more in December too. But of all the Christmas hymns, <hymn>Silent Night (#203)</hymn> appears to be one to kick off the Christmas season. I've written a whole blog post about [the Sunday after Thanksgiving](/posts/week-after-thanksgiving) and whether people sing Thanksgiving or Christmas hymns then. 
 
 :::
 
@@ -330,7 +330,7 @@ weeks_until <- freqs %>%
     print()
 ```
 
-@fig-within_november below shows the within-November trends for each of these eight Thanksgiving hymns. This is basically @fig-thanksgiving_annual above but zoomed in to just show four weeks and just these eight hymns. There are a few small changes though. First, rather than group the data by week of the year, I've grouped the data by the number of Sundays leading up to Thanksgiving. So, the Sunday before Thanksgiving would be 1, the second Sunday before Thanksgiving, would be 2, and so on. The Sunday after Thanksgiving (which will be treated separately in its own blog post) is a 0. Second, rather than show the raw count of how many wards have sung that hymn (which is an arbitrary number dependent on how much data I have), I've shown what percentage of the time that particular hymn is sung per week. In other words, the totals within each panel of @fig-within_november add up to 100%. 
+@fig-within_november below shows the within-November trends for each of these eight Thanksgiving hymns. This is basically @fig-thanksgiving_annual above but zoomed in to just show four weeks and just these eight hymns. There are a few small changes though. First, rather than group the data by week of the year, I've grouped the data by the number of Sundays leading up to Thanksgiving. So, the Sunday before Thanksgiving would be 1, the second Sunday before Thanksgiving, would be 2, and so on. The [Sunday after Thanksgiving](/posts/week-after-thanksgiving) is a 0. Second, rather than show the raw count of how many wards have sung that hymn (which is an arbitrary number dependent on how much data I have), I've shown what percentage of the time that particular hymn is sung per week. In other words, the totals within each panel of @fig-within_november add up to 100%. 
 
 ```{r, include = TRUE, fig.height = 6}
 #| label: fig-within_november

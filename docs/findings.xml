@@ -10,7 +10,632 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.433</generator>
-<lastBuildDate>Sun, 12 Nov 2023 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 21 Nov 2023 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>What hymns are sung the Sunday after Thanksgiving?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>In the United States, the Sunday after Thanksgiving is a weird one. We’re just getting off a holiday and even though a few days have passed, a lot of people haven’t returned to work or school yet. You may still have family over on that Sunday, or you yourself may still be traveling. There is definitely a lingering Thanksgiving effect going on. But at the same time, Christmas is coming up. Many people have already decorated their houses and put up Christmas trees. Even if you refuse to listen to Christmas music before Thanksgiving, all the pent up pressure finally bursts after Thanksgiving and we enter the Christmas season with full force.</p>
+<p>So, how does that translate into hymns in sacrament meeting? Do people continue to sing Thanksgiving hymns or do they sing Christmas hymns? Let’s dive into that Sunday after Thanksgiving and see what happens in the 361 relevant sacrament meetings I have data from.</p>
+<section id="what-hymns-are-sung" class="level2">
+<h2 class="anchored" data-anchor-id="what-hymns-are-sung">What hymns are sung?</h2>
+<p>Figure&nbsp;1 shows the most popular congregational hymns the Sunday after Thanksgiving. I’ve color-coded the hymn names to correspond to the holiday they are most closely associated with. Hymns 201–214 are Christmas hymns and are colored in red. Hymns 91–95, <hymn>Count Your Blessings (#241)</hymn>, <hymn>Because I Have Been Given Much (#219)</hymn>, and <hymn>All Creatures of Our God and King (#62)</hymn> are <a href="../../posts/thanksgiving">Thanksgiving hymns</a> and are colored in blue. Everything else is colored in gray.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-limbo" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index_files/figure-html/fig-limbo-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Most popular congregational hymns the Sunday after Thanksgiving</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s apparent that the Sunday after Thanksgiving is heavy on both Thanksgiving and Christmas hymns. Over 15% of wards sing either <hymn>Prayer of Thanksgiving (#93)</hymn>, <hymn>Come, Ye Thankful People (#94)</hymn>, or <hymn>For the Beauty of the Earth (#92)</hymn>. The most popular Christmas hymn during this week is <hymn>Joy to the World (#201)</hymn>, but only about 7.5% of wards sing it the Sunday after Thanksgiving. What I like about this plot is that there’s a nice mix of Thanksgiving and Christmas hymns. So, is that Sunday a Thanksgiving week or a Christmas week? It really depends on the ward! (And, as we’ll see below, the date as well!)</p>
+</section>
+<section id="thanksgiving-vs.-christmas" class="level2">
+<h2 class="anchored" data-anchor-id="thanksgiving-vs.-christmas">Thanksgiving vs.&nbsp;Christmas</h2>
+<p>Table&nbsp;1 shows the percentage of wards in my sample that sing Thanksgiving and Christmas hymns the week after Thanksgiving. The top right cell shows that 24.4% of wards sing at least one Christmas hymn and no Thanksgiving hymns. The bottom left cell shows that 41.0% of wards sing at least one Thanksgiving hymn and no Christmas hymns. So, in my opinion, combining what is seen in Figure&nbsp;1 with Table&nbsp;1, it’s pretty clear that the Sunday after Thanksgiving is more often thought of as a Thanksgving week, rather than a Christmas week when it comes to the hymns. Almost twice the number of wards do it that way.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-n_of_each" class="anchored">
+
+<div id="xwmcjuvtig" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xwmcjuvtig table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xwmcjuvtig thead, #xwmcjuvtig tbody, #xwmcjuvtig tfoot, #xwmcjuvtig tr, #xwmcjuvtig td, #xwmcjuvtig th {
+  border-style: none;
+}
+
+#xwmcjuvtig p {
+  margin: 0;
+  padding: 0;
+}
+
+#xwmcjuvtig .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xwmcjuvtig .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xwmcjuvtig .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xwmcjuvtig .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xwmcjuvtig .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xwmcjuvtig .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xwmcjuvtig .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xwmcjuvtig .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xwmcjuvtig .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xwmcjuvtig .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xwmcjuvtig .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xwmcjuvtig .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xwmcjuvtig .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xwmcjuvtig .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xwmcjuvtig .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xwmcjuvtig .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xwmcjuvtig .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xwmcjuvtig .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xwmcjuvtig .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xwmcjuvtig .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xwmcjuvtig .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xwmcjuvtig .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xwmcjuvtig .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xwmcjuvtig .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xwmcjuvtig .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xwmcjuvtig .gt_left {
+  text-align: left;
+}
+
+#xwmcjuvtig .gt_center {
+  text-align: center;
+}
+
+#xwmcjuvtig .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xwmcjuvtig .gt_font_normal {
+  font-weight: normal;
+}
+
+#xwmcjuvtig .gt_font_bold {
+  font-weight: bold;
+}
+
+#xwmcjuvtig .gt_font_italic {
+  font-style: italic;
+}
+
+#xwmcjuvtig .gt_super {
+  font-size: 65%;
+}
+
+#xwmcjuvtig .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xwmcjuvtig .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xwmcjuvtig .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xwmcjuvtig .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xwmcjuvtig .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xwmcjuvtig .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xwmcjuvtig .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>Percentage of wards that sing Thanksgiving and Christmas hymns the
+Sunday after Thanksgiving</p> </caption>
+  <thead>
+    
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Christmas hymns">Christmas hymns</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Thanksgiving hymns">
+        <span class="gt_column_spanner">Thanksgiving hymns</span>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="yes">yes</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="no">no</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">yes</th>
+<td headers="stub_1_1 yes" class="gt_row gt_right">7.2%</td>
+<td headers="stub_1_1 no" class="gt_row gt_right">24.4%</td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">no</th>
+<td headers="stub_1_2 yes" class="gt_row gt_right">41.0%</td>
+<td headers="stub_1_2 no" class="gt_row gt_right">27.4%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>The surprising numbers are the other two in Table&nbsp;1. 27.4% of wards don’t sing any holiday hymns the week after Thanksgiving. That’s more than the number of wards that sing Christmas hymns! My guess is that they see that the Thanksgiving “season” is over and the Christmas season hasn’t started yet, so it’s a bit of a no man’s land in the middle. There doesn’t appear to be any sort of pattern to the hymns that are sung by these wards. The ones that are slightly more common are among <a href="../../posts/most_common">the more common hymns overall</a>, so it seems like music coordinators just treat it as a neutral week and pick whatever hymns they’d pick during any other non-holiday week.</p>
+<p>The other surprising number is that 7.2% of wards sing both a Thanksgiving <em>and</em> a Christmas hymn! It’s a rare case of two different holidays being celebrated through song in the same meeting. As far as what hymns are sung, we’ve seen <a href="../../posts/thanksgiving">already</a> that the most canonical Thanksgiving hymns are most common the Sunday before Thanksgiving, which means the less popular ones are slightly more popular two weeks before or the week after. (We’ll look at Christmas hymns in a later blog post.)</p>
+<p>There does seem to be a pattern though for when within the meeting these Thanksgiving and Christmas hymns are sung. Perhaps unsurprisingly, the most common configuration is for the opening hymn to be a Thanksgiving hymn and the closing hymn to be a Christmas hymn and, if there is an intermediate hymn, it’s neither a Thanksgiving nor Christmas hymn. This is what was found in over half the cases. However, pretty much every other configuration is attested in this small sample of 26 sacrament meetings that sing at least one Thanksgiving hymn and one Christmas hymn the week after Thanksgiving, as seen in Table&nbsp;2. (Note here that “Other” means any hymn that is not a Christmas or Thanksgiving hymn.)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-both-configs" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: Configurations of Thanksgiving and Christmas hymns among wards that sing both the Sunday after Thanksgiving.</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 19%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Opening</th>
+<th style="text-align: left;">Sacrament</th>
+<th style="text-align: left;">Intermediate</th>
+<th style="text-align: left;">Closing</th>
+<th style="text-align: right;">number of wards</th>
+<th style="text-align: left;">percent of wards</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Thanksgiving</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">None/Other</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">57.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Thanksgiving</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Thanksgiving</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">15.4%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Thanksgiving</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">7.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Thanksgiving</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">7.7%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Thanksgiving</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">7.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">None/Other</td>
+<td style="text-align: left;">Thanksgiving</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">3.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="december-1st" class="level2">
+<h2 class="anchored" data-anchor-id="december-1st">December 1st</h2>
+<p>To me, what is perhaps the most interesting thing about the Sunday after Thanksgiving is to see what kind of effect the actual <em>date</em> has on the hymns. Most of the time, that Sunday is still in November (it can be as early as November 25th). But, occasionally, it can be as late as December 1st. How noticeable is that boundary between the two months when it comes to hymns?</p>
+<p>As it turns out, pretty noticeable! Figure&nbsp;2 shows the breakdown of Thanksgiving, Christmas, and other hymns the Sunday after Thanksgiving by date. As you can see, there is a tendency to sing fewer Thanksgiving hymns the further into the month of November that Sunday is. It’s not super clear whether there’s the same trend for Christmas hymns within November, but there is an obvious increase in the number of Christmas hymns being sung if that Sunday after Thanksgiving is December 1st. There are 2–3 times as many Christmas hymns sung on December first than any last Sunday in November.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-by_date" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index_files/figure-html/fig-by_date-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Proportion of Thanksgiving, Christmas, and Other hymns by date</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To dig just a little deeper, I wanted to see the trends for specific hymns across these dates. In Figure&nbsp;3 (sorry for the small text), each of the eight Thanksgiving hymns and 14 Christmas hymns is in their own panel. Lines and dots are higher if that hymn is sung more often on that day. Among the Thanksgiving hymns, the most apparent trend is that <hymn>Come, Ye Thankful People, Come (#94)</hymn> is less and less common the later in the month.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-facet" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index_files/figure-html/fig-facet-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Thanksgiving and Christmas song frequencies, Nov 25 through Dec 1</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Among the Christmas hymns though, there are two hymns that clearly stand out. <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn> have a <em>huge</em> spike on December 1st! Those two hymns each make up over 15% of all the hymns sung on December 1st, but less than 3% on November 30th or almost any other day in November. And keep in mind, everything in this plot is from the Sunday after Thanksgiving, so it’s not like we’re seeing an increase a week or two after Thanksgiving.</p>
+<p>I should mention that Figure&nbsp;2 and Figure&nbsp;3 are only possible because I have data spanning over 20 years. Since the Sunday after Thanksgiving falls on different days, I can compare those days to each other. So, for example, in 2023, the Sunday after Thanksgiving is November 26th. But the Sunday after Thanksgiving was also November 26th in 2006 and 2017, so that column represents those three years pooled together. I think this is important to mention because no matter how much data is collected from one year, you’ll still only see just one of these columns. It takes a lot of data over many years to be able to see this kind of nuance.</p>
+<p>By the way, I wanted to see if there were more Christmas hymns sung the Sunday after Thanksgiving in more recent years compared to, say, 20 years ago. I hypothesized that as American culture (or at least businesses) are more and more accepting of the Christmas season starting sooner, that might get reflected in the hymns. Turns out, I didn’t see any obvious trend. But, it’s difficult to tease apart the date (November 25 through December 1) from the year (2002 through 2023) when the data is spread too thinly like this. I’d probably need a lot more data across the past 20 years to be able to say with more confidence whether this is true or not.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>On the Sunday after Thanksgiving, you might sing Thanksgiving hymns, Christmas hymns, both, or neither, but the most common patten is to sing Thanksgiving hymns. If we do a breakdown by date though, we see that if the Sunday after Thanksgiving is December 1st, we see more Christmas hymns. Specifically, we see that that is driven almost entirely by <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>holidays</category>
+  <category>frequency</category>
+  <guid>https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index.html</guid>
+  <pubDate>Tue, 21 Nov 2023 07:00:00 GMT</pubDate>
+</item>
 <item>
   <title>How many unique hymns does a ward sing in a year? Part 2</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -416,22 +1041,543 @@
 <p>For this project, I have two main datasets. One is the <code>Frequency</code> data, which I use to answer questions like, “What is the most common hymn?”, “What hymns are hardly ever sung?” or “What hymns are popular around Valentine’s Day?”. The other is the <code>Notes</code> data, which I use to answer questions like, “What is the highest alto note?” or “What is the widest range a single part has to sing?”, or “What is the most common final chord?”. I’ll explain each of these separately, starting with the <code>Frequency</code> data.</p>
 <section id="the-frequency-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-frequency-data">The <code>Frequency</code> data</h2>
-<p>The dataset I’m calling the <code>Frequency</code> data is which is collected by having people in other wards and branches submit to me what hymns they sing in sacrament meeting. I use it to answer questions about how common or uncommon a hymn is or anything about annual trends. Let’s look at how how I got it and how much data I have</p>
+<p>The dataset I’m calling the <code>Frequency</code> data is which is collected by having people in other wards and branches submit to me what hymns they sing in sacrament meeting. I use it to answer questions about how common or uncommon a hymn is or anything about annual trends. Let’s dive into this dataset a little bit.</p>
 <section id="where-did-the-data-come-from" class="level3">
 <h3 class="anchored" data-anchor-id="where-did-the-data-come-from">Where did the data come from?</h3>
-<p>The data presented in this project comes from about five different sources. Let me go through each one individually.</p>
+<p>The data presented in this project comes from about five different sources. Table&nbsp;1 shows these five projects and how much data they’ve contributed to the overall dataset, in terms of number of wards, number of sacrament meetings, and number of hymns overall.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-source_breakdown" class="anchored">
+
+<div id="rrgueqbnuu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rrgueqbnuu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rrgueqbnuu thead, #rrgueqbnuu tbody, #rrgueqbnuu tfoot, #rrgueqbnuu tr, #rrgueqbnuu td, #rrgueqbnuu th {
+  border-style: none;
+}
+
+#rrgueqbnuu p {
+  margin: 0;
+  padding: 0;
+}
+
+#rrgueqbnuu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rrgueqbnuu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rrgueqbnuu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rrgueqbnuu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rrgueqbnuu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rrgueqbnuu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rrgueqbnuu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rrgueqbnuu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rrgueqbnuu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rrgueqbnuu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rrgueqbnuu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rrgueqbnuu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rrgueqbnuu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rrgueqbnuu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rrgueqbnuu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rrgueqbnuu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rrgueqbnuu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rrgueqbnuu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rrgueqbnuu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rrgueqbnuu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rrgueqbnuu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rrgueqbnuu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rrgueqbnuu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rrgueqbnuu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rrgueqbnuu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rrgueqbnuu .gt_left {
+  text-align: left;
+}
+
+#rrgueqbnuu .gt_center {
+  text-align: center;
+}
+
+#rrgueqbnuu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rrgueqbnuu .gt_font_normal {
+  font-weight: normal;
+}
+
+#rrgueqbnuu .gt_font_bold {
+  font-weight: bold;
+}
+
+#rrgueqbnuu .gt_font_italic {
+  font-style: italic;
+}
+
+#rrgueqbnuu .gt_super {
+  font-size: 65%;
+}
+
+#rrgueqbnuu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rrgueqbnuu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rrgueqbnuu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rrgueqbnuu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rrgueqbnuu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rrgueqbnuu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rrgueqbnuu .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>Breakdown of the Frequency dataset by source</p> </caption>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Frequency data, by source</td>
+    </tr>
+    
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="source">source</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="wards">
+        <span class="gt_column_spanner">wards</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="sacrament meetings">
+        <span class="gt_column_spanner">sacrament meetings</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="hymns">
+        <span class="gt_column_spanner">hymns</span>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="%">%</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="%">%</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="%">%</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="source" class="gt_row gt_center">joey2015</td>
+<td headers="wards_n" class="gt_row gt_right">21</td>
+<td headers="wards_percent" class="gt_row gt_right">2.1%</td>
+<td headers="meetings_n" class="gt_row gt_right">2,042</td>
+<td headers="meetings_percent" class="gt_row gt_right">10.8%</td>
+<td headers="hymns_n" class="gt_row gt_right">7,006</td>
+<td headers="hymns_percent" class="gt_row gt_right">10.7%</td></tr>
+    <tr><td headers="source" class="gt_row gt_center">joey2023</td>
+<td headers="wards_n" class="gt_row gt_right">34</td>
+<td headers="wards_percent" class="gt_row gt_right">3.3%</td>
+<td headers="meetings_n" class="gt_row gt_right">3,132</td>
+<td headers="meetings_percent" class="gt_row gt_right">16.5%</td>
+<td headers="hymns_n" class="gt_row gt_right">10,128</td>
+<td headers="hymns_percent" class="gt_row gt_right">15.4%</td></tr>
+    <tr><td headers="source" class="gt_row gt_center">kjerste2015</td>
+<td headers="wards_n" class="gt_row gt_right">60</td>
+<td headers="wards_percent" class="gt_row gt_right">5.9%</td>
+<td headers="meetings_n" class="gt_row gt_right">403</td>
+<td headers="meetings_percent" class="gt_row gt_right">2.1%</td>
+<td headers="hymns_n" class="gt_row gt_right">3,759</td>
+<td headers="hymns_percent" class="gt_row gt_right">5.7%</td></tr>
+    <tr><td headers="source" class="gt_row gt_center">samuel2015</td>
+<td headers="wards_n" class="gt_row gt_right">214</td>
+<td headers="wards_percent" class="gt_row gt_right">21.0%</td>
+<td headers="meetings_n" class="gt_row gt_right">2,328</td>
+<td headers="meetings_percent" class="gt_row gt_right">12.3%</td>
+<td headers="hymns_n" class="gt_row gt_right">7,805</td>
+<td headers="hymns_percent" class="gt_row gt_right">11.9%</td></tr>
+    <tr><td headers="source" class="gt_row gt_center">samuel2017</td>
+<td headers="wards_n" class="gt_row gt_right">692</td>
+<td headers="wards_percent" class="gt_row gt_right">67.8%</td>
+<td headers="meetings_n" class="gt_row gt_right">11,068</td>
+<td headers="meetings_percent" class="gt_row gt_right">58.3%</td>
+<td headers="hymns_n" class="gt_row gt_right">37,068</td>
+<td headers="hymns_percent" class="gt_row gt_right">56.4%</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="7">Reflects the dataset as of November 16, 2023. It will likely update in the next few weeks.</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>Let me go through each one individually.</p>
 <section id="joeys-2015-collection" class="level4">
 <h4 class="anchored" data-anchor-id="joeys-2015-collection">Joey’s 2015 collection</h4>
 <p>I first began this project sometime around 2013. I had the idea to collect as much data as I could from as many wards as I could to answer the question of what hymn is most common and what hymns are the least common.</p>
-<p>In my project planning phase, I considered setting up a survey that people could quickly take every week to report their hymns. However, I didn’t think I could get very many people to commit to that kind of consistency. So, I decided that rather than collecting hymns from the <em>next</em> 52 weeks, what if I collected hymns from the <em>past</em> 52 weeks? I figure many wards have a spreadsheet of some sort that they use to keep track of hymns. If not a spreadsheet, then at least copies of old sacrament meeting programs, or notes that the Bishopric uses when conducting. All I’d need then is for someone from each ward to send me their data once, rather than consistently.</p>
-<p>So I started asking around in online spaces where LDS music people might gather, but I soon found out it was going to be harder than I expected to get people to send me their data. After a few weeks, I was able to get data from 21 wards, ranging from a few months to several years. My own ward’s clerk was cleaning out old files and found years of sacrament meeting programs, and sent them to me. I call this chunk of the overall sample, the <code>Joey2015</code> data.</p>
+<p>In my project planning phase, I considered setting up a survey that people could quickly take every week to report their hymns. However, I didn’t think I could get very many people to commit to that kind of consistency. So, I decided that rather than collecting hymns from the <em>next</em> 52 weeks, what if I collected hymns from the <em>past</em> 52 weeks? I figure many wards have a spreadsheet of some sort that they use to keep track of hymns. If not a spreadsheet, then at least copies of old sacrament meeting programs, or notes that the Bishopric uses when conducting. All I’d need then is for someone from each ward to send me their data once, rather than many times.</p>
+<p>So I started asking around in online spaces where LDS music people might gather, but I soon found out it was going to be harder than I expected to get people to send me their data. After a few weeks I was able to get data from 21 wards, ranging from a few months to several years. My own ward’s clerk was cleaning out old files and found years of sacrament meeting programs, and sent them to me. Because this data collection happened through 2015. I call this chunk of the overall sample the <code>Joey2015</code> data.</p>
+<p>Table&nbsp;1 shows that I collected data from 2,042 sacrament meetings from 21 wards. So, not too many wards, but I did get a fair amount of data from each one. However, the issue I ran across was that the characteristics of any one ward would sometimes overwhelm the overall findings because there were so few wards in total. For example, a ward that sent several years’ worth of data had two quirks: they would systematically cycle through all the sacrament hymns, and they would sing <hymn>I Know That My Redeemer Lives (#136)</hymn> <em>every</em> fast Sunday. With the larger dataset I now have, those idiosyncrasies were washed out. But, it was enough data to start to see some of the trends I report elsewhere in this blog.</p>
 <p>Figure&nbsp;1 shows how this <code>Joey2015</code> sample is distributed over time. In this plot, the height of each bar represents how many sacrament meetings I had data from within each month. You can tell that most of the recruitment efforts were done in 2014 since that’s when the most data comes from. There’s a recency effect here: if I put a call out to people in June 2014, I’ll get a lot of data from the weeks and months leading up to June 2014, and less data the further back I go because fewer wards keep records for that long.</p>
-<div class="cell" data-fig-caption="Sacrament meetings per month in the Joey 2015 sample">
+<div class="cell">
 <div class="cell-output-display">
 <div id="fig-joey2015_time" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="https://hymnstats.joeystanley.com/posts/data/index_files/figure-html/fig-joey2015_time-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: <strong>?(caption)</strong></figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1: Sacrament meetings per month in the Joey 2015 sample</figcaption>
 </figure>
 </div>
 </div>
@@ -440,16 +1586,38 @@
 <section id="joeys-2023-collection" class="level4">
 <h4 class="anchored" data-anchor-id="joeys-2023-collection">Joey’s 2023 collection</h4>
 <p>My interest in the project waned after about 2017, partly because I was in graduate school and was starting a family, and partly because I was having a hard time collecting more data. In 2023 though, my interest was revitalized, coincidentally right before the church announced the new hymnal. I figured since I had been working on this for over a decade and since I’ve collected so much data, I might as well get the results out before it all becomes irrelevant. It’s probably too late to send these findings to the church in case they want to use them to help make decisions about the new hymnal.</p>
+<p>As I began this blog, I started sharing it and results from it in new online spaces, primarily social media. As I do so, I encourage people to send me their data if they have it. Through these efforts, I actually collected more data than I had in 2015. More wards, more sacrament meetings, and more hymns.</p>
+</section>
+<section id="kjerstes-2015-collection" class="level4">
+<h4 class="anchored" data-anchor-id="kjerstes-2015-collection">Kjerste’s 2015 Collection</h4>
+<p>Around the same time I was beginning my project, but completely independently of me, another hymn stats fan, Kjerste Christensen, began her own project. She ran a weekly hymn survey for a little over a year. Her thinking was that it was important to get a full year in order to get all the holiday and seasonal variation. The project was mainly for her own curiosity and she never did much with it other than use it for personal use like figuring out what hymns would be common to sing in church. I’ll call this dataset the <code>kjerste2015</code> collection.</p>
+<p>On average, Kjerste had roughly 20 people per week fill out her survey. It’s not clear how many wards contributed to the survey total because many people did not include information about their ward, but there were at least 60 and likely 2–3 times that many. Figure&nbsp;2 shows the distribution of the <code>kjerste2015</code> data across time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-kjerste" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/data/index_files/figure-html/fig-kjerste-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Number of hymns per week in the kjerste2015 dataset</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="samuel2015" class="level4">
+<h4 class="anchored" data-anchor-id="samuel2015">samuel2015</h4>
+</section>
+<section id="samuel2017" class="level4">
+<h4 class="anchored" data-anchor-id="samuel2017">Samuel2017</h4>
 </section>
 </section>
 <section id="how-much-data-do-i-have" class="level3">
 <h3 class="anchored" data-anchor-id="how-much-data-do-i-have">How much data do I have?</h3>
-<p>At the time of writing this description, the <code>Frequency</code> dataset has information from 18,968 sacrament meetings. The whole spreadsheet has 65,757 rows in it, each representing a congregational hymn sung in some ward or branch sometime in the past 20 years somewhere in the world. Table&nbsp;1 shows just a snapshot of what the raw dataset looks like under the hood.</p>
+<p>At the time of writing this description, the <code>Frequency</code> dataset has information from 18,968 sacrament meetings. The whole spreadsheet has 65,757 rows in it, each representing a congregational hymn sung in some ward or branch sometime in the past 20 years somewhere in the world. Table&nbsp;2 shows just a snapshot of what the raw dataset looks like under the hood.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-raw_sample" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: A sample of the raw dataset</caption>
+<caption>Table&nbsp;2: A sample of the raw dataset</caption>
 <colgroup>
 <col style="width: 6%">
 <col style="width: 33%">
@@ -547,12 +1715,12 @@
 </section>
 <section id="geographic-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="geographic-distribution">Geographic Distribution</h3>
-<p>For each ward/branch I have a separate spreadsheet that includes basic metadata about them. Table&nbsp;2 shows that I have the name (for simplcity, I call it “ward” even though branches are included), and the city, state, and country.</p>
+<p>For each ward/branch I have a separate spreadsheet that includes basic metadata about them. Table&nbsp;3 shows that I have the name (for simplcity, I call it “ward” even though branches are included), and the city, state, and country.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-ward_sample" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: A sample of the ward metadata</caption>
+<caption>Table&nbsp;3: A sample of the ward metadata</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">ward</th>
@@ -627,7 +1795,7 @@
 </div>
 </div>
 </div>
-<p>I currently have data from 59 countries, however, about 84% of the data comes from the United States. A fair amount also comes from Canada, the United Kingdom, and Australia. Table&nbsp;3 (click to expand) shows the full breakdown of how much data I have from each country, in terms of how many hymns, how many sacrament meetings, and how many wards. So, the US is over-represented in this dataset, compared to how members of the church are distributed around the world. This makes sense given that recruitment efforts were based in the United States and were in English. Therefore, while I can’t say that the patterns here do not represent wards outside of the US, any extrapolation of these patterns to other countries should be taken with a grain of salt.</p>
+<p>I currently have data from 59 countries, however, about 84% of the data comes from the United States. A fair amount also comes from Canada, the United Kingdom, and Australia. Table&nbsp;4 (click to expand) shows the full breakdown of how much data I have from each country, in terms of how many hymns, how many sacrament meetings, and how many wards. So, the US is over-represented in this dataset, compared to how members of the church are distributed around the world. This makes sense given that recruitment efforts were based in the United States and were in English. Therefore, while I can’t say that the patterns here do not represent wards outside of the US, any extrapolation of these patterns to other countries should be taken with a grain of salt.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -644,7 +1812,7 @@ Expand to see the breakdown by country
 <div class="cell-output-display">
 <div id="tbl-countries" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;3: Countries in the dataset</caption>
+<caption>Table&nbsp;4: Countries in the dataset</caption>
 <colgroup>
 <col style="width: 42%">
 <col style="width: 7%">
@@ -664,9 +1832,9 @@ Expand to see the breakdown by country
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">United States</td>
-<td style="text-align: right;">55318</td>
-<td style="text-align: right;">15974</td>
-<td style="text-align: right;">763</td>
+<td style="text-align: right;">55321</td>
+<td style="text-align: right;">15975</td>
+<td style="text-align: right;">764</td>
 <td style="text-align: left;">84.12%</td>
 </tr>
 <tr class="even">
@@ -971,104 +2139,111 @@ Expand to see the breakdown by country
 <td style="text-align: left;">0.01%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">0.01%</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Zimbabwe</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.01%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">India</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.01%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Suriname</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.01%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Aruba</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Dominican Republic</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Guam</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Guatemala</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Israel</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Nigeria</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Panama</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">South Africa</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">American Samoa</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Dominica</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Switzerland</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">0.00%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Thailand</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
@@ -1083,7 +2258,7 @@ Expand to see the breakdown by country
 </div>
 </div>
 </div>
-<p>Within the United States, I have data from 47 states and the District of Columbia, as seen in Table&nbsp;4. The only states I don’t have data from are Arkansas, Delaware, and North Dakota. Unsurprisingly, the bulk of the data (41%) comes from Utah. Other western states are well-represented, but so are Texas, North Carolina, and Georgia. Georgia is probably so high on this list because I lived there and contributed many years’ worth of data from my own wards. Again, this is not representative of the distribution of church members in the US. Especially for the states that have less data, the influence of a large contribution by a single ward can have an overwhelming influence on the overall results for that state. For that reason, I do very little geographic analysis in this blog.</p>
+<p>Within the United States, I have data from 47 states and the District of Columbia, as seen in Table&nbsp;5. The only states I don’t have data from are Arkansas, Delaware, and North Dakota. Unsurprisingly, the bulk of the data (41%) comes from Utah. Other western states are well-represented, but so are Texas, North Carolina, and Georgia. Georgia is probably so high on this list because I lived there and contributed many years’ worth of data from my own wards. Again, this is not representative of the distribution of church members in the US. Especially for the states that have less data, the influence of a large contribution by a single ward can have an overwhelming influence on the overall results for that state. For that reason, I do very little geographic analysis in this blog.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1100,7 +2275,7 @@ Expand to see the breakdown by state
 <div class="cell-output-display">
 <div id="tbl-states" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;4: US states in the dataset</caption>
+<caption>Table&nbsp;5: US states in the dataset</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">state</th>
@@ -1148,9 +2323,9 @@ Expand to see the breakdown by state
 </tr>
 <tr class="even">
 <td style="text-align: left;">Washington</td>
-<td style="text-align: right;">2107</td>
-<td style="text-align: right;">653</td>
-<td style="text-align: right;">31</td>
+<td style="text-align: right;">2110</td>
+<td style="text-align: right;">654</td>
+<td style="text-align: right;">32</td>
 <td style="text-align: left;">3.81%</td>
 </tr>
 <tr class="odd">
@@ -1172,7 +2347,7 @@ Expand to see the breakdown by state
 <td style="text-align: right;">1596</td>
 <td style="text-align: right;">477</td>
 <td style="text-align: right;">10</td>
-<td style="text-align: left;">2.89%</td>
+<td style="text-align: left;">2.88%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Arizona</td>
@@ -1462,7 +2637,7 @@ Expand to see the breakdown by state
 </div>
 </div>
 </div>
-<p>Since Canada is the second largest country in this dataset, it’s worth a look to see how that data is broken down (Table&nbsp;5). Only five provinces are represnted in this sample, and they definitely don’t reflect the distribution of members there. About half the Canadian data comes from a single contribution of over eight years of data from a ward in New Brunswick. So even though there are many more members in Alberta, that one ward overwhelms the rest of the Canadian sample.</p>
+<p>Since Canada is the second largest country in this dataset, it’s worth a look to see how that data is broken down (Table&nbsp;6). Only five provinces are represnted in this sample, and they definitely don’t reflect the distribution of members there. About half the Canadian data comes from a single contribution of over eight years of data from a ward in New Brunswick. So even though there are many more members in Alberta, that one ward overwhelms the rest of the Canadian sample.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1479,7 +2654,7 @@ Expand to see the breakdown by Canadian province
 <div class="cell-output-display">
 <div id="tbl-canada" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;5: Canadian provinces in the dataset</caption>
+<caption>Table&nbsp;6: Canadian provinces in the dataset</caption>
 <colgroup>
 <col style="width: 31%">
 <col style="width: 8%">
@@ -1540,7 +2715,7 @@ Expand to see the breakdown by Canadian province
 </div>
 </div>
 </div>
-<p>Within Utah, we can even break it down by city. Table&nbsp;6 shows that Provo has the largest representation. A big chunk of these come from YSA and Married Student wards. This again makes sense since much of the recruitment efforts took place in Provo. Spanish Fork is high on the list because that’s where I currently live.</p>
+<p>Within Utah, we can even break it down by city. Table&nbsp;7 shows that Provo has the largest representation. A big chunk of these come from YSA and Married Student wards. This again makes sense since much of the recruitment efforts took place in Provo. Spanish Fork is high on the list because that’s where I currently live.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1557,7 +2732,7 @@ Expand to see the breakdown by city in Utah
 <div class="cell-output-display">
 <div id="tbl-utah" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;6: Utah cities in the dataset</caption>
+<caption>Table&nbsp;7: Utah cities in the dataset</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">city</th>
@@ -2113,13 +3288,13 @@ Expand to see the breakdown by city in Utah
 <section id="distribution-across-time" class="level3">
 <h3 class="anchored" data-anchor-id="distribution-across-time">Distribution across time</h3>
 <p>The oldest datapoint in this sample comes from April 28th, 2002 and the newest comes from November 5th, 2023 (two days before the time of writing). So, the data spans over twenty years. Considering I started data collection in 2013, it’s amazing that I have data from 2002 and 2003 at all—amazing that someone held on to those records for so long, that they happened to hear about the project, and that they were willing to contribute it all! If we ignore a few gaps in 2002 and 2003 and the second quarter of 2020 when in-person sacrament meetings were suspended, I have a nearly unbroken line of data spanning two decades.</p>
-<p>Of course, like the geographic distribution, the temporal distribution of this dataset, is not even. Figure&nbsp;2 shows that there is a major spike in data in the mid-2010s. The project started in 2013, so anything from before then is from old spreadsheets that people sent us, and unsurprisingly, the further back you go the less data I have. In 2013 and 2014 it picks up as I began my recruitment efforts. Samuel’s first survey explains the increase in 2015. And his 2017 survey, which began in the second half of 2016, explains the monstrous spike that year. Samuel stopped collecting data in early 2018, and I only recently started getting more in late 2023, so anything from 2018 on is mostly from spreadsheets collected in 2023.</p>
+<p>Of course, like the geographic distribution, the temporal distribution of this dataset, is not even. Figure&nbsp;3 shows that there is a major spike in data in the mid-2010s. The project started in 2013, so anything from before then is from old spreadsheets that people sent us, and unsurprisingly, the further back you go the less data I have. In 2013 and 2014 it picks up as I began my recruitment efforts. Samuel’s first survey explains the increase in 2015. And his 2017 survey, which began in the second half of 2016, explains the monstrous spike that year. Samuel stopped collecting data in early 2018, and I only recently started getting more in late 2023, so anything from 2018 on is mostly from spreadsheets collected in 2023.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-years" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="https://hymnstats.joeystanley.com/posts/data/index_files/figure-html/fig-years-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Sacrament meetings by year</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3: Sacrament meetings by year</figcaption>
 </figure>
 </div>
 </div>
