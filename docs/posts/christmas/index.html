@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2023-12-24">
+
+<title>LDS Hymn Stats - Christmas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="LDS Hymn Stats - Christmas">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/christmas/calendars.png">
+<meta property="og:site-name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="1454">
+<meta property="og:image:width" content="1046">
+<meta name="twitter:title" content="LDS Hymn Stats - Christmas">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/christmas/calendars.png">
+<meta name="twitter:image-height" content="1454">
+<meta name="twitter:image-width" content="1046">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../overview.html" rel="" target="">
+ <span class="menu-text">Summarized Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html" rel="" target="">
+ <span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-many-christmas-hymns-per-season" id="toc-how-many-christmas-hymns-per-season" class="nav-link active" data-scroll-target="#how-many-christmas-hymns-per-season">How many Christmas hymns per season</a></li>
+  <li><a href="#popularity-of-christmas-hymns" id="toc-popularity-of-christmas-hymns" class="nav-link" data-scroll-target="#popularity-of-christmas-hymns">Popularity of Christmas hymns</a>
+  <ul class="collapse">
+  <li><a href="#the-beloved-christmas-hymns" id="toc-the-beloved-christmas-hymns" class="nav-link" data-scroll-target="#the-beloved-christmas-hymns">The “Beloved” Christmas hymns</a></li>
+  <li><a href="#the-filler-christmas-hymns" id="toc-the-filler-christmas-hymns" class="nav-link" data-scroll-target="#the-filler-christmas-hymns">The “Filler” Christmas hymns</a></li>
+  <li><a href="#the-no-other-choice-christmas-hymns" id="toc-the-no-other-choice-christmas-hymns" class="nav-link" data-scroll-target="#the-no-other-choice-christmas-hymns">The “No Other Choice” Christmas hymns</a></li>
+  </ul></li>
+  <li><a href="#sacrament-hymns" id="toc-sacrament-hymns" class="nav-link" data-scroll-target="#sacrament-hymns">Sacrament hymns</a></li>
+  <li><a href="#non-christmas-hymns-in-december" id="toc-non-christmas-hymns-in-december" class="nav-link" data-scroll-target="#non-christmas-hymns-in-december">Non-Christmas hymns in December</a></li>
+  <li><a href="#christmas-hymns-outside-of-december" id="toc-christmas-hymns-outside-of-december" class="nav-link" data-scroll-target="#christmas-hymns-outside-of-december">Christmas hymns outside of December</a></li>
+  <li><a href="#trends-within-december" id="toc-trends-within-december" class="nav-link" data-scroll-target="#trends-within-december">Trends within December</a></li>
+  <li><a href="#opening-intermediate-and-closing-hymns" id="toc-opening-intermediate-and-closing-hymns" class="nav-link" data-scroll-target="#opening-intermediate-and-closing-hymns">Opening, Intermediate, and Closing hymns</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Christmas</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">holidays</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 24, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In Latter-day Saint congregations, Christmas is the holiday that gets sung about the most. In this post, we’ll explore some of the patterns that arise in the hymns that we sing in December.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In other Christian traditions, the term <em>Advent</em> is used to describe the four or so weeks leading up to Christmas, with the “Christmas season” being used to describe a period of twelve days <em>starting</em> with Christmas. For whatever reason, most members of the church don’t use the term <em>Advent</em> and any traditionally Advent and Christmas hymns are pooled together under a generic label of “Christmas.”</p>
+<p>In this post, I’ll largely ignore the difference between Advent and Christmas in my terminology. But, since this post does focus on the four or so Sundays leading up to Christmas (the Sunday after Christmas will be treated in a separate blog post), those of you who maintain the difference can think of this post as being focused on Advent.</p>
+</div>
+</div>
+<p>A look at the table of contents in the hymnal shows that the Christmas hymns are hymns 201–214. But the music coordinator faces the difficult task of figuring out which hymns to sing. There are usually not quite enough Sundays in December to sing all of them, so some will have to be prioritized over others. There are also usually a couple special musical numbers to work around, and I think many music coordinators try not to have the congregation sing a hymn if it’s already going to be heard in a musical number that season. So, with that in mind, let’s look at the data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I meant to get this post out earlier in December, but life got in the way. So, sorry it’s too late to incorporate these results into your ward’s Christmas meetings. Maybe next year you can consider what is presented here and make some changes, assuming the hymnbook isn’t drastically altered by then. I suspect we might get a few more Christmas hymns by next year, like “What Child is This”, “O Come, O Come, Emmanuel”, and “O Holy Night.”</p>
+</div>
+</div>
+<section id="how-many-christmas-hymns-per-season" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-christmas-hymns-per-season">How many Christmas hymns per season</h2>
+<p>It’s not likely that all 14 Christmas hymns will be sung <em>by the congregation</em> in any one ward within a year. There are, at most, six Sundays to work with in the Christmas season (click below to see details).</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Technical details for calendar nerds :)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>It’s a little tricky defining the Christmas season, so I put together a quick spreadsheet to visualize the seven different possible Christmas seasons. You can view it here or download it yourself <a href="calendars.xlsx">here</a>.</p>
+<p><img src="calendars.png" class="img-fluid"></p>
+<p>Traditionally, Advent starts the fourth Sunday before Christmas, which would be November 27th at the earliest and December 3rd at the latest. However, because we don’t traditionally celebrate Advent like other Christian denominations, people have different ideas for when Christmas hymns can be sung. For some, it’s the Sunday after Thanksgiving (in the United States). For others, it’s the first Sunday in December.</p>
+<p>Only if Thanksgiving is at late as it can be, November 28th, do those three align and everyone can agree that the following Sunday, December 1st, is when Christmas hymns can be sung. If Thanksgiving is early, either the 22nd or the 23rd, then the Sunday after Thanksgiving will be the 25th or 26th, which is five Sundays before Christmas, and not technically Advent. So if Christmas hymns are sung then, Advent- and December-sticklers will say it’s too early; a week later will be December 2nd and 3rd and post-Thanksgiving sticklers will say it’s too late. If Thanksgiving falls between the 24th and the 27th, then the Sunday after will be the start of Advent but still in November. So if Christmas hymns are sung then, it’ll make the Advent and post-Thanksgiving people happy, but the December-sticklers will feel it’s too early.</p>
+<p>The end of Christmas also has three possible dates. Some feel that the Christmas season ends on December 25th, so singing anything after Christmas Day is extending it too far. Others are fine going through December. Traditionally though, the Twelve Days of Christmas (or “Twelvetide”) <em>starts</em> on December 25th, meaning the last day of Christmas is January 5th. Here, you can’t satisfy all three groups. If Christmas is on a Monday or Tuesday, then there’s only one Sunday during Twelvetide and it’ll be December 30th or 31st. If Christmas is on a Sunday, you get one more Sunday during Twelvetide, and that’ll be on New Year’s Day. If Christmas is on a Wednesday through Saturday, there will be one Sunday after Christmas in December and another Sunday in January still part of Twelvetide.</p>
+<p>Because of the way the calendars line up, there will always be exactly six Sundays between Thanksgiving and the end of Twelvetide. The years where Christmas is on a Monday or Tuesday are also the years that Thanksgiving is on the 22nd or 23rd (the earliest it can be), and you get four Sundays in December before Christmas, one extra Sunday after Thanksgiving before Advent technically starts and one Sunday at the end of December within Twelvetide. In all other cases, the Sunday after Thanksgiving is also the start of Advent and you get four Sundays before Christmas, and two during Twelvetide (one in December and one in January).</p>
+</div>
+</div>
+</div>
+<p>So, if the congregation sings the opening, intermediate, and closing hymn each week, that’s twelve slots to fill. And if the ward sings two more the Sunday after Christmas, then they can finally get all 14 hymns. So unless there’s some sort of special program that involves lots of congregational singing, it takes a minimum of five Sundays to get through all 14 Christmas hymns. Even if you extend into the first week of January, there are only six Sundays to work with and 18 slots to choose from. And since most wards probably have at least a couple special musical numbers, that cuts into the slots for congregational singing.</p>
+<p>So, how many Christmas hymns does the congregation sing per Christmas season? Here, I’ll just focus on the wards that contributed an entire Christmas season’s worth of hymns. Specifically, they contributed at least five Sundays of hymns between November 27th and January 5th. Some wards contributed more than one Christmas season’s worth of hymns, and that’s fine. In total, I currently have 308 ward-years’ worth of Christmas hymns.</p>
+<p><a href="#fig-hymns_per_season">Figure&nbsp;1</a> shows how many different Christmas hymns the congregation sings in a single Christmas season. The average is just eight, with most wards falling somewhere between five and eleven. Five wards did manage to sing all 14 Christmas hymns in a single season. For three of those though, it was aided by multiple intermediate hymns the Sunday before Christmas, presumably as part of a special Christmas program. But, that also means that for two of the wards, they managed to get through all 14 hymns the “normal” way. But just two out of 308 is 0.6% of wards. So, not very likely to happen in your ward. And yes, there were three wards that sang just two Christmas hymns in the entire season (probably to the chagrin of their ward members)!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hymns_per_season" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-hymns_per_season-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Number of Christmas hymns per ward per Christmas season</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>So, you’ll likely to sing eight Christmas hymns as a congregation in your ward this year, give or take a few.</p>
+</div>
+</div>
+</section>
+<section id="popularity-of-christmas-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="popularity-of-christmas-hymns">Popularity of Christmas hymns</h2>
+<p>Music coordinators have the tricky task of trying to balance competing forces like Thanksgiving hymns, Fast Sunday, and New Year’s Hymns. In fact, in my ward growing up, we always sang <hymn>Joseph Smith’s First Prayer (#26)</hymn> to celebrate Joseph Smith’s birthday on December 23rd. Not to mention working around special musical numbers. So, some Christmas hymns are going to have to be cut. So, let’s look at how common each Christmas hymn is. <a href="#fig-cleveland">Figure&nbsp;2</a> shows the 14 Christmas hymns, ordered by how often they’re sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cleveland" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Popularity of Christmas Hymns</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="the-beloved-christmas-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="the-beloved-christmas-hymns">The “Beloved” Christmas hymns</h3>
+<p>The way I see it, we’ve got roughly three “tiers” of Christmas hymns. The top six or so are what I’d call the most “beloved” ones: <hymn>Joy to the World (#201)</hymn>, <hymn>O, Come, All Ye Faithful (#202)</hymn>, <hymn>Hark! the Herald Angels Sing (#209)</hymn>, <hymn>Angels We Have Heard on High (#203)</hymn>, <hymn>Silent Night (#204)</hymn>, and <hymn>The First Noel (#213)</hymn>. Here we see that they’re each sung by the congregation, on average, in about 80% of wards each year. My guess is that if they’re not sung by the congregation, they’re probably sung by a ward choir or otherwise “covered” in a special musical number.</p>
+<p>The most common is <hymn>Joy to the World (#201)</hymn>. While it’s not surprising to me to see it at the top of the list, what is surprising is to see that it actually averages almost exactly once per year per ward. On the surface, that seems fine, because, yeah, we’d expect most wards to sing it. But, not <em>every</em> ward will sing it every year. Sometimes the choir will, or, for whatever reason, some wards just might not sing it at all. That’s why the other popular Christmas hymns, and indeed any other holiday hymn, come in at less than once per year. No, the reason why <hymn>Joy to the World (#201)</hymn> is so high is because some wards sing it <em>twice</em> a year. Specifically 32 of the 308 (10.4%) ward-years I’m looking at sang it twice in a single Christmas season. One ward even sang it three times.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Additional detail on repeating hymns
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#fig-christmas_repeats">Figure&nbsp;3</a> shows how many wards repeat each of the Christmas hymn per year. As you can see, <hymn>Joy to the World (#201)</hymn> is repeated the most, but every hymn is repeated at least some of the time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-christmas_repeats" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-christmas_repeats-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: How often each Christmas hymn is repeated each year</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As far as I can tell, there’s actually nothing special about <hymn>Joy to the World (#201)</hymn> that leads it to being sung more than once a year. How often a hymn gets repeated within a ward per year is simply a function of how common that hymn is. In other words, the amount of times a Christmas hymn is repeated each year is proportional to the number of times it’s sung overall.</p>
+</div>
+</div>
+</div>
+<p>It’s not clear to me why <hymn>Joy to the World (#201)</hymn> is the most common congregational Christmas hymn. I’ll leave that to the musicologists to answer. It may be the case that, of all the “beloved” hymns, <hymn>Joy to the World (#201)</hymn> is just not commonly sung as a special musical number, so the congregation sings it the most instead. It’s just interesting to me that some wards will repeat this hymn if they have a slot to fill rather than sing some of the less common Christmas hymns like <hymn>While Shepherds Watched Their Flocks (211)</hymn>.</p>
+</section>
+<section id="the-filler-christmas-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="the-filler-christmas-hymns">The “Filler” Christmas hymns</h3>
+<p>Going back to <a href="#fig-cleveland">Figure&nbsp;2</a>, if we look past the top six or so Christmas hymns, we get to what appears to be a second tier of popularity. This tier includes <hymn>Far, Far Away on Judea’s Plains (#212)</hymn>, <hymn>I Heard the Bells on Christmas Day (#214)</hymn>, <hymn>Away in a Manger (#206)</hymn>, <hymn>O Little Town of Bethlehem (#208)</hymn>, <hymn>It Came upon the Midnight Clear (#207)</hymn>, and <hymn>With Wondering Awe (#210)</hymn>. These are what I’m calling the “filler” Christmas hymns—they’re ones that are used to fill in remaining slots once the “Beloved” Christmas hymns have all been chosen. They’re ones that probably everyone knows and recognizes, but maybe wouldn’t be upset if they were missed a year. They may also be the ones that are most commonly sung as choir pieces or other special musical numbers, so the congregation has less of a chance to sing them. On average, they’re each sung in around 65% of wards every year.</p>
+</section>
+<section id="the-no-other-choice-christmas-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="the-no-other-choice-christmas-hymns">The “No Other Choice” Christmas hymns</h3>
+<p>Finally, we get to the last tier of Christmas hymns, which includes just two: <hymn>Once in Royal David’s City (#205)</hymn> and <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. These are ones that are what I’m calling the “No Other Choice” Christmas hymns. They’re comparatively much less common than the others, being sung in 43% and 32%, respectively, of wards each year. (To put it another way, any one ward will sing them once every 2–3 years.) To people who have experienced a few years’ worth of sacrament meetings, it’s probably not too much of a surprise to see these so low on the list. I suspect that they’re relatively few music coordinators’ first choices when planning December sacrament meetings and they get incorporated into the month only because most or all of the “Beloved” and “Filler” ones have been taken care of. Or because of a conscious decision to include it because they’re unusual. Or because they’re the Charlie Brown trees of Christmas hymns: they’re included out of pity. I don’t know. For whatever reason, these two hymns are the least popular by a long shot, and you’re likely to sing each of the other Christmas hymns almost twice as often as these two.</p>
+</section>
+</section>
+<section id="sacrament-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="sacrament-hymns">Sacrament hymns</h2>
+<p>Even though it’s December, we still have to take the sacrament, and almost all wards are still going to choose a sacrament hymn to sing. Which ones are most common in December?</p>
+<p><a href="../../posts/sacrament">I’ve written about sacrament hymns already</a> and there I showed that <hymn>I Stand All Amazed (#193)</hymn> is the most common sacrament hymn and the most common hymn overall. However, if we just look at December (<a href="#fig-sacrament">Figure&nbsp;4</a>), we can see that <hymn>Jesus, Once of Humble Birth (#196)</hymn> is far and away the most common sacrament hymn in December. None of the others even come close. 55% the wards I have data from sang it during December, which is impressive given that there are four or five chances to sing it and 28 sacrament hymns to choose from. It’s 3.48 times more likely to be sung in December than in any other month of the year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sacrament" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-sacrament-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Sacrament hymns during Christmas time</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The second that appears to stand out is <hymn>God Loved Us, So He Sent His Son (#187)</hymn>. It’s a trailing second place, so not even close to being the most common. But, it’s sung in 28% of wards I have data from and it’s 1.89 times more common in December than in any other month. The rest of the hymns trail behind in varying degrees and it’s hard to tell what is a true pattern and what is just statistical noise.</p>
+</section>
+<section id="non-christmas-hymns-in-december" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="non-christmas-hymns-in-december">Non-Christmas hymns in December</h2>
+<p>It’s true that Decembers are completely dominated by Christmas hymns. Of the 6137 hymns in my database that were sung in December, 58.9% of them were Christmas hymns. Sacrament hymns are another 29.7%, which makes sense since one in every three to four hymns is most likely going to be a sacrament hymn. New Year’s and <a href="week-after-thanksgiving">Thanksgiving</a> hymns make up a small chunk of the data. But, the rest then—8.2% of the hymns in December—are other miscellaneous hymns. That means about one, maybe two, hymns in all of December won’t be holiday- or sacrament-themed.</p>
+<div class="page-columns page-full"><p>Looking at those 8.2% of hymns that are sung in December but aren’t otherwise accounted for, I don’t really see any patterns. <a href="#fig-non-Christmas">Figure&nbsp;5</a> shows these most common hymns and all I see are hymns that are just <a href="../../posts/most_common">popular at any time of the year</a>. The most common is <hymn>I Believe in Christ (#134)</hymn> but it’s not clear to be why it would be so. It’s not terribly common: only about 9% of wards sing it in December, so you might sing it in your ward in December once a decade or so.</p><div class="no-row-height column-margin column-container"><span class="">Interestingly, my ward did a Christmas testimony Sunday this year, where people got up and talked about their favorite Christmas hymn and then we sang one verse of it as a congregation. The only non-Christmas hymn that was selected was <hymn>I Believe in Christ (#134)</hymn> and it was by a primary-aged boy.</span></div></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-non-Christmas" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-non-Christmas-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Non-Christmas hymns during Christmas time</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>I’m trying to think of reasons for singing a non-holiday hymn in December. I suppose a missionary farewell or homecoming might mean the ward sings a missionary work–related hymn. In my homeward, we sang <hymn>Joseph Smith’s First Prayer (#26)</hymn> or <hymn>Praise to the Man (#27)</hymn> just before Christmas to celebrate Joseph Smith’s birthday on December 23rd. It looks like that’s not a common practice. Or, I’ve heard of wards on the last Sunday of December singing something vaguely looking towards the future like <hymn>Go Forth with Faith (#263)</hymn> or something that closes the year like <hymn>Now the Day Is Over (#159)</hymn>, but it doesn’t appear to be common enough to surface here. Or maybe the music coordinator is just sick of Christmas hymns.</p><div class="no-row-height column-margin column-container"><span class="">I’ll soon post an analysis of the last Sunday in December.</span></div></div>
+<p>It should be noted though that not all weeks in December are treated equally. <a href="#fig-category-by-nth-week">Figure&nbsp;6</a> breaks the data down into the first, second, third, fourth, and (if applicable) fifth Sundays of December, with the hymns grouped by category (Sacrament, Thanksgiving, Christmas, New Year’s, and “other”).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-category-by-nth-week" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-category-by-nth-week-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Category of hymns by week in December</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>There’s a lot of interesting things to say based on this plot.</p>
+<ul>
+<li><p>First, we see the the proportion of sacrament hymns is pretty constant at around 30% of the data, with a little more on the first Sunday of the month since that’s usually Fast and Testimony meeting and there is typically not an intermediate hymn.</p></li>
+<li><p>The <a href="../../posts/thanksgiving">traditional Thanksgiving hymns</a> (i.e.&nbsp;hymns 91–95) are pretty much non-existent in December and the only reason we see some “Thanksgiving” category on the fifth Sunday of December is because it’s <hymn>Count Your Blessings (#241)</hymn> and <hymn>Because I Have Been Given Much (#219)</hymn>. They’re hymns that are generally common but peak during Thanksgiving so I count them as Thanksgiving hymns.</p></li>
+<li><p>The proportion of Christmas hymns hit their greatest concentration during the second and third weeks of December, accounting for about 65% of the hymns sung during those weeks. These are peak Christmas weeks and it would be rather unusual to sing anything else.</p></li>
+<li><p>The New Year’s hymns are quite common on the last week of the month, especially if it’s a fifth Sunday. Given that there are only two hymns in that category (#215 and #217), it’s impressive they make up such a large proportion of the data.</p></li>
+<li><p>Finally, all the other hymns. There is a clear U-shaped pattern, where singing non-holiday hymns is gets less and less common as you approach Christmas. But during the last Sunday of the month, especially if it’s a fifth Sunday, the proportion of “other” hymns goes up quite a bit.</p></li>
+</ul>
+<p>So, even though just 8.2% of the hymns sung in December are non-holiday hymns, that is mostly found in the last week of the month.</p>
+</section>
+<section id="christmas-hymns-outside-of-december" class="level2">
+<h2 class="anchored" data-anchor-id="christmas-hymns-outside-of-december">Christmas hymns outside of December</h2>
+<p>What about the opposite question: are Christmas hymns ever sung outside of December? We’ll exclude the <a href="../../posts/week-after-thanksgiving">last week of Noveber</a> because many wards start singing them then. We’ll also exclude the first Sunday of January since we occasionally get some then too. Once we do that, Christmas hymns are <em>extremely</em> uncommon. They only happened 41 times out of the 57,153 hymns outside of the Christmas season, or just 0.072% of the time. The majority of them are in mid-November and a few are as late as mid-January. As far as the rest, I have no explanation whatsoever.</p>
+</section>
+<section id="trends-within-december" class="level2">
+<h2 class="anchored" data-anchor-id="trends-within-december">Trends within December</h2>
+<p>Up above, we saw that not all Sundays in December are equal and that we are most likely to sing Christmas hymns during the second and third Sundays of the month. Previously, when looking at <a href="posts/week-after-thanksgiving">the Sunday after Thanksgiving</a>, I showed that if Thanksgiving is late in the month and the Sunday after Thanksgiving is December 1st, tons of wards sing Christmas hymns than any other Sunday after Thanksgiving. More specifically, the two that entirely drove that trend were <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, rather than just all Christmas hymns being equally common. Given that some hymns are traditionally Advent hymns—meaning they’d come before Christmas day—and others are Christmas hymns—meaning they’d come after—it should be no surprise that different hymns peak in popularity at different times of the month. Let’s look at those patterns now.</p>
+<p><a href="#fig-weeks">Figure&nbsp;7</a> shows how popular each Christmas hymn is by date, going from the fourth Sunday before Christmas to the first Sunday on or after Christmas. The numbers in for each hymn add up to 100%, so for example, out of all the times that <hymn>Joy to the World (#201)</hymn> is sung, 30% of the time it’s December 18th–24th.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-weeks" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-weeks-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Popularity of Christmas hymns by date in the Christmas season</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>There is a lot to unpack here, so let’s look at what’s going on. First, we see that few hymns peak the Sunday before Christmas, meaning they’re most commonly sung then. <hymn>Silent Night (#204)</hymn> has the biggest peak, not only of this group, but of any hymns across any week. 40% of the time that this hymn is sung, it’s done so the Sunday before Christmas. No other hymn is quite so concentrated as that. Two other hymns also peak the Sunday before Christmas though, <hymn>Joy to the World (#201)</hymn> with another pretty strong peak at 31.6% and <hymn>O, Come, All Ye Faithful (#202)</hymn> at 26.2%. It is probably not a coincidence that these three are also among the most “beloved” Christmas hymns. Perhaps another way of thinking of it is that music coordinators save the “best” hymns for the “best” Sunday.</p>
+<p>The most number of hymns appear to peak two Sundays before Christmas, sometime between December 11th and December 17th. These include <hymn>Angels We Have Heard on High (#203)</hymn>, <hymn>Once in Royal David’s City (#205)</hymn>, <hymn>Away in a Manger (#206)</hymn>, <hymn>It Came upon the Midnight Clear (#207)</hymn>, <hymn>O Little Town of Bethlehem (#208)</hymn>, <hymn>Hark! the Herald Angels Sing (#209)</hymn>, and <hymn>The First noel (#213)</hymn>. It’s probably not a coincidence that this list includes the remaining “beloved” hymns as well as many of the “filler” Christmas hymns described above.</p>
+<p>Two hymns peak the third Sunday before Christmas, or rather, between December 4th and 10th. They are <hymn>While Shepherds Watch their Flocks (#211)</hymn> and <hymn>Far, Far Away on Judea’s Plains (#212)</hymn>. Technically, <hymn>With Wondering Awe (#210)</hymn> also peaks the third Sunday before Christmas, but the real pattern with that hymns is that its popularity is level: it’s more or less equally likely to be sung during any week of Christmas.</p>
+<p>Finally, we have <hymn>I Heard the Bells on Christmas Day (#214)</hymn>, which is the only on that peaks the Sunday <em>after</em> Christmas. This makes sense, given that the title is in the past tense, implying that Christmas day has already happened.</p>
+<p>Overall, while the pattern is not perfect, there appears to be a trend of singing the most popular Christmas hymns closer to Christmas. It’s not clear to me whether they were popular first, so they get sung then, or if they’re sung then and that’s what made them popular.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Another look at the data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Another way of looking at this data is to basically change it so that instead of the numbers for each hymn adding up to 100%, the numbers within each week at up to 100%. <a href="#fig-weeks2">Figure&nbsp;8</a> shows that. It’s largely the same as <a href="#fig-weeks">Figure&nbsp;7</a>, with a few differences mostly in the first and last weeks because Christmas hymns are less popular then so there’s a smaller sample size. I won’t go in to detail here, but feel free to look through this chart.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-weeks2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-weeks2-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;8: Popularity of Christmas hymns by date in the Christmas season</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Something I noticed was the patterns for <hymn>Joy to the World (#201)</hymn> and <hymn>O Come, All Ye Faithful (#202)</hymn> here to what I showed when I did a deep dive on the <a href="../../posts/week-after-thanksgiving">Sunday after Thanksgiving</a>. Those two hymns had a very obvious spike the Sunday after Thanksgiving—but only if that Sunday fell on December 1st. However, looking at those two hymns’ patterns across the entire Christmas season, we see a relatively small proportion of when those hymns are sung is that early in the season. They’re both more common the Sunday before Thanksgiving. So, why the spike on December 1st? I can’t help but think that music coordinators simply choose those two on December 1st simply because they the first two listed in the hymnal! I wonder if, when we get the next hymnal, if they’ll be ordered the same way; if not, we might see that whatever hymns are listed early get sung earlier in the season. We’ll have to wait and see.</p>
+</section>
+<section id="opening-intermediate-and-closing-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="opening-intermediate-and-closing-hymns">Opening, Intermediate, and Closing hymns</h2>
+<p>Finally, let’s look at what happens within meetings themselves. Which Christmas hymns are most likely to be sung as opening hymns, closing hymns, and intermediate hymns? <a href="#fig-type">Figure&nbsp;9</a> shows the 14 Christmas hymns and, for each one, what percent of the time they’re opening, intermediate, or closing hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-type" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-type-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Christmas hymns and when they’re sung in sacrament meeting</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Overall there are fewer intermediate hymns around Christmas time (because there are presumably more special musical numbers), so it shouldn’t be a surprise that the bars representing the intermediate hymns are lower for all 14 Christmas hymns. But there should be equal or very close to equal numbers of opening and closing hymns. Assuming Christmas hymns were randomly chosen, we’d expect the bars representing the opening and closing hymns to be a the same height. But, for relatively few hymns do we see that pattern. Instead, we see that most hymns lean more towards being opening hymns verses closing hymns. The standout is <hymn>Silent Night (#203)</hymn>, which is sung as the closing hymn 76% of the times it’s sung.</p>
+<p>Let’s look at the same data but organized differently. <a href="#fig-opening">Figure&nbsp;10</a> shows the hymns in order of how often they were sung as opening hymns. Here we can see that the most quintessential opening hymn is <hymn>Oh, Come, All Ye Faithful (#202), which is sung as an opening hymn 63% of the time that it’s sung. In fact, we see that many of the most common Christmas hymns are near the top of the list. Again, I can’t help but notice that the first three Christmas hymns listed in the hymnal (#201, #202, and #203) are the most common opening hymns, making me wonder whether there is a bit of a trend to sing the hymns in order of appearance.</hymn></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-opening" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-opening-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;10: Opening hymns during Christmas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We’ll jump to the closing hymn chart, <a href="#fig-closing">Figure&nbsp;11</a>, because it looks more or less like the opposite of <a href="#fig-opening">Figure&nbsp;10</a>. Here, we see <hymn>Silent Night (#204)</hymn> at the top of the list like we saw above. What was surprising to me though was to see <hymn>The First Noel (#213)</hymn>, <hymn>Away in a Manger (#206)</hymn>, and <hymn>O Little Town of Bethlehem (#208)</hymn> near the top, all being sung as closing hymns more than half the time they’re sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-closing" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-closing-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;11: Closing hymns during Christmas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, we get to <a href="#fig-intermdiate">Figure&nbsp;12</a>, which shows intermediate hymns. This to me was one of the biggest surprises of this whole blog post: the least common sacrament hymns are most commonly sung as intermediate hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-intermdiate" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-intermdiate-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;12: Intermediate hymns during Christmas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Stats for nerds :)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is actually a pretty strong correlation between the overall frequency of a Christmas hymn and the proportion of the time that hymn is sung as an intermediate hymn. <a href="#fig-correlation">Figure&nbsp;13</a> shows the relationship between these two. The correlation is -0.904.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-correlation" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-correlation-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;13: Correlation between overall frequency and frequency of being an intermediate hymn</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>And just to show that this not a spurious correlation, here’s the same plot but for opening hymns and closing hymns. The correlations are, respectively, 0.442 and -0.100.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="768"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-32-2.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>So there’s an inverse relationship between how common a Christmas hymn is and what percentage of the time it’s sung as an intermediate hymn. Specifically, the less common a sacrament hymn is, the more likely it is sung as an intermediate hymn. In more practical terms, we’re again getting a peek into the decision-making process behind the selection of sacrament hymns. In this case, what we’re seeing is that the intermediate hymn slots might be thought of as a “throw-away” slot where the less “beloved” hymns are sung. Perhaps the thought is that you wouldn’t want to start or end a meeting with a less familiar hymn. Or maybe another way of thinking about it is that you <em>do</em> want to start and end meetings in December with the Christmas favorites.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this post we’ve seen a lot of patterns with Christmas hymns in the Christmas season. First, we looked at the season itself and tried to use the hymns to determine when the Christmas season starts and ends. We saw that the 14 hymns fall under three categories (“beloved”, “filler,” and “no other choice”), based on how common they were, with some of the most common ones being sung sometimes twice in a single Christmas season. <hymn>Jesus, Once of Humble Birth (#196)</hymn> is the most common sacrament hymn during the Christmas season and <hymn>I Believe in Christ (#134)</hymn> is the most non-Christmas hymn during the Christmas season. Unsurprisingly, Christmas hymns are hardly ever sung outside of the Christmas season. Some hymns are more common the closer it is to Christmas; others are more common a little before that or even after Christmas. Finally, some hymns are preferred for opening hymns, others for closing, and the least common Christmas hymns are most commonly sung as intermediate hymns.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

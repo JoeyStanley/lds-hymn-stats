@@ -1,0 +1,680 @@
+---
+title: "Christmas"
+author: "Joey Stanley"
+date: 2023-12-24
+categories:
+    - holidays
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+In Latter-day Saint congregations, Christmas is the holiday that gets sung about the most. In this post, we'll explore some of the patterns that arise in the hymns that we sing in December. 
+
+:::callout-note
+In other Christian traditions, the term *Advent* is used to describe the four or so weeks leading up to Christmas, with the "Christmas season" being used to describe a period of twelve days *starting* with Christmas. For whatever reason, most members of the church don't use the term *Advent* and any traditionally Advent and Christmas hymns are pooled together under a generic label of "Christmas." 
+
+In this post, I'll largely ignore the difference between Advent and Christmas in my terminology. But, since this post does focus on the four or so Sundays leading up to Christmas (the Sunday after Christmas will be treated in a separate blog post), those of you who maintain the difference can think of this post as being focused on Advent.
+:::
+
+A look at the table of contents in the hymnal shows that the Christmas hymns are hymns 201--214. But the music coordinator faces the difficult task of figuring out which hymns to sing. There are usually not quite enough Sundays in December to sing all of them, so some will have to be prioritized over others. There are also usually a couple special musical numbers to work around, and I think many music coordinators try not to have the congregation sing a hymn if it's already going to be heard in a musical number that season. So, with that in mind, let's look at the data.
+
+```{r}
+christmas <- freqs %>%
+    filter(!ward %in% c("Anonymous", "NA")) %>%
+    filter(hymn_num %in% c(201:214)) 
+```
+
+:::callout-note
+I meant to get this post out earlier in December, but life got in the way. So, sorry it's too late to incorporate these results into your ward's Christmas meetings. Maybe next year you can consider what is presented here and make some changes, assuming the hymnbook isn't drastically altered by then. I suspect we might get a few more Christmas hymns by next year, like "What Child is This", "O Come, O Come, Emmanuel", and "O Holy Night." 
+:::
+
+
+
+## How many Christmas hymns per season
+
+It's not likely that all 14 Christmas hymns will be sung *by the congregation* in any one ward within a year. There are, at most, six Sundays to work with in the Christmas season (click below to see details).
+
+::: {.callout-caution collapse="true"}
+### Technical details for calendar nerds :)
+
+It's a little tricky defining the Christmas season, so I put together a quick spreadsheet to visualize the seven different possible Christmas seasons. You can view it here or download it yourself [here](calendars.xlsx).
+
+![](calendars.png)
+
+Traditionally, Advent starts the fourth Sunday before Christmas, which would be November 27th at the earliest and December 3rd at the latest. However, because we don't traditionally celebrate Advent like other Christian denominations, people have different ideas for when Christmas hymns can be sung. For some, it's the Sunday after Thanksgiving (in the United States). For others, it's the first Sunday in December. 
+
+Only if Thanksgiving is at late as it can be, November 28th, do those three align and everyone can agree that the following Sunday, December 1st, is when Christmas hymns can be sung. If Thanksgiving is early, either the 22nd or the 23rd, then the Sunday after Thanksgiving will be the 25th or 26th, which is five Sundays before Christmas, and not technically Advent. So if Christmas hymns are sung then, Advent- and December-sticklers will say it's too early; a week later will be December 2nd and 3rd and post-Thanksgiving sticklers will say it's too late. If Thanksgiving falls between the 24th and the 27th, then the Sunday after will be the start of Advent but still in November. So if Christmas hymns are sung then, it'll make the Advent and post-Thanksgiving people happy, but the December-sticklers will feel it's too early. 
+
+The end of Christmas also has three possible dates. Some feel that the Christmas season ends on December 25th, so singing anything after Christmas Day is extending it too far. Others are fine going through December. Traditionally though, the Twelve Days of Christmas (or "Twelvetide") *starts* on December 25th, meaning the last day of Christmas is January 5th. Here, you can't satisfy all three groups. If Christmas is on a Monday or Tuesday, then there's only one Sunday during Twelvetide and it'll be December 30th or 31st. If Christmas is on a Sunday, you get one more Sunday during Twelvetide, and that'll be on New Year's Day. If Christmas is on a Wednesday through Saturday, there will be one Sunday after Christmas in December and another Sunday in January still part of Twelvetide. 
+
+Because of the way the calendars line up, there will always be exactly six Sundays between Thanksgiving and the end of Twelvetide. The years where Christmas is on a Monday or Tuesday are also the years that Thanksgiving is on the 22nd or 23rd (the earliest it can be), and you get four Sundays in December before Christmas, one extra Sunday after Thanksgiving before Advent technically starts and one Sunday at the end of December within Twelvetide. In all other cases, the Sunday after Thanksgiving is also the start of Advent and you get four Sundays before Christmas, and two during Twelvetide (one in December and one in January). 
+
+:::
+
+So, if the congregation sings the opening, intermediate, and closing hymn each week, that's twelve slots to fill. And if the ward sings two more the Sunday after Christmas, then they can finally get all 14 hymns. So unless there's some sort of special program that involves lots of congregational singing, it takes a minimum of five Sundays to get through all 14 Christmas hymns. Even if you extend into the first week of January, there are only six Sundays to work with and 18 slots to choose from. And since most wards probably have at least a couple special musical numbers, that cuts into the slots for congregational singing. 
+
+```{r}
+complete_seasons <- freqs %>%
+    
+    # Only wards that have a complete dataset
+    filter(!ward %in% c("Anonymous", "NA")) %>%
+    
+    # Only Advent and Christmas seasons
+    filter(month == 12 | (month == 11 & day >= 25) | (month == 1 & day <= 5)) %>%
+    # Find the nearest Christmas
+    mutate(nearest_christmas = if_else(month >= 11,
+                                       ymd(paste0(year, "-12-25")),
+                                       ymd(paste0(year-1, "-12-25")))) %>%
+    
+    # Only keep wards that have data from at least five weeks (308 ward-years)
+    mutate(n_meetings = length(unique(meeting_id)), .by = c(ward, nearest_christmas)) %>%
+    filter(n_meetings %in% 5:6) %>% 
+    print()
+complete_seasons %>%
+    distinct(ward, nearest_christmas, n_meetings) %>%
+    count(n_meetings)
+```
+
+So, how many Christmas hymns does the congregation sing per Christmas season? Here, I'll just focus on the wards that contributed an entire Christmas season's worth of hymns. Specifically, they contributed at least five Sundays of hymns between November 27th and January 5th. Some wards contributed more than one Christmas season's worth of hymns, and that's fine. In total, I currently have 308 ward-years' worth of Christmas hymns. 
+
+```{r}
+# Count how many Christmas hymns were sung
+n_hymns_per_season <- complete_seasons %>%
+    filter(hymn_num %in% 201:214) %>%
+    summarize(n_unique = length(unique(hymn_num)), .by = c(ward, nearest_christmas)) %>%
+    # filter(n_unique == 14) %>%
+    # filter(n_unique == 2) %>%
+    count(n_unique) %>%
+    print()
+summary(n_hymns_per_season)
+```
+
+```{r}
+complete_seasons %>%
+    filter((ward == "Bristol 2nd Ward" & nearest_christmas == "2012-12-25") | 
+               (ward == "Athens 1st Ward" & nearest_christmas == "2014-12-25") |
+               (ward == "Pueblo West 2nd Ward" & nearest_christmas == "2016-12-25") |
+               (ward == "Edgemont 5th Ward" & nearest_christmas == "2017-12-25") |
+               (ward == "Leon Valley Ward" & nearest_christmas == "2017-12-25")) %>%
+    arrange(ward, date, type) %>%
+    print()
+
+complete_seasons %>%
+    filter((ward == "Leiden Wijk" & nearest_christmas == "2015-12-25") | 
+               (ward == "Madison 1st Ward" & nearest_christmas == "2016-12-25") |
+               (ward == "Wills Point Ward" & nearest_christmas == "2023-12-25")) %>%
+    arrange(ward, date, type) %>%
+    print()
+```
+
+@fig-hymns_per_season shows how many different Christmas hymns the congregation sings in a single Christmas season. The average is just eight, with most wards falling somewhere between five and eleven. Five wards did manage to sing all 14 Christmas hymns in a single season. For three of those though, it was aided by multiple intermediate hymns the Sunday before Christmas, presumably as part of a special Christmas program. But, that also means that for two of the wards, they managed to get through all 14 hymns the "normal" way. But just two out of 308 is 0.6% of wards. So, not very likely to happen in your ward. And yes, there were three wards that sang just two Christmas hymns in the entire season (probably to the chagrin of their ward members)!
+
+```{r, include = TRUE, fig.height = 3}
+#| label: fig-hymns_per_season
+#| fig-cap: Number of Christmas hymns per ward per Christmas season
+ggplot(n_hymns_per_season, aes(n_unique, n)) +
+    geom_col() + 
+    scale_x_continuous(breaks = 1:14) + 
+    scale_y_continuous(breaks = seq(0, 100, 10), expand = expansion(0, c(0, 3))) + 
+    labs(x = "number of different Christmas hymns",
+         y = "number of wards",
+         title = "Number of different Christmas hymns per ward per Christmas season") + 
+    theme_minimal()
+```
+
+
+::: {.callout-tip icon="false"}
+### Fun Fact
+
+So, you'll likely to sing eight Christmas hymns as a congregation in your ward this year, give or take a few.
+:::
+
+
+
+## Popularity of Christmas hymns
+
+Music coordinators have the tricky task of trying to balance competing forces like Thanksgiving hymns, Fast Sunday, and New Year's Hymns. In fact, in my ward growing up, we always sang <hymn>Joseph Smith's First Prayer (#26)</hymn> to celebrate Joseph Smith's birthday on December 23rd. Not to mention working around special musical numbers. So, some Christmas hymns are going to have to be cut. So, let's look at how common each Christmas hymn is. @fig-cleveland shows the 14 Christmas hymns, ordered by how often they're sung. 
+
+```{r}
+christmas %>%
+    cleveland_plot(return = "table")
+```
+
+
+```{r, include = TRUE, fig.height = 3.5}
+#| label: fig-cleveland
+#| fig-cap: Popularity of Christmas Hymns
+christmas %>%
+    cleveland_plot(title = "Popularity of Christmas hymns",
+                   subtitle = NULL,
+                   x_buffer = 0.4, breaks = 0.2)
+```
+
+### The "Beloved" Christmas hymns
+
+The way I see it, we've got roughly three "tiers" of Christmas hymns. The top six or so are what I'd call the most "beloved" ones: <hymn>Joy to the World (#201)</hymn>, <hymn>O, Come, All Ye Faithful (#202)</hymn>, <hymn>Hark! the Herald Angels Sing (#209)</hymn>, <hymn>Angels We Have Heard on High (#203)</hymn>, <hymn>Silent Night (#204)</hymn>, and <hymn>The First Noel (#213)</hymn>. Here we see that they're each sung by the congregation, on average, in about 80% of wards each year. My guess is that if they're not sung by the congregation, they're probably sung by a ward choir or otherwise "covered" in a special musical number. 
+
+```{r}
+complete_seasons %>%
+    filter(hymn_num == 201) %>%
+    count(ward, nearest_christmas, sort = TRUE) %>%
+    filter(n > 1) %>%
+    print()
+
+freqs %>%
+    filter(ward == "逢甲支會", year == 2016) %>%
+    filter(hymn_num == 201) %>%
+    print()
+freqs %>%
+    filter(ward == "Ammon 26th Ward", year == 2017, hymn_num == 201) %>%
+    print()
+```
+
+The most common is <hymn>Joy to the World (#201)</hymn>. While it's not surprising to me to see it at the top of the list, what is surprising is to see that it actually averages almost exactly once per year per ward. On the surface, that seems fine, because, yeah, we'd expect most wards to sing it. But, not *every* ward will sing it every year. Sometimes the choir will, or, for whatever reason, some wards just might not sing it at all. That's why the other popular Christmas hymns, and indeed any other holiday hymn, come in at less than once per year. No, the reason why <hymn>Joy to the World (#201)</hymn> is so high is because some wards sing it *twice* a year. Specifically 32 of the 308 (10.4%) ward-years I'm looking at sang it twice in a single Christmas season. One ward even sang it three times. 
+
+::: {.callout-caution collapse="true"}
+#### Additional detail on repeating hymns
+
+@fig-christmas_repeats shows how many wards repeat each of the Christmas hymn per year. As you can see, <hymn>Joy to the World (#201)</hymn> is repeated the most, but every hymn is repeated at least some of the time. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-christmas_repeats
+#| fig-cap: How often each Christmas hymn is repeated each year
+# Do other hymns get sung more than once a season?
+complete_seasons %>%
+    filter(hymn_num %in% 201:214) %>%
+    arrange(hymn_num) %>%
+    mutate(name_num = fct_rev(fct_inorder(name_num))) %>%
+    count(ward, nearest_christmas, name_num, sort = TRUE) %>%
+    filter(n > 1) %>%
+    count(name_num, sort = TRUE) %>%
+    mutate(prop = n/308) %>%
+    ggplot(aes(prop, name_num)) + 
+    geom_col() + 
+    scale_x_continuous(labels = scales::percent, breaks = seq(0, 0.1, 0.02),
+                       expand = expansion(0, c(0, 0.005))) +
+    labs(title = "How often each Christmas hymn is repeated each year",
+         x = "percent of wards",
+         y = NULL) + 
+    theme_minimal()
+```
+
+
+```{r}
+# Is it just because it's the most common?
+christmas %>%
+    arrange(hymn_num) %>%
+    mutate(name_num = fct_rev(fct_inorder(name_num))) %>%
+    count(name_num) %>%
+    print() %>%
+    ggplot(aes(n, name_num)) + 
+    geom_col() + 
+    scale_x_continuous(expand = expansion(0, c(0, 20))) +
+    # labs(title = "How often each Christmas hymn is repeated each year",
+    #      x = "percent of wards",
+    #      y = NULL) + 
+    theme_minimal()
+```
+
+```{r}
+# Note quite. 201 is doubled proportionally much more often than the others. Can I somehow combine those two plots? 
+props <- complete_seasons %>%
+    filter(hymn_num %in% 201:214) %>%
+    arrange(hymn_num) %>%
+    mutate(name_num = fct_rev(fct_inorder(name_num))) %>%
+    count(ward, nearest_christmas, name_num, sort = TRUE) %>%
+    filter(n > 1) %>%
+    count(name_num, sort = TRUE, name = "times_repeated") %>%
+    print()
+raw_freqs <- christmas %>%
+    arrange(hymn_num) %>%
+    mutate(name_num = fct_rev(fct_inorder(name_num))) %>%
+    count(name_num, name = "times_sung") %>%
+    print()
+left_join(props, raw_freqs, by = "name_num") %>%
+    mutate(percent_times_repeated = times_repeated/times_sung) %>%
+    arrange(percent_times_repeated) %>%
+    print() %>%
+    ggplot(aes(percent_times_repeated, name_num)) + 
+    geom_col() + 
+    scale_x_continuous(expand = expansion(0, c(0, 0.005)),
+                       labels = scales::percent) +
+    labs(title = "How many times a Christmas hymn is a repeat",
+         x = "percent of times sung",
+         y = NULL) +
+    theme_minimal()
+# Turns out this is basically the number of times it's repeated
+```
+As far as I can tell, there's actually nothing special about <hymn>Joy to the World (#201)</hymn> that leads it to being sung more than once a year. How often a hymn gets repeated within a ward per year is simply a function of how common that hymn is. In other words, the amount of times a Christmas hymn is repeated each year is proportional to the number of times it's sung overall. 
+:::
+
+
+It's not clear to me why <hymn>Joy to the World (#201)</hymn> is the most common congregational Christmas hymn. I'll leave that to the musicologists to answer. It may be the case that, of all the "beloved" hymns, <hymn>Joy to the World (#201)</hymn> is just not commonly sung as a special musical number, so the congregation sings it the most instead. It's just interesting to me that some wards will repeat this hymn if they have a slot to fill rather than sing some of the less common Christmas hymns like <hymn>While Shepherds Watched Their Flocks (211)</hymn>.
+
+### The "Filler" Christmas hymns
+
+Going back to @fig-cleveland, if we look past the top six or so Christmas hymns, we get to what appears to be a second tier of popularity. This tier includes <hymn>Far, Far Away on Judea's Plains (#212)</hymn>, <hymn>I Heard the Bells on Christmas Day (#214)</hymn>, <hymn>Away in a Manger (#206)</hymn>, <hymn>O Little Town of Bethlehem (#208)</hymn>, <hymn>It Came upon the Midnight Clear (#207)</hymn>, and <hymn>With Wondering Awe (#210)</hymn>. These are what I'm calling the "filler" Christmas hymns---they're ones that are used to fill in remaining slots once the "Beloved" Christmas hymns have all been chosen. They're ones that probably everyone knows and recognizes, but maybe wouldn't be upset if they were missed a year. They may also be the ones that are most commonly sung as choir pieces or other special musical numbers, so the congregation has less of a chance to sing them. On average, they're each sung in around 65% of wards every year.
+
+### The "No Other Choice" Christmas hymns
+
+Finally, we get to the last tier of Christmas hymns, which includes just two: <hymn>Once in Royal David's City (#205)</hymn> and <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. These are ones that are what I'm calling the "No Other Choice" Christmas hymns. They're comparatively much less common than the others, being sung in 43% and 32%, respectively, of wards each year. (To put it another way, any one ward will sing them once every 2--3 years.) To people who have experienced a few years' worth of sacrament meetings, it's probably not too much of a surprise to see these so low on the list. I suspect that they're relatively few music coordinators' first choices when planning December sacrament meetings and they get incorporated into the month only because most or all of the "Beloved" and "Filler" ones have been taken care of. Or because of a conscious decision to include it because they're unusual. Or because they're the Charlie Brown trees of Christmas hymns: they're included out of pity. I don't know. For whatever reason, these two hymns are the least popular by a long shot, and you're likely to sing each of the other Christmas hymns almost twice as often as these two.
+
+
+## Sacrament hymns
+
+Even though it's December, we still have to take the sacrament, and almost all wards are still going to choose a sacrament hymn to sing. Which ones are most common in December?
+
+[I've written about sacrament hymns already](/posts/sacrament) and there I showed that <hymn>I Stand All Amazed (#193)</hymn> is the most common sacrament hymn and the most common hymn overall. However, if we just look at December (@fig-sacrament), we can see that <hymn>Jesus, Once of Humble Birth (#196)</hymn> is far and away the most common sacrament hymn in December. None of the others even come close. 55% the wards I have data from sang it during December, which is impressive given that there are four or five chances to sing it and 28 sacrament hymns to choose from. It's 3.48 times more likely to be sung in December than in any other month of the year. 
+
+
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-sacrament
+#| fig-cap: Sacrament hymns during Christmas time
+freqs %>%
+    filter(type == "Sacrament",
+           hymn_num %in% 169:196,
+           month == 12) %>%
+    cleveland_plot(title = "Popularity of sacrament hymns during Christmastime",
+                   subtitle = NULL,
+                   x_buffer = 0.19, breaks = 0.1) + 
+    labs(x = "number of times sung per December per ward")
+```
+
+```{r}
+# Is there a way to get a proportion of how much more common they are in December compared to normal? 
+rest_of_year <- freqs %>%
+    filter(type == "Sacrament",
+           hymn_num %in% 169:196,
+           !month == 12) %>%
+    cleveland_plot(return = "table") %>%
+    mutate(avg_per_month = avg_per_year / 11) %>%
+    select(hymn_num, hymn_name, `freq_per_month_normal` = avg_per_month)
+december_vs_rest_of_year <- freqs %>%
+    filter(type == "Sacrament",
+           hymn_num %in% 169:196,
+           month %in% 12) %>%
+    cleveland_plot(return = "table") %>%
+    select(hymn_num, hymn_name, avg_per_december = avg_per_year, label) %>%
+    left_join(rest_of_year, by = c("hymn_num", "hymn_name")) %>%
+    mutate(prop_more_in_december = avg_per_december / freq_per_month_normal) %>%
+    arrange(prop_more_in_december) %>%
+    mutate(label = fct_inorder(label))
+
+ggplot(december_vs_rest_of_year, aes(prop_more_in_december, label)) + 
+    geom_point(size = 2, color = "black") +
+    geom_col(width = 0.15, fill = "black") + 
+    geom_text(aes(label = label), hjust = 0, nudge_x = 0.05, size = 3) + 
+    scale_x_continuous(expand = expansion(0, c(0, 1.25))) + 
+    labs(x = "more likely in December compared to the other months") + 
+    theme_minimal(base_family = "Avenir") + 
+    theme(axis.text.y = element_blank(),
+          axis.title.y = element_blank())
+```
+
+The second that appears to stand out is <hymn>God Loved Us, So He Sent His Son (#187)</hymn>. It's a trailing second place, so not even close to being the most common. But, it's sung in 28% of wards I have data from and it's 1.89 times more common in December than in any other month. The rest of the hymns trail behind in varying degrees and it's hard to tell what is a true pattern and what is just statistical noise. 
+
+
+
+
+
+## Non-Christmas hymns in December
+
+It's true that Decembers are completely dominated by Christmas hymns. Of the 6137 hymns in my database that were sung in December, 58.9% of them were Christmas hymns. Sacrament hymns are another 29.7%, which makes sense since one in every three to four hymns is most likely going to be a sacrament hymn. New Year's and [Thanksgiving](week-after-thanksgiving) hymns make up a small chunk of the data. But, the rest then---8.2% of the hymns in December---are other miscellaneous hymns. That means about one, maybe two, hymns in all of December won't be holiday- or sacrament-themed. 
+
+```{r}
+freqs %>%
+    filter(month == 12) %>%
+    mutate(category = case_when(hymn_num %in% 201:214 ~ "Christmas",
+                                hymn_num %in% c(215, 217) ~ "New Year's",
+                                hymn_num %in% c(91:95, 241, 219, 62) ~ "Thanksgiving",
+                                hymn_num %in% c(169:196, 146) ~ "Sacrament",
+                                TRUE ~ "other")) %>%
+    count(category) %>%
+    mutate(percent = scales::percent(n / sum(n))) %>%
+    arrange(-n) %>%
+    knitr::kable()
+```
+
+
+Looking at those 8.2% of hymns that are sung in December but aren't otherwise accounted for, I don't really see any patterns.  @fig-non-Christmas shows these most common hymns and all I see are hymns that are just [popular at any time of the year](/posts/most_common). The most common is <hymn>I Believe in Christ (#134)</hymn> but it's not clear to be why it would be so. It's not terribly common: only about 9% of wards sing it in December, so you might sing it in your ward in December once a decade or so.[Interestingly, my ward did a Christmas testimony Sunday this year, where people got up and talked about their favorite Christmas hymn and then we sang one verse of it as a congregation. The only non-Christmas hymn that was selected was <hymn>I Believe in Christ (#134)</hymn> and it was by a primary-aged boy.]{.aside}
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-non-Christmas
+#| fig-cap: Non-Christmas hymns during Christmas time
+freqs %>%
+    filter(!hymn_num %in% c(201:214),
+           !hymn_num %in% c(91:95, 241, 219, 62),
+           !hymn_num %in% c(215, 217),
+           !hymn_num %in% c(169:196, 146),
+           week %in% 48:53) %>%
+    cleveland_plot(title = "Non-Christmas hymns in December",
+                   subtitle = NULL,
+                   filter_n = 12,
+                   x_buffer = 0.03, breaks = 0.02) + 
+    labs(x = "number of times sung in December per ward")
+```
+
+I'm trying to think of reasons for singing a non-holiday hymn in December. I suppose a missionary farewell or homecoming might mean the ward sings a missionary work--related hymn. In my homeward, we sang <hymn>Joseph Smith's First Prayer (#26)</hymn> or <hymn>Praise to the Man (#27)</hymn> just before Christmas to celebrate Joseph Smith's birthday on December 23rd. It looks like that's not a common practice. Or, I've heard of wards on the last Sunday of December[I'll soon post an analysis of the last Sunday in December.]{.aside} singing something vaguely looking towards the future  like <hymn>Go Forth with Faith (#263)</hymn> or something that closes the year like <hymn>Now the Day Is Over (#159)</hymn>, but it doesn't appear to be common enough to surface here. Or maybe the music coordinator is just sick of Christmas hymns. 
+
+It should be noted though that not all weeks in December are treated equally. @fig-category-by-nth-week breaks the data down into the first, second, third, fourth, and (if applicable) fifth Sundays of December, with the hymns grouped by category (Sacrament, Thanksgiving, Christmas, New Year's, and "other"). 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-category-by-nth-week
+#| fig-cap: Category of hymns by week in December
+freqs %>%
+    filter(!is.na(nth_sunday),
+           month == 12) %>%
+    mutate(category = case_when(hymn_num %in% c(201:214) ~ "Christmas",
+                                hymn_num %in% c(91:95, 241, 219, 62) ~ "Thanksgiving",
+                                hymn_num %in% c(215, 217) ~ "New Year's",
+                                hymn_num %in% c(169:196, 146) ~ "Sacrament",
+                                TRUE ~ "Other"),
+           category = factor(category, levels = c("Sacrament", "Thanksgiving", "Christmas", "New Year's", "Other"))) %>%
+    count(nth_sunday, category) %>%
+    mutate(prop = n/sum(n), .by = nth_sunday) %>%
+    ggplot(aes(nth_sunday, prop, fill = category)) + 
+    geom_col() + 
+    scale_fill_ptol() + 
+    scale_y_continuous(breaks = seq(0, 1, 0.2), 
+                       expand = expansion(0, 0)) + 
+    labs(title = "Category of hymns by week in December",
+         x = "nth week of December",
+         y = "proportion of hymns sung") + 
+    theme_minimal()
+```
+
+There's a lot of interesting things to say based on this plot. 
+
+* First, we see the the proportion of sacrament hymns is pretty constant at around 30% of the data, with a little more on the first Sunday of the month since that's usually Fast and Testimony meeting and there is typically not an intermediate hymn. 
+
+* The [traditional Thanksgiving hymns](/posts/thanksgiving) (i.e. hymns 91--95) are pretty much non-existent in December and the only reason we see some "Thanksgiving" category on the fifth Sunday of December is because it's <hymn>Count Your Blessings (#241)</hymn> and <hymn>Because I Have Been Given Much (#219)</hymn>. They're hymns that are generally common but peak during Thanksgiving so I count them as Thanksgiving hymns. 
+
+* The proportion of Christmas hymns hit their greatest concentration during the second and third weeks of December, accounting for about 65% of the hymns sung during those weeks. These are peak Christmas weeks and it would be rather unusual to sing anything else.
+
+* The New Year's hymns are quite common on the last week of the month, especially if it's a fifth Sunday. Given that there are only two hymns in that category (#215 and #217), it's impressive they make up such a large proportion of the data.
+
+* Finally, all the other hymns. There is a clear U-shaped pattern, where singing non-holiday hymns is gets less and less common as you approach Christmas. But during the last Sunday of the month, especially if it's a fifth Sunday, the proportion of "other" hymns goes up quite a bit. 
+
+So, even though just 8.2% of the hymns sung in December are non-holiday hymns, that is mostly found in the last week of the month.
+
+
+
+```{r}
+freqs %>%
+    filter(month == 12,
+           nth_sunday == 5,
+           hymn_num %in% c(91:95, 241, 219, 62)) %>%
+    count(name_num, sort = TRUE)
+```
+
+
+
+
+
+## Christmas hymns outside of December
+
+What about the opposite question: are Christmas hymns ever sung outside of December? We'll exclude the [last week of Noveber](/posts/week-after-thanksgiving) because many wards start singing them then. We'll also exclude the first Sunday of January since we occasionally get some then too. Once we do that, Christmas hymns are *extremely* uncommon. They only happened 41 times out of the 57,153 hymns outside of the Christmas season, or just 0.072% of the time. The majority of them are in mid-November and a few are as late as mid-January. As far as the rest, I have no explanation whatsoever. 
+
+```{r}
+freqs %>%
+    filter(!week %in% c(1, 48:53)) %>%
+    nrow()
+scales::percent(41 / 57153, accuracy = 0.001)
+
+freqs %>%
+    filter(hymn_num %in% c(201:214),
+           !week %in% c(1, 48:53)) %>%
+    count(hymn_name, sort = TRUE)
+
+freqs %>%
+    filter(hymn_num %in% c(201:214),
+           !week %in% c(1, 48:53)) %>%
+    count(week) %>%
+    ggplot(aes(week, n)) + 
+    geom_col()
+```
+
+
+## Trends within December
+
+Up above, we saw that not all Sundays in December are equal and that we are most likely to sing Christmas hymns during the second and third Sundays of the month. Previously, when looking at [the Sunday after Thanksgiving](posts/week-after-thanksgiving), I showed that if Thanksgiving is late in the month and the Sunday after Thanksgiving is December 1st, tons of wards sing Christmas hymns than any other Sunday after Thanksgiving. More specifically, the two that entirely drove that trend were <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, rather than just all Christmas hymns being equally common. Given that some hymns are traditionally Advent hymns---meaning they'd come before Christmas day---and others are Christmas hymns---meaning they'd come after---it should be no surprise that different hymns peak in popularity at different times of the month. Let's look at those patterns now. 
+
+@fig-weeks shows how popular each Christmas hymn is by date, going from the fourth Sunday before Christmas to the first Sunday on or after Christmas. The numbers in for each hymn add up to 100%, so for example, out of all the times that <hymn>Joy to the World (#201)</hymn> is sung, 30% of the time it's December 18th--24th. 
+
+```{r}
+trends_within_december_by_hymn <- freqs %>%
+    filter(hymn_num %in% 201:214) %>%
+    arrange(hymn_num) %>%
+    mutate(week2 = case_when(month == 12 & day >= 25 ~ "12/25–\n12/31",
+                             month == 12 & day >= 18 ~ "12/18–\n12/24",
+                             month == 12 & day >= 11 ~ "12/11–\n12/17",
+                             month == 12 & day >=  4 ~ "12/4–\n12/10",
+                             month == 12 ~ "11/24–\n12/3",
+                             month == 11 & day >= 24 ~ "11/24–\n12/3"),
+           week2 = factor(week2, levels = c("11/24–\n12/3", "12/4–\n12/10", 
+                                            "12/11–\n12/17", "12/18–\n12/24", "12/25–\n12/31")),
+           label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) %>%
+    filter(!is.na(week2)) %>%
+    count(week2, label) %>%
+    mutate(n_data = sum(n), .by = label) %>%
+    mutate(prop = n/n_data) %>%
+    arrange(label, week2) %>%
+    print()
+```
+
+
+```{r, include = TRUE, fig.height = 8}
+#| label: fig-weeks
+#| fig-cap: Popularity of Christmas hymns by date in the Christmas season
+ggplot(trends_within_december_by_hymn, aes(week2, prop, group = label)) +
+    geom_line() +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    facet_wrap(~label, ncol = 3) +
+    labs(title = "Popularity of Christmas hymns by date in the Christmas season",
+         subtitle = "Numbers for each panel add up to 100%",
+         x = NULL, 
+         y = "percent of the data for that hymn") + 
+    theme_bw()
+```
+
+There is a lot to unpack here, so let's look at what's going on. First, we see that few hymns peak the Sunday before Christmas, meaning they're most commonly sung then. <hymn>Silent Night (#204)</hymn> has the biggest peak, not only of this group, but of any hymns across any week. 40% of the time that this hymn is sung, it's done so the Sunday before Christmas. No other hymn is quite so concentrated as that. Two other hymns also peak the Sunday before Christmas though, <hymn>Joy to the World (#201)</hymn> with another pretty strong peak at 31.6% and <hymn>O, Come, All Ye Faithful (#202)</hymn> at 26.2%. It is probably not a coincidence that these three are also among the most "beloved" Christmas hymns. Perhaps another way of thinking of it is that music coordinators save the "best" hymns for the "best" Sunday.
+
+The most number of hymns appear to peak two Sundays before Christmas, sometime between December 11th and December 17th. These include <hymn>Angels We Have Heard on High (#203)</hymn>, <hymn>Once in Royal David's City (#205)</hymn>, <hymn>Away in a Manger (#206)</hymn>, <hymn>It Came upon the Midnight Clear (#207)</hymn>, <hymn>O Little Town of Bethlehem (#208)</hymn>, <hymn>Hark! the Herald Angels Sing (#209)</hymn>, and <hymn>The First noel (#213)</hymn>. It's probably not a coincidence that this list includes the remaining "beloved" hymns as well as many of the "filler" Christmas hymns described above. 
+
+Two hymns peak the third Sunday before Christmas, or rather, between December 4th and 10th. They are <hymn>While Shepherds Watch their Flocks (#211)</hymn> and <hymn>Far, Far Away on Judea's Plains (#212)</hymn>. Technically, <hymn>With Wondering Awe (#210)</hymn> also peaks the third Sunday before Christmas, but the real pattern with that hymns is that its popularity is level: it's more or less equally likely to be sung during any week of Christmas. 
+
+Finally, we have <hymn>I Heard the Bells on Christmas Day (#214)</hymn>, which is the only on that peaks the Sunday *after* Christmas. This makes sense, given that the title is in the past tense, implying that Christmas day has already happened. 
+
+Overall, while the pattern is not perfect, there appears to be a trend of singing the most popular Christmas hymns closer to Christmas. It's not clear to me whether they were popular first, so they get sung then, or if they're sung then and that's what made them popular. 
+
+
+::: {.callout-caution collapse="true"}
+### Another look at the data
+
+Another way of looking at this data is to basically change it so that instead of the numbers for each hymn adding up to 100%, the numbers within each week at up to 100%. @fig-weeks2 shows that. It's largely the same as @fig-weeks, with a few differences mostly in the first and last weeks because Christmas hymns are less popular then so there's a smaller sample size. I won't go in to detail here, but feel free to look through this chart.
+
+```{r, include = TRUE, fig.height = 8}
+#| label: fig-weeks2
+#| fig-cap: Popularity of Christmas hymns by date in the Christmas season
+trends_within_december_by_week <- freqs %>%
+    filter(hymn_num %in% 201:214) %>%
+    arrange(hymn_num) %>%
+    mutate(week2 = case_when(month == 12 & day >= 25 ~ "12/25–\n12/31",
+                             month == 12 & day >= 18 ~ "12/18–\n12/24",
+                             month == 12 & day >= 11 ~ "12/11–\n12/17",
+                             month == 12 & day >=  4 ~ "12/4–\n12/10",
+                             month == 12 ~ "11/24–\n12/3",
+                             month == 11 & day >= 24 ~ "11/24–\n12/3"),
+           week2 = factor(week2, levels = c("11/24–\n12/3", "12/4–\n12/10", 
+                                            "12/11–\n12/17", "12/18–\n12/24", "12/25–\n12/31")),
+           label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) %>%
+    filter(!is.na(week2)) %>%
+    count(week2, label) %>%
+    mutate(n_data = sum(n), .by = week2) %>%
+    mutate(prop = n/n_data)
+ggplot(trends_within_december_by_week, aes(week2, prop, group = label)) +
+    geom_line() +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    facet_wrap(~label, ncol = 3) +
+    labs(title = "Popularity of Christmas hymns by date in the Christmas season",
+         subtitle = "Numbers for each week add up to 100%",
+         x = NULL, 
+         y = "percent of the data for that hymn") + 
+    theme_bw()
+```
+:::
+
+Something I noticed was the patterns for <hymn>Joy to the World (#201)</hymn> and <hymn>O Come, All Ye Faithful (#202)</hymn> here to what I showed when I did a deep dive on the [Sunday after Thanksgiving](/posts/week-after-thanksgiving). Those two hymns had a very obvious spike the Sunday after Thanksgiving---but only if that Sunday fell on December 1st. However, looking at those two hymns' patterns across the entire Christmas season, we see a relatively small proportion of when those hymns are sung is that early in the season. They're both more common the Sunday before Thanksgiving. So, why the spike on December 1st? I can't help but think that music coordinators simply choose those two on December 1st simply because they the first two listed in the hymnal! I wonder if, when we get the next hymnal, if they'll be ordered the same way; if not, we might see that whatever hymns are listed early get sung earlier in the season. We'll have to wait and see. 
+
+## Opening, Intermediate, and Closing hymns
+
+```{r}
+type_props <- christmas %>%
+    filter(!type %in% c("Sacrament"),
+           !is.na(type)) %>%
+    count(name_num, hymn_num, type) %>%
+    mutate(prop = n/sum(n), .by = name_num) %>%
+    arrange(hymn_num) %>%
+    mutate(name_num = fct_inorder(name_num)) %>%
+    print()
+```
+
+Finally, let's look at what happens within meetings themselves. Which Christmas hymns are most likely to be sung as opening hymns, closing hymns, and intermediate hymns? @fig-type shows the 14 Christmas hymns and, for each one, what percent of the time they're opening, intermediate, or closing hymns.
+
+```{r, include = TRUE, fig.height = 7, fig.width = 9}
+#| label: fig-type
+#| fig-cap: Christmas hymns and when they're sung in sacrament meeting
+ggplot(type_props, aes(type, prop)) + 
+    geom_col() + 
+    facet_wrap(~name_num, scales = "free_y", ncol = 3) + 
+    scale_y_continuous(labels = scales::percent,
+                       breaks = seq(0, 1, 0.1)) + 
+    labs(title = "Christmas hymns and when they're sung in sacrament meeting") + 
+    theme_bw()
+```
+
+Overall there are fewer intermediate hymns around Christmas time (because there are presumably more special musical numbers), so it shouldn't be a surprise that the bars representing the intermediate hymns are lower for all 14 Christmas hymns. But there should be equal or very close to equal numbers of opening and closing hymns. Assuming Christmas hymns were randomly chosen, we'd expect the bars representing the opening and closing hymns  to be a the same height. But, for relatively few hymns do we see that pattern. Instead, we see that most hymns lean more towards being opening hymns verses closing hymns. The standout is <hymn>Silent Night (#203)</hymn>, which is sung as the closing hymn 76% of the times it's sung.
+
+
+
+```{r}
+
+type_props %>%
+    select(-n) %>%
+    pivot_wider(names_from = type, values_from = prop) %>%
+    arrange(-Opening) %>%
+    print()
+make_a_type_plot <- function(.type, .type_txt) {
+    type_props %>%
+        select(-n) %>%
+        pivot_wider(names_from = type, values_from = prop) %>%
+        arrange(-{{.type}}) %>%
+        mutate(name_num = fct_rev(fct_inorder(name_num))) %>%
+        ggplot(aes({{.type}}, name_num)) + 
+        geom_point() + 
+        geom_col(width = 0.1) + 
+        scale_x_continuous(expand = expansion(0, c(0, 0.1)),
+                           breaks = seq(0, 1, 0.1),
+                           labels = scales::percent) + 
+        labs(title = paste("Christmas hymns in order of how often they're sung as", .type_txt, "hymns"),
+             x = "percent of time sung",
+             y = NULL) + 
+        theme_minimal()
+}
+```
+
+Let's look at the same data but organized differently. @fig-opening shows the hymns in order of how often they were sung as opening hymns. Here we can see that the most quintessential opening hymn is <hymn>Oh, Come, All Ye Faithful (#202), which is sung as an opening hymn 63% of the time that it's sung. In fact, we see that many of the most common Christmas hymns are near the top of the list. Again, I can't help but notice that the first three Christmas hymns listed in the hymnal (#201, #202, and #203) are the most common opening hymns, making me wonder whether there is a bit of a trend to sing the hymns in order of appearance. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-opening
+#| fig-cap: Opening hymns during Christmas
+make_a_type_plot(Opening, "opening")
+```
+
+We'll jump to the closing hymn chart, @fig-closing, because it looks more or less like the opposite of @fig-opening. Here, we see <hymn>Silent Night (#204)</hymn> at the top of the list like we saw above. What was surprising to me though was to see <hymn>The First Noel (#213)</hymn>, <hymn>Away in a Manger (#206)</hymn>, and <hymn>O Little Town of Bethlehem (#208)</hymn> near the top, all being sung as closing hymns more than half the time they're sung. 
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-closing
+#| fig-cap: Closing hymns during Christmas
+make_a_type_plot(Closing, "closing")
+```
+
+Finally, we get to @fig-intermdiate, which shows intermediate hymns. This to me was one of the biggest surprises of this whole blog post: the least common sacrament hymns are most commonly sung as intermediate hymns.
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-intermdiate
+#| fig-cap: Intermediate hymns during Christmas
+make_a_type_plot(Intermediate, "intermediate")
+```
+
+
+::: {.callout-caution collapse="true"}
+### Stats for nerds :)
+
+There is actually a pretty strong correlation between the overall frequency of a Christmas hymn and the proportion of the time that hymn is sung as an intermediate hymn. @fig-correlation shows the relationship between these two. The correlation is -0.904.
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-correlation 
+#| fig-cap: Correlation between overall frequency and frequency of being an intermediate hymn
+type_freq <- type_props %>%
+    select(-n) %>%
+    pivot_wider(names_from = type, values_from = prop) %>%
+    left_join(christmas %>% count(name_num), by = "name_num")
+ggplot(type_freq, aes(n, Intermediate)) + 
+    geom_point(size = 3) + 
+    geom_text(aes(label = name_num), hjust = -0.03) + 
+    scale_y_continuous(labels = scales::percent) + 
+    labs(title = "Intermediate hymn frequency vs. overall frequency",
+         x = "Number of times sung in this dataset",
+         y = "percent of time sung as an intermediate hymn") + 
+    theme_minimal()
+```
+
+
+```{r}
+cor(type_freq$Intermediate, type_freq$n)
+```
+
+And just to show that this not a spurious correlation, here's the same plot but for opening hymns and closing hymns. The correlations are, respectively, 0.442 and -0.100.
+
+```{r}
+cor(type_freq$Opening, type_freq$n)
+cor(type_freq$Closing, type_freq$n)
+```
+
+```{r, include = TRUE, fig.height = 4}
+ggplot(type_freq, aes(n, Opening)) + 
+    geom_point(size = 3) + 
+    geom_text(aes(label = name_num), hjust = -0.03) + 
+    scale_y_continuous(labels = scales::percent) + 
+    labs(title = "Opening hymn frequency vs. overall frequency",
+         x = "Number of times sung in this dataset",
+         y = "percent of time sung as an opening hymn") + 
+    theme_minimal()
+ggplot(type_freq, aes(n, Closing)) + 
+    geom_point(size = 3) + 
+    geom_text(aes(label = name_num), hjust = -0.03) + 
+    scale_y_continuous(labels = scales::percent) + 
+    labs(title = "Closing hymn frequency vs. overall frequency",
+         x = "Number of times sung in this dataset",
+         y = "percent of time sung as an closing hymn") + 
+    theme_minimal()
+```
+
+:::
+
+
+So there's an inverse relationship between how common a Christmas hymn is and what percentage of the time it's sung as an intermediate hymn. Specifically, the less common a sacrament hymn is, the more likely it is sung as an intermediate hymn. In more practical terms, we're again getting a peek into the decision-making process behind the selection of sacrament hymns. In this case, what we're seeing is that the intermediate hymn slots might be thought of as a "throw-away" slot where the less "beloved" hymns are sung. Perhaps the thought is that you wouldn't want to start or end a meeting with a less familiar hymn. Or maybe another way of thinking about it is that you *do* want to start and end meetings in December with the Christmas favorites. 
+
+## Conclusion
+
+In this post we've seen a lot of patterns with Christmas hymns in the Christmas season. First, we looked at the season itself and tried to use the hymns to determine when the Christmas season starts and ends. We saw that the 14 hymns fall under three categories ("beloved", "filler," and "no other choice"), based on how common they were, with some of the most common ones being sung sometimes twice in a single Christmas season. <hymn>Jesus, Once of Humble Birth (#196)</hymn> is the most common sacrament hymn during the Christmas season and <hymn>I Believe in Christ (#134)</hymn> is the most non-Christmas hymn during the Christmas season. Unsurprisingly, Christmas hymns are hardly ever sung outside of the Christmas season. Some hymns are more common the closer it is to Christmas; others are more common a little before that or even after Christmas. Finally, some hymns are preferred for opening hymns, others for closing, and the least common Christmas hymns are most commonly sung as intermediate hymns. 
+

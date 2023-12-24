@@ -10,7 +10,7 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.433</generator>
-<lastBuildDate>Sun, 03 Dec 2023 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 24 Dec 2023 07:00:00 GMT</lastBuildDate>
 <item>
   <title>Christmas</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -30,16 +30,29 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In other Christian traditions, the term <em>Advent</em> is used to describe the four or so weeks leading up to Christmas, with the “Christmas season” being used to describe a period of twelve days <em>starting</em> with Christmas. For whatever reason, most members of the church don’t use the term <em>Advent</em> and any traditionally Advent and Christmas hymns are pooled together under a generic label of “Christmas.” As a lifelong member myself, I had to look up which hymns were Advent and which were Christmas for the purposes of this blog post.</p>
-<p>In this post, I’ll largly ignore the difference between Advent and Christmas in my terminology. But, since this post does focus on the four or so Sundays leading up to Christmas (the Sunday after Christmas will be treated in a separate blog post), those of you who maintain the difference can think of this post as being focused on Advent.</p>
+<p>In other Christian traditions, the term <em>Advent</em> is used to describe the four or so weeks leading up to Christmas, with the “Christmas season” being used to describe a period of twelve days <em>starting</em> with Christmas. For whatever reason, most members of the church don’t use the term <em>Advent</em> and any traditionally Advent and Christmas hymns are pooled together under a generic label of “Christmas.”</p>
+<p>In this post, I’ll largely ignore the difference between Advent and Christmas in my terminology. But, since this post does focus on the four or so Sundays leading up to Christmas (the Sunday after Christmas will be treated in a separate blog post), those of you who maintain the difference can think of this post as being focused on Advent.</p>
 </div>
 </div>
 <p>A look at the table of contents in the hymnal shows that the Christmas hymns are hymns 201–214. But the music coordinator faces the difficult task of figuring out which hymns to sing. There are usually not quite enough Sundays in December to sing all of them, so some will have to be prioritized over others. There are also usually a couple special musical numbers to work around, and I think many music coordinators try not to have the congregation sing a hymn if it’s already going to be heard in a musical number that season. So, with that in mind, let’s look at the data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I meant to get this post out earlier in December, but life got in the way. So, sorry it’s too late to incorporate these results into your ward’s Christmas meetings. Maybe next year you can consider what is presented here and make some changes, assuming the hymnbook isn’t drastically altered by then. I suspect we might get a few more Christmas hymns by next year, like “What Child is This”, “O Come, O Come, Emmanuel”, and “O Holy Night.”</p>
+</div>
+</div>
 <section id="how-many-christmas-hymns-per-season" class="level2">
 <h2 class="anchored" data-anchor-id="how-many-christmas-hymns-per-season">How many Christmas hymns per season</h2>
 <p>It’s not likely that all 14 Christmas hymns will be sung <em>by the congregation</em> in any one ward within a year. There are, at most, six Sundays to work with in the Christmas season (click below to see details).</p>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -48,17 +61,19 @@ Technical details for calendar nerds :)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It’s a little tricky defining the Christmas season. Traditionally, Advent starts the fourth Sunday before Christmas, which would be Novmeber 27th at the earliest and December 3rd at the latest. However, we don’t traditionally celebrate Advent like other Christian denominations, people have different ideas for when Christmas hymns can be sung. For some, it’s the Sunday after Thanksgiving (in the United States). For others, it’s the first Sunday in December.</p>
-<p>Only if Thanksgiving is at late as it can be, November 28th, do those three align and everyone can agree that the following Sunday, December 1st, is when Christmas hymns can be sung. If Thanksgiving is early, either the 22nd or the 23rd, then the Sunday after Thanksgiving will be the 25th or 26th, which is five Sundays before Christmas, and not technicaly Advent. So if Christmas hymns are sung then, Advent- and December-sticklers will say it’s too early; a week later will be Decmber 2nd and 3rd and post-Thanksgiving sticklers will say it’s too late. If Thanksgiving falls between the 24th and the 27th, then the Sunday after will be the start of Advent but still in November. So if Christmas hymns are sung then, it’ll make the Advent and post-Thanksgiving people happy, but the December-sticklers will feel it’s too early.</p>
+<p>It’s a little tricky defining the Christmas season, so I put together a quick spreadsheet to visualize the seven different possible Christmas seasons. You can view it here or download it yourself <a href="calendars.xlsx">here</a>.</p>
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/calendars.png" class="img-fluid"></p>
+<p>Traditionally, Advent starts the fourth Sunday before Christmas, which would be November 27th at the earliest and December 3rd at the latest. However, because we don’t traditionally celebrate Advent like other Christian denominations, people have different ideas for when Christmas hymns can be sung. For some, it’s the Sunday after Thanksgiving (in the United States). For others, it’s the first Sunday in December.</p>
+<p>Only if Thanksgiving is at late as it can be, November 28th, do those three align and everyone can agree that the following Sunday, December 1st, is when Christmas hymns can be sung. If Thanksgiving is early, either the 22nd or the 23rd, then the Sunday after Thanksgiving will be the 25th or 26th, which is five Sundays before Christmas, and not technically Advent. So if Christmas hymns are sung then, Advent- and December-sticklers will say it’s too early; a week later will be December 2nd and 3rd and post-Thanksgiving sticklers will say it’s too late. If Thanksgiving falls between the 24th and the 27th, then the Sunday after will be the start of Advent but still in November. So if Christmas hymns are sung then, it’ll make the Advent and post-Thanksgiving people happy, but the December-sticklers will feel it’s too early.</p>
 <p>The end of Christmas also has three possible dates. Some feel that the Christmas season ends on December 25th, so singing anything after Christmas Day is extending it too far. Others are fine going through December. Traditionally though, the Twelve Days of Christmas (or “Twelvetide”) <em>starts</em> on December 25th, meaning the last day of Christmas is January 5th. Here, you can’t satisfy all three groups. If Christmas is on a Monday or Tuesday, then there’s only one Sunday during Twelvetide and it’ll be December 30th or 31st. If Christmas is on a Sunday, you get one more Sunday during Twelvetide, and that’ll be on New Year’s Day. If Christmas is on a Wednesday through Saturday, there will be one Sunday after Christmas in December and another Sunday in January still part of Twelvetide.</p>
 <p>Because of the way the calendars line up, there will always be exactly six Sundays between Thanksgiving and the end of Twelvetide. The years where Christmas is on a Monday or Tuesday are also the years that Thanksgiving is on the 22nd or 23rd (the earliest it can be), and you get four Sundays in December before Christmas, one extra Sunday after Thanksgiving before Advent technically starts and one Sunday at the end of December within Twelvetide. In all other cases, the Sunday after Thanksgiving is also the start of Advent and you get four Sundays before Christmas, and two during Twelvetide (one in December and one in January).</p>
 </div>
 </div>
 </div>
 <p>So, if the congregation sings the opening, intermediate, and closing hymn each week, that’s twelve slots to fill. And if the ward sings two more the Sunday after Christmas, then they can finally get all 14 hymns. So unless there’s some sort of special program that involves lots of congregational singing, it takes a minimum of five Sundays to get through all 14 Christmas hymns. Even if you extend into the first week of January, there are only six Sundays to work with and 18 slots to choose from. And since most wards probably have at least a couple special musical numbers, that cuts into the slots for congregational singing.</p>
-<p>So, how many Christmas hymns does the congregaton sing per Christmas season? Here, I’ll just focus on the wards that contributed an entire Christmas season’s worth of hymns. Specifically, they contributed at least five Sundays of hymns between November 27th and January 5th. Some wards contributed more than one Christmas season’s worth of hymns, and that’s fine. In total, I currently have 308 ward-years’ worth of Christmas hymns.</p>
+<p>So, how many Christmas hymns does the congregation sing per Christmas season? Here, I’ll just focus on the wards that contributed an entire Christmas season’s worth of hymns. Specifically, they contributed at least five Sundays of hymns between November 27th and January 5th. Some wards contributed more than one Christmas season’s worth of hymns, and that’s fine. In total, I currently have 308 ward-years’ worth of Christmas hymns.</p>
 <p>Figure&nbsp;1 shows how many different Christmas hymns the congregation sings in a single Christmas season. The average is just eight, with most wards falling somewhere between five and eleven. Five wards did manage to sing all 14 Christmas hymns in a single season. For three of those though, it was aided by multiple intermediate hymns the Sunday before Christmas, presumably as part of a special Christmas program. But, that also means that for two of the wards, they managed to get through all 14 hymns the “normal” way. But just two out of 308 is 0.6% of wards. So, not very likely to happen in your ward. And yes, there were three wards that sang just two Christmas hymns in the entire season (probably to the chagrin of their ward members)!</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -102,7 +117,7 @@ Fun Fact
 <p>The way I see it, we’ve got roughly three “tiers” of Christmas hymns. The top six or so are what I’d call the most “beloved” ones: <hymn>Joy to the World (#201)</hymn>, <hymn>O, Come, All Ye Faithful (#202)</hymn>, <hymn>Hark! the Herald Angels Sing (#209)</hymn>, <hymn>Angels We Have Heard on High (#203)</hymn>, <hymn>Silent Night (#204)</hymn>, and <hymn>The First Noel (#213)</hymn>. Here we see that they’re each sung by the congregation, on average, in about 80% of wards each year. My guess is that if they’re not sung by the congregation, they’re probably sung by a ward choir or otherwise “covered” in a special musical number.</p>
 <p>The most common is <hymn>Joy to the World (#201)</hymn>. While it’s not surprising to me to see it at the top of the list, what is surprising is to see that it actually averages almost exactly once per year per ward. On the surface, that seems fine, because, yeah, we’d expect most wards to sing it. But, not <em>every</em> ward will sing it every year. Sometimes the choir will, or, for whatever reason, some wards just might not sing it at all. That’s why the other popular Christmas hymns, and indeed any other holiday hymn, come in at less than once per year. No, the reason why <hymn>Joy to the World (#201)</hymn> is so high is because some wards sing it <em>twice</em> a year. Specifically 32 of the 308 (10.4%) ward-years I’m looking at sang it twice in a single Christmas season. One ward even sang it three times.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -111,7 +126,7 @@ Additional detail on repeating hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Figure&nbsp;3 shows how many wards repeat each of the Christmas hymn per year. As you can see, <hymn>Joy to the World (#201)</hymn> is repeated the most, but every hymn is repeated at least some of the time.</p>
 <div class="cell">
@@ -158,7 +173,7 @@ Additional detail on repeating hymns
 <section id="non-christmas-hymns-in-december" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="non-christmas-hymns-in-december">Non-Christmas hymns in December</h2>
 <p>It’s true that Decembers are completely dominated by Christmas hymns. Of the 6137 hymns in my database that were sung in December, 58.9% of them were Christmas hymns. Sacrament hymns are another 29.7%, which makes sense since one in every three to four hymns is most likely going to be a sacrament hymn. New Year’s and <a href="week-after-thanksgiving">Thanksgiving</a> hymns make up a small chunk of the data. But, the rest then—8.2% of the hymns in December—are other miscellaneous hymns. That means about one, maybe two, hymns in all of December won’t be holiday- or sacrament-themed.</p>
-<p>Looking at those 8.2% of hymns that are sung in December but aren’t otherwise accounted for, I don’t really see any patterns. Figure&nbsp;5 shows these most common hymns and all I see are hymns that are just <a href="../../posts/most_common">popular at any time of the year</a>. The most common is <hymn>I Believe in Christ (#134)</hymn> but it’s not clear to be why it would be so. It’s not terribly common: only about 9% of wards sing it in December, so you might sing it in your ward in December once a decade or so.</p>
+<div class="page-columns page-full"><p>Looking at those 8.2% of hymns that are sung in December but aren’t otherwise accounted for, I don’t really see any patterns. Figure&nbsp;5 shows these most common hymns and all I see are hymns that are just <a href="../../posts/most_common">popular at any time of the year</a>. The most common is <hymn>I Believe in Christ (#134)</hymn> but it’s not clear to be why it would be so. It’s not terribly common: only about 9% of wards sing it in December, so you might sing it in your ward in December once a decade or so.</p><div class="no-row-height column-margin column-container"><span class="">Interestingly, my ward did a Christmas testimony Sunday this year, where people got up and talked about their favorite Christmas hymn and then we sang one verse of it as a congregation. The only non-Christmas hymn that was selected was <hymn>I Believe in Christ (#134)</hymn> and it was by a primary-aged boy.</span></div></div>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-non-Christmas" class="quarto-figure quarto-figure-center anchored">
@@ -197,8 +212,8 @@ Additional detail on repeating hymns
 </section>
 <section id="trends-within-december" class="level2">
 <h2 class="anchored" data-anchor-id="trends-within-december">Trends within December</h2>
-<p>Up above, we saw that not all Sundays in December are equal and that we are most likely to sing Christmas hymns during the second and third Sundays of the month. Previously, when looking at the Sunday after Thanksgiving, I showed that if Thanksgiving is late in the month and the Sunday after Thanksgiving is December 1st, tons of wards sing Christmas hymns than any other Sunday after Thanksgiving. More specifically, the two that entirely drove that pattern were <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, rather than just all Christmas hymns being equally common. Given that some hymns are traditionally Advent hymns—meaning they’d come before Christmas day—and others are Christmas hymns—meaning they’d come after—it should be no surprise that different hymns peak in popularity at different times of the month. Let’s look at those patterns now.</p>
-<p>Figure&nbsp;7 shows how popular each Christmas hymn is by date, going from the fourth Sunday before Christmas to the first Sunday on or after Christmas. The numbers in for each hymn add up to 100%, so for example, a little over 30% of the time <hymn>Joy to the World (#201)</hymn> is sung, it’s done so December 18th–24th.</p>
+<p>Up above, we saw that not all Sundays in December are equal and that we are most likely to sing Christmas hymns during the second and third Sundays of the month. Previously, when looking at <a href="posts/week-after-thanksgiving">the Sunday after Thanksgiving</a>, I showed that if Thanksgiving is late in the month and the Sunday after Thanksgiving is December 1st, tons of wards sing Christmas hymns than any other Sunday after Thanksgiving. More specifically, the two that entirely drove that trend were <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, rather than just all Christmas hymns being equally common. Given that some hymns are traditionally Advent hymns—meaning they’d come before Christmas day—and others are Christmas hymns—meaning they’d come after—it should be no surprise that different hymns peak in popularity at different times of the month. Let’s look at those patterns now.</p>
+<p>Figure&nbsp;7 shows how popular each Christmas hymn is by date, going from the fourth Sunday before Christmas to the first Sunday on or after Christmas. The numbers in for each hymn add up to 100%, so for example, out of all the times that <hymn>Joy to the World (#201)</hymn> is sung, 30% of the time it’s December 18th–24th.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-weeks" class="quarto-figure quarto-figure-center anchored">
@@ -209,8 +224,13 @@ Additional detail on repeating hymns
 </div>
 </div>
 </div>
+<p>There is a lot to unpack here, so let’s look at what’s going on. First, we see that few hymns peak the Sunday before Christmas, meaning they’re most commonly sung then. <hymn>Silent Night (#204)</hymn> has the biggest peak, not only of this group, but of any hymns across any week. 40% of the time that this hymn is sung, it’s done so the Sunday before Christmas. No other hymn is quite so concentrated as that. Two other hymns also peak the Sunday before Christmas though, <hymn>Joy to the World (#201)</hymn> with another pretty strong peak at 31.6% and <hymn>O, Come, All Ye Faithful (#202)</hymn> at 26.2%. It is probably not a coincidence that these three are also among the most “beloved” Christmas hymns. Perhaps another way of thinking of it is that music coordinators save the “best” hymns for the “best” Sunday.</p>
+<p>The most number of hymns appear to peak two Sundays before Christmas, sometime between December 11th and December 17th. These include <hymn>Angels We Have Heard on High (#203)</hymn>, <hymn>Once in Royal David’s City (#205)</hymn>, <hymn>Away in a Manger (#206)</hymn>, <hymn>It Came upon the Midnight Clear (#207)</hymn>, <hymn>O Little Town of Bethlehem (#208)</hymn>, <hymn>Hark! the Herald Angels Sing (#209)</hymn>, and <hymn>The First noel (#213)</hymn>. It’s probably not a coincidence that this list includes the remaining “beloved” hymns as well as many of the “filler” Christmas hymns described above.</p>
+<p>Two hymns peak the third Sunday before Christmas, or rather, between December 4th and 10th. They are <hymn>While Shepherds Watch their Flocks (#211)</hymn> and <hymn>Far, Far Away on Judea’s Plains (#212)</hymn>. Technically, <hymn>With Wondering Awe (#210)</hymn> also peaks the third Sunday before Christmas, but the real pattern with that hymns is that its popularity is level: it’s more or less equally likely to be sung during any week of Christmas.</p>
+<p>Finally, we have <hymn>I Heard the Bells on Christmas Day (#214)</hymn>, which is the only on that peaks the Sunday <em>after</em> Christmas. This makes sense, given that the title is in the past tense, implying that Christmas day has already happened.</p>
+<p>Overall, while the pattern is not perfect, there appears to be a trend of singing the most popular Christmas hymns closer to Christmas. It’s not clear to me whether they were popular first, so they get sung then, or if they’re sung then and that’s what made them popular.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -219,7 +239,7 @@ Another look at the data
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Another way of looking at this data is to basically change it so that instead of the numbers for each hymn adding up to 100%, the numbers within each week at up to 100%. Figure&nbsp;8 shows that. It’s largely the same as Figure&nbsp;7, with a few differences mostly in the first and last weeks because Christmas hymns are less popular then so there’s a smaller sample size. I won’t go in to detail here, but feel free to look through this chart.</p>
 <div class="cell">
@@ -235,9 +255,95 @@ Another look at the data
 </div>
 </div>
 </div>
+<p>Something I noticed was the patterns for <hymn>Joy to the World (#201)</hymn> and <hymn>O Come, All Ye Faithful (#202)</hymn> here to what I showed when I did a deep dive on the <a href="../../posts/week-after-thanksgiving">Sunday after Thanksgiving</a>. Those two hymns had a very obvious spike the Sunday after Thanksgiving—but only if that Sunday fell on December 1st. However, looking at those two hymns’ patterns across the entire Christmas season, we see a relatively small proportion of when those hymns are sung is that early in the season. They’re both more common the Sunday before Thanksgiving. So, why the spike on December 1st? I can’t help but think that music coordinators simply choose those two on December 1st simply because they the first two listed in the hymnal! I wonder if, when we get the next hymnal, if they’ll be ordered the same way; if not, we might see that whatever hymns are listed early get sung earlier in the season. We’ll have to wait and see.</p>
 </section>
-<section id="opening-closing" class="level2">
-<h2 class="anchored" data-anchor-id="opening-closing">opening, closing</h2>
+<section id="opening-intermediate-and-closing-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="opening-intermediate-and-closing-hymns">Opening, Intermediate, and Closing hymns</h2>
+<p>Finally, let’s look at what happens within meetings themselves. Which Christmas hymns are most likely to be sung as opening hymns, closing hymns, and intermediate hymns? Figure&nbsp;9 shows the 14 Christmas hymns and, for each one, what percent of the time they’re opening, intermediate, or closing hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-type" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/index_files/figure-html/fig-type-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Christmas hymns and when they’re sung in sacrament meeting</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Overall there are fewer intermediate hymns around Christmas time (because there are presumably more special musical numbers), so it shouldn’t be a surprise that the bars representing the intermediate hymns are lower for all 14 Christmas hymns. But there should be equal or very close to equal numbers of opening and closing hymns. Assuming Christmas hymns were randomly chosen, we’d expect the bars representing the opening and closing hymns to be a the same height. But, for relatively few hymns do we see that pattern. Instead, we see that most hymns lean more towards being opening hymns verses closing hymns. The standout is <hymn>Silent Night (#203)</hymn>, which is sung as the closing hymn 76% of the times it’s sung.</p>
+<p>Let’s look at the same data but organized differently. Figure&nbsp;10 shows the hymns in order of how often they were sung as opening hymns. Here we can see that the most quintessential opening hymn is <hymn>Oh, Come, All Ye Faithful (#202), which is sung as an opening hymn 63% of the time that it’s sung. In fact, we see that many of the most common Christmas hymns are near the top of the list. Again, I can’t help but notice that the first three Christmas hymns listed in the hymnal (#201, #202, and #203) are the most common opening hymns, making me wonder whether there is a bit of a trend to sing the hymns in order of appearance.</hymn></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-opening" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/index_files/figure-html/fig-opening-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;10: Opening hymns during Christmas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We’ll jump to the closing hymn chart, Figure&nbsp;11, because it looks more or less like the opposite of Figure&nbsp;10. Here, we see <hymn>Silent Night (#204)</hymn> at the top of the list like we saw above. What was surprising to me though was to see <hymn>The First Noel (#213)</hymn>, <hymn>Away in a Manger (#206)</hymn>, and <hymn>O Little Town of Bethlehem (#208)</hymn> near the top, all being sung as closing hymns more than half the time they’re sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-closing" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/index_files/figure-html/fig-closing-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;11: Closing hymns during Christmas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, we get to Figure&nbsp;12, which shows intermediate hymns. This to me was one of the biggest surprises of this whole blog post: the least common sacrament hymns are most commonly sung as intermediate hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-intermdiate" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/index_files/figure-html/fig-intermdiate-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;12: Intermediate hymns during Christmas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Stats for nerds :)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is actually a pretty strong correlation between the overall frequency of a Christmas hymn and the proportion of the time that hymn is sung as an intermediate hymn. Figure&nbsp;13 shows the relationship between these two. The correlation is -0.904.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-correlation" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/index_files/figure-html/fig-correlation-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;13: Correlation between overall frequency and frequency of being an intermediate hymn</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>And just to show that this not a spurious correlation, here’s the same plot but for opening hymns and closing hymns. The correlations are, respectively, 0.442 and -0.100.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="768"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas/index_files/figure-html/unnamed-chunk-32-2.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>So there’s an inverse relationship between how common a Christmas hymn is and what percentage of the time it’s sung as an intermediate hymn. Specifically, the less common a sacrament hymn is, the more likely it is sung as an intermediate hymn. In more practical terms, we’re again getting a peek into the decision-making process behind the selection of sacrament hymns. In this case, what we’re seeing is that the intermediate hymn slots might be thought of as a “throw-away” slot where the less “beloved” hymns are sung. Perhaps the thought is that you wouldn’t want to start or end a meeting with a less familiar hymn. Or maybe another way of thinking about it is that you <em>do</em> want to start and end meetings in December with the Christmas favorites.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this post we’ve seen a lot of patterns with Christmas hymns in the Christmas season. First, we looked at the season itself and tried to use the hymns to determine when the Christmas season starts and ends. We saw that the 14 hymns fall under three categories (“beloved”, “filler,” and “no other choice”), based on how common they were, with some of the most common ones being sung sometimes twice in a single Christmas season. <hymn>Jesus, Once of Humble Birth (#196)</hymn> is the most common sacrament hymn during the Christmas season and <hymn>I Believe in Christ (#134)</hymn> is the most non-Christmas hymn during the Christmas season. Unsurprisingly, Christmas hymns are hardly ever sung outside of the Christmas season. Some hymns are more common the closer it is to Christmas; others are more common a little before that or even after Christmas. Finally, some hymns are preferred for opening hymns, others for closing, and the least common Christmas hymns are most commonly sung as intermediate hymns.</p>
 
 
 </section>
@@ -245,7 +351,7 @@ Another look at the data
  ]]></description>
   <category>holidays</category>
   <guid>https://hymnstats.joeystanley.com/posts/christmas/index.html</guid>
-  <pubDate>Sun, 03 Dec 2023 07:00:00 GMT</pubDate>
+  <pubDate>Sun, 24 Dec 2023 07:00:00 GMT</pubDate>
 </item>
 <item>
   <title>What hymns are sung the Sunday after Thanksgiving?</title>
