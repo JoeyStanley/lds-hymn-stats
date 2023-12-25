@@ -131,7 +131,7 @@ ggplot(n_hymns_per_season, aes(n_unique, n)) +
 ::: {.callout-tip icon="false"}
 ### Fun Fact
 
-So, you'll likely to sing eight Christmas hymns as a congregation in your ward this year, give or take a few.
+So, you'll likely sing eight Christmas hymns as a congregation in your ward this year, give or take a few.
 :::
 
 
@@ -591,7 +591,7 @@ make_a_type_plot <- function(.type, .type_txt) {
 }
 ```
 
-Let's look at the same data but organized differently. @fig-opening shows the hymns in order of how often they were sung as opening hymns. Here we can see that the most quintessential opening hymn is <hymn>Oh, Come, All Ye Faithful (#202), which is sung as an opening hymn 63% of the time that it's sung. In fact, we see that many of the most common Christmas hymns are near the top of the list. Again, I can't help but notice that the first three Christmas hymns listed in the hymnal (#201, #202, and #203) are the most common opening hymns, making me wonder whether there is a bit of a trend to sing the hymns in order of appearance. 
+Let's look at the same data but organized differently. @fig-opening shows the hymns in order of how often they were sung as opening hymns. Here we can see that the most quintessential opening hymn is <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, which is sung as an opening hymn 63% of the time that it's sung. In fact, we see that many of the most common Christmas hymns are near the top of the list. Again, I can't help but notice that the first three Christmas hymns listed in the hymnal (#201, #202, and #203) are the most common opening hymns, making me wonder whether there is a bit of a trend to sing the hymns in order of appearance. 
 
 ```{r, include = TRUE, fig.height = 4}
 #| label: fig-opening
