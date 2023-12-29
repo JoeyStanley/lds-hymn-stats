@@ -1,0 +1,370 @@
+---
+title: "What hymns are sung around New Year's Day?"
+description: "In this blog post, I explore what hymns are sung the Sunday after Christmas and the first Sunday in January. The structure of this post is very similar to my previous analysis of [the Sunday after Thanksgiving](/posts/week-after-thanksgiving). However, the transition from Thanksgiving to Christmas is not the same as from Christmas to New Year's. In this post, I uncover what I think are some pretty interesting patterns that illuminate a lot about how music coordinators select their hymns. "
+author: "Joey Stanley"
+date: 2023-12-29
+categories:
+  - holidays
+  - frequency
+image: cover.png
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+## What hymns are sung?
+
+```{r}
+get_limbo_subset <- function(...) {
+    freqs %>%
+        filter(country == "United States",
+               !ward %in% c("NA", "Anonymous")) %>%
+        filter(...) %>%
+        mutate(date_str = paste(if_else(month == 12, "Dec", "Jan"), day)) %>%
+        arrange(-month, day) %>%
+        mutate(date_str = fct_inorder(date_str)) 
+}
+limbo <- get_limbo_subset(month == 12, day > 25)
+limbo_plus <- get_limbo_subset((month == 12 & day > 25) | (month == 1 & day <= 7))
+jan_only <- get_limbo_subset(month == 1, day <= 7)
+```
+
+
+
+```{r}
+davies_method(month == 12, day > 25) %>%
+    filter(!hymn_num %in% 169:196)
+davies_method(month == 1, day <= 7) %>%
+    filter(!hymn_num %in% 169:196)
+```
+
+@fig-limbo_plus shows the most popular congregational hymns between December 26th and January 7th. I've color-coded the hymn names to correspond to the holiday they are most closely associated with. Hymns 201--214 are Christmas hymns and are colored in red. Hymns 215 and 217 are New Year's hymns and are colored in blue. Everything else is colored in gray. 
+
+```{r, include = TRUE, fig.height = 3.5, fig.width = 6.5, warning = FALSE, message=FALSE}
+#| label: fig-limbo_plus
+#| fig-cap: Most popular congregational hymns the two Sundays after Christmas
+christmas_hymns <- c(201:214)
+new_years_hymns <- c(215, 217)
+unique_limbo_meetings <- limbo_plus %>%
+    filter(country == "United States") %>%
+    get_n_distinct_meetings()
+limbo_plus %>%
+    filter(!hymn_num %in% 169:196) %>%
+    mutate(holiday = case_when(hymn_num %in% christmas_hymns ~ "Christmas",
+                               hymn_num %in% new_years_hymns ~ "New Year's",
+                               TRUE ~ "Other"),
+           holiday = factor(holiday, levels = c("Christmas", "New Year's", "Other"))) %>%
+    cleveland_plot(title = "Hymns sung the two Sundays after Christmas", 
+                   subtitle = "There is a mix of <span style = 'color:#4477AA;'>New Year's</span>, <span style = 'color:#EE6677;'>Christmas</span>, and <span style = 'color:#777777;'>Other</span> hymns.",
+                   filter_n = 20, unique_meetings = get_n_distinct_meetings(),
+                   extra_cols = holiday, color = holiday) + 
+    labs(x = "Percentage of wards that sing this hymn during these weeks") + 
+    scale_color_manual(values = c(`Christmas` = ptol_red,
+                                  `New Year's` = ptol_blue,
+                                  `Other` = ptol_grey)) + 
+    scale_x_continuous(labels = scales::percent(seq(0, 1, 0.05)),
+                       breaks = seq(0, 1, 0.05),
+                       minor_breaks = seq(0, 1, 0.01),
+                       expand = expansion(0, c(0, 0.13))) + 
+    labs(caption = paste("Based on data from", unique_limbo_meetings, "sacrament meetings.")) + 
+    theme(plot.subtitle = ggtext::element_markdown(),
+          legend.position = "none")
+```
+
+
+
+It's apparent that it is quite popular to sung New Year's hymns the Sunday after Christmas. Over 45% of wards sing <hymn>Come, Let Us Anew (#217)</hymn> and about 39% sing <hymn>Ring Out, Wild Bells (#215)</hymn>. There is also a clear stand out for the most most popular Christmas hymn during this week, which is <hymn>I Heard the Bells on Christmas Day (#215)</hymn>, but only about 15% of wards sing it the Sunday after Christmas. 
+
+What is interesting is that <hymn>We Are Sowing (#216)</hymn> made it on this chart. It's not a New Year's hymn (it's not listed as one in topics index), but it is, for some reason, sandwiched between the two that are. What seems like is happening is that it gets lumped in by association. Unsurprising, but pretty interesting that it happens enough to show up on the plot. 
+
+
+
+But, you might argue that the week after Christmas is a totally different Sunday than the week after New Year's. And you'd be right! If we break the data down into those two weeks, we get very different pictures! @fig_limbo shows the most popular hymns just in the last week of December. You can see that  while the New Year's hymns are still at the top, all the rest are all Christmas hymns. And if you look closely, <hymn>Ring Out, Wild Bells (#215)</hymn> is the more common of the two New Year's hymns.
+
+```{r, include = TRUE, fig.height = 4, fig.width = 6.5, warning = FALSE, message=FALSE}
+#| label: fig-limbo
+#| fig-cap: Most popular congregational hymns December 26th--31st
+unique_limbo_meetings <- limbo %>%
+    filter(country == "United States") %>%
+    get_n_distinct_meetings()
+limbo %>%
+    filter(!hymn_num %in% 169:196) %>%
+    mutate(holiday = case_when(hymn_num %in% christmas_hymns ~ "Christmas",
+                               hymn_num %in% new_years_hymns ~ "New Year's",
+                               TRUE ~ "Other"),
+           holiday = factor(holiday, levels = c("Christmas", "New Year's", "Other"))) %>%
+    cleveland_plot(title = "Hymns sung betwen December 26th and Decemnber 31st ", 
+                   subtitle = "There are only of <span style = 'color:#4477AA;'>New Year's</span> and <span style = 'color:#EE6677;'>Christmas</span>; no <span style = 'color:#777777;'>Other</span> hymn were popular.",
+                   filter_n = 10, unique_meetings = get_n_distinct_meetings(),
+                   extra_cols = holiday, color = holiday) + 
+    labs(x = "Percentage of wards that sing this hymn during this week") + 
+    scale_color_manual(values = c(`Christmas` = ptol_red,
+                                  `New Year's` = ptol_blue,
+                                  `Other` = ptol_grey)) + 
+    scale_x_continuous(labels = scales::percent(seq(0, 1, 0.05)),
+                       breaks = seq(0, 1, 0.05),
+                       minor_breaks = seq(0, 1, 0.01),
+                       expand = expansion(0, c(0, 0.13))) + 
+    labs(caption = paste("Based on data from", unique_limbo_meetings, "sacrament meetings.")) + 
+    theme(plot.subtitle = ggtext::element_markdown(),
+          legend.position = "none")
+```
+
+If we now look at the first Sunday in January, we get a totally different picture. @fig-jan_only shows that once we're on the January side of New Year's, no Christmas hymn is popular. We again get the New Year's hymns, but all the other hymns are just generic [popular hymns](/posts/most_common) without much of a theme.
+
+```{r, include = TRUE, fig.height = 4, fig.width = 6.5, warning = FALSE, message=FALSE}
+#| label: fig-jan_only
+#| fig-cap: Most popular congregational hymns January 1st--7th
+unique_limbo_meetings <- jan_only %>%
+    filter(country == "United States") %>%
+    get_n_distinct_meetings()
+jan_only %>%
+    filter(!hymn_num %in% 169:196) %>%
+    mutate(holiday = case_when(hymn_num %in% christmas_hymns ~ "Christmas",
+                               hymn_num %in% new_years_hymns ~ "New Year's",
+                               TRUE ~ "Other"),
+           holiday = factor(holiday, levels = c("Christmas", "New Year's", "Other"))) %>%
+    cleveland_plot(title = "Hymns sung the two Sundays after Christmas", 
+                   subtitle = "There are only <span style = 'color:#4477AA;'>New Year's</span> and <span style = 'color:#777777;'>Other</span> hymns; no <span style = 'color:#EE6677;'>Christmas</span> hymn was popular.",
+                   filter_n = 11, unique_meetings = get_n_distinct_meetings(),
+                   extra_cols = holiday, color = holiday) + 
+    labs(x = "Percentage of wards that sing this hymn during this week") + 
+    scale_color_manual(values = c(`Christmas` = ptol_red,
+                                  `New Year's` = ptol_blue,
+                                  `Other` = ptol_grey)) + 
+    scale_x_continuous(labels = scales::percent(seq(0, 1, 0.05)),
+                       breaks = seq(0, 1, 0.05),
+                       minor_breaks = seq(0, 1, 0.01),
+                       expand = expansion(0, c(0, 0.13))) + 
+    labs(caption = paste("Based on data from", unique_limbo_meetings, "sacrament meetings.")) + 
+    theme(plot.subtitle = ggtext::element_markdown(),
+          legend.position = "none")
+```
+
+So, while this blog post is intending to cover both of these weeks at the same time, it's important to separate them out as best I can. 
+
+
+## Christmas vs. New Year's
+
+Let's dive just a little bit deeper into just the Sunday after Christmas, @tbl-n_of_each shows the percentage of wards in my sample that sing Christmas and New Year's hymns the Sunday after Christmas The top right cell shows that 33.08% of wards sing at least one Christmas hymn and no New Year's hymns. The bottom left cell shows that 31.18% of wards sing at least one New Year's hymn and no Christmas hymns. It is interesting that these numbers are almost even, so even though the two blue bars in @fig-limbo above were much longer, the many shorter red bars add up to be about the same. 
+
+```{r, include = TRUE}
+#| label: tbl-n_of_each
+#| tbl-cap: Percentage of wards that sing Thanksgiving and Christmas hymns the Sunday after Thanksgiving
+n_of_each_limbo <- limbo %>%
+    summarize(n_christmas = sum(hymn_num %in% 201:214),
+              n_newyears = sum(hymn_num %in% new_years_hymns),
+              .by = meeting_id)
+n_of_each_limbo %>%
+    mutate(across(c(n_christmas, n_newyears), ~if_else(. > 0, "yes", "no"))) %>%
+    count(n_christmas, n_newyears) %>%
+    mutate(n = scales::percent(n/sum(n))) %>%
+    pivot_wider(names_from = n_newyears, values_from = n) %>%
+    arrange(rev(n_christmas)) %>%
+    gt(rowname_col = "n_christmas") %>%
+    tab_stubhead(label = "Christmas hymns") %>%
+    tab_spanner(label = "New Year's hymns", columns = c(yes, no))
+```
+
+
+Interestingly, the numbers in the other corners of the box are also pretty even. About 18.25% of wards sing both Christmas and New Year's hymns, while 17.49% of wards sing neither. And if we add up the rows and the columns, they all come close to about 50%. Here's a (maybe confusing) summary of what's happening:
+
+::: {.callout-tip icon="false"}
+### Fun Fact
+
+About half of the wards sing Christmas hymns and half don't. Of the ones that do, about a third also sing New Year's hymns. Of the one's that don't, about a third also do not sing New Year's hymns.
+:::
+
+The amazing thing is that if you swap Christmas and New Year's in all those statements, it's still true! 
+
+::: {.callout-tip icon="false"}
+### Funner Fact
+
+About half of the wards sing New Year's hymns and half don't. Of the ones that do, about a third also sing Christmas hymns. Of the one's that don't, about a third also do not sing Christmas hymns.
+:::
+
+I find the symmetry in those results *very* satisfying. 
+
+```{r}
+wards_neither <- n_of_each_limbo %>%
+    filter(n_christmas == 0, n_newyears == 0) %>%
+    pull(meeting_id)
+limbo %>%
+    filter(meeting_id %in% wards_neither,
+           !hymn_num %in% 169:196) %>%
+    cleveland_plot(unique_meetings = unique_limbo_meetings,
+                   filter_n = 1, return = "table")
+
+limbo %>%
+    filter(!hymn_num %in% c(201:217, 169:196)) %>%
+    cleveland_plot(return = "table")
+```
+
+I took a look at the wards that didn't sing either Christmas or New Year's hymns the last week of December and I didn't see too much about what hymns they did sing. There were a few that I could see fitting with the theme of the closing of a year, like <hymn>God Be With You Till We Meet Again (#152)</hymn>, <hymn>The Time is Far Spent (#266)</hymn>, <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, <hymn>Sing We Now at Parting (#156)</hymn>, <hymn>Lord, Dismiss Us with Thy Blessing (#163)</hymn>, <hymn>Lord, We Ask Thee Ere We Part (#153)</hymn>, and <hymn>Now the Day Is Over (#159)</hymn>. Another theme was people choosing "forward looking" hymns like <hymn>Go Forth with Faith (#263)</hymn>, <hymn>Let Us All Press On (#243)</hymn>, <hymn>Onward, Christian Soldiers (#246)</hymn>, <hymn>Put Your Shoulder to the Wheel (#252)</hymn>. Personally, I appreciate the thought behind the selection of these hymns. Unfortunately, they are just not common enough to show up on any of these plots. 
+
+```{r}
+wards_both <- n_of_each_limbo %>%
+    filter(n_christmas > 0, n_newyears > 0) %>%
+    pull(meeting_id)
+limbo_plus %>%
+    filter(meeting_id %in% wards_both) %>%
+    cleveland_plot(unique_meetings = unique_limbo_meetings,
+                   filter_n = 4)
+```
+
+The other pattern, singing both a Christmas hymn *and* a New Year's hymn, is just as common as singing neither. Like what we saw for [the week after Thanksgiving](/posts/week-after-thanksgiving), there does seem to be a pattern though for when within the meeting these Christmas and New Year's hymns are sung. Perhaps unsurprisingly, the most common configuration is for the opening hymn to be a Christmas hymn and the closing hymn to be a New Year's hymn. That happened in 90% of the wards I have data from that sang both hymn types in the same meeting. Of those, the most sang some other hymn as the intermediate hymn, then Christmas, then New Year's. The other configurations I have attestations of are shown in @tbl-both-configs and only showed up once or twice. (Note here that "Other" means any hymn that is not a Christmas or New Year's hymn.)
+
+```{r, include = TRUE}
+#| label: tbl-both-configs
+#| tbl-cap: Configurations of Thanksgiving and Christmas hymns among wards that sing both the Sunday after Thanksgiving.
+limbo %>%
+    filter(meeting_id %in% wards_both) %>%
+    mutate(holiday = case_when(hymn_num %in% 201:214 ~ "Christmas",
+                               hymn_num %in% new_years_hymns ~ "New Year's",
+                               TRUE ~ "Other")) %>%
+    select(type, meeting_id, holiday) %>%
+    filter(!is.na(type)) %>%
+    pivot_wider(names_from = type, values_from = holiday) %>%
+    mutate(Intermediate = if_else(is.na(Intermediate) | Intermediate == "Other", "None/Other", Intermediate)) %>%
+    count(Opening, Sacrament, Intermediate, Closing, sort = TRUE) %>%
+    mutate(prop = scales::percent(n/sum(n))) %>%
+    rename(`number of wards` = n, 
+           `percent of wards` = prop) %>%
+    knitr::kable()
+```
+
+
+## New Year's Day
+
+Like what we saw with [the Sunday after Thanksgiving](/posts/week-after-thanksgiving), there is an effect that the actual *date* has on the hymns. Specifically, if that Sunday lands on December 1st, the numnber of Christmas hymns goes up quite a bit. Do we see the same kind of pattern with New Year's Day?
+
+Probably unsurprisingly, yes! @fig-by_date shows the breakdown of Christmas, New Year's and other hymns from December 26th through January 7th.
+
+```{r, include = TRUE, fig.height = 4}
+#| label: fig-by_date
+#| fig-cap: Proportion of Thanksgiving, Christmas, and Other hymns by date
+percents_by_date <- limbo_plus %>%
+    filter(!hymn_num %in% 169:196) %>%
+    mutate(holiday = case_when(hymn_num %in% 201:214 ~ "Christmas",
+                                 hymn_num %in% new_years_hymns ~ "New Year's",
+                                 TRUE ~ "Other"),
+           holiday = factor(holiday, levels = c("New Year's", "Christmas", "Other"))) %>%
+    count(date_str, holiday) %>%
+    mutate(prop = n/sum(n),
+           scales = scales::percent(prop), .by = date_str)
+ggplot(percents_by_date, aes(date_str, prop, fill = holiday)) + 
+    geom_col(position = position_stack()) + 
+    scale_fill_manual(breaks = c("New Year's", "Christmas", "Other"),
+                      values = c(ptol_blue, ptol_red, "gray75")) + 
+    labs(title = "Percent of <span style = 'color:#4477AA;'>New Year's</span>, <span style = 'color:#EE6677;'>Christmas</span>, and <span style = 'color:#bfbfbf;'>Other</span> hymns by date",
+         subtitle = "Dates are pooled across years",
+         x = NULL,
+         y = "percent of hymns sung") + 
+    scale_y_continuous(breaks = seq(0, 1, 0.2),
+                       labels = scales::percent,
+                       expand = expansion(0, 0)) + 
+    labs(caption = "New Year's hymns are defined as hymns 215 and 217.") + 
+    theme_minimal() + 
+    theme(plot.title = ggtext::element_markdown(),
+          legend.position = "none")
+```
+
+```{r}
+ggsave("cover.png", height = 4, width = 6.5)
+```
+
+
+I think this is a largely unsurprising pattern. First, we see that the number of Christmas hymns decreases the further you get from Christmas. In secular American Christmas culture, it seems like the Christmas season ends sometime between Christmas and New Year's. However, in some Christian traditions, they do honor the fact that the "twelve days of Christmas" *starts* on Christmas day, meaning it extends until January 5th, with various celebrations happening after that, like [Epiphany](https://en.wikipedia.org/wiki/Epiphany_(holiday)) on the 6th. In my experience (keeping mind that I'm not an expert in Mormon culture), the end of the Christmas season for Latter-day Saints is in-line with mainstream American culture and happens pretty soon after the 25th. This plot shows pretty strong evidence for that: there was no indication of Christmas hymns being sung during the last three days of Christmas.
+
+The second pattern we see is the rise and fall of the popularity of New Year's hymns. The closer you are to New Year's Eve---and yes, it appears to peak on New Year's Eve---the more likely you are to sing New Year's hymns. 
+
+Finally, all the other hymns gradually become more common as you progress from December 26th to January 7th. It's actually quite a straight line, so there doesn't appear to be a jump at any one point. 
+
+So, when looking at the transition from Thanksgiving to Christmas, there was an abrupt pivot point at December 1st. In this case, there is no such abrupt change. Instead, we gradually transition away from Christmas, into New Year's, and away from both over the course of two weeks. I think this is quite a cool pattern to see because, as far as I'm aware, this is almost entirely unconscious. I don't think any music coordinator looks at their notes from previous years and thinks, "well, this year, we're one day further to New Year's than we were last year, so I'll lower the odds of choosing a New Year's hymn by 5%." But, when aggregating many wards over many years, the pattern is pretty tidy. 
+
+I should mention that seeing the trend shown in @fig-by_date is only possible because I have data spanning over 20 years. Since the the Sundays around New Year's Day fall on different dates, I can compare those days to each other. So, for example, in 2024, New Year's Day will be on a Monday, so Sunday will be New Year's Eve. This was also true in 2007 and 2018, so that column represents those three years pooled together. I think this is important to mention because no matter how much data is collected from one year, you'll still only see just one of these columns. It takes a lot of data over many years to be able to see this kind of nuance.
+
+
+```{r}
+# See what years I have for which day
+limbo_plus %>%    
+    count(date_str, year) %>%
+    pivot_wider(names_from = date_str, values_from = n) %>%
+    arrange(year)
+```
+
+To dig just a little deeper, I wanted to see the trends for specific hymns across these dates. In @fig-facet (sorry for the small text), each of the 14 Christmas hymns and two New Year's Hymns is in their own panel. Lines and dots are higher if that hymn is sung more often on that day. 
+
+```{r, include = TRUE, fig.height = 8, fig.width = 8, message = FALSE}
+#| label: fig-facet
+#| fig-cap: Christmas and New Year's hymn frequencies, Dec 26 through Jan 7
+hymns_by_date <- limbo_plus %>%
+    filter(!hymn_num %in% 169:196) %>%
+    mutate(holiday = case_when(hymn_num %in% 201:214 ~ "Christmas",
+                                 hymn_num %in% new_years_hymns ~ "New Year's",
+                                 TRUE ~ "Other"),
+           holiday = factor(holiday, levels = c("New Year's", "Christmas", "Other"))) %>%
+    count(name_num, hymn_num, holiday, date_str) %>%
+    mutate(prop = n/sum(n),
+           scales = scales::percent(prop), .by = date_str) %>%
+    filter(holiday %in% c("New Year's", "Christmas")) %>%
+    arrange(holiday, hymn_num) %>%
+    mutate(name_num = fct_inorder(name_num))
+ggplot(hymns_by_date, aes(date_str, prop, color = holiday)) +
+    geom_point() + 
+    geom_path(aes(group = name_num)) + 
+    scale_y_continuous(labels = scales::percent) + 
+    facet_wrap(~name_num, ncol = 3) + 
+    scale_color_ptol() + 
+    labs(title = "New Year's and Christmas song frequencies, Dec 26 through Dec 31",
+         x = NULL,
+         y = "percent of hymns sung") + 
+    theme_bw(base_size = 8) + 
+    theme(legend.position = "none",
+          axis.text.x = element_text(size = 5))
+```
+
+```{r}
+limbo_plus %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    mutate(across(c(month, hymn_num), as.character))%>%
+    infer::chisq_test(hymn_num ~ month)
+```
+
+Among the New Year's hymns, we again see that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and that <hymn>Come, Let Us Anew (#217)</hymn> is more common in January.[A $\chi^2$ test suggests that this difference---that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common before New Year's and <hymn>Come, Let Us Anew (#217)</hymn> is more common after---is statistically significant ($\chi^2$ = 7.179, df = 1, *p* = 0.007). This may be another case where the order that they appear in the hymnal influences when they're sung.]{.aside} Among the Christmas hymns, there's nothing that really stands out. Each hymn has its own story of course, but it's nothing that we haven't already seen when looking at [Christmas hymns over the course of December](/posts/christmas).
+
+ 
+```{r}
+percents_by_year <- limbo_plus %>%
+    filter(!hymn_num %in% 169:196) %>%
+    mutate(holiday = case_when(hymn_num %in% 201:214 ~ "Christmas",
+                                 hymn_num %in% new_years_hymns ~ "New Year's",
+                                 TRUE ~ "Other"),
+           holiday = factor(holiday, levels = c("New Year's", "Christmas", "Other"))) %>%
+    count(year, holiday) %>%
+    mutate(prop = n/sum(n),
+           scales = scales::percent(prop), .by = year)
+ggplot(percents_by_year, aes(year, prop, fill = holiday)) + 
+    geom_col(position = position_stack()) +
+    scale_fill_manual(breaks = c("New Year's", "Christmas", "Other"),
+                      values = c(ptol_blue, ptol_red, "gray75")) +
+    labs(title = "Percent of <span style = 'color:#4477AA;'>New Year's</span>, <span style = 'color:#EE6677;'>Christmas</span>, and <span style = 'color:#bfbfbf;'>Other</span> hymns by date",
+         subtitle = "Dates are pooled across years",
+         x = NULL,
+         y = "percent of hymns sung") +
+    scale_y_continuous(breaks = seq(0, 1, 0.2),
+                       labels = scales::percent,
+                       expand = expansion(0, 0)) +
+    theme_minimal() + 
+    theme(plot.title = ggtext::element_markdown(),
+          legend.position = "none")
+```
+
+## Conclusion
+
+Christmas hymns are less common the further you are from Christmas. New Year's hymns are common the closer you are to New Year's. Specifically, <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and <hymn>Come, Let Us Anew (#217)</hymn> is more common in January. Other hymns gradually become more and more common so that by the time the twelve days of Christmas are over, almost all congregations have transitioned completely away from either holiday. 

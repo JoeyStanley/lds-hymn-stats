@@ -10,7 +10,694 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Sun, 24 Dec 2023 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 29 Dec 2023 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>What hymns are sung around New Year’s Day?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/new-years/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="what-hymns-are-sung" class="level2">
+<h2 class="anchored" data-anchor-id="what-hymns-are-sung">What hymns are sung?</h2>
+<p>Figure&nbsp;1 shows the most popular congregational hymns between December 26th and January 7th. I’ve color-coded the hymn names to correspond to the holiday they are most closely associated with. Hymns 201–214 are Christmas hymns and are colored in red. Hymns 215 and 217 are New Year’s hymns and are colored in blue. Everything else is colored in gray.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-limbo_plus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-limbo_plus-1.png" class="img-fluid figure-img" width="624"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Most popular congregational hymns the two Sundays after Christmas</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s apparent that it is quite popular to sung New Year’s hymns the Sunday after Christmas. Over 45% of wards sing <hymn>Come, Let Us Anew (#217)</hymn> and about 39% sing <hymn>Ring Out, Wild Bells (#215)</hymn>. There is also a clear stand out for the most most popular Christmas hymn during this week, which is <hymn>I Heard the Bells on Christmas Day (#215)</hymn>, but only about 15% of wards sing it the Sunday after Christmas.</p>
+<p>What is interesting is that <hymn>We Are Sowing (#216)</hymn> made it on this chart. It’s not a New Year’s hymn (it’s not listed as one in topics index), but it is, for some reason, sandwiched between the two that are. What seems like is happening is that it gets lumped in by association. Unsurprising, but pretty interesting that it happens enough to show up on the plot.</p>
+<p>But, you might argue that the week after Christmas is a totally different Sunday than the week after New Year’s. And you’d be right! If we break the data down into those two weeks, we get very different pictures! <span class="citation" data-cites="fig_limbo">@fig_limbo</span> shows the most popular hymns just in the last week of December. You can see that while the New Year’s hymns are still at the top, all the rest are all Christmas hymns. And if you look closely, <hymn>Ring Out, Wild Bells (#215)</hymn> is the more common of the two New Year’s hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-limbo" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-limbo-1.png" class="img-fluid figure-img" width="624"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Most popular congregational hymns December 26th–31st</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>If we now look at the first Sunday in January, we get a totally different picture. Figure&nbsp;3 shows that once we’re on the January side of New Year’s, no Christmas hymn is popular. We again get the New Year’s hymns, but all the other hymns are just generic <a href="../../posts/most_common">popular hymns</a> without much of a theme.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-jan_only" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-jan_only-1.png" class="img-fluid figure-img" width="624"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Most popular congregational hymns January 1st–7th</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>So, while this blog post is intending to cover both of these weeks at the same time, it’s important to separate them out as best I can.</p>
+</section>
+<section id="christmas-vs.-new-years" class="level2">
+<h2 class="anchored" data-anchor-id="christmas-vs.-new-years">Christmas vs.&nbsp;New Year’s</h2>
+<p>Let’s dive just a little bit deeper into just the Sunday after Christmas, Table&nbsp;1 shows the percentage of wards in my sample that sing Christmas and New Year’s hymns the Sunday after Christmas The top right cell shows that 33.08% of wards sing at least one Christmas hymn and no New Year’s hymns. The bottom left cell shows that 31.18% of wards sing at least one New Year’s hymn and no Christmas hymns. It is interesting that these numbers are almost even, so even though the two blue bars in Figure&nbsp;2 above were much longer, the many shorter red bars add up to be about the same.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-n_of_each" class="anchored">
+
+<div id="ukhmfaewda" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ukhmfaewda table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ukhmfaewda thead, #ukhmfaewda tbody, #ukhmfaewda tfoot, #ukhmfaewda tr, #ukhmfaewda td, #ukhmfaewda th {
+  border-style: none;
+}
+
+#ukhmfaewda p {
+  margin: 0;
+  padding: 0;
+}
+
+#ukhmfaewda .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ukhmfaewda .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ukhmfaewda .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ukhmfaewda .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ukhmfaewda .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ukhmfaewda .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ukhmfaewda .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ukhmfaewda .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ukhmfaewda .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ukhmfaewda .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ukhmfaewda .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ukhmfaewda .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ukhmfaewda .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ukhmfaewda .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ukhmfaewda .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ukhmfaewda .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ukhmfaewda .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ukhmfaewda .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ukhmfaewda .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ukhmfaewda .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ukhmfaewda .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ukhmfaewda .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ukhmfaewda .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ukhmfaewda .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ukhmfaewda .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ukhmfaewda .gt_left {
+  text-align: left;
+}
+
+#ukhmfaewda .gt_center {
+  text-align: center;
+}
+
+#ukhmfaewda .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ukhmfaewda .gt_font_normal {
+  font-weight: normal;
+}
+
+#ukhmfaewda .gt_font_bold {
+  font-weight: bold;
+}
+
+#ukhmfaewda .gt_font_italic {
+  font-style: italic;
+}
+
+#ukhmfaewda .gt_super {
+  font-size: 65%;
+}
+
+#ukhmfaewda .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ukhmfaewda .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ukhmfaewda .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ukhmfaewda .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ukhmfaewda .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ukhmfaewda .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ukhmfaewda .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>Percentage of wards that sing Thanksgiving and Christmas hymns the
+Sunday after Thanksgiving</p> </caption>
+  <thead>
+    
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Christmas hymns">Christmas hymns</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="New Year's hymns">
+        <span class="gt_column_spanner">New Year's hymns</span>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="yes">yes</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="no">no</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">yes</th>
+<td headers="stub_1_1 yes" class="gt_row gt_right">18.25%</td>
+<td headers="stub_1_1 no" class="gt_row gt_right">33.08%</td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">no</th>
+<td headers="stub_1_2 yes" class="gt_row gt_right">31.18%</td>
+<td headers="stub_1_2 no" class="gt_row gt_right">17.49%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>Interestingly, the numbers in the other corners of the box are also pretty even. About 18.25% of wards sing both Christmas and New Year’s hymns, while 17.49% of wards sing neither. And if we add up the rows and the columns, they all come close to about 50%. Here’s a (maybe confusing) summary of what’s happening:</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>About half of the wards sing Christmas hymns and half don’t. Of the ones that do, about a third also sing New Year’s hymns. Of the one’s that don’t, about a third also do not sing New Year’s hymns.</p>
+</div>
+</div>
+<p>The amazing thing is that if you swap Christmas and New Year’s in all those statements, it’s still true!</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Funner Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>About half of the wards sing New Year’s hymns and half don’t. Of the ones that do, about a third also sing Christmas hymns. Of the one’s that don’t, about a third also do not sing Christmas hymns.</p>
+</div>
+</div>
+<p>I find the symmetry in those results <em>very</em> satisfying.</p>
+<p>I took a look at the wards that didn’t sing either Christmas or New Year’s hymns the last week of December and I didn’t see too much about what hymns they did sing. There were a few that I could see fitting with the theme of the closing of a year, like <hymn>God Be With You Till We Meet Again (#152)</hymn>, <hymn>The Time is Far Spent (#266)</hymn>, <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, <hymn>Sing We Now at Parting (#156)</hymn>, <hymn>Lord, Dismiss Us with Thy Blessing (#163)</hymn>, <hymn>Lord, We Ask Thee Ere We Part (#153)</hymn>, and <hymn>Now the Day Is Over (#159)</hymn>. Another theme was people choosing “forward looking” hymns like <hymn>Go Forth with Faith (#263)</hymn>, <hymn>Let Us All Press On (#243)</hymn>, <hymn>Onward, Christian Soldiers (#246)</hymn>, <hymn>Put Your Shoulder to the Wheel (#252)</hymn>. Personally, I appreciate the thought behind the selection of these hymns. Unfortunately, they are just not common enough to show up on any of these plots.</p>
+<p>The other pattern, singing both a Christmas hymn <em>and</em> a New Year’s hymn, is just as common as singing neither. Like what we saw for <a href="../../posts/week-after-thanksgiving">the week after Thanksgiving</a>, there does seem to be a pattern though for when within the meeting these Christmas and New Year’s hymns are sung. Perhaps unsurprisingly, the most common configuration is for the opening hymn to be a Christmas hymn and the closing hymn to be a New Year’s hymn. That happened in 90% of the wards I have data from that sang both hymn types in the same meeting. Of those, the most sang some other hymn as the intermediate hymn, then Christmas, then New Year’s. The other configurations I have attestations of are shown in Table&nbsp;2 and only showed up once or twice. (Note here that “Other” means any hymn that is not a Christmas or New Year’s hymn.)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-both-configs" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: Configurations of Thanksgiving and Christmas hymns among wards that sing both the Sunday after Thanksgiving.</caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 20%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Opening</th>
+<th style="text-align: left;">Sacrament</th>
+<th style="text-align: left;">Intermediate</th>
+<th style="text-align: left;">Closing</th>
+<th style="text-align: right;">number of wards</th>
+<th style="text-align: left;">percent of wards</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">None/Other</td>
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">58.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">23.9%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">6.5%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">4.3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">None/Other</td>
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2.2%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2.2%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;">Christmas</td>
+<td style="text-align: left;">New Year’s</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2.2%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="new-years-day" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="new-years-day">New Year’s Day</h2>
+<p>Like what we saw with <a href="../../posts/week-after-thanksgiving">the Sunday after Thanksgiving</a>, there is an effect that the actual <em>date</em> has on the hymns. Specifically, if that Sunday lands on December 1st, the numnber of Christmas hymns goes up quite a bit. Do we see the same kind of pattern with New Year’s Day?</p>
+<p>Probably unsurprisingly, yes! Figure&nbsp;4 shows the breakdown of Christmas, New Year’s and other hymns from December 26th through January 7th.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-by_date" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-by_date-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Proportion of Thanksgiving, Christmas, and Other hymns by date</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>I think this is a largely unsurprising pattern. First, we see that the number of Christmas hymns decreases the further you get from Christmas. In secular American Christmas culture, it seems like the Christmas season ends sometime between Christmas and New Year’s. However, in some Christian traditions, they do honor the fact that the “twelve days of Christmas” <em>starts</em> on Christmas day, meaning it extends until January 5th, with various celebrations happening after that, like <a href="https://en.wikipedia.org/wiki/Epiphany_(holiday)">Epiphany</a> on the 6th. In my experience (keeping mind that I’m not an expert in Mormon culture), the end of the Christmas season for Latter-day Saints is in-line with mainstream American culture and happens pretty soon after the 25th. This plot shows pretty strong evidence for that: there was no indication of Christmas hymns being sung during the last three days of Christmas.</p>
+<p>The second pattern we see is the rise and fall of the popularity of New Year’s hymns. The closer you are to New Year’s Eve—and yes, it appears to peak on New Year’s Eve—the more likely you are to sing New Year’s hymns.</p>
+<p>Finally, all the other hymns gradually become more common as you progress from December 26th to January 7th. It’s actually quite a straight line, so there doesn’t appear to be a jump at any one point.</p>
+<p>So, when looking at the transition from Thanksgiving to Christmas, there was an abrupt pivot point at December 1st. In this case, there is no such abrupt change. Instead, we gradually transition away from Christmas, into New Year’s, and away from both over the course of two weeks. I think this is quite a cool pattern to see because, as far as I’m aware, this is almost entirely unconscious. I don’t think any music coordinator looks at their notes from previous years and thinks, “well, this year, we’re one day further to New Year’s than we were last year, so I’ll lower the odds of choosing a New Year’s hymn by 5%.” But, when aggregating many wards over many years, the pattern is pretty tidy.</p>
+<p>I should mention that seeing the trend shown in Figure&nbsp;4 is only possible because I have data spanning over 20 years. Since the the Sundays around New Year’s Day fall on different dates, I can compare those days to each other. So, for example, in 2024, New Year’s Day will be on a Monday, so Sunday will be New Year’s Eve. This was also true in 2007 and 2018, so that column represents those three years pooled together. I think this is important to mention because no matter how much data is collected from one year, you’ll still only see just one of these columns. It takes a lot of data over many years to be able to see this kind of nuance.</p>
+<p>To dig just a little deeper, I wanted to see the trends for specific hymns across these dates. In Figure&nbsp;5 (sorry for the small text), each of the 14 Christmas hymns and two New Year’s Hymns is in their own panel. Lines and dots are higher if that hymn is sung more often on that day.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-facet" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-facet-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Christmas and New Year’s hymn frequencies, Dec 26 through Jan 7</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p>Among the New Year’s hymns, we again see that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and that <hymn>Come, Let Us Anew (#217)</hymn> is more common in January. Among the Christmas hymns, there’s nothing that really stands out. Each hymn has its own story of course, but it’s nothing that we haven’t already seen when looking at <a href="../../posts/christmas">Christmas hymns over the course of December</a>.</p><div class="no-row-height column-margin column-container"><span class="">A <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> test suggests that this difference—that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common before New Year’s and <hymn>Come, Let Us Anew (#217)</hymn> is more common after—is statistically significant (<img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> = 7.179, df = 1, <em>p</em> = 0.007). This may be another case where the order that they appear in the hymnal influences when they’re sung.</span></div></div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Christmas hymns are less common the further you are from Christmas. New Year’s hymns are common the closer you are to New Year’s. Specifically, <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and <hymn>Come, Let Us Anew (#217)</hymn> is more common in January. Other hymns gradually become more and more common so that by the time the twelve days of Christmas are over, almost all congregations have transitioned completely away from either holiday.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>holidays</category>
+  <category>frequency</category>
+  <guid>https://hymnstats.joeystanley.com/posts/new-years/index.html</guid>
+  <pubDate>Fri, 29 Dec 2023 07:00:00 GMT</pubDate>
+  <media:content url="https://hymnstats.joeystanley.com/posts/new-years/cover.png" medium="image" type="image/png" height="89" width="144"/>
+</item>
 <item>
   <title>Christmas</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -19,7 +706,6 @@
 
 
 
-<p>In Latter-day Saint congregations, Christmas is the holiday that gets sung about the most. In this post, we’ll explore some of the patterns that arise in the hymns that we sing in December.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -31,7 +717,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>In other Christian traditions, the term <em>Advent</em> is used to describe the four or so weeks leading up to Christmas, with the “Christmas season” being used to describe a period of twelve days <em>starting</em> with Christmas. For whatever reason, most members of the church don’t use the term <em>Advent</em> and any traditionally Advent and Christmas hymns are pooled together under a generic label of “Christmas.”</p>
-<p>In this post, I’ll largely ignore the difference between Advent and Christmas in my terminology. But, since this post does focus on the four or so Sundays leading up to Christmas (the Sunday after Christmas will be treated in a separate blog post), those of you who maintain the difference can think of this post as being focused on Advent.</p>
+<p>In this post, I’ll largely ignore the difference between Advent and Christmas in my terminology. But, since this post does focus on the four or so Sundays leading up to Christmas (the Sunday after Christmas is treated in a separate blog post <a href="../../posts/new-years">here</a>), those of you who maintain the difference can think of this post as being focused on Advent.</p>
 </div>
 </div>
 <p>A look at the table of contents in the hymnal shows that the Christmas hymns are hymns 201–214. But the music coordinator faces the difficult task of figuring out which hymns to sing. There are usually not quite enough Sundays in December to sing all of them, so some will have to be prioritized over others. There are also usually a couple special musical numbers to work around, and I think many music coordinators try not to have the congregation sing a hymn if it’s already going to be heard in a musical number that season. So, with that in mind, let’s look at the data.</p>
@@ -95,7 +781,7 @@ Fun Fact
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>So, you’ll likely to sing eight Christmas hymns as a congregation in your ward this year, give or take a few.</p>
+<p>So, you’ll likely sing eight Christmas hymns as a congregation in your ward this year, give or take a few.</p>
 </div>
 </div>
 </section>
@@ -271,7 +957,7 @@ Another look at the data
 </div>
 </div>
 <p>Overall there are fewer intermediate hymns around Christmas time (because there are presumably more special musical numbers), so it shouldn’t be a surprise that the bars representing the intermediate hymns are lower for all 14 Christmas hymns. But there should be equal or very close to equal numbers of opening and closing hymns. Assuming Christmas hymns were randomly chosen, we’d expect the bars representing the opening and closing hymns to be a the same height. But, for relatively few hymns do we see that pattern. Instead, we see that most hymns lean more towards being opening hymns verses closing hymns. The standout is <hymn>Silent Night (#203)</hymn>, which is sung as the closing hymn 76% of the times it’s sung.</p>
-<p>Let’s look at the same data but organized differently. Figure&nbsp;10 shows the hymns in order of how often they were sung as opening hymns. Here we can see that the most quintessential opening hymn is <hymn>Oh, Come, All Ye Faithful (#202), which is sung as an opening hymn 63% of the time that it’s sung. In fact, we see that many of the most common Christmas hymns are near the top of the list. Again, I can’t help but notice that the first three Christmas hymns listed in the hymnal (#201, #202, and #203) are the most common opening hymns, making me wonder whether there is a bit of a trend to sing the hymns in order of appearance.</hymn></p>
+<p>Let’s look at the same data but organized differently. Figure&nbsp;10 shows the hymns in order of how often they were sung as opening hymns. Here we can see that the most quintessential opening hymn is <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, which is sung as an opening hymn 63% of the time that it’s sung. In fact, we see that many of the most common Christmas hymns are near the top of the list. Again, I can’t help but notice that the first three Christmas hymns listed in the hymnal (#201, #202, and #203) are the most common opening hymns, making me wonder whether there is a bit of a trend to sing the hymns in order of appearance.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-opening" class="quarto-figure quarto-figure-center anchored">
