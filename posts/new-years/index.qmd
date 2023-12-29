@@ -365,6 +365,43 @@ ggplot(percents_by_year, aes(year, prop, fill = holiday)) +
           legend.position = "none")
 ```
 
+
+Finally, just to dig a even deeper, @fig-type shows when the two New Year's hymns are sung within Sacrament meeting. Because intermediate hymns are not common, it's no surprise that their bars are smaller. And it's highly unusual to sing these as sacrament hymns, but apparently it has been done.
+
+```{r, include = TRUE, fig.height = 5}
+#| label: fig-type
+#| fig-cap: When New Year's hymns are sung in Sacrament meeting
+limbo_plus %>%
+    filter(hymn_num %in% c(215, 217)) %>%
+    count(month, name_num, type) %>%
+    filter(!is.na(type)) %>%
+    mutate(prop = n/sum(n), .by = c(name_num, month)) %>%
+    mutate(month = if_else(month == 1, "January", "December"),
+           name_num = fct_rev(factor(name_num))) %>%
+    ggplot(aes(type, prop)) + 
+    geom_col(position = position_dodge2()) + 
+    scale_y_continuous(breaks = seq(0, 1, 0.2),
+                       labels = scales::percent) + 
+    facet_grid(name_num ~ month) + 
+    labs(title = "When are the two New Year's hymns sung in Sacrament meeting?",
+         x = NULL,
+         y = "proportion of times sung") + 
+    theme_bw()
+```
+
+I've split the data up by month because I thought there might be a difference, and it turns out I was right. <hymn>Come, Let Us Anew (#217)</hymn> is about equally likely to be sung as an opening hymn or a closing hymn, regardless of whether it's before New Year's or after, with maybe a slight preference for it as an opening hymn in January. But <hymn>Ring Out, Wild Bells (#215)</hymn> is far more common as a closing hymn in December and as an opening hymn in January. [Once again, a $\chi^2$ test suggests that this difference in when <hymn>Ring Out, Wild Bells (#215)</hymn> is sung in the meeting is statistically significant ($\chi^2$ = 24.21, df = 1, *p* < 0.001).]{.aside} I think the general idea is that New Year's hymns are most common in the slot closest to New Year's itself, so since closing hymns in December are closer to New Year's, you sing them last, and since opening hymns are closer in January, you sing them as opening hymns. 
+
+```{r}
+limbo_plus %>%
+    filter(hymn_num == 215) %>%
+    # count(month, type) %>%
+    filter(type %in% c("Opening", "Closing")) %>%
+    mutate(across(c(month, type), as.character)) %>%
+    print() %>%
+    infer::chisq_test(type ~ month)
+```
+
+
 ## Conclusion
 
-Christmas hymns are less common the further you are from Christmas. New Year's hymns are common the closer you are to New Year's. Specifically, <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and <hymn>Come, Let Us Anew (#217)</hymn> is more common in January. Other hymns gradually become more and more common so that by the time the twelve days of Christmas are over, almost all congregations have transitioned completely away from either holiday. 
+Christmas hymns are less common the further you are from Christmas. New Year's hymns are common the closer you are to New Year's. Specifically, <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December (specifically as a closing hymn) and <hymn>Come, Let Us Anew (#217)</hymn> is more common in January. Other hymns gradually become more and more common so that by the time the twelve days of Christmas are over, almost all congregations have transitioned completely away from either holiday. 
