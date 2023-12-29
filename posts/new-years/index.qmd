@@ -116,7 +116,7 @@ limbo %>%
                                hymn_num %in% new_years_hymns ~ "New Year's",
                                TRUE ~ "Other"),
            holiday = factor(holiday, levels = c("Christmas", "New Year's", "Other"))) %>%
-    cleveland_plot(title = "Hymns sung betwen December 26th and Decemnber 31st ", 
+    cleveland_plot(title = "Hymns sung betwen December 26th and December 31st ", 
                    subtitle = "There are only of <span style = 'color:#4477AA;'>New Year's</span> and <span style = 'color:#EE6677;'>Christmas</span>; no <span style = 'color:#777777;'>Other</span> hymn were popular.",
                    filter_n = 10, unique_meetings = get_n_distinct_meetings(),
                    extra_cols = holiday, color = holiday) + 
@@ -338,7 +338,7 @@ ggplot(hymns_by_date, aes(date_str, prop, color = holiday)) +
     scale_y_continuous(labels = scales::percent) + 
     facet_wrap(~name_num, ncol = 3) + 
     scale_color_ptol() + 
-    labs(title = "New Year's and Christmas song frequencies, Dec 26 through Dec 31",
+    labs(title = "New Year's and Christmas song frequencies, Dec 26 through Jan 7",
          x = NULL,
          y = "percent of hymns sung") + 
     theme_bw(base_size = 8) + 
