@@ -117,7 +117,7 @@ limbo %>%
                                TRUE ~ "Other"),
            holiday = factor(holiday, levels = c("Christmas", "New Year's", "Other"))) %>%
     cleveland_plot(title = "Hymns sung betwen December 26th and December 31st ", 
-                   subtitle = "There are only of <span style = 'color:#4477AA;'>New Year's</span> and <span style = 'color:#EE6677;'>Christmas</span>; no <span style = 'color:#777777;'>Other</span> hymn were popular.",
+                   subtitle = "There are only <span style = 'color:#4477AA;'>New Year's</span> and <span style = 'color:#EE6677;'>Christmas</span> hymns; no <span style = 'color:#777777;'>Other</span> hymns were popular.",
                    filter_n = 10, unique_meetings = get_n_distinct_meetings(),
                    extra_cols = holiday, color = holiday) + 
     labs(x = "Percentage of wards that sing this hymn during this week") + 
