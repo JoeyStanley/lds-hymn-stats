@@ -5,6 +5,7 @@ author: "Joey Stanley"
 date: 2023-12-24
 categories:
     - holidays
+image: cover.png
 ---
 
 ```{r, include = FALSE}
@@ -124,6 +125,10 @@ ggplot(n_hymns_per_season, aes(n_unique, n)) +
          y = "number of wards",
          title = "Number of different Christmas hymns per ward per Christmas season") + 
     theme_minimal()
+```
+
+```{r}
+ggsave("cover.png", height = 3, width = 6.5)
 ```
 
 
