@@ -17,13 +17,16 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(gt)
 ```
 
+:::callout-tip
+This post is based on data from 658 sacrament meetings from 250 wards. It covers includes data from late 2003 to late 2023. 34% of the data comes from Utah, 53% comes from elsewhere in the US, and 13% comes from outside the US. 
+:::
+
 ## What hymns are sung?
 
 ```{r}
 get_limbo_subset <- function(...) {
     freqs %>%
-        filter(country == "United States",
-               !ward %in% c("NA", "Anonymous")) %>%
+        filter(!ward %in% c("NA", "Anonymous")) %>%
         filter(...) %>%
         mutate(date_str = paste(if_else(month == 12, "Dec", "Jan"), day)) %>%
         arrange(-month, day) %>%
@@ -32,6 +35,24 @@ get_limbo_subset <- function(...) {
 limbo <- get_limbo_subset(month == 12, day > 25)
 limbo_plus <- get_limbo_subset((month == 12 & day > 25) | (month == 1 & day <= 7))
 jan_only <- get_limbo_subset(month == 1, day <= 7)
+```
+
+```{r}
+limbo_plus %>% count(meeting_id) %>% nrow()
+limbo_plus %>% count(ward) %>% nrow()
+limbo_plus %>%
+    count(year)
+limbo_plus %>%
+    count(meeting_id, state) %>%
+    count(state, sort = TRUE) %>%
+    mutate(prop = n/sum(n)) %>%
+    print()
+
+limbo_plus %>%
+    count(meeting_id, country) %>%
+    count(country, sort = TRUE) %>%
+    mutate(prop = n/sum(n)) %>%
+    print()
 ```
 
 
@@ -70,19 +91,16 @@ limbo_plus %>%
     scale_x_continuous(labels = scales::percent(seq(0, 1, 0.05)),
                        breaks = seq(0, 1, 0.05),
                        minor_breaks = seq(0, 1, 0.01),
-                       expand = expansion(0, c(0, 0.13))) + 
+                       expand = expansion(0, c(0, 0.14))) + 
     labs(caption = paste("Based on data from", unique_limbo_meetings, "sacrament meetings.")) + 
     theme(plot.subtitle = ggtext::element_markdown(),
           legend.position = "none")
 ```
 
 
-
-It's apparent that it is quite popular to sung New Year's hymns the Sunday after Christmas. Over 45% of wards sing <hymn>Come, Let Us Anew (#217)</hymn> and about 39% sing <hymn>Ring Out, Wild Bells (#215)</hymn>. There is also a clear stand out for the most most popular Christmas hymn during this week, which is <hymn>I Heard the Bells on Christmas Day (#215)</hymn>, but only about 15% of wards sing it the Sunday after Christmas. 
+It's apparent that it is quite popular to sung New Year's hymns the Sunday after Christmas. Almost 50% of wards sing <hymn>Come, Let Us Anew (#217)</hymn> and about 44% sing <hymn>Ring Out, Wild Bells (#215)</hymn>. There is also a clear stand out for the most most popular Christmas hymn during this week, which is <hymn>I Heard the Bells on Christmas Day (#215)</hymn>, but only about 17% of wards sing it the Sunday after Christmas. 
 
 What is interesting is that <hymn>We Are Sowing (#216)</hymn> made it on this chart. It's not a New Year's hymn (it's not listed as one in topics index), but it is, for some reason, sandwiched between the two that are. What seems like is happening is that it gets lumped in by association. Unsurprising, but pretty interesting that it happens enough to show up on the plot. 
-
-
 
 But, you might argue that the week after Christmas is a totally different Sunday than the week after New Year's. And you'd be right! If we break the data down into those two weeks, we get very different pictures! @fig_limbo shows the most popular hymns just in the last week of December. You can see that  while the New Year's hymns are still at the top, all the rest are all Christmas hymns. And if you look closely, <hymn>Ring Out, Wild Bells (#215)</hymn> is the more common of the two New Year's hymns.
 
@@ -109,7 +127,7 @@ limbo %>%
     scale_x_continuous(labels = scales::percent(seq(0, 1, 0.05)),
                        breaks = seq(0, 1, 0.05),
                        minor_breaks = seq(0, 1, 0.01),
-                       expand = expansion(0, c(0, 0.13))) + 
+                       expand = expansion(0, c(0, 0.08))) + 
     labs(caption = paste("Based on data from", unique_limbo_meetings, "sacrament meetings.")) + 
     theme(plot.subtitle = ggtext::element_markdown(),
           legend.position = "none")
@@ -140,7 +158,7 @@ jan_only %>%
     scale_x_continuous(labels = scales::percent(seq(0, 1, 0.05)),
                        breaks = seq(0, 1, 0.05),
                        minor_breaks = seq(0, 1, 0.01),
-                       expand = expansion(0, c(0, 0.13))) + 
+                       expand = expansion(0, c(0, 0.09))) + 
     labs(caption = paste("Based on data from", unique_limbo_meetings, "sacrament meetings.")) + 
     theme(plot.subtitle = ggtext::element_markdown(),
           legend.position = "none")
@@ -148,10 +166,9 @@ jan_only %>%
 
 So, while this blog post is intending to cover both of these weeks at the same time, it's important to separate them out as best I can. 
 
-
 ## Christmas vs. New Year's
 
-Let's dive just a little bit deeper into just the Sunday after Christmas, @tbl-n_of_each shows the percentage of wards in my sample that sing Christmas and New Year's hymns the Sunday after Christmas The top right cell shows that 33.08% of wards sing at least one Christmas hymn and no New Year's hymns. The bottom left cell shows that 31.18% of wards sing at least one New Year's hymn and no Christmas hymns. It is interesting that these numbers are almost even, so even though the two blue bars in @fig-limbo above were much longer, the many shorter red bars add up to be about the same. 
+Let's dive just a little bit deeper into just the Sunday after Christmas, @tbl-n_of_each shows the percentage of wards in my sample that sing Christmas and New Year's hymns the Sunday after Christmas The top right cell shows that 34.6% of wards sing at least one Christmas hymn and no New Year's hymns. The bottom left cell shows that 28.2% of wards sing at least one New Year's hymn and no Christmas hymns. It is interesting that these numbers are so similar even, so even though the two blue bars in @fig-limbo above were much longer, the many shorter red bars add up to be about the same. 
 
 ```{r, include = TRUE}
 #| label: tbl-n_of_each
@@ -172,7 +189,7 @@ n_of_each_limbo %>%
 ```
 
 
-Interestingly, the numbers in the other corners of the box are also pretty even. About 18.25% of wards sing both Christmas and New Year's hymns, while 17.49% of wards sing neither. And if we add up the rows and the columns, they all come close to about 50%. Here's a (maybe confusing) summary of what's happening:
+Interestingly, the numbers in the other corners of the box are also pretty even. About 18.1% of wards sing both Christmas and New Year's hymns, while 19.1% of wards sing neither. And if we add up the rows and the columns, they all come close to about 50%. Here's a (maybe confusing) summary of what's happening:
 
 ::: {.callout-tip icon="false"}
 ### Fun Fact
@@ -221,7 +238,7 @@ The other pattern, singing both a Christmas hymn *and* a New Year's hymn, is jus
 
 ```{r, include = TRUE}
 #| label: tbl-both-configs
-#| tbl-cap: Configurations of Thanksgiving and Christmas hymns among wards that sing both the Sunday after Thanksgiving.
+#| tbl-cap: Configurations of Christmas and New Year's hymns among wards that sing both the Sunday after Christmas
 limbo %>%
     filter(meeting_id %in% wards_both) %>%
     mutate(holiday = case_when(hymn_num %in% 201:214 ~ "Christmas",
@@ -247,7 +264,7 @@ Probably unsurprisingly, yes! @fig-by_date shows the breakdown of Christmas, New
 
 ```{r, include = TRUE, fig.height = 4}
 #| label: fig-by_date
-#| fig-cap: Proportion of Thanksgiving, Christmas, and Other hymns by date
+#| fig-cap: Proportion of Christmas, New Year's, and Other hymns by date
 percents_by_date <- limbo_plus %>%
     filter(!hymn_num %in% 169:196) %>%
     mutate(holiday = case_when(hymn_num %in% 201:214 ~ "Christmas",
@@ -336,7 +353,7 @@ limbo_plus %>%
     infer::chisq_test(hymn_num ~ month)
 ```
 
-Among the New Year's hymns, we again see that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and that <hymn>Come, Let Us Anew (#217)</hymn> is more common in January.[A $\chi^2$ test suggests that this difference---that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common before New Year's and <hymn>Come, Let Us Anew (#217)</hymn> is more common after---is statistically significant ($\chi^2$ = 7.179, df = 1, *p* = 0.007). This may be another case where the order that they appear in the hymnal influences when they're sung.]{.aside} Among the Christmas hymns, there's nothing that really stands out. Each hymn has its own story of course, but it's nothing that we haven't already seen when looking at [Christmas hymns over the course of December](/posts/christmas).
+Among the New Year's hymns, we again see that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and that <hymn>Come, Let Us Anew (#217)</hymn> is more common in January.[A $\chi^2$ test suggests that this difference---that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common before New Year's and <hymn>Come, Let Us Anew (#217)</hymn> is more common after---is statistically significant ($\chi^2$ = 8.78, df = 1, *p* = 0.002). This may be another case where the order that they appear in the hymnal influences when they're sung.]{.aside} Among the Christmas hymns, there's nothing that really stands out. Each hymn has its own story of course, but it's nothing that we haven't already seen when looking at [Christmas hymns over the course of December](/posts/christmas).
 
  
 ```{r}
@@ -389,7 +406,7 @@ limbo_plus %>%
     theme_bw()
 ```
 
-I've split the data up by month because I thought there might be a difference, and it turns out I was right. <hymn>Come, Let Us Anew (#217)</hymn> is about equally likely to be sung as an opening hymn or a closing hymn, regardless of whether it's before New Year's or after, with maybe a slight preference for it as an opening hymn in January. But <hymn>Ring Out, Wild Bells (#215)</hymn> is far more common as a closing hymn in December and as an opening hymn in January. [Once again, a $\chi^2$ test suggests that this difference in when <hymn>Ring Out, Wild Bells (#215)</hymn> is sung in the meeting is statistically significant ($\chi^2$ = 24.21, df = 1, *p* < 0.001).]{.aside} I think the general idea is that New Year's hymns are most common in the slot closest to New Year's itself, so since closing hymns in December are closer to New Year's, you sing them last, and since opening hymns are closer in January, you sing them as opening hymns. 
+I've split the data up by month because I thought there might be a difference, and it turns out I was right. <hymn>Come, Let Us Anew (#217)</hymn> is about equally likely to be sung as an opening hymn or a closing hymn, regardless of whether it's before New Year's or after, with maybe a slight preference for it as an opening hymn in January. But <hymn>Ring Out, Wild Bells (#215)</hymn> is far more common as a closing hymn in December and as an opening hymn in January. [Once again, a $\chi^2$ test suggests that this difference in when <hymn>Ring Out, Wild Bells (#215)</hymn> is sung in the meeting is statistically significant ($\chi^2$ = 29.56, df = 1, *p* < 0.001).]{.aside} I think the general idea is that New Year's hymns are most common in the slot closest to New Year's itself, so since closing hymns in December are closer to New Year's, you sing them last, and since opening hymns are closer in January, you sing them as opening hymns. 
 
 ```{r}
 limbo_plus %>%
