@@ -24,6 +24,7 @@ The dataset I'm calling the `Frequency` data is which is collected by having peo
 
 The data presented in this project comes from about five different sources. @tbl-source_breakdown shows these five projects and how much data they've contributed to the overall dataset, in terms of number of wards, number of sacrament meetings, and number of hymns overall.
 
+
 ```{r, include = TRUE}
 #| label: tbl-source_breakdown
 #| tbl-cap: Breakdown of the Frequency dataset by source
@@ -415,7 +416,7 @@ n_years <- round(n_meetings/48, 2)
 n_hymns_str <- nrow(freqs) %>% comma()
 ```
 
-The `Frequency` dataset currently has information from `r n_meetings_str` sacrament meetings. Assuming a rate of one sacrament meeting a year, and 48 meetings a year (52 minus two for ward conference and two for stake conference), it would take a person just over `r n_years` years to experience that many congregational hymns. So, this collection represents far more than what any one person can experience in a lifetime. 
+The `Frequency` dataset currently has information from `r n_meetings_str` sacrament meetings. Assuming a rate of one sacrament meeting a year, and 48 meetings a year (52 minus two for ward conference and two for stake conference), it would take a person `r n_years` years to experience that many congregational hymns. So, this collection represents far more than what any one person can experience in a lifetime. 
 
 ### How many wards?
 
@@ -624,7 +625,28 @@ So, at all levels of geography, there are sampling errors, many of them biased t
 
 ## Distribution across time
 
-The oldest datapoint in this sample comes from April 28th, 2002 and, as of writing this on Decmeber 29, 2023,  the newest comes from December 31, 2023. So, the data spans over twenty years. Considering I started data collection in 2013, it's amazing that I have data from 2002 and 2003 at all---amazing that someone held on to those records for so long, that they happened to hear about the project, and that they were willing to contribute it all! If we ignore a few gaps in 2002 and 2003 and the second quarter of 2020 when in-person sacrament meetings were suspended, I have a nearly unbroken line of data spanning two decades. 
+```{r}
+oldest_str <- freqs %>%
+    filter(date == min(date, na.rm = TRUE)) %>%
+    distinct(date) %>%
+    mutate(month = month(date, label = TRUE, abbr = FALSE),
+           day = day(date),
+           year = year(date),
+           date_str = paste0(month, " ", day, ", ", year)) %>%
+    pull(date_str)
+
+newest_str <- freqs %>%
+    filter(date == max(date, na.rm = TRUE)) %>%
+    distinct(date) %>%
+    mutate(month = month(date, label = TRUE, abbr = FALSE),
+           day = day(date),
+           year = year(date),
+           date_str = paste0(month, " ", day, ", ", year)) %>%
+    pull(date_str)
+```
+
+
+The oldest datapoint in this sample comes from `r oldest_str` and the newest is currently from `r newest_str`. So, the data spans over twenty years. Considering I started data collection in 2013, it's amazing that I have data from 2002 and 2003 at all---amazing that someone held on to those records for so long, that they happened to hear about the project, and that they were willing to contribute it all! If we ignore a few gaps in 2002 and 2003 and the second quarter of 2020 when in-person sacrament meetings were suspended, I have a nearly unbroken line of data spanning two decades. 
 
 ```{r}
 freqs %>%
