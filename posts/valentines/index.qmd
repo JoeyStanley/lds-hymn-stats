@@ -66,18 +66,18 @@ valentines |> cleveland_plot(return = "table", filter_n = 25)
 ```
 
 
-@fig-love_topic shows the most commonly sung hymns during the second and third Sunday of February in the United States. Those that are in the "Love" entry of the Topics index are higlighted in red. As you can see, no hymn is extremely popular around this time. The most common is <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and it was only sung by about 12% of wards in a given year. Certainly not nothing---roughly one or two wards per stake sing it around then---but not something people come to expect. The fact that it's a [sacrament hymn](/posts/sacrament) probably gives it an little extra boost in frequency simply because sacrament hymns are common generally. 
+@fig-love_topic shows the most commonly sung hymns during the second and third Sundays of February in the United States. Those that are in the "Love" entry of the Topics index are higlighted in red. As you can see, no hymn is extremely popular around this time. The most common is <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and it was only sung by about 12% of wards in a given year. Certainly not nothing---roughly one or two wards per stake sing it around then---but not something people come to expect. The fact that it's a [sacrament hymn](/posts/sacrament) probably gives it an little extra boost in frequency simply because sacrament hymns are common generally. 
 
 ```{r, include = TRUE, fig.height = 5}
 #| label: fig-love_topic
-#| fig-cap: Most popular hymns during the second Sunday of February
+#| fig-cap: Most popular hymns during the second and third Sundays of February
 valentines |> 
     mutate(love_hymn = hymn_num %in% love_hymns) |> 
     cleveland_plot(filter_n = 25, 
                    x_buffer = 0.05,
                    breaks = 0.05,
                    extra_cols = love_hymn, color = love_hymn,
-                   title = "Most popular hymns during the second Sunday of February",
+                   title = "Most popular hymns during the second and third Sundays of February",
                    subtitle = "<span style = 'color:#EE6677;'>Love-related hymns</span> are among the most common.",) + 
     scale_color_manual(values = c(`TRUE` = ptol_red, `FALSE` = "gray50")) +
     labs(x = "proportion of wards that sing this hymn") + 
@@ -97,7 +97,7 @@ Overall though, of the 25 or so hymns that are listed here, only 6 of them are a
 
 ```{r, include = TRUE, fig.height = 5}
 #| label: fig-love_title
-#| fig-cap: Most popular hymns during the second Sunday of February
+#| fig-cap: Most popular hymns during the second and third Sundays of February
 valentines |> 
     mutate(love_hymn = case_when(hymn_num %in% love_hymns ~ "Love Hymn",
                                  hymn_num %in% love_titles ~ "Love in title",
@@ -106,7 +106,7 @@ valentines |>
                    x_buffer = 0.05,
                    breaks = 0.05,
                    extra_cols = love_hymn, color = love_hymn,
-                   title = "Most popular hymns during the second Sunday of February",
+                   title = "Most popular hymns during the second and third Sundays of February",
                    subtitle = "<span style = 'color:#EE6677;'>Love-related hymns</span> and <span style = 'color:#4477AA;'>other hymns with <i>love</i> in the title</span> are among the most common.",) + 
     scale_color_manual(values = c(`Love Hymn` = ptol_red, `Love in title` = ptol_blue, "other" = "gray50")) +
     labs(x = "proportion of wards that sing this hymn") + 
@@ -199,5 +199,5 @@ valentines |>
 
 ## Conclusion
 
-To conclude, about 50% of wards sing at least one love-related hymn around Valentine's Day. The most common of these hymns includes sacrament hymns like <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and <hymn>How Great the Wisdom and the Love (#195)</hymn>. But the most quintessential hymns around Valentine's Day is <hymn>Our Savior's Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn>. When choosing hymns around Valentine's Day, music coordinators appear to draw from a few hymns in the Love entry of the Topics index or find hymns with the word *love* in the title. This means that a few infrequent hymns like <hymn>God is Love (#87)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, and <hymn>O Love That Glorifies the Song (#295)</hymn> have a small spike around this time of year as well. 
+To conclude, about 50% of wards sing at least one love-related hymn around Valentine's Day. The most common of these hymns includes sacrament hymns like <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and <hymn>How Great the Wisdom and the Love (#195)</hymn>. But the most quintessential hymns around Valentine's Day are <hymn>Our Savior's Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn>. When choosing hymns around Valentine's Day, music coordinators appear to draw from a few hymns in the Love entry of the Topics index or find hymns with the word *love* in the title. This means that a few infrequent hymns like <hymn>God is Love (#87)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, and <hymn>O Love That Glorifies the Song (#295)</hymn> have a small spike around this time of year as well. 
 
