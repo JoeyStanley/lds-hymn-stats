@@ -10,7 +10,555 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Sat, 30 Dec 2023 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 20 Jan 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Are there any Valentine’s Day hymns?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/valentines/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Anyone who has been to Walmart at all since December 26th will know that the next major holiday in the United States is Valentine’s Day. It’s only kind of a Christian holiday and it’s not one that, as far as I know, we officially recognize in the church. However, many wards do tend to sing hymns around Valentine’s Day. This blog post explores what hymns are sung around the second and third Sundays in February in the United States. I’m working with 710 sacrament meetings’ worth of <a href="../../posts/frequency-data">data</a>.</p>
+<section id="what-are-the-valentines-day-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-the-valentines-day-hymns">What are the Valentine’s Day hymns?</h2>
+<p>Officially, there’s not a “love” section of the hymnal, but there is a healthy list of 28 hymns under the “Love” entry in the Topics index in the back of the hymnal. A good portion of them are in the 292–313 range, mixed in with the home-related and children’s hymns. The question though is whether people draw from that list around Valentine’s Day.</p>
+<p>Figure&nbsp;1 shows the most commonly sung hymns during the second and third Sunday of February in the United States. Those that are in the “Love” entry of the Topics index are higlighted in red. As you can see, no hymn is extremely popular around this time. The most common is <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and it was only sung by about 12% of wards in a given year. Certainly not nothing—roughly one or two wards per stake sing it around then—but not something people come to expect. The fact that it’s a <a href="../../posts/sacrament">sacrament hymn</a> probably gives it an little extra boost in frequency simply because sacrament hymns are common generally.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-love_topic" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/valentines/index_files/figure-html/fig-love_topic-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Most popular hymns during the second Sunday of February</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Some of the other most common ones are unsurprising to me: <hymn>Our Savior’s Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn> to me are the ones I have in mind as being the most common. We’ll see below why they seem more prototypical than the technically more popular <hymn>God Loved Us, So He Sent His Son (#187)</hymn>.</p>
+<p>Overall though, of the 25 or so hymns that are listed here, only 6 of them are among the 28 “official” love hymns listed in the Topic index. This to me suggests that people aren’t really drawing from that list very often. In fact, it seems like a lot of people are basing their decision on simply whether the title of the hymn contains the word <em>love</em>. There are 16 hymns that have some form of the word <em>love</em> in the title (15 if you ignore the women’s arrangement of <hymn>Love at Home (#318)</hymn>). Nine of those are not included in the list of “Love” hymns according to the Topics index: <hymn>Jesus, Lover of My Soul (#102)</hymn>, <hymn>Come, We That Love the Lord (#119)</hymn>, <hymn>We Have Partaken of Thy Love (#155)</hymn>, <hymn>’Tis Sweet to Sing the Matchless Love (#176)</hymn>, <hymn>’Tis Sweet to Sing the Matchless Love (#177)</hymn>, <hymn>How Great the Wisdom and the Love (#195)</hymn>, <hymn>We Love Thy House, O God (#247)</hymn>, <hymn>Oh, Holy Words of Truth and Love (#271)</hymn>, and <hymn>In Our Lovely Deseret (#307)</hymn>. Figure&nbsp;2 below is the same as Figure&nbsp;1, only these additional hymns are also highlighted.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-love_title" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/valentines/index_files/figure-html/fig-love_title-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Most popular hymns during the second Sunday of February</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, we can see that there are another three hymns that are common around this time of the year, all of which are sacrament hymns. In total, about 15.3% of hymns sung around Valentine’s Day are from the “official” list of love hymns, with another 5.0% being from one of these other nine hymns with <em>love</em> in their titles. That means a little over 20% of the hymns sung in the United States between February 8 and February 20 are arguably Valentine’s Day–related hymns. Not bad for a secular holiday.</p>
+</section>
+<section id="how-many-wards-sing-valentines-day-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-wards-sing-valentines-day-hymns">How many wards sing Valentine’s Day hymns?</h2>
+<p>If roughly 20% of hymns around this time of year are Valentine’s Hymns, how many wards sing those hymns? The following table shows how many love hymns are sung per meeting. Here, what I consider a Valentine’s Day hymn is one that is part of the Love entry in the Topics index or that contains the word <em>love</em> in the title.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="hbrkhizhvq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hbrkhizhvq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hbrkhizhvq thead, #hbrkhizhvq tbody, #hbrkhizhvq tfoot, #hbrkhizhvq tr, #hbrkhizhvq td, #hbrkhizhvq th {
+  border-style: none;
+}
+
+#hbrkhizhvq p {
+  margin: 0;
+  padding: 0;
+}
+
+#hbrkhizhvq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hbrkhizhvq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hbrkhizhvq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hbrkhizhvq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hbrkhizhvq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hbrkhizhvq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hbrkhizhvq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hbrkhizhvq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hbrkhizhvq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hbrkhizhvq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hbrkhizhvq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hbrkhizhvq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hbrkhizhvq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hbrkhizhvq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hbrkhizhvq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbrkhizhvq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hbrkhizhvq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hbrkhizhvq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hbrkhizhvq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbrkhizhvq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hbrkhizhvq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbrkhizhvq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hbrkhizhvq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbrkhizhvq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hbrkhizhvq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbrkhizhvq .gt_left {
+  text-align: left;
+}
+
+#hbrkhizhvq .gt_center {
+  text-align: center;
+}
+
+#hbrkhizhvq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hbrkhizhvq .gt_font_normal {
+  font-weight: normal;
+}
+
+#hbrkhizhvq .gt_font_bold {
+  font-weight: bold;
+}
+
+#hbrkhizhvq .gt_font_italic {
+  font-style: italic;
+}
+
+#hbrkhizhvq .gt_super {
+  font-size: 65%;
+}
+
+#hbrkhizhvq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hbrkhizhvq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hbrkhizhvq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hbrkhizhvq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hbrkhizhvq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hbrkhizhvq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hbrkhizhvq .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="love hymns per meeting">love hymns per meeting</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="number of wards">number of wards</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="percent">percent</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="love hymns per meeting" class="gt_row gt_right">0</td>
+<td headers="number of wards" class="gt_row gt_right">369</td>
+<td headers="percent" class="gt_row gt_right">52.1%</td></tr>
+    <tr><td headers="love hymns per meeting" class="gt_row gt_right">1</td>
+<td headers="number of wards" class="gt_row gt_right">228</td>
+<td headers="percent" class="gt_row gt_right">32.2%</td></tr>
+    <tr><td headers="love hymns per meeting" class="gt_row gt_right">2</td>
+<td headers="number of wards" class="gt_row gt_right">65</td>
+<td headers="percent" class="gt_row gt_right">9.2%</td></tr>
+    <tr><td headers="love hymns per meeting" class="gt_row gt_right">3</td>
+<td headers="number of wards" class="gt_row gt_right">37</td>
+<td headers="percent" class="gt_row gt_right">5.2%</td></tr>
+    <tr><td headers="love hymns per meeting" class="gt_row gt_right">4</td>
+<td headers="number of wards" class="gt_row gt_right">9</td>
+<td headers="percent" class="gt_row gt_right">1.3%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>As you can see, just over half of wards don’t sing Valentine’s Day hymns. But, that means almost half of wards do! About a third of wards sing one Valentine’s Day hymn, 9.2% sing two, 5.2% sing three, and nine wards swept the meeting with four Valentine’s Day hymns. An example of one such meeting comes from a ward in Houston Texas in 2017: they sang <hymn>Love at Home (#294)</hymn>, <hymn>How Great the Wisdom and the Love (#195)</hymn>, <hymn>Our Savior’s Love (#133)</hymn>, and <hymn>O Love That Glorifies the Son (#295)</hymn>.</p>
+<p>So, while only 20% of hymns sung around Valentine’s Day are Valentine’s Day hymns, nearly half of all wards in the United States sing at least one of them.</p>
+</section>
+<section id="the-most-quintessential-valentines-day-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="the-most-quintessential-valentines-day-hymns">The most quintessential Valentine’s Day hymns</h2>
+<p>We’ve already established that there are about 37 love-related hymns that could be considered Valentine’s Day hymns. And we’ve seen that many of them are also about families, children, or the sacrament. The question we can ask then is this: what is the most quintessential Valentine’s Day hymn? By that, I mean which hymn is sung the most around Valentine’s Day and <em>not</em> sung much during the rest of the year. I’ve already written about <a href="../../posts/sacrament">sacrament hymns</a> and hymns around the <a href="../../posts/primary_program">Primary program</a> (which is when we see the most children’s hymns being sung), and in future posts I’ll write about Mother’s Day and Father’s day, so I’ll only gloss over details relevant to those topics here.</p>
+<p>For now, let’s look at the distribution of those Valentine’s Day hymns across the year. I’ve highlighted the weeks most relevant to Valentine’s Day in pink. Figure&nbsp;3 shows those annual trends.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-annual" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/valentines/index_files/figure-html/fig-annual-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Frequency of love-related hymns throughout the year</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>There are a few things to point out. One is that many of these hymns are quite infrequent, so they have very low numbers throughout the year. Sacrament hymns are common and most don’t show much as far as annual trends, so their numbers are higher and more varied but without much of a pattern, though some of the ones here show a slight increase in frequency in the pink shaded region. Hymns related to fasting show spikes near the beginning of each month. And hymns related to the home and family have much stronger spikes around Mother’s Day and/or Father’s Day.</p>
+<p>The ones I want to draw your attention to are those that appear to have their strongest spikes around Valentine’s Day. The strongest of these are <hymn>Our Savior’s Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn>. But, some of the less common hymns that fit this description include <hymn>God is Love (#87)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, <hymn>O Love That Glorifies the Song (#295)</hymn> and maybe even <hymn>God’s Daily Care (#306)</hymn>. None of these spikes are so high that they’re sung more around Valentine’s Day than during the rest of the year combined, but it does appear to be the case that they’re more common around Valentine’s Day than any other individual Sunday of the year. So, maybe this is evidence that people <em>are</em> using the Topics index of the hymnal to choose their Valentine’s Day hymns. It’s just that some of these hymns are so infrequent and relatively few people choose them, that their numbers get overwhelmed by any generic common hymn like what is shown in gray in Figure&nbsp;2.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>To conclude, about 50% of wards sing at least one love-related hymn around Valentine’s Day. The most common of these hymns includes sacrament hymns like <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and <hymn>How Great the Wisdom and the Love (#195)</hymn>. But the most quintessential hymns around Valentine’s Day is <hymn>Our Savior’s Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn>. When choosing hymns around Valentine’s Day, music coordinators appear to draw from a few hymns in the Love entry of the Topics index or find hymns with the word <em>love</em> in the title. This means that a few infrequent hymns like <hymn>God is Love (#87)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, and <hymn>O Love That Glorifies the Song (#295)</hymn> have a small spike around this time of year as well.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>holidays</category>
+  <category>frequency</category>
+  <guid>https://hymnstats.joeystanley.com/posts/valentines/index.html</guid>
+  <pubDate>Sat, 20 Jan 2024 07:00:00 GMT</pubDate>
+</item>
 <item>
   <title>How much data do I have and where did it all come from?</title>
   <dc:creator>Joey Stanley</dc:creator>

@@ -1,0 +1,203 @@
+---
+title: "Are there any Valentine's Day hymns?"
+author: "Joey Stanley"
+date: 2024-01-20
+categories:
+  - holidays
+  - frequency
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+```{r}
+valentines <- freqs |> 
+    filter(month == 2, day %in% 8:20, country == "United States")
+length(unique(valentines$meeting_id))
+```
+
+
+Anyone who has been to Walmart at all since December 26th will know that the next major holiday in the United States is Valentine's Day. It's only kind of a Christian holiday and it's not one that, as far as I know, we officially recognize in the church. However, many wards do tend to sing hymns around Valentine's Day. This blog post explores what hymns are sung around the second and third Sundays in February in the United States. I'm working with 710 sacrament meetings' worth of [data](/posts/frequency-data). 
+
+## What are the Valentine's Day hymns?
+
+```{r}
+valentines <- freqs |> 
+    filter(month == 2, day %in% 8:20, country == "United States")
+```
+
+```{r}
+love_hymns <- c(310, 29, 309, 219, 138, 221, 293, 313, 87, 187, 306, 223, 298, 139, 
+                232, 220, 294, 318, 308, 295, 296, 113, 81, 230, 194, 273, 311, 228)
+length(love_hymns)
+love_titles <- search_titles("love") |> 
+    pull(hymn_num)
+```
+
+```{r}
+where_in_hymnal <- function(.hymns) {
+    tibble(hymn_num = 1:341) |> 
+        mutate(match = hymn_num %in% .hymns,
+               group = santoku::kiru(hymn_num, breaks = c(50, 100, 150, 200, 250, 300, 350), left = FALSE)) |> 
+        ggplot(aes(hymn_num, fill = match)) + 
+        geom_bar() + 
+        facet_wrap(~group, scales = "free", ncol = 1) + 
+        scale_fill_manual(values = c(`TRUE` = ptol_red, `FALSE` = "gray50")) +
+        scale_x_continuous(expand = expansion(0, 0)) + 
+        theme_minimal() + 
+        theme(axis.text.y = element_blank(),
+              axis.ticks.y = element_blank(),
+              axis.title.y = element_blank(),
+              strip.text = element_blank()) 
+}
+where_in_hymnal(love_hymns)
+```
+
+
+Officially, there's not a "love" section of the hymnal, but there is a healthy list of 28 hymns under the "Love" entry in the Topics index in the back of the hymnal. A good portion of them are in the 292--313 range, mixed in with the home-related and children's hymns. The question though is whether people draw from that list around Valentine's Day. 
+
+```{r}
+valentines |> cleveland_plot(return = "table", filter_n = 25)
+```
+
+
+@fig-love_topic shows the most commonly sung hymns during the second and third Sunday of February in the United States. Those that are in the "Love" entry of the Topics index are higlighted in red. As you can see, no hymn is extremely popular around this time. The most common is <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and it was only sung by about 12% of wards in a given year. Certainly not nothing---roughly one or two wards per stake sing it around then---but not something people come to expect. The fact that it's a [sacrament hymn](/posts/sacrament) probably gives it an little extra boost in frequency simply because sacrament hymns are common generally. 
+
+```{r, include = TRUE, fig.height = 5}
+#| label: fig-love_topic
+#| fig-cap: Most popular hymns during the second Sunday of February
+valentines |> 
+    mutate(love_hymn = hymn_num %in% love_hymns) |> 
+    cleveland_plot(filter_n = 25, 
+                   x_buffer = 0.05,
+                   breaks = 0.05,
+                   extra_cols = love_hymn, color = love_hymn,
+                   title = "Most popular hymns during the second Sunday of February",
+                   subtitle = "<span style = 'color:#EE6677;'>Love-related hymns</span> are among the most common.",) + 
+    scale_color_manual(values = c(`TRUE` = ptol_red, `FALSE` = "gray50")) +
+    labs(x = "proportion of wards that sing this hymn") + 
+    theme(plot.subtitle = ggtext::element_markdown(),
+          legend.position = "none")
+```
+
+Some of the other most common ones are unsurprising to me: <hymn>Our Savior's Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn> to me are the ones I have in mind as being the most common. We'll see below why they seem more prototypical than the technically more popular <hymn>God Loved Us, So He Sent His Son (#187)</hymn>. 
+
+```{r}
+search_titles("Love") |> 
+    mutate(is_love = hymn_num %in% love_hymns) |> 
+    arrange(is_love, hymn_num)
+```
+
+Overall though, of the 25 or so hymns that are listed here, only 6 of them are among the 28 "official" love hymns listed in the Topic index. This to me suggests that people aren't really drawing from that list very often. In fact, it seems like a lot of people are basing their decision on simply whether the title of the hymn contains the word *love*. There are 16 hymns that have some form of the word *love* in the title (15 if you ignore the women's arrangement of <hymn>Love at Home (#318)</hymn>). Nine of those are not included in the list of "Love" hymns according to the Topics index: <hymn>Jesus, Lover of My Soul (#102)</hymn>, <hymn>Come, We That Love the Lord (#119)</hymn>, <hymn>We Have Partaken of Thy Love (#155)</hymn>, <hymn>'Tis Sweet to Sing the Matchless Love (#176)</hymn>, <hymn>'Tis Sweet to Sing the Matchless Love (#177)</hymn>, <hymn>How Great the Wisdom and the Love (#195)</hymn>, <hymn>We Love Thy House, O God (#247)</hymn>, <hymn>Oh, Holy Words of Truth and Love (#271)</hymn>, and <hymn>In Our Lovely Deseret (#307)</hymn>. @fig-love_title below is the same as @fig-love_topic, only these additional hymns are also highlighted. 
+
+```{r, include = TRUE, fig.height = 5}
+#| label: fig-love_title
+#| fig-cap: Most popular hymns during the second Sunday of February
+valentines |> 
+    mutate(love_hymn = case_when(hymn_num %in% love_hymns ~ "Love Hymn",
+                                 hymn_num %in% love_titles ~ "Love in title",
+                                 TRUE ~ "other")) |> 
+    cleveland_plot(filter_n = 25, 
+                   x_buffer = 0.05,
+                   breaks = 0.05,
+                   extra_cols = love_hymn, color = love_hymn,
+                   title = "Most popular hymns during the second Sunday of February",
+                   subtitle = "<span style = 'color:#EE6677;'>Love-related hymns</span> and <span style = 'color:#4477AA;'>other hymns with <i>love</i> in the title</span> are among the most common.",) + 
+    scale_color_manual(values = c(`Love Hymn` = ptol_red, `Love in title` = ptol_blue, "other" = "gray50")) +
+    labs(x = "proportion of wards that sing this hymn") + 
+    theme(plot.subtitle = ggtext::element_markdown(),
+          legend.position = "none")
+```
+
+Now, we can see that there are another three hymns that are common around this time of the year, all of which are sacrament hymns. In total, about 15.3% of hymns sung around Valentine's Day are from the "official" list of love hymns, with another 5.0% being from one of these other nine hymns with *love* in their titles. That means a little over 20% of the hymns sung in the United States between February 8 and February 20 are arguably Valentine's Day--related hymns. Not bad for a secular holiday.  
+
+```{r}
+valentines |> 
+    mutate(love_hymn = case_when(hymn_num %in% love_hymns ~ "Love Hymn",
+                                 hymn_num %in% love_titles ~ "Love in title",
+                                 TRUE ~ "other")) |> 
+    count(love_hymn) |> 
+    mutate(prop = n/sum(n))
+```
+
+## How many wards sing Valentine's Day hymns?
+
+If roughly 20% of hymns around this time of year are Valentine's Hymns, how many wards sing those hymns? The following table shows how many love hymns are sung per meeting. Here, what I consider a Valentine's Day hymn is one that is part of the Love entry in the Topics index or that contains the word *love* in the title. 
+
+```{r, include = TRUE}
+valentines |> 
+    filter(!ward %in% c("Unknown", "Anonymous")) |> 
+    mutate(is_valentines = hymn_num %in% c(love_hymns, love_titles)) |> 
+    summarize(`love hymns per meeting` = sum(is_valentines), .by = meeting_id) |> 
+    count(`love hymns per meeting`, name = "number of wards") |> 
+    mutate(percent = scales::percent(`number of wards`/sum(`number of wards`))) |> 
+    gt()
+```
+
+As you can see, just over half of wards don't sing Valentine's Day hymns. But, that means almost half of wards do! About a third of wards sing one Valentine's Day hymn, 9.2% sing two, 5.2% sing three, and nine wards swept the meeting with four Valentine's Day hymns. An example of one such meeting comes from a ward in Houston Texas in 2017: they sang <hymn>Love at Home (#294)</hymn>, <hymn>How Great the Wisdom and the Love (#195)</hymn>, <hymn>Our Savior's Love (#133)</hymn>, and <hymn>O Love That Glorifies the Son (#295)</hymn>. 
+
+So, while only 20% of hymns sung around Valentine's Day are Valentine's Day hymns, nearly half of all wards in the United States sing at least one of them. 
+
+```{r}
+valentines |> 
+    filter(!ward %in% c("Unknown", "Anonymous")) |> 
+    mutate(is_valentines = hymn_num %in% c(love_hymns, love_titles)) |> 
+    mutate(`love hymns per meeting` = sum(is_valentines), .by = meeting_id) |> 
+    filter(`love hymns per meeting` == 4) |> 
+    count(name_num, sort = TRUE)
+```
+
+## The most quintessential Valentine's Day hymns
+
+We've already established that there are about 37 love-related hymns that could be considered Valentine's Day hymns. And we've seen that many of them are also about families, children, or the sacrament. The question we can ask then is this: what is the most quintessential Valentine's Day hymn? By that, I mean which hymn is sung the most around Valentine's Day and *not* sung much during the rest of the year. I've already written about [sacrament hymns](/posts/sacrament) and hymns around the [Primary program](/posts/primary_program) (which is when we see the most children's hymns being sung), and in future posts I'll write about Mother's Day and Father's day, so I'll only gloss over details relevant to those topics here.
+
+For now, let's look at the distribution of those Valentine's Day hymns across the year. I've highlighted the weeks most relevant to Valentine's Day in pink. @fig-annual shows those annual trends. 
+
+```{r, include = TRUE, fig.height = 20, fig.width = 8}
+#| label: fig-annual
+#| fig-cap: Frequency of love-related hymns throughout the year
+freqs %>%
+    filter(hymn_num %in% c(love_hymns, love_titles), country == "United States",
+           hymn_num <= 308) %>%
+    count(week, hymn_num, hymn_name, name_num) %>%
+    arrange(hymn_num) |> 
+    mutate(name_num = fct_inorder(name_num)) |> 
+    ggplot(aes(week, n, group = hymn_num)) + 
+    annotate(geom = "rect", xmin = 6, xmax = 8, ymin = 0, ymax = 73, fill = "lightpink", alpha = 0.5) + 
+    geom_vline(xintercept = 7, color = "pink", alpha = 0.5, linewidth = 2) + 
+    geom_path() + 
+    facet_wrap(~name_num, ncol = 2) + 
+    scale_x_continuous(expand = expansion(0, 0)) + 
+    scale_y_continuous(expand = expansion(0, 0)) + 
+    labs(title = "Frequency of Love-related hymns throughout the year") + 
+    theme_bw()
+```
+
+There are a few things to point out. One is that many of these hymns are quite infrequent, so they have very low numbers throughout the year. Sacrament hymns are common and most don't show much as far as annual trends, so their numbers are higher and more varied but without much of a pattern, though some of the ones here show a slight increase in frequency in the pink shaded region. Hymns related to fasting show spikes near the beginning of each month. And hymns related to the home and family have much stronger spikes around Mother's Day and/or Father's Day. 
+
+The ones I want to draw your attention to are those that appear to have their strongest spikes around Valentine's Day. The strongest of these are <hymn>Our Savior's Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn>. But, some of the less common hymns that fit this description include <hymn>God is Love (#87)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, <hymn>O Love That Glorifies the Song (#295)</hymn> and maybe even <hymn>God's Daily Care (#306)</hymn>. None of these spikes are so high that they're sung more around Valentine's Day than during the rest of the year combined, but it does appear to be the case that they're more common around Valentine's Day than any other individual Sunday of the year. So, maybe this is evidence that people *are* using the Topics index of the hymnal to choose their Valentine's Day hymns. It's just that some of these hymns are so infrequent and relatively few people choose them, that their numbers get overwhelmed by any generic common hymn like what is shown in gray in @fig-love_title. 
+
+```{r}
+# Meh, nothing interesting here.
+valentines |> 
+    filter(!ward %in% c("Anonymous", "Unkown")) |> 
+    mutate(is_valentines = hymn_num %in% c(love_hymns, love_titles)) |> 
+    mutate(n_valentines = sum(is_valentines), .by = meeting_id) |> 
+    filter(n_valentines > 0) |> 
+    count(type, is_valentines) |> 
+    filter(!is.na(type)) |> 
+    pivot_wider(names_from = is_valentines, values_from = n) |> 
+    ggplot(aes(type, `TRUE`)) + 
+    geom_col()
+```
+
+
+## Conclusion
+
+To conclude, about 50% of wards sing at least one love-related hymn around Valentine's Day. The most common of these hymns includes sacrament hymns like <hymn>God Loved Us, So He Sent His Son (#187)</hymn> and <hymn>How Great the Wisdom and the Love (#195)</hymn>. But the most quintessential hymns around Valentine's Day is <hymn>Our Savior's Love (#113)</hymn> and <hymn>Love One Another (#308)</hymn>. When choosing hymns around Valentine's Day, music coordinators appear to draw from a few hymns in the Love entry of the Topics index or find hymns with the word *love* in the title. This means that a few infrequent hymns like <hymn>God is Love (#87)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, and <hymn>O Love That Glorifies the Song (#295)</hymn> have a small spike around this time of year as well. 
+
