@@ -1,0 +1,220 @@
+---
+title: "What hymns are sung around Fast Sunday?"
+author: "Joey Stanley"
+date: 2024-02-19
+categories:
+  - holidays
+  - frequency
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+
+
+In this post, I take a look at what hymns are sung on Fast Sundays. 
+
+:::callout-note
+Methodologically, it's a little tricky to actually filter out just the Fast Sundays. They're on the first Sunday of the month, unless there's a reason to move them. They get shifted around because of General Conference, often to the last Sunday in March and September but it depends on the stake I think. And in January, they are sometimes shifted a week later because of New Year's Day. Plus, individual wards or stakes may move things around to accommodate for ward or stake conferences.
+
+So, for this blog post, I'll analyzed data from the first Sundays of the month, plus the last Sundays in March and September to account for General Conference. (I forget if Fast Sunday typically comes before General Conference or after, but I think it's more often before.) As you'll be able to see throughout this post, the results seem alright even though it's not perfect. With that methodological caveat in mind, this post is based on the 4,115 sacrament meetings I have data from that fit that description. Please see [this post](/posts/frequency-data) for a more detailed breakdown of the data by time and state/country. 
+:::
+
+```{r}
+fasting_hymns <- c(138:139, 219)
+testimony_hymns <- c(67, 89, 134:137, 157, 249, 263, 302, 311)
+```
+
+```{r}
+fasts_with_sac <- freqs |> 
+    mutate(has_intermediate = sum(type == "Intermediate"), .by = meeting_id) |> 
+    filter((nth_sunday == 1 & !month %in% c(4, 10)) | 
+               (day >= 25 & month == 3) | 
+               (day >= 24 & month == 9),
+           !has_intermediate,
+           !hymn_num %in% c(338:341, 201:214, 215, 217)) |> 
+    mutate(category = case_when(hymn_num %in% fasting_hymns ~ "fasting",
+                                hymn_num %in% testimony_hymns ~ "testimony",
+                                TRUE ~ "other"),
+           category = factor(category, levels = c("fasting", "testimony", "other")))
+fasts <- fasts_with_sac |> 
+    filter(!hymn_num %in% 169:196)
+```
+
+```{r}
+fasts_with_sac |> 
+    count(meeting_id) |> nrow()
+```
+
+
+
+
+
+## What hymns are most often sung on Fast Sunday?
+
+If you look through the Topics index at the back of the hymnal, the two most relevant entries are "Fasting" and "Testimony." There are just three fasting hymns: <hymn>Bless Our Fast, We Pray (#138)</hymn>, <hymn>In Fasting We Approach Thee (#139)</hymn>, and <hymn>Because I Have Been Given Much (#219)</hymn>. There are another 11 more testimony hymns, not including two of the fasting hymns, for a total of 13 hymns. If you ignore <hymn>We Meet Again as Sisters (#311)</hymn>, which is probably not intended for sacrament meeting anyway, that's 12 hymns. It's convenient then that we also have 12 Fast and Testimony Meetings a year, although some of those compete with other holidays like [New Year's](/posts/new-years), Fourth of July, [Christmas](/posts/christmas), and [General Conference](/posts/general_conference.qmd). For the purposes of this post, I've removed the holiday hymns since they obscured the pattern that we're really trying to focus on.
+
+Let's see if these twelve hymns are indeed sung more during Fast Sunday. @fig-cleveland shows what hymns are the most common on the Fast Sundays. These results are perhaps rather unsurprising. The three fasting hymns, highlighted in blue, are in the top five. Five of testimony hymns are in the the top nine. (The fact that <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> makes this list is because of interferance from General Conference.) Another three testimony hymns still make it on the list of most common hymns but are no more common than other more generic common hymns.
+
+```{r}
+cleveland_plot(fasts, return = "table")
+```
+
+
+
+```{r, include = TRUE, fig.height = 5}
+#| label: fig-cleveland
+#| fig-cap: Most common hymns on fast Sundays
+cleveland_plot(fasts, return = "plot",
+               filter_n = 60, 
+               x_buffer = 0.30,
+               breaks = 0.1,
+               extra_cols = category, color = category,
+               title = "Most common hymns on the first Sundays of each month",
+               subtitle = "<span style = 'color:#4477AA;'>Fast</span> and <span style = 'color:#EE6677;'>Testimony</span> hymns are most common.") + 
+    scale_color_manual(breaks = c("fasting", "testimony", "other"),
+                       values = c(ptol_blue, ptol_red, ptol_grey)) + 
+    labs(x = "number of times sung on a Fast Sunday, per ward, on average") + 
+    theme(legend.position = "none",
+          plot.subtitle = ggtext::element_markdown())
+```
+
+The testimony hymns that were not particularly common on first Sundays are <hymn>Called to Serve (#249)</hymn> and <hymn>Go Forth with Faith (#263)</hymn>. It's not clear to me why those two other hymns are less common on Fast Sunday. They're a little more upbeat than the others, but then again, so are <hymn>The Lord is My Light (#89)</hymn> and <hymn>Glory to God on High (#67)</hymn>. It may be because they might fit in more with other topics like missionary work and praise.
+
+```{r}
+freqs |> 
+    filter(hymn_num == 311)
+```
+
+Of course <hymn>We Meet Again As Sisters (#311)</hymn> didn't make the list of most common hymns. In fact, out of the `r scales::comma(get_n_distinct_meetings())` sacrament meetings I have data from, <hymn>We Meet Again As Sisters (#311)</hymn> was sung just once. It was a second Sunday in September in 2016 by a ward in Layton, Utah. 
+
+```{r}
+single_hymn_lookup(c(fasting_hymns, testimony_hymns))
+```
+
+What is most surprising to me from @fig-cleveland is that these hymns are not more popular than they already are. Some hymns are sung more generally, such as <hymn>Because I Have Been Given Much (#219)</hymn>, which is [the most common non-sacrament hymn](/post/most_common)). But even <hymn>In Fasting We Approach Thee (#139)</hymn> is only sung on Fast Sunday by a little more than half of wards per year. I feel like I sing this one at least once or twice a year on Fast Sunday, but when I checked my own ward's data, we've indeed only sung it twice in the past 114 weeks, which is pretty close to the typical frequency of this hymn. 
+
+```{r}
+freqs |> 
+    filter(ward == "Spanish Trails Ward") |> 
+    summarize(has_139 = sum(hymn_num == 139), .by = meeting_id) |> 
+    count(has_139)
+```
+
+```{r}
+fasts |> 
+    filter(!ward %in% c("Anonymous")) |> 
+    summarize(has_fasting = sum(hymn_num %in% fasting_hymns), .by = meeting_id) |> 
+    count(has_fasting) |> 
+    mutate(prop = n/sum(n))
+```
+
+Now, that's just one hymn. If we look at all three of the fasting hymns collectively, do we see more wards singing them? Again, surprisingly not. It looks like about 84.3% of Fast Sundays in my data don't have any of the three fasting hymns. 14.7% do, which again, seems low to me. 0.9% actually had two of them. This again, is perhaps the most surprising thing in this blog post: fasting hymns are just not that common---even on Fast Sunday.
+
+```{r}
+fasts |> 
+    filter(!ward %in% c("Anonymous")) |> 
+    summarize(has_either = sum(hymn_num %in% c(fasting_hymns, testimony_hymns)), .by = meeting_id) |> 
+    count(has_either) |> 
+    mutate(prop = n/sum(n))
+```
+
+If we expand our list to include testimony hymns, the picture is a little different. This time, 62.5% of Fast Sundays don't have either fasting or testimony--themed hymn. 28.8% have one, 8.6% have two, and four meetings total have three. So still, in the minority. I reran the numbers after excluding the last Sundays in March and September and they were hardly any different. So, it seems like no matter how I look at it, it is more common to *not* see any Fast and Testimony hymns in Fast and Testimony meetings than it is to see them.
+
+
+## The Most Fasty and Testimony-y Hymns
+
+So, while none of these hymns are particularly common, we can see which ones are the most quintessentially Fasty and Testimony-y. We can quantify this by comparing how often they're sung on Fast Sundays and compare them to how often they're sung on any other Sunday. We would expect a hymn about Fasting to be sung most of the time on Fast Sunday and hardly ever elsewhere. If we divide these two numbers, we can get a ratio. Anything greater than 1 means it's more common on Fast Sundays while anything less than 1 means it's more common on other Sundays.
+
+@tbl-fasty shows these numbers for the Fast and Testimony hymns. We can see that while <hymn>In Fasting We Approach Thee (#139)</hymn> is not particularly common overall, it is sung on Fast Sundays 17.5 times more often than it is on any other Sunday. <hymn>Bless Our Fast, We Pray (#138)</hymn> is also quintessentially a Fast and Testimony hymn, coming in 12.6 times more often in those meetings than in other meetings. Meanwhile, <hymn>Called to Serve (#249)</hymn> is actually rather uncommon on Fast Sundays and is is (`1 / 0.4 =`) 2.5 times *less* likely to be sung on a Fast Sunday than on another Sunday. ^[Presumably, that one is more common on missionary farewells or homecomings or even missionary work--themed sacrament meetings, which are typically not Fast Sundays so that the missionary or other people can give a proper talk.]
+
+```{r, include = TRUE}
+#| label: tbl-fasty
+#| tbl-cap: How many more times certain hymns are sung on Fast Sunday compared to other Sundays
+freqs |> 
+    davies_method(.df = _, (nth_sunday == 1 & !month %in% c(4, 10)) | 
+                      (day >= 25 & month == 3) | 
+                      (day >= 24 & month == 9)) |> 
+    filter(hymn_num %in% c(fasting_hymns, testimony_hymns)) |>
+    mutate(`Hymn` = paste0(hymn_name, " (#", hymn_num, ")"),
+           prop = round(prop, 1)) |> 
+    arrange(-prop) |> 
+    head(15) |> 
+    select(Hymn, `Times More Likely on Fast Sundays` = prop) |> 
+    gt()
+```
+
+So, while these hymns are not too commonly sung on Fast Sundays, they're rather rare otherwise. Another way of looking at it is with probabilities: the odds of singing a fasting hymn given that it's a Fast Sunday is not too high, but the odds of it being a Fast Sunday given that you're singing a fast or testimony hymn is quite high.^[i.e. P(fasting hymn | Fast Sunday) is small, but P(Fast Sunday | fasting hymn) is large.] This gives these the sense of being strongly associated with Fast Sundays even though they're not sung every month.
+
+## Sacrament hymns
+
+Okay, so we've looked at fast and testimony--themed hymns, but what about the sacrament hymn? Do people do anything different on Fast Sundays when choosing sacrament hymns? 
+
+```{r}
+fast_nonfast_comp <- freqs |> 
+    mutate(is_fast_sunday = (nth_sunday == 1 & !month %in% c(4, 10)) | 
+               (day >= 25 & month == 3) | 
+               (day >= 24 & month == 9)) |> 
+    filter(type == "Sacrament", hymn_num %in% 169:196) |> 
+    count(is_fast_sunday, hymn_name, hymn_num) |> 
+    mutate(prop = n/sum(n), .by = is_fast_sunday) |> 
+    filter(!is.na(is_fast_sunday)) |> 
+    pivot_wider(names_from = is_fast_sunday, values_from = c(n, prop)) %>%
+    mutate(residual = lm(prop_TRUE ~ prop_FALSE, data = .)$residual,
+           prop_more = prop_TRUE/prop_FALSE) |> 
+    arrange(-residual) |> 
+    print()
+
+ggplot(fast_nonfast_comp, aes(prop_FALSE, prop_TRUE, color = residual)) + 
+    geom_text(aes(label = hymn_num))
+
+fast_nonfast_comp |> 
+    mutate(hymn_name = fct_inorder(hymn_name)) |> 
+    ggplot(aes(residual, hymn_name)) + 
+    geom_point()
+```
+
+
+There are two hymns that *might* be a little more common, <hymn>With Humble Heart (#171)</hymn> and <hymn>In Humility, Our Savior (#186)</hymn>. The effect is not super strong: they're only about 20% more likely to be  sung on a Fast Sunday compared to any other Sunday of the month. The fact that they both have forms of the word "humble" in the title is perhaps the reason why they're more common. 
+
+```{r}
+cor(fast_nonfast_comp$prop_TRUE, fast_nonfast_comp$prop_FALSE)
+```
+
+
+In general though, the correlation between how often a hymn is sung on Fast Sundays compared to the rest of the year is quite high (0.968), meaning it doesn't matter whether it's Fast Sunday or not, the selection of the sacrament hymn is the same either way.
+
+
+## Other times in the meeting
+
+Finally, let's look at those hymns about fasting or testimonies, and see when during the meeting they're sung. In other wards, are they more common as opening hymns, intermediate hymns, or closing hymns? 
+
+@fig-type shows these hymns, split up by how often they're sung during the meeting. For some hymns, there is a pretty clear pattern. For example, the two hymns that are more explicitly about fasting, <hymn>Bless Our Fast, We Pray (#138)</hymn> and <hymn>In Fasting We Approach Thee (#139)</hymn>, are clearly preferred as opening hymns. It's quite unusual to see them being sung as closing and especially intermediate hymns. Meanwhile, <hymn>Testimony (#137)</hymn>, <hymn>I Know My Father Lives (#302)</hymn>, and <hymn>Thy Spirit Lord, Has Stirred Our Souls (#157)</hymn> are preferred as closing hymns, with the latter being nearly categorically closing. For most of the other hymns, it's a pretty even split between opening and closing hymns. 
+
+```{r, include = TRUE, fig.height = 8, fig.width = 8}
+#| label: fig-type
+#| fig-cap: When Fast and Testimony hymns are sung
+fasts |> 
+    filter(hymn_num %in% c(fasting_hymns, testimony_hymns, 219, 89),
+           !is.na(type)) |> 
+    count(hymn_num, hymn_name, category, type) |> 
+    arrange(category, hymn_num) |> 
+    mutate(name_num = paste0(hymn_name, " (", hymn_num, ")")) |> 
+    mutate(name_num = fct_inorder(name_num)) |> 
+    ggplot(aes(type, n, fill = category)) + 
+    geom_col() + 
+    scale_fill_ptol() + 
+    facet_wrap(~name_num, ncol = 3) + 
+    labs(x = NULL,
+         y = "Number of sacrament meetings")
+```
+
+## Summary
+
+We have Fast and Testimony meting every month, and there are some differences in the hymns that we sing. The three Fasting hymns that show up in the topical guide and some of the 11 testimony hymns are the most commonly sung hymns. However, only about one in every three or four wards sing one of these hymns on any given Fast Sunday, so it's not an overwhelming trend. The hymns we see most likely on Fast Sunday and not during other weeks are also the ones that are most common: <hymn>In Fasting We Approach Thee (#139)</hymn> and <hymn>Bless Our Fast, We Pray (#138)</hymn>. These are most commonly sung as opening hymns. Some testimony hymns are also common as closing hymns. Sacrament hymns don't seem to be any different, other than a slight preference for hymns mentioning humility in the titles on Fast Sundays.
