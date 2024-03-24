@@ -1,0 +1,67 @@
+---
+title: "Change Over Time"
+author: "Joey Stanley"
+date: "2024-03-04"
+categories:
+  - holidays
+  - frequency
+reference-location: margin
+draft: TRUE
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+Inspired by an email about how Priase to the Man has changed in frequency over time. 
+
+```{r}
+freqs |> 
+    mutate(is_this_hymn = hymn_num == 27) |> 
+    count(is_this_hymn, year) |> 
+    pivot_wider(names_from = is_this_hymn, values_from = n, values_fill = 0) |> 
+    rowwise() |> 
+    mutate(prop_true = `TRUE` / (`TRUE` + `FALSE`)) |> 
+    print() |> 
+    ggplot(aes(year, prop_true)) + 
+    geom_point() + 
+    geom_path() + 
+    theme_minimal()
+```
+
+
+Maybe meetings per year.
+
+```{r}
+freqs |> 
+    filter(year != 2024) |> 
+    
+    # Is or is not the hymn
+    mutate(is_this_hymn = hymn_num == 27) |> 
+    
+    # Boil it down to whether the meeting has the hymn or not
+    summarize(has_this_hymn = sum(is_this_hymn) >= 1, .by = c(year, meeting_id)) |> 
+    
+    # Count the number of meetings with and without the hymn per year
+    summarize(meetings_with = sum(has_this_hymn),
+              meetings_without = n(),
+              .by = year) |> 
+    rowwise() |> 
+    mutate(prop = meetings_with / (meetings_with + meetings_without),
+           meetings_per_year = prop * 48) |> 
+    print() |> 
+    ggplot(aes(year, meetings_per_year)) + 
+    geom_point() + 
+    geom_path() + 
+    scale_x_continuous(breaks = seq(2000, 2030, 2)) + 
+    labs(title = "How often \"Praise to the Man\" is sung per ward per year, on average",
+         x = "year",
+         y = "times per year") + 
+    theme_minimal()
+ggsave("PraiseToTheMan.jpeg", height = 3, width = 8)
+```
+
