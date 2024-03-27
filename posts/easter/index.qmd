@@ -18,6 +18,17 @@ library(gt)
 
 Compared to other Christian religions, we don't have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the church are incorporating more celebratory activities for things like Palm Sunday and Good Friday, but this change is happening slowly and idiosyncratically. On Easter Sunday, the hymns we sing are usually focused on the resurrection of the Savior. In this post, I explore Easter hymns and other hymns sung around Eastertime.
 
+This post is based primarily on 1,045 sacrament meetings from 288 wards spanning 21 years. You can read more about the full dataset [here](/posts/frequency-data).
+
+```{r, eval = FALSE}
+freqs_easters |> 
+    filter(easter %in% c("easter", "week before", "week after", "two weeks before")) |> 
+    count(meeting_id, state) |> 
+    count(state, sort = TRUE)
+# 1045 meetings, 288 rows
+```
+
+
 
 
 ## What are the Easter hymns?

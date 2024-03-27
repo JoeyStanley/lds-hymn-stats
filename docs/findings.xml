@@ -20,6 +20,7 @@
 
 
 <p>Compared to other Christian religions, we don’t have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the church are incorporating more celebratory activities for things like Palm Sunday and Good Friday, but this change is happening slowly and idiosyncratically. On Easter Sunday, the hymns we sing are usually focused on the resurrection of the Savior. In this post, I explore Easter hymns and other hymns sung around Eastertime.</p>
+<p>This post is based primarily on 1,045 sacrament meetings from 288 wards spanning 21 years. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>.</p>
 <section id="what-are-the-easter-hymns" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-the-easter-hymns">What are the Easter hymns?</h2>
 <p>From what I can tell, we have four places to look for finding Easter hymns: The Easter section in the Table of Contents (TOC), the Easter entry in the index, the resurrection entry in the index, and sacrament hymns. This figure below shows which hymns fall into which category and how they intersect.</p>
@@ -63,7 +64,7 @@ Technical details
 <p>First, here is a plot showing the proportion of sacrament meetings in my dataset that have at least one “Easter” hymn across the year.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
+<p><img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>There is an obvious peak around Easter, but Easter varies across years, so it’s a little spread out. There’s also a noticeable dip towards the end of the year as we sing more <a href="../../posts/christmas">Christmas</a> hymns. But, the rest of the year is pretty consistent, with maybe a slight dip in the summer.</p>
@@ -80,7 +81,7 @@ Technical details
 <pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="768"></p>
+<p><img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>Anyway, the purpose of all this avoidance of holidays is to get the typical percentage of sacrament meetings that contain one or more of these “Easter” hymns during times when you wouldn’t expect them. Basically, get a baseline. As it turns out, the average percentage of sacrament meetings was 21.9%. On the upper end is about 26.6%.</p>
