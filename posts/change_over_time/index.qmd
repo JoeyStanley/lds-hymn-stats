@@ -17,6 +17,9 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(gt)
 ```
 
+I was recently asked about a particular hymn and whether it has descreased in popularity over the past 20 years. I do have data from the past 20 years. 
+
+
 Inspired by an email about how Priase to the Man has changed in frequency over time. 
 
 ```{r}
@@ -63,5 +66,112 @@ freqs |>
          y = "times per year") + 
     theme_minimal()
 ggsave("PraiseToTheMan.jpeg", height = 3, width = 8)
+```
+
+What if I plot all the top, say, 100 hymns.
+
+```{r, fig.height = 3, fig.width = 7}
+plot_change_over_time <- function(.hymn_num) {
+    
+    df <- freqs |> 
+        filter(!year %in% c(2002, 2024)) |> 
+        
+        # Is or is not the hymn
+        mutate(is_this_hymn = hymn_num == .hymn_num) |> 
+        
+        # Boil it down to whether the meeting has the hymn or not
+        summarize(has_this_hymn = sum(is_this_hymn) >= 1, .by = c(year, meeting_id)) |> 
+        
+        # Count the number of meetings with and without the hymn per year
+        summarize(meetings_with = sum(has_this_hymn),
+                  meetings_without = n(),
+                  .by = year) |> 
+        rowwise() |> 
+        mutate(prop = meetings_with / (meetings_with + meetings_without),
+               meetings_per_year = prop * 48)
+    
+    title <- freqs |> 
+        filter(hymn_num == .hymn_num) |> 
+        pull(name_num) |> 
+        head(1)
+    
+    ggplot(df, aes(year, meetings_per_year)) + 
+        geom_point() + 
+        geom_path() + 
+        scale_x_continuous(breaks = seq(2000, 2030, 2)) + 
+        labs(title = title,
+             x = "year",
+             y = "times per year") + 
+        theme_minimal()
+}
+freqs |> 
+    count(hymn_num, sort = TRUE) |> 
+    head(150) |> 
+    rowwise() |> 
+    mutate(plot = map(hymn_num, plot_change_over_time)) |> 
+    pull(plot)
+```
+
+This is good, but there's a clear effect of sample size: 2014 is a spike for most hymns. I also had to remove 2002. 
+
+Here are some notable ones: 
+
+* Upon the Cross of Calvary (184), Called to Serve (249), Praise to the Man (27), Home Can Be a Heaven on Earth (298) declines.
+* Away in a Manger (206) has been less popular since 2018 than any year before it. 
+
+* I Know That My Redeemer Lives (136) has a rise and then fall.
+
+* We Thank Thee O God For a Prophet has a noticeable spike in 2018, the year Nelson was sustained(!), and *not* 2014. There's also a spike in 2007. As I Search the Holy Scriptures (277) peaked in 2019 with the introductin of Come Follow Me.
+
+A strange decline in 201, 202, 203, 213 in 2018 for some reason. 
+
+Several hymns have 2020 as a low point. 
+
+
+```{r}
+get_freqs_over_time <- function(.hymn_num) {
+    freqs |> 
+        filter(!year %in% c(2002, 2024)) |> 
+        
+        # Is or is not the hymn
+        mutate(is_this_hymn = hymn_num == .hymn_num) |> 
+        
+        # Boil it down to whether the meeting has the hymn or not
+        summarize(has_this_hymn = sum(is_this_hymn) >= 1, .by = c(year, meeting_id)) |> 
+        
+        # Count the number of meetings with and without the hymn per year
+        summarize(meetings_with = sum(has_this_hymn),
+                  meetings_without = n(),
+                  .by = year) |> 
+        rowwise() |> 
+        mutate(prop = meetings_with / (meetings_with + meetings_without),
+               meetings_per_year = prop * 48) |> 
+        select(year, meetings_per_year)
+}
+change_stats <- freqs |> 
+    count(hymn_num, sort = TRUE) |> 
+    rowid_to_column("rank") |> 
+    rowwise() |> 
+    mutate(df = map(hymn_num, get_freqs_over_time)) |> 
+    unnest(df) |> 
+    filter(meetings_per_year < 5) |> 
+    print()
+```
+
+
+```{r}
+ggplot(change_stats, aes(year, meetings_per_year, group = hymn_num, color = hymn_num)) + 
+    geom_path()
+```
+
+```{r}
+name_num_lookup <- freqs |> 
+    distinct(hymn_name, hymn_num)
+change_stats |> 
+    filter(year == 2020,
+           meetings_per_year < 0.1,
+           rank <= 150) |> 
+    left_join(name_num_lookup, by = "hymn_num") |> 
+    arrange(hymn_num)
 ```
 
