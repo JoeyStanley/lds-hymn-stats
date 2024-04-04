@@ -1,12 +1,11 @@
 ---
-title: "Change Over Time"
+title: "Hymns' Popularity over Time"
 author: "Joey Stanley"
-date: "2024-03-04"
+date: "2024-04-04"
 categories:
-  - holidays
   - frequency
+  - general
 reference-location: margin
-draft: TRUE
 ---
 
 ```{r, include = FALSE}
@@ -17,31 +16,259 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(gt)
 ```
 
-I was recently asked about a particular hymn and whether it has descreased in popularity over the past 20 years. I do have data from the past 20 years. 
+Are hymns equally popular from year to year? Are there hymn that have been increasing or decreasing in popularity? Were there events that triggered a sudden spike in a particular hymn? In this post, I highlight a couple trends over time. 
 
+I should start off by pointing out a major caveat. As I illustrate [here](/posts/frequency-data/#distribution-across-time), I do have data from almost every Sunday from April 2002 through now, but it is quite inconsistent. Most of it comes from 2015--2017, with 2017 having by far the most out of any other year, thanks to [Samuel Bradshaw's project data](/posts/frequency-data/#samuels-2017-survey) that he generously shared with me. So, I'm hesitant to make any strong claims about the gradual increase or decrease of hymns over time. But I'll present the data anyway and let you make conclusions. 
 
-Inspired by an email about how Priase to the Man has changed in frequency over time. 
+The way I'll track changes over time is pretty simple. For each hymn, I'll count tally up the number of meetings it occurs in that year in my dataset. To offset the problem of vastly different amounts of data from year to year, I'll then take that number and divide it by the total number of meetings I have data from for that year. Essentially, I'm taking the proportion of meetings the hymn is sung in from year to year. To convert it into numbers that are more interpretable, I'll then multiply that proportion by 48 to get an estimate of how many times per year a ward might sing that hymn. I'll then plot those numbers over time. I won't show too many plots here though because it would quickly bog down the post. 
 
-```{r}
+## General changes over time
+
+### Hymns that might becoming less popular
+
+First, I'll start off by identifying the handful of hymns that might be getting less popular over the past few years, with some potential interpretation.
+
+First, <hymn>A Poor Wayfaring Man of Grief (#29)</hymn> has been approximately half as popular since 2020 than in the decade before it. It was one of many that experienced a noticeable dip in 2020 and it looks like it never fully recovered. It may be because it's a long hymn and since switching to two-hour church in 2018, sacrament meeting is 10 minutes shorter and perhaps it has been cut because it's too long. 
+
+Other hymns follow the same pattern of a recent drop, but we can't really attribute it to their length. For example, <hymn>Did You Think to Pray? (#140)</hymn> was pretty stable in 2010--2018, but quickly became about half as popular since then. <hymn>Be Thou Humble (#130)</hymn> and <hymn>Improve the Shining Moments (#226)</hymn> are slightly less common since 2020 than before it. <hymn>Lord, We Ask Thee Ere We Part (#153)</hymn> is one case where there has been a gradual decline over the past decade. 
+
+For some reason, family-related hymns are less popular than they used to be. <hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>Home Can Be A Heaven on Earth (#298)</hymn>, and <hymn>Love at Home (#294)</hymn> have all been gradually declining over the past 15 years.
+
+As I'll discuss again below, <hymn>Called to Serve (#249)</hymn> had a disruption in 2020 where it was less popular. Even disregarding that year though, it appears to have been on a gradual decline since about 2012. More missionaries are serving, but perhaps this hymn is becoming less popular for sacrament meeting. 
+
+### Hymns that are becoming more popular
+
+There are relatively few hymns that show an increase over time. Part if this may be because some wards are singing intermediate hymns less regularly as they used to since switching to two-hour church (see below), so some of the less popular ones end up getting sung less often. This means that some of the more well-known ones are, proportionally, appearing to be sung more. 
+
+Over the past decade, <hymn>Be Still, My Soul (#124)</hymn> has gone from being sung about once every three years to once every 15 months. <hymn>Gently Raise the Sacred Strain (#146)</hymn> used to be sung about once every other year in the late 2000s, and is now closer to once a year. Compared to 15 years ago, <hymn>Lead, Kindly Light (#97)</hymn> is 2--3 times more common and <hymn>My Redeemer Lives (#135)</hymn> is twice as common.
+
+Other hymns have a more gradual uptick. <hymn>Hark, All Ye Nations! (#264)</hymn> is more popular since 2012, and <hymn>Thy Will, O Lord, Be Done (#188)</hymn> has been more popular since 2019, with a noticeable peak in 2020. 
+
+It's not clear why these particular hymns appear to be gaining in popularity. 
+
+### Hymns with more complex patterns
+
+Three hymns have more complex patterns. <hymn>I Know That My Redeemer Lives (#136)</hymn> has a rise in popularity, peaking in 2012, and then fall, dipping in 2020. Similarly, <hymn>Thy Will O Lord Be Done (188)</hymn> gradually rose from 2008 and peaked in 2020 and has fallen since then. Meanwhile, <hymn>Upon the Cross of Calvary (#184)</hymn> gradually fell from 2005 through 2019, but has picked up a little since then. 
+
+### Hymns with noticeable spikes
+
+Finally, and perhaps most interestingly to me, there were a few hymns that had very clear spikes that can be easily explained. <hymn>We Thank Thee O God For a Prophet (#19)</hymn> was hugely popular in 2018: it was sung in about twice as meetings as any other year. Why? Well, that was the year President Russell M. Nelson was sustained! Interestingly though, there is no corresponding peak in 2008 after President Monson began service as president of the church. 
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
 freqs |> 
-    mutate(is_this_hymn = hymn_num == 27) |> 
-    count(is_this_hymn, year) |> 
-    pivot_wider(names_from = is_this_hymn, values_from = n, values_fill = 0) |> 
+    filter(!year %in% c(2002, 2003, 2024),
+           !is.na(year),
+           !source == "kjerste2025") |> 
+    
+    # Is or is not the hymn
+    mutate(is_this_hymn = hymn_num == 19) |> 
+    
+    # Boil it down to whether the meeting has the hymn or not
+    summarize(has_this_hymn = sum(is_this_hymn) >= 1, .by = c(year, meeting_id)) |> 
+    
+    # Count the number of meetings with and without the hymn per year
+    summarize(meetings_with = sum(has_this_hymn),
+              meetings_without = n(),
+              .by = year) |> 
     rowwise() |> 
-    mutate(prop_true = `TRUE` / (`TRUE` + `FALSE`)) |> 
-    print() |> 
-    ggplot(aes(year, prop_true)) + 
+    mutate(prop = meetings_with / (meetings_with + meetings_without),
+           meetings_per_year = prop * 48) |> 
+    # print() |> 
+    ggplot(aes(year, meetings_per_year)) + 
     geom_point() + 
     geom_path() + 
+    scale_x_continuous(breaks = seq(2000, 2030, 2)) + 
+    labs(title = "Popularity of \"We Thank Thee O God For a Prophet (#19)\" over time",
+         subtitle = "There is a peak in 2018, corresponding to President Nelson beginning his service",
+         x = "year",
+         y = "times per year per ward") + 
     theme_minimal()
 ```
 
 
-Maybe meetings per year.
+The other really cool one is that <hymn>As I Search the Holy Scriptures (#277)</hymn> peaked in 2019. This likely corresponds to the introduction of *Come, Follow Me*!
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+freqs |> 
+    filter(!year %in% c(2002, 2003, 2024),
+           !is.na(year),
+           !source == "kjerste2025") |> 
+    
+    # Is or is not the hymn
+    mutate(is_this_hymn = hymn_num == 277) |> 
+    
+    # Boil it down to whether the meeting has the hymn or not
+    summarize(has_this_hymn = sum(is_this_hymn) >= 1, .by = c(year, meeting_id)) |> 
+    
+    # Count the number of meetings with and without the hymn per year
+    summarize(meetings_with = sum(has_this_hymn),
+              meetings_without = n(),
+              .by = year) |> 
+    rowwise() |> 
+    mutate(prop = meetings_with / (meetings_with + meetings_without),
+           meetings_per_year = prop * 48) |> 
+    # print() |> 
+    ggplot(aes(year, meetings_per_year)) + 
+    geom_point() + 
+    geom_path() + 
+    scale_x_continuous(breaks = seq(2000, 2030, 2)) + 
+    labs(title = "Popularity of \"As I Search the Holy Scriptures (#277)\" over time",
+         subtitle = "There is a peak in 2019, corresponding to the beginning of \"Come, Follow Me\"",
+         x = "year",
+         y = "times per year per ward") + 
+    theme_minimal()
+```
+
+Other hymns have spikes just as big, but I'm not sure why. <hymn>Let Us All Press On (#243)</hymn> was quite a bit more popular in 2012 than in other years. <hymn>Jesus, The Very Thought of Thee (#141)</hymn> had a peak in 2014. <hymn>Hark, All Ye Nations! (#264)</hymn> was most popular in 2021. And more people sang <hymn>Guide Us, O Thou Great Jehovah (#83)</hymn> in 2022 than in any other year. 
+
+
+## Covid disruptions
+
+Perhaps the most noticeable pattern in the hymns that I looked at were the disruptions due to covid. In this section, I list these hymns, with some possible explanations for why they were impacted by lockdown.
+
+Many sacrament hymns were proportionally more popular because some wards only sang those. The biggest spikes were in  <hymn>While of These Emblems We Partake (#173)</hymn> and <hymn>Reverently and Meekly Low (#185)</hymn>. However, not all were more popular, and some like <hymn>O God, The Eternal Father (#175)</hymn>, <hymn>'Tis Sweet to Sing the Matchless Love (#177)</hymn>, <hymn>In Remembrance of Thy Suffering (#183)</hymn>, <hymn>There Is a Green Hill Far Away (#194)</hymn> had a dip in 2020. It's not clear to me why some were more popular and others were less. 
+
+Because the timing of covid lockdown happened in roughly the second quarter of the year, some hymns that are typically sung around that time had a noticeable drop in 2020. For example some [Easter](/posts/easter) hymns like <hymn>All Creatures of Our God and King (#62)</hymn>, were less common, although not all were because <hymn>Christ the Lord is Risen Today (#200)</hymn> was not any lower than other years. American patriotic hymns <hymn>America the Beautiful (#338)</hymn> and <hymn>My Country, 'Tis of Thee (#339)</hymn> were less common since many wards were still on lockdown in July 2020. And some prophet-related hymns were less popular, like <hymn>Come, Listen to a Prophet's Voice (#21)</hymn>, presumably because we were in lockdown the week before [General Conference](/posts/general_conference.qmd). Hymns related to Mother's Day or Father's Day like <hymn>O My Father (#292)</hymn> were also less common since those are celebrated in the US in May and June. 
+
+Relatedly, <hymn>Called to Serve (#249)</hymn> and <hymn>I'll Go Where You Want Me to Go (#270)</hymn> were less popular in 2020, presumably because we were having fewer missionary farewells. 
+
+Other hymns had noticeable dips in 2020, and it's not really clear why. For example, since 2004, <hymn>Because I Have Been Given Much (#219)</hymn> was sung the least in 2020 and 2021. It's tempting to think that perhaps with all the turmoil in the world going on then, it was hard to literally count people's blessings, but it turns out that <hymn>Count Your Blessings (#241)</hymn> had a small *spike* in 2020. 
+
+Others that were less common in 2020 include <hymn>The Spirit of God (#2)</hymn>, <hymn>Come, Ye Children of the Lord (#58)</hymn>, <hymn>Rejoice, the Lord Is King (#66)</hymn>, <hymn>Praise to the Lord, the Almighty (#72)</hymn>, <hymn>Guide Us, O Thou Great Jehovah (#83)</hymn>, <hymn>The Lord Is My Light (#89)</hymn>, <hymn>I Need Thee Every Hour (#98)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, <hymn>Secret Prayer (#144)</hymn>, <hymn>Sweet Is the Word (#147)</hymn>, <hymn>Sing We now at Parting (#156)</hymn>, <hymn>Thy Spirit, Lord, Has Stirred Our Souls (#157)</hymn>, <hymn>There is Sunshine in My Soul Today (#227)</hymn>, <hymn>Choose the Right (#239)</hymn>, <hymn>Go Forth with Faith (#263)</hymn>, <hymn>Hark, All Ye Nations! (#264)</hymn>, <hymn>Keep the Commandments (#303)</hymn>, <hymn>Teach Me to Walk in the Light (#304)</hymn>, and <hymn>Love One Another (#308)</hymn>. It may be that fewer hymns are sung, and sacrament hymns take priority, anything extra like generic popular hymns like these, were the ones that got cut.
+
+However, it's not all bad news. A few hymns were more popular in 2020 than in other years. These include <hymn>Faith of Our Fathers (#84)</hymn>, <hymn>Dearest Children, God is Near You (#96)</hymn>, <hymn>Precious Savior, Dear Redeemer (#103)</hymn>, <hymn>Abide with Me! (#166)</hymn>, <hymn>Again We Meet Around the Board (#168)</hymn>, and <hymn>The First Noel (#213)</hymn>. Again, it's not clear to be why these were suddenly favored. 
+
+So, covid had apparent disruptions. Some can be explained because we were simply not in church during times of the year when particular hymns are typically sung. But, many other hymns were less common for one reason or another.
+
+
+
+
+
+## Change to two-hour church 
+
+Instead of looking at changes in individual hymns, one could ask whether there has been a change in the number of congregational hymns being sung. Specifically, since the switch from three-hour church to two-hour church, sacrament meetings are 10 minutes shorter. At least one person I talked to felt like the intermediate hymn has been cut more often because of that. Is that a more general trend? 
 
 ```{r}
+length(unique(freqs$meeting_id))
 freqs |> 
-    filter(year != 2024) |> 
+    filter(!ward %in% c("Anonymous")) |> 
+    count(meeting_id) |> 
+    summarize(across(n, list(`mean` = mean, sd = sd)))
+```
+
+In a [previous post](/posts/hymns_per_year/), I mentioned that the average number of congregational hymns per sacrament meeting is 3.47. That post was based on about a quarter of the amount of data that I have now, and the results are still pretty accurate. With my current dataset of 20,296 sacrament meetings, the average number of congregational hymns is 3.34, with a standard deviation of 0.673. However, that pools all data from all years. What are the differences from before and after the change?
+
+As it turns out, the average number of congregational hymns before 2019 was 3.36 and the average in 2019 and later was 3.21. So a slight drop. 
+
+```{r}
+freqs %>%
+    filter(!is.na(year),
+           !ward %in% c("Anonymous"))|> 
+    mutate(blocks = if_else(year >= 2019, "two-hour church", "three-hour church")) %>%
+    group_by(blocks) %>%
+    summarize(n_hymns = n(),
+              n_meetings = length(unique(meeting_id)),
+              hymns_per_meeting = n_hymns / n_meetings) %>%
+    print()
+```
+
+But wait! We had a pandemic since 2019. We were all in in lockdown and when wards resumed meetings, many did so in an abbreviated way and didn't sing very many hymns, if any at all. So, we'll have to treat the covid era differently. From what I can tell, wards were starting to shut down by around March 1, 2020 and it wasn't until around January 2021 that they were back in person with all the hymns. This figure shows the average number of congregational hymns each month across the past 22 years or so, with key periods highlighted in different colors.
+
+```{r, message= FALSE, include = TRUE, fig.height = 4, fig.width = 6.5}
+per_month <- freqs %>%
+    filter(!is.na(year),
+           !ward == "Anonymous") |> 
+    group_by(date) %>%
+    mutate(month_year = lubridate::my(paste(month, year))) %>%
+    group_by(month_year)  %>%
+    summarize(
+        unique_wards = length(unique(ward)),
+        n_hymns = n(),
+        n_meetings = length(unique(meeting_id)),
+        hymns_per_meeting = n_hymns / n_meetings) %>%
+    filter(unique_wards > 1) %>%
+    mutate(category = case_when(month_year < ymd("2018-12-31") ~ "three-hour church",
+                                month_year < ymd("2020-03-01") ~ "two-hour church",
+                                month_year < ymd("2020-12-31") ~ "covid",
+                                TRUE ~ "two-hour church")) |> 
+    mutate(group = case_when(category == "two-hour church" ~ 
+                                 if_else(month_year < ymd("2020-03-01"), "pre-covid", "post-covid"),
+                             TRUE ~ category))
+ggplot(per_month, aes(month_year, hymns_per_meeting, color = category, group = group)) +
+    annotate(geom = "rect",
+             xmin = ymd("2002-04-01"), xmax = ymd("2018-12-31"),
+             ymin = 2.4, ymax = 3.85,
+             fill = "#a6cee3", 
+             alpha = 0.5) + 
+    # annotate(geom = "label", x = ymd("2011-01-01"), y = 2.7, label = "three-hour church", color = "#1f78b4") + 
+    annotate(geom = "rect",
+             xmin = ymd("2018-12-31"), xmax = ymd("2020-03-01"),
+             ymin = 2.4, ymax = 3.85,
+             fill = "#b2df8a", 
+             alpha = 0.5) + 
+    annotate(geom = "rect",
+             xmin = ymd("2020-02-29"), xmax = ymd("2020-12-31"),
+             ymin = 2.4, ymax = 3.85,
+             fill = "#fb9a99", 
+             alpha = 0.5) + 
+    annotate(geom = "rect",
+             xmin = ymd("2021-01-01"), xmax = ymd("2024-03-31"),
+             ymin = 2.4, ymax = 3.85,
+             fill = "#b2df8a", 
+             alpha = 0.5) + 
+    stat_smooth() +
+    geom_point() + 
+    scale_color_manual(breaks = c("three-hour church", "two-hour church", "covid"),
+                       values = c("#1f78b4", "#33a02c", "#e31a1c")) + 
+    scale_x_date(limits = c(ymd("2002-04-01"), ymd("2024-04-01")), 
+                 date_breaks = "2 years",
+                 date_labels = "%Y",
+                 expand = expansion(0, 0)) + 
+    scale_y_continuous(limits = c(2.4, 3.85), expand = expansion(0, 0)) + 
+    labs(title = "Average number of hymns per meeting over time",
+         x = NULL,
+         y = "average hymns per meeting",
+         color = NULL) + 
+    theme_minimal() + 
+    theme(legend.position = "bottom", 
+          legend.key.width = unit(1, "cm")) + 
+    guides(color = guide_legend(label.position = "bottom"))
+```
+
+There's a lot to dissect here, so let me go through it from left to right:
+
+* First, there's more variability in the 2002--2008 range, and that's mostly because I have less data so it's a bit unstable. 
+* From about 2008 through 2017, the average number of hymns per meeting was pretty stable. 
+* In 2018 we actually see a bit of a dip. I actually don't have a lot of data from the end of 2018, so some of the numbers are perhaps higher in real life than what they show here. 
+* Once we hit 2019, there appears to be a small *uptick* in the average number of hymns per sacrament meeting. Nothing completely out of the ordinary based on the previous decade, but perhaps slightly more on average. 
+* We then see the drastic jump as we enter covid lockdown, and the number of hymns drops preciptiously: very few wards were singing three hymns while meeting virtually. Most wards were back in person by October 2020, but in a limited way still and many were not singing all the hymns. 
+* By the beginning of 2021, it seems like most wards were back to at least three hymns a meeting again. However, the number of hymns was lower than before. 
+* It wasn't until the beginning of 2023 that numbers reached their post-covid peak, which even then is slightly lower than pre-2017 numbers. 
+
+So, are we singing fewer hymns in two-hour church? It's really hard to tell because of covid, but it looks like we might be just a little bit. 
+
+
+```{r}
+# figuring out when covid ended:
+# most wards were back in person by October
+freqs |> 
+    filter(year == 2020,
+           !is.na(year)) |> 
+    count(date, meeting_id) |> 
+    count(date) |> 
+    ggplot(aes(date, n)) + 
+    geom_path()
+```
+
+
+
+
+```{r, eval = FALSE}
+# meetings per year
+freqs |> 
+    filter(!year %in% c(2002, 2003, 2024),
+           !is.na(year),
+           !source == "kjerste2025") |> 
     
     # Is or is not the hymn
     mutate(is_this_hymn = hymn_num == 27) |> 
@@ -65,16 +292,72 @@ freqs |>
          x = "year",
          y = "times per year") + 
     theme_minimal()
-ggsave("PraiseToTheMan.jpeg", height = 3, width = 8)
 ```
 
-What if I plot all the top, say, 100 hymns.
 
-```{r, fig.height = 3, fig.width = 7}
+
+```{r, eval = FALSE}
+# Add some sort of confidence interval? I think I might need to do some sort of bootstrapping. That might solve the sample size issue. 
+boostrap_annual_frequency <- function(.df) {
+    .df |> 
+        slice_sample(n = 1000, replace = TRUE) |> 
+        count(has_this_hymn) |> 
+        mutate(prop = n/sum(n),
+               per_year = prop * 48) |> 
+        filter(has_this_hymn) |> 
+        pull(per_year)
+}
+
+set.seed(240403)
+annual_freqs <- freqs |> 
+    filter(!year %in% c(2002, 2003, 2024),
+           !is.na(year),
+           !source == "kjerste2025") |> 
+    
+    # Is or is not the hymn
+    mutate(is_this_hymn = hymn_num == 27) |> 
+    
+    # Boil it down to whether the meeting has the hymn or not
+    summarize(has_this_hymn = sum(is_this_hymn) >= 1, .by = c(year, meeting_id)) |> 
+    
+    # Do the bootstrapping
+    group_by(year) |>
+    nest() |>
+    crossing(iteration = 1:50) %>%
+    mutate(per_year = map_dbl(data, boostrap_annual_frequency)) |>
+    select(-data) |> 
+    ungroup() |> 
+    
+    print()
+
+annual_freqs_summary <- annual_freqs |> 
+    summarize(across(per_year, .fns = list(`mean` = mean, `min` = min, `max` = max, `sd` = sd)), .by = year) |> 
+    print()
+
+annual_freqs |> 
+    ggplot(aes(year, per_year, group = year)) + 
+    # geom_point() +
+    geom_boxplot() +
+    # geom_path(data = annual_freqs_summary, aes(y = per_year_mean)) +
+    # geom_smooth(method = "lm", se = TRUE, formula = 'y ~ x') +
+    scale_x_continuous(breaks = seq(2002, 2024, 2)) + 
+    labs(x = NULL,
+         y = "Approximate number of times sing per year per ward") + 
+    theme_minimal()
+
+# This is nice, but it's not much clearer than the raw numbers. The boxes are all approximately the same size. Maybe it's best to just do the raw numbers instead. 
+```
+
+
+
+```{r, eval = FALSE, fig.height = 3, fig.width = 7}
+# What if I plot all the top, say, 100 hymns.
 plot_change_over_time <- function(.hymn_num) {
     
     df <- freqs |> 
-        filter(!year %in% c(2002, 2024)) |> 
+        filter(!year %in% c(2002, 2003, 2024),
+               !is.na(year),
+               !source == "kjerste2015") |> 
         
         # Is or is not the hymn
         mutate(is_this_hymn = hymn_num == .hymn_num) |> 
@@ -84,18 +367,19 @@ plot_change_over_time <- function(.hymn_num) {
         
         # Count the number of meetings with and without the hymn per year
         summarize(meetings_with = sum(has_this_hymn),
-                  meetings_without = n(),
+                  meetings_without = n() - meetings_with,
                   .by = year) |> 
         rowwise() |> 
         mutate(prop = meetings_with / (meetings_with + meetings_without),
-               meetings_per_year = prop * 48)
+               meetings_per_year = prop * 48) |> 
+        print()
     
     title <- freqs |> 
         filter(hymn_num == .hymn_num) |> 
         pull(name_num) |> 
         head(1)
     
-    ggplot(df, aes(year, meetings_per_year)) + 
+    p <- ggplot(df, aes(year, meetings_per_year)) + 
         geom_point() + 
         geom_path() + 
         scale_x_continuous(breaks = seq(2000, 2030, 2)) + 
@@ -103,35 +387,42 @@ plot_change_over_time <- function(.hymn_num) {
              x = "year",
              y = "times per year") + 
         theme_minimal()
+    ggsave(paste0(title, ".pdf"), p, height = 3, width = 7, device = cairo_pdf)
+    
+    p
 }
 freqs |> 
     count(hymn_num, sort = TRUE) |> 
     head(150) |> 
     rowwise() |> 
-    mutate(plot = map(hymn_num, plot_change_over_time)) |> 
-    pull(plot)
+    mutate(plot = map(hymn_num, plot_change_over_time))
 ```
 
-This is good, but there's a clear effect of sample size: 2014 is a spike for most hymns. I also had to remove 2002. 
-
-Here are some notable ones: 
-
-* Upon the Cross of Calvary (184), Called to Serve (249), Praise to the Man (27), Home Can Be a Heaven on Earth (298) declines.
-* Away in a Manger (206) has been less popular since 2018 than any year before it. 
-
-* I Know That My Redeemer Lives (136) has a rise and then fall.
-
-* We Thank Thee O God For a Prophet has a noticeable spike in 2018, the year Nelson was sustained(!), and *not* 2014. There's also a spike in 2007. As I Search the Holy Scriptures (277) peaked in 2019 with the introductin of Come Follow Me.
-
-A strange decline in 201, 202, 203, 213 in 2018 for some reason. 
-
-Several hymns have 2020 as a low point. 
 
 
-```{r}
+
+
+```{r, eval = FALSE, fig.height = 5, fig.width = 15}
+#This is good, but there's a clear effect of sample size: 2014 is a spike for most hymns, but that's gone when I remove Kjerste's data. I also had to remove 2002 and 2024 because of incomplete years. 
+
+# Why is 2014 a spike? OH! it's something to do with Kjerste's data. Okay, remove that then. 
+freqs |> 
+    count(year, source) |> 
+    mutate(prop = n/sum(n), .by = source) |> 
+    ggplot(aes(year, prop, fill = source)) + 
+    geom_col(position = position_dodge()) + 
+    scale_x_continuous(breaks = 2000:2025)
+```
+
+
+
+```{r, eval = FALSE}
+# All stats over time
 get_freqs_over_time <- function(.hymn_num) {
     freqs |> 
-        filter(!year %in% c(2002, 2024)) |> 
+        filter(!year %in% c(2002, 2003, 2024),
+               !is.na(year),
+               !source == "kjerste2015") |> 
         
         # Is or is not the hymn
         mutate(is_this_hymn = hymn_num == .hymn_num) |> 
@@ -156,15 +447,14 @@ change_stats <- freqs |>
     unnest(df) |> 
     filter(meetings_per_year < 5) |> 
     print()
-```
 
-
-```{r}
 ggplot(change_stats, aes(year, meetings_per_year, group = hymn_num, color = hymn_num)) + 
     geom_path()
 ```
 
-```{r}
+
+```{r, eval = FALSE}
+# Find those that dip in 2020.
 name_num_lookup <- freqs |> 
     distinct(hymn_name, hymn_num)
 change_stats |> 
@@ -174,4 +464,6 @@ change_stats |>
     left_join(name_num_lookup, by = "hymn_num") |> 
     arrange(hymn_num)
 ```
+
+
 

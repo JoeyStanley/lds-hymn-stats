@@ -10,7 +10,99 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Sun, 24 Mar 2024 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 04 Apr 2024 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Hymns’ Popularity over Time</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/change_over_time/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Are hymns equally popular from year to year? Are there hymn that have been increasing or decreasing in popularity? Were there events that triggered a sudden spike in a particular hymn? In this post, I highlight a couple trends over time.</p>
+<p>I should start off by pointing out a major caveat. As I illustrate <a href="../../posts/frequency-data/#distribution-across-time">here</a>, I do have data from almost every Sunday from April 2002 through now, but it is quite inconsistent. Most of it comes from 2015–2017, with 2017 having by far the most out of any other year, thanks to <a href="../../posts/frequency-data/#samuels-2017-survey">Samuel Bradshaw’s project data</a> that he generously shared with me. So, I’m hesitant to make any strong claims about the gradual increase or decrease of hymns over time. But I’ll present the data anyway and let you make conclusions.</p>
+<p>The way I’ll track changes over time is pretty simple. For each hymn, I’ll count tally up the number of meetings it occurs in that year in my dataset. To offset the problem of vastly different amounts of data from year to year, I’ll then take that number and divide it by the total number of meetings I have data from for that year. Essentially, I’m taking the proportion of meetings the hymn is sung in from year to year. To convert it into numbers that are more interpretable, I’ll then multiply that proportion by 48 to get an estimate of how many times per year a ward might sing that hymn. I’ll then plot those numbers over time. I won’t show too many plots here though because it would quickly bog down the post.</p>
+<section id="general-changes-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="general-changes-over-time">General changes over time</h2>
+<section id="hymns-that-might-becoming-less-popular" class="level3">
+<h3 class="anchored" data-anchor-id="hymns-that-might-becoming-less-popular">Hymns that might becoming less popular</h3>
+<p>First, I’ll start off by identifying the handful of hymns that might be getting less popular over the past few years, with some potential interpretation.</p>
+<p>First, <hymn>A Poor Wayfaring Man of Grief (#29)</hymn> has been approximately half as popular since 2020 than in the decade before it. It was one of many that experienced a noticeable dip in 2020 and it looks like it never fully recovered. It may be because it’s a long hymn and since switching to two-hour church in 2018, sacrament meeting is 10 minutes shorter and perhaps it has been cut because it’s too long.</p>
+<p>Other hymns follow the same pattern of a recent drop, but we can’t really attribute it to their length. For example, <hymn>Did You Think to Pray? (#140)</hymn> was pretty stable in 2010–2018, but quickly became about half as popular since then. <hymn>Be Thou Humble (#130)</hymn> and <hymn>Improve the Shining Moments (#226)</hymn> are slightly less common since 2020 than before it. <hymn>Lord, We Ask Thee Ere We Part (#153)</hymn> is one case where there has been a gradual decline over the past decade.</p>
+<p>For some reason, family-related hymns are less popular than they used to be. <hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>Home Can Be A Heaven on Earth (#298)</hymn>, and <hymn>Love at Home (#294)</hymn> have all been gradually declining over the past 15 years.</p>
+<p>As I’ll discuss again below, <hymn>Called to Serve (#249)</hymn> had a disruption in 2020 where it was less popular. Even disregarding that year though, it appears to have been on a gradual decline since about 2012. More missionaries are serving, but perhaps this hymn is becoming less popular for sacrament meeting.</p>
+</section>
+<section id="hymns-that-are-becoming-more-popular" class="level3">
+<h3 class="anchored" data-anchor-id="hymns-that-are-becoming-more-popular">Hymns that are becoming more popular</h3>
+<p>There are relatively few hymns that show an increase over time. Part if this may be because some wards are singing intermediate hymns less regularly as they used to since switching to two-hour church (see below), so some of the less popular ones end up getting sung less often. This means that some of the more well-known ones are, proportionally, appearing to be sung more.</p>
+<p>Over the past decade, <hymn>Be Still, My Soul (#124)</hymn> has gone from being sung about once every three years to once every 15 months. <hymn>Gently Raise the Sacred Strain (#146)</hymn> used to be sung about once every other year in the late 2000s, and is now closer to once a year. Compared to 15 years ago, <hymn>Lead, Kindly Light (#97)</hymn> is 2–3 times more common and <hymn>My Redeemer Lives (#135)</hymn> is twice as common.</p>
+<p>Other hymns have a more gradual uptick. <hymn>Hark, All Ye Nations! (#264)</hymn> is more popular since 2012, and <hymn>Thy Will, O Lord, Be Done (#188)</hymn> has been more popular since 2019, with a noticeable peak in 2020.</p>
+<p>It’s not clear why these particular hymns appear to be gaining in popularity.</p>
+</section>
+<section id="hymns-with-more-complex-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="hymns-with-more-complex-patterns">Hymns with more complex patterns</h3>
+<p>Three hymns have more complex patterns. <hymn>I Know That My Redeemer Lives (#136)</hymn> has a rise in popularity, peaking in 2012, and then fall, dipping in 2020. Similarly, <hymn>Thy Will O Lord Be Done (188)</hymn> gradually rose from 2008 and peaked in 2020 and has fallen since then. Meanwhile, <hymn>Upon the Cross of Calvary (#184)</hymn> gradually fell from 2005 through 2019, but has picked up a little since then.</p>
+</section>
+<section id="hymns-with-noticeable-spikes" class="level3">
+<h3 class="anchored" data-anchor-id="hymns-with-noticeable-spikes">Hymns with noticeable spikes</h3>
+<p>Finally, and perhaps most interestingly to me, there were a few hymns that had very clear spikes that can be easily explained. <hymn>We Thank Thee O God For a Prophet (#19)</hymn> was hugely popular in 2018: it was sung in about twice as meetings as any other year. Why? Well, that was the year President Russell M. Nelson was sustained! Interestingly though, there is no corresponding peak in 2008 after President Monson began service as president of the church.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/change_over_time/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>The other really cool one is that <hymn>As I Search the Holy Scriptures (#277)</hymn> peaked in 2019. This likely corresponds to the introduction of <em>Come, Follow Me</em>!</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/change_over_time/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Other hymns have spikes just as big, but I’m not sure why. <hymn>Let Us All Press On (#243)</hymn> was quite a bit more popular in 2012 than in other years. <hymn>Jesus, The Very Thought of Thee (#141)</hymn> had a peak in 2014. <hymn>Hark, All Ye Nations! (#264)</hymn> was most popular in 2021. And more people sang <hymn>Guide Us, O Thou Great Jehovah (#83)</hymn> in 2022 than in any other year.</p>
+</section>
+</section>
+<section id="covid-disruptions" class="level2">
+<h2 class="anchored" data-anchor-id="covid-disruptions">Covid disruptions</h2>
+<p>Perhaps the most noticeable pattern in the hymns that I looked at were the disruptions due to covid. In this section, I list these hymns, with some possible explanations for why they were impacted by lockdown.</p>
+<p>Many sacrament hymns were proportionally more popular because some wards only sang those. The biggest spikes were in <hymn>While of These Emblems We Partake (#173)</hymn> and <hymn>Reverently and Meekly Low (#185)</hymn>. However, not all were more popular, and some like <hymn>O God, The Eternal Father (#175)</hymn>, <hymn>’Tis Sweet to Sing the Matchless Love (#177)</hymn>, <hymn>In Remembrance of Thy Suffering (#183)</hymn>, <hymn>There Is a Green Hill Far Away (#194)</hymn> had a dip in 2020. It’s not clear to me why some were more popular and others were less.</p>
+<p>Because the timing of covid lockdown happened in roughly the second quarter of the year, some hymns that are typically sung around that time had a noticeable drop in 2020. For example some <a href="../../posts/easter">Easter</a> hymns like <hymn>All Creatures of Our God and King (#62)</hymn>, were less common, although not all were because <hymn>Christ the Lord is Risen Today (#200)</hymn> was not any lower than other years. American patriotic hymns <hymn>America the Beautiful (#338)</hymn> and <hymn>My Country, ’Tis of Thee (#339)</hymn> were less common since many wards were still on lockdown in July 2020. And some prophet-related hymns were less popular, like <hymn>Come, Listen to a Prophet’s Voice (#21)</hymn>, presumably because we were in lockdown the week before <a href="../../posts/general_conference.html">General Conference</a>. Hymns related to Mother’s Day or Father’s Day like <hymn>O My Father (#292)</hymn> were also less common since those are celebrated in the US in May and June.</p>
+<p>Relatedly, <hymn>Called to Serve (#249)</hymn> and <hymn>I’ll Go Where You Want Me to Go (#270)</hymn> were less popular in 2020, presumably because we were having fewer missionary farewells.</p>
+<p>Other hymns had noticeable dips in 2020, and it’s not really clear why. For example, since 2004, <hymn>Because I Have Been Given Much (#219)</hymn> was sung the least in 2020 and 2021. It’s tempting to think that perhaps with all the turmoil in the world going on then, it was hard to literally count people’s blessings, but it turns out that <hymn>Count Your Blessings (#241)</hymn> had a small <em>spike</em> in 2020.</p>
+<p>Others that were less common in 2020 include <hymn>The Spirit of God (#2)</hymn>, <hymn>Come, Ye Children of the Lord (#58)</hymn>, <hymn>Rejoice, the Lord Is King (#66)</hymn>, <hymn>Praise to the Lord, the Almighty (#72)</hymn>, <hymn>Guide Us, O Thou Great Jehovah (#83)</hymn>, <hymn>The Lord Is My Light (#89)</hymn>, <hymn>I Need Thee Every Hour (#98)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, <hymn>Secret Prayer (#144)</hymn>, <hymn>Sweet Is the Word (#147)</hymn>, <hymn>Sing We now at Parting (#156)</hymn>, <hymn>Thy Spirit, Lord, Has Stirred Our Souls (#157)</hymn>, <hymn>There is Sunshine in My Soul Today (#227)</hymn>, <hymn>Choose the Right (#239)</hymn>, <hymn>Go Forth with Faith (#263)</hymn>, <hymn>Hark, All Ye Nations! (#264)</hymn>, <hymn>Keep the Commandments (#303)</hymn>, <hymn>Teach Me to Walk in the Light (#304)</hymn>, and <hymn>Love One Another (#308)</hymn>. It may be that fewer hymns are sung, and sacrament hymns take priority, anything extra like generic popular hymns like these, were the ones that got cut.</p>
+<p>However, it’s not all bad news. A few hymns were more popular in 2020 than in other years. These include <hymn>Faith of Our Fathers (#84)</hymn>, <hymn>Dearest Children, God is Near You (#96)</hymn>, <hymn>Precious Savior, Dear Redeemer (#103)</hymn>, <hymn>Abide with Me! (#166)</hymn>, <hymn>Again We Meet Around the Board (#168)</hymn>, and <hymn>The First Noel (#213)</hymn>. Again, it’s not clear to be why these were suddenly favored.</p>
+<p>So, covid had apparent disruptions. Some can be explained because we were simply not in church during times of the year when particular hymns are typically sung. But, many other hymns were less common for one reason or another.</p>
+</section>
+<section id="change-to-two-hour-church" class="level2">
+<h2 class="anchored" data-anchor-id="change-to-two-hour-church">Change to two-hour church</h2>
+<p>Instead of looking at changes in individual hymns, one could ask whether there has been a change in the number of congregational hymns being sung. Specifically, since the switch from three-hour church to two-hour church, sacrament meetings are 10 minutes shorter. At least one person I talked to felt like the intermediate hymn has been cut more often because of that. Is that a more general trend?</p>
+<p>In a <a href="../../posts/hymns_per_year/">previous post</a>, I mentioned that the average number of congregational hymns per sacrament meeting is 3.47. That post was based on about a quarter of the amount of data that I have now, and the results are still pretty accurate. With my current dataset of 20,296 sacrament meetings, the average number of congregational hymns is 3.34, with a standard deviation of 0.673. However, that pools all data from all years. What are the differences from before and after the change?</p>
+<p>As it turns out, the average number of congregational hymns before 2019 was 3.36 and the average in 2019 and later was 3.21. So a slight drop.</p>
+<p>But wait! We had a pandemic since 2019. We were all in in lockdown and when wards resumed meetings, many did so in an abbreviated way and didn’t sing very many hymns, if any at all. So, we’ll have to treat the covid era differently. From what I can tell, wards were starting to shut down by around March 1, 2020 and it wasn’t until around January 2021 that they were back in person with all the hymns. This figure shows the average number of congregational hymns each month across the past 22 years or so, with key periods highlighted in different colors.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/change_over_time/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+<p>There’s a lot to dissect here, so let me go through it from left to right:</p>
+<ul>
+<li>First, there’s more variability in the 2002–2008 range, and that’s mostly because I have less data so it’s a bit unstable.</li>
+<li>From about 2008 through 2017, the average number of hymns per meeting was pretty stable.</li>
+<li>In 2018 we actually see a bit of a dip. I actually don’t have a lot of data from the end of 2018, so some of the numbers are perhaps higher in real life than what they show here.</li>
+<li>Once we hit 2019, there appears to be a small <em>uptick</em> in the average number of hymns per sacrament meeting. Nothing completely out of the ordinary based on the previous decade, but perhaps slightly more on average.</li>
+<li>We then see the drastic jump as we enter covid lockdown, and the number of hymns drops preciptiously: very few wards were singing three hymns while meeting virtually. Most wards were back in person by October 2020, but in a limited way still and many were not singing all the hymns.</li>
+<li>By the beginning of 2021, it seems like most wards were back to at least three hymns a meeting again. However, the number of hymns was lower than before.</li>
+<li>It wasn’t until the beginning of 2023 that numbers reached their post-covid peak, which even then is slightly lower than pre-2017 numbers.</li>
+</ul>
+<p>So, are we singing fewer hymns in two-hour church? It’s really hard to tell because of covid, but it looks like we might be just a little bit.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>frequency</category>
+  <category>general</category>
+  <guid>https://hymnstats.joeystanley.com/posts/change_over_time/index.html</guid>
+  <pubDate>Thu, 04 Apr 2024 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What hymns are sung around Easter?</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -11074,55 +11166,6 @@ Technical details for nerds :)
   <category>general</category>
   <guid>https://hymnstats.joeystanley.com/posts/hymns_per_year/index.html</guid>
   <pubDate>Sun, 10 Sep 2023 06:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>What are the most common hymns?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/most_common/index.html</link>
-  <description><![CDATA[ 
-
-
-
-<p>The most common hymn is <hymn>I Stand All Amazed (#193)</hymn>. Given what was discussed previously about the <a href="../../posts/sacrament">sacrament hymns</a>, it shouldn’t come as a surprise that the most common hymn is a sacrament hymn. In fact, the top 18 most sung hymns are sacrament hymns. There is a fairly well-enforced constraint that at least one hymn per meeting “must” be one of the 28 canonical sacrament hymns (with two <a href="../../posts/sacrament/index.html#non-sacrament-hymns">“honorary hymns”</a> as possibilities as well). We can now better appreciate the list of the most common hymns.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Read more about <a href="../../posts/least-common-hymns">the <em>least</em> common hymns</a>.</p>
-</div>
-</div>
-<section id="the-most-common-hymns" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-most-common-hymns">The most common hymns</h2>
-<div class="page-columns page-full"><p>The most common hymns sung in the church, according to my data, are displayed in the figure below. Here, sacrament hymns are in gray and other hymns are in black. I’ve shown only the hymns that are sung, on average, one or more times per year per ward. Since <a href="../../posts/sacrament">I’ve already posted about the sacrament hymns</a>, I’ll focus now on just the non-sacrament hymns.</p><div class="no-row-height column-margin column-container"><span class="">You may think that a lot of hymns that pertain to specific holidays would make it onto this list, but as we’ll see in later blog posts about annual trends, there are actually relatively few festive hymns that are sung by most wards most years.</span></div></div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/most_common/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="624"></p>
-</div>
-</div>
-<p>This figure shows nice list of 24 hymns that are probably well-known by most members of the church, like <hymn>I Know That My Redeemer Lives (#136)</hymn>, <hymn>How Firm a Foundation (#85)</hymn>, and <hymn>Because I Have Been Given Much (#219)</hymn>. They are generic enough to be appropriate for most meetings. Their message is centered on Christ and other foundation tenents of our religion. Some are more common around certain holidays, like <hymn>Come, Come Ye Saints (#30)</hymn> around Pioneer Day in Utah or <hymn>Love At Home (#294)</hymn> around Mother’s Day, but they’re also general enough to be appropriate at other times of the year as well. Thus, what we see in the figure above is a solid list of the most popular hymns in the Church of Jesus Christ of Latter-day Saints.</p>
-<p>This figure also shows how common each of these hymns are. <hymn>Because I Have Been Given Much (219)</hymn> is sung about 1.6 times per year, or once every 7.5 months. <hymn>How Firm a Foundation (#85)</hymn> and were about once every 7–8 months. <hymn>I Know That My Redeemer Lives (#136)</hymn> was sung, on average, 1.5 times per year per ward, or about once every six or so months. <hymn>Lord, I Would Follow Thee (#220)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> were once every 8–9 months. <hymn>I Believe in Christ (134)</hymn>, <hymn>Now Let Us Rejoice (3)</hymn>, and <hymn>High on the Mountain Top (5)</hymn>, <hymn>The Lord Is My Light (#89)</hymn>, and <hymn>Come, Follow Me (#116)</hymn> were once every 8–9 months. The rest were less than once every 10 months but still at least once a year. Of course, your ward may sing these more or less often than what is shown here, but this is the average across all the wards I have data from.</p>
-<p>To contrast this, about nine sacrament hymns are sung, on average, more than twice a year. Keep in mind that there are only 48 sacrament meetings per year, and 28 sacrament hymns to choose from, so many will have to double up. None of the non-sacrament hymns were sung, on average, more than twice a year.</p>
-<p>This list of favorites is useful because if you are a new ward organist, these are the hymns to practice first. Learning these 24 hymns (plus the sacrament hymns) will get you the most mileage. In fact, these 49 hymns account for 44.3% of the hymns sung in sacrament meeting in this sample. That means that if you learn the hymns shown in the figure above, you’ll be able to play almost half of the meetings in your ward.</p>
-<section id="are-these-the-standards" class="level3">
-<h3 class="anchored" data-anchor-id="are-these-the-standards">Are these the “standards”?</h3>
-<p>It is interesting to compare this list of the most popular hymns, which I’m calling the “favorites,” to the list in the back of the hymnal under the section “Hymns for Stake Conference” (page 381). That section lists “standard, well-known hymns” and it is implied that many members would have these hymns memorized. Interestingly, there is not a lot of overlap between these lists. The following figure shows which hymns appear in the figure above and are usually sung more than once a year (excluding sacrament hymns), and which are the “standards” listed in the back of the hymnal. This time, the hymns in purple are ones that are recommended as “standards” and are indeed sung pretty regularly. The blue ones are what are sung pretty often but are not one of “the standards” listed in the back of the hymnal. The red ones are recommended “standards” that are not as popular. Most of lesser-popular “standards” are still sung pretty regularly, usually at least once every two years. The exception is <hymn>Come, O Thou King of Kings (#59)</hymn>, which is sung less than once every two years and is not what I would consider to be a popular hymn.</p>
-<p>However, it should be kept in mind that this isn’t exactly a fair comparison. For one, this list of “standards” is what is recommended for stake conference, which is not the same as sacrament meeting. Also, this list printed in the back of the hymnal is presumably what was recommended in 1985 when this hymnal was first published. What is considered a standard has surely changed in the past few decades. Furthermore, many of the currently most popular hymns were new additions to the 1985 hymnal, including <hymn>Because I Have Been Given Much (#219)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, <hymn>I Am a Child of God (#301)</hymn>, and <hymn>Called to Serve (#249)</hymn>. It makes sense that they’re not recommended in the back of the hymnal because they were brand new when that list was published! How could they have know they’d be so popular? My recommendation for the church would be to update the list of stake conference recommendations to include these most popular hymns and to remove the ones that are less common today.</p>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>general</category>
-  <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/most_common/index.html</guid>
-  <pubDate>Fri, 08 Sep 2023 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
