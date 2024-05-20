@@ -1,0 +1,38 @@
+---
+title: "What hymns are sung around Father's Day?"
+author: "Joey Stanley"
+date: "2024-05-12"
+categories: holidays, frequency
+reference-location: margin
+draft: TRUE
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+
+```{r}
+fathers <- freqs |> 
+    filter(month == 6,
+           nth_sunday == 3,
+           ward != "Anonymous",
+           country %in% c("United States", "Unknown")) |> 
+    print()
+```
+
+```{r}
+fathers |> 
+    filter(!hymn_num %in% 169:196) |> 
+    cleveland_plot(filter_n = 5)
+```
+
+```{r}
+single_hymn_lookup(92)
+```
+
+
