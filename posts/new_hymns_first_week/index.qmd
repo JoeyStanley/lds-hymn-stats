@@ -120,7 +120,7 @@ tom_anderson_data |>
 
 So, to combine his data with mine, here is an updated list of what hymns were sung on the first day, based on 87 wards. 
 
-```{r}
+```{r, include = TRUE}
 tom_anderson_data |> 
     left_join(name_num_lookup, by = c("new_hymn" = "hymn_name")) |> 
     mutate(name_num = paste0(new_hymn, " (", hymn_num, ")")) |> 
