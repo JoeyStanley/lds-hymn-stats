@@ -79,7 +79,7 @@ this_week |>
     mutate(prop = scales::percent(n/sum(n))) |>
     
     rename(`new hymn` = name_num,
-           `wards (out of 54)` = n,
+           `wards (out of 56)` = n,
            proportion = prop) |> 
     gt() |> 
     tab_header(title = "What new hymns were sung on June 2, 2024",
