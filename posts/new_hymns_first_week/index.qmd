@@ -23,8 +23,6 @@ this_week <- freqs |>
     filter(date == ymd("2024-06-02"))
 ```
 
-How many wards?
-
 ```{r}
 this_week |> 
     count(meeting_id)
