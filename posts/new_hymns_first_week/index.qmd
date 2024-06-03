@@ -1,0 +1,105 @@
+---
+title: "The first Sunday with new hymns!"
+author: "Joey Stanley"
+date: "2024-06-02"
+categories: 
+  - general
+  - frequency
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+ 
+
+```{r}
+this_week <- freqs |> 
+    filter(date == ymd("2024-06-02"))
+```
+
+How many wards?
+
+```{r}
+this_week |> 
+    count(meeting_id)
+```
+
+We got new hymns this week and today was the first chance to use them! Between social media and personal connections, I was able to collect hymn data from 53 wards today. Let's see how these new hymns were introduced into these wards!
+
+
+
+```{r}
+this_week |> 
+    mutate(is_new = hymn_num > 900) |> 
+    summarize(n_new = sum(is_new), .by = meeting_id) |> 
+    count(n_new) |> 
+    mutate(prop = n/sum(n)) |> 
+    print()
+```
+
+First, how many wards sang new hymns? It looks like almost exactly half of them did: 26 of 53 (49%). Three of the wards that introduced new music actually sang two new hymns!
+
+```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
+this_week |> 
+    mutate(is_new = hymn_num > 900) |> 
+    summarize(n_new = sum(is_new), .by = meeting_id) |> 
+    count(n_new) |> 
+    mutate(prop = n/sum(n)) |> 
+    ggplot(aes(n_new, prop)) + 
+    geom_col() + 
+    scale_y_continuous(expand = expansion(0, c(0, 0.1)),
+                       breaks = seq(0, 1, 0.1),
+                       labels = scales::percent) + 
+    theme_minimal() + 
+    labs(x = "number of new hymns",
+         y = "proportion of wards",
+         title = "Proportion of wards singing new hymns on June 2, 2024",
+         subtitle = "Based on data from 54 wards")
+```
+
+Now the real question: what hymns did these wards sing? Probably to no one's surprise, <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was the most common, by a long shot. Just about two-thirds of wards that sang new hymns (or one third of all wards in my sample) sang that one today. The next most common was <hymn>Is is Well with My Soul (#1003)</hymn>. 
+
+
+```{r, include = TRUE}
+new_name_num_lookup <- name_num_lookup |> 
+    filter(hymn_num > 1000) |> 
+    mutate(name_num = paste0(hymn_name, " (", hymn_num, ")")) |> 
+    select(name_num)
+this_week |> 
+    filter(hymn_num > 1000) |> 
+    count(name_num, sort = TRUE) |> 
+    full_join(new_name_num_lookup, by = "name_num") |>
+    mutate(n = if_else(is.na(n), 0, n)) |> 
+    mutate(prop = scales::percent(n/sum(n))) |>
+    
+    rename(`new hymn` = name_num,
+           `wards (out of 54)` = n,
+           proportion = prop) |> 
+    gt()
+```
+
+Just six of the 13 introduced hymns were sung in my sample of 54 wards. Interestingly, <hymn>I Will Walk with Jesus (#1004)</hymn> was not sung in this sample, even though I think a lot of children are familiar with it after it was introduced in the first [Friend-to-Friend](https://www.youtube.com/watch?v=kFrBfJKng_Y&pp=ygUQZnJpZW5kIHRvIGZyaWVuZA%3D%3D) in 2021. There was some interesting chatter online about whether the hymns that not arranged in an SATB format and probably intended for children are even appropriate for sacrament meeting. Looks like just one of the four introduced in this style was actually sung <hymn>Gethsemane (1009)</hymn>), so it looks like a fair number of people might agree that they're best suited elsewhere. We'll see over the next few months if that changes. 
+
+Does this mean that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> will be the most popular in the future? I mean, my guess is it *will* be the most popular of these hymns, but I don't think it'll be *this* popular. This was the first week and so many people have been anxious to sing it. My guess is next week we'll see more of the new hymns being sung and <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> being sung not *quite* as much. 
+
+As for when during the meeting these new hymns were introduced, it varied. <hymn>Come, Thou Fount of Every Blessing (1001)</hymn> was evenly split between opening and closing hymns. The two hymns that are clearly sacrament hymns were indeed sung as such. There was a slight tentency to sing new hymns as a closing hymn rather than an opening or sacrament hymn. It will be interesting to see how that changes over the next few weeks and months. 
+
+```{r, include = TRUE}
+this_week |> 
+    filter(hymn_num > 1000) |> 
+    count(name_num, hymn_num, type) |> 
+    pivot_wider(names_from = type, values_from = n, values_fill = 0) |> 
+    arrange(hymn_num) |> 
+    select(-hymn_num) |> 
+    relocate(Sacrament, .after = Opening) |> 
+    rename(`New Hymn` = name_num) |> 
+    gt()
+```
+
+That's it for now. How exciting is it that we have new hymns? I'll keep you posted as much as I can!
