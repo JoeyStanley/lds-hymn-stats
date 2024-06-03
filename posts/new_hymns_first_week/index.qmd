@@ -106,3 +106,36 @@ this_week |>
 ```
 
 That's it for now. How exciting is it that we have new hymns? I'll keep you posted as much as I can!
+
+## Update: Tom Anderson's Data
+
+Tom Anderson put a poll on Twitter asking people what new hymns they sang. He got data from 31 wards an kindly shared the results with me. He found that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was sung in about 73% of wards---a little more than what I found. Four did <hymn>It Is Well with My Soul (#1003)</hymn> and one did <hymn>His Eye Is on the Sparrow (#1005)<hymn>. He even got three people reporting that they sang <hymn>I Will Walk with Jesus (#1004)</hymn>, which I didn't get any of. 
+
+```{r}
+tom_anderson_data <- tibble(new_hymn = c("Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "It Is Well with My Soul", "I Will Walk with Jesus", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "It Is Well with My Soul", "It Is Well with My Soul", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "I Will Walk with Jesus", "Come, Thou Fount of Every Blessing", "I Will Walk with Jesus", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "It Is Well with My Soul", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "His Eye Is on the Sparrow", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing", "Come, Thou Fount of Every Blessing"))
+tom_anderson_data |> 
+    count(new_hymn) |> 
+    mutate(prop = n/sum(n))
+```
+
+So, to combine his data with mine, here is an updated list of what hymns were sung on the first day, based on 87 wards. 
+
+```{r}
+tom_anderson_data |> 
+    left_join(name_num_lookup, by = c("new_hymn" = "hymn_name")) |> 
+    mutate(name_num = paste0(new_hymn, " (", hymn_num, ")")) |> 
+    bind_rows(this_week) |> 
+    filter(hymn_num > 1000) |> 
+    count(name_num, sort = TRUE) |> 
+    full_join(new_name_num_lookup, by = "name_num") |>
+    mutate(n = if_else(is.na(n), 0, n)) |> 
+    mutate(prop = scales::percent(n/sum(n))) |>
+    
+    rename(`new hymn` = name_num,
+           `wards (out of 87)` = n,
+           proportion = prop) |> 
+    gt() |> 
+    tab_header(title = "What new hymns were sung on June 2, 2024",
+               subtitle = "Based on the wards that sang new hymns")
+```
+
