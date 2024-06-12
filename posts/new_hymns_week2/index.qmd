@@ -1,0 +1,157 @@
+---
+title: "The second Sunday with new hymns!"
+author: "Joey Stanley"
+date: "2024-06-09"
+date-modified: last-modified
+categories: 
+  - general
+  - frequency
+  - new hymns
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+ 
+
+```{r}
+this_week <- freqs |> 
+    filter(date == ymd("2024-06-09"))
+n_wards_this_week <- length(unique(this_week$ward))
+```
+
+```{r}
+meetings_since_june <- freqs |> 
+    filter(date <= ymd("2024-06-09"),
+           date >= ymd("2024-06-02"))
+n_wards_since_june <- freqs |> 
+    # just the first two weeks
+    filter(year(date) == 2024,
+           month(date) == 6,
+           day(date) %in% c(2, 9)) |> 
+    pull(ward) |> 
+    unique() |> 
+    length()
+```
+
+This is the second week since new hymns were introduced! There was a little less hype about it online and I didn't do as much petitioning (i.e begging) for data, but I did manage to get data from `r n_wards_this_week` wards. [Last week](/posts/new_hymns_week1), we saw that a little less than half of wards introduced new hymns, with about two thirds of those singing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. Let's see how things changed for week 2.
+
+::: callout-note
+Note that this blog post will update as I collect more data. I originally collected data from 39 wards when I first published this post. As more come in, we'll have a more accurate view of what happened. 
+:::
+
+So, while slightly less than half of wards sang at least one new hymn during week 1, it looks like there were fewer that sang a new one during week 2. It looks like about 28% of wards sang at least one new hymn during this second week. This figure below shows these numbers.
+
+```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
+# Apply a date stamp
+sf <- stamp("June 2", quiet = TRUE)
+meetings_since_june |> 
+    mutate(is_new = hymn_num > 1000) |> 
+    summarize(n_new = sum(is_new), .by = c(date, ward)) |>
+    count(date, n_new) |> 
+    mutate(prop = n/sum(n), .by = date) |>
+    ggplot(aes(n_new, prop, fill = sf(date))) + 
+    geom_col(position = position_dodge2(preserve = "single")) + 
+    scale_y_continuous(expand = expansion(0, c(0, 0.1)),
+                       breaks = seq(0, 1, 0.1),
+                       labels = scales::percent) + 
+    ggthemes::scale_fill_ptol() + 
+    theme_minimal() + 
+    labs(x = "number of new hymns per sacrament meeting",
+         y = "proportion of wards",
+         title = "Proportion of wards singing new hymns since their release",
+         subtitle = paste("Based on data from", n_wards_since_june, "wards"),
+         fill = "date")
+```
+
+```{r}
+wards_from_first_two_weeks <- meetings_since_june |> 
+    summarize(n_new = sum(hymn_num > 1000), .by = c(ward, date)) |> 
+    arrange(ward, date) |> 
+    
+    # only wards with 2 weeks of data
+    add_count(ward, name = "n_weeks") |> 
+    filter(n_weeks == 2) |> 
+    
+    summarize(weeks_with_new = sum(n_new >= 1), .by = ward) |> 
+    count(weeks_with_new) |> 
+    mutate(prop = n/sum(n)) |> 
+    print()
+```
+
+There are lots of reasons for this drop. Many wards appear to be resistant to new hymns entirely. For 27 wards, I have data from both June 2nd and Jun 9th. Fourteen of them (52%) didn't introduce new hymns either week. 9 of them (33%) introduced a new hymn during one of the two weeks. The rest (15%) introduced a new hymn both weeks. Perhaps people were so anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, then they decided to ease the rest of them in a little bit, possibly to give the organist time to practice. 
+
+
+Last time, we saw that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was far and away the most popular on June 2nd. Is that how it was on June 9th too? As explained already, I have less data and fewer wards sang new hymns, so it's hard to say for sure. But the preliminary results are that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was indeed the most popular, but not quite as much. This time, only roughly a third of wards sang it, compared to two thirds on June 2nd.  
+
+```{r, include = TRUE}
+new_name_num_lookup <- name_num_lookup |> 
+    filter(hymn_num > 1000) |> 
+    mutate(name_num = paste0(hymn_name, " (", hymn_num, ")")) |> 
+    select(name_num)
+this_week |> 
+    filter(hymn_num > 1000) |> 
+    count(name_num, sort = TRUE) |> 
+    full_join(new_name_num_lookup, by = "name_num") |>
+    mutate(n = if_else(is.na(n), 0, n)) |> 
+    mutate(prop = scales::percent(n/sum(n))) |>
+    
+    rename(`new hymn` = name_num,
+           `wards` = n,
+           proportion = prop) |> 
+    gt() |> 
+    tab_header(title = "What new hymns were sung on June 9, 2024",
+               subtitle = "Based on the wards that sang new hymns")
+```
+
+If we compare these proportions to last week, we can get a glimpse into some trends. The figure below shows what proportion of wards sang what hymns each week.
+
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 8}
+meetings_since_june |> 
+    filter(hymn_num > 1000) |> 
+    count(date, hymn_num, name_num) |> 
+    
+    # put them in order
+    arrange(hymn_num) |> 
+    mutate(name_num = fct_inorder(name_num)) |> 
+    
+    # proportions per week
+    mutate(prop = n/sum(n), .by = date) |> 
+    
+    ggplot(aes(sf(date), prop, group = name_num)) + 
+    geom_path() + 
+    geom_point() + 
+    scale_y_date(date_breaks = "1 week") + 
+    scale_y_continuous(labels = scales::percent) + 
+    facet_wrap(~name_num) + 
+    labs(title = "Proportion of wards singing new hymns by week",
+         x = "date",
+         y = "proportion of wards") + 
+    theme_bw()
+
+```
+
+The biggest change is the precipitous drop in <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. That makes sense because it was so popular during the first week. Pretty much all other hymns had an increase from June 2nd to June 9th. I think this shows that people were anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, they felt at more liberty to try some of the other ones.  
+
+As for when during the meeting these new hymns were introduced, it's hard to say for sure with such sparse data, but there again seems to be a trend of singing new hymns towards the ends of meetings, with the exception of course of sacrament hymns. 
+
+```{r, include = TRUE}
+this_week |> 
+    filter(hymn_num > 1000) |> 
+    count(name_num, hymn_num, type) |> 
+    pivot_wider(names_from = type, values_from = n, values_fill = 0) |> 
+    arrange(hymn_num) |> 
+    select(-hymn_num) |> 
+    select(name_num, Opening, Sacrament, Intermediate, Closing) |> 
+    rename(`New Hymn` = name_num) |> 
+    gt() |> 
+    tab_header(title = "When were new hymns sung in sacramnt meeting?")
+```
+
+That's it for now! I'll try to post weekly updates over the next few hymns so we can get an idea of how they are being adopted by wards. 
