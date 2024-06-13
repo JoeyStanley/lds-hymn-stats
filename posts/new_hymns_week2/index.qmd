@@ -46,7 +46,7 @@ This is the second week since new hymns were introduced! There was a little less
 Note that this blog post will update as I collect more data. I originally collected data from 39 wards when I first published this post. As more come in, we'll have a more accurate view of what happened. 
 :::
 
-So, while slightly less than half of wards sang at least one new hymn during week 1, it looks like there were fewer that sang a new one during week 2. It looks like about 28% of wards sang at least one new hymn during this second week. This figure below shows these numbers.
+So, while slightly less than half of wards sang at least one new hymn during week 1, it looks like there were fewer that sang a new one during week 2. It looks like a little over a quarter of wards sang at least one new hymn during this second week. This figure below shows these numbers and how they have changed from June 2nd to June 9th.
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
 # Apply a date stamp
@@ -85,8 +85,16 @@ wards_from_first_two_weeks <- meetings_since_june |>
     print()
 ```
 
-There are lots of reasons for this drop. Many wards appear to be resistant to new hymns entirely. For 27 wards, I have data from both June 2nd and Jun 9th. Fourteen of them (52%) didn't introduce new hymns either week. 9 of them (33%) introduced a new hymn during one of the two weeks. The rest (15%) introduced a new hymn both weeks. Perhaps people were so anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, then they decided to ease the rest of them in a little bit, possibly to give the organist time to practice. 
+```{r}
+n_wards_with_both_weeks <- meetings_since_june |> 
+    distinct(date, ward) |> 
+    count(ward) |> 
+    filter(n == 2) |> 
+    nrow()
+```
 
+
+There are lots of reasons for this drop. Many wards appear to be resistant to new hymns entirely, either because they don't want to introduce them or perhaps because they are not aware of their release. For `r n_wards_with_both_weeks` wards, I have data from both June 2nd and Jun 9th. Around half of them didn't introduce new hymns either week. About a third introduced a new hymn during one of the two weeks. The rest introduced a new hymn both weeks. Perhaps people were so anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, then they decided to ease the rest of them in a little bit, possibly to give the organist time to practice. 
 
 Last time, we saw that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was far and away the most popular on June 2nd. Is that how it was on June 9th too? As explained already, I have less data and fewer wards sang new hymns, so it's hard to say for sure. But the preliminary results are that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was indeed the most popular, but not quite as much. This time, only roughly a third of wards sang it, compared to two thirds on June 2nd.  
 
@@ -106,7 +114,7 @@ this_week |>
            `wards` = n,
            proportion = prop) |> 
     gt() |> 
-    tab_header(title = "What new hymns were sung on June 9, 2024",
+    tab_header(title = "What new hymns were sung on June 9, 2024?",
                subtitle = "Based on the wards that sang new hymns")
 ```
 
@@ -137,7 +145,7 @@ meetings_since_june |>
 
 ```
 
-The biggest change is the precipitous drop in <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. That makes sense because it was so popular during the first week. Pretty much all other hymns had an increase from June 2nd to June 9th. I think this shows that people were anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, they felt at more liberty to try some of the other ones.  
+The biggest change is the drop in <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. That makes sense because it was so popular during the first week. Pretty much all other hymns had an increase from June 2nd to June 9th. I think this shows that people were anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, they felt at more liberty to try some of the other ones.  
 
 As for when during the meeting these new hymns were introduced, it's hard to say for sure with such sparse data, but there again seems to be a trend of singing new hymns towards the ends of meetings, with the exception of course of sacrament hymns. 
 
