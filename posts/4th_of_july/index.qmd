@@ -1,0 +1,44 @@
+---
+title: "4th of July"
+author: "Joey Stanley"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+
+```{r}
+july4 <- freqs |> 
+    filter((month == 6 & day > 20) | 
+               (month == 7 & day < 14),
+           country == "United States") |> 
+    print()
+```
+
+
+```{r, fig.height = 10, fig.width = 5}
+july4 |> 
+    cleveland_plot(filter_n = 45, n_weeks = 3,
+                   unique_meetings = get_n_distinct_meetings(july4)) |> 
+    print()
+
+
+july4 |> 
+    count(month, day, name_num, hymn_num) |>
+    arrange(month, day) |>
+    mutate(month_day = paste(month, day, sep = "/"),
+           month_day = fct_inorder(month_day)) |>
+    mutate(prop_date = n/sum(n), .by = month_day) |> 
+    filter(hymn_num %in% c(338, 339, 340, 60)) |>
+    ggplot(aes(month_day, prop_date)) +
+    geom_point() + 
+    geom_path(aes(group = name_num))  + 
+    facet_wrap(~name_num, ncol = 1) + 
+    theme_bw()
+```
+

@@ -38,7 +38,7 @@ n_wards <- this_week |>
 We got new hymns this week and today was the first chance to use them! Between social media and personal connections, I was able to collect hymn data from `r n_wards` wards. Let's see how these new hymns were introduced into these wards!
 
 ::: callout-note
-Note that this blog post will update as I collect more data. I collected data from 54 wards on June 2, but it has grown since then, which gives a more accurate view of what happened. 
+Note that this blog post will update as I collect more data. I collected data from 54 wards on June 2, but it has grown to `r n_wards` since then, which gives a more accurate view of what happened. 
 :::
 
 ```{r}
@@ -50,7 +50,7 @@ this_week |>
     print()
 ```
 
-First, how many wards sang new hymns? It looks like slightly less than half. A few wards sang two new hymns and there are even wards that sang three new ones!
+First, how many wards sang new hymns? It looks like only about a third. A few wards sang two new hymns and there are even wards that sang three new ones!
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
 this_week |> 
@@ -70,7 +70,7 @@ this_week |>
          subtitle = paste("Based on data from", n_wards, "wards"))
 ```
 
-Now the real question: what hymns did these wards sing? The table below shows that, probably to no one's surprise, <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was the most common, by a long shot. Two-thirds of wards that sang new hymns (or one third of all wards in my sample) sang that one today. The next most common was <hymn>Is is Well with My Soul (#1003)</hymn>. What's crazy is that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is already the 276th [update: 260th] most common hymn. That may not sound like a lot, but it already shows up more in my database than <hymn>The Wintry Day, Descending to Its Close (#37)</hymn> and a fair number of other hymns! Check it out [here](/overview.html).
+Now the real question: what hymns did these wards sing? The table below shows that, probably to no one's surprise, <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was the most common, by a long shot. Two-thirds of wards that sang new hymns (or one third of all wards in my sample) sang that one today. The next most common was <hymn>Is is Well with My Soul (#1003)</hymn>. What's crazy is that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is already the 276th [update: 252nd] most common hymn. That may not sound like a lot, but it already shows up more in my database than <hymn>The Wintry Day, Descending to Its Close (#37)</hymn> and a fair number of other hymns! Check it out [here](/overview.html).
 
 
 ```{r, include = TRUE}
@@ -154,7 +154,7 @@ tom_anderson_data |>
            `wards` = n,
            proportion = prop) |> 
     gt() |> 
-    tab_header(title = "What new hymns were sung on June 2, 2024",
-               subtitle = paste("Based on", n_wards_that_sang_new + n_tom_anderson, "wards that sang new hymns"))
+    tab_header(title = "What new hymns were sung on June 2, 2024?",
+               subtitle = paste("Based on the wards that sang new hymns"))
 ```
 

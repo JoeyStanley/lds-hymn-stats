@@ -32,7 +32,7 @@ freqs %>%
            `Every X Weeks` = every_x_weeks,
            `Every X Months` = every_x_months,
            `Every X Years`  = every_x_years) %>%
-    mutate(across(c(`Avg per Year`:`Every X Years`), ~round(., 3))) %>%
+    mutate(across(c(`Avg per Year`:`Every X Years`), ~round(., 2))) %>%
 
     # Make ties the same rank
     rowid_to_column("Rank") %>%

@@ -43,10 +43,10 @@ n_wards_since_june <- freqs |>
 This is the second week since new hymns were introduced! There was a little less hype about it online and I didn't do as much petitioning (i.e begging) for data, but I did manage to get data from `r n_wards_this_week` wards. [Last week](/posts/new_hymns_week1), we saw that a little less than half of wards introduced new hymns, with about two thirds of those singing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. Let's see how things changed for week 2.
 
 ::: callout-note
-Note that this blog post will update as I collect more data. I originally collected data from 39 wards when I first published this post. As more come in, we'll have a more accurate view of what happened. 
+Note that this blog post will update as I collect more data. I originally collected data about June 9th from 39 wards when I first published this post. I now have `r n_wards_this_week`. As more come in, we'll have a more accurate view of what happened. 
 :::
 
-So, while slightly less than half of wards sang at least one new hymn during week 1, it looks like there were fewer that sang a new one during week 2. It looks like a little over a quarter of wards sang at least one new hymn during this second week. This figure below shows these numbers and how they have changed from June 2nd to June 9th.
+So, while only abut a third of wards sang new hymns on June 2, it looks like there were fewer that sang a new one during week 2. It looks like a little over a quarter of wards sang at least one new hymn during this second week. This figure below shows these numbers and how they have changed from June 2nd to June 9th.
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
 # Apply a date stamp
