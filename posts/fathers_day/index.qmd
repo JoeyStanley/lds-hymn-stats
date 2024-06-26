@@ -23,6 +23,8 @@ fathers <- freqs |>
            !ward %in% c("Anonymous", "Unknown", "NA"),
            country %in% c("United States", "Unknown")) |> 
     print()
+fathers_pre2024 <- fathers |> 
+    filter(year != 2024)
 ```
 
 
@@ -38,18 +40,46 @@ fathers |>
     distinct(ward)
 ```
 
-Today is Father's Day in the United States. Last month, I did an analysis of what hymns are typically sung on [Mother's Day](/posts/mothers_day). This post will be structured similarly, except it'll focus on the third Sunday in June in wards located in the United States. In my dataset, I currently have information from 343 sacrament meetings and 186 wards from 2002 to 2023, so this should be pretty representative of what's going on more broadly. 
+Here in the United States, we recently celebrated Father's Day. Last month, I did an analysis of what hymns are typically sung on [Mother's Day](/posts/mothers_day). This post will be structured similarly, except it'll focus on the third Sunday in June in wards located in the United States. In my dataset, I currently have information from 420 sacrament meetings and 250 wards from 2002 to 2024, so this should be pretty representative of what's going on more broadly. 
 
+
+:::.callout-caution
+Note that the majority of this post will focus on Father's Day *before* 2024. The addition of the new hymns has changed the results a small amount. I'll address those changes towards the end of this post.
+:::
 
 ```{r, warning = FALSE, message = FALSE, include = TRUE, fig.height = 4, fig.width = 6.5}
-fathers |> 
+fathers_pre2024 |> 
     filter(!hymn_num %in% 169:197) |>
-    cleveland_plot(n_weeks = 1, filter_n = 6, breaks = 0.1) + 
+    cleveland_plot(n_weeks = 1, filter_n = 5, breaks = 0.1) + 
     labs(title = "The Most Popular Father's Day Hymns",
-         subtitle = NULL,
+         subtitle = "From 2002 to 2023",
          x = "proportion of wards that sing it on Father's Day per year") + 
     scale_x_continuous(labels = scales::percent, expand = expansion(0, c(0,0.2)))
 ```
+
+```{r}
+fathers |> 
+    filter(!ward %in% c("NA", "Unknown")) |> 
+    summarize(has_intermediate = sum(type == "Intermediate", na.rm = TRUE) >= 1, .by = meeting_id) |> 
+    count(has_intermediate) |> 
+    mutate(prop = n/sum(n))
+freqs |> 
+    filter(!ward %in% c("NA", "Unknown")) |> 
+    summarize(has_intermediate = sum(type == "Intermediate", na.rm = TRUE) >= 1, .by = meeting_id) |> 
+    count(has_intermediate) |> 
+    mutate(prop = n/sum(n))
+```
+
+
+It's clear from this plot that there are two Father's Day hymns that stand out as being the most common: <hymn>O My Father (#292)</hymn> and <hymn>Our Father, by Whose Name (#296)</hymn>. Because Primary children typically sing a Father's Day song, the number of intermediate hymns is lower than on other weeks. Only about 17% of wards sing an intermediate hymn on Father's Day, as opposed to the overall average of about 35%. So, for many wards, these two hymns are the opening and closing hymns. 
+
+However, a smaller proportion of wards sing other hymns. They fall into a few broad categories: Home/Family, Heavenly Father, and to a much smaller extent, Work. 
+
+
+
+
+
+
 
 
 

@@ -30,6 +30,9 @@ n_wards_this_week <- length(unique(this_week$ward))
 meetings_since_june <- freqs |> 
     filter(date <= ymd("2024-06-16"),
            date >= ymd("2024-06-02"))
+n_meetings_since_june <- meetings_since_june |> 
+    distinct(meeting_id) |> 
+    nrow()
 n_wards_since_june <- freqs |> 
     # just the first two weeks
     filter(year(date) == 2024,
@@ -40,10 +43,10 @@ n_wards_since_june <- freqs |>
     length()
 ```
 
-This is the third week since new hymns were introduced! We had some competition with Father's Day this year, so I was curious to see what the hymns would be. Currently I have did data from `r n_wards_this_week` wards. [Two weeks ago](/posts/new_hymns_week1), I found that about half of wards introduced new hymns, with about two thirds of those singing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. [Last week](/posts/new_hymns_week2) week, only about 30% of wards sang new hymns. Let's see how Week 3 went.
+This is the third week since new hymns were introduced! We had some competition with Father's Day this year, so I was curious to see what the hymns would be. Currently I have data from `r n_meetings_since_june` sacrament meetings since June 2nd from `r n_wards_since_june` wards. [Two weeks ago](/posts/new_hymns_week1), I found that about a third of wards introduced new hymns, with about two thirds of those singing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. [Last week](/posts/new_hymns_week2) week, only about quarter of wards sang new hymns. Let's see how Week 3 went.
 
 ::: callout-note
-Note that this blog post will update as I collect more data. I originally collected data from 71 wards when I first published this post. As more come in, we'll have a more accurate view of what happened. 
+Note that this blog post will update as I collect more data. I originally collected data from 71 wards from June 16th when I first published this post. As more come in, we'll have a more accurate view of what happened. 
 :::
 
 Looks like things are about the same as where they were last week. About a quarter of wards introduced a new hymn this week. The following plot shows how many new hymns were introduced each week.
