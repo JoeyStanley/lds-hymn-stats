@@ -11,7 +11,7 @@ freqs <- readr::read_csv("data/freqs.csv", show_col_types = FALSE)
 (n_wards    <- length(unique(freqs$ward)))
 ```
 
-Welcome to the LDS Hymn Stats project! The purpose of this project is to discover what hymns are most commonly sung generally and in certain times of the year in sacrament meetings of the Church of Jesus Christ of Latter-day Saints. I have gathered [data](/posts/frequency-data) on what hymns were sung in `r scales::comma(n_meetings)` sacrament meetings from `r scales::comma(n_wards)` wards. 
+Welcome to the LDS Hymn Stats project! The purpose of this project is to discover what hymns are most commonly sung generally and in certain times of the year in sacrament meetings of the Church of Jesus Christ of Latter-day Saints. I have gathered [data](/posts/frequency-data) on what hymns were sung in `r scales::comma(n_meetings)` sacrament meetings from `r scales::comma(n_wards)` wards.
 
 ::: {.callout-tip icon="false"}
 See [this blog post](/posts/new_hymns_first_week) for stats about the new hymns!
