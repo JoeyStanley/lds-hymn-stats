@@ -2,6 +2,7 @@
 title: "How much data do I have and where did it all come from?"
 author: "Joey Stanley"
 date: 2023-12-30
+date-modified: last-modified
 categories:
   - meta
 ---
@@ -24,7 +25,6 @@ The dataset I'm calling the `Frequency` data is which is collected by having peo
 
 The data presented in this project comes from about five different sources. @tbl-source_breakdown shows these five projects and how much data they've contributed to the overall dataset, in terms of number of wards, number of sacrament meetings, and number of hymns overall.
 
-
 ```{r, include = TRUE}
 #| label: tbl-source_breakdown
 #| tbl-cap: Breakdown of the Frequency dataset by source
@@ -45,7 +45,7 @@ source_summary <- freqs %>%
 source_summary %>%
     gt() %>%
     tab_header(title = "Frequency data, by source") %>%
-    tab_source_note(source_note = "Reflects the dataset as of November 16, 2023. It will likely update in the next few weeks.") %>%
+    tab_source_note(source_note = "Reflects the dataset as of June 2024.") %>%
     tab_spanner(label = "wards", columns = matches("ward")) %>%
     tab_spanner(label = "sacrament meetings", columns = matches("meet")) %>%
     tab_spanner(label = "hymns", columns = matches("hymns")) %>%
@@ -66,9 +66,9 @@ Let me go through each one individually.
 
 I first began this project sometime around 2013. I had the idea to collect as much data as I could from as many wards as I could to answer the question of what hymn is most common and what hymns are the least common. 
 
-In my project planning phase, I considered setting up a survey that people could quickly take every week to report their hymns. However, I didn't think I could get very many people to commit to that kind of consistency. So, I decided that rather than collecting hymns from the *next* 52 weeks, what if I collected hymns from the *past* 52 weeks? I figure many wards have a spreadsheet of some sort that they use to keep track of hymns. If not a spreadsheet, then at least copies of old sacrament meeting programs, or notes that the Bishopric uses when conducting. All I'd need then is for someone from each ward to send me their data once, rather than many times. 
+In my project planning phase, I considered setting up a survey that people could quickly take every week to report their hymns. However, I didn't think I could get very many people to commit to that kind of consistency. So, I decided that rather than collecting hymns from the *next* 52 weeks, what if I collected hymns from the *past* 52 weeks? I figure many wards have a spreadsheet of some sort that they use to keep track of hymns. If not a spreadsheet, then at least copies of old sacrament meeting programs or notes that the Bishopric uses when conducting. All I'd need then is for someone from each ward to send me their data once, rather than many times. 
 
-So I started asking around in online spaces where LDS music people might gather, but I soon found out it was going to be harder than I expected to get people to send me their data. After a few weeks I was able to get data from 21 wards, ranging from a few months to several years. My own ward's clerk was cleaning out old files and found years of sacrament meeting programs, and sent them to me. Because this data collection happened through 2015. I call this chunk of the overall sample the `Joey2015` data. 
+So I started asking around in online spaces where LDS music people might gather, but I soon found out it was going to be harder than I expected to get people to send me their data. After a few weeks I was able to get data from 21 wards, ranging from a few months to several years. My own ward's clerk was cleaning out old files and sent me years of sacrament meeting programs. Because this data collection happened through 2015. I call this chunk of the overall sample the `Joey2015` data. 
 
 @tbl-source_breakdown shows that I collected data from 2,042 sacrament meetings from 21 wards. So, not too many wards, but I did get a fair amount of data from each one. However, the issue I ran across was that the characteristics of any one ward would sometimes overwhelm the overall findings because there were so few wards in total. For example, a ward that sent several years' worth of data had two quirks: they would systematically cycle through all the sacrament hymns, and they would sing <hymn>I Know That My Redeemer Lives (#136)</hymn> *every* fast Sunday. With the larger dataset I now have, those idiosyncrasies were washed out. But, it was enough data to start to see some of the trends I report elsewhere in this blog.  
 
@@ -116,9 +116,17 @@ My interest in the project waned after about 2017, partly because I was in gradu
 
 As I began this blog, I started sharing it and results from it in new online spaces, primarily social media. As I do so, I encourage people to send me their data if they have it. Through these efforts, I actually collected more data than I had in 2015. More wards, more sacrament meetings, and more hymns. 
 
-@fig-joey2023_time shows the distribution of dates over time for the `joey2023` sample. There are two interesting things to note. One, is there's a large dip in 2020 because of covid. Through the many spreadsheets I've been sent, it's been interesting to see how and when wards returned back to normal meetings. The other major thing is that there's a general increase in time and the recency efect is quite visible. As I continue advertising the project, more and more people send stuff to me. But, I have gotten some data from as far back as 2009, which is pretty cool. At the time of writing though I have nothing for 2024, which is just 9 days away! 
+@fig-joey2023_time shows the distribution of dates over time for the `joey2023` sample. There are three interesting things to note. One, is there's a large dip in 2020 because of covid. Through the many spreadsheets I've been sent, it's been interesting to see how and when wards returned back to normal meetings. The other major thing is that there's a general increase in time and the recency effect is quite visible. As I continue advertising the project, more and more people send stuff to me. But, I have gotten some data from as far back as 2009, which is pretty cool. 
 
-```{r, include = TRUE, fig.height = 4, fig.width = 8}
+```{r}
+freqs |> 
+    filter(source == "joey2023") |> 
+    arrange(date)
+```
+
+
+
+```{r, include = TRUE, warning = FALSE, fig.height = 4, fig.width = 8}
 #| label: fig-joey2023_time
 #| fig-cap: Sacrament meetings per month in the Joey2023 sample
 freqs %>%
@@ -128,13 +136,15 @@ freqs %>%
     geom_histogram(binwidth = 28, fill = "gray20") + 
     scale_x_date(date_breaks = "1 year", date_labels = "%Y", expand = expansion(0, 50)) +
     scale_y_continuous(expand = expansion(0, 1)) + 
-    labs(title = "Sacrament meetings per month in the Joey2015 sample",
+    labs(title = "Sacrament meetings per month in the Joey2023 sample",
          y = "sacrament meetings") + 
     theme_minimal()
 ```
 
+Of course, the biggest thing to notice in this plot is that I really increased my data solicitation efforts around the time the first batch of new hymns were released, so there's a huge spike in May and June 2024. I joined music calling--related Facebook groups and started weekly posts on Twitter asking for hymn data. I also realized around then that there are hundreds of wards that still broadcast their sacrament meetings on YouTube, so I have a constant source of new data. Some wards keep those videos up forever while others only a few days, so I have to check back every week to get the latest batch. 
 
-```{r, fig.height = 6, fig.width = 10}
+
+```{r, fig.height = 50, fig.width = 10}
 freqs %>%
     filter(source %in% c("joey2023", "joey2015")) %>% 
     count(ward, date, source) %>%
@@ -277,7 +287,7 @@ I got my hands on the `samuel2015` dataset early on when Samuel and I agreed to 
 
 ### Samuel's 2017 survey
 
-After a successful project in 2015, Samuel Bradshaw revamped the survey and distributed it again in 2017. Again, he has more resources, a wider network of musicians, and his SingPraises.net website to help advertise. He put a link to the survey at the top of every page of SingPraises.net, so everyone who visited the site during that year saw it. He created a Google Groups mailing list for people to join and get updates about the project. People got reminder emails sent to them automatically to remind them to fill out the survey and to spread the word. He asked people with music callings to submit their spreadsheets they used for planning their hymns (like what my `joey2015` dataset did. He created Spanish and Portuguese versions of the survey to hopefully reach a wider audience. And he followed up with wards if they were missing a few weeks. 
+After a successful project in 2015, Samuel Bradshaw revamped the survey and distributed it again in 2017. Again, he has more resources, a wider network of musicians, and his SingPraises.net website to help advertise. He put a link to the survey at the top of every page of SingPraises.net, so everyone who visited the site during that year saw it. He created a Google Groups mailing list for people to join and get updates about the project. People got reminder emails sent to them automatically to remind them to fill out the survey and to spread the word. He asked people with music callings to submit their spreadsheets they used for planning their hymns (like what my `joey2015` dataset did). He created Spanish and Portuguese versions of the survey to hopefully reach a wider audience. And he followed up with wards if they were missing a few weeks. 
 
 ```{r}
 freqs %>%
@@ -324,7 +334,7 @@ freqs %>%
     geom_point()
 ```
 
-Samuel has again graciously agreed to share his data with me for the purposes of this project. At the time of writing, the `samuel2017` collection comprises 57% of the total dataset, so his contribution more than doubled the amount of data I have. 
+Samuel has again graciously agreed to share his data with me for the purposes of this project. At the time of writing, the `samuel2017` collection comprises 55% of the total dataset, so his contribution more than doubled the amount of data I have. 
 
 ## Comparing the data collecton methods
 
@@ -392,9 +402,9 @@ freqs %>%
     theme_minimal()
 ```
 
-These plots only show the `joey2015` and the `samuel2015` datasets. Since the `joey2023` dataset largely follows the same methods as the `joey2015` one, it looks the same, just with more wards. The `kjerste2015` dataset looks very similar to the `samuel2015`. The `samuel2017` mostly does too, except it's so much bigger because there is so much data. 
+These plots only show the `joey2015` and the `samuel2015` datasets. Since the `joey2023` dataset mostly follows the same methods as the `joey2015` one, it looks the same, just with more wards. The `kjerste2015` dataset looks very similar to the `samuel2015`. The `samuel2017` mostly does too, except it's so much bigger because there is so much data. 
 
-I say that these two methods complement each other because they can be used to answer different questions. The sheet number of contributions from so many wards in Samuel's and Kjerste's collections means we can see what happens at a macro level. What hymns are the [most common](/posts/most-common), [least common](/least-common-hymns), popular around [holidays](/findings.html#category=holidays), etc. And since the bulk of the data came from the same year, we get a really nice snapshot of what the church was doing at that time. 
+I say that these two methods complement each other because they can be used to answer different questions. The sheer number of contributions from so many wards in Samuel's and Kjerste's collections means we can see what happens at a macro level. What hymns are the [most common](/posts/most-common), [least common](/least-common-hymns), popular around [holidays](/findings.html#category=holidays), etc. And since the bulk of the data came from the same year, we get a really nice snapshot of what the church was doing at that time. 
 
 However, having data from many years means I can answer other questions that would not be possible no matter how much data is collected from a single year. For example, I've shown that people usually sing Thanksgiving hymns the [Sunday after Thanksgiving](/posts/week-after-thanksgiving), unless that day falls on December 1st, in which case we get a surge of Christmas hymns, most notably <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, suggesting that the Christmas season truly starts on December 1st and not just the Sunday after Thanksgiving. Similarly, I've [shown](/posts/new-years) that Christmas hymns wane the further you get from Christmas, and that New Year's hymns peak not on New Year's Day, but on New Year's Eve. Again, the data I have spans many years, so I have a lot of data from every calendar day of the year. 
 
@@ -427,13 +437,26 @@ n_us_wards <- freqs %>%
     count(ward) %>%
     nrow()
 prop_us <- percent(n_us_wards / 14614, accuracy = 0.01)
+
+percent_wards_from_joey <- freqs |> 
+    count(ward, source) |> 
+    mutate(source = fct_collapse(source, 
+                                 "joey" = c("joey2015", "joey2023"),
+                                 "kjerste" = "kjerste2015",
+                                 "samuel"  = c("sam2015", "sam2017"))) |> 
+    count(source) |> 
+    mutate(prop = n/sum(n)) |> 
+    print() |> 
+    filter(source == "joey") |> 
+    pull(prop) |> 
+    percent()
 ```
 
-This data comes from `r n_wards` unique wards and branches. We'll se below that most of that comes from the United States. Specifically, `r n_us_wards` are from the US. At the time of writing, the church [reports](https://newsroom.churchofjesuschrist.org/facts-and-statistics/country/united-states) that there are 14,614 congregations in the United States. That means that this sample has information from `r prop_us` of the wards in the United States, which is not too shabby. We can certainly thank Samuel Bradshaw for this since only 7% of the all the wards in this sample are from my own data collection efforts. 
+This data comes from `r n_wards` unique wards and branches. We'll se below that most of that comes from the United States. Specifically, `r n_us_wards` are from the US. At the time of writing, the church [reports](https://newsroom.churchofjesuschrist.org/facts-and-statistics/country/united-states) that there are 14,614 congregations in the United States. That means that this sample has information from `r prop_us` of the wards in the United States, which is not too shabby. We can certainly thank Samuel Bradshaw for this since only `r percent_wards_from_joey` of the all the wards in this sample are from my own data collection efforts. 
 
 ### How many hymns?
 
-The whole spreadsheet has `r n_hymns_str` rows in it, each representing a congregational hymn sung in some ward or branch sometime in the past 20 years somewhere in the world. @tbl-raw_sample shows just a snapshot of what the raw dataset looks like under the hood. 
+The whole spreadsheet has `r n_hymns_str` rows in it, each representing a congregational hymn sung in some ward or branch sometime in the past 22 years somewhere in the world. @tbl-raw_sample shows just a snapshot of what the raw dataset looks like under the hood. 
 
 ```{r, include = TRUE}
 #| label: tbl-raw_sample
@@ -459,7 +482,7 @@ For each ward/branch I have a separate spreadsheet that includes basic metadata 
 ```{r, include=TRUE}
 #| label: tbl-ward_sample
 #| tbl-cap: A sample of the ward metadata
-set.seed(2)
+set.seed(1)
 freqs %>%
     filter(ward != "Anonymous") %>%
     distinct(ward, city, state, country) %>%
@@ -646,7 +669,7 @@ newest_str <- freqs %>%
 ```
 
 
-The oldest datapoint in this sample comes from `r oldest_str` and the newest is currently from `r newest_str`. So, the data spans over twenty years. Considering I started data collection in 2013, it's amazing that I have data from 2002 and 2003 at all---amazing that someone held on to those records for so long, that they happened to hear about the project, and that they were willing to contribute it all! If we ignore a few gaps in 2002 and 2003 and the second quarter of 2020 when in-person sacrament meetings were suspended, I have a nearly unbroken line of data spanning two decades. 
+The oldest datapoint in this sample comes from `r oldest_str` and the newest is currently from `r newest_str` (some wards' spreadsheets have future meetings planned already). So, the data spans over twenty years. Considering I started data collection in 2013, it's amazing that I have data from 2002 and 2003 at all---amazing that someone held on to those records for so long, that they happened to hear about the project, and that they were willing to contribute it all! If we ignore a few gaps in 2002 and 2003 and the second quarter of 2020 when in-person sacrament meetings were suspended, I have a nearly unbroken line of data spanning two decades. 
 
 ```{r}
 freqs %>%
@@ -669,7 +692,7 @@ years <- freqs %>%
     print()
 ```
 
-Of course, like the geographic distribution, the temporal distribution of this dataset, is not even. @fig-years shows that there is a major spike in data in the mid-2010s. The project started in 2013, so anything from before then is from old spreadsheets that people sent us, and unsurprisingly, the further back you go the less data I have. In 2013 and 2014 it picks up as I began my recruitment efforts. Samuel's first survey explains the increase in 2015. And his 2017 survey, which began in the second half of 2016, explains the monstrous spike that year. Samuel stopped collecting data in early 2018, and I only recently started getting more in late 2023, so anything from 2018 on is mostly from spreadsheets collected in 2023. 
+Of course, like the geographic distribution, the temporal distribution of this dataset, is not even. @fig-years shows that there is a major spike in data in the mid-2010s. The project started in 2013, so anything from before then is from old spreadsheets that people sent us, and unsurprisingly, the further back you go the less data I have. In 2013 and 2014 it picks up as I began my recruitment efforts. Samuel's first survey explains the increase in 2015. And his 2017 survey, which began in the second half of 2016, explains the monstrous spike that year. Samuel stopped collecting data in early 2018, and I only recently started getting more in late 2023, so anything from 2018 on is mostly from spreadsheets collected in 2023. Data from 2024 is from my increased efforts around the time of the new batch of hymns coming out.
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 8, warning=FALSE}
 #| label: fig-years
