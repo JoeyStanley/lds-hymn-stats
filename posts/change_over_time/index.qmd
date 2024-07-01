@@ -1,11 +1,12 @@
 ---
-title: "Hymns' Popularity over Time"
+title: "What hymns have recently gotten more or less popular?"
 author: "Joey Stanley"
 date: "2024-04-04"
 categories:
   - frequency
   - general
 reference-location: margin
+image: cover.png
 ---
 
 ```{r, include = FALSE}
@@ -234,6 +235,11 @@ ggplot(per_month, aes(month_year, hymns_per_meeting, color = category, group = g
           legend.key.width = unit(1, "cm")) + 
     guides(color = guide_legend(label.position = "bottom"))
 ```
+
+```{r}
+ggsave("cover.png", height = 4, width = 6.5)
+```
+
 
 There's a lot to dissect here, so let me go through it from left to right:
 
