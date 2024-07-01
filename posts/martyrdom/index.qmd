@@ -6,6 +6,7 @@ categories:
   - holidays
   - frequency
 reference-location: margin
+image: cover.png
 ---
 
 ```{r, include = FALSE}
@@ -103,7 +104,7 @@ roll_sum_js_labels <- roll_sum_js |>
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 8}
 ggplot(roll_sum_js, aes(id, roll_sum_prop)) + 
-    geom_vline(xintercept = 18, color = "forestgreen", size = 5, alpha = 0.2) + 
+    geom_vline(xintercept = 18, color = "forestgreen", linewidth = 5, alpha = 0.2) + 
     geom_point() + 
     geom_path() + 
     scale_x_continuous(breaks = roll_sum_js_labels$id,
@@ -115,6 +116,11 @@ ggplot(roll_sum_js, aes(id, roll_sum_prop)) +
          y = "percent of wards") + 
     theme_minimal()
 ```
+
+```{r}
+ggsave("cover.png", height = 4, width = 6.5)
+```
+
 
 What I see in this plot is that in the three-day window around (and including) about June 22nd--27th, we see the most number of Joseph Smith--related hymns. The number quickly drops off after that, likely due to 4th of July. But, during those days, about 15% of wards sing at least one of those three hymns. To put that into perspective, that's about as common as singing <hymn>Our Savior's Love (#113)</hymn> is around [Valentine's Day](/posts/valentines) and only a little less common than singing <hymn>Ring Out, Wild Bells (#215) on [New Year's Eve](/posts/new-years). 
 
