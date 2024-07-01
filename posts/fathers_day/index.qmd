@@ -4,7 +4,6 @@ author: "Joey Stanley"
 date: "2024-05-12"
 categories: holidays, frequency
 reference-location: margin
-draft: TRUE
 ---
 
 ```{r, include = FALSE}
@@ -27,30 +26,69 @@ fathers_pre2024 <- fathers |>
     filter(year != 2024)
 ```
 
-
-```{r}
-fathers |> 
-    count(meeting_id)
-
-fathers |> 
-    distinct(meeting_id, year) |> 
-    count(year)
-
-fathers |> 
-    distinct(ward)
-```
-
-Here in the United States, we recently celebrated Father's Day. Last month, I did an analysis of what hymns are typically sung on [Mother's Day](/posts/mothers_day). This post will be structured similarly, except it'll focus on the third Sunday in June in wards located in the United States. In my dataset, I currently have information from 420 sacrament meetings and 250 wards from 2002 to 2024, so this should be pretty representative of what's going on more broadly. 
-
+It's Father's Day here in the United States. Last month, I did an analysis of what hymns are typically sung on [Mother's Day](/posts/mothers_day). This post will be structured similarly, except it'll focus on the third Sunday in June in wards located in the United States. In my dataset, I currently have information from 420 sacrament meetings and 250 wards from 2002 to 2024, so this should be pretty representative of what's going on more broadly. 
 
 :::.callout-caution
 Note that the majority of this post will focus on Father's Day *before* 2024. The addition of the new hymns has changed the results a small amount. I'll address those changes towards the end of this post.
 :::
 
-```{r, warning = FALSE, message = FALSE, include = TRUE, fig.height = 4, fig.width = 6.5}
+
+## What are the Father's Day hymns?
+
+Looking through the topics index at the back of the hymnal, several categories of hymns could be considered appropriate to choose from for Father's Day. Of course, the Fatherhood category is best, and list three hymns, <hymn>O My Father (#292)</hymn>, <hymn>Our Father, by Whose Name (#296)</hymn>, and <hymn>See the Mighty Priesthood Gathered [Men’s Choir] (#325)</hymn>. That last one has only been sung as a congregational hymn twice in my over 23,000 sacrament meetings, so we'll just ignore that one. 
+
+```{r}
+single_hymn_lookup(325)
+```
+
+However, there are other categories that could be appropriate, such as "Home", "God the Father", "Brotherhood", "Priesthood", "Leadership", "Children", and "Example". Looking through what hymns are actually sung on Father's Day (we'll get to that in a second), only "Home" and "God the Father", so we'll ignore the rest. Each of the "Home" and "God the Father" categories is pretty large, but the only overlapping hymns between them are <hymn>O My Father (#292)</hymn>, <hymn>Our Father, by Whose Name (#296)</hymn> (which were the two "Fatherhood" hymns), <hymn>I Am a Child of God (#301)</hymn>, and <hymn>Teach Me to Walk in the Light (#304)</hymn>. So, there's a wide selection hymns that *could* be chosen, with a few that intersect the most relevant categories---let's see which ones actually are chosen.
+
+
+
+
+
+
+```{r}
+# The fatherhood hymns are in both categories.
+fatherhood_hymns <- c(292, 296, 325)
+# The only other overlap is 301 and 304.
+home_hymns <- c(299, 300, 231, 91, 297, 87, 313, 298, 301, 294, 318, 308, 337, 295, 292, 286, 296, 33, 148, 304, 161, 37, 248)
+god_hymns <- c(133, 180, 154, 91, 187, 170, 125, 314, 301, 302, 284, 26, 175, 292, 150, 296, 113, 287, 142, 14, 304, 134)
+# brotherhood_hymns <- c(219, 335, 244, 293, 82, 223, 220, 308, 323, 324, 320)
+# priesthood_hymns  <- c(335, 322, 10, 76, 20, 264, 25, 39, 189, 27, 323, 324, 325, 320, 4, 12, 319, 321)
+# leadership_hymns <- c(335, 244, 221, 20, 281, 252, 323, 324, 336, 320, 255, 321)
+# children_hymns <- c(69, 299, 96, 76, 301, 307, 296, 304)
+# example_hymns <- c(335, 255, 244, 293, 84, 82, 308, 304, 216)
+```
+
+
+
+```{r}
+fathers_pre2024 |> 
+    count(meeting_id)
+
+fathers_pre2024 |> 
+    distinct(meeting_id, year) |> 
+    count(year)
+
+fathers_pre2024 |> 
+    distinct(ward)
+```
+
+
+The following figure plots the most common hymns sung around Father's Day in my dataset before 2024. The hymns are color-coded based on their category in the topics index.
+
+```{r, warning = FALSE, message = FALSE, include = TRUE, fig.height = 4, fig.width = 8}
 fathers_pre2024 |> 
     filter(!hymn_num %in% 169:197) |>
-    cleveland_plot(n_weeks = 1, filter_n = 5, breaks = 0.1) + 
+    mutate(category = case_when(hymn_num %in% fatherhood_hymns ~ "fatherhood",
+                                hymn_num %in% home_hymns & hymn_num %in% god_hymns ~ "home and God",
+                                hymn_num %in% home_hymns ~ "home",
+                                hymn_num %in% god_hymns  ~ "God",
+                                TRUE ~ "other")) |> 
+    cleveland_plot(n_weeks = 1, filter_n = 6, breaks = 0.1, extra_cols = category, color = category) + 
+    scale_color_manual(breaks = c("fatherhood", "home", "God", "home and God", "other"),
+                       values = c("#4477AA", "#228833", "#ccbb44", "#aa3377", "#BBBBBB")) + 
     labs(title = "The Most Popular Father's Day Hymns",
          subtitle = "From 2002 to 2023",
          x = "proportion of wards that sing it on Father's Day per year") + 
@@ -58,7 +96,7 @@ fathers_pre2024 |>
 ```
 
 ```{r}
-fathers |> 
+fathers_pre2024 |> 
     filter(!ward %in% c("NA", "Unknown")) |> 
     summarize(has_intermediate = sum(type == "Intermediate", na.rm = TRUE) >= 1, .by = meeting_id) |> 
     count(has_intermediate) |> 
@@ -71,122 +109,81 @@ freqs |>
 ```
 
 
-It's clear from this plot that there are two Father's Day hymns that stand out as being the most common: <hymn>O My Father (#292)</hymn> and <hymn>Our Father, by Whose Name (#296)</hymn>. Because Primary children typically sing a Father's Day song, the number of intermediate hymns is lower than on other weeks. Only about 17% of wards sing an intermediate hymn on Father's Day, as opposed to the overall average of about 35%. So, for many wards, these two hymns are the opening and closing hymns. 
-
-However, a smaller proportion of wards sing other hymns. They fall into a few broad categories: Home/Family, Heavenly Father, and to a much smaller extent, Work. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-If you look in the Topics index at the back of the hymnal, you'll see five songs listed under the "Motherhood" entry: <hymn>From Homes of Saints Glad Songs Arise (#297)</hymn>, <hymn>Home Can Be a Heaven on Earth (#298)</hymn>, <hymn>Love at Home (#294)</hymn>, <hymn>O My Father (#292)</hymn>, and <hymn>Teach Me to Walk in the Light (#304)</hymn>. You'll also be redirected to the "Family" and "Marriage" entries, both of which contain no hymns of their own but redirect you again to "Children", "Fatherhood", and "Home." We'll skip the "Fatherhood" songs for now and just focus on the "Motherhood," "Children," and "Home" categories. 
-
-This figure shows the hymns in these categories and how they intersect. Note that all the Motherhood hymns are also listed under the "Home" category. If you're like me, you might not even recognize some of the Home hymns. Five of them (<hymn>The Lord Be with Us (#161)</hymn>, <hymn>Our Mountain Home So Dear (#33)</hymn>, <hymn>Up, Awake, Ye Defenders of Zion (#248)</hymn>, <hymn>Father, Cheer Our Souls Tonight (#231)</hymn>, and <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>) are sung less than once a decade on average per ward, so they're not likely to show up as Mother's Day hymns. 
-
 ```{r}
-motherhood_hymns <- c(297, 298, 294, 292, 304)
-children_hymns <- c(69, 299, 96, 76, 301, 307, 296, 304)
-home_hymns <- c(299, 300, 231, 92, 297, 87, 313, 298, 301, 294, 318, 308, 337, 295, 292, 286, 296, 33, 148, 304, 161, 37, 248)
-
-mothers <- mothers |> 
-    mutate(mothers_category = case_when(hymn_num %in% motherhood_hymns ~ "motherhood",
-                                        hymn_num %in% children_hymns   ~ "children",
-                                        hymn_num %in% home_hymns       ~ "home",
-                                        TRUE ~ "other"),
-           mothers_category = factor(mothers_category, 
-                                     levels = c("motherhood", "home", "children", "other")))
-```
-
-![](hymn_topics.png)
-
-```{r}
-single_hymn_lookup(home_hymns)
-```
-
-So, those hymns are supposedly the ones we would be most likely to draw from. Let's see what hymns are actually sung. Figure @fig-cleveland shows the most popular hymns sung on Mother's Day, excluding sacrament hymns.
-
-```{r, include = TRUE, fig.height = 4, fig.width = 8}
-#| fig-cap: Most popular hymns sung on Mother\'s Day (sacrament hymns excluded)
-#| label: fig-cleveland
-mothers |> 
-    filter(!hymn_num %in% 169:196) |> 
-    cleveland_plot(filter_n = 5, breaks = 0.1, x_buffer = 0.1,
-                   extra_cols = mothers_category, color = mothers_category) + 
-    scale_color_manual(values = c("motherhood" = "#e78ac3",
-                                  "children"   = "#8da0cb",
-                                  "home"       = "#66c2a5",
-                                  "other"      = "gray50")) + 
-    labs(title = "Most popular hymns sung on Mother's Day",
-         subtitle = "Sacrament hymns are not shown",
-         x = "proportion of wards that sing it per year on Mother's day",
-         color = "hymn category")
-```
-
-The most popular Mother's Day hymn is <hymn>Love at Home (#294)</hymn>, with about 36% of wards singing it each year. The next most popular was <hymn>Home Can Be a Heaven on Earth (#298)</hymn>, <hymn>Teach Me to Walk in the the Light (#304)</hymn>, and <hymn>O My Father (#292)</hymn>. All four of these, are part of the "Motherhood" category of hymns in the index. The last of the five in that category is <hymn>From Home of Saints Glad Songs Arise (#297)</hymn> and while less than one in 20 wards sing it each year, it's still in 7th place for most popular hymn on Mother's Day. 
-
-The next most popular category of hymns on Mother's Day was the "Home" category. As mentioned above, some of the hymns in that category are rather infrequent, but others are pretty popular, including <hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>For the Beauty of the Earth (#92)</hymn>, and <hymn>Love One Another (#308)</hymn>. Relatively few of the "Children" hymns were very popular, but some were <hymn>I Am a Child of God (#301)</hymn> and <hymn>Dearest Children, God Is Near You (#96)</hymn>. 
-
-So, it's clear that most music coordinators look at the "Motherhood" entry in the index, with some looking at the "Home" category. I think an honorable mention hymn is <hymn>Each Life That Touches Ours for Good (#293)</hymn>. The lyrics suggest it's more about friends or even a funeral hymn, but it's a relatively uncommon hymn that doesn't appear to be sung at any other time of the year too much.  
-
-```{r}
-top_10 <- mothers |> 
-    filter(!hymn_num %in% 169:196) |> 
-    cleveland_plot(return = "table") |> 
-    head(10) |> 
-    pull(hymn_num) |> 
-    print()
-mothers |> 
-    mutate(is_top_10 = hymn_num %in% top_10) |> 
-    summarize(how_many_top10 = sum(is_top_10), .by = meeting_id) |> 
-    count(how_many_top10) |>
+fathers_pre2024 |> 
+    mutate(is_fatherhood = hymn_num %in% c(292, 296)) |> 
+    summarize(how_many_fatherhood = sum(is_fatherhood), .by = meeting_id) |> 
+    count(how_many_fatherhood) |>
     mutate(prop = n/sum(n),
            cumsum = cumsum(prop),
            cumsum_rev = 1 - cumsum) |> 
     print()
 ```
 
-While the likelihood of your ward singing any one of these hymns is relatively low, the likely hood of your ward singing any of these, say, top 10 hymns is pretty good. In fact, 89.3% of wards sing at least one of those 10 hymns each year. Over half sing two of them, a third sing just one, and a few wards sing three of them. So, odds are pretty good you'll sing one or two of those most popular hymns. 
+
+
+It's clear from this plot that there are two Father's Day hymns that stand out as being the most common: <hymn>O My Father (#292)</hymn> and <hymn>Our Father, by Whose Name (#296)</hymn>. Half of the wards I have data from sing one of those two hymns and 11% sing both of them. It's probably not a coincidence that these are the hymns that are listed in the Topics index under the entry "Fatherhood", as well as "Home" and "God the Father". Because Primary children typically sing a Father's Day song, the number of intermediate hymns is lower than on other weeks. Only about 20% of wards sing an intermediate hymn on Father's Day, as opposed to the overall average of about 35%. 
+
+However, a smaller proportion of wards sing other hymns, and they've been color-coded based on broad topic. The green hymns are under the "Home" entry of the Topics index, and those seem to be quite common. The yellow hymns are ones that are in the "God the Father" category. The pink ones are those that are in both "Home" and "God the Father." So, those categories seem to be the most common overall. 
+
+It is worth looking at a few of the gray hymns, which belong to none of those three categories. They include hymns with the word *Father* in the title, like <hymn>Faith of Our Fathers (#84)</hymn>, <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn>, and <hymn>God of Our Fathers, We Come unto Thee (#76)</hymn>. There are a few children-related hymns.
+
+We also see some work-related hymns like <hymn>Let Us All Press On (#243)</hymn> and <hymn>Put Your Shoulder to the Wheel (#252)</hymn>. Now, admittedly neither of those last two are sung more often on Father's Day than on other weeks of the year (i.e. there isn't a huge spike in June), so it may be a fluke. But, if it were the case that there were no trend at all, we'd see generic common hymns <hymn>How Firm a Foundation (#85)</hymn> or <hymn>Because I Have Been Given Much (#219)</hymn> on this list instead. But we don't. I can't help but think this is because of the line from the Family Proclamation that states that fathers are "responsible to provide the necessities of life and protection for their families". Perhaps just as we saw a lot of "home"- and "children"-related hymns on [Mother's Day](/posts/mothers_day), we see work-related hymns on Father's Day. 
+
+Finally, we can look at when during sacrament meeting these most popular hymns are sung. @fig-types shows the data for the top 10 Father's Day hymns. Most hymns are roughly evenly split between opening and closing hymns with a few exceptions: <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn> is primarily an opening hymn while <hymn>I Am a Child of God (#301)</hymn> and <hymn>Teach Me to Walk in the Light (#304)</hymn> are primarily closing hymns. 
 
 ```{r}
-davies_method(month == 5 & nth_sunday == 2)
+top_10 <- fathers |> 
+    filter(!hymn_num %in% 169:196) |> 
+    cleveland_plot(return = "table") |> 
+    head(10) |> 
+    pull(hymn_num) |> 
+    print()
 ```
 
-Finally, we can look at when during sacrament meeting these most popular hymns are sung. @fig-types shows the data for the top 10 Mother's Day hymns. Perhaps the most striking trend is that <hymn>Love One Another (#308)</hymn> is almost always a closing hymn when it's sung on Mother's Day. <hymn>Families Can Be Together Forever (#300)</hymn> and <hymn>Teach Me to Walk in the Light (#304)</hymn> are also typically a closing hymn. Pretty much all the others, including most of the "Motherhood" hymns, are more commonly opening hymns. 
 
 ```{r, include = TRUE, fig.height = 6, fig.width = 8}
-#| fig-cap: Top 10 Mother's Day hymns and when they're sung.
+#| fig-cap: Top 10 Father's Day hymns and when they're sung.
 #| label: fig-types
-mothers |> 
+fathers_pre2024 |> 
     filter(type != "Sacrament") |> 
-    count(name_num, hymn_num, type, mothers_category) |> 
+    count(name_num, hymn_num, type) |> 
     filter(hymn_num %in% top_10) |> 
     mutate(prop = n/sum(n), .by = name_num) |> 
-    ggplot(aes(type, prop, fill = mothers_category)) + 
+    ggplot(aes(type, prop)) + 
     geom_col() + 
     facet_wrap(~name_num, ncol = 4, labeller = label_wrap_gen(width = 25)) + 
     scale_y_continuous(breaks = seq(0, 1, 0.2), labels = scales::percent) + 
-    scale_fill_manual(values = c("motherhood" = "#e78ac3",
-                                 "children"   = "#8da0cb",
-                                 "home"       = "#66c2a5",
-                                 "other"      = "gray50")) + 
-    labs(title = "When during sacrament meetings are the top 10 Mother's Day hymns sung?",
+    labs(title = "When during sacrament meetings are the top 10 Father's Day hymns sung?",
          fill = "hymn category") + 
     theme_bw() + 
     theme(legend.position = "bottom",
           axis.text.x = element_text(size = 8))
 ```
 
-So that's it for Mother's Day hymns! This was a shorter post than normal, but there's not too much else to say! 
+Everything I've said up to this point has been a summary of data prior to 2024. However, we recently got some new hymns. So, how did these new hymns change what Father's Day looked like in 2024? The following plot is the same format as above except it only shows the 2024 data and I've added a new color for the new hymns. 
 
+```{r, warning = FALSE, message = FALSE, include = TRUE, fig.height = 4.5, fig.width = 8}
+fathers |> 
+    filter(year == 2024) |> 
+    filter(!hymn_num %in% 169:197) |>
+    mutate(category = case_when(hymn_num %in% fatherhood_hymns ~ "fatherhood",
+                                hymn_num %in% home_hymns & hymn_num %in% god_hymns ~ "home and God",
+                                hymn_num %in% home_hymns ~ "home",
+                                hymn_num %in% god_hymns  ~ "God",
+                                hymn_num > 1000 ~ "new",
+                                TRUE ~ "other")) |> 
+    cleveland_plot(n_weeks = 1, filter_n = 4, breaks = 0.1, extra_cols = category, color = category) + 
+    scale_color_manual(breaks = c("fatherhood", "home", "God", "home and God", "new", "other"),
+                       values = c("#4477AA", "#228833", "#ccbb44", "#aa3377", "#66ccee", "#BBBBBB")) + 
+    labs(title = "The Most Popular Father's Day Hymns in 2024",
+         subtitle = NULL,
+         x = "proportion of wards that sing it on Father's Day per year") + 
+    scale_x_continuous(labels = scales::percent, expand = expansion(0, c(0,0.2)))
+```
 
+Here, you can see that there were a handful of new hymns that were pretty popular, particularly <hymn>As Bread Is Broken (#1007)</hymn>. This is likely not a Father's Day--specific trend but rather simply because the new hymns were fresh and wards were still in [the process of rolling them out](/posts/new_hymns_batch1). I think that this sacrament hymn was most common so that wards could leave room for the Father's Day hymns as opening and closing hymns. 
+
+Otherwise, the results look similar. The "fatherhood" hymns are still the most common by far. The "home" hymns were down a little bit and <hymn>I Know My Father Lives (#302)</hymn> took the spot as third most popular hymn. But, I don't want to read too into it because it's likely that each year has its own flukes and idiosyncrasies. 
+
+So that's it for Father's Day!
