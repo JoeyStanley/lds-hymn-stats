@@ -10,7 +10,46 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Tue, 25 Jun 2024 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 01 Jul 2024 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>What hymns are sung around the martyrdom of Joseph Smith?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/martyrdom/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>As I’ve been collecting data this month with a focus on the new hymnal, I noticed that a fair number of wards sang hymns related to Joseph Smith. One ward explained why: it’s because the anniversary of his martyrdom was on June 27th. How common is it to sing Joseph Smith–related songs at the end of June?</p>
+<p>First, let’s look at hymns sung on the closest Sunday to June 27th. So, this would be between June 24 and June 30, or rather, the last Sunday of June.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/martyrdom/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Well would you look at that! The most common hymn on the last week on June (excluding sacrament hymns) is <hymn>Praise to the Man (#27)</hymn>. We have some competition with the Fourth of July, so we see some patriotic hymns in there. We also see some generic common hymns. But not too far down the line, we see <hymn>A Poor Wayfaring Man of Grief (#29)</hymn> and <hymn>Joseph Smith’s First Prayer (#26)</hymn>. Singing Joseph Smith–related hymns around the time of his martyrdom is not something I had considered before, but apparently it’s a common enough trend to break through the noise.</p>
+<p>Now, if you look at the <em>x</em>-axis of that plot, you’ll see some low numbers. Only about 7% of wards sing <hymn>Praise to the Man (#27)<hymn>, so it’s not like tons of people are doing this. Looking at all three of those hymns together, it looks like about 10% of wards sing one of them, 2% sing two of them, and twice I have instances of wards singing all three of them. Most of the time (88%), people don’t sing them. But again, it’s interesting that those three hymns were able to cut through the noise of all the other hymns sung on the last week of June.</hymn></hymn></p>
+<p>So when do Joseph Smith hymns peak? When I started this analysis, I figured the Sunday closest to the 27th would have the most. But, as we saw, there was some interference with the 4th of July. Besides, holiday hymns are most common the Sunday <em>before</em> and not necessarily the <em>closest</em> Sunday.</p>
+<p>The following figure shows what proportion of wards sing at least one of those three Joseph Smith hymns per day. Keep in mind that I have data spanning 22 years, so even though though the anniversary of the martyrdom was Thursday this year, it falls on different days depending on the year. Please note that the data has been smoothed a little bit. Because the amount of data I have per year varies, the true underlying data was a little bit messy. So, what you’re seeing here is the percent of wards that sing at least one of the three Joseph Smith hymns <em>within a three-day window</em> the date shown on the plot.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/martyrdom/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>What I see in this plot is that in the three-day window around (and including) about June 22nd–27th, we see the most number of Joseph Smith–related hymns. The number quickly drops off after that, likely due to 4th of July. But, during those days, about 15% of wards sing at least one of those three hymns. To put that into perspective, that’s about as common as singing <hymn>Our Savior’s Love (#113)</hymn> is around <a href="../../posts/valentines">Valentine’s Day</a> and only a little less common than singing <hymn>Ring Out, Wild Bells (#215) on <a href="../../posts/new-years">New Year’s Eve</a>.</hymn></p>
+<p>I learned something new today! I had no idea that so many wards honored Joseph Smith through song around the anniversary of his Martyrdom!</p>
+
+
+
+ ]]></description>
+  <category>holidays</category>
+  <category>frequency</category>
+  <guid>https://hymnstats.joeystanley.com/posts/martyrdom/index.html</guid>
+  <pubDate>Mon, 01 Jul 2024 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>The First Batch of New Hymns!</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -19,7 +58,7 @@
 
 
 
-<p>On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the <a href="posts/new_hymns_week1">first</a>, <a href="posts/new_hymns_week2">second</a>, and <a href="posts/new_hymns_week3">third</a> weeks since their release. Moving forward, I’ll update this blog post with new data as it comes in so that you can get a better look at how hymns are being adopted over several weeks at once. I’ll try to update this page weekly until the second batch of hymns comes out in September. Currently I have data from 383 sacrament meetings since June 2nd from 183 wards.</p>
+<p>On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the <a href="posts/new_hymns_week1">first</a>, <a href="posts/new_hymns_week2">second</a>, and <a href="posts/new_hymns_week3">third</a> weeks since their release. Moving forward, I’ll update this blog post with new data as it comes in so that you can get a better look at how hymns are being adopted over several weeks at once. I’ll try to update this page weekly until the second batch of hymns comes out in September. Currently I have data from 394 sacrament meetings since June 2nd from 183 wards.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -51,23 +90,23 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="nibpgxnfre" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nibpgxnfre table {
+<div id="itpjdioqxi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#itpjdioqxi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nibpgxnfre thead, #nibpgxnfre tbody, #nibpgxnfre tfoot, #nibpgxnfre tr, #nibpgxnfre td, #nibpgxnfre th {
+#itpjdioqxi thead, #itpjdioqxi tbody, #itpjdioqxi tfoot, #itpjdioqxi tr, #itpjdioqxi td, #itpjdioqxi th {
   border-style: none;
 }
 
-#nibpgxnfre p {
+#itpjdioqxi p {
   margin: 0;
   padding: 0;
 }
 
-#nibpgxnfre .gt_table {
+#itpjdioqxi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -93,12 +132,12 @@ Note
   border-left-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_caption {
+#itpjdioqxi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nibpgxnfre .gt_title {
+#itpjdioqxi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -110,7 +149,7 @@ Note
   border-bottom-width: 0;
 }
 
-#nibpgxnfre .gt_subtitle {
+#itpjdioqxi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -122,7 +161,7 @@ Note
   border-top-width: 0;
 }
 
-#nibpgxnfre .gt_heading {
+#itpjdioqxi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -134,13 +173,13 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_bottom_border {
+#itpjdioqxi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_col_headings {
+#itpjdioqxi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -155,7 +194,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_col_heading {
+#itpjdioqxi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -175,7 +214,7 @@ Note
   overflow-x: hidden;
 }
 
-#nibpgxnfre .gt_column_spanner_outer {
+#itpjdioqxi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -187,15 +226,15 @@ Note
   padding-right: 4px;
 }
 
-#nibpgxnfre .gt_column_spanner_outer:first-child {
+#itpjdioqxi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nibpgxnfre .gt_column_spanner_outer:last-child {
+#itpjdioqxi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nibpgxnfre .gt_column_spanner {
+#itpjdioqxi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -207,11 +246,11 @@ Note
   width: 100%;
 }
 
-#nibpgxnfre .gt_spanner_row {
+#itpjdioqxi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nibpgxnfre .gt_group_heading {
+#itpjdioqxi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -237,7 +276,7 @@ Note
   text-align: left;
 }
 
-#nibpgxnfre .gt_empty_group_heading {
+#itpjdioqxi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -252,15 +291,15 @@ Note
   vertical-align: middle;
 }
 
-#nibpgxnfre .gt_from_md > :first-child {
+#itpjdioqxi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nibpgxnfre .gt_from_md > :last-child {
+#itpjdioqxi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nibpgxnfre .gt_row {
+#itpjdioqxi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -279,7 +318,7 @@ Note
   overflow-x: hidden;
 }
 
-#nibpgxnfre .gt_stub {
+#itpjdioqxi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -292,7 +331,7 @@ Note
   padding-right: 5px;
 }
 
-#nibpgxnfre .gt_stub_row_group {
+#itpjdioqxi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -306,15 +345,15 @@ Note
   vertical-align: top;
 }
 
-#nibpgxnfre .gt_row_group_first td {
+#itpjdioqxi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nibpgxnfre .gt_row_group_first th {
+#itpjdioqxi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nibpgxnfre .gt_summary_row {
+#itpjdioqxi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -324,16 +363,16 @@ Note
   padding-right: 5px;
 }
 
-#nibpgxnfre .gt_first_summary_row {
+#itpjdioqxi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_first_summary_row.thick {
+#itpjdioqxi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nibpgxnfre .gt_last_summary_row {
+#itpjdioqxi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -343,7 +382,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_grand_summary_row {
+#itpjdioqxi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -353,7 +392,7 @@ Note
   padding-right: 5px;
 }
 
-#nibpgxnfre .gt_first_grand_summary_row {
+#itpjdioqxi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -363,7 +402,7 @@ Note
   border-top-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_last_grand_summary_row_top {
+#itpjdioqxi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -373,11 +412,11 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_striped {
+#itpjdioqxi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nibpgxnfre .gt_table_body {
+#itpjdioqxi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -386,7 +425,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_footnotes {
+#itpjdioqxi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -400,7 +439,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_footnote {
+#itpjdioqxi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -409,7 +448,7 @@ Note
   padding-right: 5px;
 }
 
-#nibpgxnfre .gt_sourcenotes {
+#itpjdioqxi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -423,7 +462,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#nibpgxnfre .gt_sourcenote {
+#itpjdioqxi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -431,63 +470,63 @@ Note
   padding-right: 5px;
 }
 
-#nibpgxnfre .gt_left {
+#itpjdioqxi .gt_left {
   text-align: left;
 }
 
-#nibpgxnfre .gt_center {
+#itpjdioqxi .gt_center {
   text-align: center;
 }
 
-#nibpgxnfre .gt_right {
+#itpjdioqxi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nibpgxnfre .gt_font_normal {
+#itpjdioqxi .gt_font_normal {
   font-weight: normal;
 }
 
-#nibpgxnfre .gt_font_bold {
+#itpjdioqxi .gt_font_bold {
   font-weight: bold;
 }
 
-#nibpgxnfre .gt_font_italic {
+#itpjdioqxi .gt_font_italic {
   font-style: italic;
 }
 
-#nibpgxnfre .gt_super {
+#itpjdioqxi .gt_super {
   font-size: 65%;
 }
 
-#nibpgxnfre .gt_footnote_marks {
+#itpjdioqxi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nibpgxnfre .gt_asterisk {
+#itpjdioqxi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nibpgxnfre .gt_indent_1 {
+#itpjdioqxi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nibpgxnfre .gt_indent_2 {
+#itpjdioqxi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nibpgxnfre .gt_indent_3 {
+#itpjdioqxi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nibpgxnfre .gt_indent_4 {
+#itpjdioqxi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nibpgxnfre .gt_indent_5 {
+#itpjdioqxi .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -506,23 +545,23 @@ Note
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="percent" class="gt_row gt_right">13.32%</td></tr>
+<td headers="percent" class="gt_row gt_right">12.94%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="percent" class="gt_row gt_right">4.70%</td></tr>
+<td headers="percent" class="gt_row gt_right">4.82%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="percent" class="gt_row gt_right">4.70%</td></tr>
+<td headers="percent" class="gt_row gt_right">4.82%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="percent" class="gt_row gt_right">2.61%</td></tr>
+<td headers="percent" class="gt_row gt_right">2.54%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
-<td headers="percent" class="gt_row gt_right">2.61%</td></tr>
+<td headers="percent" class="gt_row gt_right">2.54%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="percent" class="gt_row gt_right">2.09%</td></tr>
+<td headers="percent" class="gt_row gt_right">2.28%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="percent" class="gt_row gt_right">1.31%</td></tr>
+<td headers="percent" class="gt_row gt_right">1.27%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="percent" class="gt_row gt_right">1.04%</td></tr>
+<td headers="percent" class="gt_row gt_right">1.02%</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
-<td headers="percent" class="gt_row gt_right">0.26%</td></tr>
+<td headers="percent" class="gt_row gt_right">0.25%</td></tr>
   </tbody>
   
   
@@ -549,23 +588,23 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="uajjacorty" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uajjacorty table {
+<div id="fdwbeuaovz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fdwbeuaovz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uajjacorty thead, #uajjacorty tbody, #uajjacorty tfoot, #uajjacorty tr, #uajjacorty td, #uajjacorty th {
+#fdwbeuaovz thead, #fdwbeuaovz tbody, #fdwbeuaovz tfoot, #fdwbeuaovz tr, #fdwbeuaovz td, #fdwbeuaovz th {
   border-style: none;
 }
 
-#uajjacorty p {
+#fdwbeuaovz p {
   margin: 0;
   padding: 0;
 }
 
-#uajjacorty .gt_table {
+#fdwbeuaovz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -591,12 +630,12 @@ Note
   border-left-color: #D3D3D3;
 }
 
-#uajjacorty .gt_caption {
+#fdwbeuaovz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uajjacorty .gt_title {
+#fdwbeuaovz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -608,7 +647,7 @@ Note
   border-bottom-width: 0;
 }
 
-#uajjacorty .gt_subtitle {
+#fdwbeuaovz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -620,7 +659,7 @@ Note
   border-top-width: 0;
 }
 
-#uajjacorty .gt_heading {
+#fdwbeuaovz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -632,13 +671,13 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uajjacorty .gt_bottom_border {
+#fdwbeuaovz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uajjacorty .gt_col_headings {
+#fdwbeuaovz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -653,7 +692,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uajjacorty .gt_col_heading {
+#fdwbeuaovz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -673,7 +712,7 @@ Note
   overflow-x: hidden;
 }
 
-#uajjacorty .gt_column_spanner_outer {
+#fdwbeuaovz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -685,15 +724,15 @@ Note
   padding-right: 4px;
 }
 
-#uajjacorty .gt_column_spanner_outer:first-child {
+#fdwbeuaovz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uajjacorty .gt_column_spanner_outer:last-child {
+#fdwbeuaovz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uajjacorty .gt_column_spanner {
+#fdwbeuaovz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -705,11 +744,11 @@ Note
   width: 100%;
 }
 
-#uajjacorty .gt_spanner_row {
+#fdwbeuaovz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uajjacorty .gt_group_heading {
+#fdwbeuaovz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -735,7 +774,7 @@ Note
   text-align: left;
 }
 
-#uajjacorty .gt_empty_group_heading {
+#fdwbeuaovz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -750,15 +789,15 @@ Note
   vertical-align: middle;
 }
 
-#uajjacorty .gt_from_md > :first-child {
+#fdwbeuaovz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uajjacorty .gt_from_md > :last-child {
+#fdwbeuaovz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uajjacorty .gt_row {
+#fdwbeuaovz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -777,7 +816,7 @@ Note
   overflow-x: hidden;
 }
 
-#uajjacorty .gt_stub {
+#fdwbeuaovz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -790,7 +829,7 @@ Note
   padding-right: 5px;
 }
 
-#uajjacorty .gt_stub_row_group {
+#fdwbeuaovz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -804,15 +843,15 @@ Note
   vertical-align: top;
 }
 
-#uajjacorty .gt_row_group_first td {
+#fdwbeuaovz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uajjacorty .gt_row_group_first th {
+#fdwbeuaovz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uajjacorty .gt_summary_row {
+#fdwbeuaovz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -822,16 +861,16 @@ Note
   padding-right: 5px;
 }
 
-#uajjacorty .gt_first_summary_row {
+#fdwbeuaovz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uajjacorty .gt_first_summary_row.thick {
+#fdwbeuaovz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uajjacorty .gt_last_summary_row {
+#fdwbeuaovz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,7 +880,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#uajjacorty .gt_grand_summary_row {
+#fdwbeuaovz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -851,7 +890,7 @@ Note
   padding-right: 5px;
 }
 
-#uajjacorty .gt_first_grand_summary_row {
+#fdwbeuaovz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -861,7 +900,7 @@ Note
   border-top-color: #D3D3D3;
 }
 
-#uajjacorty .gt_last_grand_summary_row_top {
+#fdwbeuaovz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -871,11 +910,11 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#uajjacorty .gt_striped {
+#fdwbeuaovz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uajjacorty .gt_table_body {
+#fdwbeuaovz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -884,7 +923,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#uajjacorty .gt_footnotes {
+#fdwbeuaovz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -898,7 +937,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uajjacorty .gt_footnote {
+#fdwbeuaovz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -907,7 +946,7 @@ Note
   padding-right: 5px;
 }
 
-#uajjacorty .gt_sourcenotes {
+#fdwbeuaovz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -921,7 +960,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uajjacorty .gt_sourcenote {
+#fdwbeuaovz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -929,63 +968,63 @@ Note
   padding-right: 5px;
 }
 
-#uajjacorty .gt_left {
+#fdwbeuaovz .gt_left {
   text-align: left;
 }
 
-#uajjacorty .gt_center {
+#fdwbeuaovz .gt_center {
   text-align: center;
 }
 
-#uajjacorty .gt_right {
+#fdwbeuaovz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uajjacorty .gt_font_normal {
+#fdwbeuaovz .gt_font_normal {
   font-weight: normal;
 }
 
-#uajjacorty .gt_font_bold {
+#fdwbeuaovz .gt_font_bold {
   font-weight: bold;
 }
 
-#uajjacorty .gt_font_italic {
+#fdwbeuaovz .gt_font_italic {
   font-style: italic;
 }
 
-#uajjacorty .gt_super {
+#fdwbeuaovz .gt_super {
   font-size: 65%;
 }
 
-#uajjacorty .gt_footnote_marks {
+#fdwbeuaovz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uajjacorty .gt_asterisk {
+#fdwbeuaovz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uajjacorty .gt_indent_1 {
+#fdwbeuaovz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uajjacorty .gt_indent_2 {
+#fdwbeuaovz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uajjacorty .gt_indent_3 {
+#fdwbeuaovz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uajjacorty .gt_indent_4 {
+#fdwbeuaovz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uajjacorty .gt_indent_5 {
+#fdwbeuaovz .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1017,7 +1056,7 @@ Note
 <td headers="Intermediate" class="gt_row gt_right">2</td>
 <td headers="Closing" class="gt_row gt_right">1</td></tr>
     <tr><td headers="New Hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="Opening" class="gt_row gt_right">2</td>
+<td headers="Opening" class="gt_row gt_right">3</td>
 <td headers="Sacrament" class="gt_row gt_right">0</td>
 <td headers="Intermediate" class="gt_row gt_right">3</td>
 <td headers="Closing" class="gt_row gt_right">13</td></tr>
@@ -1027,7 +1066,7 @@ Note
 <td headers="Intermediate" class="gt_row gt_right">5</td>
 <td headers="Closing" class="gt_row gt_right">3</td></tr>
     <tr><td headers="New Hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="Opening" class="gt_row gt_right">1</td>
+<td headers="Opening" class="gt_row gt_right">2</td>
 <td headers="Sacrament" class="gt_row gt_right">0</td>
 <td headers="Intermediate" class="gt_row gt_right">2</td>
 <td headers="Closing" class="gt_row gt_right">5</td></tr>
@@ -1038,7 +1077,7 @@ Note
 <td headers="Closing" class="gt_row gt_right">0</td></tr>
     <tr><td headers="New Hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
 <td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">18</td>
+<td headers="Sacrament" class="gt_row gt_right">19</td>
 <td headers="Intermediate" class="gt_row gt_right">0</td>
 <td headers="Closing" class="gt_row gt_right">0</td></tr>
     <tr><td headers="New Hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
@@ -1061,7 +1100,7 @@ Note
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This first batch of hymns only came out recently, but we’re starting to see some trends already. Again, this is only based on 383 sacrament meetings from 183 wards. It’s not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I’m collecting more data and if you’d like to contribute your ward’s data, you can do so <a href="../../contribute.html">here</a>.</p>
+<p>This first batch of hymns only came out recently, but we’re starting to see some trends already. Again, this is only based on 394 sacrament meetings from 183 wards. It’s not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I’m collecting more data and if you’d like to contribute your ward’s data, you can do so <a href="../../contribute.html">here</a>.</p>
 
 
 </section>
@@ -1124,7 +1163,8 @@ Note
 </section>
 
  ]]></description>
-  <category>holidays, frequency</category>
+  <category>holidays</category>
+  <category>frequency</category>
   <guid>https://hymnstats.joeystanley.com/posts/fathers_day/index.html</guid>
   <pubDate>Sun, 16 Jun 2024 06:00:00 GMT</pubDate>
 </item>
@@ -14688,361 +14728,6 @@ Click to see those hymns
   <category>musicology</category>
   <guid>https://hymnstats.joeystanley.com/posts/final_chords/index.html</guid>
   <pubDate>Wed, 18 Oct 2023 06:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>What are the sopranos’ lowest notes?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/lowest_soprano/index.html</link>
-  <description><![CDATA[ 
-
-
-
-<p>Previously, I wrote about <a href="../../posts/highest_melody">the highest notes the soprano line has to sing</a>. In this post, we’ll explore the <em>lowest</em> notes the soprano line sings. As a reminder, in addition to collecting frequency data about how often hymns are sung, I have also analyzed the notes and rhythms in the hymnal. Mark Mitchell has already done <a href="https://markmitchell-music.com/music/documents/HymnStats.pdf">fantastic work</a> related to this. I hope to add to what he’s reported already.</p>
-<section id="lowest-melody-notes" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="lowest-melody-notes">Lowest melody notes</h2>
-<p>When we think of sopranos, we often think of high notes. We’ve already seen that while <a href="../../posts/highest_melody">the soprano line can go as high as an F♯5</a> in <hymn>Lead on My Ample Arm (#120)</hymn>, it typically goes up to a D5. But, sopranos do have to sing low sometimes too.</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Fun Fact
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The lowest melody note is an A♭3, which is found in <hymn>The Star-Spangled Banner (340)</hymn> and <hymn>Ye Simple Souls Who Stray (118)</hymn>.</p>
-</div>
-</div>
-<p>It is worth noting that that A♭3 in both songs is in a unison passage. In the <hymn>The Star-Spangled Banner (340)</hymn> all four parts are in unison and the soprano has to hit that note four times. That melody is notorious for being difficult for a normal person to sing because of its octave and a half range, so presumably they didn’t want to raise the key too much otherwise it would end up going very high. Its a lose-lose I guess.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/star-spangled_banner.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">The Star-Spangled Banner (#340)</figcaption>
-</figure>
-</div>
-<div class="page-columns page-full"><p>For <hymn>Ye Simple Souls Who Stray (118)</hymn>, the soprano and altos are in unison for the entire first half of the hymn. If you look at the same hymn in the 1948 hymnal (#290), you’ll see first off that it’s a “Choir” arrangement—yes, they had full-on choir arrangements in the back of the hymnal—so it’s probably a little more difficult to sing and maybe not intended for congregational singing. Furthermore, that lower melody line in the first half of the hymn is only written for the altos to sing. There may be a remnant of that in the 1985 hymnal because, if you compare the phrases where sopranos and altos are in unison in <hymn>Ye Simple Souls Who Stray (#118)</hymn> to <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, you’ll see that in the latter, we have stems in the notes going in both directions, suggesting soprano and alto in unison. However, in the former, you only see one stem. Perhaps then, the intention is for altos to sing that first half of the hymn and for the sopranos to come in later.</p><div class="no-row-height column-margin column-container"><span class="">Please note the copy that I have is the 11th printing, dated 1957. It has a red cover. I don’t know enough about the various printings of that hymnal to know what differences there are between them.</span></div></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/ye-simple-souls.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Ye Simple Souls Who Stray (#118)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/wintry-sample.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">The Wintry Day, Descending to Its Close (#37)</figcaption>
-</figure>
-</div>
-<p>Regardless, this low A♭3 is, for both hymns, pretty exceptional.</p>
-<p>How often will a congregation see one of these two hymns? Well, spoiling a bit of a future 4th of July post, I’ll go ahead and say that it looks like only about a third of the wards in the US sing <hymn>The Star-Spangled Banner (340)</hymn> every year. To put it another way, one ward might sing it once every three years, on average. Meanwhile, <hymn>Ye Simple Souls Who Stray (118)</hymn> is one of <a href="../../posts/least-common-hymns">the rarest hymns in the hymnal</a> and is basically a once- or twice-in-a-lifetime kind of hymn. So, sopranos, don’t sweat it if you can’t quite hit that A♭3.</p>
-</section>
-<section id="other-low-melody-notes" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="other-low-melody-notes">Other low melody notes</h2>
-<section id="a3" class="level3">
-<h3 class="anchored" data-anchor-id="a3">A3</h3>
-<p>Not too many hymns even approach that low A♭3. Just one hymn goes down to an A3. <hymn>Zion Stands with Hills Surrounded (#43)</hymn> just pops down there one time, unison with the altos, and never really comes close to it again. It is also extremely rare, being sung about once a generation or so.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/zion-stands.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Zion Stands with Hills Surrounded (#43)</figcaption>
-</figure>
-</div>
-</section>
-<section id="b3" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="b3">B♭3</h3>
-<p>Fourteen hymns have the sopranos going down to a Bb3. In all cases, the soprano line is in unison with the alto line, meaning there is no lower alto note being sung at that time. In some hymns, all four parts are unison when that B♭3 is being sung. We get that in <hymn>Awake and Arise (#8)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Hail to the Brightness of Zion’s Glad Morning! (#42)</hymn>, <hymn>’Tis Sweet to Sing the Matchless Love (#177)</hymn>, and <hymn>Ye Elders of Israel (#319)</hymn>. In the case of <hymn>Because I Have Been Given Much (#219)</hymn>, there is technically no alto part since it is marked as unison, but there is a G3 below it that could very well be an alto line.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/awake.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Awake and Arise (#8)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/for-the-strength.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">For the Strength of the Hills (#35)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/hail.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Hail to the Brightness of Zion’s Glad Morning! (#42)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/tis-sweet.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">’Tis Sweet to Sing the Matchless Love (#177)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/ye-elders.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Ye Elders of Israel (#319)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>It is interesting to note where in the melody these B♭3 notes come. For some hymns, it’s the first note of the song, it’s usually the dominant, and it never goes that low again. We see that in <hymn>Awake and Arise (#8)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Hail to the Brightness of Zion’s Glad Morning! (#42)</hymn>, <hymn>As Now We Take the Sacrament (#169)</hymn>, and <hymn>As Zion’s Youth in Latter Days (#256)</hymn>. In <hymn>Joseph Smith’s First Prayer (#26)</hymn> and <hymn>Silent Night (#204)</hymn>, it’s in the key of Bb and the last note of the hymn is the lowest one. The rest have the low note somewhere else in the middle, but usually only one time. The hymn <hymn>Ye Elders of Israel (#319)</hymn> has that low note integrated throughout, including the beginning, a few times in the middle, and also near the end. Of course, it’s intended for men to sing, so we might not be right in calling it a “soprano” line.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/first-prayer.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Joseph Smith’s First Prayer (#26)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/silent-night.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Silent Night (#204)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="page-columns page-full"><p>However, given that some of these hymns are fairly common, it is not unusual to see this B♭3. We have two <a href="../../posts/sacrament">sacrament hymns</a>, a popular Christmas hymn, and three other very popular hymns. The other seven are not very common. But, collectively, these 14 hymns make up 5.2% of the hymns sung in sacrament meeting. That means you’re likely to encounter one about once every 5.5 weeks on average. So, unless someone happens to know that <hymn>The Star-Spangled Banner (340)</hymn> goes down to an A♭3 <em>and</em> be familiar with two very infrequent hymns, I’m guessing a typical church-goer may think that a Bb3 is the lowest soprano note.</p><div class="no-row-height column-margin column-container"><span class="">Y’know, in case typical church-goers think about these things!</span></div></div>
-</section>
-<section id="b3-1" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="b3-1">B3</h3>
-<p>Only 11 hymns have B3 as the lowest note in the melody. It is here that we finally get alto notes below the melody’s lowest note. For example, in <hymn>There Is Sunshine in My Soul Today (#227)</hymn>, as the melody goes down to a B3 in the chorus, the alto is below that on a G3. We also see that same thing in <hymn>There Is Sunshine in My Soul Today (#227)</hymn> and <hymn>Up, Awake, Ye Defenders of Zion (#248)</hymn>. And in <hymn>Onward, Christian Soldiers (#246)</hymn>, the altos are holding an A3. In all other cases, the alto note is unison with the melody still.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/sunshine.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">There Is Sunshine in My Soul Today (#227)</figcaption>
-</figure>
-</div>
-<div class="page-columns page-full"><p>It is interesting to note though that as far as where in the melody that lowest note comes is quite different from where we saw the B♭3s in the previous section. Just one hymn, <hymn>How Long, O Lord Most Holy and True? (#126)</hymn>, has the B3 as the first note. In all other cases, the lowest note comes in the middle of a phrase, usually near the middle of the hymn. I suspect this has to do with the <a href="../../posts/key_signatures">key signatures</a> that are most common in the hymnal. Since we have no hymns in B major, we don’t see B3 as the dominant, and since we have no hymns in E major, we don’t see it as the subdominant, with the exception of <hymn>How Long, O Lord Most Holy and True? (#126)</hymn>. Instead, we’re seeing it as random notes of the melody. We get it as the mediant in hymns in G major (<hymn>Testimony (#137)</hymn>, <hymn>Dear to the Heart of the Shepherd (#221)</hymn>, <hymn>There Is Sunshine in My Soul Today (#227)</hymn>, and <hymn>Know This, That Every Soul Is Free (#240)</hymn>), the submediant for hymns in D major (<hymn>Where Can I Turn for Peace? (#129)</hymn> and <hymn>Onward, Christian Soldiers (#246)</hymn>), a leading tone for <hymn>Be Thou Humble (#130)</hymn> and <hymn>Called to Serve (#249)</hymn>, which are in C major, and as an accidental in <hymn>The Wintry Day, Descending to Its Close (#37)</hymn> and <hymn>Up, Awake, Ye Defenders of Zion (#248)</hymn>.</p><div class="no-row-height column-margin column-container"><span class="">Incidentally, Hymn #126 is one of only five hymns in a <a href="../../posts/key_signatures.html#what-about-minor-keys">minor key</a>.</span><span class="">I 100% had to look these terms up.</span></div></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/how-long.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">How Long, O Lord Most Holy and True? (#126)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/testimony.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Testimony (#137)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/dear-to-the-heart.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Dear to the Heart of the Shepherd (#221)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/sunshine.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">There Is Sunshine in My Soul Today (#227)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/where.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Where Can I Turn for Peace? (#129)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/onward.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Onward, Christian Soldiers (#246)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/be-thou.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Be Thou Humble (#130)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/called.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Called to Serve (#249)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/wintry.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">The Wintry Day, Descending to Its Close (#37)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/defenders.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Up, Awake, Ye Defenders of Zion (#248)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>How often are you likely to see a B3 in the melody? Well, none of these 11 are sacrament hymns, so it’s not going to be as likely as B♭3. But, there are some well-known ones. Collectively, these hymns make up 3.16% of the hymns sung in sacrament meeting, meaning you’re likely to see one about once every 9.4 weeks or so.</p>
-</section>
-<section id="summary-of-low-melodies" class="level3">
-<h3 class="anchored" data-anchor-id="summary-of-low-melodies">Summary of low melodies</h3>
-<p>So, if we summarize these exceptionally low soprano lines, there are only 28 hymns (8.2% of the hymnal) that dip below a C4. If you have quite a high voice (or perhaps are looking for a hymn that a child could sing) and can’t sing below a C4, you’ll be able to sing the soprano line about 91% of the time.</p>
-</section>
-</section>
-<section id="typical-lowest-notes" class="level2">
-<h2 class="anchored" data-anchor-id="typical-lowest-notes">Typical lowest notes</h2>
-<p>If melodies that go down to an A♭3, A3, B♭3, and B3 are all pretty unusual, does that mean the typical lowest note for a melody is a C4? Not quite. This figure shows the distribution of lowest notes for the soprano lines in the hymnal.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Fun Fact
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The typical lowest note for a melody is D4.</p>
-</div>
-</div>
-<p>This figure shows that the majority of hymns have their lowest note at a D4. There are 147 hymns like this, which is 43.1% of the hymnal. It is interesting that this parallels <a href="../../posts/highest_melody">the highest notes in melodies</a>, where D5 was the most common high note. In second place is C4, with 89 hymns or 26.1% of the hymnal.</p>
-<p>Similar to the highest notes, relatively few hymns have C♯3 as the lowest note, again, likely due to the distribution of <a href="../../posts/key_signatures">key signatures</a> in the hymnal. It does include two sacrament hymns, <hymn>O God, the Eternal Father (#175)</hymn> and <hymn>In Memory of the Crucified</hymn> and a few other relatively common hymns. On average, you’ll see that C♯4 or D♭4 about once every 5.76 weeks.</p>
-</section>
-<section id="lowest-notes-that-arent-all-that-low" class="level2">
-<h2 class="anchored" data-anchor-id="lowest-notes-that-arent-all-that-low">Lowest notes that aren’t all that low</h2>
-<p>Let’s continue to work our way up to see what hymns have relatively high notes as their lowest notes.</p>
-<section id="e4" class="level3">
-<h3 class="anchored" data-anchor-id="e4">E♭4</h3>
-<p>There are 26 hymns that have E♭4 as their lowest note, including five sacrament hymns. Almost all of these 26 hymns are in the key of E♭ major and almost all of those have E♭4 as their highest notes. The exceptions are <hymn>We Have Partaken of Thy Love (#155)</hymn> and <hymn>Now the Day Is Over (#159)</hymn>, which are in the key of A♭ major making the lowest note the dominant instead of the tonic, and all three of the women’s choir arrangements that are on this list: <hymn>God Is Love (#313)</hymn>, <hymn>Sweet Is the Work (#317)</hymn>, <hymn>Love at Home (#318)</hymn>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-<section id="e4-1" class="level3">
-<h3 class="anchored" data-anchor-id="e4-1">E4</h3>
-<p>Just 13 hymns have E4 as their lowest note. Many of these are in the key of C major, but otherwise there’s nothing noteworthy to say about these hymns other than the most common of them is the only one sung on average once every two years. So, you’ll encounter one of these hymns maybe once every 14 weeks.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-<section id="f4" class="level3">
-<h3 class="anchored" data-anchor-id="f4">F4</h3>
-<p>Only nine hymns have F4 as their lowest notes. We’ll see in a later blog post that when the melody never goes too low, it makes the whole hymn “feel” high, even if none of the notes are especially high. <hymn>Come, Ye Children of the Lord (58)</hymn> and <hymn>What Was Witnessed in the Heavens? (11)</hymn> are the hymns with the highest “average” note, and not dipping below F4 certainly contributes to that.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-<section id="f4-1" class="level3">
-<h3 class="anchored" data-anchor-id="f4-1">F♯4</h3>
-<p>Finally we get to the confusingly worded “highest lowest notes” in the hymnal. Here, <em>lowest notes</em> refers to the lowest notes of the melody within each song out of all the other notes in that song. But if we take all those lowest notes and put them in order from low to high, one of them is going to be the highest. So, <em>highest</em> here refers to the highest across all the lowest notes. Thus, we have the highest lowest notes in the soprano line.</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Fun Fact
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Two hymns have soprano lines that go no lower than an F♯4: <hymn>Awake, Ye Saints of God, Awake! (#17)</hymn> and <hymn>Raise Your Voices to the Lord (#61)</hymn>.</p>
-</div>
-</div>
-<p>If you haven’t heard of either of these hymns, it’s probably because they’re not very common. <hymn>Awake, Ye Saints of God, Awake! (#17)</hymn> is sung about once every 8.6 years, typically as an opening hymn. However, though the soprano line indeed never dips below an F♯4, the <em>melody</em> goes lower. For one portion the sopranos have rests while the altos carry the melody. In the 1948 version of the hymnal, it was #229 and was a “Choir” arrangement, more or less unchanged except in the key of D major. So, this hymn only makes it to the top of this list because of a technicality, and my guess is a typical ward member people will sing that alto line anyway.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/awake-ye-saints.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Awake, Ye Saints of God, Awake! (#17)</figcaption>
-</figure>
-</div>
-<p>The other hymn, <hymn>Raise Your Voices to the Lord (#61)</hymn>, has an F♯4 as its lowest note fair and square. In fact, I wonder if setting this hymn in a relatively high key may have been intentional: it is called “<em>Raise</em> Your Voices” after all. In fact, when comparing the current arrangement to the one in the 1948 hymnal, I think there are cases where they deliberately made the parts higher. The bass line currently has C3 as its lowest note instead of the G2 in the previous version and the tenor line is pretty consistently above the bass clef. (The alto line is in about the same range and is is only different because the chords have changed a little bit.) So while none of the parts have extremely high notes, they are often in the upper parts of their ranges. If this was on purpose, that is some nice word painting. It’s too bad hardly anyone gets to enjoy that though because this short hymn is sung about once every 10.6 years, typically as a closing hymn.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/lowest_soprano/raise.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Raise Your Voices to the Lord (#61)</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>The lowest a soprano note goes is A♭3, but only when it’s in unison with other parts. Melodies typically to go about a D4 or a C4, but sometimes they only go down to an F♯4.</p>
-
-
-</section>
-
- ]]></description>
-  <category>soprano line</category>
-  <category>lowest notes</category>
-  <category>musicology</category>
-  <guid>https://hymnstats.joeystanley.com/posts/lowest_soprano/index.html</guid>
-  <pubDate>Thu, 12 Oct 2023 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

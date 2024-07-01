@@ -1,0 +1,121 @@
+---
+title: "What hymns are sung around the martyrdom of Joseph Smith?"
+author: "Joey Stanley"
+date: "2024-07-01"
+categories: 
+  - holidays
+  - frequency
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+As I've been collecting data this month with a focus on the new hymnal, I noticed that a fair number of wards sang hymns related to Joseph Smith. One ward explained why: it's because the anniversary of his martyrdom was on June 27th. How common is it to sing Joseph Smith--related songs at the end of June?
+
+First, let's look at hymns sung on the closest Sunday to June 27th. So, this would be between June 24 and June 30, or rather, the last Sunday of June.
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+freqs |> 
+    # filter(month == 6, day %in% 2:28,
+    filter(month == 6, abs(day - 27) <= 3,
+           !ward %in% c("NA", "Anomymous")) |> 
+    filter(!hymn_num %in% 169:196) |> 
+    mutate(category = case_when(hymn_num %in% c(27, 29, 26) ~ "Joseph Smith",
+                                hymn_num %in% c(60, 338, 339, 340) ~ "July 4th",
+                                TRUE ~ "other")) |> 
+    cleveland_plot(n_weeks = 1, filter_n = 14, x_buffer = 0.02, breaks = 0.02, extra_cols = category, color = category) + 
+    scale_color_manual(breaks = c("Joseph Smith", "July 4th", "other"),
+                       values = c(ptol_blue, ptol_red, ptol_grey)) + 
+    labs(title = "Most common hymns within three days of June 27th",
+         subtitle = NULL,
+         x = "Proportion of wards")
+```
+
+Well would you look at that! The most common hymn on the last week on June (excluding sacrament hymns) is <hymn>Praise to the Man (#27)</hymn>. We have some competition with the Fourth of July, so we see some patriotic hymns in there. We also see some generic common hymns. But not too far down the line, we see <hymn>A Poor Wayfaring Man of Grief (#29)</hymn> and <hymn>Joseph Smith's First Prayer (#26)</hymn>. Singing Joseph Smith--related hymns around the time of his martyrdom is not something I had considered before, but apparently it's a common enough trend to break through the noise.
+
+```{r}
+freqs |> 
+    filter(month == 6, abs(day - 27) <= 3,
+           !ward %in% c("NA", "Anomymous")) |> 
+    filter(!hymn_num %in% 169:196) |> 
+    mutate(has_js = hymn_num %in% c(26, 27, 29)) |> 
+    summarize(n_js = sum(has_js), .by = meeting_id) |> 
+    count(n_js) |> 
+    mutate(prop = n/sum(n)) |> 
+    print()
+```
+
+
+Now, if you look at the *x*-axis of that plot, you'll see some low numbers. Only about 7% of wards sing <hymn>Praise to the Man (#27)<hymn>, so it's not like tons of people are doing this. Looking at all three of those hymns together, it looks like about 10% of wards sing one of them, 2% sing two of them, and twice I have instances of wards singing all three of them. Most of the time (88%), people don't sing them. But again, it's interesting that those three hymns were able to cut through the noise of all the other hymns sung on the last week of June.
+
+So when do Joseph Smith hymns peak? When I started this analysis, I figured the Sunday closest to the 27th would have the most. But, as we saw, there was some interference with the 4th of July. Besides, holiday hymns are most common the Sunday *before* and not necessarily the *closest* Sunday. 
+
+The following figure shows what proportion of wards sing at least one of those three Joseph Smith hymns per day. Keep in mind that I have data spanning 22 years, so even though though the anniversary of the martyrdom was Thursday this year, it falls on different days depending on the year. Please note that the data has been smoothed a little bit. Because the amount of data I have per year varies, the true underlying data was a little bit messy. So, what you're seeing here is the percent of wards that sing at least one of the three Joseph Smith hymns *within a three-day window* the date shown on the plot.
+
+```{r}
+close_to_martyrdom <- freqs |> 
+    filter(!ward %in% c("NA", "Anomymous")) |> 
+    mutate(martyrdom = ymd(paste0(year(date), "-06-27")),
+           diff = martyrdom - date) |> 
+    filter(abs(diff) < 15) |> 
+    print()
+
+library(RcppRoll)
+prop_js <- close_to_martyrdom |> 
+    mutate(is_js = hymn_num %in% c(26, 27, 29)) |> 
+    summarize(n_js = sum(is_js), .by = c(meeting_id, month, day)) |>
+    summarize(n_js = sum(n_js), 
+              n_meetings = n(),
+              prop = n_js / n_meetings,
+              .by = c(month, day)) |>
+    arrange(month, day) |>
+    rowid_to_column("id") |> 
+    print()
+
+prop_js |> 
+    ggplot(aes(id, prop)) + 
+    geom_point() + 
+    geom_path()
+
+# Peaks right around the 27th (weeks ending 28, 29, 30th)
+roll_sum_js <- prop_js |> 
+    mutate(roll_sum_js       = roll_sum(n_js,       7, align = "right", fill = NA),
+           roll_sum_meetings = roll_sum(n_meetings, 7, align = "right", fill = NA),
+           roll_sum_prop = roll_sum_js / roll_sum_meetings,
+           month = lag(month, 3),
+           day   = lag(day, 3),
+           x_axis_label = paste(if_else(month == 6, "June", "July"), day),
+           x_axis_label = fct_inorder(x_axis_label)) |> 
+    filter(!is.na(roll_sum_prop),
+           id <= 26) |> 
+    print()
+roll_sum_js_labels <- roll_sum_js |> 
+    select(id, x_axis_label) |> 
+    filter(id %% 2 == 0)
+```
+
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+ggplot(roll_sum_js, aes(id, roll_sum_prop)) + 
+    geom_vline(xintercept = 18, color = "forestgreen", size = 5, alpha = 0.2) + 
+    geom_point() + 
+    geom_path() + 
+    scale_x_continuous(breaks = roll_sum_js_labels$id,
+                       labels = roll_sum_js_labels$x_axis_label) + 
+    scale_y_continuous(labels = scales::percent) + 
+    labs(title = "Proportion of Joseph Smith–related hymns per date",
+         subtitle = "Based on a three-day window rolling average",
+         x = "date",
+         y = "percent of wards") + 
+    theme_minimal()
+```
+
+What I see in this plot is that in the three-day window around (and including) about June 22nd--27th, we see the most number of Joseph Smith--related hymns. The number quickly drops off after that, likely due to 4th of July. But, during those days, about 15% of wards sing at least one of those three hymns. To put that into perspective, that's about as common as singing <hymn>Our Savior's Love (#113)</hymn> is around [Valentine's Day](/posts/valentines) and only a little less common than singing <hymn>Ring Out, Wild Bells (#215) on [New Year's Eve](/posts/new-years). 
+
+I learned something new today! I had no idea that so many wards honored Joseph Smith through song around the anniversary of his Martyrdom! 
