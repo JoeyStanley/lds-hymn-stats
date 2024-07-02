@@ -42,6 +42,21 @@ On May 30th, the church released the first batch of new hymns. I have done posts
 Note that this blog post change slightly as more data comes in, even from earlier weeks since the release. However, I feel like enough data has been collected that the overall patterns are mostly pretty clear.
 :::
 
+But first, here's how much data I have for each week, just so you have an idea of what I'm working with.
+
+```{r}
+meetings_since_release |> 
+    distinct(date, meeting_id) |> 
+    count(date) |> 
+    rename(wards = n) |> 
+    gt() |> 
+    tab_header(title = "Number of wards I have data from, by week",
+               subtitle = "Since June 2")
+```
+
+
+
+
 ## How many wards are singing new hymns each week?
 
 The following plot shows the number of new hymns sung per ward each week since the release of the new hymns.
