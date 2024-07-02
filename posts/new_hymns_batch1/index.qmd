@@ -16,6 +16,9 @@ knitr::opts_chunk$set(include = FALSE,
                       fig.width = 8)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(gt)
+
+# Apply a date stamp
+sf <- stamp("June 2", quiet = TRUE)
 ```
 
 ```{r}
@@ -44,10 +47,11 @@ Note that this blog post change slightly as more data comes in, even from earlie
 
 But first, here's how much data I have for each week, just so you have an idea of what I'm working with.
 
-```{r}
+```{r, include = TRUE}
 meetings_since_release |> 
     distinct(date, meeting_id) |> 
     count(date) |> 
+    mutate(date = sf(date)) |> 
     rename(wards = n) |> 
     gt() |> 
     tab_header(title = "Number of wards I have data from, by week",
@@ -62,8 +66,7 @@ meetings_since_release |>
 The following plot shows the number of new hymns sung per ward each week since the release of the new hymns.
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
-# Apply a date stamp
-sf <- stamp("June 2", quiet = TRUE)
+
 meetings_since_release |> 
     mutate(is_new = hymn_num > 1000) |> 
     summarize(n_new = sum(is_new), .by = c(date, ward)) |>
