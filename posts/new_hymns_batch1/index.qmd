@@ -53,7 +53,9 @@ meetings_since_release |>
     mutate(is_new = hymn_num > 1000) |> 
     summarize(n_new = sum(is_new), .by = c(date, ward)) |>
     count(date, n_new) |> 
+    filter(n_new <= 2) |> 
     mutate(prop = n/sum(n), .by = date) |>
+    mutate(n_new = as.factor(n_new)) |> 
     ggplot(aes(n_new, prop, fill = sf(date))) + 
     geom_col(position = position_dodge2(preserve = "single")) + 
     scale_y_continuous(expand = expansion(0, c(0, 0.1)),
@@ -67,7 +69,6 @@ meetings_since_release |>
          subtitle = paste("Based on data from", n_wards_since_release, "wards"),
          fill = "date")
 ```
-
 
 There are far more zeros than I expected. The first week saw the most number of new hymns, but even then it was only about a third of wards. Since then only about a quarter of wards have sung new hymns on a given Sunday. 
 
@@ -91,7 +92,7 @@ n_wards_with_complete_data <- meetings_since_release |>
     nrow()
 ```
 
-However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the wards that I have data from from every week since the first batch of hymns came out. Currently, that's `r n_wards_with_complete_data` wards. Around half of them haven't sung new hymns at all yet. Only 11% of wards have sung at least one new hymn each week so far.
+However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the wards that I have data from from every week since the first batch of hymns came out. Currently, that's `r n_wards_with_complete_data` wards. A little over half of them haven't sung new hymns at all yet. None have sung a new hymn in more than three weeks. 
 
 
 ## What hymns are most popular?
@@ -136,7 +137,7 @@ meetings_since_release |>
 ```
 
 
-Those numbers may seem low, but keep in mind that wards are unlikely to repeat these hymns too often. So, at best, hymns can only be a small percentage of the total number of sacrament meetings since their release. The fact that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is as high as it is is still pretty remarkable. It means, each week, on average about one or two wards in every stake have sung it. It's also around three times as popular as any of the other hymns. To put it another way, it's as popular as the next most common four hymns combined. 
+Those numbers may seem low, but keep in mind that wards are unlikely to repeat these hymns too often. So, at best, hymns can only be a small percentage of the total number of sacrament meetings since their release. The fact that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is as high as it is is still pretty remarkable. It means, each week, on average about one or two wards in every stake sing it.
 
 
 ## What hymns are most popular each week?
@@ -171,11 +172,11 @@ meetings_since_release |>
 
 <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was most popular during the first week. Of the wards that sang new hymns, two thirds of them sang it on June 2nd. My guess is we will never see a hymn hit that kind of popularity again, with the exception of new holiday hymns. Since then, the popularity of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> has gone down, and most of the other hymns went up a little bit. 
 
-For example, <hymn>It Is Well with My Soul (1003)</hymn> has increased since it's initial release. <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father's day. A common trend was to sing Father's Day songs for opening and closing hymns and that hymn as the sacrament hymn. 
+The other major trend is that <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father's day. A common trend was to sing Father's Day songs for opening and closing hymns and that hymn as the sacrament hymn. 
 
 ## When during meetings are these hymns sung?
 
-We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. If a new hymn is sung, it's likely to be done so as a closing hymn, with the exception of new sacrament hymns. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is often an opening hymn still, but something like <hymn>It Is Well with My Soul (1003)</hymn> is much more likely to be a closing hymn. At the time of writing, <hymn>I Will Walk with Jesus (#1004)</hymn> is the only hymn that is most commonly an intermediate hymn. 
+We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. If a new hymn is sung, it's likely to be done so as a closing hymn, with the exception of new sacrament hymns. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is often an opening hymn still, but something like <hymn>It Is Well with My Soul (1003)</hymn> is much more likely to be a closing hymn. At the time of writing, <hymn>I Will Walk with Jesus (#1004)</hymn> is the only hymn with a modest amount of data that is most commonly an intermediate hymn. 
 
 ```{r, include = TRUE}
 meetings_since_release |> 
