@@ -10,7 +10,626 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 5000 sacrament meetings.</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Mon, 01 Jul 2024 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 04 Jul 2024 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>4th of July</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/4th_of_july/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Today is Independence Day in the United States. Many American congregations sing patriotic hymns to commemorate the day. Let’s take a look at some statistics and patterns around the 4th of July. This post is based on data from 817 sacrament meetings within seven days of July 4th between 2002 and 2024. They come from 310 wards in the United States.</p>
+<section id="the-top-3-patriotic-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="the-top-3-patriotic-hymns">The top 3 patriotic hymns</h2>
+<p>It is no surprise what the top three most common hymns within a week of July 4th are. Just about two-thirds of wards sing <hymn>America the Beautiful (#338)</hymn>. Over half sing <hymn>My Country, ’Tis of Thee (#339)</hymn>, and about 43% sing the <hymn>The Star-Spangled Banner (#340)</hymn>.</p>
+<p>That’s a remarkably high percentage of wards. It’s rare to see holidays with that amount of consistency. For reference less about 58% of wards sing <hymn>He is Risen! (#199)</hymn> around Easter and about half sing <hymn>Come, Let Us Anew (#217)</hymn> around New Year’s. The only other holiday I’ve seen with that amount of consistency is Thanksgiving, where about 74% of wards sing <hymn>Come, Ye Thankful People (#94)</hymn> and about 68% sing <hymn>Prayer of Thanksgiving (#93)</hymn>. This may have something to do with patriotism, but it may simply be because there are relatively few hymns to choose from and only one or two weeks to use them.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Technical details for nerds :)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If about 66% of wards sing 338, 53% sing 339, and 43% sing 340, then we would expect <img src="https://latex.codecogs.com/png.latex?0.66%20%5Ctimes%200.53%20%5Ctimes%200.43%20=%2015%5C%25"> of wards go for the trifecta and sing all three. We actually do not see that many. In fact, I’ve only seen that happen in just seven wards, or 0.9% of sacrament meetings around July 4th. A part of me wants to run some analysis to show that the probabilities of hymns are not independent and that conditional probability of the hymns goes down given that one or two of the others is already sung. But, I took a look at those seven meetings and saw a more practical explanation.</p>
+<p>First, the Sunday closest to July 4th is most often a Fast and Testimony meeting, which means an intermediate hymn is not (or at least very rarely) sung. I have no instances of any of these three hymns being sung as a sacrament hymn, which makes sense since it’d be rather inappropriate to do so. So, that leaves just two slots for congregational hymns. Nevertheless, one ward in Kansas City, Missouri sang all three on July 2nd, 2017—most likely a Fast Sunday—so it’s not completely unheard of. But it likely deters most other wards.</p>
+<p>So, the only chance you’ve got of singing these hymns is if the Sunday before the 4th of July is in June, not July. Of those seven meetings with all three of those hymns, the other six of them were on June 30th. As we’ll see below, June 30th is close to the earliest time we typically see patriotic hymns. If June 29th is on a Sunday, then the 4th of July is a Friday, and most people sing patriotic hymns the following Sunday, on the 6th, rather than before. We also get some interference with hymns related to <a href="../../posts/martyrdom">the martyrdom of Joseph Smith</a>.</p>
+<p>Also, since 2002, which when is the earliest data I have came from, June 30th has fallen on a Sunday four times: 2002, 2013, 2019, and 2024. I have very little data from 2002, so it’s surprising that none of the trifecta sacrament meetings were from then. I don’t have a ton of data from 2013 or 2019, but one of those seven did come from 2013. The five of the others are from 2024, which makes sense because it’s the year with the second most amount of data in my sample, and by far the year of those four that I have the most data from.</p>
+<p>However, there may be an additional piece of the puzzle. Prior to about June 2024, a big chunk of <a href="../../posts/frequency-data">my data</a> came from people sending me their ward’s spreadsheets. A lot of it also came from weekly contributions by various donors. But, nearly 100% of the data came from people who cared enough about their hymns to report it. Starting around the time the first batch of the new hymns were released, I started looking through YouTube to get data from wards that still post live streams of their meetings.</p>
+<p>This is an interesting development and it’ll warrant some additional analysis later on. If people send in a spreadsheet of their ward’s hymns, that mere fact means that their ward has a spreadsheet to keep track of hymns. Presumably, they use that spreadsheet to avoid repeating hymns too often. So, I’m assuming there is a pretty significant sampling bias in my data: wards that have spreadsheets are less likely to repeat hymns than wards without spreadsheets. I don’t know whether the wards I get data from off of YouTube use spreadsheets to keep track of their hymns. But some of them might not. The point is, they are likely a more representative sample of what hymns are being sung look like.</p>
+<p>So, it just so happens that the five wards from 2024 that did a trifecta of singing all three patriotic hymns in a single meeting were ones I got from YouTube. Again, it could just be a sampling size thing: I have more data from 2024 so I’m more likely to find it. But, it could also be that some of these wards don’t have spreadsheets to keep track of their ward’s hymn data, so they’re unable to say, “oh, y’know what, we sang that hymn last year, let’s sing a different one this year.” In other words, they go by gut feeling, inspiration, or just vibes, rather than history to choose hymns.</p>
+<p>Anyway, all this is to say that even though a significant number of wards sing each of those three patriotic hymns each year, very few sing all three of them in one meeting.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="other-patriotic-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="other-patriotic-hymns">Other patriotic hymns</h2>
+<p>Figure&nbsp;1 below shows the most common hymns (excluding sacrament hymns) within a week of Jul 4th, and what percentage of wards sing them each year. At the top are the three hymns we’ve already discussed. But, coming in fourth and fifth places are <hymn>Battle Hymn of the Republic (#60)</hymn> and <hymn>God Of Our Fathers, Whose Almighty Hand (#78)</hymn>. In the figure, I’ve included the top dozen or so most popular hymns, not because I’m interested in which hymns are beyond those top five (because they’re just generic common hymns), but because I want to show just how much more popular these top five are compared to everything else.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-most_common" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/4th_of_july/index_files/figure-html/fig-most_common-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Most common hymns around July 4th and how many wards sing them each year</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>So, if you’re looking for additional hymns to sing around Independence Day, these might be good ones to choose from. Incidentally—and I haven’t done a blog post on this yet—but those two are also among the most common around Memorial Day in the United States, further supporting their status as “honorary” patriotic hymns.</p>
+<p>With that said, there are a couple other hymns that might be considered 4th of July hymns, even if they’re not super popular. One is <hymn>Know This, That Every Soul Is Free (#240)</hymn>. It’s not a super common hymn (it’s only sung about once every 4.3 years per ward), but if it is sung, it’s 3.33 times more likely to be done so within a week of July 4th than during the rest of the year combined. This and other hymns more likely to be sung around July 4th are shown below:</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="lvyslqahlo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lvyslqahlo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lvyslqahlo thead, #lvyslqahlo tbody, #lvyslqahlo tfoot, #lvyslqahlo tr, #lvyslqahlo td, #lvyslqahlo th {
+  border-style: none;
+}
+
+#lvyslqahlo p {
+  margin: 0;
+  padding: 0;
+}
+
+#lvyslqahlo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lvyslqahlo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lvyslqahlo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lvyslqahlo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lvyslqahlo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lvyslqahlo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lvyslqahlo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lvyslqahlo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lvyslqahlo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lvyslqahlo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lvyslqahlo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lvyslqahlo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lvyslqahlo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lvyslqahlo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lvyslqahlo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lvyslqahlo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lvyslqahlo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lvyslqahlo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lvyslqahlo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lvyslqahlo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lvyslqahlo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lvyslqahlo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lvyslqahlo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lvyslqahlo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lvyslqahlo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lvyslqahlo .gt_left {
+  text-align: left;
+}
+
+#lvyslqahlo .gt_center {
+  text-align: center;
+}
+
+#lvyslqahlo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lvyslqahlo .gt_font_normal {
+  font-weight: normal;
+}
+
+#lvyslqahlo .gt_font_bold {
+  font-weight: bold;
+}
+
+#lvyslqahlo .gt_font_italic {
+  font-style: italic;
+}
+
+#lvyslqahlo .gt_super {
+  font-size: 65%;
+}
+
+#lvyslqahlo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lvyslqahlo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lvyslqahlo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lvyslqahlo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lvyslqahlo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lvyslqahlo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lvyslqahlo .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Hymns most likely be sung around July 4th</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Compared to the rest of the year combined</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="hymn">hymn</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="times more likely">times more likely</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="hymn" class="gt_row gt_left">The Star-Spangled Banner (340)</td>
+<td headers="times more likely" class="gt_row gt_right">206.68</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">My Country, 'Tis of Thee (339)</td>
+<td headers="times more likely" class="gt_row gt_right">91.62</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">America the Beautiful (338)</td>
+<td headers="times more likely" class="gt_row gt_right">73.34</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">Battle Hymn of the Republic (60)</td>
+<td headers="times more likely" class="gt_row gt_right">15.72</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">God of Our Fathers, Whose Almighty Hand (78)</td>
+<td headers="times more likely" class="gt_row gt_right">8.02</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">Jehovah, Lord of Heaven and Earth (269)</td>
+<td headers="times more likely" class="gt_row gt_right">3.40</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">Know This, That Every Soul Is Free (240)</td>
+<td headers="times more likely" class="gt_row gt_right">3.33</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">O Ye Mountains High (34)</td>
+<td headers="times more likely" class="gt_row gt_right">2.68</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">Faith of Our Fathers (84)</td>
+<td headers="times more likely" class="gt_row gt_right">2.02</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>So, looking at the data this way, we can see hymns that are maybe not as common but still might be thought of as a patriotic hymns still. It’s worth noting that <hymn>The Star-Spangled Banner (#340)</hymn> is so much more likely than the others because the others are occasionally sung during other times of the year, like around Memorial Day and Veterans Day, but the national anthem is not. It seems like the national anthem is almost exclusively sung as a congregational hymn around July 4th.</p>
+<p>Here’s my prediction for the future. We know the new hymnal will be worldwide, so I doubt we’ll see hymns 338–340 in the new hymnal. (So, if you like singing them in church, you’ve got two more years to do so!) Some wards may choose to continue singing them as extra-canonical hymns, just as Canadians sometimes sing “O Canada”. But my guess is most wards will not. What will they sing then? Probably some of these hymns: <hymn>Battle Hymn of the Republic (#60)</hymn>, <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn>, <hymn>Know This, That Every Soul Is Free (#240)</hymn>, and <hymn>Faith of Our Fathers (#84)</hymn>.</p>
+</section>
+<section id="when-during-sacrament-meeting-are-these-hymns-sung" class="level2">
+<h2 class="anchored" data-anchor-id="when-during-sacrament-meeting-are-these-hymns-sung">When during sacrament meeting are these hymns sung?</h2>
+<p>Now that we’ve established what the patriotic hymns are, let’s see when during sacrament meeting they’re sung. Figure&nbsp;2 shows the top five hymns around the 4th of July and when they’re sung in sacrament meeting. Intermediate hymns are rare because of Fast Sunday, so it’s mostly a split between opening and closing hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-types" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/4th_of_july/index_files/figure-html/fig-types-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: When during sacrament the top five patriotic hymns are sung</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Most hymns are pretty balanced, though each as their own tendencies. <hymn>America the Beautiful (#338)</hymn>, <hymn>Battle Hymn of the Republic (#60)</hymn>, and <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn> are a little bit more common as opening hymns while <hymn>My Country, ’Tis of Thee (#339)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn> are a little more common as closing hymns.</p>
+</section>
+<section id="when-is-the-4th-of-july-season" class="level2">
+<h2 class="anchored" data-anchor-id="when-is-the-4th-of-july-season">When is the 4th of July “season”?</h2>
+<p>Finally, we can look at when the “season” of singing patriotic hymns starts and ends. Sunday was June 30th this year, but because I have data spanning multiple years, I can see how common these hymns are on July 1st, July 2nd, etc. on years when Sunday falls on those days.</p>
+<p>Overall, we see that there is a very clear rise and fall (Figure&nbsp;3). It is centered right around July 3rd and July 4th, meaning you’re most likely to sing the most number of patriotic congregational hymns on or just before Independence Day itself. Notice that the peak is around 60%. That means that 60% of congregational hymns on July 3rd—across all my wards in the United States that I have data from for this week—were one of the top five I’ve talked about already. It’s Fast Sunday, so there is no intermediate hymn, and the sacrament hymn won’t be a patriotic hymn, so the max it could be is 67%. The fact that it’s so close to the theoretical max is pretty astounding actually.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-by_date" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/4th_of_july/index_files/figure-html/fig-by_date-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Proportion of patriotic congregational hymns by date</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The further the Sunday is from the 4th, the less likely you are to sing many patriotic hymns. There was some discussion on social media among LDS music coordinators this year about whether patriotic hymns should come the Sunday before (June 30th) or the Sunday after (July 7th). When the 4th is in the middle of the week, like a Thursday, neither option feel right. As you can see on this chart, the data shows that wards are split about 50-50: 27% of hymns on June 30th are patriotic while 22% are on July 7th. Of course, June 30th is much more likely to have an intermediate hymn. However, when I reran the plot based on raw <em>number</em> of patriotic hymns (1, 2, or 3), the 30th has a slight edge (see Figure&nbsp;4, below)</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see that plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-by_date_number" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/4th_of_july/index_files/figure-html/fig-by_date_number-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Number of patriotic congregational hymns by date</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The other interesting thing about Figure&nbsp;3 is that you can see when the 4th of July “season” starts and stops. We get really very few patriotic congregational hymns before June 25th. Given that the 27th is the Sunday before the 4th, honestly singing a patriotic hymn on the 25th seems a little early to me. After the 4th, it’s a little unclear. The Sunday after the 4th is the 11th and there’s a clear low point. But, we get a slight rise and fall again July 12th–15th. I’m not sure why that would be.</p>
+<p>If we split it up by hymn, we can kind of see if any hymn is more or less popular during the “season” (Figure&nbsp;5). The two less canonical patriotic hymns, <hymn>Battle Hymn of the Republic (#60)</hymn> and <hymn>God Of Our Fathers, Whose Almighty Hand (#78)</hymn> are about equally common throughout the season, and are, interestingly, not any more common closer to the 4th itself.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-by_date_by_hymn" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/4th_of_july/index_files/figure-html/fig-by_date_by_hymn-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Popularity of five patriotic hymns by date</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Looking at the more prototypical 4th of July hymns, there is maybe a pattern. Unlike what we saw with the overall trend, where the highest concentration of patriotic hymns was on the 3rd and the 4th about equally, here we see that <hymn>America the Beautiful (#338)</hymn> is just slightly more common the 4th itself and then pretty quickly drops off. Meanwhile, <hymn>My Country, ’Tis of Thee (#339)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn> peak just before the 4th and have a less drastic drop-off afterwards. I’m not sure what that spike is on July 6th for <hymn>My Country, ’Tis of Thee (#339)</hymn>. Could be a fluke since I don’t have a ton of data from 2008 and 2014.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>There are three clear patriotic hymns, two additional hymns that are commonly sung around the 4th of July, and an additional half dozen or so that are uncommon generally but when they are sung it’s most likely around the 4th of July. All five of the main hymns are about equally likely as opening or closing hymns. And there’s a clear rise and fall for when you see these hymns being sung, centered around the 3rd or 4th. It will be really iinteresting to see how this changes in the next few years with the new hymns and the new hymnal!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>holidays</category>
+  <category>frequency</category>
+  <guid>https://hymnstats.joeystanley.com/posts/4th_of_july/index.html</guid>
+  <pubDate>Thu, 04 Jul 2024 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What hymns are sung around the martyrdom of Joseph Smith?</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -14610,605 +15229,6 @@ Technical details for nerds :)
   <category>holidays</category>
   <guid>https://hymnstats.joeystanley.com/posts/primary_program/index.html</guid>
   <pubDate>Mon, 23 Oct 2023 06:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>What are the most common final chords?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/final_chords/index.html</link>
-  <description><![CDATA[ 
-
-
-
-<p>In this post, I do a really deep dive into the final chords of hymns. Everything you’d ever want to know—and a lot of stuff you don’t want to know! First, I look at individual parts and their relationship to the overall chord, and then I look at all the different voicings found in final chords.</p>
-<section id="hymns-that-dont-end-on-the-tonic" class="level2">
-<h2 class="anchored" data-anchor-id="hymns-that-dont-end-on-the-tonic">Hymns that don’t end on the tonic</h2>
-<p>First, what hymns have a melody line that does not end of the tonic? By this, I mean that, if a hymn is in the key of G major, are there hymns that do not end on a G? As it turns out, there are 16 of them!</p>
-<p>Twelve of these 16 hymns end on the third of the chord. The most common is <hymn>Thy Will, O Lord, Be Done (#188)</hymn>, which is a sacrament hymn, albeit <a href="../../posts/sacrament">one of the lesser common ones</a>. Most of the others are not unusual and they include ones like <hymn>The First Noel (#298)</hymn>, <hymn>Secret Prayer (#225)</hymn>, and <hymn>Master, the Tempest Is Raging (#105)</hymn>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/thy-will.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Thy Will, O Lord, Be Done (#188)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/first-noel.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">The First Noel (#213)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/testimony.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Testimony (#137)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/i-know.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">I Know My Father Lives (#302)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/secret.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Secret Prayer (#144)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/god-speed.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">God Speed the Right (#106)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/wearest.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">O Savior, Thou Who Wearest a Crown (#197)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/master.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Master, the Tempest Is Raging (#105)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/commune.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Oh, May My Soul Commune with Thee (123)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/we-ever.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">We Ever Pray for Thee (#23)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/lean.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Lean on My Ample Arm (#120)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/we-ever-women.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">We Ever Pray for Thee (312)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>The other four hymns end on the fifth of the chord. We get another sacrament hymn, <hymn>While of These Emblems We Partake (#173)</hymn>, as well as <hymn>Carry On (#255)</hymn>, <hymn>Does the Journey Seem Long? (#127)</hymn>, and <hymn>Now the Day Is Over (#159)</hymn>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/while.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">While of These Emblems We Partake (#173)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/carry.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Carry On (#255)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/journey.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Does the Journey Seem Long? (#127)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/now.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Now the Day Is Over (#159)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>So, overall, relatively few hymns end on the third or the fifth of the chord, just 4.6% of the hymnal. But, because a few sacrament hymns are on this list, as well as several relatively well-known hymns, it’s not a terribly unusual thing to see. In fact, you’re likely to see one of these 16 hymns about once every six weeks or so.</p>
-</section>
-<section id="what-part-of-the-chord-does-each-part-end-on" class="level2">
-<h2 class="anchored" data-anchor-id="what-part-of-the-chord-does-each-part-end-on">What part of the chord does each part end on?</h2>
-<p>Now that we’ve established that the melody typically lands on the root of the chord, let’s look briefly at the other parts. The following figure shows how many hymns end on which note of the scale, with each part on its own plot.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>It should come as no surprise that every single bass line ends on the tonic. What is more interesting is the two middle parts. The alto line is nearly evenly split between ending on the tonic, the third note of the scale, or the fifth note of the scale, with a very slight preference for the root. Meanwhile, the tenor line ends on the third 64% of the time, and is otherwise evenly split between the root and the fifth. I’m not quite sure what anyone might do with this information, but it’s interesting to see nonetheless!</p>
-<p>Overall, if you were to sing all four parts of all the hymns (again, excluding the men’s and women’s arrangements at the back), you’ll end on the tonic 62.7% of the time, the third 25.0% of the time, and the fifth just 12.3% of the time.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Recommendation for the next hymnal
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Add fifths to more final chords.</p>
-</div>
-</div>
-</section>
-<section id="hymns-that-end-in-moving-lines" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="hymns-that-end-in-moving-lines">Hymns that end in moving lines</h2>
-<p>Another ending that is pretty unusual is one where not all four parts sing their final note at the same time. In some hymns, at least one part sustains its last note while at least one other part resolves a chord or moves in some other way. There are eight hymns that do this.</p>
-<p>Two of these hymns, <hymn>He Died! The Great Redeemer Died (#192)</hymn> and <hymn>As the Shadows Fall (#168)</hymn> end with a Sus4 chord resolving to the tonic chord, with the tenor line responsible for the resolution. The latter of those two has a fifth in the chord, creating some nice close harmony between the tenor and alto line, while the former lacks the fifth and has a more open sound.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/died.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">He Died! The Great Redeemer Died (#192)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/shadows.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">As the Shadows Fall (#168)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="page-columns page-full"><p>Another type of movement we see is when the four parts land on a tonic chord, but then the tenors and altos move to the subdominant and then back to the tonic. In <hymn>Keep the Commandments (#303)</hymn>, the two inner lines move down and then back up to return to the original notes. In <hymn>Behold! A Royal Army (#251)</hymn>, they both jump up a fourth and then back down a second, creating a different voicing of the tonic chord than what they started on. In the case of <hymn>Come unto Jesus (#117)</hymn>, the alto line has a little passing tone.</p><div class="no-row-height column-margin column-container"><span class="">I don’t know enough about music theory to say for sure of the penultimate chord in <hymn>Keep the Commandments (#303)</hymn> is a subdominant or something else.</span></div></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/keep.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Keep the Commandments (#303)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/royal.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Behold! A Royal Army (#251)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/come.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Come unto Jesus (#117)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p><hymn>We Have Partaken of Thy Love (#155)</hymn> is very similar, except instead of going from the tonic to the subdominant to the tonic again, it is just the subdominant to the tonic. There is just one move.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see this hymn
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/partaken.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">We Have Partaken of Thy Love (#155)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="page-columns page-full"><p>Finally, two hymns just do their own thing. In <hymn>Let Us All Press On (#243)</hymn>, the alto and tenor finish their final phrase. And in <hymn>How Long, O Lord Most Holy and True? (#126)</hymn> has a unique chord progression with some nice tension resolution.</p><div class="no-row-height column-margin column-container"><span class="">Again, I don’t know enough about music theory to say what is going on here.</span></div></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/press.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Let Us All Press On (#243)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/how-long.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">How Long, O Lord Most Holy and True? (#126)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Overall, these eight hymns make up about 2.6% of the hymns sung in sacrament, and most of that is thanks to the sacrament hymn <hymn>He Died! The Great Redeemer Died (#192)</hymn>. Overall, you’ll see one of these hymns about once every 11 weeks or so.</p>
-</section>
-<section id="final-chords" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="final-chords">Final chords</h2>
-<div class="page-columns page-full"><p>We now turn to the topic of the final chords themselves, rather than individual parts or notes. As established already, all hymns end in a major or minor chord, so the only options are roots, thirds, and fifths of chords. Logically, there are <img src="https://latex.codecogs.com/png.latex?3%5Ctimes%203%5Ctimes%203%5Ctimes%203=81"> possible ways to use those three notes, if you ignore octave differences and good musical taste. Of course, the hymnal uses far fewer than that.</p><div class="no-row-height column-margin column-container"><span class="">Since two of <a href="../../posts/key_signatures.html#what-about-minor-keys">the five hymns set in a minor key</a> end in picardy thirds, there are only two hymns that truly end in a minor chord.</span></div></div>
-<p>Let me pause briefly to explain the notation I’ll be using. I’ll describe the voicing of the chord using the numbers 1, 3, or 5, from lowest (bass) to highest (soprano). So if we’re in the key of C major, <code>1-5-3-1</code> would mean the basses are on a C3, the tenors a G3 above that, the altos on an E4 above that, and the sopranos on a C5 above that. If a part sings in unison with the part below it, I replace its number with an asterisk. This figure shows the twelve configurations found in the hymnal, in order of frequency. Let’s dive into each one of these.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<section id="endings" class="level3">
-<h3 class="anchored" data-anchor-id="endings">1-3-1-* endings</h3>
-<p>The most common voicings to end a hymn on is <code>1-3-1-*</code>. The bass line ends on the tonic, the tenor a third above, and the alto and soprano lines in unison on the root of the chord (an octave higher). The most common non-sacrament hymn to end on this voicing is <hymn>Lord, I Would Follow Thee (#220)</hymn>, shown below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/follow.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Lord, I Would Follow Thee (#220)</figcaption>
-</figure>
-</div>
-<p>Almost all the hymns that fit this <code>1-3-1-*</code> description look just like <hymn>Lord, I Would Follow Thee (#220)</hymn>, but two hymns are slightly different in that the bass note is down an octave. We get this in <hymn>O My Father (#292)</hymn> and <hymn>The Voice of God Again Is Heard (#18)</hymn>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/o-my.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">O My Father (#292)</figcaption>
-</figure>
-</div>
-<p>Because there are 97 hymns that are voiced as <code>1-3-1-*</code>, I’m not going to show all of them, but here is a plot that shows the most common ones and how often they are sung in a year.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>If we just look at the key signatures of the hymns that fall into this category, we get pretty much all of them. But when we arrange those key signatures in order, we see a pretty clear pattern. Basically, the key of D major is the ideal key to end with this chord, and the closer a key signature is to D, the more likely it is to also use this chord. For keys further away, you’re less likely to see this voicing. For whatever reason, it’s just not ideal to have a hymn in the key of G end with this voicing.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>The lowest version of this voicing are the two hymns in the key of B♭ major, <hymn>Silent Night (#204)</hymn> and <hymn>Joseph Smith’s First Prayer (#26)</hymn> which are the lowest final notes for the soprano line and <a href="../../posts/lowest_melody">as mentioned already</a> are among the lowest soprano notes in the hymnal. Meanwhile, the highest instance is in A♭ in <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, making that A♭3 the highest note the alto line ends on and the A♭4 the highest final bass note (which probably explains the optional lower note).</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/first-prayer.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Joseph Smith’s First Prayer (#26)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/silent-night.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Silent Night (#204)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/wintry.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">The Wintry Day, Descending to Its Close (#37)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>How often are you likely to see this voicing? Well, since there are 97 hymns that fit this category, including many sacrament hymns, pretty likely. Based on the 17,833 sacrament meetings I have data from, 33.0% of the hymns sung in sacrament meeting use this voicing, which means odds are pretty good that on any given Sunday, you’ll see at least one hymn ending in <code>1-3-1-*</code>.</p>
-</section>
-<section id="endings-1" class="level3">
-<h3 class="anchored" data-anchor-id="endings-1">1-3-5-1 endings</h3>
-<p>The <code>1-3-5-1</code> ending is basically tied for first place as the most common ending. In its most basic form, it’s a triad with the tonic repeated on top. 96 hymns end with this voicing. One of the most common non-sacrament ones is <hymn>High on the Mountain Top (#5)</hymn>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/high.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">High on the Mountain Top (#5)</figcaption>
-</figure>
-</div>
-<p>83 hymns look just like <hymn>High on the Mountain Top (#5)</hymn> above. But, like what we saw with <code>1-3-1-*</code>, there is a subtype where the bass note is down an octave, creating a large interval between the bass and tenor notes. A common one is <hymn>How Firm a Foundation (#85)</hymn>, which you can see below. Besides this one, there are another 14 hymns with this configuration.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/how-firm.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">How Firm a Foundation (#85)</figcaption>
-</figure>
-</div>
-<p>Again, there are too many hymns that are <code>1-3-5-1</code>, so I won’t show all of them. But here are plots that show the most common ones and how often they are sung in a year.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>If we just look at the key signatures of the hymns that fall into this category, we get <code>1-3-5-1</code> endings in most keys. While the <code>1-3-1-*</code> voicing above appeared to be centered around D major, this one appears to be more common in slightly higher keys. The reason is likely the alto voice: anything lower would put it pretty low. In fact, the one instance in D♭ is in <hymn>As the Shadows Fall (#168)</hymn>, which makes that A♭3 the lowest final note for the alto line in the hymnal.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/shadows2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">As the Shadows Fall (#168)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>Looking at the differences between the two types (whethe the bass note is high or low), we see that the low bass note version of <code>1-3-5-1</code> is most common among hymns in G major, with just a handful scattered among other keys. The one hymn that uses it in E♭ is <hymn>Thy Holy Word (#279)</hymn> and has the lowest bass note in the hymnal. The <code>1-3-5-1</code> final chord in B♭ also results in the highest final note for a tenor part, a D4 in <hymn>Let Zion in Her Beauty Rise (#41)</hymn>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/holy-word.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Thy Holy Word (#279)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/let-zion.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Let Zion in Her Beauty Rise (#41)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>How often are you likely to see a <code>1-3-5-1</code> hymn? Again, there are many of them, including sacrament hymns, so it’s going to be pretty likely. Based on the 17,833 sacrament meetings I have data from, 31.5% of the hymns sung in sacrament meeting use this voicing, which means odds are pretty good that, like <code>1-3-1-*</code> discussed already, you’ll see at least one hymn ending in <code>1-3-3-5</code> on any given Sunday.</p>
-</section>
-<section id="endings-2" class="level3">
-<h3 class="anchored" data-anchor-id="endings-2">1-1-3-1 endings</h3>
-<p>The next most common way to end a hymn is to use the <code>1-1-3-1</code> voicing. The bass, tenor, and soprano line are in three octaves, and the alto line sings the third of the chord below the soprano line. The most common non-sacrament hymn to end on this voicing is <hymn>For the Beauty of the Earth (#93)</hymn>, shown below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/for-the.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">For the Beauty of the Earth (#93)</figcaption>
-</figure>
-</div>
-<p>A related ending is the one instance <code>1-*-1-3</code> in the hymn <hymn>Thy Will, O Lord, Be Done (#188)</hymn>. That C3 in the tenors is the lowest final tenor note in the hymnal.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/thy-will2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Thy Will, O Lord, Be Done (#188)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>54 hymns end in <code>1-1-3-1</code>, so again, I’m not going to show all of them, but this plot shows how often the most common ones are sung in a year.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>Looking at the key signatures of the hymns that end in this voicing, we see basically the opposite pattern from <code>1-3-1-*</code> above. The hymns that use the <code>1-1-3-1</code> voicing are mostly in the G, A♭, B♭ range.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>The lowest iteration of <code>1-1-3-1</code> is in F major, which is found in six hymns, three of which are Christmas hymns. The highest version is in C major, as in <hymn>The Morning Breaks (#1)</hymn>.</p>
-<p>Since there are fewer of these hymns, the odds of seeing them is slightly lower. They made up 15.8% of the dataset that I have, so you’ll likely to sing one about every two weeks.</p>
-</section>
-<section id="endings-3" class="level3">
-<h3 class="anchored" data-anchor-id="endings-3">1-5-3-1 endings</h3>
-<p>The final type of final chord that has a significant presence in the hymnal is <code>1-5-3-1</code>. It also spans two octaves, like other endings, but the voices are more evenly spaced. In my mind, this is the “Ice Cream” voicing because in <em>The Music Man</em>, it’s the chord that the barbershop quartet sings when Herold Hill is teaching them to sing for the first time and he gets them to sing sustained notes while saying “ice cream.” We see this voicing at the end of 42 hymns, including <hymn>Now Let Us Rejoice (#3)</hymn>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/let-us.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Now Let Us Rejoice (#3)</figcaption>
-</figure>
-</div>
-<p>I should mention too that <hymn>Ye Elders of Israel (#319)</hymn> fits into this category, but the alto is voiced above the soprano line (and thus making it truer to how barbershop is typically voiced).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/ye-elders.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Now Let Us Rejoice (#319)</figcaption>
-</figure>
-</div>
-<p>Here are the most common hymns that fit this category, sorted by how often they’re sung per year.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>Like the other final chords we’ve examined so far, it seems like there are some key signatures in which they’re more common. In the case of <code>1-5-3-1</code>, it’s most common in B♭ major and C major, but we do get it in a handful of other keys as well.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>The one hymn in the key of E♭ is <hymn>What Was Witnessed in the Heavens? (#11)</hymn>. This is the highest version of this chord, and it means the soprano line ends on an E♭5, the highest final soprano note in the hymnal. The lowest version of this chord is in the key of F in <hymn>We’re Not Ashamed to Own Our Lord (#57)</hymn>, which makes that C4 in the tenors the lowest final tenor note in the hymnal.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Click to see those hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/what-was.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">What Was Witnessed in the Heavens? (#11)</figcaption>
-</figure>
-</div>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/were-not.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">We’re Not Ashamed to Own Our Lord (#57)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Since there are only 42 of these hymns, again, the odds of seeing them is lower. They made up 11.0% of the dataset that I have, so you’ll likely to sing one about every two or three weeks.</p>
-</section>
-<section id="non-tonic-soprano-final-chords" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="non-tonic-soprano-final-chords">Non-tonic soprano final chords</h3>
-<p>The remaining final chord voices are all pretty unusual and are only found in a handful of hymns. We’ve already seen that 16 hymns end the soprano line something other than the tonic and that all hymns end the bass line on the tonic. Of those 16, there are four different voicings. Here, we’ll ignore briefly the two that don’t have full SATB harmonies.</p>
-<div class="page-columns page-full"><p>Nine hymns end with <code>1-5-1-3</code>: <hymn>We Ever Pray for Thee (#23)</hymn>, <hymn>Master, the Tempest Is Raging (#105)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>Lean on My Ample Arm (#120)</hymn>, <hymn>Oh, May My Soul Commune with Thee (#123)</hymn>, <hymn>Testimony (#137)</hymn>, <hymn>Secret Prayer (#144)</hymn>, <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, and <hymn>The First Noel (#213)</hymn>. There is only one other hymn that ends with the melody on the third, <hymn>Thy Will, O Lord, Be Done (#188)</hymn> and it has a <code>1-*-1-3</code> voicing.</p><div class="no-row-height column-margin column-container"><span class="">I won’t post images of the hymns since these are all shown already.</span></div></div>
-<p>Of the hymns that have the melody end on the fifth, there are two voicing configurations. Three hymns use the <code>1-3-1-5</code> voicing: <hymn>Does the Journey Seem Long? (#127)</hymn>, <hymn>While of These Emblems We Partake (#173)</hymn>, and <hymn>Carry On (#255)</hymn>. Finally, <hymn>Now the Day Is Over (159)</hymn> ends with <code>1-1-3-5</code>.</p>
-</section>
-<section id="duets-and-unisons" class="level3">
-<h3 class="anchored" data-anchor-id="duets-and-unisons">Duets and Unisons</h3>
-<p>A few hymns have specific instructions to sing it as a duet or in unison. I’ll probably do a more thorough treatment of those hymns in a later blog post, but for now, we’ll just focus on how they end.</p>
-<p>Though seven hymns begin as duets, five of them go into full harmony partway through. They are <hymn>Jesus, Lover of My Soul (#102)</hymn>, <hymn>I Stand All Amazed (#193)</hymn>, <hymn>Dear to the Heart of the Shepherd (#221)</hymn>, <hymn>Let Us Oft Speak Kind Words (#232)</hymn>, and <hymn>Truth Reflects upon Our Senses (#273)</hymn>. However, two hymns are duets the whole way through. <hymn>Keep the Commandments (#303)</hymn> ends in a <code>3-1</code> voicing. The other is <hymn>Love One Another (#308)</hymn> which is marked as a duet, but at the end breaks into three parts (<code>3-5-1</code>).</p>
-<p>Finally, we get to the hymns that have at least some portion marked as unison. The hymns <hymn>Ye Simple Souls Who Stray (#118)</hymn>, <hymn>I Know That My Redeemer Lives (#136)</hymn>, <hymn>Behold! A Royal Army (#251)</hymn>, and <hymn>Carry On (#255)</hymn>, start in unison and then break into harmony, so they’ve been discussed above where appropriate. <hymn>Called to Serve (#249)</hymn> starts in harmony and then goes to unison. Other stay unison throughout the entirety of the hymn. <hymn>Come, Rejoice (#9)</hymn>, <hymn>As Zion’s Youth in Latter Days (#256)</hymn>, <hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>I Know My Father Lives (#302)</hymn>, <hymn>Teach Me to Walk in the Light (#304)</hymn>, <hymn>God’s Daily Care (#306)</hymn>, and <hymn>The Priesthood of Our Lord (#320)</hymn> all end on the tonic while <hymn>I Know My Father Lives (#302)</hymn> ends on the third.</p>
-</section>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Sopranos almost always end on the tonic, and basses always do. Altos end on the root, third, or fifth all about equally, while tenors favor the third. A handful of hymns end with at least one moving part. There are four main final chords the hymnbook uses, with most of the exceptions being from non-tonic-ending soprano lines, duets, and unisons. These main four tend to be used more with certain key signatures, summarized in the figure below.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/final_chords/index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>What I think is coolest finding—and maybe this is old news for musicologists and choral arrangers—is that the final chord voicing is somewhat predictable by the key signature. Hymns in the D♭–d range are often <code>1-3-1-*</code>, hymns in the E♭–G range are often <code>1-3-5-1</code>, hymns in the A♭–B♭ range are often <code>1-1-3-1</code>, and while never the majority, hymns in the B♭–C range are often <code>1-5-3-1</code>.</p>
-
-
-</section>
-
- ]]></description>
-  <category>soprano line</category>
-  <category>alto line</category>
-  <category>tenor line</category>
-  <category>bass line</category>
-  <category>chords</category>
-  <category>musicology</category>
-  <guid>https://hymnstats.joeystanley.com/posts/final_chords/index.html</guid>
-  <pubDate>Wed, 18 Oct 2023 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
