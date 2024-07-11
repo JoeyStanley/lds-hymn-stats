@@ -97,7 +97,7 @@ wards_with_complete_data <- meetings_since_release |>
     
     # only wards with complete datasets
     add_count(ward, name = "n_weeks") |> 
-    filter(n_weeks == 3) |> 
+    filter(n_weeks == 6) |> 
     
     summarize(weeks_with_new = sum(n_new >= 1), .by = ward) |> 
     count(weeks_with_new) |> 
@@ -110,7 +110,7 @@ n_wards_with_complete_data <- meetings_since_release |>
     nrow()
 ```
 
-However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the wards that I have data from from every week since the first batch of hymns came out. Currently, that's `r n_wards_with_complete_data` wards. A little over half of them haven't sung new hymns at all yet. None have sung a new hymn in more than three weeks. 
+However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from every week since the first batch of hymns came out. About a quarter of them haven't sung new hymns at all yet. About half have sung three new hymns. The most was one ward that has sung a new hymn five out of six weeks so far. 
 
 
 ## What hymns are most popular?
@@ -162,7 +162,7 @@ Those numbers may seem low, but keep in mind that wards are unlikely to repeat t
 
 Now that we're several weeks past the release of this first batch of hymns, we can start to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
 
-```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 meetings_since_release |> 
     filter(hymn_num > 1000) |>  
     count(date, hymn_num, name_num) |> 
@@ -171,15 +171,19 @@ meetings_since_release |>
     arrange(hymn_num) |> 
     mutate(name_num = fct_inorder(name_num)) |> 
     
+    # Put the dates in order
+    arrange(date) |> 
+    mutate(date = fct_inorder(sf(date))) |> 
+    
     # proportions per week
     mutate(prop = n/sum(n), .by = date) |> 
     
-    ggplot(aes(sf(date), prop, group = name_num)) + 
+    ggplot(aes(date, prop, group = name_num)) + 
     geom_path() + 
     geom_point() + 
-    scale_y_date(date_breaks = "1 week") + 
+    # scale_x_manual() +
     scale_y_continuous(labels = scales::percent) + 
-    facet_wrap(~name_num) + 
+    facet_wrap(~name_num, ncol = 2) + 
     labs(title = "Proportion of wards singing new hymns by week",
          subtitle = "Of the sacrament meetings with new hymns",
          x = "date",
@@ -194,7 +198,7 @@ The other major trend is that <hymn>As Bread is Broken (#1007)</hymn> was very p
 
 ## When during meetings are these hymns sung?
 
-We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. If a new hymn is sung, it's likely to be done so as a closing hymn, with the exception of new sacrament hymns. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is often an opening hymn still, but something like <hymn>It Is Well with My Soul (1003)</hymn> is much more likely to be a closing hymn. At the time of writing, <hymn>I Will Walk with Jesus (#1004)</hymn> is the only hymn with a modest amount of data that is most commonly an intermediate hymn. 
+We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. If a new hymn is sung, it's likely to be done so as a closing hymn, with the exception of new sacrament hymns. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is often an opening hymn still, but something like <hymn>It Is Well with My Soul (1003)</hymn> is much more likely to be a closing hymn. 
 
 ```{r, include = TRUE}
 meetings_since_release |> 
