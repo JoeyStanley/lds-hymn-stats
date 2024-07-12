@@ -66,15 +66,20 @@ meetings_since_release |>
 The following plot shows the number of new hymns sung per ward each week since the release of the new hymns.
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
-
 meetings_since_release |> 
     mutate(is_new = hymn_num > 1000) |> 
     summarize(n_new = sum(is_new), .by = c(date, ward)) |>
     count(date, n_new) |> 
     filter(n_new <= 2) |> 
+    
+    # Put the dates in order
+    arrange(date) |> 
+    mutate(date = fct_inorder(sf(date))) |> 
+    
+    
     mutate(prop = n/sum(n), .by = date) |>
     mutate(n_new = as.factor(n_new)) |> 
-    ggplot(aes(n_new, prop, fill = sf(date))) + 
+    ggplot(aes(n_new, prop, fill = date)) + 
     geom_col(position = position_dodge2(preserve = "single")) + 
     scale_y_continuous(expand = expansion(0, c(0, 0.1)),
                        breaks = seq(0, 1, 0.1),
