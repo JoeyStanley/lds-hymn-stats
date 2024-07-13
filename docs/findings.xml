@@ -22,8 +22,8 @@
 <p>Today is Independence Day in the United States. Many American congregations sing patriotic hymns to commemorate the day. Let’s take a look at some statistics and patterns around the 4th of July. This post is based on data from 817 sacrament meetings within seven days of July 4th between 2002 and 2024. They come from 310 wards in the United States.</p>
 <section id="the-top-3-patriotic-hymns" class="level2">
 <h2 class="anchored" data-anchor-id="the-top-3-patriotic-hymns">The top 3 patriotic hymns</h2>
-<p>It is no surprise what the top three most common hymns within a week of July 4th are. Just about two-thirds of wards sing <hymn>America the Beautiful (#338)</hymn>. Over half sing <hymn>My Country, ’Tis of Thee (#339)</hymn>, and about 43% sing the <hymn>The Star-Spangled Banner (#340)</hymn>.</p>
-<p>That’s a remarkably high percentage of wards. It’s rare to see holidays with that amount of consistency. For reference less about 58% of wards sing <hymn>He is Risen! (#199)</hymn> around Easter and about half sing <hymn>Come, Let Us Anew (#217)</hymn> around New Year’s. The only other holiday I’ve seen with that amount of consistency is Thanksgiving, where about 74% of wards sing <hymn>Come, Ye Thankful People (#94)</hymn> and about 68% sing <hymn>Prayer of Thanksgiving (#93)</hymn>. This may have something to do with patriotism, but it may simply be because there are relatively few hymns to choose from and only one or two weeks to use them.</p>
+<p>It is no surprise what the top three most common hymns within a week of July 4th are. Just about two-thirds of wards sing <hymn>America the Beautiful (#338)</hymn>. Over half sing <hymn>My Country, ’Tis of Thee (#339)</hymn>, and about 44% sing the <hymn>The Star-Spangled Banner (#340)</hymn>.</p>
+<p>That’s a remarkably high percentage of wards. It’s rare to see holidays with that amount of consistency. For reference, less than about 58% of wards sing <hymn>He is Risen! (#199)</hymn> around Easter and about half sing <hymn>Come, Let Us Anew (#217)</hymn> around New Year’s. The only other holiday I’ve seen with that amount of consistency is Thanksgiving, where about 74% of wards sing <hymn>Come, Ye Thankful People (#94)</hymn> and about 68% sing <hymn>Prayer of Thanksgiving (#93)</hymn>. This may have something to do with patriotism, but it may simply be because there are relatively few hymns to choose from and only one or two weeks to use them.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -36,12 +36,12 @@ Technical details for nerds :)
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If about 66% of wards sing 338, 53% sing 339, and 43% sing 340, then we would expect <img src="https://latex.codecogs.com/png.latex?0.66%20%5Ctimes%200.53%20%5Ctimes%200.43%20=%2015%5C%25"> of wards go for the trifecta and sing all three. We actually do not see that many. In fact, I’ve only seen that happen in just seven wards, or 0.9% of sacrament meetings around July 4th. A part of me wants to run some analysis to show that the probabilities of hymns are not independent and that conditional probability of the hymns goes down given that one or two of the others is already sung. But, I took a look at those seven meetings and saw a more practical explanation.</p>
-<p>First, the Sunday closest to July 4th is most often a Fast and Testimony meeting, which means an intermediate hymn is not (or at least very rarely) sung. I have no instances of any of these three hymns being sung as a sacrament hymn, which makes sense since it’d be rather inappropriate to do so. So, that leaves just two slots for congregational hymns. Nevertheless, one ward in Kansas City, Missouri sang all three on July 2nd, 2017—most likely a Fast Sunday—so it’s not completely unheard of. But it likely deters most other wards.</p>
+<p>If about 66% of wards sing 338, 53% sing 339, and 43% sing 340, then we would expect <img src="https://latex.codecogs.com/png.latex?0.66%20%5Ctimes%200.53%20%5Ctimes%200.43%20=%2015%5C%25"> of wards go for the trifecta and sing all three. We actually do not see that many. In fact, I’ve only seen that happen in just seven wards, or 0.8% of sacrament meetings around July 4th. A part of me wants to run some analysis to show that the probabilities of hymns are not independent and that conditional probability of the hymns goes down given that one or two of the others is already sung. But, I took a look at those seven meetings and saw a more practical explanation.</p>
+<p>First, the Sunday closest to July 4th is most often a Fast and Testimony meeting, which means an intermediate hymn is not (or at least very rarely) sung. I have no instances of any of these three hymns being sung as a sacrament hymn, which makes sense since it’d be rather inappropriate to do so. So, that leaves just two slots for congregational hymns. Nevertheless, one ward in Kansas City, Missouri sang all three on July 2nd, 2017—most likely a Fast Sunday—so it’s not completely unheard of. But not having an option to sing an intermediate ward likely blocks most other wards from singing all three.</p>
 <p>So, the only chance you’ve got of singing these hymns is if the Sunday before the 4th of July is in June, not July. Of those seven meetings with all three of those hymns, the other six of them were on June 30th. As we’ll see below, June 30th is close to the earliest time we typically see patriotic hymns. If June 29th is on a Sunday, then the 4th of July is a Friday, and most people sing patriotic hymns the following Sunday, on the 6th, rather than before. We also get some interference with hymns related to <a href="../../posts/martyrdom">the martyrdom of Joseph Smith</a>.</p>
 <p>Also, since 2002, which when is the earliest data I have came from, June 30th has fallen on a Sunday four times: 2002, 2013, 2019, and 2024. I have very little data from 2002, so it’s surprising that none of the trifecta sacrament meetings were from then. I don’t have a ton of data from 2013 or 2019, but one of those seven did come from 2013. The five of the others are from 2024, which makes sense because it’s the year with the second most amount of data in my sample, and by far the year of those four that I have the most data from.</p>
 <p>However, there may be an additional piece of the puzzle. Prior to about June 2024, a big chunk of <a href="../../posts/frequency-data">my data</a> came from people sending me their ward’s spreadsheets. A lot of it also came from weekly contributions by various donors. But, nearly 100% of the data came from people who cared enough about their hymns to report it. Starting around the time the first batch of the new hymns were released, I started looking through YouTube to get data from wards that still post live streams of their meetings.</p>
-<p>This is an interesting development and it’ll warrant some additional analysis later on. If people send in a spreadsheet of their ward’s hymns, that mere fact means that their ward has a spreadsheet to keep track of hymns. Presumably, they use that spreadsheet to avoid repeating hymns too often. So, I’m assuming there is a pretty significant sampling bias in my data: wards that have spreadsheets are less likely to repeat hymns than wards without spreadsheets. I don’t know whether the wards I get data from off of YouTube use spreadsheets to keep track of their hymns. But some of them might not. The point is, they are likely a more representative sample of what hymns are being sung look like.</p>
+<p>This is an interesting development and it’ll warrant some additional analysis later on. If people send in a spreadsheet of their ward’s hymns, that mere fact means that their ward has a spreadsheet to keep track of hymns. Presumably, they use that spreadsheet to avoid repeating hymns too often. So, I’m assuming there is a pretty significant sampling bias in my data: wards that have spreadsheets are less likely to repeat hymns than wards without spreadsheets. I don’t know whether the wards I get data from off of YouTube use spreadsheets to keep track of their hymns. But some of them might not. The point is, they are likely a more representative sample of what hymns are being sung look like. I’ll have to do a blog post that makes this comparison explicitly in about a year once I’ve gotten enough data from those wards on YouTube.</p>
 <p>So, it just so happens that the five wards from 2024 that did a trifecta of singing all three patriotic hymns in a single meeting were ones I got from YouTube. Again, it could just be a sampling size thing: I have more data from 2024 so I’m more likely to find it. But, it could also be that some of these wards don’t have spreadsheets to keep track of their ward’s hymn data, so they’re unable to say, “oh, y’know what, we sang that hymn last year, let’s sing a different one this year.” In other words, they go by gut feeling, inspiration, or just vibes, rather than history to choose hymns.</p>
 <p>Anyway, all this is to say that even though a significant number of wards sing each of those three patriotic hymns each year, very few sing all three of them in one meeting.</p>
 </div>
@@ -50,7 +50,7 @@ Technical details for nerds :)
 </section>
 <section id="other-patriotic-hymns" class="level2">
 <h2 class="anchored" data-anchor-id="other-patriotic-hymns">Other patriotic hymns</h2>
-<p>Figure&nbsp;1 below shows the most common hymns (excluding sacrament hymns) within a week of Jul 4th, and what percentage of wards sing them each year. At the top are the three hymns we’ve already discussed. But, coming in fourth and fifth places are <hymn>Battle Hymn of the Republic (#60)</hymn> and <hymn>God Of Our Fathers, Whose Almighty Hand (#78)</hymn>. In the figure, I’ve included the top dozen or so most popular hymns, not because I’m interested in which hymns are beyond those top five (because they’re just generic common hymns), but because I want to show just how much more popular these top five are compared to everything else.</p>
+<p>Figure&nbsp;1 below shows the most common hymns (excluding sacrament hymns) within a week of Jul 4th, and what percentage of wards sing them each year. At the top are the three hymns we’ve already discussed. But, coming in strong in fourth and fifth places are <hymn>Battle Hymn of the Republic (#60)</hymn> and <hymn>God Of Our Fathers, Whose Almighty Hand (#78)</hymn>. In the figure, I’ve included the top dozen or so most popular hymns, not because I’m interested in which hymns are beyond those top five (because they’re just <a href="../../posts/most_common">generic common hymns</a>), but because I want to show just how much more popular these top five are compared to everything else. The one that might be more frequent than normal is <hymn>Faith of Our Fathers (#84)</hymn>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-most_common" class="quarto-figure quarto-figure-center anchored">
@@ -66,23 +66,23 @@ Technical details for nerds :)
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="cmenmegzbi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cmenmegzbi table {
+<div id="dtogxzducv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dtogxzducv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cmenmegzbi thead, #cmenmegzbi tbody, #cmenmegzbi tfoot, #cmenmegzbi tr, #cmenmegzbi td, #cmenmegzbi th {
+#dtogxzducv thead, #dtogxzducv tbody, #dtogxzducv tfoot, #dtogxzducv tr, #dtogxzducv td, #dtogxzducv th {
   border-style: none;
 }
 
-#cmenmegzbi p {
+#dtogxzducv p {
   margin: 0;
   padding: 0;
 }
 
-#cmenmegzbi .gt_table {
+#dtogxzducv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -108,12 +108,12 @@ Technical details for nerds :)
   border-left-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_caption {
+#dtogxzducv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cmenmegzbi .gt_title {
+#dtogxzducv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -125,7 +125,7 @@ Technical details for nerds :)
   border-bottom-width: 0;
 }
 
-#cmenmegzbi .gt_subtitle {
+#dtogxzducv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -137,7 +137,7 @@ Technical details for nerds :)
   border-top-width: 0;
 }
 
-#cmenmegzbi .gt_heading {
+#dtogxzducv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -149,13 +149,13 @@ Technical details for nerds :)
   border-right-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_bottom_border {
+#dtogxzducv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_col_headings {
+#dtogxzducv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -170,7 +170,7 @@ Technical details for nerds :)
   border-right-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_col_heading {
+#dtogxzducv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -190,7 +190,7 @@ Technical details for nerds :)
   overflow-x: hidden;
 }
 
-#cmenmegzbi .gt_column_spanner_outer {
+#dtogxzducv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -202,15 +202,15 @@ Technical details for nerds :)
   padding-right: 4px;
 }
 
-#cmenmegzbi .gt_column_spanner_outer:first-child {
+#dtogxzducv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cmenmegzbi .gt_column_spanner_outer:last-child {
+#dtogxzducv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cmenmegzbi .gt_column_spanner {
+#dtogxzducv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -222,11 +222,11 @@ Technical details for nerds :)
   width: 100%;
 }
 
-#cmenmegzbi .gt_spanner_row {
+#dtogxzducv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cmenmegzbi .gt_group_heading {
+#dtogxzducv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -252,7 +252,7 @@ Technical details for nerds :)
   text-align: left;
 }
 
-#cmenmegzbi .gt_empty_group_heading {
+#dtogxzducv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -267,15 +267,15 @@ Technical details for nerds :)
   vertical-align: middle;
 }
 
-#cmenmegzbi .gt_from_md > :first-child {
+#dtogxzducv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cmenmegzbi .gt_from_md > :last-child {
+#dtogxzducv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cmenmegzbi .gt_row {
+#dtogxzducv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -294,7 +294,7 @@ Technical details for nerds :)
   overflow-x: hidden;
 }
 
-#cmenmegzbi .gt_stub {
+#dtogxzducv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -307,7 +307,7 @@ Technical details for nerds :)
   padding-right: 5px;
 }
 
-#cmenmegzbi .gt_stub_row_group {
+#dtogxzducv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -321,15 +321,15 @@ Technical details for nerds :)
   vertical-align: top;
 }
 
-#cmenmegzbi .gt_row_group_first td {
+#dtogxzducv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cmenmegzbi .gt_row_group_first th {
+#dtogxzducv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cmenmegzbi .gt_summary_row {
+#dtogxzducv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -339,16 +339,16 @@ Technical details for nerds :)
   padding-right: 5px;
 }
 
-#cmenmegzbi .gt_first_summary_row {
+#dtogxzducv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_first_summary_row.thick {
+#dtogxzducv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cmenmegzbi .gt_last_summary_row {
+#dtogxzducv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,7 +358,7 @@ Technical details for nerds :)
   border-bottom-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_grand_summary_row {
+#dtogxzducv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -368,7 +368,7 @@ Technical details for nerds :)
   padding-right: 5px;
 }
 
-#cmenmegzbi .gt_first_grand_summary_row {
+#dtogxzducv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -378,7 +378,7 @@ Technical details for nerds :)
   border-top-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_last_grand_summary_row_top {
+#dtogxzducv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -388,11 +388,11 @@ Technical details for nerds :)
   border-bottom-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_striped {
+#dtogxzducv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cmenmegzbi .gt_table_body {
+#dtogxzducv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -401,7 +401,7 @@ Technical details for nerds :)
   border-bottom-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_footnotes {
+#dtogxzducv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -415,7 +415,7 @@ Technical details for nerds :)
   border-right-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_footnote {
+#dtogxzducv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -424,7 +424,7 @@ Technical details for nerds :)
   padding-right: 5px;
 }
 
-#cmenmegzbi .gt_sourcenotes {
+#dtogxzducv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -438,7 +438,7 @@ Technical details for nerds :)
   border-right-color: #D3D3D3;
 }
 
-#cmenmegzbi .gt_sourcenote {
+#dtogxzducv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -446,63 +446,63 @@ Technical details for nerds :)
   padding-right: 5px;
 }
 
-#cmenmegzbi .gt_left {
+#dtogxzducv .gt_left {
   text-align: left;
 }
 
-#cmenmegzbi .gt_center {
+#dtogxzducv .gt_center {
   text-align: center;
 }
 
-#cmenmegzbi .gt_right {
+#dtogxzducv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cmenmegzbi .gt_font_normal {
+#dtogxzducv .gt_font_normal {
   font-weight: normal;
 }
 
-#cmenmegzbi .gt_font_bold {
+#dtogxzducv .gt_font_bold {
   font-weight: bold;
 }
 
-#cmenmegzbi .gt_font_italic {
+#dtogxzducv .gt_font_italic {
   font-style: italic;
 }
 
-#cmenmegzbi .gt_super {
+#dtogxzducv .gt_super {
   font-size: 65%;
 }
 
-#cmenmegzbi .gt_footnote_marks {
+#dtogxzducv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cmenmegzbi .gt_asterisk {
+#dtogxzducv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cmenmegzbi .gt_indent_1 {
+#dtogxzducv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cmenmegzbi .gt_indent_2 {
+#dtogxzducv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cmenmegzbi .gt_indent_3 {
+#dtogxzducv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cmenmegzbi .gt_indent_4 {
+#dtogxzducv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cmenmegzbi .gt_indent_5 {
+#dtogxzducv .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -521,21 +521,23 @@ Technical details for nerds :)
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="hymn" class="gt_row gt_left">The Star-Spangled Banner (340)</td>
-<td headers="times more likely" class="gt_row gt_right">184.19</td></tr>
+<td headers="times more likely" class="gt_row gt_right">185.94</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">My Country, 'Tis of Thee (339)</td>
-<td headers="times more likely" class="gt_row gt_right">91.13</td></tr>
+<td headers="times more likely" class="gt_row gt_right">95.10</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">America the Beautiful (338)</td>
-<td headers="times more likely" class="gt_row gt_right">72.56</td></tr>
+<td headers="times more likely" class="gt_row gt_right">73.29</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">Battle Hymn of the Republic (60)</td>
-<td headers="times more likely" class="gt_row gt_right">15.17</td></tr>
+<td headers="times more likely" class="gt_row gt_right">15.88</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">God of Our Fathers, Whose Almighty Hand (78)</td>
-<td headers="times more likely" class="gt_row gt_right">7.86</td></tr>
+<td headers="times more likely" class="gt_row gt_right">7.43</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">Jehovah, Lord of Heaven and Earth (269)</td>
-<td headers="times more likely" class="gt_row gt_right">3.27</td></tr>
+<td headers="times more likely" class="gt_row gt_right">3.09</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">Know This, That Every Soul Is Free (240)</td>
-<td headers="times more likely" class="gt_row gt_right">3.17</td></tr>
+<td headers="times more likely" class="gt_row gt_right">3.00</td></tr>
     <tr><td headers="hymn" class="gt_row gt_left">O Ye Mountains High (34)</td>
-<td headers="times more likely" class="gt_row gt_right">2.58</td></tr>
+<td headers="times more likely" class="gt_row gt_right">2.66</td></tr>
+    <tr><td headers="hymn" class="gt_row gt_left">Faith of Our Fathers (84)</td>
+<td headers="times more likely" class="gt_row gt_right">2.09</td></tr>
   </tbody>
   
   
@@ -559,7 +561,7 @@ Technical details for nerds :)
 </div>
 </div>
 </div>
-<p>Most hymns are pretty balanced, though each as their own tendencies. <hymn>America the Beautiful (#338)</hymn>, <hymn>Battle Hymn of the Republic (#60)</hymn>, and <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn> are a little bit more common as opening hymns while <hymn>My Country, ’Tis of Thee (#339)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn> are a little more common as closing hymns.</p>
+<p>Most hymns are pretty balanced, though each as their own tendencies. <hymn>America the Beautiful (#338)</hymn>, <hymn>Battle Hymn of the Republic (#60)</hymn>, and <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn> are a little bit more common as opening hymns while <hymn>My Country, ’Tis of Thee (#339)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn> are a little more common as closing hymns. I can’t help but think there’s a numeric order bias: perhaps <hymn>America the Beautiful (#338)</hymn> is more common as an opening hymn is simply because it comes before <hymn>My Country, ’Tis of Thee (#339)</hymn> in the hymnal.</p>
 </section>
 <section id="when-is-the-4th-of-july-season" class="level2">
 <h2 class="anchored" data-anchor-id="when-is-the-4th-of-july-season">When is the 4th of July “season”?</h2>
@@ -575,7 +577,7 @@ Technical details for nerds :)
 </div>
 </div>
 </div>
-<p>The further the Sunday is from the 4th, the less likely you are to sing many patriotic hymns. There was some discussion on social media among LDS music coordinators this year about whether patriotic hymns should come the Sunday before (June 30th) or the Sunday after (July 7th). When the 4th is in the middle of the week, like a Thursday, neither option feel right. As you can see on this chart, the data shows that wards are split about 50-50: 27% of hymns on June 30th are patriotic while 22% are on July 7th. Of course, June 30th is much more likely to have an intermediate hymn. However, when I reran the plot based on raw <em>number</em> of patriotic hymns (1, 2, or 3), the 30th has a slight edge (see Figure&nbsp;4, below)</p>
+<p>The further the Sunday is from the 4th, the less likely you are to sing many patriotic hymns. There was some discussion on social media among LDS music coordinators this year about whether patriotic hymns should come the Sunday before (June 30th) or the Sunday after (July 7th). When the 4th is in the middle of the week, like a Thursday, neither option feel right. As you can see on this chart, the data shows that wards are split pretty close to 50-50: 29% of hymns on June 30th are patriotic and 29% are on July 7th. Of course, June 30th is much more likely to have an intermediate hymn. However, when I reran the plot based on raw <em>number</em> of patriotic hymns (1, 2, or 3), the 30th has a slight edge (see Figure&nbsp;4, below)</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">

@@ -50,9 +50,9 @@ july4 |>
 ```
 
 
-It is no surprise what the top three most common hymns within a week of July 4th are. Just about two-thirds of wards sing <hymn>America the Beautiful (#338)</hymn>. Over half sing <hymn>My Country, 'Tis of Thee (#339)</hymn>, and about 43% sing the <hymn>The Star-Spangled Banner (#340)</hymn>. 
+It is no surprise what the top three most common hymns within a week of July 4th are. Just about two-thirds of wards sing <hymn>America the Beautiful (#338)</hymn>. Over half sing <hymn>My Country, 'Tis of Thee (#339)</hymn>, and about 44% sing the <hymn>The Star-Spangled Banner (#340)</hymn>. 
 
-That's a remarkably high percentage of wards. It's rare to see holidays with that amount of consistency. For reference less about 58% of wards sing <hymn>He is Risen! (#199)</hymn> around Easter and about half sing <hymn>Come, Let Us Anew (#217)</hymn> around New Year's. The only other holiday I've seen with that amount of consistency is Thanksgiving, where about 74% of wards sing <hymn>Come, Ye Thankful People (#94)</hymn> and about 68% sing <hymn>Prayer of Thanksgiving (#93)</hymn>. This may have something to do with patriotism, but it may simply be because there are relatively few hymns to choose from and only one or two weeks to use them. 
+That's a remarkably high percentage of wards. It's rare to see holidays with that amount of consistency. For reference, less than about 58% of wards sing <hymn>He is Risen! (#199)</hymn> around Easter and about half sing <hymn>Come, Let Us Anew (#217)</hymn> around New Year's. The only other holiday I've seen with that amount of consistency is Thanksgiving, where about 74% of wards sing <hymn>Come, Ye Thankful People (#94)</hymn> and about 68% sing <hymn>Prayer of Thanksgiving (#93)</hymn>. This may have something to do with patriotism, but it may simply be because there are relatively few hymns to choose from and only one or two weeks to use them. 
 
 ::: {.callout-caution collapse="true"}
 ### Technical details for nerds :)
@@ -70,9 +70,10 @@ july4 |>
            n_339 > 0,
            n_340 > 0) |> 
     print()
+7 / 910
 ```
 
-If about 66% of wards sing 338, 53% sing 339, and 43% sing 340, then we would expect $0.66 \times 0.53 \times 0.43 = 15\%$ of wards go for the trifecta and sing all three. We actually do not see that many. In fact, I've only seen that happen in just seven wards, or 0.9% of sacrament meetings around July 4th. A part of me wants to run some analysis to show that the probabilities of hymns are not independent and that conditional probability of the hymns goes down given that one or two of the others is already sung. But, I took a look at those seven meetings and saw a more practical explanation.
+If about 66% of wards sing 338, 53% sing 339, and 43% sing 340, then we would expect $0.66 \times 0.53 \times 0.43 = 15\%$ of wards go for the trifecta and sing all three. We actually do not see that many. In fact, I've only seen that happen in just seven wards, or 0.8% of sacrament meetings around July 4th. A part of me wants to run some analysis to show that the probabilities of hymns are not independent and that conditional probability of the hymns goes down given that one or two of the others is already sung. But, I took a look at those seven meetings and saw a more practical explanation.
 
 ```{r}
 freqs |> 
@@ -83,7 +84,7 @@ freqs |>
 ```
 
 
-First, the Sunday closest to July 4th is most often a Fast and Testimony meeting, which means an intermediate hymn is not (or at least very rarely) sung. I have no instances of any of these three hymns being sung as a sacrament hymn, which makes sense since it'd be rather inappropriate to do so. So, that leaves just two slots for congregational hymns. Nevertheless, one ward in Kansas City, Missouri sang all three on July 2nd, 2017---most likely a Fast Sunday---so it's not completely unheard of. But it likely deters most other wards. 
+First, the Sunday closest to July 4th is most often a Fast and Testimony meeting, which means an intermediate hymn is not (or at least very rarely) sung. I have no instances of any of these three hymns being sung as a sacrament hymn, which makes sense since it'd be rather inappropriate to do so. So, that leaves just two slots for congregational hymns. Nevertheless, one ward in Kansas City, Missouri sang all three on July 2nd, 2017---most likely a Fast Sunday---so it's not completely unheard of. But not having an option to sing an intermediate ward likely blocks most other wards from singing all three. 
 
 So, the only chance you've got of singing these hymns is if the Sunday before the 4th of July is in June, not July. Of those seven meetings with all three of those hymns, the other six of them were on June 30th. As we'll see below, June 30th is close to the earliest time we typically see patriotic hymns. If June 29th is on a Sunday, then the 4th of July is a Friday, and most people sing patriotic hymns the following Sunday, on the 6th, rather than before. We also get some interference with hymns related to [the martyrdom of Joseph Smith](/posts/martyrdom). 
 
@@ -98,7 +99,7 @@ july4 |>
 
 However, there may be an additional piece of the puzzle. Prior to about June 2024, a big chunk of [my data](/posts/frequency-data) came from people sending me their ward's spreadsheets. A lot of it also came from weekly contributions by various donors. But, nearly 100% of the data came from people who cared enough about their hymns to report it. Starting around the time the first batch of the new hymns were released, I started looking through YouTube to get data from wards that still post live streams of their meetings. 
 
-This is an interesting development and it'll warrant some additional analysis later on. If people send in a spreadsheet of their ward's hymns, that mere fact means that their ward has a spreadsheet to keep track of hymns. Presumably, they use that spreadsheet to avoid repeating hymns too often. So, I'm assuming there is a pretty significant sampling bias in my data: wards that have spreadsheets are less likely to repeat hymns than wards without spreadsheets. I don't know whether the wards I get data from off of YouTube use spreadsheets to keep track of their hymns. But some of them might not. The point is, they are likely a more representative sample of what hymns are being sung look like. 
+This is an interesting development and it'll warrant some additional analysis later on. If people send in a spreadsheet of their ward's hymns, that mere fact means that their ward has a spreadsheet to keep track of hymns. Presumably, they use that spreadsheet to avoid repeating hymns too often. So, I'm assuming there is a pretty significant sampling bias in my data: wards that have spreadsheets are less likely to repeat hymns than wards without spreadsheets. I don't know whether the wards I get data from off of YouTube use spreadsheets to keep track of their hymns. But some of them might not. The point is, they are likely a more representative sample of what hymns are being sung look like. I'll have to do a blog post that makes this comparison explicitly in about a year once I've gotten enough data from those wards on YouTube.
 
 So, it just so happens that the five wards from 2024 that did a trifecta of singing all three patriotic hymns in a single meeting were ones I got from YouTube. Again, it could just be a sampling size thing: I have more data from 2024 so I'm more likely to find it. But, it could also be that some of these wards don't have spreadsheets to keep track of their ward's hymn data, so they're unable to say, "oh, y'know what, we sang that hymn last year, let's sing a different one this year." In other words, they go by gut feeling, inspiration, or just vibes, rather than history to choose hymns.
 
@@ -107,7 +108,7 @@ Anyway, all this is to say that even though a significant number of wards sing e
 
 ## Other patriotic hymns
 
-@fig-most_common below shows the most common hymns (excluding sacrament hymns) within a week of Jul 4th, and what percentage of wards sing them each year. At the top are the three hymns we've already discussed. But, coming in fourth and fifth places are <hymn>Battle Hymn of the Republic (#60)</hymn> and <hymn>God Of Our Fathers, Whose Almighty Hand (#78)</hymn>. In the figure, I've included the top dozen or so most popular hymns, not because I'm interested in which hymns are beyond those top five (because they're just generic common hymns), but because I want to show just how much more popular these top five are compared to everything else. 
+@fig-most_common below shows the most common hymns (excluding sacrament hymns) within a week of Jul 4th, and what percentage of wards sing them each year. At the top are the three hymns we've already discussed. But, coming in strong in fourth and fifth places are <hymn>Battle Hymn of the Republic (#60)</hymn> and <hymn>God Of Our Fathers, Whose Almighty Hand (#78)</hymn>. In the figure, I've included the top dozen or so most popular hymns, not because I'm interested in which hymns are beyond those top five (because they're just [generic common hymns](/posts/most_common)), but because I want to show just how much more popular these top five are compared to everything else. The one that might be more frequent than normal is <hymn>Faith of Our Fathers (#84)</hymn>.
 
 ```{r, include = TRUE, message=FALSE, fig.height = 3, fig.width = 8}
 #| label: fig-most_common
@@ -205,7 +206,7 @@ july4 |>
     theme_bw()
 ```
 
-Most hymns are pretty balanced, though each as their own tendencies. <hymn>America the Beautiful (#338)</hymn>, <hymn>Battle Hymn of the Republic (#60)</hymn>, and <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn> are a little bit more common as opening hymns while <hymn>My Country, 'Tis of Thee (#339)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn> are a little more common as closing hymns.
+Most hymns are pretty balanced, though each as their own tendencies. <hymn>America the Beautiful (#338)</hymn>, <hymn>Battle Hymn of the Republic (#60)</hymn>, and <hymn>God of Our Fathers, Whose Almighty Hand (#78)</hymn> are a little bit more common as opening hymns while <hymn>My Country, 'Tis of Thee (#339)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn> are a little more common as closing hymns. I can't help but think there's a numeric order bias: perhaps <hymn>America the Beautiful (#338)</hymn> is more common as an opening hymn is simply because it comes before <hymn>My Country, 'Tis of Thee (#339)</hymn> in the hymnal. 
 
 
 
@@ -251,7 +252,7 @@ ggplot(props_by_day, aes(month_day, mean_prop_patriotic)) +
          title = "Percentage of patriotic congregational hymns by date")
 ```
 
-The further the Sunday is from the 4th, the less likely you are to sing many patriotic hymns. There was some discussion on social media among LDS music coordinators this year about whether patriotic hymns should come the Sunday before (June 30th) or the Sunday after (July 7th). When the 4th is in the middle of the week, like a Thursday, neither option feel right. As you can see on this chart, the data shows that wards are split about 50-50: 27% of hymns on June 30th are patriotic while 22% are on July 7th. Of course, June 30th is much more likely to have an intermediate hymn. However, when I reran the plot based on raw *number* of patriotic hymns (1, 2, or 3), the 30th has a slight edge (see @fig-by_date_number, below)
+The further the Sunday is from the 4th, the less likely you are to sing many patriotic hymns. There was some discussion on social media among LDS music coordinators this year about whether patriotic hymns should come the Sunday before (June 30th) or the Sunday after (July 7th). When the 4th is in the middle of the week, like a Thursday, neither option feel right. As you can see on this chart, the data shows that wards are split pretty close to 50-50: 29% of hymns on June 30th are patriotic and 29% are on July 7th. Of course, June 30th is much more likely to have an intermediate hymn. However, when I reran the plot based on raw *number* of patriotic hymns (1, 2, or 3), the 30th has a slight edge (see @fig-by_date_number, below)
 
 ::: {.callout-caution collapse="true"}
 ### Click to see that plot
