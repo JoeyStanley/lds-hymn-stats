@@ -12,23 +12,6 @@
 <generator>quarto-1.3.450</generator>
 <lastBuildDate>Thu, 04 Jul 2024 06:00:00 GMT</lastBuildDate>
 <item>
-  <title>What hymns are sung around Pioneer Day?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/pioneer_day/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-
- ]]></description>
-  <category>holidays</category>
-  <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/pioneer_day/index.html</guid>
-  <pubDate>Thu, 04 Jul 2024 06:00:00 GMT</pubDate>
-</item>
-<item>
   <title>What hymns are sung around the 4th of July?</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/4th_of_july/index.html</link>
@@ -15050,6 +15033,206 @@ Recommendation for the next hymnal
   <category>highest notes</category>
   <guid>https://hymnstats.joeystanley.com/posts/highest_alto/index.html</guid>
   <pubDate>Thu, 02 Nov 2023 06:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>What hymns are sung in October as a result of the Primary Program?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/primary_program/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>October is peak Primary Program season. According to the Handbook, the “Children’s Sacrament Meeting Presentation” is held annually “during the last few months of the year.” The wards I’ve been in typically do it in October or late September. So, since we’re approaching the end of October, I thought I’d take a look at what congregational hymns are sung around this time of year, likely as a result of the Primary Program. It’s a little difficult to see what hymns are sung the most in October, because we have several other things going on, including <a href="../../posts/general_conference.html">General Conference</a> and a Fast Sunday. So, if we ignore those for now, we can start to see what hymns emerge as being the most autumnal hymn.</p>
+<p>The following table shows the top ten most common hymns sung in October, excluding sacrament hymns and General Conference–related hymns. The numbers are not huge—it’s not like we’re seeing a very obvious trend going on across the church. But, it is probably not a coincidence that <hymn>I Am a Child of God (#301)</hymn> and <hymn>Teach Me to Walk in the Light (#304)</hymn> are among the Top 3. These are most likely related to the Primary Programs.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Hymn</th>
+<th style="text-align: left;">Wards that sang it in October</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I Am a Child of God (301)</td>
+<td style="text-align: left;">4.59%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Come, Follow Me (116)</td>
+<td style="text-align: left;">4.15%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Teach Me to Walk in the Light (304)</td>
+<td style="text-align: left;">4.08%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I Know That My Redeemer Lives (136)</td>
+<td style="text-align: left;">3.64%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Because I Have Been Given Much (219)</td>
+<td style="text-align: left;">3.57%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">How Firm a Foundation (85)</td>
+<td style="text-align: left;">3.19%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I Believe in Christ (134)</td>
+<td style="text-align: left;">3.13%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lord, I Would Follow Thee (220)</td>
+<td style="text-align: left;">3.06%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Choose the Right (239)</td>
+<td style="text-align: left;">3.06%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">The Spirit of God (2)</td>
+<td style="text-align: left;">2.81%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>But, raw frequency doesn’t tell the whole story. You can see on this list that the other eight of the top ten most common hymns in October are hymns that are common throughout the year. In other words, of course <hymn>Because I Have Been Given Much (#219)</hymn> is common in October: <a href="../../posts/sacrament">it’s the most common non-sacrament hymn</a>! In fact, those eight other hymns are among the top 13 most common non-sacrament hymns. So, this table doesn’t say too much by itself.</p>
+<p>So, as a way to control for how popular a hymn is overall, I’ve done a different calculation that accounts for how much the hymn is sung within a particular range compared to not within a range.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Technical details for nerds :)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Take <hymn>I Am a Child of God (#301)</hymn> and the month of October. In my 18,368 sacrament meetings, I have 63,818 individual hymns. 5,213 of those are in the month of October. Among those, <hymn>I Am a Child of God (#301)</hymn> was sung 71 times, or 1.36% of the data. Outside of October, I have 58,605 data points, 313 of which are <hymn>I Am a Child of God (#301)</hymn>, or 0.53%. So, even though 313 times outside of October is a larger number than 71 times inside of October, you have to keep in mind that there are just 3–4 weeks in October where it could be sung, and around 48 weeks that it could be sung during the rest of the year. So that 313 is spread more thinly over those 48 weeks and the 71 times in October is more concentrated. So, if we divide the first percentage by the second percentage, we get 2.56. We can interpret that to mean that to mean that <hymn>I Am a Child of God (#301)</hymn> is 2.56 times more likely to be sung in a random week in October than in a random week during the rest of the year.</p>
+<p>For comparison, <hymn>Because I Have Been Given Much (#219)</hymn> was sung 54 times in October (1.10%) and 557 times during the rest of year (0.95%). Dividing those two, we get 1.17, meaning it’s only 1.17 times more likely to be sung in October compared to the rest of the year. So even though it’s a more common hymn, it’s nothing special in October.</p>
+<p>However, sample size affects these calculations. The hymn that actually has the highest October-to-not-October ratio is <hymn>Arise, O God, and Shine (#265)</hymn>, which is not sung very often (about once every 9.3 years). I can’t think of a good reason for why that hymn would be more popular in October, and it’s likely just because of a fluke in the data. And with smaller sample sizes, flukes appear bigger. I considered filtering the data to only include hymns that have been sung a certain number of times, but that wasn’t good because some infrequent hymns may indeed be specific to certain times.</p>
+<p>The solution I came up with was to do count how many times hymn was sung in October and not October, count up all the other data I have, and <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> on the two. So, in the case of <hymn>I Am a Child of God (#301)</hymn> above, the <img src="https://latex.codecogs.com/png.latex?2%5Ctimes2"> table would look like this:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Hymn 301</th>
+<th>All other hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>October</td>
+<td>71</td>
+<td>5,142</td>
+</tr>
+<tr class="even">
+<td>Not October</td>
+<td>313</td>
+<td>58,292</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> test on this table shows that there is an association between October and Hymn 301 (<img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> = 53.48, df = 1, <em>p &lt; -0.001</em>). So, after calculating the October-to-not-October ratio for all hymns, I then ran a <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> test on each one to see which differences were statistically significant.</p>
+<p>But, you can’t just go around making hundreds of comparisons without the chance of a bunch of false positives. Assuming an <img src="https://latex.codecogs.com/png.latex?%5Calpha"> level of 0.95, we’d expect 5% of the comparisions to appear statistically significant, even though thy’re not. So, a basic solution is to add a Bonferroni correction, which is to divide the base level <em>p</em>-value (0.05) by the number of comparisons being made (in this case, 233, since that’s how many unique hymns were sung in October at some point), producing a new <em>p</em>-value threshold of about 0.000021.</p>
+<p>So, the following table shows only those hymns that have a <em>p</em>-value that are smaller than the new corrected threshold.</p>
+</div>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><span class="callout-1-contents callout-collapse collapse callout-margin-content">My understanding is the the Bonferroni correction is critiqued as being too harsh. In this case, it seems to work pretty well.</span></div><p>The following table shows the hymns that are quite a bit more likely to be sung in October than in other months of the year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Hymn</th>
+<th style="text-align: right;">Sung in October</th>
+<th style="text-align: left;">Percent of October</th>
+<th style="text-align: right;">Sung not in October</th>
+<th style="text-align: left;">Percent not in October</th>
+<th style="text-align: right;">Times more likely in October</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I Am a Child of God (301)</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: left;">1.35%</td>
+<td style="text-align: right;">321</td>
+<td style="text-align: left;">0.54%</td>
+<td style="text-align: right;">2.53</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">As I Search the Holy Scriptures (277)</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">0.75%</td>
+<td style="text-align: right;">229</td>
+<td style="text-align: left;">0.38%</td>
+<td style="text-align: right;">1.97</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Come, Follow Me (116)</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">1.22%</td>
+<td style="text-align: right;">409</td>
+<td style="text-align: left;">0.68%</td>
+<td style="text-align: right;">1.79</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Teach Me to Walk in the Light (304)</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: left;">1.2%</td>
+<td style="text-align: right;">404</td>
+<td style="text-align: left;">0.67%</td>
+<td style="text-align: right;">1.79</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>As you can see <hymn>I Am a Child of God (#301)</hymn> makes the cut and it sung 2.55 times more likely to be sung in October than elsewhere during the year. Another children’s hymn, <hymn>Teach Me to Walk in the Light (#304)</hymn>, is about 1.85 times as likely. As for the two other hymns, <hymn>As I Search the Holy Scriptures (#277)</hymn> and <hymn>Come, Follow Me (#116)</hymn>, it’s not obvious to me why those might be sung more in October than in other months.</p>
+<p>For what it’s worth, there are other children’s hymns that are more common in October, but didn’t make the cut because they’re more common during other months.</p>
+<ul>
+<li><hymn>Dearest Children, God Is Near You (#96)</hymn>, <hymn>In Our Lovely Deseret (#307), and <hymn>Keep the Commandments (#303) are common in October, as well as September. So, they have a little more broad usage.</hymn></hymn></li>
+<li><hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>Teach Me to Walk in the Light (#304)</hymn>, and <hymn>I Know My Father Lives (#302)</hymn> have slight spikes in October, but they’re overshadowed by their currency around Mother’s Day and/or Father’s Day, which will be the topic of a later post.</li>
+<li>Other children’s hymns like <hymn>The Light Divine (#305)</hymn> and <hymn>God’s Daily Care (#306)</hymn> don’t really seem to be more common in the fall than in other times of the year.</li>
+</ul>
+<p>The following plot shows these select children’s hymns and how often they were sung throughout the year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/primary_program/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<p>So, other <hymn>I Am a Child of God (#301)</hymn> appears to be the most October-concentrated hymn. A few other children hymns are also popular, but they’re either not frequent enough to be statistically significant, or they’re overshadowed by their usage in other parts of the year.</p>
+<section id="halloween" class="level2">
+<h2 class="anchored" data-anchor-id="halloween">Halloween?</h2>
+<p>Out of curiosity, I checked to see if there were any hymns sung more around Halloween. I think there’s a joke that goes around that hymns like <hymn>He is Risen! (#199)</hymn> or other resurrection-themed hymns would be funny to sing on Halloween as a reference to zombies, but there is no indication that anyone acts on that in this dataset. I have data from 421 sacrament meetings that are the last Sunday in October. In none of them do I find any Easter hymns, with the exception being <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn> as a <a href="../../posts/sacrament">sacrament hymn</a> in five of them. So, I see no evidence of any Halloween-themed sacrament meeting hymns.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>frequency</category>
+  <category>holidays</category>
+  <guid>https://hymnstats.joeystanley.com/posts/primary_program/index.html</guid>
+  <pubDate>Mon, 23 Oct 2023 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
