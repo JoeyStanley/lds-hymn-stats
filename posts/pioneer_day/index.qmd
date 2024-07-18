@@ -1,0 +1,43 @@
+---
+title: "What hymns are sung around Pioneer Day?"
+author: "Joey Stanley"
+date: "2024-07-04"
+date-modified: last-modified
+categories: 
+  - holidays
+  - frequency
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+
+```{r}
+pioneer <- freqs |> 
+    filter(!ward %in% c("NA", "Anonymous", "Unknown")) |> 
+    filter(!is.na(date)) |> 
+    filter(abs(date - ymd(paste0(year(date), "-07-24"))) <= 7,
+           country == "United States",
+           hymn_num < 1000) |> 
+    print()
+pioneer |> 
+    count(month, day)
+
+count(pioneer, ward)
+(n_meetings <- nrow(count(pioneer, meeting_id)))
+```
+
+```{r}
+pioneer |> 
+    filter(!hymn_num %in% 169:196) |> 
+    cleveland_plot(filter_n = 20, n_weeks = 1)
+
+davies_method(month == 7 & day %in% 17:31)
+```
+
