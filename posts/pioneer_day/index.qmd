@@ -1,13 +1,12 @@
 ---
 title: "What hymns are sung around Pioneer Day?"
 author: "Joey Stanley"
-date: "2024-07-04"
+date: "2024-07-21"
 date-modified: last-modified
 categories: 
   - holidays
   - frequency
 reference-location: margin
-draft: TRUE
 ---
 
 ```{r, include = FALSE}
@@ -20,25 +19,333 @@ library(gt)
 
 
 ```{r}
-pioneer <- freqs |> 
+pioneer_world <- freqs |> 
     filter(!ward %in% c("NA", "Anonymous", "Unknown")) |> 
     filter(!is.na(date)) |> 
-    filter(abs(date - ymd(paste0(year(date), "-07-24"))) <= 7,
-           country == "United States",
+    filter(abs(date - ymd(paste0(year(date), "-07-24"))) < 7,
            hymn_num < 1000) |> 
     print()
+pioneer_us <- pioneer_world |> 
+    filter(country == "United States", 
+           state != "Utah")
+pioneer <- pioneer_world |> 
+    filter(state == "Utah")
 pioneer |> 
     count(month, day)
 
-count(pioneer, ward)
+(n_wards <- nrow(count(pioneer, ward)))
 (n_meetings <- nrow(count(pioneer, meeting_id)))
 ```
+
+
+Pioneer Day is coming up, so it's worth it to look and see what wards typically do with regard to their congregational hymns. We have a few hymns that are explicitly related to pioneers, so we'd expect those to be more popular. Since Pioneer Day is technically a Utah state holiday, the bulk of this post will be based on the `r n_meetings` sacrament meetings that fall within a week of July 24th from the `r n_wards` wards in Utah I have data from. However, towards the end, I'll take a broader look and see if these patterns are the same even outside of Utah.
+
+
+```{r}
+single_hymn_lookup(36)
+```
+
+
+
+
+## Pioneer Day Hymns
+
+```{r}
+n_weeks_for_plotting <- pioneer |> 
+    count(month, day) |> 
+    nrow() / 7
+pioneer |> 
+    filter(!hymn_num %in% 169:196) |> 
+    cleveland_plot(filter_n = 8, n_weeks = n_weeks_for_plotting, return = "table")
+```
+
+```{r}
+# Test out those numbers just in case
+pioneer |> 
+    summarize(has_30 = sum(hymn_num == 30), .by = meeting_id) |> 
+    count(has_30) |> 
+    mutate(prop = n/sum(n)) |> 
+    print()
+```
+
+
+```{r}
+freqs |> 
+    cleveland_plot(return = "table") |> 
+    head(20)
+
+freqs |> 
+    summarize(has_193 = sum(hymn_num == 193), .by = meeting_id) |> 
+    count(has_193) |> 
+    mutate(prop = n/sum(n)) |> 
+    print()
+```
+
+
+
+First, let's first figure out what hymns are considered Pioneer Day hymns. The figure below shows the most common hymns sung within a week of Pioneer Day, excluding sacrament hymns. Probably to no one's surprise, the most common one is <hymn>Come, Come, Ye Saints (#30)</hymn>, which is sung by about a third of wards in Utah around Pioneer Day. The next most common is <hymn>They, the Builders of the Nation (#36)</hymn>, which is sung by about a quarter of wards. There appear to be about five other hymns that stand out during this time: <hymn>Carry On (#255)</hymn>, <hymn>O Ye Mountains High (#34)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Press Forward, Saints (#81)</hymn>, and <hymn>High on the Mountain Top (#5)</hymn>. 
+
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 3}
+#| label: fig-cleveland
+#| fig-cap: Most common hymns around Pioneer Day
+pioneer |> 
+    filter(!hymn_num %in% 169:196) |> 
+    cleveland_plot(col_to_plot = prop_of_meetings,
+                   filter_n = 7, 
+                   n_weeks = n_weeks_for_plotting, breaks = 0.05) + 
+    labs(title = "Most common hymns around Pioneer Day", 
+         subtitle = "Based on data within a week of July 24th in Utah wards")
+```
+
+If you go to the Topics index at the back of the hymnal and look under the entry "Pioneers," you see a list very close to what is actually sung. The one hymn that is listed in the index that is not sung very much is <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>. Meanwhile, <hymn>Press Forward, Saints (#81)</hymn>, and <hymn>High on the Mountain Top (#5)</hymn> might be considered two "honorary" Pioneer Hymns since they see a spike around July 24th even though they're not listed in the index under the "Pioneers" entry.
+
+There are a few other hymns that are more popular around Pioneer Day but are just not as common overall so they don't show up on that plot. The following table shows the hymns that are more likely to be sung within a week of the 24th than during the rest of the year combined. Hymns that show up this table include <hymn>We Are Marching On to Glory (#225)</hymn>, <hymn>Press Forward, Saints (81)</hymn>, and <hymn>In Our Lovely Deseret (#307)</hymn>. It's not a huge trend, so they're sung at other times during the year, but they might get a little extra boost around Pioneer Day.
+
+```{r, include = TRUE}
+davies_method(month == 7 & day %in% 18:30 & state == "Utah") |> 
+    mutate(`hymn` = paste0(hymn_name, " (", hymn_num, ")"), .after = hymn_name) |> 
+    mutate(prop = round(prop, 2)) |> 
+    filter(prop > 2.3,
+           hymn_num < 1000) |> 
+    select(hymn, `times more likely` = prop) |> 
+    gt() |> 
+    tab_header(title = "Hymns most likely be sung around July 24th",
+               subtitle = "Compared to the rest of the year combined")
+```
+
+
+
+
 
 ```{r}
 pioneer |> 
     filter(!hymn_num %in% 169:196) |> 
-    cleveland_plot(filter_n = 20, n_weeks = 1)
-
-davies_method(month == 7 & day %in% 17:31)
+    cleveland_plot(n_weeks = n_weeks_for_plotting, return = "table") |> 
+    filter(hymn_num %in% c(38, 31, 291, 225, 102, 81))
 ```
 
+## Pioneer Season
+
+```{r, fig.height = 5, fig.width = 9}
+pioneer_plus <- freqs |> 
+    filter(!ward %in% c("NA", "Anonymous", "Unknown")) |> 
+    filter(!is.na(date)) |> 
+    filter(abs(date - ymd(paste0(year(date), "-07-24"))) <= 9,
+           country == "United States",
+           state == "Utah")
+
+props_by_day <- pioneer_plus |> 
+    mutate(is_patriotic = hymn_num %in% c(30, 36, 255, 34, 35, 81, 5)) |> 
+    summarize(n_patriotic = sum(is_patriotic),
+              n_hymns = n(), 
+              prop_patriotic = n_patriotic / n_hymns,
+              .by = c(month, day)) |> 
+    arrange(month, day) |> 
+    mutate(month_day = paste(month, day, sep = "/"),
+           month_day = fct_inorder(month_day)) |> 
+    print()
+```
+
+Now that we've established what the most typical Pioneer Day hymns are, we should actually determine when the Pioneer Day "season" is. First, we'll boil all the hymns down as either "Pioneer Day" or "not Pioneer Day." They're considered Pioneer Day hymns if they're one of the top seven hymns shown in @fig-cleveland above. For each day of the year, I'll simply calculate the proportion of Pioneer Day hymns out of the total number of congregational hymns. Since I have data from the past 20 or so years, I have data on every calendar day, so even though the Sunday before Pioneer Day is the 21st this year, if I look back at previous years, I can fill in the gaps. @fig-by_date shows the rise and fall of the number of Pioneer Day hymns by date.
+
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+#| label: fig-by_date
+#| fig-cap: Proportion of patriotic congregational hymns by date 
+ggplot(props_by_day, aes(month_day, prop_patriotic)) +
+    geom_point() + 
+    geom_path(group = 1)  + 
+    geom_vline(xintercept = "7/24", color = "forestgreen", linewidth = 2, alpha = 0.5) + 
+    geom_vline(xintercept = c("7/17", "7/31"), color = "forestgreen", linewidth = 1, linetype = "dashed", alpha = 0.5) + 
+    scale_y_continuous(labels = scales::percent,
+                       breaks = seq(0, 1, 0.1)) + 
+    theme_bw() + 
+    labs(x = "date",
+         y = "percent of congregational hymns",
+         title = "Percentage of Pioneer Day congregational hymns by date")
+```
+
+This is remarkably similar to other plots we've seen around other holidays, like the [Fourth of July](/posts/4th_of_july), the [martyrdom of Joseph Smith](/posts/martyrdom), and [New Year's Day](/new-years). The solid green line shows Pioneer Day itself and the dashed lines show a week before and after. Looks like about half of all congregational hymns on Pioneer Day itself are one of those seven hymns listed above. Considering that between 25%--33% of hymns any week are sacrament hymns, that's a pretty high number. What is interesting is that the dots are higher during the week before than the week after. So, while there is a clear rise and fall, with the most number of hymns being sung on or just before the holiday itself, the dropoff afterwards is a little steeper for Pioneer Day, so wards sing about as many Pioneer Day hymns six days before the 24th as they do two or three days after. 
+
+
+## Outside of Utah
+
+```{r}
+utah_for_comparison <- pioneer_hymn_freq_lookup <- freqs |> 
+    filter(state == "Utah") |> 
+    filter(!ward %in% c("NA", "Anonymous", "Unknown")) |> 
+    filter(!is.na(date)) |> 
+    filter(abs(date - ymd(paste0(year(date), "-07-24"))) < 7,
+           hymn_num < 1000) |> 
+    cleveland_plot(return = "table") |> 
+    filter(hymn_num %in% c(30, 36, 255, 34, 35, 81, 5)) |>
+    select(label, `utah` = prop_of_meetings)
+nonutah_for_comparison <- pioneer_hymn_freq_lookup <- freqs |> 
+    filter(country == "United States", 
+           state != "Utah") |> 
+    filter(!ward %in% c("NA", "Anonymous", "Unknown")) |> 
+    filter(!is.na(date)) |> 
+    filter(abs(date - ymd(paste0(year(date), "-07-24"))) < 7,
+           hymn_num < 1000) |> 
+    cleveland_plot(return = "table") |> 
+    filter(hymn_num %in% c(30, 36, 255, 34, 35, 81, 5)) |>
+    select(label, `nonutah` = prop_of_meetings)
+comparison <- left_join(utah_for_comparison, nonutah_for_comparison, by = "label") |> 
+    mutate(diff = nonutah - utah) |> 
+    arrange(diff) |> 
+    mutate(label = fct_inorder(label))
+```
+
+
+```{r}
+n_utah_meetings <- length(unique(pioneer$meeting_id))
+n_nonutah_meetings <- length(unique(pioneer_us$meeting_id))
+```
+
+Now, everything we've talked about so far has been based on wards in Utah. That makes sense since Pioneer Day is a Utah state holiday. Do wards outside of Utah also sing these same hymns around July 24th? Currently, I have data from `r n_utah_meetings` sacrament meetings Utah and `r n_nonutah_meetings` from outside of Utah. Let's take a look and see how the non-Utahn wards compare. 
+
+@fig-cleveland_US is just like @fig-cleveland, except it is based on data from the other 49 states in the US outside of Utah. If you're like me, you probably don't see much of a difference. The same hymns are the most popular and, perhaps more interestingly, they're nearly popular as they are in Utah.
+
+
+
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 3}
+#| label: fig-cleveland_US
+#| fig-cap: Most common hymns around Pioneer Day in the United States outside of Utah
+pioneer_us |> 
+    filter(state != "Utah") |> 
+    filter(!hymn_num %in% 169:196) |> 
+    cleveland_plot(col_to_plot = prop_of_meetings,
+                   filter_n = 10, 
+                   n_weeks = n_weeks_for_plotting, breaks = 0.05) + 
+    labs(title = "Most common hymns around Pioneer Day", 
+         subtitle = "Based on data within a week of July 24th in American wards outside of Utah")
+```
+
+
+To make the comparisons a little easier, @fig-cleveland_both show those top seven hymns with the Utah numbers and the non-Utah numbers together. Here, the Utah frequencies are in green and are in all cases higher than the non-Utah frequencies, which are in blue. These hymns are slightly less common outside of Utah, but they are pretty close. 
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+#| label: fig-cleveland_both
+#| fig-cap: Most common hymns around Pioneer Day in the United States in and out of Utah
+# Now make a plot like a cleveland plot, but with the two states both plotted at the same time.
+library(ggtext)
+# The lines for the plot
+this_lines <- utah_for_comparison %>%
+    mutate(line_start = 0) %>%
+    pivot_longer(cols = c(line_start, utah), names_to = "line_position", values_to = "value")
+utah_for_comparison |> 
+    arrange(utah) |> 
+    mutate(label = fct_inorder(label)) |> 
+    ggplot(aes(utah, label)) +
+    geom_line(data = this_lines, aes(x = value, group = label)) +
+    geom_point(size = 3, color = "#228833") +
+    geom_point(size = 1, color = "white") +
+    geom_point(data = nonutah_for_comparison, aes(x = nonutah), color = "#4477aa", size = 3) + 
+    geom_point(data = nonutah_for_comparison, aes(x = nonutah), color = "white", size = 1) + 
+    geom_text(aes(label = label), nudge_x = 0.008,
+              hjust = 0, family = "Avenir", size = 3, show.legend = FALSE) +
+    scale_x_continuous(limits = c(0, 0.4),
+                       breaks = seq(0, 5, 0.05),
+                       minor_breaks = seq(0, 5, 0.01),
+                       labels = scales::label_percent(),
+                       expand = expansion(add = c(0, 0.08), mult = c(0,0))) +
+    labs(title = "Percentage of wards that sing the most popular Pioneer Day hymns",
+         subtitle = "Non-Utah wards are in <span style = 'color: #4477aa;'>blue</span>. Utah wards are in <span style = 'color: #228833;'>green</span>.",
+         x = "percent of wards",
+         y = NULL) + 
+    theme_minimal(base_size = 12, base_family = "Avenir") + 
+    theme(axis.ticks.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.line.y = element_line(color = "gray80"),
+          panel.grid.major.y = element_blank(),
+          panel.grid.minor.y = element_blank(),
+          plot.subtitle = element_markdown())
+```
+
+```{r}
+comparison
+```
+
+
+Another way of looking at this is to just focus on the differences. So, for example, about 36.3% of wards in Utah sing <hymn>Come, Come, Ye Saints (#30)</hymn> while only about 31.8% of wards outside of Utah do. (We're still just focused on the United States.) The difference would be about 4.6%. If we calculate those differences for each of these seven hymns and then plot them, @fig-diffs is the result. Here we see how much less common these Pioneer Day hymns are, given that Utah wards are the baseline. 
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+#| label: fig-diffs
+#| fig-cap: Difference in popularity between Utah and non-Utah wards
+
+comparison_lines <- comparison |> 
+    mutate(line_start = 0) |> 
+    select(-utah, -nonutah) |> 
+    pivot_longer(cols = c(line_start, diff), names_to = "line_position", values_to = "value")
+ggplot(comparison, aes(diff, label)) + 
+    geom_point() + 
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.001) + 
+    geom_line(data = comparison_lines, aes(x = value, group = label), color = "#bb5566") +
+    geom_vline(xintercept = 0) + 
+    scale_x_continuous(breaks = seq(-0.05, 0, 0.01), 
+                       labels = scales::label_percent(),
+                       expand = expansion(0, add = c(0.018, 0.001))) +
+    labs(title = "How less popular are Pioneer Day hymns outside of Utah?",
+         subtitle = "Measured as the difference between Utah wards and non-Utah wards",
+         y = NULL,
+         x = "percent difference") + 
+    theme_minimal() + 
+    theme(axis.text.y = element_blank())
+```
+
+```{r}
+freqs |> 
+    filter(country == "United States") |> 
+    filter(!ward %in% c("NA", "Anonymous", "Unknown")) |> 
+    filter(!is.na(date)) |> 
+    filter(abs(date - ymd(paste0(year(date), "-07-24"))) < 7,
+           hymn_num < 1000) |> 
+    
+    mutate(is_30 = hymn_num == 30,
+           region = state == "Utah") |> 
+    infer::chisq_test(region ~ is_30)
+```
+
+Here, we see that <hymn>Come, Come, Ye Saints (#30)</hymn> is, relative to the others, the least common outside of Utah. To be clear, and as seen in @fig-cleveland_both above, it is still the most common hymn around Pioneer Day even outside of Utah. It's almost as common though: 31.8% is not that much lower than 36.3%. That comes out to about 1 in 22 wards outside of Utah *not* singing it. So, again, not a drastic difference.[A $\chi^2$ test fails to find an association between whether a ward sings <hymn>Come, Come, Ye Saints (#30)</hymn> and whether they're in Utah ($\chi^2$ = 2.20, df = 1, *p* = 0.138).]{.aside}
+
+Again, it is striking to me that these hymns are still relatively common outside of Utah, especially given that this is a Utah state holiday. Yes, there are lots of Utah transplants all over the country, but are so many of them in callings that decide what hymns are sung? No, I think there are a significant number of people outside of Utah---who have never lived in Utah---who are still choosing to sing pioneer-related hymns around the time the state of Utah is celebrating Pioneer Day.
+
+```{r}
+pioneer_world |> 
+    filter(country != "United States") |> 
+    count(meeting_id)
+pioneer_world |> 
+    filter(country != "United States") |> 
+    count(country, ward, meeting_id) |> 
+    count(country, ward)
+pioneer_world |> 
+    filter(hymn_num == 30) |> 
+    filter(country != "United States") |> 
+    count(country, ward, meeting_id) |> 
+    count(country, ward)
+```
+
+
+What about the rest of the world? I only have data from 89 sacrament meetings on Sundays within a week of July 24th, so I'm hesitant to make any definitive claims. Nevertheless, <hymn>Come, Come, Ye Saints (#30)</hymn> is indeed *tied* with a few other hymns as being the most common hymn. Six those wards sang it, and for what it's worth, two come from England and two from Canada. So, while definitely not as common as inside the United States, it does seem to be the case that this *Utah state holiday* is being celebrated through hymnsinging in some wards around the world. 
+
+
+```{r, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 3}
+#| label: fig-cleveland_world
+#| fig-cap: Most common hymns around Pioneer Day in the United States outside of Utah
+pioneer_world |> 
+    filter(country != "United States") |> 
+    filter(!hymn_num %in% 169:196) |> 
+    cleveland_plot(col_to_plot = prop_of_meetings,
+                   filter_n = 5, 
+                   n_weeks = n_weeks_for_plotting, breaks = 0.05) + 
+    labs(title = "Most common hymns around Pioneer Day", 
+         subtitle = "Based on data within a week of July 24th in American wards outside of Utah")
+```
+
+## Pioneer Day as a Latter-day Saint holiday
+
+I've said this several times already, but Pioneer Day is officially just a Utah state holiday. It makes sense why many wards sing pioneer-related hymns around July 24th. However, it is surpring to me to see that nearly as many wards in the US *outside* of Utah sing those same pioneer-related hymns. 
+
+This sheds light on an interesting concept about holidays in different religions. Most of the holidays that I can think of that Latter-day Saints celebrate are national/cultural holidays like Halloween, Valentine's Day, Thanksgiving, New Year's, and Mother's Day in the US (and I know Latter-day Saints in other parts of the world celebrate local holidays there too). The others we observe are widely celebrated Christian holidays like Christmas and Easter. Like Christians, other religions have holidays specific to their faith, like Yom Kippur and Hanukkah for Jews, Eid Al-Fitr and Eid Al-Adha for Muslims, Diwali and Holi for Hindus. Some Christian denominations have their own holidays (Ash Wednesday for Catholics, for example). 
+
+At least based on the hymn data, I think you could make a decent argument that Pioneer Day could be considered a Latter-day Saint holiday. It's certainly not official---as far as I can tell, the word "pioneer" doens't even occur in the General Handbook. However, we have sacrament meeting talks, youth treks, and the Tabernacle Choir does a special concert. Basically as much pomp and circumstance as other holidays. As mentioned in [this *New Era* article](https://www.churchofjesuschrist.org/study/new-era/2010/07/to-the-point/what-is-the-significance-of-pioneer-day-is-it-celebrated-all-over-the-church?lang=eng) from 2010, it's a day when many people can think back on their heritage or maybe the first converts in their family, regardless of whether they crossed the plains pulling handcarts. I'm not an expert on culture or whatever, but at least based on the hymn data, it sure looks like Pioneer Day is a Latter-day Saint holiday. 
