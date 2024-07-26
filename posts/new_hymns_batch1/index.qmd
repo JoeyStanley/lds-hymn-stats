@@ -93,17 +93,18 @@ meetings_since_release |>
          fill = "date")
 ```
 
-There are far more zeros than I expected. Unsurprisingly, the first week is when the most number of wards sang new hymns, but even then it was only about a third of wards. Since then, between a third and a quarter of wards have sung new hymns on a given Sunday. 
+There are far more zeros than I expected. Unsurprisingly, the first week is when the most number of wards sang new hymns, but even then it was only about a third of wards. Since then, it has been quite consistent and between a third and a quarter of wards have sung new hymns on a given Sunday.
 
 
 ```{r}
+n_weeks_since_release
 wards_with_complete_data <- meetings_since_release |> 
     summarize(n_new = sum(hymn_num > 1000), .by = c(ward, date)) |> 
     arrange(ward, date) |> 
     
     # only wards with complete datasets
     add_count(ward, name = "n_weeks") |> 
-    filter(n_weeks == 6) |> 
+    filter(n_weeks >= n_weeks_since_release) |> 
     
     summarize(weeks_with_new = sum(n_new >= 1), .by = ward) |> 
     count(weeks_with_new) |> 
@@ -116,7 +117,7 @@ n_wards_with_complete_data <- meetings_since_release |>
     nrow()
 ```
 
-However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from every week since the first batch of hymns came out. About 35% of them haven't sung new hymns at all yet. About a third of them have sung three new hymns. The most was one ward that has sung a new hymn six out of seven weeks so far. 
+However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from every week since the first batch of hymns came out. About 20% of them haven't sung new hymns at all yet. Most of these wards have sung 3--5 new hymns since June 2nd.
 
 
 ## What hymns are most popular?
