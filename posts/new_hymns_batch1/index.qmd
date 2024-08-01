@@ -93,7 +93,7 @@ meetings_since_release |>
          fill = "date")
 ```
 
-There are far more zeros than I expected. Unsurprisingly, the first week is when the most number of wards sang new hymns, but even then it was only about a third of wards. Since then, it has been quite consistent and between a third and a quarter of wards have sung new hymns on a given Sunday.
+There are far more zeros than I expected. Unsurprisingly, the first week is when the most number of wards sang new hymns, but even then it was only about a third of wards. Since then, it has been quite consistent and between a third and a quarter of wards have sung new hymns on a given Sunday. For some reason, July 28 is the week so far that saw the greatest proportion of wards singing new hymns. 
 
 
 ```{r}
@@ -102,9 +102,9 @@ wards_with_complete_data <- meetings_since_release |>
     summarize(n_new = sum(hymn_num > 1000), .by = c(ward, date)) |> 
     arrange(ward, date) |> 
     
-    # only wards with complete datasets
+    # only wards with (nearly) complete datasets
     add_count(ward, name = "n_weeks") |> 
-    filter(n_weeks >= n_weeks_since_release) |> 
+    filter(n_weeks >= n_weeks_since_release * 0.8) |> 
     
     summarize(weeks_with_new = sum(n_new >= 1), .by = ward) |> 
     count(weeks_with_new) |> 
@@ -114,10 +114,13 @@ n_wards_with_complete_data <- meetings_since_release |>
     distinct(date, ward) |> 
     count(ward) |> 
     filter(n == 2) |> 
-    nrow()
+    nrow() |> 
+    print() 
+ggplot(wards_with_complete_data, aes(weeks_with_new, prop)) + 
+    geom_col()
 ```
 
-However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from every week since the first batch of hymns came out. About 20% of them haven't sung new hymns at all yet. Most of these wards have sung 3--5 new hymns since June 2nd.
+However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 80% of the weeks since the first batch of hymns came out. About 25% of them haven't sung new hymns at all yet. Otherwise, typically wards have sung new hymns in about four sacrament meetings since June 2nd. 
 
 
 ## What hymns are most popular?
@@ -201,17 +204,20 @@ meetings_since_release |>
 
 <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was most popular during the first week. Of the wards that sang new hymns, two thirds of them sang it on June 2nd. My guess is we will never see a hymn hit that kind of popularity again, with the exception of new holiday hymns. Since then, the popularity of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> has gone down, and most of the other hymns went up a little bit. 
 
-There are two other major trends so far. <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father's day. A common trend was to sing Father's Day songs for opening and closing hymns and that hymn as the sacrament hymn. Also, <hymn>It Is Well With My Soul (#1003)</hymn> saw a big spike on July 14th. 
+There are a few other major trends so far. <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father's day. A common trend was to sing Father's Day songs for opening and closing hymns and that hymn as the sacrament hymn. Also, <hymn>It Is Well With My Soul (#1003)</hymn> saw a big spike on July 14th. Finally, <hymn>His Eye Is on the Sparrow (#1005)</hymn> was most common on July 28th.
 
 ## When during meetings are these hymns sung?
 
-We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. We're already starting to see that each hymn has its own story. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is a closing hymn about half the time, but is still common as an opening or intermediate hymn. <hymn>I Will Walk with Jesus (#1004)</hymn> and <hymn>His Eye Is on the Sparrow (#1005)</hymn> show a similar pattern. <hymn>It Is Well with My Soul (1003)</hymn> is more likely to be a closing hymn. Two hymns have exclusively been sung as sacrament hymns, while <hymn>Gethsemane (#1009)</hymn> has also been sung elsewhere in the meeting.
+We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. 
 
 ```{r, include = TRUE}
 meetings_since_release |> 
     filter(hymn_num > 1000) |> 
     count(name_num, hymn_num, type) |> 
-    pivot_wider(names_from = type, values_from = n, values_fill = 0) |> 
+    mutate(n = n/sum(n), 
+           n = scales::percent(n),
+           .by = name_num) |> 
+    pivot_wider(names_from = type, values_from = n, values_fill = "0%") |> 
     arrange(hymn_num) |> 
     select(-hymn_num) |> 
     select(name_num, Opening, Sacrament, Intermediate, Closing) |> 
@@ -220,6 +226,9 @@ meetings_since_release |>
     tab_header(title = "When are new hymns sung in sacrament meeting?",
                subtitle = "Since June 2")
 ```
+
+We're already starting to see that each hymn has its own story. Unsurprisingly, the hymns that are most likely to be sacrament hymns are <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, and <hymn>Gethsemane (#1009)</hymn>, with that last one being sung pretty often elsewhere in the meeting. The only hymn that is most commonly sung as an opening hymn is <hymn>Think a Sacred Song (#1006)</hymn>, but I have only seen it sung in a few wards so that may change once more data comes in. Three hymns are most common as closing hymns: <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, <hymn>It Is Well with My Soul (#1003)</hymn>, and <hymn>His Eye Is on the Sparrow (#1005)</hymn>, though all three are pretty common as opening and intermediate hymns as well. The last two hymns, <hymn>I Will Walk with Jesus (#1004)</hymn> and especially <hymn>When the Savior Comes Again (#1002)</hymn>, are most commonly sung as intermediate hymns.
+
 
 ## Conclusion
 
