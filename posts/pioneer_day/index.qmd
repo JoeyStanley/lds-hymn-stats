@@ -188,7 +188,7 @@ prop_meetings_with_pioneer_day_hymns <- pioneer |>
     pull(prop)
 ```
 
-Overall, if we average everything out, it looks like most wards sing two or three Pioneer Day hymns. About `r scales::percent(prop_meetings_with_pioneer_day_hymns)` of sacrament meetings in Utah sing at least one Pioneer Day hymn around this time of year.
+Overall, if we average everything out, it looks like most wards sing two or three Pioneer Day hymns. About `r scales::percent(prop_meetings_with_pioneer_day_hymns)` of sacrament meetings in Utah see at least one Pioneer Day hymn around this time of year.
 
 ```{r}
 pioneer_plus |> 
