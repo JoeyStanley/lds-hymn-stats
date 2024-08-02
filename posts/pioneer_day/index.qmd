@@ -105,7 +105,7 @@ There are a few other hymns that are more popular around Pioneer Day but are jus
 davies_method(month == 7 & day %in% 18:30 & state == "Utah") |> 
     mutate(`hymn` = paste0(hymn_name, " (", hymn_num, ")"), .after = hymn_name) |> 
     mutate(prop = round(prop, 2)) |> 
-    filter(prop > 2.3,
+    filter(prop > 2.15,
            hymn_num < 1000) |> 
     select(hymn, `times more likely` = prop) |> 
     gt() |> 
@@ -123,6 +123,7 @@ pioneer |>
     cleveland_plot(n_weeks = n_weeks_for_plotting, return = "table") |> 
     filter(hymn_num %in% c(38, 31, 291, 225, 102, 81))
 ```
+
 
 ## Pioneer Season
 
@@ -165,7 +166,55 @@ ggplot(props_by_day, aes(month_day, prop_patriotic)) +
          title = "Percentage of Pioneer Day congregational hymns by date")
 ```
 
-This is remarkably similar to other plots we've seen around other holidays, like the [Fourth of July](/posts/4th_of_july), the [martyrdom of Joseph Smith](/posts/martyrdom), and [New Year's Day](/new-years). The solid green line shows Pioneer Day itself and the dashed lines show a week before and after. Looks like about half of all congregational hymns on Pioneer Day itself are one of those seven hymns listed above. Considering that between 25%--33% of hymns any week are sacrament hymns, that's a pretty high number. What is interesting is that the dots are higher during the week before than the week after. So, while there is a clear rise and fall, with the most number of hymns being sung on or just before the holiday itself, the dropoff afterwards is a little steeper for Pioneer Day, so wards sing about as many Pioneer Day hymns six days before the 24th as they do two or three days after. 
+This is remarkably similar to other plots we've seen around other holidays, like the [Fourth of July](/posts/4th_of_july), the [martyrdom of Joseph Smith](/posts/martyrdom), and [New Year's Day](/new-years). The solid green line shows Pioneer Day itself and the dashed lines show a week before and after. Looks like about half of all congregational hymns on Pioneer Day itself are one of those seven hymns listed above. Considering that between 25%--33% of hymns any week are sacrament hymns, that's a pretty high number. 
+
+What is interesting is that the dots are higher during the week before than the week after. So, while there is a clear rise and fall, with the most number of hymns being sung on or just before the holiday itself, the dropoff afterwards is a little steeper for Pioneer Day, so wards sing about as many Pioneer Day hymns six days before the 24th as they do two or three days after. This year (2024) was a good example of this trend. Pioneer Day was on Wednesday, so the Sunday before (the 21st) was just as close as the Sunday after (the 28th). Sure enough, about half as many wards sang Pioneer Day related hymns on July 28th than on July 21st.
+
+```{r}
+pioneer |> 
+    summarize(n_pioneer_day = sum(hymn_num %in% c(30, 36, 255, 34, 35, 81, 5)), 
+              .by = meeting_id) |> 
+    count(n_pioneer_day) |> 
+    mutate(prop = n/sum(n)) |> 
+    ggplot(aes(n_pioneer_day, prop)) + 
+    geom_col()
+
+prop_meetings_with_pioneer_day_hymns <- pioneer |> 
+    summarize(has_pioneer_day = sum(hymn_num %in% c(30, 36, 255, 34, 35, 81, 5)) >= 1, 
+              .by = meeting_id) |> 
+    count(has_pioneer_day) |> 
+    mutate(prop = n/sum(n)) |> 
+    filter(has_pioneer_day) |> 
+    pull(prop)
+```
+
+Overall, if we average everything out, it looks like most wards sing two or three Pioneer Day hymns. About `r scales::percent(prop_meetings_with_pioneer_day_hymns)` of sacrament meetings in Utah sing at least one Pioneer Day hymn around this time of year.
+
+```{r}
+pioneer_plus |> 
+    summarize(n_pioneer = sum(hymn_num %in% c(30, 36, 255, 34, 35, 81, 5)), 
+              .by = c(meeting_id, month, day)) |> 
+    count(month, day, n_pioneer) |> 
+    mutate(prop = n/sum(n), .by = day) |> 
+    arrange(month, day) |>
+    mutate(month_day = paste(month, day, sep = "/"),
+           month_day = fct_inorder(month_day)) |>
+    filter(n_pioneer >= 1) |> 
+    print() |> 
+    ggplot(aes(month_day, prop, color = as.factor(n_pioneer), group = n_pioneer)) + 
+    geom_point() + 
+    geom_path() + 
+    geom_vline(xintercept = "7/24", color = "forestgreen", linewidth = 2, alpha = 0.5) + 
+    geom_vline(xintercept = c("7/17", "7/31"), color = "forestgreen", linewidth = 1, linetype = "dashed", alpha = 0.5) + 
+    scale_y_continuous(labels = scales::percent,
+                       breaks = seq(0, 1, 0.1)) + 
+    theme_bw() + 
+    labs(x = "date",
+         y = "percent of congregational hymns",
+         title = "Percentage of Pioneer Day congregational hymns by date")
+```
+
+
 
 
 ## Outside of Utah
@@ -208,7 +257,7 @@ Now, everything we've talked about so far has been based on wards in Utah. That 
 
 
 
-```{r, include = TRUE, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 3}
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
 #| label: fig-cleveland_US
 #| fig-cap: Most common hymns around Pioneer Day in the United States outside of Utah
 pioneer_us |> 
@@ -284,7 +333,7 @@ ggplot(comparison, aes(diff, label)) +
     geom_vline(xintercept = 0) + 
     scale_x_continuous(breaks = seq(-0.05, 0, 0.01), 
                        labels = scales::label_percent(),
-                       expand = expansion(0, add = c(0.018, 0.001))) +
+                       expand = expansion(0, add = c(0.019, 0.001))) +
     labs(title = "How less popular are Pioneer Day hymns outside of Utah?",
          subtitle = "Measured as the difference between Utah wards and non-Utah wards",
          y = NULL,
@@ -306,7 +355,7 @@ freqs |>
     infer::chisq_test(region ~ is_30)
 ```
 
-Here, we see that <hymn>Come, Come, Ye Saints (#30)</hymn> is, relative to the others, the least common outside of Utah. To be clear, and as seen in @fig-cleveland_both above, it is still the most common hymn around Pioneer Day even outside of Utah. It's almost as common though: 31.8% is not that much lower than 36.3%. That comes out to about 1 in 22 wards outside of Utah *not* singing it. So, again, not a drastic difference.[A $\chi^2$ test fails to find an association between whether a ward sings <hymn>Come, Come, Ye Saints (#30)</hymn> and whether they're in Utah ($\chi^2$ = 2.20, df = 1, *p* = 0.138).]{.aside}
+Here, we see that <hymn>Come, Come, Ye Saints (#30)</hymn> is, relative to the others, the least common outside of Utah. To be clear, and as seen in @fig-cleveland_both above, it is still the most common hymn around Pioneer Day even outside of Utah. It's almost as common though: 31.8% is not that much lower than 37.1%. That comes out to about 1 in 20 wards outside of Utah *not* singing it. So, again, not a drastic difference.[A $\chi^2$ test fails to find an association between whether a ward sings <hymn>Come, Come, Ye Saints (#30)</hymn> and whether they're in Utah ($\chi^2$ = 3.27, df = 1, *p* = 0.07).]{.aside}
 
 Again, it is striking to me that these hymns are still relatively common outside of Utah, especially given that this is a Utah state holiday. Yes, there are lots of Utah transplants all over the country, but are so many of them in callings that decide what hymns are sung? No, I think there are a significant number of people outside of Utah---who have never lived in Utah---who are still choosing to sing pioneer-related hymns around the time the state of Utah is celebrating Pioneer Day.
 
@@ -326,7 +375,7 @@ pioneer_world |>
 ```
 
 
-What about the rest of the world? I only have data from 89 sacrament meetings on Sundays within a week of July 24th, so I'm hesitant to make any definitive claims. Nevertheless, <hymn>Come, Come, Ye Saints (#30)</hymn> is indeed *tied* with a few other hymns as being the most common hymn. Six those wards sang it, and for what it's worth, two come from England and two from Canada. So, while definitely not as common as inside the United States, it does seem to be the case that this *Utah state holiday* is being celebrated through hymnsinging in some wards around the world. 
+What about the rest of the world? I only have data from 89 sacrament meetings on Sundays within a week of July 24th, so I'm hesitant to make any definitive claims. Nevertheless, <hymn>Come, Come, Ye Saints (#30)</hymn> is indeed *tied* with a few other hymns as being the most common hymn. Six those wards sang it, and for what it's worth, two come from England and two from Canada. So, while definitely not as common as inside the United States, it does seem to be the case that this *Utah state holiday* is being celebrated through hymn-singing in some wards around the world. 
 
 
 ```{r, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 3}
