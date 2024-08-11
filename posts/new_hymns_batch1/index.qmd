@@ -93,7 +93,7 @@ meetings_since_release |>
          fill = "date")
 ```
 
-There are far more zeros than I expected. Unsurprisingly, the first week is when the most number of wards sang new hymns, but even then it was only about a third of wards. Since then, it has been quite consistent and between a third and a quarter of wards have sung new hymns on a given Sunday. For some reason, July 28 is the week so far that saw the greatest proportion of wards singing new hymns. 
+There are far more zeros than I expected. Unsurprisingly, the first week is when the most number of wards sang new hymns, but even then it was only about a third of wards. Since then, it has been quite consistent and between a third and a quarter of wards have sung new hymns on a given Sunday. For some reason, July 28 is the week so far that saw the greatest proportion of wards singing new hymns, and August 4th is, by a small margin, the Sunday with the smallest.
 
 
 ```{r}
@@ -104,7 +104,7 @@ wards_with_complete_data <- meetings_since_release |>
     
     # only wards with (nearly) complete datasets
     add_count(ward, name = "n_weeks") |> 
-    filter(n_weeks >= n_weeks_since_release * 0.8) |> 
+    filter(n_weeks >= n_weeks_since_release * 0.9) |> 
     
     summarize(weeks_with_new = sum(n_new >= 1), .by = ward) |> 
     count(weeks_with_new) |> 
@@ -117,10 +117,18 @@ n_wards_with_complete_data <- meetings_since_release |>
     nrow() |> 
     print() 
 ggplot(wards_with_complete_data, aes(weeks_with_new, prop)) + 
-    geom_col()
+    geom_col() + 
+    scale_x_continuous(name = "weeks with a new hymn",
+                       breaks = 0:100) + 
+    scale_y_continuous(labels = scales::percent, 
+                       name = "percent of wards", 
+                       expand = expansion(0, 0)) + 
+    labs(title = "How many weeks since June 2 have wards included new hymns?",
+         subtitle = paste("Based on the", n_wards_with_complete_data, "wards with >90% complete data")) + 
+    theme_minimal()
 ```
 
-However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 80% of the weeks since the first batch of hymns came out. About 25% of them haven't sung new hymns at all yet. Otherwise, typically wards have sung new hymns in about four sacrament meetings since June 2nd. 
+However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 90% of the weeks since the first batch of hymns came out. About 25% of them haven't sung new hymns at all yet. Otherwise, typically wards have sung new hymns in about four sacrament meetings since June 2nd. 
 
 
 ## What hymns are most popular?
@@ -183,7 +191,7 @@ meetings_since_release |>
     
     # Put the dates in order
     arrange(date) |> 
-    mutate(date = fct_inorder(sf(date))) |> 
+    mutate(date = date) |> 
     
     # proportions per week
     mutate(prop = n/sum(n), .by = date) |> 
@@ -191,7 +199,7 @@ meetings_since_release |>
     ggplot(aes(date, prop, group = name_num)) + 
     geom_path() + 
     geom_point() + 
-    # scale_x_manual() +
+    scale_x_date(date_breaks = "2 weeks", date_labels = "%m/%d") +
     scale_y_continuous(labels = scales::percent) + 
     facet_wrap(~name_num, ncol = 2) + 
     labs(title = "Proportion of wards singing new hymns by week",
