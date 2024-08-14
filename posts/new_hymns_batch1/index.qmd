@@ -180,6 +180,7 @@ Those numbers may seem low, but keep in mind that wards are unlikely to repeat t
 
 Now that we're several weeks past the release of this first batch of hymns, we can start to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
 
+
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 meetings_since_release |> 
     filter(hymn_num > 1000) |>  

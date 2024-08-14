@@ -3,7 +3,7 @@ title: "How many unique hymns does a ward sing in a year?"
 description: "Let's say you're an ambitious music coordinator and you want to sing as many different hymns as possible. How many could you get through in a year? How many hymns do wards typically get through in a year?"
 author: "Joey Stanley"
 date: 9/10/23
-date-modified: 10/29/23
+date-modified: last-modified
 alises:
     "/posts/unique_hymns_per_year"
 categories:
@@ -24,10 +24,10 @@ There are 52 weeks in a year.[Okay, some years have 53 Sundays, but for simplici
 
 Well, right off the bat, we know that you can't possibly get through the entire hymnal in a year, because there are 341 hymns! Even if you exclude the men's and women's arrangements in the back, [which are hardly ever sung](/posts/mens_womens_arrangements.qmd), and (for American wards) <hymn>God Save the King (#341)</hymn>, that's 310 hymns.
 
-But, let's not forget that sacrament hymns almost always have to be one of the hymns in the 169--196 range. There are 28 of them. We'll assume you get through all 28 of them, but not all wards do because there are a few that are [clearly less popular than others](/posts/sacrament/index.html#frequency). So, 48 of your 184 hymns are tied up as sacrament hymns, some of which will have to be repeated. That leaves 136 remaining opening, intermediate, and closing hymn slots. If you didn't repeat any *and* had zero special musical numbers, then yes, you could sing 136 unique hymns, plus the 28 sacrament hymns, for a total of 164 unique hymns per year. That is the maximum any ward could do.
+But, let's not forget that [sacrament hymns](/posts/sacrament) pretty much have to be one of the hymns in the 169--196 range. There are 28 of them. We'll assume you get through all 28 of them, but not all wards do because there are a few that are [clearly less popular than others](/posts/sacrament/index.html#frequency). So, 48 of your 184 hymns are tied up as sacrament hymns, some of which will have to be repeated. That leaves 136 remaining opening, intermediate, and closing hymn slots. If you didn't repeat any *and* had zero special musical numbers, then yes, you could sing 136 unique hymns, plus the 28 sacrament hymns, for a total of 164 unique hymns per year. That is the maximum any ward could realistically do.
 
 ```{r}
-nrow(freqs)
+n_hymns <- nrow(freqs)
 get_n_distinct_meetings()
 (hymns_per_week <- nrow(freqs) / get_n_distinct_meetings())
 ```
@@ -35,26 +35,40 @@ get_n_distinct_meetings()
 
 If you really were determined to all 310 hymns without repeating, except for sacrament hymns, it would take 94 weeks to do so, or just shy of two years, under perfect conditions. But having special musical numbers and ward choirs makes it impossible to reach that goal. (And I'd encourage you to not deny people the opportunity to do a special musical number just so you can hit this goal!)
 
-I currently have 63,307 hymns from 18,218 sacrament meetings. With this data, I can calculate how often wards typically sing intermediate hymns by simply dividing those two numbers. If the number is close to 3, then most wards sing 3 congregational hymns a week, meaning there's a special musical number or for whatever reason the intermediate hymn is not sung. If the number is close to 4, then most wards sing four congregational hymns: opening, sacrament, intermediate, and closing. As it turns out, it's around 3.47.
+
+```{r}
+avg_nonfast <- freqs |> 
+    filter(!((nth_sunday == 1 & !month %in% c(4, 10)) | 
+               (day >= 25 & month == 3) | 
+               (day >= 24 & month == 9))) |> 
+    summarize(n_meetings = length(unique(meeting_id)),
+              n = n()) |> 
+    mutate(avg = n/n_meetings) |> 
+    pull(avg) |> 
+    round(2)
+```
+
+
+I currently have `r scales::comma(n_hymns)` hymns from `r scales::comma(get_n_distinct_meetings())` sacrament meetings. With this data, I can calculate how often wards typically sing intermediate hymns by simply dividing those two numbers. If the number is close to 3, then most wards sing 3 congregational hymns a week, meaning there's a special musical number or for whatever reason the intermediate hymn is not sung. If the number is close to 4, then most wards sing four congregational hymns: opening, sacrament, intermediate, and closing. As it turns out, it's currently `r hymns_per_week`. But that includes Fast Sundays. If we filter out the [Fast Sundays](/posts/fast_sunday), it goes up a little bit to `r avg_nonfast`.
 
 ::: {.callout-tip icon="false"}
 ### Fun Fact
 
-The average number of hymns sung in sacrament meeting is 3.47.
+The average number of hymns sung in sacrament meeting is `r round(hymns_per_week,2)`. If Fast Sundays are excluded, it's `r avg_nonfast`.
 :::
 
 This means that means---across my dataset---only about half of the time does a ward sing an intermediate hymn. If, across a few weeks or months, your ward has a lower number than that, then you have more special musical numbers than a typical ward. If your average is higher, it means you have fewer.
 
 ```{r}
-48 * hymns_per_week
-167 - 48
-119 + 28
-282 / (hymns_per_week - 1)
-114 / 48
+max_hymns_per_year <- ceiling(48 * hymns_per_week)
+max_hymns_minus_sacrament <- max_hymns_per_year - 48
+max_hymns_plus_sacrament <- max_hymns_minus_sacrament + 28
+weeks_to_finish <- ceiling(282 / (hymns_per_week - 1))
+months_remainder <- round((weeks_to_finish - (48*2))/4)
 ```
 
 
-Let's recalculate our numbers then. If there are 48 weeks, and 3.47 hymns per week, that's a max of 167 (I'll round up) total hymns sung per ward per year. 48 of those are chewed up by the 28 sacrament hymns, so you're left with 119 slots for the rest of the hymnal. If you didn't repeat any and add back the 28 sacrament hymns, that's a max of 147 unique hymns per year. And if you're only able to get through 2.47 new hymns per week, and there are 282 non-sacrament hymns to get through, it would take 114 weeks to get through all of them, or just about two years and four months.
+Let's recalculate our numbers then. If there are 48 weeks, and `r round(hymns_per_week,2)` hymns per week, that's a max of `r max_hymns_per_year` (I'll round up) total hymns sung per ward per year. 48 of those are chewed up by the 28 sacrament hymns, so you're left with `r max_hymns_minus_sacrament` slots for the rest of the hymnal. If you didn't repeat any and add back the 28 sacrament hymns, that's a max of `r max_hymns_plus_sacrament` unique hymns per year. And if you're only able to get through `r round(max_hymns_per_year,2)-1` new hymns per week, and there are 282 non-sacrament hymns to get through, it would take `r weeks_to_finish` weeks to get through all of them, or just about two years and five months.
 
 ```{r}
 wards_with_1_year <- freqs %>%
@@ -63,12 +77,11 @@ wards_with_1_year <- freqs %>%
     filter(n > 48,
            !is.na(ward),
            ward != "Anonymous") %>%
-    pull(ward) %>%
-    print()
+    pull(ward)
 ```
 
 
-```{r}
+```{r, cache = TRUE}
 bootstrap_hymns <- function(df) {
     meeting_id_sample <- df %>%
         pull(meeting_id) %>%
@@ -97,7 +110,8 @@ bootstrapped <- freqs %>%
     mutate(percentile = 1-(rank/max(rank))) %>%
     print() 
 summary(bootstrapped)
-sd(bootstrapped$n_unique_hymns_mean)
+sd_means <- sd(bootstrapped$n_unique_hymns_mean)
+mean_means <- mean(bootstrapped$n_unique_hymns_mean)
 ```
 
 
@@ -106,7 +120,7 @@ sd(bootstrapped$n_unique_hymns_mean)
 ::: {.callout-tip icon="false"}
 ### Fun Fact
 
-Most wards sing around 105 unique hymns per year.
+Most wards sing around `r round(mean_means)` unique hymns per year.
 :::
 
 ::: {.callout-caution collapse="true"}
@@ -114,7 +128,7 @@ Most wards sing around 105 unique hymns per year.
 
 To get this number, I started off with the `r length(wards_with_1_year)` wards from which I have at least a year's worth of data. I didn't want to base the calculation on wards that contributed less data because it messes with the results.
 
-But, even with these 108 wards, I can't simply divide the number of unique hymns by the number of sacrament meetings because the more data I have from a ward, the more likely they are to repeat hymns, especially common ones and around holidays. Yes, I am also more likely to see an unusual hymn if I have more data from them, but it seems like the repeated hymns has a stronger effect. It appears to follow some sort of exponential distribution.
+But, even with these `r length(wards_with_1_year)` wards, I can't simply divide the number of unique hymns by the number of sacrament meetings because the more data I have from a ward, the more likely they are to repeat hymns, especially common ones and around holidays. Yes, I am also more likely to see an unusual hymn if I have more data from them, but it seems like the repeated hymns has a stronger effect. It appears to follow some sort of inverse distribution.
 
 ```{r, include = TRUE, echo = FALSE, fig.height = 4}
 freqs %>%
@@ -129,9 +143,10 @@ freqs %>%
     # print() %>%
     ggplot(aes(unique_meetings, hymns_per_year)) + 
     geom_point() + 
-    scale_y_continuous(breaks = seq(0, 200, 20)) + 
+    scale_x_continuous(breaks = seq(0, 1000, 50)) + 
+    scale_y_continuous(breaks = seq(0, 200, 20), expand = expansion(0, 2)) + 
     labs(title = "Number of unique hymns per year by how much data I have per ward",
-         subtitle = "It appears to follow some sort of exponential curve!",
+         subtitle = "It appears to follow some sort of inverse curve!",
          x = "Unique meetings I have data from",
          y = "Unique hymns per year") + 
     theme_minimal()
@@ -139,21 +154,32 @@ freqs %>%
 
 So, because of *probability*, it's not meaningful to compare six years of data from one ward to one year of data from another ward.
 
-I tried a rolling cumulative sum of unique hymns, but I didn't know how to implement that in R. So instead, I implemented a bootstrapping technique and sampled 48 meetings, without replacement, 100 times per ward, and got that average. The standard deviation was 3.16---a surprisingly narrow distribution if you ask me.
+I tried a rolling cumulative sum of unique hymns, but I didn't know how to implement that in R. So instead, I implemented a bootstrapping technique and sampled 48 meetings, without replacement, 100 times per ward, and got that average. The standard deviation was `r round(sd_means,2)`.
 :::
 
-Assuming about 24--28 of those are sacrament hymns, that means most wards only sing about 80 or so unique non-sacrament hymns per year. It appears then that another 28 of those 80 hymns are repeated each year.
+Assuming about 24--28 of those are sacrament hymns, that means most wards only sing about `r round(mean_means) - 24` or so unique non-sacrament hymns per year. It appears then that another 28 of those `r `round(mean_means) - 24` hymns are repeated each year.
 
-The average is around 105, but that doesn't mean all wards were close to that. 50% of wards were between about 97 and 111 hymns per year. Others do more and others do fewer. If you're not sure whether your ward has enough variety, count the number of unique hymns in a 1-year period and if it's in the low 100s, you're doing alright.  
+```{r}
+percentile25 <- round(quantile(bootstrapped$n_unique_hymns_mean, 0.25))
+percentile75 <- round(quantile(bootstrapped$n_unique_hymns_mean, 0.75))
+```
 
-The most variety of hymns I have in my dataset is 131 unique hymns per ward. That's pretty good, and certainly much better than average. The year with the least variety was one ward that sang just 66 unique hymns in a year. Considering that many of the holiday hymns aren't going to be repeated, it means that many (and perhaps most) of the non-festive hymns were repeated that year.
 
-These numbers should be taken with a grain of salt because it's only based on 108 wards.[For what it's worth, a previous version of this blog post was written based on a much smaller sample of 20 wards. The numbers are more or less the same, which leads me to believe they're reasonably accurate.]{.aside} If you have access to a year's worth of data from your ward, please visit the [contribute](/contribute.qmd) page!
+The average is around `r round(mean_means)`, but that doesn't mean all wards were close to that. 50% of wards were between about `r percentile25` and `r percentile75` hymns per year. Others do more and others do fewer. If you're not sure whether your ward has enough variety, count the number of unique hymns in a 1-year period and if it's in the low 100s, you're doing alright.  
+
+```{r}
+max_boostrap <- round(max(bootstrapped$n_unique_hymns_mean))
+min_bootstrap <- round(min(bootstrapped$n_unique_hymns_mean))
+```
+
+The most variety of hymns I have in my dataset is `r max_boostrap` unique hymns per ward. That's pretty good, and certainly much better than average. The year with the least variety was one ward that sang just `r min_bootstrap` unique hymns in a year. Considering that many of the holiday hymns aren't going to be repeated, it means that many (and perhaps most) of the non-festive hymns were repeated that year in that ward.
+
+These numbers should be taken with a grain of salt because it's only based on `r length(wards_with_1_year)` wards.[For what it's worth, a previous versions of this blog post was written based on a much smaller sample of 20 wards. The numbers are more or less the same, which leads me to believe they're reasonably accurate.]{.aside} If you have access to a year's worth of data from your ward, please visit the [contribute](/contribute.qmd) page!
 
 
 ## Are there fewer intermediate hymns in two-hour church?
 
-Someone suggested to me one time that the number of intermediate hymns we sing may have shifted once we switched to two-hour church (and thus a slightly shorter sacrament meeting) in January 2019. In their ward, they sense that intermediate hymns are being sung less, not because of more special musical numbers, but because it cut into the speakers' talks and there just wasn't enough time.[The Sunday I wrote this section, my ward did this very thing: we had not intermdiate hymn because we had three adult speakers.]{.aside} This is a tricky question to answer because for much of the time since 2019 has been during covid. But, enough time has passed that we can try to answer this question. 
+Someone suggested to me one time that the number of intermediate hymns we sing may have shifted once we switched to two-hour church (and thus a slightly shorter sacrament meeting) in January 2019. In their ward, they sense that intermediate hymns are being sung less, not because of more special musical numbers, but because it cut into the speakers' talks and there just wasn't enough time.[The Sunday I wrote this section, my ward did this very thing: we had not intermediate hymn because we had three adult speakers.]{.aside} This is a tricky question to answer because for much of the time since 2019 has been during covid. But, enough time has passed that we can try to answer this question. 
 
 The following table summaries how many hymns per sacrament meeting were sung in three periods: three-hour church (before January 2019), the "covid era" (March--December 2020), and two-hour church (all of 2019, January--February 2020, and January 2021 through now). Here we can see that the average number of congregational hymns sung in three-hour church was 3.36 and the average number of hymns sung in two-hour church was 3.24---a drop of about 0.12 hymns per week, or about one less intermediate hymn every eight or so weeks. 
 
@@ -172,13 +198,13 @@ freqs %>%
     knitr::kable()
 ```
 
-Here is a plot that shows this trend across time, that might shed a little light on these numbers. Since I have data spanning over 20 years, we can see a long period of stability prior to 2019. Covid definitely disrupted the status quo; many ward only sang just one hymn as they resumed in-person meetings. However, 2019 numbers look pretty similar to the years before it. And there has been a noticeable increase since 2021. Only recently does it look to be as high as the pre-2019 era. 
+Here is a plot that shows this trend across time, that might shed a little light on these numbers. Since I have data spanning over 20 years, we can see a long period of stability prior to 2019. (The higher numbers and more spread-outedness of the data prior to 2007 is mostly because of data sparsity.) Covid definitely disrupted the status quo; many wards only sang just one hymn as they resumed in-person meetings. However, 2019 numbers look pretty similar to the years before it. And there has been a noticeable increase since 2021. Only recently does it look to be as high as the pre-2019 era. 
 
 ```{r, include = TRUE, echo = FALSE, fig.height = 4, warning=FALSE, message=FALSE}
 freqs %>%
     filter(!is.na(ward),
-           !ward %in% c("Anonymous", "Foxcroft Ward"),
-           !(year == 2023 & month == 12)) %>%
+           !ward %in% c("Anonymous", "Unknown", "Foxcroft Ward"),
+           date <= ymd(today())) %>%
     mutate(month_year = lubridate::my(paste(month, year))) %>%
     group_by(month_year)  %>%
     summarize(
@@ -190,12 +216,15 @@ freqs %>%
     # print() %>%
     ggplot(aes(month_year, hymns_per_meeting)) +
     geom_vline(xintercept = as.Date("2019-01-01")) + 
-    annotate(geom = "rect", xmin = as.Date("2020-03-15"), xmax = as.Date("2020-12-31"), ymin = 1, max = 4, 
+    annotate(geom = "rect", xmin = as.Date("2020-03-15"), xmax = as.Date("2020-12-31"), ymin = 2, max = 4, 
              fill = "gray75", alpha = 0.5) + 
     # stat_smooth() +
     geom_point() + 
     scale_x_date(date_breaks = "1 year",
-                 date_labels = "%y") + 
+                 date_labels = "%y",
+                 expand = expansion(0.01, 0)) + 
+    scale_y_continuous(breaks = seq(0, 4, 0.5), 
+                       expand = expansion(0, c(0, 0.2))) + 
     labs(x = "Year",
          y = "average number of hymns per meeting",
          title = "Average number of hymns per meeting across time",
