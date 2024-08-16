@@ -7,6 +7,7 @@ date-modified: last-modified
 
 ```{r, include = FALSE}
 rmarkdown::render("_scripts/analysis_functions.Rmd")
+library(kableExtra)
 ```
 
 This page just has a summary of all the hymns and their frequency stats, including the new hymns. I will update this page regularly as I collect more data.
@@ -21,6 +22,56 @@ I currently have data from `r scales::comma(get_n_distinct_meetings())` sacramen
 
 ::: {.panel-tabset}
 
+```{r, include = FALSE}
+process_table <- function(.df) {
+    .df |> 
+        mutate(hymn_num = paste0("#", hymn_num)) |> 
+    mutate(n = if_else(is.na(n), 0, n),
+           across(c(every_x_weeks, every_x_months), ~case_when(. > 100 ~ ">100", 
+                                                               . < 10 ~ as.character(format(round(., 1), nsmall = 1)),
+                                                               . < 100 ~ as.character(round(.)),
+                                                               TRUE ~ "—")),
+           avg_per_year = case_when(avg_per_year > 1 ~ as.character(format(round(avg_per_year, 2), nsmall = 2)),
+                                    avg_per_year < 0.01 ~ "<0.01",
+                                    avg_per_year < 0.05 ~ "<0.05",
+                                    avg_per_year < 0.1 ~ "<0.1",
+                                    avg_per_year < 0.5 ~ "<0.5",
+                                    avg_per_year < 1 ~ "<1",
+                                    TRUE ~ "—"),
+           every_x_years = case_when(every_x_years < 1 ~ "<1",
+                                     every_x_years < 10 ~ as.character(round(every_x_years, 1)),
+                                     every_x_years < 100 ~ as.character(round(every_x_years)),
+                                     every_x_years < 1000 ~ as.character(round(every_x_years/10)*10),
+                                     TRUE ~ "—")) |> 
+    select(`#` = hymn_num,
+           `Hymn` = hymn_name,
+           `Times Sung` = n,
+           `Avg per Year` = avg_per_year,
+           `Every X Weeks` = every_x_weeks,
+           `Every X Months` = every_x_months,
+           `Every X Years`  = every_x_years) %>%
+    
+    # Make ties the same rank
+    rowid_to_column("Rank") %>%
+    mutate(Rank = min(Rank), .by = `Times Sung`) %>%
+# print()
+    knitr::kable(align = "rrlrrrrr") |> 
+    kable_styling(fixed_thead = TRUE) |> 
+    scroll_box(height = "1080px")
+}
+```
+
+
+### All data
+
+```{r, include = TRUE, echo = FALSE}
+freqs %>%
+    cleveland_plot(return = "table") %>%
+    mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
+    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
+    process_table()
+```
+
 ### Before June 2024
 
 This table includes data from before any new hymns were introduced. It is likely the most informative, publicly-available view of the overall popularity of hymns in the 1985 hymnal. 
@@ -31,20 +82,7 @@ freqs %>%
     cleveland_plot(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
-    select(`#` = hymn_num,
-           `Hymn` = hymn_name,
-           `Times Sung` = n,
-           `Avg per Year` = avg_per_year,
-           `Every X Weeks` = every_x_weeks,
-           `Every X Months` = every_x_months,
-           `Every X Years`  = every_x_years) %>%
-    mutate(across(c(`Avg per Year`:`Every X Years`), ~round(., 2))) %>%
-
-    # Make ties the same rank
-    rowid_to_column("Rank") %>%
-    mutate(Rank = min(Rank), .by = `Times Sung`) %>%
-# print()
-    knitr::kable()
+    process_table()
 ```
 
 
@@ -53,49 +91,39 @@ freqs %>%
 This table includes data from sacrament meetings since June 2024 when the new hymns were released. The numbers will be skewed quite a bit until about a full calendar year has passed. But it gives a decent idea of how popular the new hymns have been so far. 
 
 ```{r, include = TRUE, echo = FALSE}
+weeks_since_june2 <- freqs |> 
+    filter(date >= ymd("2024-06-01"),
+           date <= ymd(today())) |> 
+    pull(date) |> 
+    unique() |> 
+    length()
 freqs %>%
     filter(date >= ymd("2024-06-01")) |> 
     cleveland_plot(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
+    mutate(percent_wards = if_else(is.na(every_x_weeks), 
+                                   "0%", 
+                                   scales::percent(round(12 / every_x_weeks, 3))),
+           hymn_num = paste0("#", hymn_num),
+           pred_times_per_year = if_else(is.na(every_x_weeks), 
+                                         "—", 
+                                         format(round(avg_per_year, 2), nsmall = 1))) |> 
     select(`#` = hymn_num,
            `Hymn` = hymn_name,
-           `Times Sung` = n,
-           `Avg per Year` = avg_per_year,
-           `Every X Weeks` = every_x_weeks,
-           `Every X Months` = every_x_months,
-           `Every X Years`  = every_x_years) %>%
-    mutate(across(c(`Avg per Year`:`Every X Years`), ~round(., 2))) %>%
+           `wards that have sung it` = percent_wards,
+           `predicted times per year per ward` = pred_times_per_year) %>%
 
     # Make ties the same rank
     rowid_to_column("Rank") %>%
-    mutate(Rank = min(Rank), .by = `Times Sung`) %>%
+    mutate(Rank = min(Rank), .by = `wards that have sung it`) %>%
 # print()
-    knitr::kable()
+    knitr::kable(align = "rrlrr") |> 
+    kable_styling(fixed_thead = TRUE) |> 
+    scroll_box(height = "1080px")
 ```
 
-### All data
 
-```{r, include = TRUE, echo = FALSE}
-freqs %>%
-    cleveland_plot(return = "table") %>%
-    mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
-    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
-    select(`#` = hymn_num,
-           `Hymn` = hymn_name,
-           `Times Sung` = n,
-           `Avg per Year` = avg_per_year,
-           `Every X Weeks` = every_x_weeks,
-           `Every X Months` = every_x_months,
-           `Every X Years`  = every_x_years) %>%
-    mutate(across(c(`Avg per Year`:`Every X Years`), ~round(., 2))) %>%
-
-    # Make ties the same rank
-    rowid_to_column("Rank") %>%
-    mutate(Rank = min(Rank), .by = `Times Sung`) %>%
-# print()
-    knitr::kable()
-```
 
 :::
 
@@ -107,8 +135,9 @@ Here is the same information, but as a plot.
 ```{r, echo = FALSE, fig.height = 40, fig.width = 8}
 freqs %>%
     cleveland_plot(return = "plot", 
-                   title = "Frequency of all hymns",
                    subtitle = NULL,
-                   x_buffer = 0.7)
+                   x_buffer = 0) + 
+    labs(title = "Frequency of all hymns",
+         subtitle = NULL)
 ```
 
