@@ -23,41 +23,59 @@ I currently have data from `r scales::comma(get_n_distinct_meetings())` sacramen
 ::: {.panel-tabset}
 
 ```{r, include = FALSE}
-process_table <- function(.df) {
+make_things_gray <- function(.df, .col) {
     .df |> 
+        mutate(color = case_when(str_detect({{.col}}, "<") ~ "gray75",
+                                 str_detect({{.col}}, ">") ~ "gray75",
+                                 str_detect({{.col}}, "—") ~ "gray75",
+                                 TRUE ~ "black")) |> 
+        pull(color)
+}
+
+process_table <- function(.df) {
+    data_to_show <- .df |> 
         mutate(hymn_num = paste0("#", hymn_num)) |> 
-    mutate(n = if_else(is.na(n), 0, n),
-           across(c(every_x_weeks, every_x_months), ~case_when(. > 100 ~ ">100", 
-                                                               . < 10 ~ as.character(format(round(., 1), nsmall = 1)),
-                                                               . < 100 ~ as.character(round(.)),
-                                                               TRUE ~ "—")),
-           avg_per_year = case_when(avg_per_year > 1 ~ as.character(format(round(avg_per_year, 2), nsmall = 2)),
-                                    avg_per_year < 0.01 ~ "<0.01",
-                                    avg_per_year < 0.05 ~ "<0.05",
-                                    avg_per_year < 0.1 ~ "<0.1",
-                                    avg_per_year < 0.5 ~ "<0.5",
-                                    avg_per_year < 1 ~ "<1",
-                                    TRUE ~ "—"),
-           every_x_years = case_when(every_x_years < 1 ~ "<1",
-                                     every_x_years < 10 ~ as.character(round(every_x_years, 1)),
-                                     every_x_years < 100 ~ as.character(round(every_x_years)),
-                                     every_x_years < 1000 ~ as.character(round(every_x_years/10)*10),
-                                     TRUE ~ "—")) |> 
-    select(`#` = hymn_num,
+        mutate(n = if_else(is.na(n), 0, n),
+               # with kable(escape = FALSE), this is supposed to work, I think, but it doesn't
+               #hymn_name = str_replace(hymn_name, "\\[", "<span>["),
+               #hymn_name = str_replace(hymn_name, "\\]", "]</span>"),
+               across(c(every_x_weeks, every_x_months), ~case_when(. > 100 ~ ">100", 
+                                                                   . < 10 ~ as.character(format(round(., 1), nsmall = 1)),
+                                                                   . < 100 ~ as.character(round(.)),
+                                                                   TRUE ~ "—")),
+               avg_per_year = case_when(avg_per_year > 1 ~ as.character(format(round(avg_per_year, 2), nsmall = 2)),
+                                        avg_per_year < 0.01 ~ "<0.01",
+                                        avg_per_year < 0.05 ~ "<0.05",
+                                        avg_per_year < 0.1 ~ "<0.1",
+                                        avg_per_year < 0.5 ~ "<0.5",
+                                        avg_per_year < 1 ~ "<1",
+                                        TRUE ~ "—"),
+               every_x_years = case_when(every_x_years < 1 ~ "<1",
+                                         every_x_years < 10 ~ as.character(round(every_x_years, 1)),
+                                         every_x_years < 100 ~ as.character(round(every_x_years)),
+                                         every_x_years < 1000 ~ as.character(round(every_x_years/10)*10),
+                                         TRUE ~ "—"))
+        
+    data_to_show |> 
+        select(`#` = hymn_num,
            `Hymn` = hymn_name,
            `Times Sung` = n,
            `Avg per Year` = avg_per_year,
            `Every X Weeks` = every_x_weeks,
            `Every X Months` = every_x_months,
            `Every X Years`  = every_x_years) %>%
-    
-    # Make ties the same rank
-    rowid_to_column("Rank") %>%
-    mutate(Rank = min(Rank), .by = `Times Sung`) %>%
-# print()
-    knitr::kable(align = "rrlrrrrr") |> 
-    kable_styling(fixed_thead = TRUE) |> 
-    scroll_box(height = "1080px")
+        
+        # Make ties the same rank
+        rowid_to_column("Rank") %>%
+        mutate(Rank = min(Rank), .by = `Times Sung`) %>%
+        # print()
+        knitr::kable(align = "rrlrrrrr") |> 
+        kable_styling(fixed_thead = TRUE) |> 
+        scroll_box(height = "1080px") |> 
+        column_spec(5, color = make_things_gray(data_to_show, avg_per_year)) |> 
+        column_spec(6, color = make_things_gray(data_to_show, every_x_weeks)) |> 
+        column_spec(7, color = make_things_gray(data_to_show, every_x_months)) |> 
+        column_spec(8, color = make_things_gray(data_to_show, every_x_years))
 }
 ```
 
@@ -88,16 +106,20 @@ freqs %>%
 
 ### Since June 2024
 
-This table includes data from sacrament meetings since June 2024 when the new hymns were released. The numbers will be skewed quite a bit until about a full calendar year has passed. But it gives a decent idea of how popular the new hymns have been so far. 
+This table includes data from sacrament meetings since June 2024 when the new hymns were released. I've given some approximate numbers for how popular they are. New hymns are highlighted in blue.
 
-```{r, include = TRUE, echo = FALSE}
+```{r, echo = FALSE}
 weeks_since_june2 <- freqs |> 
     filter(date >= ymd("2024-06-01"),
            date <= ymd(today())) |> 
     pull(date) |> 
     unique() |> 
     length()
-freqs %>%
+```
+
+
+```{r, include = TRUE, echo = FALSE}
+post_june_data <- freqs %>%
     filter(date >= ymd("2024-06-01")) |> 
     cleveland_plot(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
@@ -108,7 +130,13 @@ freqs %>%
            hymn_num = paste0("#", hymn_num),
            pred_times_per_year = if_else(is.na(every_x_weeks), 
                                          "—", 
-                                         format(round(avg_per_year, 2), nsmall = 1))) |> 
+                                         format(round(avg_per_year, 2), nsmall = 1)))
+
+new_hymns_rows <- post_june_data |> 
+    rowid_to_column("real_row") |> 
+    filter(as.numeric(str_remove(hymn_num, "#")) > 1000) |> 
+    pull(real_row)
+post_june_data |> 
     select(`#` = hymn_num,
            `Hymn` = hymn_name,
            `wards that have sung it` = percent_wards,
@@ -116,11 +144,13 @@ freqs %>%
 
     # Make ties the same rank
     rowid_to_column("Rank") %>%
-    mutate(Rank = min(Rank), .by = `wards that have sung it`) %>%
-# print()
+    mutate(Rank = min(Rank), .by = `wards that have sung it`) |> 
+        #print()
     knitr::kable(align = "rrlrr") |> 
     kable_styling(fixed_thead = TRUE) |> 
-    scroll_box(height = "1080px")
+    scroll_box(height = "1080px") |> 
+    column_spec(5, color = make_things_gray(post_june_data, pred_times_per_year)) |> 
+    row_spec(row = new_hymns_rows, background = "#deebf7")
 ```
 
 
