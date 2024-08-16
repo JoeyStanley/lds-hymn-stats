@@ -21,6 +21,8 @@ library(gt)
 sf <- stamp("June 2", quiet = TRUE)
 ```
 
+
+
 ```{r}
 meetings_since_release <- freqs |> 
     filter(date <= ymd(today()),
@@ -36,6 +38,12 @@ n_wards_since_release <- meetings_since_release |>
 n_weeks_since_release <- meetings_since_release |> 
     count(date) |> 
     nrow()
+```
+
+
+```{r}
+meetings_since_release |> 
+    filter(ward == "Arvada 6th Ward") 
 ```
 
 
