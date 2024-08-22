@@ -1,0 +1,255 @@
+---
+title: "*Called to Serve* and Mission Farewells"
+author: "Joey Stanley"
+date: 2024-08-23
+date-modified: last-modified
+categories:
+  - frequency
+image: cover.png
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+library(scales)
+```
+
+```{r}
+this_year <- freqs |> 
+    filter(year == 2024) |> 
+    filter(date <= today()) |> 
+    print()
+meetings_in_2024 <- length(unique(this_year$meeting_id))
+n_wards <- length(unique(this_year$ward))
+```
+
+
+I've noticed over the past couple of weeks that a lot of wards have been singing <hymn>Called to Serve (#249)</hymn>. In some cases, I'm able to get a little more information from the ward and see that these are mostly because their wards are doing missionary farewells or homecomings (or both!). So, I thought I'd test this hunch and see if <hymn>Called to Serve (#249)</hymn> has seen a spike recently. This blog post is based on `r scales::comma(meetings_in_2024)` sacrament meetings from `r scales::comma(n_wards)` wards.
+
+To test this, I looked at each week since January 2024 and counted up how many wards sang <hymn>Called to Serve (#249)</hymn> and divided that number by the total number of wards I have data from for that week. So, just a percentage of wards that sang it. This plot shows that percentage over the past eight or so months.
+
+```{r}
+# take a leaf from feedings data and use scico
+month_colors <- tibble(month = c(2:12, 1),
+                       color = c(rev(scico::scico(7, palette = "roma")), scico::scico(7, palette = "roma")[2:6]))
+
+week_colors = tibble(week = c(4:53, 1:3),
+                     color = c(rev(scico::scico(27, palette = "roma")), scico::scico(26, palette = "roma")[1:26]))
+```
+
+
+```{r, include = TRUE, fig.height = 3, fig.width = 6.5}
+this_year |> 
+    summarize(sang_249 = sum(hymn_num == 249) >= 1, .by = c(meeting_id, date, week)) |> 
+    count(sang_249, date, week) |>
+    pivot_wider(names_from = sang_249, values_from = n, values_fill = 0) |>
+    arrange(date) |>
+    rowwise() |>
+    mutate(prop = `TRUE` / sum(c(`FALSE`, `TRUE`))) |>
+    left_join(week_colors, by = "week") |> 
+    # print()
+    ggplot(aes(date, prop, group = 1)) + 
+    geom_point() + 
+    geom_path() + 
+    scale_x_date(date_breaks = "1 month",
+                 date_labels = "%b") + 
+    scale_y_continuous(limits = c(0, 0.2),
+                       labels = percent) +
+    labs(title = "Wards that have sung Called to Serve (#249) in 2024",
+         subtitle = paste0("Based on ", comma(meetings_in_2024), " sacrament meetings from ", n_wards, " wards"),
+         y = "percent of wards") +
+    theme_bw()
+```
+
+So, it's not a huge trend, but it is something. In the past couple of weeks, up to something like 6% or so of wards have sung <hymn>Called to Serve (#249)</hymn>. That's about one every stake or two. I suppose this makes sense. Many missionaries that leave have recently finished high school or a year of college. They likely turned in their papers around the time they finished and were hoping to start their missions in the summer so that they could return in time for Fall semester when they get back. I imagine people who have worked with missionaries and numbers like that could confirm whether there's a wave of new missionaries each summer.  
+
+So, that confirms my hunch. Let's see if this trend of singing <hymn>Called to Serve (#249)</hymn> in the summer is just a 2024 thing or if it has been going on for a while.
+
+### Year-over-year patterns
+
+The following chart shows the popularity of <hymn>Called to Serve (#249)</hymn> across all years. I've taken each week of the year, regardless of the year, and figured out the percentage of meetings that have it. Since week numbers are not readily interpretable by most people, I've overlayed approximately where the months would occur on this plot, roughly colored by how hot it is outside.
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+month_rects <- tibble(xmin = seq(1, 53, length.out = 13),
+                ymin = 0, ymax = 0.05) |> 
+    mutate(xmax = lead(xmin)) |> 
+    filter(!is.na(xmax)) |> 
+    mutate(month_label = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
+           month_y = 0.048) |> 
+    mutate(month_x = mean(c(xmin, xmax)), .by = month_label) |>
+    rowid_to_column("month_num") |> 
+    left_join(month_colors, by = c("month_num" = "month"))
+freqs |> 
+    summarize(has_249 = sum(hymn_num == 249) > 0, .by = c(date, meeting_id, week)) |> 
+    count(has_249, week) |> 
+    pivot_wider(names_from = has_249, values_from = n, values_fill = 0) |> 
+    mutate(prop = `TRUE` / (`FALSE` + `TRUE`), .by = week) |> 
+    filter(!is.na(prop),
+           !is.na(week)) |> 
+    ggplot() + 
+    geom_rect(data = month_rects, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = color),
+              alpha = 0.3) + 
+    geom_text(data = month_rects, aes(x = month_x, y = month_y, label = month_label)) + 
+    geom_point(aes(x = week, y = prop)) + 
+    geom_path(aes(x = week, y = prop)) + 
+    scale_fill_identity() + 
+    scale_x_continuous(breaks = seq(0, 55, 5),
+                       minor_breaks = NULL,
+                       expand = expansion(0, 0)) + 
+    scale_y_continuous(labels = scales::percent,
+                       limits = c(0, 0.05),
+                       expand = expansion(0, 0)) +
+    labs(title = "Meetings with Called to Serve (#249) across all years",
+         x = "week of the year",
+         y = "percent of wards") + 
+    theme_bw()
+```
+
+```{r}
+ggsave("cover.png", height = 4, width = 6.5)
+```
+
+
+Okay, so it looks like there is a more general pattern. Between about May and September, there seem to be a greater proportion of wards singing <hymn>Called to Serve (#249)</hymn> than between October and April. 
+
+So that plot shows the average across all years. What if we spread it out and look at one long timeline? The figure below does just that. For the sake of reducing visual clutter, I've taken the average per month instead of the average per week. And I've colored the dots based on the month rather than the background. 
+
+```{r, include = TRUE, fig.height = 4, fig.width = 10}
+year_rects <- freqs |> 
+    
+    # get Jan 1 of each year
+    filter(date >= ymd("2012-01-01")) |> 
+    mutate(xmin = floor_date(date, "year"),
+           xmax = ceiling_date(date, "year")-1) |> 
+    distinct(xmin, xmax) |> 
+    mutate(ymin = 0, ymax = 0.1) |> 
+    mutate(color = rep(c("gray98", "gray95"), length.out = 13))
+freqs |> 
+    filter(date >= ymd("2012-01-01")) |> 
+    mutate(floor_date = floor_date(date, "month"),
+           date <= today()) |> 
+    summarize(sang_249 = sum(hymn_num == 249) >= 1, 
+              n = n(),
+              .by = c(meeting_id, floor_date)) |> 
+    count(sang_249, floor_date) |>
+    pivot_wider(names_from = sang_249, values_from = n, values_fill = 0) |>
+    mutate(prop = `TRUE` / sum(c(`FALSE`, `TRUE`)), .by = floor_date) |>
+    
+    # month
+    mutate(month = month(floor_date)) |> 
+    left_join(month_colors, by = "month") |> 
+    
+    # print()
+    ggplot(aes(floor_date, prop, group = 1, color = color)) + 
+    geom_rect(data = year_rects, aes(x = NULL, y = NULL, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = color)) +
+    
+    geom_hline(yintercept = seq(0, 0.1, 0.02), color = "gray90", linewidth = 0.25) +
+    
+    geom_path(color = "gray75") + 
+    geom_point() + 
+    annotate(geom = "text", x = ymd("2012-12-01"), y = 0.093, 
+             label = "age-lowering announcement", hjust = 0) + 
+    annotate(geom = "curve", x = ymd("2012-12-01"), xend = ymd("2012-10-01"),
+             y = 0.091, yend = 0.085, curvature = 0.3, 
+             arrow = arrow(angle = 20, length = unit(0.1, "in"), type = "closed")) + 
+    scale_color_identity() + 
+    scale_fill_identity() + 
+    scale_x_date(date_breaks = "1 year",
+                 date_labels = "%Y",
+                 expand = expansion(0, 0.1)) + 
+    scale_y_continuous(limits = c(0, 0.1),
+                       breaks = seq(0, 0.1, 0.02),
+                       expand = expansion(0, 0),
+                       labels = percent) +
+    labs(title = "Meetings with Called to Serve (#249) since 2012",
+         y = "percent of wards") +
+    theme_bw()
+```
+
+So, admittedly, the trend is not quite as apparent as I was expecting. I thought we might see some nice, consistent rising and falling within each year, but that's not really what I see. Some of the higher points are indeed oranger and some of the lower points are bluer, but it's not a 100% pattern at all.
+
+However, an accidental side-effect of this plot is we can see the effect of the age lowering. [This](https://www.thechurchnews.com/leaders/2022/9/30/23377386/revisiting-the-surge-when-president-monson-announced-a-minimum-age-change-for-missionaries-in-2012/) *Church News* article by Scott Taylor gives a nice timeline of when the surge of missionaries began their service following President Monson's announcement in October 2012. You can tell the excitement was in the air because October 2012 saw the greatest proportion of wards singing <hymn>Called to Serve (#249)</hymn>: 8.3%. Through 2013 and 2014, especially in the summers, the numbers are generally pretty high. It's only in 2018 and 2024 that they've come close to those levels. It looks like 2012 was already pretty high as it is, which may be due to the number of missionaries leaving or just because of data sparsity since I don't have a ton of data going back that far.
+
+
+
+### Any other hymns?
+
+While I've been noticing <hymn>Called to Serve (#249)</hymn>, I have also noticed a few other hymns being maybe a little more common than normal, like <hymn>Carry On (#255)</hymn>. There are certainly other hymns that come to mind when it comes to sending a missionary off, like <hymn>I'll Go Where You Want Me to Go (#270)</hymn>. I wonder what other hymns are likely to be sung when <hymn>Called to Serve (#249)</hymn> is on the program?
+
+```{r}
+meetings_with_249 <- freqs |> 
+    mutate(is_249 = hymn_num == 249) |> 
+    mutate(has_249 = sum(is_249), .by = meeting_id) |> 
+    filter(has_249 > 0) |> 
+    print()
+m_meetings_with_249 <- length(unique(meetings_with_249$meeting_id))
+avg_generally <- freqs |> 
+    cleveland_plot(return = "table") |> 
+    select(hymn_num, hymn_name, `overall_prop_of_meetings` = prop_of_meetings)
+diffs <- meetings_with_249 |> 
+    cleveland_plot(return = "table") |> 
+    left_join(avg_generally, by = c("hymn_num", "hymn_name")) |> 
+    # select(hymn_num, hymn_name, prop_of_meetings, overall_prop_of_meetings) |> 
+    filter(every_x_years < 1) |> 
+    mutate(prop_diff = prop_of_meetings / overall_prop_of_meetings) |> 
+    rowid_to_column("raw_freqs") |> 
+    arrange(-prop_diff) |> 
+    rowid_to_column("ranked_diff") |> 
+    print()
+```
+
+The table below shows these hymns. What I've done is isolate just the `r m_meetings_with_249` sacrament meetings I have data from that include <hymn>Called to Serve (#249)</hymn> as a congregational hymn. I then counted up all the other hymns to see which ones were most popular, as if that set of `r m_meetings_with_249` meetings was my entire collection. The problem I saw was that generally common hymns, like sacrament hymns, showed up high on the list. That makes sense because if something like <hymn>I Stand All Amazed (#193)</hymn> is really common regardless of what else is going on in the meeting, it's likely to show up a fair number of times in this specific subset. So, I had to normalize the data but dividing how often it occurs in these `r m_meetings_with_249` meetings by how often it occurs generally. This produces a ratio that tells me how much more often any hymn is likely to be sung when <hymn>Called to Serve (#249)</hymn> than normal. A generic common hymn is unlikely to stand out, but a less common hymn will if it co-occurs with <hymn>Called to Serve (#249)</hymn> and is otherwise not sung as often.
+
+```{r, include = TRUE}
+diffs |> 
+    filter(prop_diff > 2) |> 
+    filter(hymn_num != 249) |> 
+    mutate(across(c(prop_of_meetings, prop_diff), ~round(., 2))) |> 
+    mutate(prop_of_meetings = percent(prop_of_meetings)) |> 
+    select(`hymn` = label, 
+           `how often it's sung with 249` = prop_of_meetings, 
+           `times more likely when 249 is sung` = prop_diff) |> 
+    gt() |> 
+    tab_header(title = "Other hymns likely to be sung with Called to Serve (#249)")
+```
+
+This table, which only shows those that are twice as likely to be sung when <hymn>Called to Serve (#249)</hymn> is on the program than not, matches my intuition pretty well. What I see are a few categories of hymns: 
+
+* departure hymns: <hymn>I'll Go Where You Want Me to Go (#270)</hymn>, <hymn>God Be with You Till We Meet Again (#152)</hymn>, and <hymn>Go Forth with Faith (#263)</hymn>
+
+* battle metaphor hymns: <hymn>Behold! A Royal Army (#251)</hymn>, <hymn>We Are All Enlisted (#250)</hymn>, and <hymn>Hope of Israel (#259)</hymn>
+
+* labor-related hymns:  <hymn>Put Your Shoulder to the Wheel (#252)</hymn>, <hymn>Let Us All Press On (#243)</hymn>, <hymn>Sweet Is the Work (147)</hymn>s
+
+* those that explicitly mention missionary work: <hymn>Hark, All Ye Nations! (#264)</hymn> (which is probably more popular if the missionary is serving foreign) and <hymn>Let Zion in Her Beauty Rise (#41)</hymn>. 
+
+As for the others, I think <hymn>Carry On (#255)</hymn> kinda fits several of all of these categories. I think <hymn>I Stand All Amazed (#193)</hymn> made this list just because it's popular regardless. And I think <hymn>How Firm a Foundation (85)</hymn> because it's pretty common, but also because most of the rest of these are absolute bangers and that one fits right along with them!
+
+
+
+```{r}
+missionary_hymns <- diffs |> 
+    filter(prop_diff > 2) |> 
+    filter(!hymn_num %in% 169:196) |> 
+    pull(hymn_num)
+# not easy to see a pattern past the holiday influences
+freqs |> 
+    mutate(is_missionary = hymn_num %in% missionary_hymns) |> 
+    summarize(n_missionary = sum(is_missionary), .by = c(meeting_id, date)) |> 
+    mutate(week = week(date)) |> 
+    summarize(mean_n_missionary = mean(n_missionary), .by = week) |> 
+    arrange(week) |> 
+    ggplot(aes(week, mean_n_missionary)) + 
+    geom_point() + 
+    geom_path()
+```
+
+
+
+## Conclusion
+
+In this post, I've taken a deep dive into <hymn>Called to Serve (#249)</hymn> and its patterns over time. I've noticed it has been sung a lot in the past few weeks (August 2024). The data confirmed that hunch. It turns out singing that hymn is common during the summertime generally, especially after the October 2012 announcement that lowered the minimum age of service. I also looked at what hymns go along with <hymn>Called to Serve (#249)</hymn> and found that they're typically related to departure, battle, labor, and missionary work, which supports the missionary farewell idea. 
+
+I of course have no access to when missionaries leave for their missions and what those numbers might be. But, if a small proportion of wards sing <hymn>Called to Serve (#249)</hymn> during a missionary farewell, then it can serve as a kind of proxy for those numbers. I wonder what other kinds of sneak peeks we can find if we look at the data close enough!
