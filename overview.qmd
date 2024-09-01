@@ -20,6 +20,8 @@ I currently have data from `r scales::comma(get_n_distinct_meetings())` sacramen
 
 ## Frequency Table
 
+{Note that songs from the Children's Songbook are listed with their page number plus 2000. So, <hymn>We'll Bring the World His Truth</hymn> is on page 172 but I've listed it as hymn 2172. Also, when a non-English speaking ward sings a hymn that's not found in the English hymnal, I find the translation on Samuel Bradshaw's amazing [SingPraises.net](https://singpraises.net/collections?lang=nl&category=book) and sequentially number them in the order I see them starting with 500. So, if a ward sings <hymn>O, Canada</hymn>, it's listed here as hymn 501.}
+
 ::: {.panel-tabset}
 
 ```{r, include = FALSE}
@@ -134,7 +136,7 @@ post_june_data <- freqs %>%
 
 new_hymns_rows <- post_june_data |> 
     rowid_to_column("real_row") |> 
-    filter(as.numeric(str_remove(hymn_num, "#")) > 1000) |> 
+    filter(as.numeric(str_remove(hymn_num, "#")) %in% 1000:1999) |> 
     pull(real_row)
 post_june_data |> 
     select(`#` = hymn_num,
