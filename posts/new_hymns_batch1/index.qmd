@@ -48,7 +48,7 @@ n_weeks_since_release <- meetings_since_release |>
 On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the [first](posts/new_hymns_week1), [second](posts/new_hymns_week2), and [third](posts/new_hymns_week3) weeks since their release. Moving forward, I'll update this blog post with new data as it comes in so that you can get a better look at how hymns are being adopted over several weeks at once. I'll try to update this page weekly until the second batch of hymns comes out in September. Currently I have data from `r n_meetings_since_release` sacrament meetings since June 2nd from `r n_wards_since_release` wards. 
 
 ::: callout-note
-Note that this blog post change slightly as more data comes in, even from earlier weeks since the release. However, I feel like enough data has been collected that the overall patterns are mostly pretty clear.
+Note that this blog post will change slightly as more data comes in, even from earlier weeks since the release. However, I feel like enough data has been collected that the overall patterns are mostly pretty clear.
 :::
 
 But first, here's how much data I have for each week, just so you have an idea of what I'm working with.
@@ -167,8 +167,14 @@ However, a good chunk of my data comes from single-week contributions from vario
 It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular is it? The following table shows the new hymns in order of how often they've been sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns since these hymns have been released. [Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once since June 2nd.]{.aside}
 
 ```{r, include = TRUE}
+
 freqs |> 
     filter(date >= ymd("2024-06-01")) |> 
+    
+    # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
+    mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
+    filter(nth_time == 1) |> 
+    
     cleveland_plot(return = "table") |> 
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 

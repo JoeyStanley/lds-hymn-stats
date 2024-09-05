@@ -123,6 +123,11 @@ weeks_since_june2 <- freqs |>
 ```{r, include = TRUE, echo = FALSE}
 post_june_data <- freqs %>%
     filter(date >= ymd("2024-06-01")) |> 
+    
+    # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
+    mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
+    filter(nth_time == 1) |> 
+    
     cleveland_plot(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
