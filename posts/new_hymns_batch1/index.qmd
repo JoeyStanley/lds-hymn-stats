@@ -29,7 +29,7 @@ last_sunday <- ymd(floor_date(today(), "week"))
 
 ```{r}
 meetings_since_release <- freqs |> 
-    filter(date <= ymd(last_sunday),
+    filter(date <= ymd("2024-09-08"),
            date >= ymd("2024-06-02"))
 n_meetings_since_release <- meetings_since_release |> 
     distinct(meeting_id) |> 
@@ -45,11 +45,7 @@ n_weeks_since_release <- meetings_since_release |>
 ```
 
 
-On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the [first](posts/new_hymns_week1), [second](posts/new_hymns_week2), and [third](posts/new_hymns_week3) weeks since their release. Moving forward, I'll update this blog post with new data as it comes in so that you can get a better look at how hymns are being adopted over several weeks at once. I'll try to update this page weekly until the second batch of hymns comes out in September. Currently I have data from `r n_meetings_since_release` sacrament meetings since June 2nd from `r n_wards_since_release` wards. 
-
-::: callout-note
-Note that this blog post will change slightly as more data comes in, even from earlier weeks since the release. However, I feel like enough data has been collected that the overall patterns are mostly pretty clear.
-:::
+On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the [first](posts/new_hymns_week1), [second](posts/new_hymns_week2), and [third](posts/new_hymns_week3) weeks since their release, but this page covers the 15 weeks between when the first and second batches came out. When I get more data from this period I will update this page, but it will largely remain as is. Currently I have data from `r scales::comma(n_meetings_since_release)` sacrament meetings between June 2nd and September 8th from `r n_wards_since_release` wards. 
 
 But first, here's how much data I have for each week, just so you have an idea of what I'm working with.
 
@@ -69,9 +65,9 @@ meetings_since_release |>
 
 ## How many wards are singing new hymns each week?
 
-The following plot shows the number of new hymns sung per ward each week since the release of the new hymns.
+The following plot shows the number of new hymns sung per ward each week between the first and second batches of the new hymns.
 
-```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
 data_to_plot <- meetings_since_release |> 
     mutate(is_new = hymn_num > 1000 & hymn_num < 2000) |> 
     summarize(n_new = sum(is_new), .by = c(date, ward)) |>
@@ -108,7 +104,8 @@ ggplot(data_to_plot, aes(date, prop, group = n_new, color = n_new)) +
     geom_point() + 
     geom_text(data = labels, aes(y = prop + 0.05, label = label), hjust = 1) + 
     scale_x_date(breaks = date_breaks,
-                 date_labels = "%b %d") +
+                 date_labels = "%b %d",
+                 expand = expansion(0.01, 0)) +
     scale_y_continuous(expand = expansion(0, 0.01),
                        breaks = seq(0, 1, 0.1),
                        labels = scales::percent) +
@@ -116,15 +113,15 @@ ggplot(data_to_plot, aes(date, prop, group = n_new, color = n_new)) +
     theme_minimal() +
     labs(x = "number of new hymns per sacrament meeting",
          y = "percentage of wards",
-         title = "Percentage of wards singing new hymns since their release",
+         title = "Percentage of wards singing new hymns between June 2 and Sept 8",
          subtitle = paste("Based on data from", n_wards_since_release, "wards"),
          fill = "date") + 
     theme(legend.position = "none")
 ```
 
-Since the first week, the number of wards that have sung new hymns has been remarkably stable. Typically, only about a quarter to a third of wards sing new hymns each week. A small number sing two each week. There are rare cases of three or more, but they are so infrequent, I've left them off this chart. 
+During this period, the number of wards that have sung new hymns has been remarkably stable. Typically, only about a quarter to a third of wards sing new hymns each week. A small number sing two each week. There are rare cases of three or more, but they are so infrequent, I've left them off this chart. 
 
-For each number of new hymns per week, I've overlaid a smooth to show the general trend. What I like about it is that is gives a shaded area showing where the proportions typically occur. Anything outside of those could be considered exceptional in some way. Currently, there is one week that stands out: August 4th. For some reason, that was the week where the fewest wards sang new hymns. I have no explanation for why that would be. Even when competing with holidays like [Father's Day](/posts/fathers_day), the [martyrdom of Joseph Smith](/posts/martyrdom), and [Pioneer Day](/posts/pioneer_day), the number of new hymns per week stayed consistent. But a random week in early August had fewer---albeit by a small margin. 
+For each number of new hymns per week, I've overlaid a smooth to show the general trend. What I like about it is that is gives a shaded area showing where the proportions typically occur. Anything outside of those could be considered exceptional in some way. In this period here is one week that kinda stands out: August 4th. For some reason, that was the week where the fewest wards sang new hymns. I have no explanation for why that would be. Even when competing with holidays like [Father's Day](/posts/fathers_day), the [martyrdom of Joseph Smith](/posts/martyrdom), and [Pioneer Day](/posts/pioneer_day), the number of new hymns per week stayed consistent. But a random week in early August had fewer---albeit by a small margin. 
 
 
 ```{r}
@@ -135,7 +132,7 @@ wards_with_complete_data <- meetings_since_release |>
     
     # only wards with (nearly) complete datasets
     add_count(ward, name = "n_weeks") |> 
-    filter(n_weeks >= n_weeks_since_release * 0.9) |> 
+    filter(n_weeks >= n_weeks_since_release * 0.8) |> 
     
     summarize(weeks_with_new = sum(n_new >= 1), .by = ward) |> 
     count(weeks_with_new) |> 
@@ -159,15 +156,14 @@ ggplot(wards_with_complete_data, aes(weeks_with_new, prop)) +
     theme_minimal()
 ```
 
-However, a good chunk of my data comes from single-week contributions from various wards, so just just because a ward didn't sing a new hymn this week doesn't mean they haven't done any yet. To see what proportion of wards have introduced new hymns up to this point, I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 90% of the weeks since the first batch of hymns came out. About 25% of them haven't sung new hymns at all yet. Otherwise, the typical number of weeks that wards have sung new hymns since June 2nd is about four. But, that's only based on `r n_wards_with_complete_data` wards and not the complete dataset, so take that number with a grain of salt.
+However, a good chunk of my data comes from single-week contributions from various wards, so just because a ward didn't sing a new hymn this week doesn't mean they didn't do any. To see what proportion of wards have introduced new hymns during this period, I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 90% of the 15 weeks in this period. About 15% of them didn't sing any new hymns. Otherwise, the typical number of weeks that wards have sung new hymns since June 2nd is 3--5. But, that's only based on `r n_wards_with_complete_data` wards and not the complete dataset, so take that number with a grain of salt.
 
 
 ## What hymns are most popular?
 
-It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular is it? The following table shows the new hymns in order of how often they've been sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns since these hymns have been released. [Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once since June 2nd.]{.aside}
+It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular was it? The following table shows the new hymns in order of how often they were sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns during this period.[Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once.]{.aside}
 
 ```{r, include = TRUE}
-
 freqs |> 
     filter(date >= ymd("2024-06-01")) |> 
     
@@ -187,15 +183,13 @@ freqs |>
                subtitle = "Since June 2")
 ```
 
-Overall then, it seems like the hymns have been pretty well-incorporated into regular singing. An overwhelming majority of wards have sung <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> since June 2, which is pretty remarkable. Surely the novelty will wear off a little bit, but if the current pace continues, then wards will sing it 3--4 times a year, or once every 13 weeks. For reference, before June 2nd, the most common hymn was <hymn>I Stand All Amazed (#193)</hymn> and was sung about once every 19 weeks per ward. The other hymns have been adopted with varying amounts of enthusiasm. We'll wait until December to see how the new Christmas ones get used. 
+Overall then, it seems like the hymns have been pretty well-incorporated into regular singing. An overwhelming majority of wards have sung <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> between June 2 and September 8, which is pretty remarkable. Surely the novelty will wear off a little bit, but if that pace continues, then wards will sing it 3--4 times a year, or once every 13 weeks. For reference, before June 2nd, the most common hymn was <hymn>I Stand All Amazed (#193)</hymn> and was sung about once every 19 weeks per ward. The other hymns have been adopted with varying amounts of enthusiasm. We'll wait until December to see how the new Christmas ones get used. 
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
-
 ## What hymns are most popular each week?
 
-Now that we're several weeks past the release of this first batch of hymns, we can start to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
-
+We can see to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 meetings_since_release |> 
@@ -253,15 +247,15 @@ meetings_since_release |>
     select(name_num, Opening, Sacrament, Intermediate, Closing) |> 
     rename(`New Hymn` = name_num) |> 
     gt() |> 
-    tab_header(title = "When are new hymns sung in sacrament meeting?",
-               subtitle = "Since June 2")
+    tab_header(title = "When were new hymns sung in sacrament meeting?",
+               subtitle = "Between June 2 and September 8")
 ```
 
-We're already starting to see that each hymn has its own story. Unsurprisingly, the hymns that are most likely to be sacrament hymns are <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, and <hymn>Gethsemane (#1009)</hymn>, with that last one being sung pretty often elsewhere in the meeting. <hymn>Think a Sacred Song (#1006)</hymn> appears to be evenly split between all three slots, but I have only seen it sung in a few wards so that may change once more data comes in. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is about as likely to be an opening hymn as a closing hymn. Two hymns are most common as closing hymns, <hymn>It Is Well with My Soul (#1003)</hymn> and <hymn>His Eye Is on the Sparrow (#1005)</hymn>, though both are pretty common as opening and intermediate hymns as well. The last two hymns, <hymn>I Will Walk with Jesus (#1004)</hymn> and especially <hymn>When the Savior Comes Again (#1002)</hymn>, are most commonly sung as intermediate hymns.
+Each hymn has its own story. Unsurprisingly, the hymns that are most likely to be sacrament hymns are <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, and <hymn>Gethsemane (#1009)</hymn>, with that last one being sung pretty often elsewhere in the meeting. <hymn>Think a Sacred Song (#1006)</hymn> appears to be a little more common in the second half of the meeting, but I have only seen it sung in a few wards so that may change if more data comes in. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is about as likely to be an opening hymn as a closing hymn. <hymn>It Is Well with My Soul (#1003)</hymn> is most common as a clsoing hymn. <hymn>His Eye Is on the Sparrow (#1005)</hymn> is about evently split between all three slots. The last two hymns, <hymn>I Will Walk with Jesus (#1004)</hymn> and <hymn>When the Savior Comes Again (#1002)</hymn> are a little more commonly sung as intermediate hymns.
 
 
 ## Conclusion
 
-This first batch of hymns only came out recently, but we're starting to see some trends already. Again, this is only based on `r n_meetings_since_release` sacrament meetings from `r n_wards_since_release` wards. It's not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I'm collecting more data and if you'd like to contribute your ward's data, you can do so [here](/contribute.html).
+This post shows a handful of trends in the first batch of hymns in the first 15 weeks since their release. Again, this is only based on `r n_meetings_since_release` sacrament meetings from `r n_wards_since_release` wards. It's not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I'm collecting more data and if you'd like to contribute your ward's data, you can do so [here](/contribute.html).
 
 
