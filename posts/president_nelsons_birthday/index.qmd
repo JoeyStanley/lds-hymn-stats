@@ -1,0 +1,20 @@
+---
+title: "President Nelson's 100th Birthday"
+author: "Joey Stanley"
+date: 2024-08-23
+date-modified: last-modified
+categories:
+  - frequency
+image: cover.png
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+library(scales)
+```
+
+On Monday, September 9th, President Russell M. Nelson celebrated his 100th birthday. Let's see how many wards celebrated that through congregational hymns.
+

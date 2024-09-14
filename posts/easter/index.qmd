@@ -196,7 +196,7 @@ Again, to get an idea of the number of "Easter" hymns, I decided to look at the 
 
 * The second through fifth weeks of the year, which is January 8 through February 4. This avoids residual [New Year's Day](/posts/new-years) hymns and is before when [Valentine's Day](/posts/valentines) hymns might be sung. 
 * The 22nd and 23rd weeks of the year, which is May 22 through June 10th, which is after Mother's Day and before Father's Day.
-* The 32nd through 38th weeks of the year, which corresponds to August 5 through September 23. There are no major holidays during that period. It's after Pioneer Day (in Utah) and before when [General Conference](/posts/general_conference.qmd) hymns pick up. 
+* The 32nd through 38th weeks of the year, which corresponds to August 5 through September 23. There are no major holidays during that period. It's after Pioneer Day (in Utah) and before when [General Conference](/posts/general_conference) hymns pick up. 
 
 I acknowledge that this is very US-centric, but since [around 85% of my data](/posts/frequency-data) comes from the US, I guess I'm considering the influence of other countries to be somewhat negligible for this basic calculation. 
 
@@ -370,7 +370,7 @@ Perhaps unsurprisingly, most hymns peak on Easter day itself. The notable except
 
 ### What hymns are most common each week?
 
-We can look at the same data a slightly different way and focus on one week at a time. We'll start with Pqlm Sunday. We just mentioned above that <hymn>All Glory, Laud, and Honor (#69)</hymn> shows a very clear peak the week before Easter. Is it the most common hymn on Palm Sunday? @fig-cleveland_palm shows that it is actually not. Five other hymns are simply more common overall, so even though a hymn like <hymn>He is Risen! (#199)</hymn> is much more common on Easter than on Palm Sunday, the sheer fact that it's sung so much more in general means that even when it's not at its peak, it's still more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> on its peak. Palm Sunday also has competition with [General Conference](/posts/general_conference.qmd), so <hymn>We Thank Thee, O God, for a Prophet (#19), even wins out on Palm Sunday. Overall, only 5.5% of wards sung <hymn>All Glory, Laud, and Honor (#69)</hymn> on Palm Sunday.
+We can look at the same data a slightly different way and focus on one week at a time. We'll start with Pqlm Sunday. We just mentioned above that <hymn>All Glory, Laud, and Honor (#69)</hymn> shows a very clear peak the week before Easter. Is it the most common hymn on Palm Sunday? @fig-cleveland_palm shows that it is actually not. Five other hymns are simply more common overall, so even though a hymn like <hymn>He is Risen! (#199)</hymn> is much more common on Easter than on Palm Sunday, the sheer fact that it's sung so much more in general means that even when it's not at its peak, it's still more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> on its peak. Palm Sunday also has competition with [General Conference](/posts/general_conference), so <hymn>We Thank Thee, O God, for a Prophet (#19), even wins out on Palm Sunday. Overall, only 5.5% of wards sung <hymn>All Glory, Laud, and Honor (#69)</hymn> on Palm Sunday.
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5, message=FALSE}
 #| fig-cap: Most common hymns on Palm Sunday
