@@ -1,14 +1,14 @@
 ---
 title: "What are the most and least common Sacrament Hymns?"
-description: "In this post, I dive into just the canonical sacrament hymns (i.e. hymns 169--196)."
 author: "Joey Stanley"
 date: "9/7/23"
-date-modified: 10-16-2023
+date-modified: last-modified
 categories:
   - sacrament
   - frequency
 aliases:
   - findings.html#sacrament-hymns
+image: cover.png
 ---
 
 ```{r, include = FALSE}
@@ -16,6 +16,8 @@ knitr::opts_chunk$set(include = FALSE,
                       fig.width = 8)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 ```
+
+In this post, I dive into just the canonical sacrament hymns (i.e. hymns 169--196).
 
 We'll start off by looking at sacrament hymns, or rather, the hymn sung immediately before the sacrament is blessed and passed to the congregation. As far as I can tell, §19.3.2 of the *General Handbook* has the only instruction about sacrament hymns, and it says that "\[t\]he sacrament hymn should refer to the sacrament itself or to the sacrifice of the Savior." This instruction is repeated on page 380 of the hymnal.
 
@@ -47,9 +49,12 @@ Let's take a closer look at the sacrament hymns themselves. In theory, if a ward
 ```{r, include = TRUE, echo = FALSE, fig.height = 5}
 freqs %>%
     filter(hymn_num %in% 169:196) %>%
-    cleveland_plot(return = "plot", 
-                   title = "Sacrament hymns", subtitle = "Includes hymns 169 through 196",
-                   x_buffer = 0.8) 
+    cleveland_plot(col_to_plot = avg_per_year,
+                   x_buffer = 0.8) + 
+    scale_x_continuous(breaks = seq(0, 5, 0.5),
+                       expand = expansion(0, c(0, 0.6))) + 
+    labs(title = "Sacrament hymns", 
+         subtitle = "Includes hymns 169 through 196")
 ```
 
 
@@ -62,7 +67,7 @@ freqs %>%
     filter(hymn_num %in% 169:196) %>%
     cleveland_plot(return = "table") %>%
     mutate(across(c(avg_per_year, every_x_weeks, every_x_months, every_x_years), ~round(., 3))) %>%
-    select(hymn_name, hymn_num, everything(), n, -label) %>%
+    select(hymn_name, hymn_num, everything(), n, -label, -prop_of_data, -prop_of_meetings) %>%
     rename(`Average per year` = avg_per_year,
            `Every X weeks` = every_x_weeks,
            `Every X months` = every_x_months,
@@ -77,9 +82,9 @@ freqs %>%
 
 :::
 
-Joining <hymn>I Stand All Amazed (193)</hymn> as the most common ones are <hymn>In Humility, Our Savior (172)</hymn>, <hymn>Jesus, Once of Humble Birth (196)</hymn>, and <hymn>There is a Green Hill Far Away (194)</hymn>. These and a few others are each sung around two or three times per year, on average, or once every three and a half to four and a half months.
+Joining <hymn>I Stand All Amazed (193)</hymn> as the most common ones are <hymn>In Humility, Our Savior (172)</hymn>, , <hymn>As Now We Take the Sacrament (#169), <hymn>There is a Green Hill Far Away (194)</hymn>, and <hymn>Jesus, Once of Humble Birth (196)</hymn>. These and a few others are each sung around two or three times per year, on average, or once every 4--5 months.
 
-Most sacrament hymns are sung at least once a year per ward, on average, but there were some that were less common. <hymn>O Lord of Hosts (178)</hymn>, <hymn>Again, Our Dear Redeeming Lord (179)</hymn>, and <hymn>Again, We Meet around the Board (186)</hymn> each averaged somewhere between once every 11 and 15 months. The least frequent sacrament hymn though was <hymn>O Thou, Before the World Began (189)</hymn>, showing up a little more often than once every two years.
+Most sacrament hymns are sung at least once a year per ward, on average, but there were some that were less common. <hymn>O Lord of Hosts (178)</hymn>, <hymn>Again, Our Dear Redeeming Lord (179)</hymn>, and <hymn>Again, We Meet around the Board (186)</hymn> each averaged somewhere between once every 12 and 14 months. The least frequent sacrament hymn though was <hymn>O Thou, Before the World Began (189)</hymn>, showing up a little more often than once every 18 months.
 
 
 ```{r, fig.height = 20, fig.width = 10}
@@ -125,27 +130,29 @@ non_systematic_ward_df <- freqs %>%
                         "Washington Fields 11th Ward",
                         "Western Springs 2nd Ward")) %>%
     print()
-distinct_meetings_non_systematic_wards <- non_systematic_ward_df %>%
-    count(meeting_id) %>%
-    nrow() %>%
-    print()
 non_systematic_ward_df %>%
-    cleveland_plot(title = "Sacrament hymns", 
-                   subtitle = "Excludes wards that systematically cycle through the hymns", 
-                   unique_meetings = distinct_meetings_non_systematic_wards,
+    cleveland_plot(#col_to_plot = avg_per_year,
                    return = "both",
                    x_buffer = 1.2)
+    labs(title = "Sacrament hymns", 
+         subtitle = "Excludes wards that systematically cycle through the hymns")
 ```
 
 ## Non-sacrament hymns
 
+Once in a while, a ward will indeed sing some other hymn as a sacrament hymn. Many hymns were selected by at least one ward at least one time. Besides the 28 hymns in the 169--196 range, I have attestations of 151 other hymns being sung at least once in the `r comma(get_n_distinct_meetings())` sacrament meetings in my database. Of those, two stood out. They are <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn> and <hymn>Gently Raise the Sacred Strain (146)</hymn>. There is good reason for why these two were sung as sacrament hymns: if you look up "Sacrament" in the topical index in the back of the hymnal, it is a list of all the hymns from 169--196, but it also includes these two.
 
-Once in a while, a ward will indeed sing some other hymn as a sacrament hymn. Many hymns were selected by at least one ward at least one time, but two stood out. They are <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn> and <hymn>Gently Raise the Sacred Strain (146)</hymn>. There is good reason for why these two were sung as sacrament hymns: if you look up "Sacrament" in the topical index in the back of the hymnal, it is a list of all the hymns from 169--196, but it also includes these two.
+```{r, fig.height = 4}
+freqs |> 
+    filter(!is.na(type)) |> 
+    filter(type == "Sacrament") |> 
+    filter(!hymn_num %in% 169:196, hymn_num < 1000) |>
+    count(name_num)
 
-```{r, fig.height = 10}
 freqs %>%
+    filter(!hymn_num %in% 169:196) |> 
     filter(type == "Sacrament") %>%
-    cleveland_plot(filter_n = 2)
+    cleveland_plot(filter_n = 5)
 ```
 
 ```{r, include = TRUE, echo = FALSE, fig.height = 6}
@@ -158,21 +165,27 @@ freqs %>%
                              "\"official\" sacrament hymn")) %>%
     cleveland_plot(return = "plot", 
                    extra_cols = regular, color = regular,
-                   title = "Sacrament hymns including \"honorary\" sacrament hymns", 
-                   subtitle = "Includes hymns 169 through 196, plus 146 and 197", 
                    filter_n = 3, x_buffer = 1.1) + 
+    scale_x_continuous(breaks = seq(1, 3, 0.5),
+                       expand = expansion(0, c(0, 0.83))) + 
     scale_color_manual(values = c(ptol_blue, "gray30"),
                        name = NULL) + 
+    labs(title = "Sacrament hymns including \"honorary\" sacrament hymns", 
+         subtitle = "Includes hymns 169 through 196, plus 146 and 197") + 
     theme(legend.position = "bottom")
 ```
 
-Let's start with <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn>. It was sung *as a sacrament hymn* about once every two per ward on average. Given that it feels like a sacrament hymn *and* like an Easter hymn, it is perfectly placed between the more on-the-nose sacrament hymns (i.e. those about the bread and water) and the more traditional Easter hymns (e.g. <hymn>He is Risen! (199)</hymn>). Perhaps some music coordinators noticed it in the Index and chose it because of that. But, I could see a music coordinator selecting it because they perhaps thought sacrament hymns went from 169--197 instead of 169--196.
+```{r}
+ggsave("cover.png", height = 4, width = 6.5)
+```
+
+Let's start with <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn>. It was sung *as a sacrament hymn* about once every two years per ward on average. Given that it feels like a sacrament hymn *and* like an Easter hymn, it is perfectly placed between the more on-the-nose sacrament hymns (i.e. those about the bread and water) and the more traditional Easter hymns (e.g. <hymn>He is Risen! (199)</hymn>). Perhaps some music coordinators noticed it in the Index and chose it because of that. But, I could see a music coordinator selecting it because they perhaps thought sacrament hymns went from 169--197 instead of 169--196.
 
 ```{r}
 freqs %>%
-    filter(hymn_num %in% c(146, 197),
-           type == "Sacrament") %>%
+    filter(type == "Sacrament") %>%
     cleveland_plot(return = "table") %>%
+    filter(hymn_num %in% c(146, 197)) |> 
     mutate(across(c(avg_per_year, every_x_weeks, every_x_months, every_x_years), ~round(., 3))) %>%
     select(hymn_name, hymn_num, everything(), n, -label) %>%
     rename(`Average per year` = avg_per_year,
@@ -186,12 +199,12 @@ freqs %>%
 ```
 
 
-The oddball though is <hymn>Gently Raise the Sacred Strain (146)</hymn>. In fact, it was sung *as a sacrament hymn* about once every 2.6 years per ward, which is only a little less often than <hymn>O Thou, Before the World Began (189)</hymn>. It is not clear to me why this one is listed in the index as a sacrament hymn, but it's not grouped together with the other sacrament hymns. The "Prayer and Supplication" category of hymns, which is what this is a part of (and rightfully so, in my opinion), is just before the "Sacrament" category. If it, like <hymn>O Savior, Thou Who Wearest a Crown (197)</hymn>, fits into both categories, then I think it should be moved to hymn 168 so that it's less out of left field. This one really should be thought of as an honorary sacrament hymn. Perhaps we'll see it included in the "official" list of sacrament hymns in the next hymnal.
+The oddball though is <hymn>Gently Raise the Sacred Strain (#146)</hymn>. In fact, it was sung *as a sacrament hymn* about once every 2.2 years per ward, which is only a little less often than <hymn>O Thou, Before the World Began (189)</hymn>. It is not clear to me why this one is listed in the index as a sacrament hymn, but it's not grouped together with the other sacrament hymns. The "Prayer and Supplication" category of hymns, which is what this is a part of (and rightfully so, in my opinion), is just before the "Sacrament" category. If it, like <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, fits into both categories, then I think it should be moved to hymn 168 so that it's less out of left field. This one really should be thought of as an honorary sacrament hymn. Perhaps we'll see it included in the "official" list of sacrament hymns in the next hymnal.
 
 ::: callout-tip
 ### Recommendation for the next hymnal
 
-Consider putting <hymn>O Thou, Before the World Began (189)</hymn> immediately before the list of sacrament hymns.
+Consider putting <hymn>Gently Raise the Sacred Strain (#146)</hymn> immediately before the list of sacrament hymns.
 :::
 
 
@@ -217,9 +230,9 @@ freqs %>%
 
 freqs %>%
     filter(type != "Sacrament",
-           hymn_num != 0,
-           hymn_num %in% 169:196) %>%
-    cleveland_plot(return = "table") 
+           hymn_num != 0) %>%
+    cleveland_plot(return = "table") |> 
+    filter(hymn_num %in% 169:196)
 
 freqs %>%
     filter(type != "Sacrament",
@@ -228,23 +241,22 @@ freqs %>%
     cleveland_plot(return = "plot", x_buffer = 0.1, breaks = 0.05) 
 ```
 
-How often will a ward do this, on average, across all sacrament hymns?
+
 
 ```{r}
-freqs %>%
+# How often will a ward do this, on average, across all sacrament hymns?
+meetings_with_sac_elsewhere <- freqs %>%
     filter(type != "Sacrament",
-           hymn_num %in% 169:196) %>%
-    select(date, ward) %>%
-    distinct() %>%
-    nrow()
+           hymn_num %in% 169:196) |> 
+    get_n_distinct_meetings()
 
-226/get_n_distinct_meetings()
-1/(226/get_n_distinct_meetings() * 48) * 12
+meetings_with_sac_elsewhere/get_n_distinct_meetings()
+1/(meetings_with_sac_elsewhere/get_n_distinct_meetings() * 48) * 12
 ```
 
-Finally, we can look at sacrament hymns that were sung at some other point in a sacrament meeting. Unsurprisingly, <hymn>I Stand All Amazed (193)</hymn> is at the top, being sung occasionally as an opening hymn and closing hymn. At only once every 5--6 years, it's not particularly common to see it sung this way, but it's still not unheard of. After that, there are a few others like <hymn>'Tis Sweet to Sing the Matchless Love (177)</hymn> and <hymn>Reverently and Meekly Now (185)</hymn> were also used as one of the other hymns, but it was still quite unusual.
+Finally, we can look at sacrament hymns that were sung at some other point in a sacrament meeting. Unsurprisingly, <hymn>I Stand All Amazed (193)</hymn> is at the top, being sung occasionally as an opening hymn and closing hymn. At only once every five years, it's not particularly common to see it sung this way, but it's still not unheard of. After that, there are a few others like <hymn>'Tis Sweet to Sing the Matchless Love (177)</hymn> and <hymn>There Is a Green Hill Far Away (#194)</hymn> that were also used as one of the other hymns, but it was still quite unusual.
 
-Overall, while singing a specific sacrament hymn elsewhere in the meeting is pretty unusual, the odds of singing *any* of the sacrament hymns is more common since their frequencies add together. It happened in 226 of the 17,833 sacrament meetings I have data from, or 1.3% of them. That means, on average, a ward might since hymn 169--196 at some other point in the meeting approximately once every year and 8 months.
+Overall, while singing a specific sacrament hymn elsewhere in the meeting is pretty unusual, the odds of singing *any* of the sacrament hymns is more common since their frequencies add together. It happened in `r meetings_with_sac_elsewhere` of the `r comma(get_n_distinct_meetings())` sacrament meetings I have data from, or 1.4% of them. That means, on average, a ward might since hymn 169--196 at some other point in the meeting approximately once every year and 6 months.
 
 ## Conclusion
 
