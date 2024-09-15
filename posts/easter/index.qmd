@@ -8,24 +8,74 @@ categories:
 reference-location: margin
 ---
 
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(include = FALSE,
                       echo = FALSE,
                       fig.width = 8)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
-library(gt)
+```
+
+```{r}
+easters <- data.frame(date = c("2001-04-15",
+                              "2002-03-31",
+                              "2003-04-20",
+                              "2004-04-11",
+                              "2005-03-27",
+                              "2006-04-16",
+                              "2007-04-08",
+                              "2008-03-23",
+                              "2009-04-12",
+                              "2010-04-04",
+                              "2011-04-24",
+                              "2012-04-08",
+                              "2013-03-31",
+                              "2014-04-20",
+                              "2015-04-05",
+                              "2016-03-27",
+                              "2017-04-16",
+                              "2018-04-01",
+                              "2019-04-21",
+                              "2020-04-12",
+                              "2021-04-04",
+                              "2022-04-17",
+                              "2023-04-09",
+                              "2024-03-31")) |>
+    mutate(date = as.Date(date)) |>
+    print()
+```
+
+
+```{r}
+freqs_easters <- freqs |>
+    mutate(easter = case_when(date %in%   easters$date ~ "easter", 
+                              date %in% c(easters$date -  7) ~ "week before",
+                              date %in% c(easters$date - 14) ~ "two weeks before",
+                              date %in% c(easters$date - 21) ~ "three weeks before",
+                              date %in% c(easters$date - 28) ~ "four weeks before",
+                              date %in% c(easters$date - 35) ~ "five weeks before",
+                              date %in% c(easters$date - 42) ~ "six weeks before",
+                              date %in% c(easters$date +  7) ~ "week after",
+                              date %in% c(easters$date + 14) ~ "two weeks after",
+                              TRUE ~ "not Easter"),
+           easter = factor(easter, levels = c("six weeks before", "five weeks before", 
+                                              "four weeks before", "three weeks before", 
+                                              "two weeks before", "week before", "easter", 
+                                              "week after", "two weeks after", "not Easter")),
+           easter_num = if_else(easter == "not Easter", NA, as.numeric(easter) - 7)) |>
+    filter(easter != "not Easter") |> 
+    print()
 ```
 
 Compared to other Christian religions, we don't have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the church are incorporating more celebratory activities for things like Palm Sunday and Good Friday, but this change is happening slowly and idiosyncratically. On Easter Sunday, the hymns we sing are usually focused on the resurrection of the Savior. In this post, I explore Easter hymns and other hymns sung around Eastertime.
 
-This post is based primarily on 1,045 sacrament meetings from 288 wards spanning 21 years. You can read more about the full dataset [here](/posts/frequency-data).
+This post is based primarily on `r comma(length(unique(freqs_easters$meeting_id)))` sacrament meetings from `r length(unique(freqs_easters$ward))` wards since 2001. You can read more about the full dataset [here](/posts/frequency-data).
 
 ```{r, eval = FALSE}
 freqs_easters |> 
     filter(easter %in% c("easter", "week before", "week after", "two weeks before")) |> 
     count(meeting_id, state) |> 
     count(state, sort = TRUE)
-# 1045 meetings, 288 rows
 ```
 
 
@@ -71,55 +121,9 @@ bind_rows(data.frame(easter_toc = easter_toc),
 
 ## When are Easter hymns sung?
 
-While figuring out the exact date of when Easter will be [can be calculated](https://en.wikipedia.org/wiki/Date_of_Easter), it is a lot easier to just get a list of when Easter was from 2022 to 2024 and look at sacrament meetings relative to those dates. So I just took that list of dates and looked at hymns relative to them. This means, unlike my post on [Fast Sundays](/posts/fast_sunday), which were pretty approximate, here I've got a pretty accurate look at Easter.
+While figuring out the exact date of when Easter will be [can be calculated](https://en.wikipedia.org/wiki/Date_of_Easter), it is a lot easier to just get a list of when Easter was from 2002 to 2024 and look at sacrament meetings relative to those dates. So I just took that list of dates and looked at hymns relative to them. This means, unlike my post on [Fast Sundays](/posts/fast_sunday), which were pretty approximate, here I've got a pretty accurate look at Easter.
 
-```{r}
-easters <- data.frame(date = c("2001-04-15",
-                               "2002-03-31",
-                               "2003-04-20",
-                               "2004-04-11",
-                               "2005-03-27",
-                               "2006-04-16",
-                               "2007-04-08",
-                               "2008-03-23",
-                               "2009-04-12",
-                               "2010-04-04",
-                               "2011-04-24",
-                               "2012-04-08",
-                               "2013-03-31",
-                               "2014-04-20",
-                               "2015-04-05",
-                               "2016-03-27",
-                               "2017-04-16",
-                               "2018-04-01",
-                               "2019-04-21",
-                               "2020-04-12",
-                               "2021-04-04",
-                               "2022-04-17",
-                               "2023-04-09",
-                               "2024-03-31")) |>
-    mutate(date = as.Date(date)) |>
-    print()
-
-
-freqs_easters <- freqs |>
-    mutate(date_date = ymd(date),
-           easter = case_when(date_date %in%   easters$date ~ "easter", 
-                              date_date %in% c(easters$date -  7) ~ "week before",
-                              date_date %in% c(easters$date - 14) ~ "two weeks before",
-                              date_date %in% c(easters$date - 21) ~ "three weeks before",
-                              date_date %in% c(easters$date - 28) ~ "four weeks before",
-                              date_date %in% c(easters$date - 35) ~ "five weeks before",
-                              date_date %in% c(easters$date - 42) ~ "six weeks before",
-                              date_date %in% c(easters$date +  7) ~ "week after",
-                              date_date %in% c(easters$date + 14) ~ "two weeks after",
-                              TRUE ~ "not Easter"),
-           easter = factor(easter, levels = c("six weeks before", "five weeks before", "four weeks before", "three weeks before", "two weeks before", "week before", "easter", "week after", "two weeks after", "not Easter")),
-           easter_num = if_else(easter == "not Easter", NA, as.numeric(easter) - 7)) |>
-    print()
-```
-
-If we focus on the period from about six weeks before Easter to two weeks after, we can see how many wards since any of the hymns shown in @fig-venn each week. @fig-weeks_around_easter shows these numbers. As you can see, there is obviously a spike on Easter itself and a whopping 98.4% of wards sing at least one Easter hymn on Easter Sunday. But, there seems to be a fair number of Easter hymns sung even six weeks before.
+If we focus on the period from about six weeks before Easter to two weeks after, we can see how many wards since any of the hymns shown in @fig-venn each week. @fig-weeks_around_easter shows these numbers. As you can see, there is obviously a spike on Easter itself and a whopping 98.6% of wards sing at least one Easter hymn on Easter Sunday. But, there seems to be a fair number of Easter hymns sung even six weeks before.
 
 ```{r}
 sacs_with_easter <- freqs |> 
@@ -132,7 +136,7 @@ sacs_with_easter <- freqs |>
 ```
 
 ```{r, include = TRUE, fig.height = 4}
-#| fig-cap: Proportion of sacrament meetings with Easter hymns around Easter
+#| fig-cap: Percentage of sacrament meetings with Easter hymns around Easter
 #| label: fig-weeks_around_easter
 freqs_easters |> 
     mutate(is_easter = hymn_num %in% all_easter_hymns) |> 
@@ -174,22 +178,6 @@ ggplot(sacs_with_easter, aes(week, prop_easter)) +
     theme_minimal()
 ```
 
-
-```{r, eval = FALSE, fig.height = 4}
-# First draft, where I looked at raw number of hymns.
-# First, here is a plot showing the number of "Easter" hymns across the whole year. 
-freqs_easters |> 
-    filter(hymn_num %in% all_easter_hymns) |> 
-    count(week) |> 
-    ggplot(aes(week, n)) + 
-    geom_col() + 
-    scale_x_continuous(breaks = seq(0, 100, 10)) + 
-    labs(title = "Easter Hymns by Week Number",
-         x = "Week Number",
-         y = "Number of hymns sung (in the current databse)") + 
-    theme_minimal()
-```
-
 There is an obvious peak around Easter, but Easter varies across years, so it's a little spread out. There's also a noticeable dip towards the end of the year as we sing more [Christmas](/posts/christmas) hymns. But, the rest of the year is pretty consistent, with maybe a slight dip in the summer.
 
 Again, to get an idea of the number of "Easter" hymns, I decided to look at the following:
@@ -215,29 +203,6 @@ sacs_with_easter |>
          subtitle = "Non-holiday weeks are highlighted in <span style = 'color: #4477AA;'>blue</span>",
          x = "week number",
          y = "Percentage of sacrament meetings") + 
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.subtitle = ggtext::element_markdown())
-```
-
-
-```{r, include = FALSE, eval = FALSE, fig.height = 4}
-# First draft
-freqs_easters |> 
-    filter(hymn_num %in% all_easter_hymns) |> 
-    count(month, week) |> 
-    mutate(in_range = case_when(month %in% c(32:38) ~ TRUE,
-                                week %in% c(2:5, 22:23, 32:38) ~ TRUE,
-                                TRUE ~ FALSE)) |> 
-    ggplot(aes(week, n, fill = in_range)) + 
-    geom_col() + 
-    scale_x_continuous(breaks = seq(0, 100, 10)) + 
-    scale_fill_manual(breaks = c("TRUE", "FALSE"),
-                     values = c(ptol_blue, "gray75")) +
-    labs(title = "Easter Hymns by Week Number",
-         subtitle = "Non-holiday weeks are highlighted in <span style = 'color: #4477AA;'>blue</span>",
-         x = "Week Number",
-         y = "Number of hymns sung (in the current databse)") + 
     theme_minimal() + 
     theme(legend.position = "none",
           plot.subtitle = ggtext::element_markdown())
@@ -292,7 +257,7 @@ As it turns out, in Latter-day Saint congregations, it seems only two weeks befo
 ::: {.callout-caution collapse="true"}
 ### Tangent about Easter Sundays without any Easter hymns
 
-Up above, I showed that 98.4% of wards sing at least one Easter hymn on Easter Sunday. That means there are, very occasionally, wards that don't. What did they sing? In my data, there were exactly four such Easter Sundays. For one of them, I'm missing the closing hymn, so it's very possible that they did in fact sing an Easter hymn then. But for the other three, here's what we have:
+Up above, I showed that 98.6% of wards sing at least one Easter hymn on Easter Sunday. That means there are, very occasionally, wards that don't. What did they sing? In my data, there were exactly five such Easter Sundays. For two of them, I'm missing the closing hymn, so it's very possible that they did in fact sing an Easter hymn then. But for the other three, here's what we have:
 
 ```{r}
 noneaster_easters <- freqs_easters |> 
@@ -301,6 +266,7 @@ noneaster_easters <- freqs_easters |>
     filter(easter == "easter",
            !has_easter) |> 
     pull(meeting_id)
+noneaster_easters
 
 freqs_easters |> 
     filter(meeting_id %in% noneaster_easters)
@@ -323,21 +289,24 @@ Now that we've established which hymns are Easter hymns and when those hymns are
 
 First, we'll start off by looking from the perspective of the hymns themselves. If we just focus on the Sundays from two weeks before through one week after, given that any particular hymn is sung, when is that hymn likely going to be sung? It turns out that all 17 of the hymns that could be considered Easter hymns were indeed sung in the Easter season in my database, though obviously some were far less common than others. @fig-cleveland shows these 17 hymns in order of frequency and how often they are sung in a ward in a given year.
 
-```{r, include = TRUE, fig.height = 5, fig.width = 6.5, message=FALSE}
+```{r, include = TRUE, fig.height = 5, fig.width = 8, message=FALSE}
 #| fig-cap: Percentage of wards that sing each Easter hymn per year
 #| label: fig-cleveland
-freqs_easters |>
+around_easter_data <- freqs_easters |>
     filter(easter %in% c("easter", "week before", "week after", "two weeks before"),
-           hymn_num %in% all_easter_hymns) |> 
-    cleveland_plot(title = "Percentage of wards that sing each Easter hymn per year",
-                   subtitle = "This only includes from two weeks before to a week after Easter") + 
-    scale_x_continuous(name = "percent", 
-                       labels = scales::percent, 
-                       expand = expansion(0, c(0, 0.25)),
-                       breaks = seq(0, 1, 0.1))
+           hymn_num %in% all_easter_hymns) 
+around_easter_data |> 
+    cleveland_plot(col_to_plot = prop_of_meetings) + 
+    labs(title = "Percentage of wards that sing each Easter hymn per year",
+                   subtitle = "From two weeks before to a week after Easter") + 
+    scale_x_continuous(name = "percent",
+                       labels = scales::percent,
+                       expand = expansion(0, c(0, 0.15)),
+                       breaks = seq(0, 1, 0.1),
+                       minor_breaks = seq(0, 1, 0.05))
 ```
 
-We can immediately see that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common hymns during this time, with the former just slightly ahead but the difference is so small we could probably consider them being in joint first place. What is the most surprising to me is how low those percentages are: each of those hymns is sung by the congregation in only about 58% of wards each year!But, like what we saw with the [Christmas](/posts/christmas) hymns, it's very possible that many more wards *hear* these hymns each year just as musical numbers of some sort, rather than as a congregational hymn. 
+We can immediately see that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common hymns during this time, with the former just slightly ahead but the difference is so small we could probably consider them being in joint first place. What is the most surprising to me is how low those percentages are: each of those hymns is sung by the congregation in only about 58% of wards each year! But, like what we saw with the [Christmas](/posts/christmas) hymns, it's very possible that many more wards *hear* these hymns each year just as musical numbers of some sort, rather than as a congregational hymn. 
 
 Let's dive into each of those hymns then and see when during that four-week period they're sung. @fig-rel_freq shows how often each Easter hymn is sung across the Easter season. In this plot, the percentages add up to 100% for each hymn, regardless of how often the hymn is sung generally, so it's not necessarily meaningful to compare across hymns. Instead, we focus on each hymn and see when it peaks within the Easter season.
 
@@ -375,19 +344,27 @@ We can look at the same data a slightly different way and focus on one week at a
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5, message=FALSE}
 #| fig-cap: Most common hymns on Palm Sunday
 #| label: fig-cleveland_palm
-freqs_easters |>
+palm_sunday <- freqs_easters |>
     filter(easter %in% c("week before")) |> 
-    mutate(is_easter = hymn_num %in% all_easter_hymns) |> 
-    cleveland_plot(title = "Frequency of hymns on Palm Sunday",
-                   subtitle = "Easter hymns are highlighted in <span style = 'color: #4477AA;'>blue</span>",
-                   filter_n = 15,
-                   extra_cols = is_easter,
-                   color = is_easter) + 
-    scale_x_continuous(name = "percent", 
-                       labels = scales::percent, 
-                       expand = expansion(0, c(0, 0.03)),
-                       breaks = seq(0, 1, 0.02)) + 
-    scale_color_manual(values = c(`TRUE` = ptol_blue, `FALSE` = ptol_grey)) + 
+    mutate(is_easter = hymn_num %in% all_easter_hymns)
+n_dates <- palm_sunday |> 
+    distinct(month, day) |> 
+    nrow()
+palm_sunday |>
+    cleveland_plot(filter_n = 15, 
+                   col_to_plot = prop_of_meetings,
+                   # n_weeks = n_dates/7,
+                   # unique_meetings = nrow(data_to_plot),
+                   # extra_cols = is_easter,
+                   # color = is_easter,
+                   return = "table")
+    labs(title = "Frequency of hymns on Palm Sunday",
+         subtitle = "Easter hymns are highlighted in <span style = 'color: #4477AA;'>blue</span>") +
+    # scale_x_continuous(name = "percent",
+    #                    labels = scales::percent,
+    #                    expand = expansion(0, c(0, 0.03)),
+    #                    breaks = seq(0, 1, 0.02)) +
+    scale_color_manual(values = c(`TRUE` = ptol_blue, `FALSE` = ptol_grey)) +
     theme(legend.position = "none",
           plot.subtitle = ggtext::element_markdown())
 ```
@@ -404,7 +381,8 @@ freqs_easters |>
                    subtitle = "Easter hymns are highlighted in <span style = 'color: #4477AA;'>blue</span>",
                    filter_n = 8,
                    extra_cols = is_easter,
-                   color = is_easter) + 
+                   color = is_easter,
+                   return = "plot") + 
     scale_x_continuous(name = "percent", 
                        labels = scales::percent, 
                        expand = expansion(0, c(0, 0.03)),
@@ -414,7 +392,7 @@ freqs_easters |>
           plot.subtitle = ggtext::element_markdown())
 ```
 
-We now move on to Easter Sunday itself. @fig-cleveland_easter show the most commonly sung hymns on Easter. This looks similar to @fig-cleveland, but here we're just looking at Easter Sunday but we're expanding it to include all hymns, regardless of whether they're "technically" Easter hymns. Here we see that all the hymns on this list are Easter hymns as discussed above or are Sacrament hymns. It's been hinted at already, but it's clear that the bulk of Easter singing happens on Easter. As is evident in this plot, Easter hymns dominate on Easter Sunday, and as we saw already in @fig-weeks_around_easter, 98.4% of wards sing at least one Easter hymn that week.
+We now move on to Easter Sunday itself. @fig-cleveland_easter show the most commonly sung hymns on Easter. This looks similar to @fig-cleveland, but here we're just looking at Easter Sunday but we're expanding it to include all hymns, regardless of whether they're "technically" Easter hymns. Here we see that all the hymns on this list are Easter hymns as discussed above or are Sacrament hymns. It's been hinted at already, but it's clear that the bulk of Easter singing happens on Easter. As is evident in this plot, Easter hymns dominate on Easter Sunday, and as we saw already in @fig-weeks_around_easter, 98.6% of wards sing at least one Easter hymn that week.
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5, message=FALSE}
 #| fig-cap: Most common hymns on Easter Sunday
@@ -488,7 +466,7 @@ freqs_easters |>
 
 ## Summary
 
-In this post, I've explored Easter hymns. First, I defined a list of potential Easter hymns by looking at relevant topics in the Index and Table of Contents and found a list of 17 hymns. I then determined when the Easter "season" is, as far as how it's reflected in singing, and determined that two weeks before through one week after is when we see a noticeable increase in Easter hymns, above and beyond what is to be expected. As part of that, I showed that 98.4% of wards sing at least one Easter hymn on Easter Sunday itself, which is pretty remarkable. 
+In this post, I've explored Easter hymns. First, I defined a list of potential Easter hymns by looking at relevant topics in the Index and Table of Contents and found a list of 17 hymns. I then determined when the Easter "season" is, as far as how it's reflected in singing, and determined that two weeks before through one week after is when we see a noticeable increase in Easter hymns, above and beyond what is to be expected. As part of that, I showed that 98.6% of wards sing at least one Easter hymn on Easter Sunday itself, which is pretty remarkable. 
 
 I then looked at each hymn and found that most hymns peak on Easter Sunday, with the most notable exception being <hymn>All Glory, Laud, and Honor (#69)</hymn>, which peaks on Palm Sunday. It is clear that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are the most common hymns around Easter. Other than the latter being slightly more concentrated on Easter Sunday itself, the two pattern almost identically which suggests that music coordinators basically treat them the same. 
 
