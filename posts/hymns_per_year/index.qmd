@@ -1,6 +1,5 @@
 ---
 title: "How many unique hymns does a ward sing in a year?"
-description: "Let's say you're an ambitious music coordinator and you want to sing as many different hymns as possible. How many could you get through in a year? How many hymns do wards typically get through in a year?"
 author: "Joey Stanley"
 date: 9/10/23
 date-modified: last-modified
@@ -15,6 +14,8 @@ knitr::opts_chunk$set(include = FALSE,
                       fig.width = 6.5)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 ```
+
+Let's say you're an ambitious music coordinator and you want to sing as many different hymns as possible. How many could you get through in a year? How many hymns do wards typically get through in a year? (Please note that this post was written before the new hymns were released in June 2, so it only considers the hymns currently in the printed hymnal.)
 
 ## How many hymns *could* a ward sing per year?
 
@@ -48,8 +49,7 @@ avg_nonfast <- freqs |>
     round(2)
 ```
 
-
-I currently have `r scales::comma(n_hymns)` hymns from `r scales::comma(get_n_distinct_meetings())` sacrament meetings. With this data, I can calculate how often wards typically sing intermediate hymns by simply dividing those two numbers. If the number is close to 3, then most wards sing 3 congregational hymns a week, meaning there's a special musical number or for whatever reason the intermediate hymn is not sung. If the number is close to 4, then most wards sing four congregational hymns: opening, sacrament, intermediate, and closing. As it turns out, it's currently `r hymns_per_week`. But that includes Fast Sundays. If we filter out the [Fast Sundays](/posts/fast_sunday), it goes up a little bit to `r avg_nonfast`.
+I currently have `r scales::comma(n_hymns)` hymns from `r scales::comma(get_n_distinct_meetings())` sacrament meetings. With this data, I can calculate how often wards typically sing intermediate hymns by simply dividing those two numbers. If the number is close to 3, then most wards sing 3 congregational hymns a week, meaning there's a special musical number or for whatever reason the intermediate hymn is not sung. If the number is close to 4, then most wards sing four congregational hymns: opening, sacrament, intermediate, and closing. As it turns out, it's currently `r round(hymns_per_week, 2)`. But that includes Fast Sundays. If we filter out the [Fast Sundays](/posts/fast_sunday), it goes up a little bit to `r avg_nonfast`.
 
 ::: {.callout-tip icon="false"}
 ### Fun Fact
@@ -157,7 +157,7 @@ So, because of *probability*, it's not meaningful to compare six years of data f
 I tried a rolling cumulative sum of unique hymns, but I didn't know how to implement that in R. So instead, I implemented a bootstrapping technique and sampled 48 meetings, without replacement, 100 times per ward, and got that average. The standard deviation was `r round(sd_means,2)`.
 :::
 
-Assuming about 24--28 of those are sacrament hymns, that means most wards only sing about `r round(mean_means) - 24` or so unique non-sacrament hymns per year. It appears then that another 28 of those `r `round(mean_means) - 24` hymns are repeated each year.
+Assuming about 24--28 of those are sacrament hymns, that means most wards only sing about `r round(mean_means) - 24` or so unique non-sacrament hymns per year. It appears then that another 28 of those `r round(mean_means) - 24` hymns are repeated each year.
 
 ```{r}
 percentile25 <- round(quantile(bootstrapped$n_unique_hymns_mean, 0.25))
@@ -179,7 +179,7 @@ These numbers should be taken with a grain of salt because it's only based on `r
 
 ## Are there fewer intermediate hymns in two-hour church?
 
-Someone suggested to me one time that the number of intermediate hymns we sing may have shifted once we switched to two-hour church (and thus a slightly shorter sacrament meeting) in January 2019. In their ward, they sense that intermediate hymns are being sung less, not because of more special musical numbers, but because it cut into the speakers' talks and there just wasn't enough time.[The Sunday I wrote this section, my ward did this very thing: we had not intermediate hymn because we had three adult speakers.]{.aside} This is a tricky question to answer because for much of the time since 2019 has been during covid. But, enough time has passed that we can try to answer this question. 
+Someone suggested to me one time that the number of intermediate hymns we sing may have shifted once we switched to two-hour church (and thus a slightly shorter sacrament meeting) in January 2019. In their ward, they sense that intermediate hymns are being sung less, not because of more special musical numbers, but because it cut into the speakers' talks and there just wasn't enough time.[The Sunday I wrote this section, my ward did this very thing: we had no intermediate hymn because we had three adult speakers.]{.aside} This is a tricky question to answer because for much of the time since 2019 has been during covid. But, enough time has passed that we can try to answer this question. 
 
 The following table summaries how many hymns per sacrament meeting were sung in three periods: three-hour church (before January 2019), the "covid era" (March--December 2020), and two-hour church (all of 2019, January--February 2020, and January 2021 through now). Here we can see that the average number of congregational hymns sung in three-hour church was 3.36 and the average number of hymns sung in two-hour church was 3.24---a drop of about 0.12 hymns per week, or about one less intermediate hymn every eight or so weeks. 
 
@@ -255,4 +255,4 @@ freqs %>%
 
 Again, singing only thee congregational hymns on a Sunday instead of four may be because a special musical number took the place of an intermediate hymn. But it could be because the bishopric simply chose not to sing a fourth hymn. With the data I have, I have no way of knowing. I'll let you interpret these numbers as you will. But, it's interesting to see the kind of lasting effect that covid had!
 
-So, do we have fewer intermediate hymns since we shifted to two-hour church? Yes, but I think it's because of covid than the length of sacrament meeting.
+So, do we have fewer intermediate hymns since we shifted to two-hour church? Yes. I think part of it because of covid, but also because of the shorter sacrament meeting.
