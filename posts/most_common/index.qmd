@@ -1,9 +1,8 @@
 ---
 title: "What are the most common hymns?"
-description: "This post shows what the most common hymns are overall in LDS sacrament meetings."
 author: "Joey Stanley"
 date: "9/8/23"
-date-modified: 10/23/2023
+date-modified: last-updated
 aliases: 
   - /posts/most_common_hymns.html
 categories:
@@ -13,8 +12,10 @@ categories:
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
                       fig.width = 6.5)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+get_n_distinct_meetings()
 ```
 
 ```{r}
@@ -22,6 +23,7 @@ freqs %>%
     count(name_num, sort = TRUE)
 ```
 
+This post shows what the most common hymns are overall in LDS sacrament meetings. It is based on data from `r comma(get_n_distinct_meetings())` sacrament meetings.
 
 The most common hymn is <hymn>I Stand All Amazed (#193)</hymn>. Given what was discussed previously about the [sacrament hymns](/posts/sacrament), it shouldn't come as a surprise that the most common hymn is a sacrament hymn. In fact, the top 18 most sung hymns are sacrament hymns. There is a fairly well-enforced constraint that at least one hymn per meeting "must" be one of the 28 canonical sacrament hymns (with two ["honorary hymns"](/posts/sacrament/index.html#non-sacrament-hymns) as possibilities as well). We can now better appreciate the list of the most common hymns.
 
@@ -35,18 +37,26 @@ Read more about [the *least* common hymns](/posts/least-common-hymns).
 
 The most common hymns sung in the church, according to my data, are displayed in the figure below. Here, sacrament hymns are in gray and other hymns are in black. I've shown only the hymns that are sung, on average, one or more times per year per ward.[You may think that a lot of hymns that pertain to specific holidays would make it onto this list, but as we'll see in later blog posts about annual trends, there are actually relatively few festive hymns that are sung by most wards most years.]{.aside} Since [I've already posted about the sacrament hymns](/posts/sacrament), I'll focus now on just the non-sacrament hymns.
 
-```{r, include = TRUE, echo = FALSE, fig.height = 7}
+```{r, include = TRUE, echo = FALSE, fig.height = 7, fig.width = 8}
+hymns_sung_more_than_once_per_year <- freqs |> 
+    cleveland_plot(return = "table") |> 
+    filter(avg_per_year >= 1) |> 
+    pull(n) |> 
+    min()
+
 freqs %>%
     mutate(is_sacrament = hymn_num %in% 169:196) %>%
-    cleveland_plot(filter_n = 374, extra_cols = is_sacrament, color = is_sacrament, base_size = 10,
-                   title = "Hymns sung more than once per year per ward, on average",
-                   subtitle = NULL) + 
+    cleveland_plot(filter_n = hymns_sung_more_than_once_per_year, 
+                   extra_cols = is_sacrament, color = is_sacrament, 
+                   base_size = 10) + 
+    scale_x_continuous(breaks = seq(1, 5, 0.5),
+                       expand = expansion(0, c(0, 0.8))) + 
     scale_color_manual(values = c("black", "gray75"), name = NULL, labels = c("Non-sacrament hymn", "Sacrament hymn")) + 
-    theme(legend.position = "bottom")
+    labs(title = "Hymns sung more than once per year per ward, on average") + 
+    theme(legend.position = "bottom") 
 ```
 
-
-This figure shows nice list of 24 hymns that are probably well-known by most members of the church, like <hymn>I Know That My Redeemer Lives (#136)</hymn>, <hymn>How Firm a Foundation (#85)</hymn>, and <hymn>Because I Have Been Given Much (#219)</hymn>. They are generic enough to be appropriate for most meetings. Their message is centered on Christ and other foundation tenents of our religion. Some are more common around certain holidays, like <hymn>Come, Come Ye Saints (#30)</hymn> around Pioneer Day in Utah or <hymn>Love At Home (#294)</hymn> around Mother's Day, but they're also general enough to be appropriate at other times of the year as well. Thus, what we see in the figure above is a solid list of the most popular hymns in the Church of Jesus Christ of Latter-day Saints.
+This figure shows nice list of 20 or so hymns that are probably well-known by most members of the church, like <hymn>I Know That My Redeemer Lives (#136)</hymn>, <hymn>How Firm a Foundation (#85)</hymn>, and <hymn>Because I Have Been Given Much (#219)</hymn>. They are generic enough to be appropriate for most meetings. Their message is centered on Christ and other foundation tenets of our religion. Some are more common around certain holidays, like <hymn>Come, Come Ye Saints (#30)</hymn> around [Pioneer Day](/posts/pioneer_day) in Utah or <hymn>Love At Home (#294)</hymn> around [Mother's Day](/posts/mothers_day), but they're also general enough to be appropriate at other times of the year as well. Thus, what we see in the figure above is a solid list of the most popular hymns in the Church of Jesus Christ of Latter-day Saints.
 
 ```{r}
 freqs %>%
@@ -55,7 +65,7 @@ freqs %>%
 ```
 
 
-This figure also shows how common each of these hymns are. <hymn>Because I Have Been Given Much (219)</hymn> is sung about 1.6 times per year, or once every 7.5 months. <hymn>How Firm a Foundation (#85)</hymn> and  were about once every 7--8 months. <hymn>I Know That My Redeemer Lives (#136)</hymn> was sung, on average, 1.5 times per year per ward, or about once every six or so months. <hymn>Lord, I Would Follow Thee (#220)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> were once every 8--9 months. <hymn>I Believe in Christ (134)</hymn>, <hymn>Now Let Us Rejoice (3)</hymn>, and <hymn>High on the Mountain Top (5)</hymn>, <hymn>The Lord Is My Light (#89)</hymn>, and <hymn>Come, Follow Me (#116)</hymn> were once every 8--9 months. The rest were less than once every 10 months but still at least once a year. Of course, your ward may sing these more or less often than what is shown here, but this is the average across all the wards I have data from.
+This figure also shows how common each of these hymns are. <hymn>Because I Have Been Given Much (219)</hymn> is sung about 1.6 times per year, or once every 7.5 months. <hymn>How Firm a Foundation (#85)</hymn> and <hymn>I Know That My Redeemer Lives (#136)</hymn> were about once every 7--8 months. <hymn>Lord, I Would Follow Thee (#220)</hymn> and <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> were once every 8--9 months. <hymn>I Believe in Christ (134)</hymn>, <hymn>Now Let Us Rejoice (3)</hymn>, and <hymn>High on the Mountain Top (5)</hymn>, <hymn>The Lord Is My Light (#89)</hymn>, and <hymn>Come, Follow Me (#116)</hymn> were once every 8--9 months. The rest were less than once every 10 months but still at least once a year. Of course, your ward may sing these more or less often than what is shown here, but this is the average across all the wards I have data from.
 
 ```{r}
 freqs %>%
@@ -69,16 +79,16 @@ To contrast this, about nine sacrament hymns are sung, on average, more than twi
 the_favorites <- freqs %>%
     cleveland_plot(filter_n = 374, return = "table") %>%
     pull(hymn_num) %>%
+    droplevels() |> 
     print()
 length(the_favorites)
 freqs %>%
-    summarize(is_favorite = hymn_num %in% the_favorites) %>%
+    mutate(is_favorite = hymn_num %in% the_favorites) %>%
     count(is_favorite) %>%
     mutate(prop = n/sum(n))
 ```
 
-
-This list of favorites is useful because if you are a new ward organist, these are the hymns to practice first. Learning these 24 hymns (plus the sacrament hymns) will get you the most mileage. In fact, these 49 hymns account for 44.3% of the hymns sung in sacrament meeting in this sample. That means that if you learn the hymns shown in the figure above, you'll be able to play almost half of the meetings in your ward.
+This list of favorites is useful because if you are a new ward organist, these are the hymns to practice first. Learning these 20ish hymns (plus the sacrament hymns) will get you the most mileage. In fact, these plus the sacrament hymns hymns account for 34.5% of the hymns sung in sacrament meeting in this sample. That means that if you learn the hymns shown in the figure above, you'll be able to play almost about a third of the meetings in your ward.
 
 ### Are these the "standards"?
 
@@ -94,19 +104,25 @@ sort(intersect(as.numeric(as.character(the_favorites)), standards)) %>%
     single_hymn_lookup()
 sort(setdiff(standards, as.numeric(as.character(the_favorites)))) %>%
     single_hymn_lookup()
+```
+
+```{r, include = TRUE, fig.height = 9}
 freqs %>%
     mutate(standard_vs_popular = case_when(hymn_num %in% the_favorites & hymn_num %in% standards ~ "both",
                                            hymn_num %in% the_favorites ~ "popular",
                                            hymn_num %in% standards     ~ "standard")) %>%
     filter(!is.na(standard_vs_popular),
            !hymn_num %in% 169:196) %>%
-    cleveland_plot(extra_cols = standard_vs_popular, color = standard_vs_popular, 
-                   title = "Standard vs. Popular hymns", subtitle = "Excluding sacrament hymns",
-                   x_buffer = 1.25) + 
+    cleveland_plot(extra_cols = standard_vs_popular, 
+                   color = standard_vs_popular) + 
+    scale_x_continuous(expand = expansion(0, c(0, 0.8))) + 
     scale_color_manual(name = NULL,
                        breaks = c("popular", "standard", "both"),
-                       values = c("#377eb8", "#e41a1c", "#984ea3")) # from color brewer Set1
+                       # from color brewer Set1
+                       values = c("#377eb8", "#e41a1c", "#984ea3")) + 
+    labs(title = "Standard vs. Popular hymns", subtitle = "Excluding sacrament hymns") + 
+    theme(legend.position = "bottom")
 ```
 
-However, it should be kept in mind that this isn't exactly a fair comparison. For one, this list of "standards" is what is recommended for stake conference, which is not the same as sacrament meeting. Also, this list printed in the back of the hymnal is presumably what was recommended in 1985 when this hymnal was first published. What is considered a standard has surely changed in the past few decades. Furthermore, many of the currently most popular hymns were new additions to the 1985 hymnal, including <hymn>Because I Have Been Given Much (#219)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, <hymn>I Am a Child of God (#301)</hymn>, and <hymn>Called to Serve (#249)</hymn>. It makes sense that they're not recommended in the back of the hymnal because they were brand new when that list was published! How could they have know they'd be so popular? My recommendation for the church would be to update the list of stake conference recommendations to include these most popular hymns and to remove the ones that are less common today.
+However, it should be kept in mind that this isn't exactly a fair comparison. For one, this list of "standards" is what is recommended for stake conference, which is not the same as a sacrament meeting. Also, this list printed in the back of the hymnal is presumably what was recommended in 1985 when this hymnal was first published. What is considered a standard has surely changed in the past few decades. Furthermore, many of the currently most popular hymns were new additions to the 1985 hymnal, including <hymn>Because I Have Been Given Much (#219)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, <hymn>I Am a Child of God (#301)</hymn>, and <hymn>Called to Serve (#249)</hymn>. It makes sense that they're not recommended in the back of the hymnal because they were brand new when that list was published! How could they have know they'd be so popular? My recommendation for the church would be to update the list of stake conference recommendations to include these most popular hymns and to remove the ones that are less common today.
 
