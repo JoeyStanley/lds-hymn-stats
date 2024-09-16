@@ -1,9 +1,8 @@
 ---
 title: "What are the most common key signatures?"
-description: "Which key signatures are the most common and why? Which ones are people most likely to see? What hymns are in a minor key?"
 author: "Joey Stanley"
 date: 9-16-2023
-date-modified: 10-25-2023
+date-modified: last-modified
 categories:
   - key signatures
   - musicology
@@ -19,6 +18,8 @@ knitr::opts_chunk$set(include = FALSE,
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(patchwork)
 ```
+
+Which key signatures are the most common and why? Which ones are people most likely to see? What hymns are in a minor key? In this post I take a deep dive into key signatures in our 1985 hymnal. (New hymns released since 2024 are not included here for now.)
 
 
 ## What key signature is most common in the hymnal?
@@ -71,7 +72,6 @@ notes %>%
            cumprop = cumsum/sum(n)) %>% 
     print() 
 ```
-
 
 
 If you know the hymnal well, nothing about @fig-key_sigs should come as a surprise. The modern hymnal tends to use key signatures that have few sharps or flats.[That wasn't necessarily true of previous versions. For example, some hymns in the previous version (the blue hymnal) were in the key of E major with four sharps. Presumably they got rid of those because they were too hard for some accompanists to play.]{.aside} There are about as many hymns in the D major as there are in C major and E♭ major. There are slightly fewer hymns in F and B♭ major for some reason. E♭ major is the standout because even though it has more flats than B♭ and F, it outnumbers those two. In general though, the further in the circle of fourths you go away from G major, the fewer hymns there are.
@@ -157,9 +157,7 @@ freqs %>%
 
 I'm not a musicologist, but I can speculate as to why G is more common than C. It may be the case that many melodies are centered around the tonic, and extend roughly a fifth above it and roughly a fourth or fifth below it, with a total range of about an octave. If that's the case, and a comfortable octave for many singers is from D to D, that means the key of G would be an appropriate key signature. A good example of this is <hymn>Love One another (#308)</hymn>, in the left panel of @fig-sopranos, which shows the distribution of notes in the melody, with the tonic highlighted in blue.
 
-```{r, include = TRUE, fig.height = 3, fig.width = 9}
-#| label: fig-sopranos
-#| fig-cap: "Soprano ranges for two representative hymns"
+```{r}
 plot_tonic_in_ranges <- function(.hymn_num, .voice = "soprano") {
     this_title <- notes %>%
         filter(hymn_num == .hymn_num) %>% 
@@ -170,22 +168,38 @@ plot_tonic_in_ranges <- function(.hymn_num, .voice = "soprano") {
         filter(voice == .voice) %>%
         filter(hymn_num == .hymn_num) %>%
         mutate(is_tonic = note == key_signature) %>%
-        ggplot(aes(midi, fill = is_tonic)) + 
-        geom_bar() + 
+        ggplot(aes(midi, fill = is_tonic)) +
+        geom_bar() +
         scale_x_continuous(breaks = note_name_midi_lookup$midi,
-                           labels = note_name_midi_lookup$note_label) + 
-        scale_y_continuous(expand = expansion(0, add = c(0, 2))) + 
-        scale_fill_manual(values = c("gray50", ptol_blue)) + 
+                           labels = note_name_midi_lookup$note_label) +
+        scale_y_continuous(expand = expansion(0, add = c(0, 2))) +
+        scale_fill_manual(values = c("gray50", ptol_blue)) +
         labs(x = "note",
              y = "number of notes",
              title = this_title) +
-        theme_bw() + 
+        theme_bw() +
         theme(legend.position = "none")
 }
-p1 <- plot_tonic_in_ranges(308)
-p2 <- plot_tonic_in_ranges(62)
-p1 + p2
 ```
+
+
+```{r}
+# Export so I can arrange them better with quarto.
+plot_tonic_in_ranges(308)
+ggsave("soprano1.png", height = 3, width = 4.5, dpi = 300)
+plot_tonic_in_ranges(62)
+ggsave("soprano2.png", height = 3, width = 4.5, dpi = 300)
+```
+
+::: {#fig-sopranos layout-ncol=2}
+
+![](soprano1.png)
+
+![](soprano2.png)
+
+Soprano ranges for two representative hymns
+:::
+
 
 Other melodies also span a full octave but the highest and lowest notes are the tonic itself. A good example of this is <hymn>All Creatures of Our God and King (#62)</hymn>, the right panel of @fig-sopranos. For melodies such as these, a key signature like D (or in this case, E♭) would be more appropriate so that the melody does not go too high or too low.
 
@@ -194,13 +208,21 @@ So, it may be the case then that the reason why G major is the most common key i
 Along similar lines, if a piece is set to the key of G, the basses get to end the piece on a strong low note that many men, particularly men who sing bass lines, can hit. It's nice to end a piece with the tonic being the lowest note of the bass line, and the entire hymn. Some examples of these hymns include <hymn>Do What is Right (#237)</hymn> (shown in the left panel of @fig-basses) and <hymn>God, Our Father, Hear Us Pray (#170)</hymn>. Other hymns, such as those set in C major or B♭ major, have the dominant (or fifth note of the scale) as the lowest note of the bass line, sometimes near the very end of the piece, like in <hymn>Silent Night (#203)</hymn> (shown in the right panel of @fig-basses) or <hymn>The Spirit of God (#2)</hymn>. While dropping down to a low dominant (in this case F if it's in the key of B♭) can be a nice way to close a piece, I think a stronger finish is to end with the lowest note being the dominant, hence the greater number of hymns set in the key of G.
 
 
-```{r, include = TRUE, fig.height = 3, fig.width = 9, warning=FALSE}
-#| label: fig-basses
-#| fig-cap: "Bass ranges for two representative hymns"
-p1 <- plot_tonic_in_ranges(170, "bass")
-p2 <- plot_tonic_in_ranges(204, "bass")
-p1 + p2
+```{r}
+plot_tonic_in_ranges(170, "bass")
+ggsave("bass1.png", height = 3, width = 4.5, dpi = 300)
+plot_tonic_in_ranges(204, "bass")
+ggsave("bass2.png", height = 3, width = 4.5, dpi = 300)
 ```
+
+::: {#fig-basses layout-ncol=2}
+
+![](bass1.png)
+
+![](bass2.png)
+
+Bass ranges for two representative hymns
+:::
 
 
 
@@ -212,25 +234,22 @@ p1 + p2
 Exactly five hymns are set in a minor key.
 :::
 
-You can see the five hymns in a minor key in @fig-minors. The most common is the New Year's Day hymn, <hymn>Ring Out, Wild Bells (#215)</hymn>. We'll talk more about holidays later on, but it's only sung by 45% of wards around New Year's Day. The next most common is <hymn>If You Could Hie to Kolob (#284)</hymn> although it's not especially frequent and is only sung about once every 3.1 years or so.[Although, if your ward ever does one of those musical testimony meetings where people get up and say what their favorite hymn is and then everyone sings a verse of that, I suspect you're pretty much guaranteed to sing it then.]{.aside} Third is <hymn>That Easter Morn (#198)</hymn> which, from my intuition, is punching above its weight because only 22% of wards sing it around Easter. The last two, <hymn>Lord, We Come Before Thee Now (#162)</hymn> and <hymn>How Long, O Lord Most Holy and True? (#126)</hymn> are pretty unusual and are sung about once every 15 years and once every 48 years or so, respectively.
+You can see the five hymns in a minor key in @fig-minors. The most common is the New Year's Day hymn, <hymn>Ring Out, Wild Bells (#215)</hymn>. We'll talk more about holidays later on, but it's only sung by 45% of wards around New Year's Day. The next most common is <hymn>If You Could Hie to Kolob (#284)</hymn> although it's not especially frequent and is only sung about once every 3.1 years or so.[Although, if your ward ever does one of those musical testimony meetings where people get up and say what their favorite hymn is and then everyone sings a verse of that, I suspect you're pretty much guaranteed to sing it then.]{.aside} Third is <hymn>That Easter Morn (#198)</hymn> which, from my intuition, is punching above its weight because only 22% of wards sing it around Easter. The last two, <hymn>Lord, We Come Before Thee Now (#162)</hymn> and <hymn>How Long, O Lord Most Holy and True? (#126)</hymn> are pretty unusual and are sung about once every 16 years and once every 53 years or so, respectively.
 
-```{r}
-freqs %>%
-    filter(hymn_num %in% c(198, 215, 284, 162, 126)) %>%
-    cleveland_plot(return = "table")
-```
-
-
-```{r, include = TRUE, fig.height = 2}
+```{r, include = TRUE, fig.height = 2, fig.width = 8}
 #| label: fig-minors
 #| fig-cap: "Frequency of hymns in a minor key"
-freqs %>%
-    filter(hymn_num %in% c(198, 215, 284, 162, 126)) %>%
-    cleveland_plot(x_buffer = 0.2, breaks = 0.1,
-                   title = "Hymns set in a minor key", 
-                   subtitle = NULL)
-```
 
+freqs %>%
+    cleveland_plot(col_to_plot = every_x_years,
+                   return = "plot",
+                   hymns_to_plot = c(198, 215, 284, 162, 126)) + 
+    scale_x_continuous(breaks = seq(0, 100, 5),
+                       minor_breaks = 1:100,
+                       expand = expansion(0, c(0, 25))) + 
+    labs(title = "Hymns set in a minor key and how often they're sung",
+         x = "Years between singings")
+```
 
 So, if you sing a hymn in a minor key, it's probably one of the two holiday ones or <hymn>If You Could Hie to Kolob (#284)</hymn>. I can't help but think that the reason <hymn>If You Could Hie to Kolob (#284)</hymn> is so popular is *because* it's set in a minor key. It's a pretty obscure piece of doctrine that it's talking about and I wonder if it were set to a different tune if it'd be as popular.[In fact, it *was* set to a different tune, in a major key, in the 1948 hymnal. It's hymn #257. I don't know how popular it was prior to 1985 though.]{.aside} In other words, do people like it because of the words or because of the music? Also, for what it's worth, the distribution of notes looks very much like <hymn>Love One another (#308)</hymn> (the left panel in @fig-sopranos).
 
