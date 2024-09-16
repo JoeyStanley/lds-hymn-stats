@@ -1,12 +1,11 @@
 ---
 title: "How many of each card should a ward have?"
 author: "Joey Stanley"
-date: 2024-09-15
+date: 2024-09-16
 date-modified: last-modified
 categories:
   - general
 image: cover.png
-draft: TRUE
 ---
 
 ```{r, include = FALSE}
@@ -28,7 +27,8 @@ this_df <- freqs |>
     add_count(meeting_id) |> 
     filter(n %in% 3:4) |> 
     select(meeting_id, hymn_num)
-n_meetings_comma <- scales::comma(length(unique(this_df$meeting_id)))
+n_meetings <- length(unique(this_df$meeting_id))
+n_meetings_comma <- scales::comma(n_meetings)
 ```
 
 
@@ -136,11 +136,9 @@ this_df |>
 
 ## How many cards of each digit do we need?
 
-The above plot is the same as the one above that showed the proportion of numbers on display across all meetings. So, let's make it more useful. What if we consider a different question. How many copies of each digit should come in a standard pack distributed by the church? You probably don't need twelve of each number because you're never going to sing hymn 111 four times. But you want more than what the numbers in the above plot show, because it means half the time you won't have enough. 
+The above plot is the same as the one above that showed the proportion of numbers on display across all meetings. So, let's make it more useful. What if we consider a different question. How many copies of each digit should come in a standard pack distributed by the church? You probably don't need twelve of each number because you're never going to sing hymn 111 four times. But you want more than what the numbers in the above plot show, because it means half the time you won't have enough. The following plot shows how many cards you'd need to have enough to display the hymns used in the sacrament meetings I have data from.
 
-What I've done is looked at how many copies of each digit are needed to account for 95% of sacrament meetings. Those numbers are displayed below. What this plot shows is that if you have four `1`s and `2`s, three `0`s, `3`s, `7`s, and `9`s, and two `4`s, `5`s, `6`s, and `8`s, you would have enough cards 95% of the time. That means it's only about every two years that you'd run out of cards. 
-
-```{r, include = TRUE, fig.height = 3}
+```{r, eval = FALSE}
 this_df |> 
     mutate(hymn_num = as.character(hymn_num)) |> 
     unnest_characters(digit, hymn_num) |> 
@@ -155,41 +153,49 @@ this_df |>
     theme(axis.text.x = element_text(size = 15))
 ```
 
-Howevever, once every two years is still more often that you'd want. Perhaps what we'd want is to be good 99% of the time. The plot below shows those numbers. This time, you'd need five `1`s and `2`s, four `3`s, and three of everything else. That would ensure you're good to go almost all the time and maybe once every five years would you run out. 
-
-```{r, include = TRUE, fig.height = 3}
-this_df |> 
+```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
+cumprops <- this_df |> 
     mutate(hymn_num = as.character(hymn_num)) |> 
     unnest_characters(digit, hymn_num) |> 
-    count(digit, meeting_id) |> 
-    summarize(n = quantile(n, 0.99), .by = digit) |>
-    ggplot(aes(digit, n)) +
-    geom_col() + 
-    scale_y_continuous(expand = expansion(0, c(0, 0.06))) +
-    labs(title = "How many cards of each digit needed for 99% of sacrament meetings.",
-         y = "number of cards") +
+    count(digit, meeting_id, name = "n_digits") |> 
+    count(digit, n_digits, names = "n_wards") |>
+    arrange(digit, n_digits) |> 
+    mutate(cumsum = cumsum(n), .by = digit) |> 
+    mutate(cumprop = cumsum/max(cumsum), .by = digit) |>
+    mutate(cumprop_txt = case_when(cumprop == 1 ~ paste0(round(cumprop, 2)*100, "%"),
+                                   cumprop > 0.999 ~ paste0(floor(cumprop*10000)/10000*100, "%"),
+                                   cumprop > 0.99 ~ paste0(round(cumprop, 3)*100, "%"),
+                                   TRUE ~ paste0(round(cumprop, 2)*100, "%"))) |> 
+    mutate(sigfigs = case_when(cumprop == 1 ~ 5,
+                               str_detect(cumprop_txt, "99.99") ~ 4,
+                               str_detect(cumprop_txt, "99.9\\d") ~ 3,
+                               str_detect(cumprop_txt, "99.\\d") ~ 2,
+                               str_detect(cumprop_txt, "9\\d") ~ 1,
+                               TRUE ~ 0)) |> 
+    mutate(textcolor = if_else(sigfigs <= 1, 5, 0))
+
+ggplot(cumprops, aes(digit, n_digits)) + 
+    geom_point(aes(color = sigfigs), shape = 15, size = 11, position = position_nudge(x = -0.15)) + 
+    geom_point(aes(color = sigfigs), shape = 15, size = 11, position = position_nudge(x = 0.15)) +
+    geom_text(aes(color = textcolor, label = cumprop_txt), size = 3) + 
+    scale_y_continuous(breaks = 1:10,
+                       minor_breaks = NULL,
+                       expand = expansion(0, 0.5)) + 
+    scale_color_distiller(palette = "Greens") +
+    labs(title = "Cards needed in sacrament meetings",
+         subtitle = "Percentages show the number of sacrament meetings you'd account for with that many\ncards for that digit.",
+         y = "number of cards needed") + 
     theme_minimal() + 
-    theme(axis.text.x = element_text(size = 15))
+    theme(legend.position = "none",
+          axis.text.x = element_text(size = 15))
 ```
 
-Perhaps that's sufficient. But maybe not. For the sake of curiosity, how many cards would it take to cover *all* the sacrament meetings I have data for? The plot below shows those numbers. You'd need a whopping eight `1`s, seven `2`s, six each of `3`s, `6`s, and `7`s, and five of everything else. 
-
-```{r, include = TRUE, fig.height = 3}
-this_df |> 
-    mutate(hymn_num = as.character(hymn_num)) |> 
-    unnest_characters(digit, hymn_num) |> 
-    count(digit, meeting_id) |> 
-    summarize(n = max(n), .by = digit) |>
-    ggplot(aes(digit, n)) +
-    geom_col() + 
-    scale_y_continuous(expand = expansion(0, c(0, 0.06))) +
-    labs(title = "How many cards of each digit needed all sacrament meetings.",
-         y = "number of cards") +
-    theme_minimal() + 
-    theme(axis.text.x = element_text(size = 15))
+```{r}
+ggsave("cover.png", height = 4, width = 6.5)
 ```
 
-For the `1`s, yes, there was a sacrament meeting that used eight of them. It was a ward in Maryland in 2017 and they sang <hymn>Rock of Ages (#111)</hymn>, <hymn>Again, Our Dear Redeeming Lord (#179)</hymn>, <hymn>I'm a Pilgrim, I'm a Stranger (#121)</hymn>, and <hymn>Our Savior's Love (#113)</hymn>. So, nothing particularly special I don't think, but it just so happens that they had a lot of `1`s. They could theoretically have had a ninth `1` if they had sung <hymn>With Humble Heart (#171)</hymn>, <hymn>Jesus of Nazareth, Savior and King (#181)</hymn>, or <hymn>Behold the Great Redeemer Die (#191)</hymn> as the sacrament hymn. So I think the most you'd see for any number is nine. 
+
+For the `1`s, yes, there was a sacrament meeting that used a whopping eight of them. It was a ward in Maryland in 2017 and they sang <hymn>Rock of Ages (#111)</hymn>, <hymn>Again, Our Dear Redeeming Lord (#179)</hymn>, <hymn>I'm a Pilgrim, I'm a Stranger (#121)</hymn>, and <hymn>Our Savior's Love (#113)</hymn>. So, nothing out of the ordinary I don't think, but it just so happens that they had a lot of `1`s. They could theoretically have had a ninth `1` if they had sung <hymn>With Humble Heart (#171)</hymn>, <hymn>Jesus of Nazareth, Savior and King (#181)</hymn>, or <hymn>Behold the Great Redeemer Die (#191)</hymn> as the sacrament hymn. So I think the most you'd see for any number is nine. 
 
 ```{r}
 this_df |> 
@@ -217,7 +223,7 @@ freqs |>
 
 ```
 
-Two sacrament meetings used seven `2`s. This was mostly done by singing multiple hymns in the 220-229 range. But the most possible I suppose would be eight, if you sang the rather unusual hymn <hymn>Hear Thou Our Hymn, O Lord (#222)</hymn>, a sacrament hymn ending in `2`, and two others each with two `2`s. I saw six threes one time; it was around the 4th of July and they sang <hymn>America the Beautiful (#338)<hymn> and <hymn>My Country, 'Tis of Thee (#339)</hymn>, and both of the other hymns had one three in it. Unless you're singing the Men's Choir version of <hymn>High on the Mountain Top (#333)</hymn> or another hymn in the 330s, it's only really possible to get just one more, for a maximum of seven. 
+Two sacrament meetings used seven `2`s. This was mostly done by singing multiple hymns in the 220--229 range. But the most possible I suppose would be eight, if you sang the rather unusual hymn <hymn>Hear Thou Our Hymn, O Lord (#222)</hymn>, a sacrament hymn ending in `2`, and two others each with two `2`s. I saw six threes one time; it was around the 4th of July and they sang <hymn>America the Beautiful (#338)</hymn> and <hymn>My Country, 'Tis of Thee (#339)</hymn>, and both of the other hymns had one `3` in it. Unless you're singing the Men's Choir version of <hymn>High on the Mountain Top (#333)</hymn> or another hymn in the 330s, it's only really possible to get just one more, for a maximum of seven. 
 
 ```{r}
 this_df |> 
@@ -252,30 +258,11 @@ freqs |>
 ```
 
 
-Because we don't have hymns 444, 555, etc., you can't get as many of the other digits. For `4`s--`9`s, you could in theory sing something like 44, 174, 144, and 244, which would be seven, but that would be pretty unusual. The closest I had was a ward in 2022 in Maryland that sang <hymn>As I Search the Holy Scriptures (#277)</hymn>, <hymn>'Tis Sweet to Sing the Matchless Love (#177)</hymn>, <hymn>Oh, Holy Words of Truth and Love (#271)</hymn> and <hymn>The Iron Rod (#274)</hymn>. I also had a ward in St. George that sang <hymn>Redeemer of Israel (#6)</hymn>, <hymn>As Now We Take the Sacrament (#169)</hymn>, <hymn>Abide with Me! (#166)</hymn>, and <hymn>Rejoice, the Lord Is King! (#66)</hymn>. I have no instance of a sacrament meeting that had more than five `4`s, `5`s, `8`s, or `9`s. 
-
-To combine all this information in a single plot:
-
-```{r}
-cumprops <- this_df |> 
-    mutate(hymn_num = as.character(hymn_num)) |> 
-    unnest_characters(digit, hymn_num) |> 
-    count(digit, meeting_id, name = "n_digits") |> 
-    count(digit, n_digits, names = "n_wards") |>
-    arrange(digit, n_digits) |> 
-    mutate(cumsum = cumsum(n), .by = digit) |> 
-    mutate(cumprop = cumsum/max(cumsum), .by = digit) |>
-    mutate(cumprop_txt = percent(round(cumprop, 4))) |> 
-    print()
-
-ggplot(cumprops, aes(digit, n_digits, fill = cumprop)) + 
-    geom_text(aes(label = cumprop_txt))
-```
-
+Because we don't have hymns 444, 555, etc., you can't get as many of the other digits. For `4`s--`9`s, you could in theory sing something like 44, 174, 144, and 244, which would be seven, but that would be pretty unusual. The closest I had to maxing out one of these other digits a ward in St. George that sang <hymn>Redeemer of Israel (#6)</hymn>, <hymn>As Now We Take the Sacrament (#169)</hymn>, <hymn>Abide with Me! (#166)</hymn>, and <hymn>Rejoice, the Lord Is King! (#66)</hymn> for a total of six `6`s. (No other ward has come close with even five `6`s!) The other was a ward in 2022 in Maryland that had six `7`s by singing <hymn>As I Search the Holy Scriptures (#277)</hymn>, <hymn>'Tis Sweet to Sing the Matchless Love (#177)</hymn>, <hymn>Oh, Holy Words of Truth and Love (#271)</hymn> and <hymn>The Iron Rod (#274)</hymn>. I have no instance of a sacrament meeting that had more than five `0`s, 4`s, `5`s, `8`s, or `9`s.
 
 ## So how many cards should we put in a pack?
 
-In my building, there are six cards for each number. I don't know if that's a standard set you'd get from Distribution, but it's probably similar to many other buildings. While it's theoretically possible to use all six of the higher numbers, as we've seen so far, that is extremely rare. Less than one in `r comma(get_n_distinct_meetings())` sacrament meetings. I'll bet we could get away with putting only five cards for the numbers `4`--`9` and hardly anyone would ever need more than that.
+In my building, there are six cards for each number. I don't know if that's a standard set you'd get from Distribution, but it's probably similar to many other buildings. While it's theoretically possible to use all six of the higher numbers, as we've seen so far, that is extremely rare. Less than one in `r n_meetings_comma` sacrament meetings. I'll bet we could get away with putting only five cards for the numbers `4`--`9` and hardly anyone would ever need more than that. Even three just three of each card would be good 99.2% of the time, which means you'd run out of cards about once in two and a half years! With four, you'd be good except maybe one sacrament meeting every 25 years.
 
 ```{r}
 this_df |> 
@@ -286,11 +273,11 @@ this_df |>
     count(digit)
 ```
 
-However, though still extremely rare, I do have instances of wards that would have run out of some numbers. In just 14 sacrament meetings (`r percent(14 / get_n_distinct_meetings(), 0.01)`), a ward needed more than six `1`s. And in two sacrament meetings (`r percent(2 / get_n_distinct_meetings(), 0.001)`), they ran out of `2`s. 
+However, though still extremely rare, I do have instances of wards that would have run out of some numbers. In just 14 sacrament meetings (`r percent(14 / n_meetings, 0.01)`), a ward needed more than six `1`s. And in two sacrament meetings (`r percent(2 / n_meetings, 0.001)`), they ran out of `2`s. 
 
-So, I wonder if we should distribute maybe five `4`--`9`s and `0`s, six `3`s, and eight `1`-`2`s. That'd be a couple less cards than what comes in a standard pack now and would still cover almost everything that I've seen. We could even cut it down to five `1`--`3`s, and three of everything else and that'd still cover over 99% of sacrament meetings! 
+So, I wonder if we should distribute maybe four `4`--`9`s and `0`s, five `3`s, and seven `1`-`2`s. That'd be a 13 fewer cards than what comes in a standard pack now and it would still cover almost everything that I've seen. 
 
-Of course all this goes out the window with the new hymns because they're temporarily in the thousands, so we'll need more `1`s and `0`s. And when the next hymnal comes out, all the numbers will be adjusted again depending on how many hymns we have (we'll most likely have a hymn 444 for example) and where within the hymnal the sacrament hymns are (I'm thinking in the 200-250 range most likely). 
+Of course all this goes out the window with the new hymns because they're temporarily in the thousands, so we'll need more `1`s and `0`s. And when the next hymnal comes out, all the numbers will be adjusted again depending on how many hymns we have (we'll most likely have a hymn 444 for example) and where within the hymnal the sacrament hymns are (I'm thinking in the 200--250 range most likely). 
 
 
 
