@@ -10,7 +10,41 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Mon, 16 Sep 2024 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 17 Sep 2024 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>President Nelson’s 100th Birthday</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/president_nelsons_birthday/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>On Monday, September 9th, President Russell M. Nelson celebrated his 100th birthday. Let’s see how some wards celebrated that through congregational hymns.</p>
+<p>When I wrote about hymns sung around <a href="../../posts/genreal_conference">General Conference</a>, I showed that a handful of prophet-related hymns spike around the first of April and especially October. They include <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn>, <hymn>Come, Listen to a Prophet’s Voice (#21)</hymn>, <hymn>We Listen to a Prophet’s Voice (#22)</hymn>, <hymn>We Ever Pray for Thee (#23)</hymn>, and <hymn>God Bless Our Prophet Dear (#24)</hymn>. Each of those is at least three times more likely to be sung the last Sunday in September than they are during the rest of the year combined. Let’s work with that list, and see if there was an appreciable spike in any of them around September 9th this year.</p>
+<p>This plot shows what percentage of wards sing at least one of those five prophet-related hymns each week of 2024 so far. Obviously, there’s a huge spike the week after General Conference with a solid 25% of wards singing one of those hymns. Somewhat surprisingly, there were none in my dataset that sang any the week before! But, keep in mind that March 31st was Easter this year, so this is just illustrates that Easter trumps General Conference when it comes to hymn-singing. During most of the rest of the year, the number hovers around 5% or less of wards each week.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/president_nelsons_birthday/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Of course, the thing I want to highlight from this plot is the spike on September 8th. According to my dataset, around 18% of wards sang prophet-related hymns the day before President Nelson’s 100th birthday! This is a pretty cool look into how wards’ selection of congregational hymns can sometimes reflect church events.</p>
+<p>We can do a deeper dive to see which hymns contributed to that spike. The following plot focuses on the most recent few weeks and splits the data up by hymn.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/president_nelsons_birthday/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p>Here, we can see that <hymn>Come, Listen to a Prophet’s Voice (#21)</hymn> saw the biggest spike on September 8th. Close behind it, but with a more gradual rise and fall, as <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn>. This by itself is pretty interesting because the latter is about 2½ times more common than the former overall. Now, overall in the six weeks shown in the plot, <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> was sung the most, but crucially not on the key date, September 8th. Next is <hymn>We Ever Pray for Thee (#23)</hymn>, a hymn that is normally sung only about once every 5–6 years. Finally, we saw <hymn>God Bless Our Prophet Dear (#24)</hymn>. It wasn’t super common on the 8th, but given that it’s normally sung only about once every 8–9 years, we’ll call that a small but important spike. I didn’t get reports of any wards singing <hymn>We Listen to a Prophet’s Voice (#22)</hymn> the day before President Nelson’s birthday, but there were a few in the weeks leading up to it.</p>
+<p>Honestly, I love that the hymns were a little different than around General Conference. We’re singing less about listening to what the prophet is saying and we’re singing more about how we pray for him. Even though not too many wards sang hymns related to prophets on September 8th, it’s a pretty cool insight into our church culture.</p>
+
+
+
+ ]]></description>
+  <category>holidays</category>
+  <category>frequency</category>
+  <guid>https://hymnstats.joeystanley.com/posts/president_nelsons_birthday/index.html</guid>
+  <pubDate>Tue, 17 Sep 2024 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>How many of each card should a ward have?</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -2363,6 +2397,1589 @@ Click to see that plot
   <guid>https://hymnstats.joeystanley.com/posts/martyrdom/index.html</guid>
   <pubDate>Mon, 01 Jul 2024 06:00:00 GMT</pubDate>
   <media:content url="https://hymnstats.joeystanley.com/posts/martyrdom/cover.png" medium="image" type="image/png" height="89" width="144"/>
+</item>
+<item>
+  <title>The Second Batch of New Hymns!</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/new_hymns_batch2/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>On September 12th, the church released the second batch of new hymns. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be. This page will update regularly as I collect more data. Currently I have data from 2,007 sacrament meetings between June 2nd and September 8th from 317 wards.</p>
+<p>But first, here’s how much data I have for each week, just so you have an idea of what I’m working with.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="ndpbydnxiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ndpbydnxiv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ndpbydnxiv thead, #ndpbydnxiv tbody, #ndpbydnxiv tfoot, #ndpbydnxiv tr, #ndpbydnxiv td, #ndpbydnxiv th {
+  border-style: none;
+}
+
+#ndpbydnxiv p {
+  margin: 0;
+  padding: 0;
+}
+
+#ndpbydnxiv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ndpbydnxiv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ndpbydnxiv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ndpbydnxiv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ndpbydnxiv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ndpbydnxiv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ndpbydnxiv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ndpbydnxiv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ndpbydnxiv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ndpbydnxiv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ndpbydnxiv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ndpbydnxiv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ndpbydnxiv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ndpbydnxiv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ndpbydnxiv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ndpbydnxiv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ndpbydnxiv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ndpbydnxiv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ndpbydnxiv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ndpbydnxiv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ndpbydnxiv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ndpbydnxiv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ndpbydnxiv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ndpbydnxiv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ndpbydnxiv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ndpbydnxiv .gt_left {
+  text-align: left;
+}
+
+#ndpbydnxiv .gt_center {
+  text-align: center;
+}
+
+#ndpbydnxiv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ndpbydnxiv .gt_font_normal {
+  font-weight: normal;
+}
+
+#ndpbydnxiv .gt_font_bold {
+  font-weight: bold;
+}
+
+#ndpbydnxiv .gt_font_italic {
+  font-style: italic;
+}
+
+#ndpbydnxiv .gt_super {
+  font-size: 65%;
+}
+
+#ndpbydnxiv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ndpbydnxiv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ndpbydnxiv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ndpbydnxiv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ndpbydnxiv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ndpbydnxiv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ndpbydnxiv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Number of wards I have data from, by week</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Since September 15th</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="date">date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wards">wards</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="date" class="gt_row gt_left">June 02</td>
+<td headers="wards" class="gt_row gt_right">125</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">June 09</td>
+<td headers="wards" class="gt_row gt_right">98</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">June 16</td>
+<td headers="wards" class="gt_row gt_right">114</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">June 23</td>
+<td headers="wards" class="gt_row gt_right">134</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">June 30</td>
+<td headers="wards" class="gt_row gt_right">123</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">July 07</td>
+<td headers="wards" class="gt_row gt_right">114</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">July 14</td>
+<td headers="wards" class="gt_row gt_right">134</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">July 21</td>
+<td headers="wards" class="gt_row gt_right">135</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">July 28</td>
+<td headers="wards" class="gt_row gt_right">139</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">August 04</td>
+<td headers="wards" class="gt_row gt_right">135</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">August 11</td>
+<td headers="wards" class="gt_row gt_right">130</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">August 18</td>
+<td headers="wards" class="gt_row gt_right">134</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">August 25</td>
+<td headers="wards" class="gt_row gt_right">136</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">September 01</td>
+<td headers="wards" class="gt_row gt_right">136</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">September 08</td>
+<td headers="wards" class="gt_row gt_right">102</td></tr>
+    <tr><td headers="date" class="gt_row gt_left">September 15</td>
+<td headers="wards" class="gt_row gt_right">118</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<section id="how-many-wards-sang-new-hymns-each-week" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-wards-sang-new-hymns-each-week">How many wards sang new hymns each week?</h2>
+<p>It’s been one week, so we don’t have a lot of information yet.</p>
+<p>During this period, the number of wards that have sung new hymns has been remarkably stable. Typically, only about a quarter to a third of wards sing new hymns each week. A small number sing two each week. There are rare cases of three or more, but they are so infrequent, I’ve left them off this chart.</p>
+<p>However, a good chunk of my data comes from single-week contributions from various wards, so just because a ward didn’t sing a new hymn this week doesn’t mean they didn’t do any. To see what proportion of wards have introduced new hymns during this period, I took a look at the 21 wards that I have data from from at least 90% of the 15 weeks in this period. About 15% of them didn’t sing any new hymns. Otherwise, the typical number of weeks that wards have sung new hymns since June 2nd is 3–5. But, that’s only based on 21 wards and not the complete dataset, so take that number with a grain of salt.</p>
+</section>
+<section id="what-hymns-are-most-popular" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-hymns-are-most-popular">What hymns are most popular?</h2>
+<div class="page-columns page-full"><p>It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular was it? The following table shows the new hymns in order of how often they were sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns during this period.</p><div class="no-row-height column-margin column-container"><span class="">Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once.</span></div></div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="yacvqfrbiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yacvqfrbiv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yacvqfrbiv thead, #yacvqfrbiv tbody, #yacvqfrbiv tfoot, #yacvqfrbiv tr, #yacvqfrbiv td, #yacvqfrbiv th {
+  border-style: none;
+}
+
+#yacvqfrbiv p {
+  margin: 0;
+  padding: 0;
+}
+
+#yacvqfrbiv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yacvqfrbiv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yacvqfrbiv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yacvqfrbiv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yacvqfrbiv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yacvqfrbiv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yacvqfrbiv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yacvqfrbiv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yacvqfrbiv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yacvqfrbiv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yacvqfrbiv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yacvqfrbiv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yacvqfrbiv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yacvqfrbiv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yacvqfrbiv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yacvqfrbiv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yacvqfrbiv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yacvqfrbiv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yacvqfrbiv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yacvqfrbiv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yacvqfrbiv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yacvqfrbiv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yacvqfrbiv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yacvqfrbiv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yacvqfrbiv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yacvqfrbiv .gt_left {
+  text-align: left;
+}
+
+#yacvqfrbiv .gt_center {
+  text-align: center;
+}
+
+#yacvqfrbiv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yacvqfrbiv .gt_font_normal {
+  font-weight: normal;
+}
+
+#yacvqfrbiv .gt_font_bold {
+  font-weight: bold;
+}
+
+#yacvqfrbiv .gt_font_italic {
+  font-style: italic;
+}
+
+#yacvqfrbiv .gt_super {
+  font-size: 65%;
+}
+
+#yacvqfrbiv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yacvqfrbiv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yacvqfrbiv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yacvqfrbiv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yacvqfrbiv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yacvqfrbiv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yacvqfrbiv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Approximate percentage of wards new hymns have been sung in</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Since June 2</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Hymn">Hymn</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="percent of wards">percent of wards</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
+<td headers="percent of wards" class="gt_row gt_right">94.1%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
+<td headers="percent of wards" class="gt_row gt_right">72.9%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
+<td headers="percent of wards" class="gt_row gt_right">54.9%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
+<td headers="percent of wards" class="gt_row gt_right">48.6%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
+<td headers="percent of wards" class="gt_row gt_right">47.8%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
+<td headers="percent of wards" class="gt_row gt_right">47.8%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">Gethsemane (1009)</td>
+<td headers="percent of wards" class="gt_row gt_right">25.9%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
+<td headers="percent of wards" class="gt_row gt_right">25.1%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
+<td headers="percent of wards" class="gt_row gt_right">16.5%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">Amazing Grace (1010)</td>
+<td headers="percent of wards" class="gt_row gt_right">5.5%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">My Shepherd Will Supply My Need (1014)</td>
+<td headers="percent of wards" class="gt_row gt_right">2.4%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">What Child is This? (1203)</td>
+<td headers="percent of wards" class="gt_row gt_right">1.6%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">This Is the Christ (1017)</td>
+<td headers="percent of wards" class="gt_row gt_right">0.8%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">Hail the Day that Sees Him Rise (1201)</td>
+<td headers="percent of wards" class="gt_row gt_right">0.8%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">He Is Born, the Divine Christ Child (1202)</td>
+<td headers="percent of wards" class="gt_row gt_right">0.8%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">Star Bright (1204)</td>
+<td headers="percent of wards" class="gt_row gt_right">0.8%</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">NA</td>
+<td headers="percent of wards" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">NA</td>
+<td headers="percent of wards" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">NA</td>
+<td headers="percent of wards" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">NA</td>
+<td headers="percent of wards" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">NA</td>
+<td headers="percent of wards" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Hymn" class="gt_row gt_left">NA</td>
+<td headers="percent of wards" class="gt_row gt_right">NA</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Overall then, it seems like the hymns have been pretty well-incorporated into regular singing. An overwhelming majority of wards have sung <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> between June 2 and September 8, which is pretty remarkable. Surely the novelty will wear off a little bit, but if that pace continues, then wards will sing it 3–4 times a year, or once every 13 weeks. For reference, before June 2nd, the most common hymn was <hymn>I Stand All Amazed (#193)</hymn> and was sung about once every 19 weeks per ward. The other hymns have been adopted with varying amounts of enthusiasm. We’ll wait until December to see how the new Christmas ones get used.</p>
+<p>(For a complete version of this table that includes all hymns, see <a href="../../overview.html">here</a>.)</p>
+</section>
+<section id="what-hymns-are-most-popular-each-week" class="level2">
+<h2 class="anchored" data-anchor-id="what-hymns-are-most-popular-each-week">What hymns are most popular each week?</h2>
+<p>We can see to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, <em>given that they sang a new hymn that week</em>. So, we’re only focused on wards that have used these hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch2/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was most popular during the first week. Of the wards that sang new hymns, two thirds of them sang it on June 2nd. My guess is we will never see a hymn hit that kind of popularity again, with the possible exception of new holiday hymns. Since then, the popularity of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> has gone down. It went through a very tidy rise and fall, and then suddenly on August 25, it saw a huge spike again. Perhaps a lot of wards are singing it a second time now.</p>
+<p>There are a few other major trends so far. <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father’s day. A common trend was to sing Father’s Day songs for opening and closing hymns and that hymn as the sacrament hymn. Also, <hymn>It Is Well With My Soul (#1003)</hymn> got a little more popular July 14th and has been more popular since then. <hymn>His Eye Is on the Sparrow (#1005)</hymn> saw a spike on July 28th and appears to be more popular since then. Finally, <hymn>I Will Walk with Jesus (#1004)</hymn> wasn’t very popular during the first two weeks, but it has been since then and was most popular on August 11th.</p>
+</section>
+<section id="when-during-meetings-are-these-hymns-sung" class="level2">
+<h2 class="anchored" data-anchor-id="when-during-meetings-are-these-hymns-sung">When during meetings are these hymns sung?</h2>
+<p>We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="ouzqoyvqqa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ouzqoyvqqa table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ouzqoyvqqa thead, #ouzqoyvqqa tbody, #ouzqoyvqqa tfoot, #ouzqoyvqqa tr, #ouzqoyvqqa td, #ouzqoyvqqa th {
+  border-style: none;
+}
+
+#ouzqoyvqqa p {
+  margin: 0;
+  padding: 0;
+}
+
+#ouzqoyvqqa .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ouzqoyvqqa .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ouzqoyvqqa .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ouzqoyvqqa .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ouzqoyvqqa .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ouzqoyvqqa .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ouzqoyvqqa .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ouzqoyvqqa .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ouzqoyvqqa .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ouzqoyvqqa .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ouzqoyvqqa .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ouzqoyvqqa .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ouzqoyvqqa .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ouzqoyvqqa .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ouzqoyvqqa .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouzqoyvqqa .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ouzqoyvqqa .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ouzqoyvqqa .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ouzqoyvqqa .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouzqoyvqqa .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ouzqoyvqqa .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouzqoyvqqa .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ouzqoyvqqa .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouzqoyvqqa .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ouzqoyvqqa .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouzqoyvqqa .gt_left {
+  text-align: left;
+}
+
+#ouzqoyvqqa .gt_center {
+  text-align: center;
+}
+
+#ouzqoyvqqa .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ouzqoyvqqa .gt_font_normal {
+  font-weight: normal;
+}
+
+#ouzqoyvqqa .gt_font_bold {
+  font-weight: bold;
+}
+
+#ouzqoyvqqa .gt_font_italic {
+  font-style: italic;
+}
+
+#ouzqoyvqqa .gt_super {
+  font-size: 65%;
+}
+
+#ouzqoyvqqa .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ouzqoyvqqa .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ouzqoyvqqa .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ouzqoyvqqa .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ouzqoyvqqa .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ouzqoyvqqa .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ouzqoyvqqa .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">When were new hymns sung in sacrament meeting?</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Between June 2 and September 8</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="New Hymn">New Hymn</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Opening">Opening</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Sacrament">Sacrament</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Intermediate">Intermediate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Closing">Closing</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="New Hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
+<td headers="Opening" class="gt_row gt_right">39%</td>
+<td headers="Sacrament" class="gt_row gt_right">1%</td>
+<td headers="Intermediate" class="gt_row gt_right">22%</td>
+<td headers="Closing" class="gt_row gt_right">38%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
+<td headers="Opening" class="gt_row gt_right">22%</td>
+<td headers="Sacrament" class="gt_row gt_right">3%</td>
+<td headers="Intermediate" class="gt_row gt_right">38%</td>
+<td headers="Closing" class="gt_row gt_right">38%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
+<td headers="Opening" class="gt_row gt_right">28%</td>
+<td headers="Sacrament" class="gt_row gt_right">0%</td>
+<td headers="Intermediate" class="gt_row gt_right">27%</td>
+<td headers="Closing" class="gt_row gt_right">45%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
+<td headers="Opening" class="gt_row gt_right">26%</td>
+<td headers="Sacrament" class="gt_row gt_right">0%</td>
+<td headers="Intermediate" class="gt_row gt_right">40%</td>
+<td headers="Closing" class="gt_row gt_right">33%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
+<td headers="Opening" class="gt_row gt_right">29%</td>
+<td headers="Sacrament" class="gt_row gt_right">1%</td>
+<td headers="Intermediate" class="gt_row gt_right">39%</td>
+<td headers="Closing" class="gt_row gt_right">29%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
+<td headers="Opening" class="gt_row gt_right">19%</td>
+<td headers="Sacrament" class="gt_row gt_right">0%</td>
+<td headers="Intermediate" class="gt_row gt_right">38%</td>
+<td headers="Closing" class="gt_row gt_right">38%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
+<td headers="Opening" class="gt_row gt_right">0%</td>
+<td headers="Sacrament" class="gt_row gt_right">90%</td>
+<td headers="Intermediate" class="gt_row gt_right">6%</td>
+<td headers="Closing" class="gt_row gt_right">1%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
+<td headers="Opening" class="gt_row gt_right">0%</td>
+<td headers="Sacrament" class="gt_row gt_right">90%</td>
+<td headers="Intermediate" class="gt_row gt_right">3%</td>
+<td headers="Closing" class="gt_row gt_right">6%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">Gethsemane (1009)</td>
+<td headers="Opening" class="gt_row gt_right">14%</td>
+<td headers="Sacrament" class="gt_row gt_right">31%</td>
+<td headers="Intermediate" class="gt_row gt_right">22%</td>
+<td headers="Closing" class="gt_row gt_right">33%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">Amazing Grace (1010)</td>
+<td headers="Opening" class="gt_row gt_right">57%</td>
+<td headers="Sacrament" class="gt_row gt_right">0%</td>
+<td headers="Intermediate" class="gt_row gt_right">14%</td>
+<td headers="Closing" class="gt_row gt_right">29%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">My Shepherd Will Supply My Need (1014)</td>
+<td headers="Opening" class="gt_row gt_right">0%</td>
+<td headers="Sacrament" class="gt_row gt_right">0%</td>
+<td headers="Intermediate" class="gt_row gt_right">33%</td>
+<td headers="Closing" class="gt_row gt_right">67%</td></tr>
+    <tr><td headers="New Hymn" class="gt_row gt_left">This Is the Christ (1017)</td>
+<td headers="Opening" class="gt_row gt_right">0%</td>
+<td headers="Sacrament" class="gt_row gt_right">0%</td>
+<td headers="Intermediate" class="gt_row gt_right">100%</td>
+<td headers="Closing" class="gt_row gt_right">0%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Each hymn has its own story. Unsurprisingly, the hymns that are most likely to be sacrament hymns are <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, and <hymn>Gethsemane (#1009)</hymn>, with that last one being sung pretty often elsewhere in the meeting. <hymn>Think a Sacred Song (#1006)</hymn> appears to be a little more common in the second half of the meeting, but I have only seen it sung in a few wards so that may change if more data comes in. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is about as likely to be an opening hymn as a closing hymn. <hymn>It Is Well with My Soul (#1003)</hymn> is most common as a clsoing hymn. <hymn>His Eye Is on the Sparrow (#1005)</hymn> is about evently split between all three slots. The last two hymns, <hymn>I Will Walk with Jesus (#1004)</hymn> and <hymn>When the Savior Comes Again (#1002)</hymn> are a little more commonly sung as intermediate hymns.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This post shows a handful of trends in the first batch of hymns in the first 15 weeks since their release. Again, this is only based on 2007 sacrament meetings from 317 wards. It’s not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I’m collecting more data and if you’d like to contribute your ward’s data, you can do so <a href="../../contribute.html">here</a>.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>general</category>
+  <category>frequency</category>
+  <category>new hymns</category>
+  <guid>https://hymnstats.joeystanley.com/posts/new_hymns_batch2/index.html</guid>
+  <pubDate>Tue, 25 Jun 2024 06:00:00 GMT</pubDate>
 </item>
 <item>
   <title>The First Batch of New Hymns!</title>
@@ -13134,1025 +14751,6 @@ Stats for nerds :)
   <guid>https://hymnstats.joeystanley.com/posts/christmas/index.html</guid>
   <pubDate>Sun, 24 Dec 2023 07:00:00 GMT</pubDate>
   <media:content url="https://hymnstats.joeystanley.com/posts/christmas/cover.png" medium="image" type="image/png" height="66" width="144"/>
-</item>
-<item>
-  <title>What hymns are sung the Sunday after Thanksgiving?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index.html</link>
-  <description><![CDATA[ 
-
-
-
-<p>In the United States, the Sunday after Thanksgiving is a weird one. We’re just getting off a holiday and even though a few days have passed, a lot of people haven’t returned to work or school yet. You may still have family over on that Sunday, or you yourself may still be traveling. There is definitely a lingering Thanksgiving effect going on. But at the same time, Christmas is coming up. Many people have already decorated their houses and put up Christmas trees. Even if you refuse to listen to Christmas music before Thanksgiving, all the pent up pressure finally bursts after Thanksgiving and we enter the Christmas season with full force.</p>
-<p>So, how does that translate into hymns in sacrament meeting? Do people continue to sing Thanksgiving hymns or do they sing Christmas hymns? Let’s dive into that Sunday after Thanksgiving and see what happens in the 361 relevant sacrament meetings I have data from.</p>
-<section id="what-hymns-are-sung" class="level2">
-<h2 class="anchored" data-anchor-id="what-hymns-are-sung">What hymns are sung?</h2>
-<p>Figure&nbsp;1 shows the most popular congregational hymns the Sunday after Thanksgiving. I’ve color-coded the hymn names to correspond to the holiday they are most closely associated with. Hymns 201–214 are Christmas hymns and are colored in red. Hymns 91–95, <hymn>Count Your Blessings (#241)</hymn>, <hymn>Because I Have Been Given Much (#219)</hymn>, and <hymn>All Creatures of Our God and King (#62)</hymn> are <a href="../../posts/thanksgiving">Thanksgiving hymns</a> and are colored in blue. Everything else is colored in gray.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-limbo" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index_files/figure-html/fig-limbo-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Most popular congregational hymns the Sunday after Thanksgiving</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>It’s apparent that the Sunday after Thanksgiving is heavy on both Thanksgiving and Christmas hymns. Over 15% of wards sing either <hymn>Prayer of Thanksgiving (#93)</hymn>, <hymn>Come, Ye Thankful People (#94)</hymn>, or <hymn>For the Beauty of the Earth (#92)</hymn>. The most popular Christmas hymn during this week is <hymn>Joy to the World (#201)</hymn>, but only about 7.5% of wards sing it the Sunday after Thanksgiving. What I like about this plot is that there’s a nice mix of Thanksgiving and Christmas hymns. So, is that Sunday a Thanksgiving week or a Christmas week? It really depends on the ward! (And, as we’ll see below, the date as well!)</p>
-</section>
-<section id="thanksgiving-vs.-christmas" class="level2">
-<h2 class="anchored" data-anchor-id="thanksgiving-vs.-christmas">Thanksgiving vs.&nbsp;Christmas</h2>
-<p>Table&nbsp;1 shows the percentage of wards in my sample that sing Thanksgiving and Christmas hymns the week after Thanksgiving. The top right cell shows that 24.4% of wards sing at least one Christmas hymn and no Thanksgiving hymns. The bottom left cell shows that 41.0% of wards sing at least one Thanksgiving hymn and no Christmas hymns. So, in my opinion, combining what is seen in Figure&nbsp;1 with Table&nbsp;1, it’s pretty clear that the Sunday after Thanksgiving is more often thought of as a Thanksgving week, rather than a Christmas week when it comes to the hymns. Almost twice the number of wards do it that way.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-n_of_each" class="anchored">
-
-<div id="xwmcjuvtig" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xwmcjuvtig table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#xwmcjuvtig thead, #xwmcjuvtig tbody, #xwmcjuvtig tfoot, #xwmcjuvtig tr, #xwmcjuvtig td, #xwmcjuvtig th {
-  border-style: none;
-}
-
-#xwmcjuvtig p {
-  margin: 0;
-  padding: 0;
-}
-
-#xwmcjuvtig .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#xwmcjuvtig .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#xwmcjuvtig .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#xwmcjuvtig .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#xwmcjuvtig .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#xwmcjuvtig .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#xwmcjuvtig .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#xwmcjuvtig .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#xwmcjuvtig .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#xwmcjuvtig .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#xwmcjuvtig .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#xwmcjuvtig .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#xwmcjuvtig .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#xwmcjuvtig .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#xwmcjuvtig .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xwmcjuvtig .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#xwmcjuvtig .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#xwmcjuvtig .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#xwmcjuvtig .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xwmcjuvtig .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#xwmcjuvtig .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xwmcjuvtig .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#xwmcjuvtig .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xwmcjuvtig .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#xwmcjuvtig .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xwmcjuvtig .gt_left {
-  text-align: left;
-}
-
-#xwmcjuvtig .gt_center {
-  text-align: center;
-}
-
-#xwmcjuvtig .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#xwmcjuvtig .gt_font_normal {
-  font-weight: normal;
-}
-
-#xwmcjuvtig .gt_font_bold {
-  font-weight: bold;
-}
-
-#xwmcjuvtig .gt_font_italic {
-  font-style: italic;
-}
-
-#xwmcjuvtig .gt_super {
-  font-size: 65%;
-}
-
-#xwmcjuvtig .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#xwmcjuvtig .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#xwmcjuvtig .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#xwmcjuvtig .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#xwmcjuvtig .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#xwmcjuvtig .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#xwmcjuvtig .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>Percentage of wards that sing Thanksgiving and Christmas hymns the
-Sunday after Thanksgiving</p> </caption>
-  <thead>
-    
-    <tr class="gt_col_headings gt_spanner_row">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Christmas hymns">Christmas hymns</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Thanksgiving hymns">
-        <span class="gt_column_spanner">Thanksgiving hymns</span>
-      </th>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="yes">yes</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="no">no</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">yes</th>
-<td headers="stub_1_1 yes" class="gt_row gt_right">7.2%</td>
-<td headers="stub_1_1 no" class="gt_row gt_right">24.4%</td></tr>
-    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">no</th>
-<td headers="stub_1_2 yes" class="gt_row gt_right">41.0%</td>
-<td headers="stub_1_2 no" class="gt_row gt_right">27.4%</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-</div>
-<p>The surprising numbers are the other two in Table&nbsp;1. 27.4% of wards don’t sing any holiday hymns the week after Thanksgiving. That’s more than the number of wards that sing Christmas hymns! My guess is that they see that the Thanksgiving “season” is over and the Christmas season hasn’t started yet, so it’s a bit of a no man’s land in the middle. There doesn’t appear to be any sort of pattern to the hymns that are sung by these wards. The ones that are slightly more common are among <a href="../../posts/most_common">the more common hymns overall</a>, so it seems like music coordinators just treat it as a neutral week and pick whatever hymns they’d pick during any other non-holiday week.</p>
-<p>The other surprising number is that 7.2% of wards sing both a Thanksgiving <em>and</em> a Christmas hymn! It’s a rare case of two different holidays being celebrated through song in the same meeting. As far as what hymns are sung, we’ve seen <a href="../../posts/thanksgiving">already</a> that the most canonical Thanksgiving hymns are most common the Sunday before Thanksgiving, which means the less popular ones are slightly more popular two weeks before or the week after. (We’ll look at Christmas hymns in a later blog post.)</p>
-<p>There does seem to be a pattern though for when within the meeting these Thanksgiving and Christmas hymns are sung. Perhaps unsurprisingly, the most common configuration is for the opening hymn to be a Thanksgiving hymn and the closing hymn to be a Christmas hymn and, if there is an intermediate hymn, it’s neither a Thanksgiving nor Christmas hymn. This is what was found in over half the cases. However, pretty much every other configuration is attested in this small sample of 26 sacrament meetings that sing at least one Thanksgiving hymn and one Christmas hymn the week after Thanksgiving, as seen in Table&nbsp;2. (Note here that “Other” means any hymn that is not a Christmas or Thanksgiving hymn.)</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-both-configs" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: Configurations of Thanksgiving and Christmas hymns among wards that sing both the Sunday after Thanksgiving.</caption>
-<colgroup>
-<col style="width: 15%">
-<col style="width: 12%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 19%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Opening</th>
-<th style="text-align: left;">Sacrament</th>
-<th style="text-align: left;">Intermediate</th>
-<th style="text-align: left;">Closing</th>
-<th style="text-align: right;">number of wards</th>
-<th style="text-align: left;">percent of wards</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Thanksgiving</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">None/Other</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">57.7%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Thanksgiving</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Thanksgiving</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">15.4%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Thanksgiving</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">7.7%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Thanksgiving</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">7.7%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Thanksgiving</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">7.7%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">None/Other</td>
-<td style="text-align: left;">Thanksgiving</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">3.8%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="december-1st" class="level2">
-<h2 class="anchored" data-anchor-id="december-1st">December 1st</h2>
-<p>To me, what is perhaps the most interesting thing about the Sunday after Thanksgiving is to see what kind of effect the actual <em>date</em> has on the hymns. Most of the time, that Sunday is still in November (it can be as early as November 25th). But, occasionally, it can be as late as December 1st. How noticeable is that boundary between the two months when it comes to hymns?</p>
-<p>As it turns out, pretty noticeable! Figure&nbsp;2 shows the breakdown of Thanksgiving, Christmas, and other hymns the Sunday after Thanksgiving by date. As you can see, there is a tendency to sing fewer Thanksgiving hymns the further into the month of November that Sunday is. It’s not super clear whether there’s the same trend for Christmas hymns within November, but there is an obvious increase in the number of Christmas hymns being sung if that Sunday after Thanksgiving is December 1st. There are 2–3 times as many Christmas hymns sung on December first than any last Sunday in November.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-by_date" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index_files/figure-html/fig-by_date-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Proportion of Thanksgiving, Christmas, and Other hymns by date</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>To dig just a little deeper, I wanted to see the trends for specific hymns across these dates. In Figure&nbsp;3 (sorry for the small text), each of the eight Thanksgiving hymns and 14 Christmas hymns is in their own panel. Lines and dots are higher if that hymn is sung more often on that day. Among the Thanksgiving hymns, the most apparent trend is that <hymn>Come, Ye Thankful People, Come (#94)</hymn> is less and less common the later in the month.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-facet" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index_files/figure-html/fig-facet-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Thanksgiving and Christmas song frequencies, Nov 25 through Dec 1</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Among the Christmas hymns though, there are two hymns that clearly stand out. <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn> have a <em>huge</em> spike on December 1st! Those two hymns each make up over 15% of all the hymns sung on December 1st, but less than 3% on November 30th or almost any other day in November. And keep in mind, everything in this plot is from the Sunday after Thanksgiving, so it’s not like we’re seeing an increase a week or two after Thanksgiving.</p>
-<p>I should mention that Figure&nbsp;2 and Figure&nbsp;3 are only possible because I have data spanning over 20 years. Since the Sunday after Thanksgiving falls on different days, I can compare those days to each other. So, for example, in 2023, the Sunday after Thanksgiving is November 26th. But the Sunday after Thanksgiving was also November 26th in 2006 and 2017, so that column represents those three years pooled together. I think this is important to mention because no matter how much data is collected from one year, you’ll still only see just one of these columns. It takes a lot of data over many years to be able to see this kind of nuance.</p>
-<p>By the way, I wanted to see if there were more Christmas hymns sung the Sunday after Thanksgiving in more recent years compared to, say, 20 years ago. I hypothesized that as American culture (or at least businesses) are more and more accepting of the Christmas season starting sooner, that might get reflected in the hymns. Turns out, I didn’t see any obvious trend. But, it’s difficult to tease apart the date (November 25 through December 1) from the year (2002 through 2023) when the data is spread too thinly like this. I’d probably need a lot more data across the past 20 years to be able to say with more confidence whether this is true or not.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>On the Sunday after Thanksgiving, you might sing Thanksgiving hymns, Christmas hymns, both, or neither, but the most common patten is to sing Thanksgiving hymns. If we do a breakdown by date though, we see that if the Sunday after Thanksgiving is December 1st, we see more Christmas hymns. Specifically, we see that that is driven almost entirely by <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>.</p>
-
-
-</section>
-
- ]]></description>
-  <category>holidays</category>
-  <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/week-after-thanksgiving/index.html</guid>
-  <pubDate>Tue, 21 Nov 2023 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>How many unique hymns does a ward sing in a year? Part 2</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index.html</link>
-  <description><![CDATA[ 
-
-
-
-<p>I was recently asked something along the lines of “how many hymns does a ward sing through?” Previously, I wrote that <a href="../../posts/hymns_per_year">ward sing through about 105 unique hymns per year</a>. However, the original question is slightly different than “how many does a ward sing in a year,” and the way it was asked implies that there are a certain set of hymns that a ward will pull from, and that there is essentially a “sealed portion” of hymns that are, for all intents and purposes, never used. My initial response was that there aren’t really hymns that are never used, it’s that not enough time has passed for them to be used. And then I thought it might make for an interesting blog post. So, let’s look at that a little more.</p>
-<section id="the-leveling-out-effect" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-leveling-out-effect">The leveling out effect</h2>
-<p>First, let’s think about what we expect to see. Given one year of data from a ward, we’d expect around 105 unique hymns. But, how many unique hymns would we expect in a two-year period? More than 105, but probably not 210. We’ll almost certainly be repeating sacrament hymns, most of the holiday hymns, and probably a fair number of well-known familiar hymns as well. So let’s say we sing maybe another 30 hymns in Year 2 that we didn’t sing in Year 1. What about a three-year period? How many hymns do we sing in that third year that we hadn’t already sung in Years 1 and 2? Probably not many at this point. Maybe another 10? How about a fourth year? A fifth year?</p>
-<p>So, with each additional year of data, the number of new hymns being sung goes down. Eventually it’ll come close to leveling out, with maybe one new hymn a year or less. Mathematically, it has to level out because there are a finite number of hymns to choose from. But I don’t know of any ward that has sung all 341 hymns, so since there will almost always be at least one hymn that a ward has never sung, then it technically hasn’t zeroed out yet.</p>
-<p>We can see this pattern in the data. Figure&nbsp;1 shows how many unique hymns are sung, based on how much data I have from that ward. Each dot represents a ward and all wards in the entire dataset are plotted here. Most wards have less than a year’s worth of data, so they’re all plotted on top of each other in the lower left portion of the plot. But some wards have many more, and yes, I have almost 15 years of sacrament meetings from two wards!</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-unique_by_data" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-unique_by_data-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Number of unique hymns by years of data</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>What we see is the leveling effect I described above. Most wards are around 105 or so after one year of data, which coincides with my previous blog post. By the two-year mark, the blue line, which shows something like the average, is around 150 unique hymns. But, the data has fanned out a bit, so there’s more variation in how many hymns a ward will sing in two years. Some wards are higher (up to 180 unique hymns in two years) and others are lower (around 120).</p>
-<section id="looking-at-specific-wards" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="looking-at-specific-wards">Looking at specific wards</h3>
-<div class="page-columns page-full"><p>Let’s look at how this plays out within the context of a single ward. Figure&nbsp;2 shows the pattern for a single ward in the Pacific Northwest, which, for anonymity, we’ll just call the “Pacific Northwest Ward.” From left to right are the four or so years of sacrament meetings. The line goes up if that ward sings a hymn it hasn’t sung before based on the data that I have. It might be useful to think of the point on the left being the first Sunday after the ward was organized, moving right is how many years has passed since it was organized, and from bottom to top is how many unique hymns that was has <em>ever</em> sung since it’s organization. The line then goes up every time the ward sings a hymn for the first time in that ward. This is essentially what it shows, except the point furthest to the left is not from the ward’s organization but from the earliest sacrament meeting I have data from.</p><div class="no-row-height column-margin column-container"><span class="">I don’t know if I should be sharing ward names, so I’ll err on the safe side.</span></div></div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-pnw" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-pnw-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Unique hymns over time in a Pacific Northwest ward.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The general trend is that, as time passes, the ward will see fewer and fewer unique hymns. During the first six months, the line goes up pretty steeply—about as steeply as it can given the constraint of singing only about four hymns per week—because there are relatively few repeats in a six month period in this ward (and indeed in most wards). However, towards the end of the first year, the line gets a little less steep as some of the <a href="../../posts/most_common">most popular hymns</a> and <a href="../../posts/sacrament">sacrament hymns</a> are repeated. At the one-year mark, the Pacific Northwest ward has sung exactly 100 unique hymns. Going into the second year, the line is noticeably flatter, and at two years, this ward has sung 140 unique hymns. So, during the second year, the ward sang about 40 hymns that it didn’t sing in the first year. The third year is more shallow still, and crosses the third-year mark at 165 hymns, meaning during that third year it sang about 25 hymns that it hadn’t already sung in the previous two years. At the end of Year 4, it’s at about 185, so it sang another 20 new hymns.</p>
-<p>So, again, as more time passes, there are fewer new hymns. Now, that’s not to say that the longer a music coordinator is in their calling they choose fewer new hymns. Or that older wards have more repetition. Or that the first six months of a ward are the most interesting. It’s just that, with enough data, a ward will make it through more of the hymnal, and so there are fewer new hymns to draw from. There are diminishing returns when more time passes by. And there’s nothing special about the order either: if I were to put the dates in a random order, we’d see more or less the same curve.</p>
-<p>Figure&nbsp;3 overlays two more wards to the previous plot, one from the Northeast and one from the Midwest. As you can see, the trend is generally the same: a steeper include in the beginning and a shallower rise after a year or two. The first six months look pretty much the same across these three wards, but after about a year, they begin to diverge. The music coordinator in the Northeast ward appears to have made more of an effort to not repeat hymns, while the Midwest ward sang some familiar hymns more often.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-pnw_cali_midwest" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-pnw_cali_midwest-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Unique hymns over time in a Pacific Northwest, Northeast, and Midwest ward.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Figure&nbsp;4 overlays even more wards. In fact, all 20 of the wards that have contributed three or more years of data are shown here in this plot. We see that in all these wards, the general pattern holds true. The first six months to a year are remarkably consistent for each ward and most of them are between about 100 and 110 unique hymns. From there, they really begin to fan out, and I think that’s where the effort that music coordinators starts to become more apparent. Most wards slow down at the pace that the Pacific Northwest ward shown above are at. Some repeat hymns more often, meaning they sing fewer new hymns, so their line levels off sooner. Some sing a wider variety of hymns, so their line continues to rise for longer.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-three_years_over_time" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-three_years_over_time-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Unique hymns over time in 20 wards.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The one ward that has contributed the most data (we’ll call it the “Southern Ward”) is also remarkable because they have sung the most unique hymns. Over 14 years, any ward is like to get through most of the hymnal, but the Southern Ward showed signs early on that they tried not to repeat hymns. Even in the first year, their line rose more steeply than the others, which means they were repeating hymns less often. And their line rose about as quickly during the second year—by the end of two years they had sung 210 unique hymns which is quite remarkable. That’s more than most other wards had finished after several more years than that. In fact, we can compare to the other ward that contributed 14+ years of data, we see that it took this Rocky Mountain Ward <em>ten years</em> to sing the same number of unique hymns that the Southern Ward sang in two years.</p>
-<p>The Southern Ward leveled off though. In the last six or so years of data, they only sang about five hymns they hadn’t sung in the previous nine years. But, looking through their data, there are still 40 hymns (excluding the men’s and women’s arrangements in the back) that they hadn’t sung in those 15 years, so in theory, the line could still go up if they continue to contribute data.</p>
-<p>The Rocky Mountain Ward came close to leveling off as well, and in years 5–12, they only sang about 30 new hymns. The most recent data I have from them, it looks like they made an effort to sing hymns they had never sung before. I don’t know the history of that ward, but the sheer fact that I have this data means they kept track of it. And if they kept track of it, perhaps they reorganized their spreadsheet in such a way that highlights hymns they hadn’t sung yet and they purposely chose to include those where appropriate.</p>
-<p>Each ward has its own story, but a few other wards are worth pointing out. Figure&nbsp;5 shows three other wards’ data.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-three_more_wards" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-three_more_wards-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Unique hymns over time in a Pacific Northwest, California, and Midwest ward</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The Provo Ward contributed about nine years total, but their rise was inconsistent. They showed early signs of singing relatively few unique hymns and they began to level off by around three years. After two years, they had only sung 112 unique hymns, which is only a few more than what most other wards sing in one year. In their third year, they sang just nine new hymns. But then in their fourth year, they sang 30 new hymns and then leveled off again. For a year and a half (6.5–8 years in), they didn’t sing any new hymns. Then, they entered another phase of singing new hymns, and over the next year they sang 26 hymns that they hadn’t ever sung in the previous eight years. This is a very peculiar trend, and one that doesn’t just happen naturally. (A few other wards show similar patterns of leveling off and then rising again.) My guess is we’re seeing three different music coordinators over the course of these nine years, and the second two made a conscious effort to sing new hymns based on the spreadsheet that had been passed around.</p>
-<p>Another interesting one is the Atlantic Province Ward, the largest contribution I have from Canada. They generally follow the same trend as other wards, but at around six years in, they seem to have short bursts of new hymns. Looking through their data more carefully, it seems like about every two weeks, the music coordinator chose a new hymn to sing. But then every about six months, two new hymns were introduced in a single meeting. The regularity of these bursts suggests that this was a conscious effort by the coordinator.</p>
-<p>Finally, I show the Married Student Ward, not because it’s interesting, but because it’s remarkably regular. It started out steep as expected and gradually leveled off with hardly any deviations from the general pattern in over nine years. To me, this is indicative that whatever system that ward uses to keep track of and decide their hymns hasn’t changed in nine years.</p>
-<p>Overall, most wards level off by around five years. Not too many wards have contributed more than that though so I can’t say for sure. But I think the leveling off that is apparent in finally gets at what the original question that sparked this blog post. For about 15 years, the Southern Ward sang only about 273 different hymns out of about 313 they could have sung. Rocky Mountain Ward drew from a smaller pool, about 244 hymns, in about 14 years. The Provo Ward leveled off for about a year and a half at 227 hymns and the Married Student Ward is close to leveling off at 208 hymns.</p>
-</section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>So, I can now answer the question of “how many hymns does a ward sing through?” I’ll say that a ward sings through roughly 210–275 hymns after several years. Of course, as I mentioned in the post about <a href="posts/least-common-hymns/">the least popular hymns</a>, I have evidence that every hymn is sung at least once. So, not all wards draw from the same list of 210–275 hymns: some wards’ lists might be different than others. So, the ones that one ward will likely never sing will be sung in some other ward at some point. Together, they fill in each other’s gaps and collectively cover the entire hymnal.</p>
-</section>
-</section>
-<section id="actual-numbers" class="level2">
-<h2 class="anchored" data-anchor-id="actual-numbers">Actual numbers</h2>
-<p>But what are those actual numbers? How long does it take to get to, say, 150 unique hymns in a ward? Unfortunately, because I have relatively few wards that have hit that threshold, the data gets a little sparse, but hopefully I can provide a number that gets close.</p>
-<p>Figure&nbsp;6 shows how many hymns these wards sang after a certain number of years. For each year, there is a boxplot that shows where most of the data lie, with the thick black line being the median. There is a clear leveling off effect as the years progress. (I’ve only shown through seven years because any more than that and the data gets too sparse.) Table&nbsp;1 shows the same data but in tabular format.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-milestones_years" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-milestones_years-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: How many hymns have wards sung by a certain number of years?</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-unique_hymns_per_year" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: number of unique hymns per year</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">year</th>
-<th style="text-align: right;">median number of total unique hymns</th>
-<th style="text-align: right;">increase</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">111</td>
-<td style="text-align: right;">111</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">152</td>
-<td style="text-align: right;">41</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">172</td>
-<td style="text-align: right;">20</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">196</td>
-<td style="text-align: right;">24</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">201</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">210</td>
-<td style="text-align: right;">9</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">214</td>
-<td style="text-align: right;">4</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Another way of looking at the same data is to turn it sideways and ask how long it takes a ward to hit a particular milestone of, say, 150 hymns or 200 hymns. Figure&nbsp;7 shows those results based on the wards in this sample. Up until about 180 hymns, there is a pretty regular pattern. After that, we run into data sparsity issues, so the results are a little wonky. Again, Table&nbsp;2 shows the same data, but as a table. We see then that it’ll take a ward a little over two years to sing 150 unique hymns. And about four and a half years to sing its 200th hymn.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-milestones_hymns" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-milestones_hymns-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;7: How long do wards take to sing a certain number of hymns?</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-years_per_milestone" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: number of years needed to hit certain milestones</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">unique hymns</th>
-<th style="text-align: left;">time needed</th>
-<th style="text-align: left;">time to next milestone</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">2 months</td>
-<td style="text-align: left;">2 months</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">40</td>
-<td style="text-align: left;">3 months</td>
-<td style="text-align: left;">2 months</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">60</td>
-<td style="text-align: left;">6 months</td>
-<td style="text-align: left;">2 months</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">80</td>
-<td style="text-align: left;">8 months</td>
-<td style="text-align: left;">2 months</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">100</td>
-<td style="text-align: left;">11 months</td>
-<td style="text-align: left;">3 months</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">120</td>
-<td style="text-align: left;">1 year 4 months</td>
-<td style="text-align: left;">5 months</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">140</td>
-<td style="text-align: left;">1 year 10 months</td>
-<td style="text-align: left;">7 months</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">160</td>
-<td style="text-align: left;">2 years 4 months</td>
-<td style="text-align: left;">6 months</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">180</td>
-<td style="text-align: left;">3 years 2 months</td>
-<td style="text-align: left;">10 months</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">200</td>
-<td style="text-align: left;">4 years 6 months</td>
-<td style="text-align: left;">1 year 4 months</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">220</td>
-<td style="text-align: left;">4 years 6 months</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">240</td>
-<td style="text-align: left;">5 years 7 months</td>
-<td style="text-align: left;">1 year 1 month</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">260</td>
-<td style="text-align: left;">7 years 6 months</td>
-<td style="text-align: left;">1 year 11 months</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="simulations" class="level2">
-<h2 class="anchored" data-anchor-id="simulations">Simulations</h2>
-<p>If you’ve made it this far, it means you care about this topic a lot. It also means you don’t mind some quantitative analysis. In this final section, it’s going to get even more technical. So, if you enjoy this kind of stuff, buckle up because it’s going to get fun.</p>
-<p>Since I have data on <a href="../../overview.html">how often every hymn is sung</a>, I can treat those frequencies as probabilities. For example, since <hymn>I Stand All Amazed (#193)</hymn> is the most common, it’s most likely to be sung. Well, what if I randomly drew three hymns, with their probability of being drawn proportionate to how often they’re sung? If I do, I can get a random sacrament meeting like this:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">type</th>
-<th style="text-align: left;">hymn</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Opening</td>
-<td style="text-align: left;">Let Us All Press On (243)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: left;">Our Savior’s Love (113)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Intermediate</td>
-<td style="text-align: left;">Be Thou Humble (130)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Closing</td>
-<td style="text-align: left;">The First Noel (213)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Okay, so it’s a bit silly because we have a Christmas hymn as the closing hymn and no real sacrament hymn. Well, what if I change the parameters so that it only selects sacrament hymns for the sacrament hymns? And since we don’t always sing intermediate congregational hymns each week, I can have it return an NA about 46% of the time to match how often intermediate hymns are actually sung. With those, I can get a perhaps more plausible selection:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">type</th>
-<th style="text-align: left;">hymn</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Opening</td>
-<td style="text-align: left;">For the Beauty of the Earth (92)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: left;">Again, Our Dear Redeeming Lord (179)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Intermediate</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Closing</td>
-<td style="text-align: left;">Praise to the Man (27)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>For now, I’m not going to worry about holiday hymns because it’d be too much of a hassle. But, with this random hymn generator, I can quickly simulate a sacrament meeting’s hymn selections. Well, what if I repeat that many times? Like 48 times? That’s a year’s worth of sacrament meetings. And what if I simulate more than that?</p>
-<p>Well, so that’s what I did. I simulated several years’ worth of sacrament hymns for a ward. The hymns are randomly selected, with more commonly sung hymns in real life being more likely to be selected in the simulation. I then went through the same calculations as I did with the wards shown in Figure&nbsp;4 to see how this simulated ward compared. Figure&nbsp;8 shows what this simulated data looks like. For now, I’ll just show the first seven years of the simulation since that’s about as far as we could do with the real data.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-simulated_weighted" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_weighted-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;8: Unique hymns by year if hymns are randomly selected based on observed frequencies</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>As expected, the leveling off looks very much like what most of the wards shown above look like. The first year sees the most number of hymns and with each passing year, the line gets shallower and shallower. After about seven years, this simulated ward has sung 243 unique hymns, which is in line with what was mentioned above about how many hymns a ward sings before leveling out. We see such a pattern in real-life too: the Married Student Ward shown above looks very much like this, though the line doesn’t quite get so high as in this simulation.</p>
-<p>However, this ward doesn’t appear to be leveling out. It’s still going up. How long did it take for the leveling out to happen? Better yet, how long did it take for all 313 of the hymns to be sung? Since this is simulated data, I can just generate some more data. So, I simulated 1000 years of sacrament meetings—which is nonsensical since for so many reasons: the hymnal has only been around for 38 years, the Restoration was only 193 years ago, the oldest hymn was written maybe 500 years ago, and heck we were speaking Old English back then. But, I can simulate it anyway to see what happens. Figure&nbsp;9 includes the full dataset up until the points where it sings the last hymn. Here, I’ve added a horizontal dashed line at 313 to show the target. It took this simulated ward 213 years to sing all 313 hymns! It made it to 300 hymns in just 37 years, 308 hymns in 70 years, and from there at least a decade passed before hitting each of the remaining five hymns. Unsurprisingly, the last hymn was what is currently the rarest hymn in my sample, <hymn>Sons of Michael, He Approaches (51)</hymn>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-simulated_weighted_full" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_weighted_full-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;9: Unique hymns by year if hymns are randomly selected based on observed frequencies</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Since those last few hymns were so infrequent, it makes sense that they took so long for simulation to get them. So, just to see what would happen, I changed the parameters of the simulation so that all hymns are equally common. How does that change the simulation? In this simulation, it took 8–9 years to hit the 313th hymn. Figure&nbsp;10 shows that it takes far less time to reach the goal of 313 hymns.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-simulated_random" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_random-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;10: Unique hymns by year if hymns are randomly selected with equal probabilities</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>So, I have two versions of simulated wards. What I can now do is overlay that over the actual data, as in Figure&nbsp;11. Here we see some pretty interesting comparisions. Obviously, the simulated ward that treated all hymns as equal skyrockets to the top and hits the 313th hymn sooner than other wards even hit (or are projected to hit) their 213th hymn. Even within the first year, we see that that Unweighted Simulation ward is ahead of the curve and hits 146 unique hymns by the end of the first year. By the end of the second year, it’s at 225 hymns, which is 75 hymns more than what real wards typically are at at that point, and is more than where most wards get even with many more years of data. Obviously, this is unrealistic and no one should compare their ward to this one; it really should be treated as the fastest a ward could reasonably sing all the hymns, barring systematic cycling through them.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-simulated_plus_real" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_plus_real-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;11: Real data compared to simulated data</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Perhaps more intersting is to look at the “Weighted Simulation Ward.” At one year, it is exactly on par with real wards. In fact, at two, three, and four years, it’s in the middle of the pack. After that point, real wards begin to level out while the simulated ward continues to rise. It only crosses the Southern Ward—which I’ve already pointed out as being pretty ambitious at singing through all the hymns—after about 15 years.</p>
-<p>So, how do we interpret this data? The Weighted Simulation Ward pulls ahead of the pack while most real wards slow down. What is the difference then between the Weighted Simulation and the real wards? Well, real wards are run by real people. I do not want to discount any inspiration or spiritual promptings that may guide music coordinators in their decisions. But, real people have biases. And based on everything we’ve seen on this blog post, it appears that these biases mean that some music coordinators just don’t want to sing a certain set of hymns. Since the simulation has no such bias, it’s going to pick those unfamiliar hymns whenever the random number generator tells it to. So while the simulated ward pulls ahead, occasionally singing new hymns every once every few months or years, the real wards slow down and level off. As discussed already, some wards level off sooner than others, indicating that the avoidance of hymns is stronger in some people. The way this bias plays out in real life is that instead of singing an unusual hymn when it might be appropriate, a music coordinator will opt to sing a more familiar hymn instead.</p>
-<section id="simulating-the-new-hymnal" class="level3">
-<h3 class="anchored" data-anchor-id="simulating-the-new-hymnal">Simulating the new hymnal</h3>
-<p>The last thing I want to do is simulate what these plots might look like ten years after the release of the <a href="https://newsroom.churchofjesuschrist.org/article/sacred-hymnbook-to-help-unite-uplift-latter-day-saints-of-all-ages-worldwide">new hymnal</a>. I haven’t done much speculation about the new hymnal yet, but simulations are an interesting way to maybe see what the future might hold. The new one is supposed to have 450–500 hymns because it includes primary songs as well. I don’t know how that’ll work, like if the primary hymns will be intended to be sung in sacrament meeting or not, but let’s say they are. That means we’ll have well over 100 more hymns to draw from in the coming years.</p>
-<p>The obstacle I have right now in my simulations is that I don’t have any information about how common those new hymns are. My probabilities for the existing hymns are based on frequencies, but I can’t do the same thing for hymns that haven’t been released yet! So, what I’ve done is essentially put the existing hymns in order of frequency, and then randomly intersperse another 163 more pretend-hymns and just assume that their frequency is the same as hymns nearby on the list. So, some new hymns will catch on and will be very common while others won’t. This brings the total number of hymns up to 475, which is in the middle of the expected range. If a new hymn was randomly placed immediately below a sacrament hymn, I considered that new hymn to be a sacrament hymn as well. I then simulated another 10 years of sacrament hymns from a single ward. Figure&nbsp;12 compares this simulation to the existing simulation based on the existing hymnal.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-simulated_larger" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index_files/figure-html/fig-simulated_larger-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;12: Predicted unique hymns per year for the new, larger hymnal</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Okay, so we immediately see that if there are more hymns to choose from, the number of unique hymns per ward increases. This makes sense: there are more to draw from so there’s less repetition. After a year, instead of having sung around 100 hymns, the new hymnal simulation suggests we’ll be at around 130 or so, which is quite a bit more than normal. Keep in mind that the simulation based on the existing hymnal was pretty close to what actual wards do for the first few years, so we can expect the same to be true of this new simulation. The only ward that hit 130 unique hymns in the first year was that Southern Ward, which, as already mentioned, appears to make an effort to sing many different hymns. So, once the novelty of the new hymnal comes out and things settle down into a new normal (so, maybe by the mid 2030s), we might expect that the diversity of sacrament hymns in a typical ward would be similar to what this one exceptional ward is doing now.</p>
-<p>The difference between the current and new hymnal simulations gets greater as more time passes. By two years, the typical ward might have sung more hymns than any ward I have data for. After a few more years, the simulation likely overestimates the number of hymns sung in a ward because that’s what we saw with the other simulation. But, if I were to hazard a guess, I’d say after five or so years, a typical ward might settle on an expanded list of 325 hymns rather than the current observation of around 240.</p>
-</section>
-</section>
-<section id="conclusion-1" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion-1">Conclusion</h2>
-<p>So, let’s go back to the original question once again: “how many hymns does a ward sing through?” What seemed like an innocent question actually turned out to uncover some interesting patterns. What we’ve found is that it takes at least five years for a ward to “settle” on the set of hymns that they ultimately draw from, which is roughly 240 hymns give or take a couple dozen. Some wards will make efforts to sing more, while others have a larger list of hymns they’ll likely never sing. We observe a natural leveling out over time, so that fewer new hymns are sung the longer data is kept. Disruptions in this leveling out are likely due to changes in personnel and (my guess) probably involve careful notes about hymns that have been sung. Since new hymns typically appear gradually less often, it takes longer to hit milestones. It takes just one year to sing 100 hymns, about two to sing 150, and four to sing through 200 hymns.</p>
-<p>Simulated data further reveals these biases that humans have. Assuming hymns are all eligible to be selected for sacrament meeting, with probabilities mirroring their frequencies, the simulated ward is on par with the real wards in this sample, but only for the first few years. After that, the real wards level out, suggesting that, at some point, music coordinators are opting to repeat a hymn rather than introduce a new one. The simulated ward continues to sing new hymns, but it took over 200 years to finally get to all of them! To me, this suggests that unless a ward makes a conscientious effort to sing every hymn, it is <em>highly</em> unlikely that you’ll sing all the hymns in the hymnal, even if you tracked them for your whole life! The simulations also reveal that once the new hymnal is introduced, we will likely see a wider variety of hymns being sung in sacrament meeting, with fewer repetitions.</p>
-<p>This was a long and technical post, but I hope you enjoyed reading it as much as I enjoyed writing it!</p>
-
-
-</section>
-
- ]]></description>
-  <category>general</category>
-  <guid>https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/index.html</guid>
-  <pubDate>Sun, 12 Nov 2023 07:00:00 GMT</pubDate>
-  <media:content url="https://hymnstats.joeystanley.com/posts/hymns_per_year_part2/cover.png" medium="image" type="image/png" height="89" width="144"/>
 </item>
 </channel>
 </rss>

@@ -1,21 +1,102 @@
 ---
 title: "President Nelson's 100th Birthday"
 author: "Joey Stanley"
-date: 2024-08-23
+date: 2024-09-17
 date-modified: last-modified
 categories:
+  - holidays
   - frequency
-image: cover.png
-draft: TRUE
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(include = FALSE,
                       echo = FALSE)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
-library(gt)
-library(scales)
 ```
 
-On Monday, September 9th, President Russell M. Nelson celebrated his 100th birthday. Let's see how many wards celebrated that through congregational hymns.
+On Monday, September 9th, President Russell M. Nelson celebrated his 100th birthday. Let's see how some wards celebrated that through congregational hymns.
+
+```{r}
+davies_method(month == 9 & nth_sunday %in% 4:5)
+```
+
+When I wrote about hymns sung around [General Conference](/posts/genreal_conference), I showed that a handful of prophet-related hymns spike around the first of April and especially October. They include <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn>, <hymn>Come, Listen to a Prophet's Voice (#21)</hymn>, <hymn>We Listen to a Prophet's Voice (#22)</hymn>, <hymn>We Ever Pray for Thee (#23)</hymn>, and <hymn>God Bless Our Prophet Dear (#24)</hymn>. Each of those is at least three times more likely to be sung the last Sunday in September than they are during the rest of the year combined. Let's work with that list, and see if there was an appreciable spike in any of them around September 9th this year.
+
+This plot shows what percentage of wards sing at least one of those five prophet-related hymns each week of 2024 so far. Obviously, there's a huge spike the week after General Conference with a solid 25% of wards singing one of those hymns. Somewhat surprisingly, there were none in my dataset that sang any the week before! But, keep in mind that March 31st was Easter this year, so this is just illustrates that Easter trumps General Conference when it comes to hymn-singing. During most of the rest of the year, the number hovers around 5% or less of wards each week. 
+
+```{r}
+prop_by_date <- freqs |> 
+    filter(year >= 2024,
+           date <= today()) |> 
+    summarize(has_prophet = sum(hymn_num %in% c(19, 21:24)) > 0,
+              .by = c(meeting_id, date)) |> 
+    count(date, has_prophet) |> 
+    pivot_wider(names_from = has_prophet, values_from = n, values_fill = 0) |> 
+    mutate(prop_has_prophet = `TRUE`/(`TRUE` + `FALSE`)) |> 
+    mutate(line_group = if_else(date <= ymd("2024-04-01"), "before", "after")) |> 
+    print()
+```
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+ggplot(prop_by_date, aes(date, prop_has_prophet, group = line_group)) + 
+    geom_path() + 
+    geom_point() + 
+    scale_x_date(breaks = seq(ymd("2024-01-14"), ymd("2024-09-15"), by = 14),
+                 date_labels = "%m/%d",
+                 expand = expansion(0, 0)) + 
+    scale_y_continuous(labels = percent,
+                       minor_breaks = seq(0,1, 0.01)) + 
+    labs(title = "Wards that sang prophet-related hymns per week",
+         y = "percent of wards") + 
+    theme_minimal()
+```
+
+Of course, the thing I want to highlight from this plot is the spike on September 8th. According to my dataset, around 18% of wards sang prophet-related hymns the day before President Nelson's 100th birthday! This is a pretty cool look into how wards' selection of congregational hymns can sometimes reflect church events. 
+
+We can do a deeper dive to see which hymns contributed to that spike. The following plot focuses on the most recent few weeks and splits the data up by hymn. 
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+wards_per_week <- freqs |> 
+    count(ward, date) |> 
+    count(date, name = "n_wards_total")
+name_nums_order <- freqs |> 
+    filter(hymn_num %in% c(19, 21:24)) |> 
+    distinct(hymn_num, name_num) |> 
+    arrange(hymn_num) |> 
+    mutate(name_num = fct_inorder(name_num))
+freqs |> 
+    filter(year == 2024,
+           month %in% 8:9,
+           date <= today(),
+           hymn_num %in% c(19, 21:24)) |> 
+    count(date, name_num) |> 
+    # Pivot back and forth to get zeros
+    pivot_wider(names_from = name_num, values_from = n, values_fill = 0) |> 
+    pivot_longer(cols = -date, names_to = "name_num", values_to = "n") |> 
+    
+    # Get info back
+    left_join(wards_per_week, by = "date") |> 
+    mutate(prop = n/n_wards_total) |> 
+    ggplot(aes(date, prop, group = name_num, color = name_num)) + 
+    geom_path() + 
+    geom_point() +
+    scale_x_date(breaks = seq(ymd("2024-01-14"), ymd("2024-09-15"), by = 7),
+                 date_labels = "%m/%d",
+                 expand = expansion(0, 1)) +
+    scale_y_continuous(breaks = seq(0, 0.1, 0.02), 
+                       limits = c(0, 0.1),
+                       labels = percent) + 
+    labs(title = "Percentage of wards singing certain prophet-related hymns",
+         color = "Hymn") + 
+    theme_bw()
+```
+
+Here, we can see that <hymn>Come, Listen to a Prophet's Voice (#21)</hymn> saw the biggest spike on September 8th. Close behind it, but with a more gradual rise and fall, as <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn>. This by itself is pretty interesting because the latter is about 2½ times more common than the former overall. Now, overall in the six weeks shown in the plot, <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> was sung the most, but crucially not on the key date, September 8th. Next is <hymn>We Ever Pray for Thee (#23)</hymn>, a hymn that is normally sung only about once every 5--6 years. Finally, we saw <hymn>God Bless Our Prophet Dear (#24)</hymn>. It wasn't super common on the 8th, but given that it's normally sung only about once every 8--9 years, we'll call that a small but important spike. I didn't get reports of any wards singing <hymn>We Listen to a Prophet's Voice (#22)</hymn> the day before President Nelson's birthday, but there were a few in the weeks leading up to it. 
+
+```{r}
+single_hymn_lookup(c(19, 21:24))
+```
+
+Honestly, I love that the hymns were a little different than around General Conference. We're singing less about listening to what the prophet is saying and we're singing more about how we pray for him. Even though not too many wards sang hymns related to prophets on September 8th, it's a pretty cool insight into our church culture. 
+
 
