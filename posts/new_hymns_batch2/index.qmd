@@ -27,29 +27,43 @@ last_sunday <- ymd(floor_date(today(), "week"))
 
 
 ```{r}
-meetings_since_release <- freqs |> 
+meetings_since_release1 <- freqs |> 
     filter(date <= last_sunday,
            date >= ymd("2024-06-02"))
-n_meetings_since_release <- meetings_since_release |> 
+meetings_since_release2 <- freqs |> 
+    filter(date <= last_sunday,
+           date >= ymd("2024-09-15"))
+n_meetings_since_release1 <- meetings_since_release1 |> 
     distinct(meeting_id) |> 
     nrow()
-n_wards_since_release <- meetings_since_release |> 
+n_meetings_since_release2 <- meetings_since_release2 |> 
+    distinct(meeting_id) |> 
+    nrow()
+n_wards_since_release1 <- meetings_since_release1 |> 
     filter(date <= ymd(last_sunday)) |> 
     pull(ward) |> 
     unique() |> 
     length()
-n_weeks_since_release <- meetings_since_release |> 
+n_wards_since_release2 <- meetings_since_release2 |> 
+    filter(date <= ymd(last_sunday)) |> 
+    pull(ward) |> 
+    unique() |> 
+    length()
+n_weeks_since_release1 <- meetings_since_release1 |> 
+    count(date) |> 
+    nrow()
+n_weeks_since_release2 <- meetings_since_release2 |> 
     count(date) |> 
     nrow()
 ```
 
 
-On September 12th, the church released the second batch of new hymns. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be. This page will update regularly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release)` sacrament meetings between June 2nd and September 8th from `r n_wards_since_release` wards. 
+On September 12th, the church released the second batch of new hymns. In [a previous post](/posts/new_hymns_batch1), I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release2)` sacrament meetings since September 15th from `r n_wards_since_release1` wards.
 
-But first, here's how much data I have for each week, just so you have an idea of what I'm working with.
+But first, here's how much data I have for each week, just so you have an idea of what I'm working with. For now, there's just one week, but this table will grow longer as time passes.
 
 ```{r, include = TRUE}
-meetings_since_release |> 
+meetings_since_release2 |> 
     distinct(date, meeting_id) |> 
     count(date) |> 
     mutate(date = sf(date)) |> 
@@ -61,13 +75,14 @@ meetings_since_release |>
 
 
 
+
 ## How many wards sang new hymns each week?
 
-It's been one week, so we don't have a lot of information yet.
+It's been one week, so we don't have a lot of information yet. For now, the plot is going to be a little hard to read, but once a few weeks have passed we'll see more lines which will give us more information. This plot includes all the data since June 2nd when the first batch came out so we can get some context. I've color coded it by batch: green is for the first batch, red/pink is for the second, and blue is for both combined. This division is only relevant since September 15th when the second batch came out so prior to then, only the blue lines are used. In all cases, a lighter color indicates wards that sang exactly one new hymn while a darker color is for wards that since two or more in a single meeting.
 
-```{r, include = FALSE, fig.height = 4, fig.width = 8}
+```{r, fig.height = 4, fig.width = 8}
 count_new_hymns <- function(.category_name, .hymns) {
-    meetings_since_release |> 
+    meetings_since_release1 |> 
         mutate(is_new = hymn_num %in% .hymns) |>
         summarize(n_new = sum(is_new), .by = c(date, ward)) |>
         count(date, n_new) |>
@@ -104,14 +119,18 @@ labels <- data_to_plot |>
               .by = n_new) |> 
     mutate(label = case_when(n_new == 0 ~ "no new hymns",
                              n_new == 1 ~ "1 new hymn",
-                             n_new == 2 ~ "2 new hymns"))
+                             n_new >= 2 ~ "2 or more new hymns"))
 
 date_breaks <- data_to_plot |> 
     distinct(date) |> 
     rowid_to_column("week_num") |> 
     filter(week_num %% 2 == 0) |> 
     pull(date)
-ggplot(data_to_plot, aes(date, prop, group = group, color = category)) +
+```
+
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
     # stat_smooth(formula = "y ~ x", method = "loess", color = "gray85", alpha = 0.25) +
     geom_path() +
     geom_point() +
@@ -122,37 +141,86 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = category)) +
     scale_y_continuous(expand = expansion(0, 0.01),
                        breaks = seq(0, 1, 0.1),
                        labels = scales::percent) +
-    scale_color_manual(breaks = c("new", "batch1", "batch2"),
-                       values = c("gray20", ptol_blue, ptol_red)) + 
+    scale_color_manual(breaks = c("0 new", "1 new", "2 new", 
+                                  "1 batch1", "2 batch1",
+                                  "1 batch2", "2 batch2"),
+                       labels = c("no new hymns", 
+                                 "1 new hymn (total)", "2 new hymns (total)",
+                                 "1 new hymn (from batch 1)", "2 new hymns (from batch 1)",
+                                 "2 new hymn (from batch 2)", "2 new hymns (from batch 2)"),
+                       values = c("gray66", "#a6cee3", "#1f78b4",
+                                  "#b2df8a", "#33a02c",
+                                  "#fb9a99", "#e31a1c")) + 
     theme_minimal() +
     labs(x = "number of new hymns per sacrament meeting",
          y = "percentage of wards",
-         # title = "Percentage of wards singing new hymns between June 2 and Sept 8",
-         subtitle = paste("Based on data from", n_wards_since_release, "wards"),
+         title = "Percentage of wards singing new hymns between June 2 and Sept 18",
+         subtitle = paste("Based on data from", n_wards_since_release1, "wards"),
          fill = "date")
     # theme(legend.position = "none")
 ```
 
-During this period, the number of wards that have sung new hymns has been remarkably stable. Typically, only about a quarter to a third of wards sing new hymns each week. A small number sing two each week. There are rare cases of three or more, but they are so infrequent, I've left them off this chart. 
+As we saw with the [first batch](/posts/new_hymns_batch1), the reception was very warm. Pretty consistently over the 15 weeks after the first batch of hymns was released, we saw about 30% of wards singing at least one of the new ones, with a small percentage singing two or more. But, if you look to the far right of the plot, towards the bottom, you'll see some additional dots. The green ones represent the number of wards singing hymns from the first batch (#1001--1009), with the lighter color for just one and the darker color for two in a meeting. As you can see, the numbers are comparable to where they've been over the past couple months. The red/pink dots represent the second batch of hymns. As you can see, they are quite low. From the data I have, only about 7% of wards sang any of the new hymns this week. This is about a quarter as many wards as what we saw with the first batch. So, overall, a very lukewarm reception. 
 
 
 
 
 ```{r}
-n_weeks_since_release
-wards_with_complete_data <- meetings_since_release |> 
+news_per_ward_june2 <- meetings_since_release1 |> 
+    summarize(n_weeks = length(unique(date)),
+              n_batch1 = sum(hymn_num %in% 1001:1009),
+              n_batch2 = sum(hymn_num %in% 1010:1018),
+              n_new = n_batch1 + n_batch2,
+              .by = "ward") |> 
+    print()
+news_per_ward_june2 |> 
+    ggplot(aes(n_weeks, n_new)) + 
+    geom_boxplot(aes(group = n_weeks)) + 
+    geom_jitter(width = 0.1, height = 0.1) 
+```
+
+
+```{r}
+news_per_ward_sept15 <- meetings_since_release2 |> 
+    summarize(n_weeks = length(unique(date)),
+              n_batch1 = sum(hymn_num %in% 1001:1009),
+              n_batch2 = sum(hymn_num %in% 1010:1018),
+              n_new = n_batch1 + n_batch2,
+              .by = "ward") |> 
+    print()
+news_per_ward_sept15 |> 
+    ggplot(aes(n_weeks, n_batch1))+ 
+    geom_jitter(width = 0.05, height = 0.05) + 
+    scale_x_continuous(breaks = 1:50) + 
+    scale_y_continuous(breaks = 1:50)
+news_per_ward_sept15 |> 
+    ggplot(aes(n_weeks, n_batch2)) + 
+    geom_jitter(width = 0.05, height = 0.05) + 
+    scale_x_continuous(breaks = 1:50)+ 
+    scale_y_continuous(breaks = 1:50)
+news_per_ward_sept15 |> 
+    ggplot(aes(n_weeks, n_new)) + 
+    geom_jitter(width = 0.05, height = 0.05) + 
+    scale_x_continuous(breaks = 1:50)+ 
+    scale_y_continuous(breaks = 1:50)
+```
+
+
+
+```{r}
+wards_with_complete_data <- meetings_since_release1 |> 
     summarize(n_new = sum(hymn_num > 1000 & hymn_num < 2000), .by = c(ward, date)) |> 
     arrange(ward, date) |> 
     
     # only wards with (nearly) complete datasets
     add_count(ward, name = "n_weeks") |> 
-    filter(n_weeks >= n_weeks_since_release * 0.8) |> 
+    filter(n_weeks >= n_weeks_since_release1 * 0.8) |> 
     
     summarize(weeks_with_new = sum(n_new >= 1), .by = ward) |> 
     count(weeks_with_new) |> 
     mutate(prop = n/sum(n)) |> 
     print()
-n_wards_with_complete_data <- meetings_since_release |> 
+n_wards_with_complete_data <- meetings_since_release1 |> 
     distinct(date, ward) |> 
     count(ward) |> 
     filter(n == 2) |> 
@@ -170,44 +238,50 @@ ggplot(wards_with_complete_data, aes(weeks_with_new, prop)) +
     theme_minimal()
 ```
 
-However, a good chunk of my data comes from single-week contributions from various wards, so just because a ward didn't sing a new hymn this week doesn't mean they didn't do any. To see what proportion of wards have introduced new hymns during this period, I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 90% of the 15 weeks in this period. About 15% of them didn't sing any new hymns. Otherwise, the typical number of weeks that wards have sung new hymns since June 2nd is 3--5. But, that's only based on `r n_wards_with_complete_data` wards and not the complete dataset, so take that number with a grain of salt.
+
 
 
 ## What hymns are most popular?
 
-It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular was it? The following table shows the new hymns in order of how often they were sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns during this period.[Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once.]{.aside}
+With only one week of data and relatively few people singing from the second batch, it's hard to make any assertive claims about the popularity of the hymns within this batch. Nevertheless, we can look at the results for now just for curiosity. The table below shows how many wards sang each of the newest hymns.
 
 ```{r, include = TRUE}
 freqs |> 
-    filter(date >= ymd("2024-06-01")) |> 
+    filter(date >= ymd("2024-09-15")) |> 
     
     # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
     filter(nth_time == 1) |> 
     
-    cleveland_plot(return = "table") |> 
+    cleveland_plot(return = "table", col_to_plot = prop_of_meetings, hymns_to_plot = 1010:1019) |> 
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
-    filter(hymn_num > 1000, hymn_num < 2000) |> 
-    mutate(percent_wards = scales::percent(round(n_weeks_since_release / every_x_weeks, 3))) |> 
+    filter(hymn_num %in% 1010:1019) |>
+    mutate(percent_wards = scales::percent(round(n_weeks_since_release2 / every_x_weeks, 3))) |> 
+    
+    # add label for missing hymns
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           percent_wards = if_else(is.na(percent_wards), "0%", percent_wards)) |> 
     select(Hymn = label, `percent of wards` = percent_wards) |> 
     
     gt() |> 
     tab_header(title = "Approximate percentage of wards new hymns have been sung in",
-               subtitle = "Since June 2")
+               subtitle = "Since September 15")
 ```
 
-Overall then, it seems like the hymns have been pretty well-incorporated into regular singing. An overwhelming majority of wards have sung <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> between June 2 and September 8, which is pretty remarkable. Surely the novelty will wear off a little bit, but if that pace continues, then wards will sing it 3--4 times a year, or once every 13 weeks. For reference, before June 2nd, the most common hymn was <hymn>I Stand All Amazed (#193)</hymn> and was sung about once every 19 weeks per ward. The other hymns have been adopted with varying amounts of enthusiasm. We'll wait until December to see how the new Christmas ones get used. 
+
+So, perhaps unsurprisingly, <hymn>Amazing Grace (#1010)</hymn> is the most popular in this batch. We'll have to wait for more data to come in to get a better picture of the others. Overall though, not too many wards have sung it yet.
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
+<!--
 ## What hymns are most popular each week?
 
 We can see to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
 
-```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
-meetings_since_release |> 
-    filter(hymn_num > 1000, hymn_num < 2000) |>  
+```{r, include = FALSE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+meetings_since_release2 |> 
+    filter(hymn_num %in% 1010:1019) |>  
     count(date, hymn_num, name_num) |> 
     
     # pivot and stuff to get zeros
@@ -239,17 +313,15 @@ meetings_since_release |>
     theme_bw()
 ```
 
-<hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was most popular during the first week. Of the wards that sang new hymns, two thirds of them sang it on June 2nd. My guess is we will never see a hymn hit that kind of popularity again, with the possible exception of new holiday hymns. Since then, the popularity of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> has gone down. It went through a very tidy rise and fall, and then suddenly on August 25, it saw a huge spike again. Perhaps a lot of wards are singing it a second time now.
-
-There are a few other major trends so far. <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father's day. A common trend was to sing Father's Day songs for opening and closing hymns and that hymn as the sacrament hymn. Also, <hymn>It Is Well With My Soul (#1003)</hymn> got a little more popular July 14th and has been more popular since then. <hymn>His Eye Is on the Sparrow (#1005)</hymn> saw a spike on July 28th and appears to be more popular since then. Finally, <hymn>I Will Walk with Jesus (#1004)</hymn> wasn't very popular during the first two weeks, but it has been since then and was most popular on August 11th.
+-->
 
 ## When during meetings are these hymns sung?
 
-We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. 
+We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. Again, it's based on so little data, so take these reaults with a grain of salt. Notably though, none of the newest ones were sung as a sacrament hymn yet. 
 
 ```{r, include = TRUE}
-meetings_since_release |> 
-    filter(hymn_num > 1000, hymn_num < 2000) |> 
+meetings_since_release2 |> 
+    filter(hymn_num %in% 1010:1019) |> 
     count(name_num, hymn_num, type) |> 
     mutate(n = round(n/sum(n), 2), 
            n = scales::percent(n),
@@ -257,18 +329,17 @@ meetings_since_release |>
     pivot_wider(names_from = type, values_from = n, values_fill = "0%") |> 
     arrange(hymn_num) |> 
     select(-hymn_num) |> 
-    select(name_num, Opening, Sacrament, Intermediate, Closing) |> 
+    select(name_num, Opening, Intermediate, Closing) |> 
     rename(`New Hymn` = name_num) |> 
     gt() |> 
     tab_header(title = "When were new hymns sung in sacrament meeting?",
-               subtitle = "Between June 2 and September 8")
+               subtitle = "Since September 15")
 ```
 
-Each hymn has its own story. Unsurprisingly, the hymns that are most likely to be sacrament hymns are <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, and <hymn>Gethsemane (#1009)</hymn>, with that last one being sung pretty often elsewhere in the meeting. <hymn>Think a Sacred Song (#1006)</hymn> appears to be a little more common in the second half of the meeting, but I have only seen it sung in a few wards so that may change if more data comes in. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is about as likely to be an opening hymn as a closing hymn. <hymn>It Is Well with My Soul (#1003)</hymn> is most common as a clsoing hymn. <hymn>His Eye Is on the Sparrow (#1005)</hymn> is about evently split between all three slots. The last two hymns, <hymn>I Will Walk with Jesus (#1004)</hymn> and <hymn>When the Savior Comes Again (#1002)</hymn> are a little more commonly sung as intermediate hymns.
 
 
 ## Conclusion
 
-This post shows a handful of trends in the first batch of hymns in the first 15 weeks since their release. Again, this is only based on `r n_meetings_since_release` sacrament meetings from `r n_wards_since_release` wards. It's not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I'm collecting more data and if you'd like to contribute your ward's data, you can do so [here](/contribute.html).
+So, there's not a lot of data to go off of, and I think that in and of itself is notable. People didn't seen as eager to incorporate this second batch of hymns into their sacrament meetings right away. I suspect as the weeks pass, we'll see more and more being used as music coordinators begin to plan future meetings. 
 
-
+It may be the case that wards had their hymns planned already and they'll wait until the next week or a few weeks from now before incorporating this second batch. It may also be because church musicians need time to prepare. However, the same reasons applied to the first batch and far more people sang new hymns in June 2. So, my guess is that the novelty of singing new hymns has waned a little bit, and there's less of a rush to burn through all of them as there might have been over the summer.
