@@ -97,17 +97,18 @@ data_to_plot <- bind_rows(
     count_new_hymns("batch1", 1001:1009), 
     count_new_hymns("batch2", 1010:1018), 
     count_new_hymns("new",    1001:1018)) |> 
-    pivot_longer(cols = `0`:`3`, names_to = "n_new", values_to = "prop") |> 
-    mutate(group = paste(n_new, category)) |> 
-    arrange(date) |> 
+    pivot_longer(cols = -c(date, category), names_to = "n_new", values_to = "prop") |>
+    mutate(group = paste(n_new, category)) |>
+    arrange(date) |>
     # don't need zeros from all three
-    filter(!(n_new == 0 & category != "new")) |> 
+    filter(!(n_new == 0 & category != "new")) |>
     # don't need the 3s because they're so rare
-    filter(n_new <= 2) |> 
-    # don't need batch 2 before Sep 15 and 
-    filter(!(category == "batch2" & date < ymd("2024-09-15"))) |> 
-    #
+    filter(n_new <= 2) |>
+    # don't need batch 2 before Sep 15
+    filter(!(category == "batch2" & date < ymd("2024-09-15"))) |>
+    # don't need batch 1 before Sep 15 either
     filter(!(category == "batch1" & date < ymd("2024-09-15"))) |>
+    filter(!is.na(prop)) |> 
     print()
 
 # Place labels a little above the max from most recent three weeks
@@ -137,8 +138,8 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
     # geom_text(data = labels, aes(y = prop + 0.05, label = label), hjust = 1) +
     scale_x_date(breaks = date_breaks,
                  date_labels = "%b %d",
-                 expand = expansion(0.01, 0)) +
-    scale_y_continuous(expand = expansion(0, 0.01),
+                 expand = expansion(0.02, 0)) +
+    scale_y_continuous(expand = expansion(0, 0.02),
                        breaks = seq(0, 1, 0.1),
                        labels = scales::percent) +
     scale_color_manual(breaks = c("0 new", "1 new", "2 new", 

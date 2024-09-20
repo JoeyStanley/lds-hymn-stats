@@ -123,6 +123,13 @@ During this period, the number of wards that have sung new hymns has been remark
 
 For each number of new hymns per week, I've overlaid a smooth to show the general trend. What I like about it is that is gives a shaded area showing where the proportions typically occur. Anything outside of those could be considered exceptional in some way. In this period here is one week that kinda stands out: August 4th. For some reason, that was the week where the fewest wards sang new hymns. I have no explanation for why that would be. Even when competing with holidays like [Father's Day](/posts/fathers_day), the [martyrdom of Joseph Smith](/posts/martyrdom), and [Pioneer Day](/posts/pioneer_day), the number of new hymns per week stayed consistent. But a random week in early August had fewer---albeit by a small margin. 
 
+## How many new hymns do wards typically sing?
+
+Another way of looking at the data is to consider how many new hymns a ward typically sang in the 15 weeks between the first and second batches. Did most wards sing one a week? Just one? What is the typical number of new hymns a ward has sung during this period?
+
+It's hard to say for sure with the data I have. A lot of my data comes from single-week contributions from various wards. Many of the other wards in this sample contributed multiple weeks, but might have missed one or two because of stake conference or whatever other reason. So, if I've only got ten weeks of data from a particular ward during this 15 week period, and in none of those 10 did they sing new hymns, it may be the case that I just happened to not capture them when they did. 
+
+
 
 ```{r}
 n_weeks_since_release
@@ -156,7 +163,34 @@ ggplot(wards_with_complete_data, aes(weeks_with_new, prop)) +
     theme_minimal()
 ```
 
-However, a good chunk of my data comes from single-week contributions from various wards, so just because a ward didn't sing a new hymn this week doesn't mean they didn't do any. To see what proportion of wards have introduced new hymns during this period, I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 90% of the 15 weeks in this period. About 15% of them didn't sing any new hymns. Otherwise, the typical number of weeks that wards have sung new hymns since June 2nd is 3--5. But, that's only based on `r n_wards_with_complete_data` wards and not the complete dataset, so take that number with a grain of salt.
+I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 90% of the 15 weeks in this period. About 15 of those wards didn't sing any new hymns, with the most number of wards sing five. But, that's only based on `r n_wards_with_complete_data` wards and not the complete dataset, so it might not be the best bit of information.
+
+So, I decided to look at all the data I have and organize it by how many weeks' worth of data I have from each ward. For eac
+
+```{r, fig.height = 5, fig.width = 8}
+news_per_ward |> 
+    count(n_weeks, n_new) |> 
+    mutate(prop_per_n = n/sum(n), .by = n_weeks) |> 
+    mutate(prop_label = paste0(round(prop_per_n*100), "%")) |> 
+    filter(n_new < 19) |> 
+    ggplot(aes(n_weeks, n_new, color = prop_per_n)) + 
+    geom_point(shape = 15, size = 11, position = position_nudge(x = -0.1)) + 
+    geom_point(shape = 15, size = 11, position = position_nudge(x =  0.1)) +
+    geom_text(aes(label = prop_label), color = "white") + 
+    stat_smooth(method = "lm", color = "#3f007d") +
+    scale_x_continuous(breaks = 1:15) + 
+    scale_y_continuous(breaks = 0:20,
+                       minor_breaks = NULL,
+                       expand = expansion(0, 0.5)) + 
+    scale_color_distiller(palette = "Purples", direction = 1) + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+```{r}
+summary(lm(n_new ~ n_weeks, data = news_per_ward))
+```
+
 
 
 ## What hymns are most popular?
