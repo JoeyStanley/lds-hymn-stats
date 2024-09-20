@@ -45,7 +45,7 @@ n_weeks_since_release <- meetings_since_release |>
 ```
 
 
-On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the [first](posts/new_hymns_week1), [second](posts/new_hymns_week2), and [third](posts/new_hymns_week3) weeks since their release, but this page covers the 15 weeks between when the first and second batches came out. When I get more data from this period I will update this page, but it will largely remain as is. Currently I have data from `r scales::comma(n_meetings_since_release)` sacrament meetings between June 2nd and September 8th from `r n_wards_since_release` wards. 
+On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the [first](posts/new_hymns_week1), [second](posts/new_hymns_week2), and [third](posts/new_hymns_week3) weeks since their release, but this page covers the 15 weeks between when the first and second batches came out. When I get more data from this period I will update this page, but it will largely remain as is. Currently I have data from `r scales::comma(n_meetings_since_release)` sacrament meetings between June 2nd and September 8th from `r n_wards_since_release` wards. For now, I'll just focus on hymns 1001--1009 and will wait to bring in the new holiday hymns later on.
 
 But first, here's how much data I have for each week, just so you have an idea of what I'm working with.
 
@@ -125,11 +125,9 @@ For each number of new hymns per week, I've overlaid a smooth to show the genera
 
 ## How many new hymns do wards typically sing?
 
-Another way of looking at the data is to consider how many new hymns a ward typically sang in the 15 weeks between the first and second batches. Did most wards sing one a week? Just one? What is the typical number of new hymns a ward has sung during this period?
+Another way of looking at the data is to consider how many new hymns a ward typically sang in the 15 weeks between the first and second batches. Did a lot of wards sing one a week? Just one the entire time? What is the typical number of new hymns a ward has sung during this period?
 
-It's hard to say for sure with the data I have. A lot of my data comes from single-week contributions from various wards. Many of the other wards in this sample contributed multiple weeks, but might have missed one or two because of stake conference or whatever other reason. So, if I've only got ten weeks of data from a particular ward during this 15 week period, and in none of those 10 did they sing new hymns, it may be the case that I just happened to not capture them when they did. 
-
-
+It's hard to say for sure with the data I have because most of it comes from scattered contributions from various wards. Many wards in this sample contributed data from multiple weeks, but might have missed one or two because of stake conference or whatever other reason. So, if I've only got ten weeks of data from a particular ward during this 15 week period, and in none of those 10 did they sing new hymns, it's impossible to say whether they sang none at all or because I just happened to not get data from the weeks that they did sing new hymns.
 
 ```{r}
 n_weeks_since_release
@@ -165,56 +163,124 @@ ggplot(wards_with_complete_data, aes(weeks_with_new, prop)) +
 
 I took a look at the `r n_wards_with_complete_data` wards that I have data from from at least 90% of the 15 weeks in this period. About 15 of those wards didn't sing any new hymns, with the most number of wards sing five. But, that's only based on `r n_wards_with_complete_data` wards and not the complete dataset, so it might not be the best bit of information.
 
-So, I decided to look at all the data I have and organize it by how many weeks' worth of data I have from each ward. For eac
 
-```{r, fig.height = 5, fig.width = 8}
-news_per_ward |> 
+So, I decided to look at all the data I have and organize it a little differently. For each ward, I counted how many weeks' worth of data I have as well as how many new hymns they sang. The following plot shows this data organized kinda like a table. It's a little hard to interpret at first, so let me explain (and you may want to click on the "plot with annotations tab" to help with interpretation). The numbers in each column add up to 100%. So, to go back to the previous paragraph, of the wards I have fifteen weeks of data, 23% of them sang five new hymns. Of the wards I have nine weeks of data from, 43% of them sang just one new hymn. Across the plot, higher numbers are accompanied by darker rectangles.
+
+::: {.panel-tabset}
+
+```{r}
+news_per_ward <-  meetings_since_release |> 
+    summarize(n_weeks = length(unique(date)),
+              n_new = sum(hymn_num %in% 1001:1009),
+              .by = "ward") |>
     count(n_weeks, n_new) |> 
     mutate(prop_per_n = n/sum(n), .by = n_weeks) |> 
     mutate(prop_label = paste0(round(prop_per_n*100), "%")) |> 
-    filter(n_new < 19) |> 
-    ggplot(aes(n_weeks, n_new, color = prop_per_n)) + 
-    geom_point(shape = 15, size = 11, position = position_nudge(x = -0.1)) + 
-    geom_point(shape = 15, size = 11, position = position_nudge(x =  0.1)) +
+    filter(n_new < 19)
+
+p <- ggplot(news_per_ward, aes(n_weeks, n_new, color = prop_per_n)) + 
+    geom_point(shape = 15, size = 9, position = position_nudge(x = -0.1)) + 
+    geom_point(shape = 15, size = 9, position = position_nudge(x =  0.1)) +
     geom_text(aes(label = prop_label), color = "white") + 
-    stat_smooth(method = "lm", color = "#3f007d") +
-    scale_x_continuous(breaks = 1:15) + 
+    scale_x_continuous(breaks = 1:15,
+                       expand = expansion(0, 0.5),
+                       limits = c(0.5, 15.5)) + 
     scale_y_continuous(breaks = 0:20,
                        minor_breaks = NULL,
+                       limits = c(0, 13),
                        expand = expansion(0, 0.5)) + 
     scale_color_distiller(palette = "Purples", direction = 1) + 
+    labs(title = "How many new hymns did wards sing over 15 weeks?",
+         subtitle = "Percents refer to number of wards per column",
+         x = "number of weeks I have data from per ward",
+         y = "number of new hymns") + 
     theme_minimal() + 
     theme(legend.position = "none")
 ```
 
+### Plain plot
+
+```{r, include = TRUE, fig.height = 5, fig.width = 8}
+p
+```
+
+### Plot with annotations
+
+```{r, include = TRUE, fig.height = 5, fig.width = 8}
+p + 
+    
+    # Arrow pointing to the column
+    annotate(geom = "curve", xend = 9, x = 8, yend = 8, y = 10, curvature = -0.3,
+             arrow = arrow(angle = 20, length = unit(0.2, "cm"), type = "closed")) + 
+    annotate(geom = "segment", x = 8.5, xend = 9.5, y = 7.8, yend = 7.8) + 
+    annotate(geom = "segment", x = 8.5, xend = 8.5, y = 7.8, yend = 7.5) + 
+    annotate(geom = "segment", x = 9.5, xend = 9.5, y = 7.8, yend = 7.5) + 
+    annotate(geom = "text", x = 8, y = 10, label = "cells in each column\nadd up to 100%",
+             hjust = 1) + 
+    
+    # highlighting the nine box
+    annotate(geom = "rect", xmin = 8.5, xmax = 9.5, ymin = 0.5, ymax = 1.5, 
+             fill = "#FFFFFF00", color = "#f1a340", linewidth = 1) + 
+    annotate(geom = "curve", xend = 8.75, x = 7, yend = 1.5, y = 6.5, curvature = -0.2,
+             arrow = arrow(angle = 20, length = unit(0.2, "cm"), type = "closed")) +
+    annotate(geom = "text", x = 7, y = 7, label = "Of the wards I have have\nnine weeks of data from, 43% of\nthem sang just 1 new hymn.",
+             hjust = 1) + 
+    
+    # highlighting the 15 box
+    annotate(geom = "rect", xmin = 14.5, xmax = 15.5, ymin = 4.5, ymax = 5.5, 
+             fill = "#FFFFFF00", color = "#f1a340", linewidth = 1) + 
+    annotate(geom = "curve", xend = 14.75, x = 13, yend = 5.5, y = 12, curvature = -0.2,
+             arrow = arrow(angle = 20, length = unit(0.2, "cm"), type = "closed")) +
+    annotate(geom = "text", x = 13, y = 12.5, label = "Assuming a full dataset of\n15 weeks, the most typical\nnumber of new hymns was 5.",
+             hjust = 1)
+```
+
+
+### Plot with line
+
 ```{r}
 summary(lm(n_new ~ n_weeks, data = news_per_ward))
 ```
+```{r, include = TRUE, fig.height = 5, fig.width = 8}
+p + 
+    stat_smooth(method = "lm", formula = "y ~ x", color = "#3f007d")
+```
 
+
+:::
+
+So, in this plot, there is a general trend upward: the more data I have from a ward (so, the further left go you in the plot), the more new hymns I see in their data (the darker cells are higher up). I've illustrated this by overlaying a line that tries to capture this trend as best as possible (which you can see by clicking on the "plot with line tab").[For the statisticians there, it's just a simple linear regression line with an intercept of 0.21, a slope of 0.333, and a *p*-value < 0.001. The adjusted r-squared is 0.21]{.aside} The takeaway here is that the line suggests that the typical ward introduces a new hymn about once every three weeks. 
+
+So, while this technically shows the number of new hymns I have from each ward given the amount of data I have in that ward, I think it's safe to interpret as the number of hymns wards are likely to sing after that many weeks since the release of the new hymns. So, after nine weeks (so, by July 28th), we can estimate that about 43% of wards have sung just one new hymn. This is a safe interpretation as long as the rate at which wards introduce new hymns is consistent during these 15 weeks (and judging from the plot in the previous section, that might be true) and if there's not a systemtic bias against *not* getting data when a ward is more or less likely to sing a new hymn (which I can't imagine being the case). It's not a perfect interpretation, but it's another look at the data.
 
 
 ## What hymns are most popular?
 
 It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular was it? The following table shows the new hymns in order of how often they were sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns during this period.[Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once.]{.aside}
 
+
 ```{r, include = TRUE}
 freqs |> 
-    filter(date >= ymd("2024-06-01")) |> 
+    filter(date <= ymd("2024-09-08"),
+           date >= ymd("2024-06-02")) |> 
     
     # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
     filter(nth_time == 1) |> 
     
     cleveland_plot(return = "table") |> 
+    
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
-    filter(hymn_num > 1000, hymn_num < 2000) |> 
+    
+    filter(hymn_num %in% c(1001:1009)) |> 
+    
     mutate(percent_wards = scales::percent(round(n_weeks_since_release / every_x_weeks, 3))) |> 
     select(Hymn = label, `percent of wards` = percent_wards) |> 
     
     gt() |> 
     tab_header(title = "Approximate percentage of wards new hymns have been sung in",
-               subtitle = "Since June 2")
+               subtitle = "Between June 2 and September 8")
 ```
 
 Overall then, it seems like the hymns have been pretty well-incorporated into regular singing. An overwhelming majority of wards have sung <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> between June 2 and September 8, which is pretty remarkable. Surely the novelty will wear off a little bit, but if that pace continues, then wards will sing it 3--4 times a year, or once every 13 weeks. For reference, before June 2nd, the most common hymn was <hymn>I Stand All Amazed (#193)</hymn> and was sung about once every 19 weeks per ward. The other hymns have been adopted with varying amounts of enthusiasm. We'll wait until December to see how the new Christmas ones get used. 
