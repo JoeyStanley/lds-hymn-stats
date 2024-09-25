@@ -260,9 +260,7 @@ It should come as no surprise that the most popular hymn in this new batch is <h
 
 
 ```{r, include = TRUE}
-freqs |> 
-    filter(date <= ymd("2024-09-08"),
-           date >= ymd("2024-06-02")) |> 
+meetings_since_release |> 
     
     # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
@@ -293,7 +291,7 @@ We can see to see a glimpse of how the adoption of these new hymns has ebbed and
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 meetings_since_release |> 
-    filter(hymn_num > 1000, hymn_num < 2000) |>  
+    filter(hymn_num %in% 1001:1009) |>  
     count(date, hymn_num, name_num) |> 
     
     # pivot and stuff to get zeros
@@ -336,7 +334,7 @@ We can see when these hymns tend to be sung and get an overall look at the popul
 
 ```{r, include = TRUE}
 meetings_since_release |> 
-    filter(hymn_num > 1000, hymn_num < 2000) |> 
+    filter(hymn_num %in% 1001:1009) |> 
     count(name_num, hymn_num, type) |> 
     mutate(n = round(n/sum(n), 2), 
            n = scales::percent(n),

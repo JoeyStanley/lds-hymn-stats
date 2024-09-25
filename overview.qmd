@@ -121,6 +121,11 @@ weeks_since_june2 <- freqs |>
 
 
 ```{r, include = TRUE, echo = FALSE}
+n_weeks_since_release <- freqs |> 
+    filter(date >= ymd("2024-06-02"),
+           date <= today()) |> 
+    count(date) |> 
+    nrow()
 post_june_data <- freqs %>%
     filter(date >= ymd("2024-06-01")) |> 
     
@@ -133,7 +138,7 @@ post_june_data <- freqs %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
     mutate(percent_wards = if_else(is.na(every_x_weeks), 
                                    "0%", 
-                                   scales::percent(round(12 / every_x_weeks, 3))),
+                                   scales::percent(round(n_weeks_since_release / every_x_weeks, 3))),
            hymn_num = paste0("#", hymn_num),
            pred_times_per_year = if_else(is.na(every_x_weeks), 
                                          "—", 
