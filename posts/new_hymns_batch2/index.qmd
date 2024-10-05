@@ -78,7 +78,7 @@ meetings_since_release2 |>
 
 ## How many wards sang new hymns each week?
 
-This plot shows what percentage of wards sing new hymns each week. For context, includes all the data since June 2nd when the first batch came out so we can see how the roll-out of the second batch compares to that of the first batch. I've color coded it by batch: green is for the first batch, red/pink is for the second, and blue is for both combined. This division is only relevant since September 15th when the second batch came out so prior to then, only the blue lines are used. In all cases, a lighter color indicates wards that sang exactly one new hymn while a darker color is for wards that since two or more in a single meeting.
+This plot shows what percentage of wards sing new hymns each week. For context, includes all the data since June 2nd when the first batch came out so we can see how the roll-out of the second batch compares to that of the first batch. I've color-coded it by batch: green is for the first batch, red/pink is for the second, and blue is for both combined. This division is only relevant since September 15th when the second batch came out so prior to then, only the blue lines are used. In all cases, a lighter color indicates wards that sang exactly one new hymn while a darker color is for wards that since two or more in a single meeting.
 
 ```{r, fig.height = 4, fig.width = 8}
 count_new_hymns <- function(.category_name, .hymns) {
@@ -142,16 +142,15 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
     scale_y_continuous(expand = expansion(0, 0.02),
                        breaks = seq(0, 1, 0.1),
                        labels = scales::percent) +
-    scale_color_manual(breaks = c("0 new", "1 new", "2 new", 
-                                  "1 batch1", "2 batch1",
-                                  "1 batch2", "2 batch2"),
+    scale_color_manual(breaks = c("0 new", 
+                                  "1 new", "1 batch1", "1 batch2",
+                                  "2 new", "2 batch1", "2 batch2"),
                        labels = c("no new hymns", 
-                                 "1 new hymn (total)", "2 new hymns (total)",
-                                 "1 new hymn (from batch 1)", "2 new hymns (from batch 1)",
-                                 "1 new hymn (from batch 2)", "2 new hymns (from batch 2)"),
-                       values = c("gray66", "#a6cee3", "#1f78b4",
-                                  "#b2df8a", "#33a02c",
-                                  "#fb9a99", "#e31a1c")) + 
+                                 "1 new hymn (total)", "1 new hymn (from batch 1)", "1 new hymn (from batch 2)",
+                                 "2 new hymns (total)", "2 new hymns (from batch 1)","2 new hymns (from batch 2)"),
+                       values = c("gray66", 
+                                  "#a6cee3", "#b2df8a", "#fb9a99",
+                                  "#1f78b4", "#33a02c", "#e31a1c")) + 
     theme_minimal() +
     labs(x = "number of new hymns per sacrament meeting",
          y = "percentage of wards",
@@ -163,19 +162,18 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
 
 With the [first batch](/posts/new_hymns_batch1) of hymns, the reception was very warm. Pretty consistently over the 15 weeks after the first batch of hymns was released, we saw about 30% of wards singing at least one of the new ones, with a small percentage singing two or more. 
 
-So far, the second batch is represented in this plot with just a few line segments. The green ones represent the number of wards singing hymns from the first batch (#1001--1009), with the lighter color for just one and the darker color for two in a meeting. The red/pink dots represent the second batch of hymns. In the first week after the release of the second batch, relatively few wards (around 7%) sang any of them. Meanwhile, the first batch continued as normal. This is about a quarter as many wards as what we saw with the first batch. So, overall, a very lukewarm reception. 
+So far, the second batch is represented in this plot with just a few line segments. The green ones represent the number of wards singing hymns from the first batch (#1001--1009), with the lighter color for just one and the darker color for two in a meeting. The red/pink dots represent the second batch of hymns. 
 
-However, the following Sunday, September 22nd, we saw a big jump. About 20% of wards sang from the second batch, which is about three times as much as the previous Sunday. This is represented by the pink and red lines going up in the plot. Interestingly, this integration of the second batch seems to come at the expense of the first batch. The fact that both green lines---which represent the first batch---go down, means that wards are singing the latest hymns *instead of* the first batch. In fact, since their initial release in June, September 22nd was the week that saw the fewest wards singing from the first batch. 
+In the first week after the release of the second batch, relatively few wards (around 7%) sang any of them. Meanwhile, the first batch continued as normal. This is about a quarter as many wards as what we saw with the first batch. So it started off with a lukewarm reception. However, the following Sunday, September 22nd, about 20% of wards sang from the second batch, which is about three times as much as the previous Sunday. This is represented by the pink and red lines going up in the plot. In fact, more wards sang from the second batch than the first batch by a small margin. In fact, since their initial release in June, September 22nd was the week that saw the fewest wards singing from the first batch. On September 29th, the numbers were similar to the week before, although slightly fewer sang from the second batch and slightly more sang from the second batch. 
 
-However! Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They actually go up. To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. This basically means that more wards sang new hymns on September 22nd---about 40%---than any other week so far. So, while the second batch seems to have taken a chunk out of the first batch's apple, it didn't do so completely. In fact, several wards sang hymns from both batches. 
+What is perhaps more interesting though is not which batch people sang from, but whether they sang any new hymns at all. Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They have gone up over the past few weeks.To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. On Septembe 29th, only 55% of wards didn't sing any new hymns. Roughly 40% sang one and another 5% sang two or more. 
 
 Overall, fewer wards sang from the second batch than even the first batch's worst week. But, it shows that more wards are singing new hymns, which is pretty awesome if you ask me. 
 
 
-
 ## What hymns are most popular?
 
-With only two weeks of data and relatively few people singing from the second batch, it's hard to make any assertive claims about the popularity of the hymns within this batch. Nevertheless, we can look at the results for now just for curiosity. The table below shows how many wards sang each of the newest hymns.
+With only three weeks of data and relatively few people singing from the second batch, it's hard to make any assertive claims about the popularity of the hymns within this batch. Nevertheless, we can look at the results for now just for curiosity. The table below shows how many wards sang each of the newest hymns.
 
 ```{r, include = TRUE}
 freqs |> 
@@ -203,16 +201,15 @@ freqs |>
 ```
 
 
-So, perhaps unsurprisingly, <hymn>Amazing Grace (#1010)</hymn> is far and away the most popular in this batch. We'll have to wait for more data to come in to get a better picture of the others. 
+So, perhaps unsurprisingly, <hymn>Amazing Grace (#1010)</hymn> is far and away the most popular in this batch. A distant second is <hymn>My Shepherd Will Supply My Need (#1014)</hymn>. I have not yet seen a ward sing <hymn>Come, Lord Jesus (#1018)</hymn>. 
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
-<!--
 ## What hymns are most popular each week?
 
-We can see to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
+Now that we're a few weeks past the release, we can start to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
 
-```{r, include = FALSE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 meetings_since_release2 |> 
     filter(hymn_num %in% 1010:1019) |>  
     count(date, hymn_num, name_num) |> 
@@ -246,11 +243,12 @@ meetings_since_release2 |>
     theme_bw()
 ```
 
--->
+So, <hymn>Amazing Grace (#1010)</hymn> has taken the lion's share of the new hymns. In the first three weeks, if a ward sang any from the second batch, about half of the time that hymn was <hymn>Amazing Grace (#1010)</hymn>. Not enough time has passed to see what patterns will emerge for that and the other hymns. 
+
 
 ## When during meetings are these hymns sung?
 
-We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. Again, it's based on so little data, so take these results with a grain of salt. 
+We can see when these hymns tend to be sung and get an overall look at the popularity of the second batch of hymns. Again, it's based on so little data, so take these results with a grain of salt. 
 
 ```{r, include = TRUE}
 meetings_since_release2 |> 
@@ -270,8 +268,9 @@ meetings_since_release2 |>
 ```
 
 
+Looks like <hymn>Amazing Grace (#1010)</hymn> is sung throughout the meeting somewhat evenly. The only hymn that has been sing a significant amount as a sacrament hymn is <hymn>Behold the Wounds in Jesus' Hands (#1016)</hymn>. 
 
 ## Conclusion
 
-So, there's not a lot of data to go off of, and I think that in and of itself is notable. At first, people didn't seen as eager to incorporate this second batch of hymns into their sacrament meetings right away. It may be the case that wards had their hymns planned already and they'll wait until the next week or a few weeks from now before incorporating this second batch. It may also be because church musicians need time to prepare. However, the same reasons applied to the first batch and far more people sang new hymns in June 2. So, my guess is that the novelty of singing new hymns has waned a little bit, and there's less of a rush to burn through all of them as there might have been over the summer. However, as we've seen with Week 2 of the second batch, they're warming up to them. I suspect as the weeks pass, we'll see more and more being used as music coordinators begin to plan future meetings. 
+So, there's not a lot of data to go off of, and I think that in and of itself is notable. At first, people didn't seen as eager to incorporate this second batch of hymns into their sacrament meetings right away. It may be the case that wards had their hymns planned already and they'll wait a few weeks still before incorporating this second batch. It may also be because church musicians need time to prepare. However, the same reasons applied to the first batch and far more people sang new hymns in June 2. So, my guess is that the novelty of singing new hymns has waned a little bit, and there's less of a rush to burn through all of them as there might have been over the summer. However, as we've seen with Week 2 of the second batch, they're warming up to them. I suspect as the weeks pass, we'll see more and more being used as music coordinators begin to plan future meetings. 
 

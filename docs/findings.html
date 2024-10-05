@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>LDS Hymn Stats - Findings</title>
+<title>Findings – LDS Hymn Stats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -101,16 +108,43 @@ gtag('js', new Date());
 gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="LDS Hymn Stats" href="findings.xml"><meta property="og:title" content="LDS Hymn Stats - Findings">
+<link rel="alternate" type="application/rss+xml" title="LDS Hymn Stats" href="findings.xml" data-external="1"><meta property="og:title" content="Findings – LDS Hymn Stats">
 <meta property="og:image" content="https://hymnstats.joeystanley.com/posts/cards/cover.png">
-<meta property="og:site-name" content="LDS Hymn Stats">
+<meta property="og:site_name" content="LDS Hymn Stats">
 <meta property="og:image:height" content="1200">
 <meta property="og:image:width" content="1950">
-<meta name="twitter:title" content="LDS Hymn Stats - Findings">
+<meta name="twitter:title" content="Findings – LDS Hymn Stats">
 <meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/cards/cover.png">
 <meta name="twitter:image-height" content="1200">
 <meta name="twitter:image-width" content="1950">
@@ -121,57 +155,58 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./findings.html" rel="" target="" aria-current="page">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link active" href="./findings.html" aria-current="page"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./overview.html" rel="" target="">
- <span class="menu-text">Summarized Data</span></a>
+    <a class="nav-link" href="./overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./contribute.html" rel="" target="">
- <span class="menu-text">Contribute</span></a>
+    <a class="nav-link" href="./contribute.html"> 
+<span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="./findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="./findings.xml"> <i class="bi bi-rss" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -179,7 +214,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -210,7 +244,9 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
+
 
 
 
@@ -218,19 +254,19 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="general,frequency,new hymns" data-listing-date-sort="1726639200000" data-listing-file-modified-sort="1727306031912" data-listing-date-modified-sort="1727306031000" data-listing-reading-time-sort="16">
+<div class="quarto-post image-right" data-index="0" data-categories="general,frequency,new hymns" data-listing-date-sort="1726639200000" data-listing-file-modified-sort="1728103954523" data-listing-date-modified-sort="1728103954000" data-listing-reading-time-sort="16" data-listing-word-count-sort="3092">
 <div class="thumbnail">
-<p><a href="./posts/new_hymns_batch2/index.html"> <p class="card-img-top"><img src="posts/new_hymns_batch2/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/new_hymns_batch2/index.html" class="no-external"></a></p><a href="./posts/new_hymns_batch2/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/new_hymns_batch2/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/new_hymns_batch2/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/new_hymns_batch2/index.html">
 <h3 class="no-anchor listing-title">
-The Second Batch of New Hymns!
+<a href="./posts/new_hymns_batch2/index.html" class="no-external">The Second Batch of New Hymns!</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/new_hymns_batch2/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
@@ -242,14 +278,12 @@ frequency
 new hymns
 </div>
 </div>
-<a href="./posts/new_hymns_batch2/index.html">
 <div class="listing-description">
-On September 12th, the church released the second batch of new hymns. In a previous post, I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the…
+<a href="./posts/new_hymns_batch2/index.html" class="no-external">On September 12th, the church released the second batch of new hymns. In a previous post, I covered in detail as much as I could about the first batch of hymns and how they…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/new_hymns_batch2/index.html">
+<a href="./posts/new_hymns_batch2/index.html" class="no-external">
 <div class="listing-date">
 Sep 18, 2024
 </div>
@@ -259,19 +293,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="holidays,frequency" data-listing-date-sort="1726552800000" data-listing-file-modified-sort="1726632797112" data-listing-date-modified-sort="1726632797000" data-listing-reading-time-sort="6">
+<div class="quarto-post image-right" data-index="1" data-categories="holidays,frequency" data-listing-date-sort="1726552800000" data-listing-file-modified-sort="1726632797112" data-listing-date-modified-sort="1726632797000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1189">
 <div class="thumbnail">
-<p><a href="./posts/president_nelsons_birthday/index.html"> <p class="card-img-top"><img src="posts/president_nelsons_birthday/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/president_nelsons_birthday/index.html" class="no-external"></a></p><a href="./posts/president_nelsons_birthday/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/president_nelsons_birthday/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/president_nelsons_birthday/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/president_nelsons_birthday/index.html">
 <h3 class="no-anchor listing-title">
-President Nelson’s 100th Birthday
+<a href="./posts/president_nelsons_birthday/index.html" class="no-external">President Nelson’s 100th Birthday</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/president_nelsons_birthday/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -280,14 +314,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/president_nelsons_birthday/index.html">
 <div class="listing-description">
-On Monday, September 9th, President Russell M. Nelson celebrated his 100th birthday. Let’s see how some wards celebrated that through congregational hymns.
+<a href="./posts/president_nelsons_birthday/index.html" class="no-external">On Monday, September 9th, President Russell M. Nelson celebrated his 100th birthday. Let’s see how some wards celebrated that through congregational hymns.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/president_nelsons_birthday/index.html">
+<a href="./posts/president_nelsons_birthday/index.html" class="no-external">
 <div class="listing-date">
 Sep 17, 2024
 </div>
@@ -297,32 +329,30 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="general" data-listing-date-sort="1726466400000" data-listing-file-modified-sort="1726507278622" data-listing-date-modified-sort="1726507278000" data-listing-reading-time-sort="16">
+<div class="quarto-post image-right" data-index="2" data-categories="general" data-listing-date-sort="1726466400000" data-listing-file-modified-sort="1726507278622" data-listing-date-modified-sort="1726507278000" data-listing-reading-time-sort="16" data-listing-word-count-sort="3191">
 <div class="thumbnail">
-<p><a href="./posts/cards/index.html"> <img src="./posts/cards/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/cards/index.html" class="no-external"></a></p><a href="./posts/cards/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/cards/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/cards/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/cards/index.html">
 <h3 class="no-anchor listing-title">
-How many of each card should a ward have?
+<a href="./posts/cards/index.html" class="no-external">How many of each card should a ward have?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/cards/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
 </div>
 </div>
-<a href="./posts/cards/index.html">
 <div class="listing-description">
-I’ve never had a calling where I was the one to put the cards on the display to show the hymn numbers. But, with the data I have, I can now provide some recommendations on…
+<a href="./posts/cards/index.html" class="no-external">I’ve never had a calling where I was the one to put the cards on the display to show the hymn numbers. But, with the data I have, I can now provide some recommendations on…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/cards/index.html">
+<a href="./posts/cards/index.html" class="no-external">
 <div class="listing-date">
 Sep 16, 2024
 </div>
@@ -332,32 +362,30 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="frequency" data-listing-date-sort="1724392800000" data-listing-file-modified-sort="1724343285847" data-listing-date-modified-sort="1724343285000" data-listing-reading-time-sort="15">
+<div class="quarto-post image-right" data-index="3" data-categories="frequency" data-listing-date-sort="1724392800000" data-listing-file-modified-sort="1724343285847" data-listing-date-modified-sort="1724343285000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2983">
 <div class="thumbnail">
-<p><a href="./posts/called_to_serve/index.html"> <img src="./posts/called_to_serve/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/called_to_serve/index.html" class="no-external"></a></p><a href="./posts/called_to_serve/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/called_to_serve/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/called_to_serve/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/called_to_serve/index.html">
 <h3 class="no-anchor listing-title">
-<em>Called to Serve</em> and Mission Farewells
+<a href="./posts/called_to_serve/index.html" class="no-external"><em>Called to Serve</em> and Mission Farewells</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/called_to_serve/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('frequency'); return false;">
 frequency
 </div>
 </div>
-<a href="./posts/called_to_serve/index.html">
 <div class="listing-description">
-I’ve noticed over the past couple of weeks that a lot of wards have been singing <hymn>Called to Serve (#249)</hymn>. In some cases, I’m able to get a little more information from the ward and see that these are mostly because their wards are doing missionary…<hymn></hymn>
+<a href="./posts/called_to_serve/index.html" class="no-external">I’ve noticed over the past couple of weeks that a lot of wards have been singing <hymn>Called to Serve (#249)</hymn>. In some cases, I’m able to get a little more information from the…<hymn></hymn></a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/called_to_serve/index.html">
+<a href="./posts/called_to_serve/index.html" class="no-external">
 <div class="listing-date">
 Aug 23, 2024
 </div>
@@ -367,19 +395,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="holidays,frequency" data-listing-date-sort="1721541600000" data-listing-file-modified-sort="1722614723438" data-listing-date-modified-sort="1722614723000" data-listing-reading-time-sort="22">
+<div class="quarto-post image-right" data-index="4" data-categories="holidays,frequency" data-listing-date-sort="1721541600000" data-listing-file-modified-sort="1722614723438" data-listing-date-modified-sort="1722614723000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4254">
 <div class="thumbnail">
-<p><a href="./posts/pioneer_day/index.html"> <p class="card-img-top"><img src="posts/pioneer_day/index_files/figure-html/fig-cleveland-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/pioneer_day/index.html" class="no-external"></a></p><a href="./posts/pioneer_day/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/pioneer_day/index_files/figure-html/fig-cleveland-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/pioneer_day/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/pioneer_day/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around Pioneer Day?
+<a href="./posts/pioneer_day/index.html" class="no-external">What hymns are sung around Pioneer Day?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/pioneer_day/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -388,14 +416,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/pioneer_day/index.html">
 <div class="listing-description">
-Pioneer Day is coming up, so it’s worth it to look and see what wards typically do with regard to their congregational hymns. We have a few hymns that are explicitly related…
+<a href="./posts/pioneer_day/index.html" class="no-external">Pioneer Day is coming up, so it’s worth it to look and see what wards typically do with regard to their congregational hymns. We have a few hymns that are explicitly related…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/pioneer_day/index.html">
+<a href="./posts/pioneer_day/index.html" class="no-external">
 <div class="listing-date">
 Jul 21, 2024
 </div>
@@ -405,19 +431,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="holidays,frequency" data-listing-date-sort="1720072800000" data-listing-file-modified-sort="1720890938954" data-listing-date-modified-sort="1720890938000" data-listing-reading-time-sort="22">
+<div class="quarto-post image-right" data-index="5" data-categories="holidays,frequency" data-listing-date-sort="1720072800000" data-listing-file-modified-sort="1720890938954" data-listing-date-modified-sort="1720890938000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4241">
 <div class="thumbnail">
-<p><a href="./posts/4th_of_july/index.html"> <p class="card-img-top"><img src="posts/4th_of_july/index_files/figure-html/fig-most_common-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/4th_of_july/index.html" class="no-external"></a></p><a href="./posts/4th_of_july/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/4th_of_july/index_files/figure-html/fig-most_common-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/4th_of_july/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/4th_of_july/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around the 4th of July?
+<a href="./posts/4th_of_july/index.html" class="no-external">What hymns are sung around the 4th of July?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/4th_of_july/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -426,14 +452,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/4th_of_july/index.html">
 <div class="listing-description">
-Today is Independence Day in the United States. Many American congregations sing patriotic hymns to commemorate the day. Let’s take a look at some statistics and patterns…
+<a href="./posts/4th_of_july/index.html" class="no-external">Today is Independence Day in the United States. Many American congregations sing patriotic hymns to commemorate the day. Let’s take a look at some statistics and patterns…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/4th_of_july/index.html">
+<a href="./posts/4th_of_july/index.html" class="no-external">
 <div class="listing-date">
 Jul 4, 2024
 </div>
@@ -443,19 +467,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="holidays,frequency" data-listing-date-sort="1719813600000" data-listing-file-modified-sort="1719845707093" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<div class="quarto-post image-right" data-index="6" data-categories="holidays,frequency" data-listing-date-sort="1719813600000" data-listing-file-modified-sort="1719845707093" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1436">
 <div class="thumbnail">
-<p><a href="./posts/martyrdom/index.html"> <img src="./posts/martyrdom/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/martyrdom/index.html" class="no-external"></a></p><a href="./posts/martyrdom/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/martyrdom/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/martyrdom/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/martyrdom/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around the martyrdom of Joseph Smith?
+<a href="./posts/martyrdom/index.html" class="no-external">What hymns are sung around the martyrdom of Joseph Smith?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/martyrdom/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -464,14 +488,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/martyrdom/index.html">
 <div class="listing-description">
-As I’ve been collecting data this month with a focus on the new hymnal, I noticed that a fair number of wards sang hymns related…
+<a href="./posts/martyrdom/index.html" class="no-external">As I’ve been collecting data this month with a focus on the new hymnal, I noticed that a fair number of wards sang hymns related to Joseph Smith. One ward explained why…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/martyrdom/index.html">
+<a href="./posts/martyrdom/index.html" class="no-external">
 <div class="listing-date">
 Jul 1, 2024
 </div>
@@ -481,19 +503,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="general,frequency,new hymns" data-listing-date-sort="1719295200000" data-listing-file-modified-sort="1726873654632" data-listing-date-modified-sort="1726873654000" data-listing-reading-time-sort="22">
+<div class="quarto-post image-right" data-index="7" data-categories="general,frequency,new hymns" data-listing-date-sort="1719295200000" data-listing-file-modified-sort="1726873654632" data-listing-date-modified-sort="1726873654000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4261">
 <div class="thumbnail">
-<p><a href="./posts/new_hymns_batch1/index.html"> <p class="card-img-top"><img src="posts/new_hymns_batch1/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/new_hymns_batch1/index.html" class="no-external"></a></p><a href="./posts/new_hymns_batch1/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/new_hymns_batch1/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/new_hymns_batch1/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/new_hymns_batch1/index.html">
 <h3 class="no-anchor listing-title">
-The First Batch of New Hymns!
+<a href="./posts/new_hymns_batch1/index.html" class="no-external">The First Batch of New Hymns!</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/new_hymns_batch1/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
@@ -505,14 +527,12 @@ frequency
 new hymns
 </div>
 </div>
-<a href="./posts/new_hymns_batch1/index.html">
 <div class="listing-description">
-On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the first, second, and third weeks since their release, but this page covers the 15 weeks between when the first and second batches came out. When I get more data from this period I will update this…
+<a href="./posts/new_hymns_batch1/index.html" class="no-external">On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the first, second, and third weeks since their…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/new_hymns_batch1/index.html">
+<a href="./posts/new_hymns_batch1/index.html" class="no-external">
 <div class="listing-date">
 Jun 25, 2024
 </div>
@@ -522,19 +542,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="holidays,frequency" data-listing-date-sort="1718517600000" data-listing-file-modified-sort="1719819392146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12">
+<div class="quarto-post image-right" data-index="8" data-categories="holidays,frequency" data-listing-date-sort="1718517600000" data-listing-file-modified-sort="1719819392146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2302">
 <div class="thumbnail">
-<p><a href="./posts/fathers_day/index.html"> <p class="card-img-top"><img src="posts/fathers_day/index_files/figure-html/unnamed-chunk-6-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/fathers_day/index.html" class="no-external"></a></p><a href="./posts/fathers_day/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/fathers_day/index_files/figure-html/unnamed-chunk-6-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/fathers_day/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/fathers_day/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around Father’s Day?
+<a href="./posts/fathers_day/index.html" class="no-external">What hymns are sung around Father’s Day?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/fathers_day/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -543,14 +563,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/fathers_day/index.html">
 <div class="listing-description">
-It’s Father’s Day here in the United States. Last month, I did an analysis of what hymns are typically sung on Mother’s Day. This post will be structured similarly, except it’ll focus on the third Sunday in June in wards located in the United States. In my dataset, I currently have information…
+<a href="./posts/fathers_day/index.html" class="no-external">It’s Father’s Day here in the United States. Last month, I did an analysis of what hymns are typically sung on Mother’s Day. This post will be structured similarly, except…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/fathers_day/index.html">
+<a href="./posts/fathers_day/index.html" class="no-external">
 <div class="listing-date">
 Jun 16, 2024
 </div>
@@ -560,19 +578,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="general,frequency,new hymns" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1719815645257" data-listing-date-modified-sort="1719815645000" data-listing-reading-time-sort="11">
+<div class="quarto-post image-right" data-index="9" data-categories="general,frequency,new hymns" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1719815645257" data-listing-date-modified-sort="1719815645000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2089">
 <div class="thumbnail">
-<p><a href="./posts/new_hymns_week3/index.html"> <p class="card-img-top"><img src="posts/new_hymns_week3/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/new_hymns_week3/index.html" class="no-external"></a></p><a href="./posts/new_hymns_week3/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/new_hymns_week3/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/new_hymns_week3/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/new_hymns_week3/index.html">
 <h3 class="no-anchor listing-title">
-The third Sunday with new hymns!
+<a href="./posts/new_hymns_week3/index.html" class="no-external">The third Sunday with new hymns!</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/new_hymns_week3/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
@@ -584,14 +602,12 @@ frequency
 new hymns
 </div>
 </div>
-<a href="./posts/new_hymns_week3/index.html">
 <div class="listing-description">
-This is the third week since new hymns were introduced! We had some competition with Father’s Day this year, so I was curious to see what the hymns would be.…<hymn></hymn>
+<a href="./posts/new_hymns_week3/index.html" class="no-external">This is the third week since new hymns were introduced! We had some competition with Father’s Day this year, so I was curious to see what the hymns would be. Currently I…<hymn></hymn></a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/new_hymns_week3/index.html">
+<a href="./posts/new_hymns_week3/index.html" class="no-external">
 <div class="listing-date">
 Jun 9, 2024
 </div>
@@ -601,19 +617,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="general,frequency,new hymns" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1718661516189" data-listing-date-modified-sort="1718661516000" data-listing-reading-time-sort="8">
+<div class="quarto-post image-right" data-index="10" data-categories="general,frequency,new hymns" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1718661516189" data-listing-date-modified-sort="1718661516000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1498">
 <div class="thumbnail">
-<p><a href="./posts/new_hymns_week2/index.html"> <p class="card-img-top"><img src="posts/new_hymns_week2/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/new_hymns_week2/index.html" class="no-external"></a></p><a href="./posts/new_hymns_week2/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/new_hymns_week2/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/new_hymns_week2/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/new_hymns_week2/index.html">
 <h3 class="no-anchor listing-title">
-The second Sunday with new hymns!
+<a href="./posts/new_hymns_week2/index.html" class="no-external">The second Sunday with new hymns!</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/new_hymns_week2/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
@@ -625,14 +641,12 @@ frequency
 new hymns
 </div>
 </div>
-<a href="./posts/new_hymns_week2/index.html">
 <div class="listing-description">
-This is the second week since…<hymn></hymn>
+<a href="./posts/new_hymns_week2/index.html" class="no-external">This is the second week since new hymns were introduced! There was a little less hype about it online and I didn’t do as much petitioning (i.e begging) for data, but I did…<hymn></hymn></a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/new_hymns_week2/index.html">
+<a href="./posts/new_hymns_week2/index.html" class="no-external">
 <div class="listing-date">
 Jun 9, 2024
 </div>
@@ -642,19 +656,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="general,frequency,new hymns" data-listing-date-sort="1717308000000" data-listing-file-modified-sort="1718643258613" data-listing-date-modified-sort="1718643258000" data-listing-reading-time-sort="9">
+<div class="quarto-post image-right" data-index="11" data-categories="general,frequency,new hymns" data-listing-date-sort="1717308000000" data-listing-file-modified-sort="1718643258613" data-listing-date-modified-sort="1718643258000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1622">
 <div class="thumbnail">
-<p><a href="./posts/new_hymns_week1/index.html"> <p class="card-img-top"><img src="posts/new_hymns_week1/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/new_hymns_week1/index.html" class="no-external"></a></p><a href="./posts/new_hymns_week1/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/new_hymns_week1/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/new_hymns_week1/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/new_hymns_week1/index.html">
 <h3 class="no-anchor listing-title">
-The first Sunday with new hymns!
+<a href="./posts/new_hymns_week1/index.html" class="no-external">The first Sunday with new hymns!</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/new_hymns_week1/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
@@ -666,14 +680,12 @@ frequency
 new hymns
 </div>
 </div>
-<a href="./posts/new_hymns_week1/index.html">
 <div class="listing-description">
-We got new hymns this week and today was the first…
+<a href="./posts/new_hymns_week1/index.html" class="no-external">We got new hymns this week and today was the first chance to use them! Between social media and personal connections, I was able to collect hymn data from 93 wards. Let’s…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/new_hymns_week1/index.html">
+<a href="./posts/new_hymns_week1/index.html" class="no-external">
 <div class="listing-date">
 Jun 2, 2024
 </div>
@@ -683,19 +695,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="holidays,frequency" data-listing-date-sort="1715493600000" data-listing-file-modified-sort="1717400179659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
+<div class="quarto-post image-right" data-index="12" data-categories="holidays,frequency" data-listing-date-sort="1715493600000" data-listing-file-modified-sort="1717400179659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1799">
 <div class="thumbnail">
-<p><a href="./posts/mothers_day/index.html"> <p class="card-img-top"><img src="posts/mothers_day/hymn_topics.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/mothers_day/index.html" class="no-external"></a></p><a href="./posts/mothers_day/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/mothers_day/hymn_topics.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/mothers_day/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/mothers_day/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around Mother’s Day?
+<a href="./posts/mothers_day/index.html" class="no-external">What hymns are sung around Mother’s Day?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/mothers_day/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -704,14 +716,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/mothers_day/index.html">
 <div class="listing-description">
-Mother’s Day is approaching. In our church, we place a lot of value on Mother’s Day. Primary kids usually sing a song or two in sacrament meeting to their mothers and this…
+<a href="./posts/mothers_day/index.html" class="no-external">Mother’s Day is approaching. In our church, we place a lot of value on Mother’s Day. Primary kids usually sing a song or two in sacrament meeting to their mothers and this…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/mothers_day/index.html">
+<a href="./posts/mothers_day/index.html" class="no-external">
 <div class="listing-date">
 May 12, 2024
 </div>
@@ -721,19 +731,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="frequency,general" data-listing-date-sort="1712210400000" data-listing-file-modified-sort="1726286482207" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28">
+<div class="quarto-post image-right" data-index="13" data-categories="frequency,general" data-listing-date-sort="1712210400000" data-listing-file-modified-sort="1726286482207" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5556">
 <div class="thumbnail">
-<p><a href="./posts/change_over_time/index.html"> <img src="./posts/change_over_time/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/change_over_time/index.html" class="no-external"></a></p><a href="./posts/change_over_time/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/change_over_time/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/change_over_time/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/change_over_time/index.html">
 <h3 class="no-anchor listing-title">
-What hymns have recently gotten more or less popular?
+<a href="./posts/change_over_time/index.html" class="no-external">What hymns have recently gotten more or less popular?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/change_over_time/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('frequency'); return false;">
 frequency
@@ -742,14 +752,12 @@ frequency
 general
 </div>
 </div>
-<a href="./posts/change_over_time/index.html">
 <div class="listing-description">
-Are hymns equally popular from year to year? Are there hymn…
+<a href="./posts/change_over_time/index.html" class="no-external">Are hymns equally popular from year to year? Are there hymn that have been increasing or decreasing in popularity? Were there events that triggered a sudden spike in a…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/change_over_time/index.html">
+<a href="./posts/change_over_time/index.html" class="no-external">
 <div class="listing-date">
 Apr 4, 2024
 </div>
@@ -759,19 +767,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="holidays,frequency" data-listing-date-sort="1711260000000" data-listing-file-modified-sort="1726403310105" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="38">
+<div class="quarto-post image-right" data-index="14" data-categories="holidays,frequency" data-listing-date-sort="1711260000000" data-listing-file-modified-sort="1726403310105" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="38" data-listing-word-count-sort="7449">
 <div class="thumbnail">
-<p><a href="./posts/easter/index.html"> <p class="card-img-top"><img src="posts/easter/diagram.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/easter/index.html" class="no-external"></a></p><a href="./posts/easter/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/easter/diagram.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/easter/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/easter/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around Easter?
+<a href="./posts/easter/index.html" class="no-external">What hymns are sung around Easter?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/easter/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -780,14 +788,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/easter/index.html">
 <div class="listing-description">
-Compared to other Christian religions, we don’t have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the…
+<a href="./posts/easter/index.html" class="no-external">Compared to other Christian religions, we don’t have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/easter/index.html">
+<a href="./posts/easter/index.html" class="no-external">
 <div class="listing-date">
 Mar 24, 2024
 </div>
@@ -797,19 +803,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="holidays,frequency" data-listing-date-sort="1708326000000" data-listing-file-modified-sort="1726286247844" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14">
+<div class="quarto-post image-right" data-index="15" data-categories="holidays,frequency" data-listing-date-sort="1708326000000" data-listing-file-modified-sort="1726286247844" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2743">
 <div class="thumbnail">
-<p><a href="./posts/fast_sunday/index.html"> <p class="card-img-top"><img src="posts/fast_sunday/index_files/figure-html/fig-cleveland-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/fast_sunday/index.html" class="no-external"></a></p><a href="./posts/fast_sunday/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/fast_sunday/index_files/figure-html/fig-cleveland-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/fast_sunday/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/fast_sunday/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around Fast Sunday?
+<a href="./posts/fast_sunday/index.html" class="no-external">What hymns are sung around Fast Sunday?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/fast_sunday/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -818,14 +824,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/fast_sunday/index.html">
 <div class="listing-description">
-In this post, I take a look at what hymns are sung on Fast Sundays.
+<a href="./posts/fast_sunday/index.html" class="no-external">In this post, I take a look at what hymns are sung on Fast Sundays.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/fast_sunday/index.html">
+<a href="./posts/fast_sunday/index.html" class="no-external">
 <div class="listing-date">
 Feb 19, 2024
 </div>
@@ -835,19 +839,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="holidays,frequency" data-listing-date-sort="1705734000000" data-listing-file-modified-sort="1705820880158" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14">
+<div class="quarto-post image-right" data-index="16" data-categories="holidays,frequency" data-listing-date-sort="1705734000000" data-listing-file-modified-sort="1705820880158" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2699">
 <div class="thumbnail">
-<p><a href="./posts/valentines/index.html"> <p class="card-img-top"><img src="posts/valentines/index_files/figure-html/fig-love_topic-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/valentines/index.html" class="no-external"></a></p><a href="./posts/valentines/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/valentines/index_files/figure-html/fig-love_topic-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/valentines/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/valentines/index.html">
 <h3 class="no-anchor listing-title">
-Are there any Valentine’s Day hymns?
+<a href="./posts/valentines/index.html" class="no-external">Are there any Valentine’s Day hymns?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/valentines/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -856,14 +860,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/valentines/index.html">
 <div class="listing-description">
-Anyone who has been to Walmart at all since December 26th will know that the next major holiday in the United States is Valentine’s Day. It’s only kind of a Christian…
+<a href="./posts/valentines/index.html" class="no-external">Anyone who has been to Walmart at all since December 26th will know that the next major holiday in the United States is Valentine’s Day. It’s only kind of a Christian…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/valentines/index.html">
+<a href="./posts/valentines/index.html" class="no-external">
 <div class="listing-date">
 Jan 20, 2024
 </div>
@@ -873,32 +875,30 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="meta" data-listing-date-sort="1703919600000" data-listing-file-modified-sort="1719558984892" data-listing-date-modified-sort="1719558984000" data-listing-reading-time-sort="38">
+<div class="quarto-post image-right" data-index="17" data-categories="meta" data-listing-date-sort="1703919600000" data-listing-file-modified-sort="1719558984892" data-listing-date-modified-sort="1719558984000" data-listing-reading-time-sort="38" data-listing-word-count-sort="7529">
 <div class="thumbnail">
-<p><a href="./posts/frequency-data/index.html"> <p class="card-img-top"><img src="posts/frequency-data/index_files/figure-html/fig-joey2015_time-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/frequency-data/index.html" class="no-external"></a></p><a href="./posts/frequency-data/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/frequency-data/index_files/figure-html/fig-joey2015_time-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/frequency-data/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/frequency-data/index.html">
 <h3 class="no-anchor listing-title">
-How much data do I have and where did it all come from?
+<a href="./posts/frequency-data/index.html" class="no-external">How much data do I have and where did it all come from?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/frequency-data/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('meta'); return false;">
 meta
 </div>
 </div>
-<a href="./posts/frequency-data/index.html">
 <div class="listing-description">
-In this post, I’ll explain a bit more about the data itself. You’re not going to see any interesting findings about hymn stats here;…
+<a href="./posts/frequency-data/index.html" class="no-external">In this post, I’ll explain a bit more about the data itself. You’re not going to see any interesting findings about hymn stats here; instead, this page will be mostly to…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/frequency-data/index.html">
+<a href="./posts/frequency-data/index.html" class="no-external">
 <div class="listing-date">
 Dec 30, 2023
 </div>
@@ -908,19 +908,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="holidays,frequency" data-listing-date-sort="1703833200000" data-listing-file-modified-sort="1703868713942" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28">
+<div class="quarto-post image-right" data-index="18" data-categories="holidays,frequency" data-listing-date-sort="1703833200000" data-listing-file-modified-sort="1703868713942" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5441">
 <div class="thumbnail">
-<p><a href="./posts/new-years/index.html"> <img src="./posts/new-years/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/new-years/index.html" class="no-external"></a></p><a href="./posts/new-years/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/new-years/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/new-years/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/new-years/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around New Year’s Day?
+<a href="./posts/new-years/index.html" class="no-external">What hymns are sung around New Year’s Day?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/new-years/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -929,14 +929,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/new-years/index.html">
 <div class="listing-description">
-<p>In this blog post, I explore what hymns are sung the Sunday after Christmas and the first Sunday in January. The structure of this post is very similar to my previous analysis of <span>the Sunday after Thanksgiving</span>. However, the transition from Thanksgiving to Christmas is not the same as from Christmas to New Year’s. In this post, I uncover what I think are some pretty interesting patterns that illuminate a lot about how music coordinators select their hymns.</p>
+<a href="./posts/new-years/index.html" class="no-external">In this blog post, I explore what hymns are sung the Sunday after Christmas and the first Sunday in January. The structure of this post is very similar to my previous analysis of <span>the Sunday after Thanksgiving</span>. However, the transition from Thanksgiving to Christmas is not the same as from Christmas to New Year’s. In this post, I uncover what I think are some pretty interesting patterns that illuminate a lot about how music coordinators select their hymns. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/new-years/index.html">
+<a href="./posts/new-years/index.html" class="no-external">
 <div class="listing-date">
 Dec 29, 2023
 </div>
@@ -946,32 +944,30 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="19" data-categories="holidays" data-listing-date-sort="1703401200000" data-listing-file-modified-sort="1703835912555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="45">
+<div class="quarto-post image-right" data-index="19" data-categories="holidays" data-listing-date-sort="1703401200000" data-listing-file-modified-sort="1703835912555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="45" data-listing-word-count-sort="8871">
 <div class="thumbnail">
-<p><a href="./posts/christmas/index.html"> <img src="./posts/christmas/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/christmas/index.html" class="no-external"></a></p><a href="./posts/christmas/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/christmas/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/christmas/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/christmas/index.html">
 <h3 class="no-anchor listing-title">
-Christmas
+<a href="./posts/christmas/index.html" class="no-external">Christmas</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/christmas/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
 </div>
 </div>
-<a href="./posts/christmas/index.html">
 <div class="listing-description">
-<p>In Latter-day Saint congregations, Christmas is the holiday that gets sung about the most. In this post, we’ll explore some of the patterns that arise in the hymns that we sing in December.</p>
+<a href="./posts/christmas/index.html" class="no-external">In Latter-day Saint congregations, Christmas is the holiday that gets sung about the most. In this post, we’ll explore some of the patterns that arise in the hymns that we sing in December.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/christmas/index.html">
+<a href="./posts/christmas/index.html" class="no-external">
 <div class="listing-date">
 Dec 24, 2023
 </div>
@@ -981,19 +977,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="20" data-categories="holidays,frequency" data-listing-date-sort="1700550000000" data-listing-file-modified-sort="1700577410713" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18">
+<div class="quarto-post image-right" data-index="20" data-categories="holidays,frequency" data-listing-date-sort="1700550000000" data-listing-file-modified-sort="1700577410713" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3570">
 <div class="thumbnail">
-<p><a href="./posts/week-after-thanksgiving/index.html"> <p class="card-img-top"><img src="posts/week-after-thanksgiving/index_files/figure-html/fig-limbo-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/week-after-thanksgiving/index.html" class="no-external"></a></p><a href="./posts/week-after-thanksgiving/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/week-after-thanksgiving/index_files/figure-html/fig-limbo-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/week-after-thanksgiving/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/week-after-thanksgiving/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung the Sunday after Thanksgiving?
+<a href="./posts/week-after-thanksgiving/index.html" class="no-external">What hymns are sung the Sunday after Thanksgiving?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/week-after-thanksgiving/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -1002,14 +998,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/week-after-thanksgiving/index.html">
 <div class="listing-description">
-In the United States, the Sunday after Thanksgiving is a weird one. We’re just getting off a holiday and even though a few days have passed, a lot of people haven’t returned…
+<a href="./posts/week-after-thanksgiving/index.html" class="no-external">In the United States, the Sunday after Thanksgiving is a weird one. We’re just getting off a holiday and even though a few days have passed, a lot of people haven’t returned…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/week-after-thanksgiving/index.html">
+<a href="./posts/week-after-thanksgiving/index.html" class="no-external">
 <div class="listing-date">
 Nov 21, 2023
 </div>
@@ -1019,32 +1013,30 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="21" data-categories="general" data-listing-date-sort="1699772400000" data-listing-file-modified-sort="1710182556749" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="56">
+<div class="quarto-post image-right" data-index="21" data-categories="general" data-listing-date-sort="1699772400000" data-listing-file-modified-sort="1710182556749" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="56" data-listing-word-count-sort="11186">
 <div class="thumbnail">
-<p><a href="./posts/hymns_per_year_part2/index.html"> <img src="./posts/hymns_per_year_part2/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/hymns_per_year_part2/index.html" class="no-external"></a></p><a href="./posts/hymns_per_year_part2/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/hymns_per_year_part2/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/hymns_per_year_part2/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/hymns_per_year_part2/index.html">
 <h3 class="no-anchor listing-title">
-How many unique hymns does a ward sing in a year? Part 2
+<a href="./posts/hymns_per_year_part2/index.html" class="no-external">How many unique hymns does a ward sing in a year? Part 2</a>
 </h3>
 <div class="listing-subtitle">
-A much nerdier and more nitty-gritty analysis of trends over several years.
+<a href="./posts/hymns_per_year_part2/index.html" class="no-external">A much nerdier and more nitty-gritty analysis of trends over several years.</a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
 </div>
 </div>
-<a href="./posts/hymns_per_year_part2/index.html">
 <div class="listing-description">
-I was recently asked something along the lines of “how many hymns does a ward sing through?” Previously, I wrote that ward sing through about 105 unique hymns per year. However, the original question is slightly different than “how many does a ward sing in a year,” and the way it was asked implies that there are a certain set of hymns…
+<a href="./posts/hymns_per_year_part2/index.html" class="no-external">I was recently asked something along the lines of “how many hymns does a ward sing through?” Previously, I wrote that ward sing through about 105 unique hymns per year.…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/hymns_per_year_part2/index.html">
+<a href="./posts/hymns_per_year_part2/index.html" class="no-external">
 <div class="listing-date">
 Nov 12, 2023
 </div>
@@ -1054,19 +1046,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="22" data-categories="holidays,frequency" data-listing-date-sort="1699077600000" data-listing-file-modified-sort="1726286061237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="33">
+<div class="quarto-post image-right" data-index="22" data-categories="holidays,frequency" data-listing-date-sort="1699077600000" data-listing-file-modified-sort="1726286061237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="33" data-listing-word-count-sort="6484">
 <div class="thumbnail">
-<p><a href="./posts/thanksgiving/index.html"> <p class="card-img-top"><img src="posts/thanksgiving/index_files/figure-html/fig-thanksgiving_freqs-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/thanksgiving/index.html" class="no-external"></a></p><a href="./posts/thanksgiving/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/thanksgiving/index_files/figure-html/fig-thanksgiving_freqs-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/thanksgiving/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/thanksgiving/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around Thanksgiving?
+<a href="./posts/thanksgiving/index.html" class="no-external">What hymns are sung around Thanksgiving?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/thanksgiving/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('holidays'); return false;">
 holidays
@@ -1075,14 +1067,12 @@ holidays
 frequency
 </div>
 </div>
-<a href="./posts/thanksgiving/index.html">
 <div class="listing-description">
-Thanksgiving in the United States is coming up, and many wards sing hymns to reflect the season. What hymns are sung around Thanksgiving? When does the Thanksgiving season…
+<a href="./posts/thanksgiving/index.html" class="no-external">Thanksgiving in the United States is coming up, and many wards sing hymns to reflect the season. What hymns are sung around Thanksgiving? When does the Thanksgiving season…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/thanksgiving/index.html">
+<a href="./posts/thanksgiving/index.html" class="no-external">
 <div class="listing-date">
 Nov 4, 2023
 </div>
@@ -1092,19 +1082,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="23" data-categories="alto line,musicology,highest notes" data-listing-date-sort="1698904800000" data-listing-file-modified-sort="1698989495900" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34">
+<div class="quarto-post image-right" data-index="23" data-categories="alto line,musicology,highest notes" data-listing-date-sort="1698904800000" data-listing-file-modified-sort="1698989495900" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6682">
 <div class="thumbnail">
-<p><a href="./posts/highest_alto/index.html"> <p class="card-img-top"><img src="posts/highest_alto/saints.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/highest_alto/index.html" class="no-external"></a></p><a href="./posts/highest_alto/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/highest_alto/saints.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/highest_alto/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/highest_alto/index.html">
 <h3 class="no-anchor listing-title">
-What are the highest notes in alto lines?
+<a href="./posts/highest_alto/index.html" class="no-external">What are the highest notes in alto lines?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/highest_alto/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('alto line'); return false;">
 alto line
@@ -1116,14 +1106,12 @@ musicology
 highest notes
 </div>
 </div>
-<a href="./posts/highest_alto/index.html">
 <div class="listing-description">
-Previously, I’ve discussed in depth the highest and lowest notes a soprano line is expected to go. In this post, I’ll explore the highest notes alto are expected to sing.
+<a href="./posts/highest_alto/index.html" class="no-external">Previously, I’ve discussed in depth the highest and lowest notes a soprano line is expected to go. In this post, I’ll explore the highest notes alto are expected to sing.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/highest_alto/index.html">
+<a href="./posts/highest_alto/index.html" class="no-external">
 <div class="listing-date">
 Nov 2, 2023
 </div>
@@ -1133,19 +1121,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="24" data-categories="frequency,holidays" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286150691" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13">
+<div class="quarto-post image-right" data-index="24" data-categories="frequency,holidays" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286150691" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2545">
 <div class="thumbnail">
-<p><a href="./posts/primary_program/index.html"> <p class="card-img-top"><img src="posts/primary_program/index_files/figure-html/unnamed-chunk-9-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/primary_program/index.html" class="no-external"></a></p><a href="./posts/primary_program/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/primary_program/index_files/figure-html/unnamed-chunk-9-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/primary_program/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/primary_program/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung in October as a result of the Primary Program?
+<a href="./posts/primary_program/index.html" class="no-external">What hymns are sung in October as a result of the Primary Program?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/primary_program/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('frequency'); return false;">
 frequency
@@ -1154,14 +1142,12 @@ frequency
 holidays
 </div>
 </div>
-<a href="./posts/primary_program/index.html">
 <div class="listing-description">
-October is peak Primary Program season. According to the Handbook, the “Children’s Sacrament Meeting Presentation” is held annually “during the last few months of the year.”…
+<a href="./posts/primary_program/index.html" class="no-external">October is peak Primary Program season. According to the Handbook, the “Children’s Sacrament Meeting Presentation” is held annually “during the last few months of the year.”…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/primary_program/index.html">
+<a href="./posts/primary_program/index.html" class="no-external">
 <div class="listing-date">
 Oct 23, 2023
 </div>
@@ -1171,19 +1157,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="25" data-categories="frequency,holidays" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286151587" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13">
+<div class="quarto-post image-right" data-index="25" data-categories="frequency,holidays" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286151587" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2545">
 <div class="thumbnail">
-<p><a href="./posts/primary_program/index.html"> <p class="card-img-top"><img data-src="posts/primary_program/index_files/figure-html/unnamed-chunk-9-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/primary_program/index.html" class="no-external"></a></p><a href="./posts/primary_program/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/primary_program/index_files/figure-html/unnamed-chunk-9-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/primary_program/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/primary_program/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung in October as a result of the Primary Program?
+<a href="./posts/primary_program/index.html" class="no-external">What hymns are sung in October as a result of the Primary Program?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/primary_program/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('frequency'); return false;">
 frequency
@@ -1192,14 +1178,12 @@ frequency
 holidays
 </div>
 </div>
-<a href="./posts/primary_program/index.html">
 <div class="listing-description">
-October is peak Primary Program season. According to the Handbook, the “Children’s Sacrament Meeting Presentation” is held annually “during the last few months of the year.”…
+<a href="./posts/primary_program/index.html" class="no-external">October is peak Primary Program season. According to the Handbook, the “Children’s Sacrament Meeting Presentation” is held annually “during the last few months of the year.”…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/primary_program/index.html">
+<a href="./posts/primary_program/index.html" class="no-external">
 <div class="listing-date">
 Oct 23, 2023
 </div>
@@ -1209,19 +1193,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="26" data-categories="soprano line,alto line,tenor line,bass line,chords,musicology" data-listing-date-sort="1697608800000" data-listing-file-modified-sort="1698989882522" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34">
+<div class="quarto-post image-right" data-index="26" data-categories="soprano line,alto line,tenor line,bass line,chords,musicology" data-listing-date-sort="1697608800000" data-listing-file-modified-sort="1698989882522" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6773">
 <div class="thumbnail">
-<p><a href="./posts/final_chords/index.html"> <p class="card-img-top"><img data-src="posts/final_chords/thy-will.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/final_chords/index.html" class="no-external"></a></p><a href="./posts/final_chords/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/final_chords/thy-will.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/final_chords/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/final_chords/index.html">
 <h3 class="no-anchor listing-title">
-What are the most common final chords?
+<a href="./posts/final_chords/index.html" class="no-external">What are the most common final chords?</a>
 </h3>
 <div class="listing-subtitle">
-And everything else you may want to know about final chords!
+<a href="./posts/final_chords/index.html" class="no-external">And everything else you may want to know about final chords!</a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('soprano line'); return false;">
 soprano line
@@ -1242,14 +1226,12 @@ chords
 musicology
 </div>
 </div>
-<a href="./posts/final_chords/index.html">
 <div class="listing-description">
-<p>How many hymns have melodies that don’t end on the tonic? What parts of the chord does each part tend to sing? How many hymns end on moving lines? What are the most common configurations for final chords and how does that relate to key signatures?</p>
+<a href="./posts/final_chords/index.html" class="no-external">How many hymns have melodies that don’t end on the tonic? What parts of the chord does each part tend to sing? How many hymns end on moving lines? What are the most common configurations for final chords and how does that relate to key signatures? </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/final_chords/index.html">
+<a href="./posts/final_chords/index.html" class="no-external">
 <div class="listing-date">
 Oct 18, 2023
 </div>
@@ -1259,19 +1241,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="27" data-categories="soprano line,lowest notes,musicology" data-listing-date-sort="1697090400000" data-listing-file-modified-sort="1698989792928" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17">
+<div class="quarto-post image-right" data-index="27" data-categories="soprano line,lowest notes,musicology" data-listing-date-sort="1697090400000" data-listing-file-modified-sort="1698989792928" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3236">
 <div class="thumbnail">
-<p><a href="./posts/lowest_soprano/index.html"> <p class="card-img-top"><img data-src="posts/lowest_soprano/star-spangled_banner.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/lowest_soprano/index.html" class="no-external"></a></p><a href="./posts/lowest_soprano/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/lowest_soprano/star-spangled_banner.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/lowest_soprano/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/lowest_soprano/index.html">
 <h3 class="no-anchor listing-title">
-What are the sopranos’ lowest notes?
+<a href="./posts/lowest_soprano/index.html" class="no-external">What are the sopranos’ lowest notes?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/lowest_soprano/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('soprano line'); return false;">
 soprano line
@@ -1283,14 +1265,12 @@ lowest notes
 musicology
 </div>
 </div>
-<a href="./posts/lowest_soprano/index.html">
 <div class="listing-description">
-<p>What hymn has the lowest soprano note? What is a typical lowest note for a soprano line? What is the highest lowest note for a soprano? If you can only sing down to a C, what proportion of hymns would you be able to sing melody on?</p>
+<a href="./posts/lowest_soprano/index.html" class="no-external">What hymn has the lowest soprano note? What is a typical lowest note for a soprano line? What is the highest lowest note for a soprano? If you can only sing down to a C, what proportion of hymns would you be able to sing melody on?</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/lowest_soprano/index.html">
+<a href="./posts/lowest_soprano/index.html" class="no-external">
 <div class="listing-date">
 Oct 12, 2023
 </div>
@@ -1300,19 +1280,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="28" data-categories="frequency,general" data-listing-date-sort="1696831200000" data-listing-file-modified-sort="1726286090130" data-listing-date-modified-sort="1698386400000" data-listing-reading-time-sort="15">
+<div class="quarto-post image-right" data-index="28" data-categories="frequency,general" data-listing-date-sort="1696831200000" data-listing-file-modified-sort="1726286090130" data-listing-date-modified-sort="1698386400000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2801">
 <div class="thumbnail">
-<p><a href="./posts/least-common-hymns/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
+<p><a href="./posts/least-common-hymns/index.html" class="no-external"></a></p><a href="./posts/least-common-hymns/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/least-common-hymns/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/least-common-hymns/index.html">
 <h3 class="no-anchor listing-title">
-What are the least common hymns?
+<a href="./posts/least-common-hymns/index.html" class="no-external">What are the least common hymns?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/least-common-hymns/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('frequency'); return false;">
 frequency
@@ -1321,14 +1301,12 @@ frequency
 general
 </div>
 </div>
-<a href="./posts/least-common-hymns/index.html">
 <div class="listing-description">
-Previously, I’ve posted about the most popular hymns. In this post, I’ll…
+<a href="./posts/least-common-hymns/index.html" class="no-external">Previously, I’ve posted about the most popular hymns. In this post, I’ll look at the opposite end of the spectrum: what hymns are hardly ever sung at all? Ones that, if they…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/least-common-hymns/index.html">
+<a href="./posts/least-common-hymns/index.html" class="no-external">
 <div class="listing-date">
 Oct 9, 2023
 </div>
@@ -1338,19 +1316,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="29" data-categories="soprano line,musicology,highest notes" data-listing-date-sort="1696572000000" data-listing-file-modified-sort="1726458019117" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13">
+<div class="quarto-post image-right" data-index="29" data-categories="soprano line,musicology,highest notes" data-listing-date-sort="1696572000000" data-listing-file-modified-sort="1726458019117" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2549">
 <div class="thumbnail">
-<p><a href="./posts/highest_soprano/index.html"> <p class="card-img-top"><img data-src="posts/highest_soprano/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/highest_soprano/index.html" class="no-external"></a></p><a href="./posts/highest_soprano/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/highest_soprano/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/highest_soprano/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/highest_soprano/index.html">
 <h3 class="no-anchor listing-title">
-What are the highest notes in the soprano lines?
+<a href="./posts/highest_soprano/index.html" class="no-external">What are the highest notes in the soprano lines?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/highest_soprano/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('soprano line'); return false;">
 soprano line
@@ -1362,14 +1340,12 @@ musicology
 highest notes
 </div>
 </div>
-<a href="./posts/highest_soprano/index.html">
 <div class="listing-description">
-<p>What hymn has the highest melody note? What is a typical highest note for a soprano line? What is the lowest highest note for a melody? If you can only sing up to a C, what proportion of hymns would you be able to sing melody on?</p>
+<a href="./posts/highest_soprano/index.html" class="no-external">What hymn has the highest melody note? What is a typical highest note for a soprano line? What is the lowest highest note for a melody? If you can only sing up to a C, what proportion of hymns would you be able to sing melody on?</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/highest_soprano/index.html">
+<a href="./posts/highest_soprano/index.html" class="no-external">
 <div class="listing-date">
 Oct 6, 2023
 </div>
@@ -1379,19 +1355,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="30" data-categories="frequency,holidays" data-listing-date-sort="1695448800000" data-listing-file-modified-sort="1726403475788" data-listing-date-modified-sort="1726403475000" data-listing-reading-time-sort="8">
+<div class="quarto-post image-right" data-index="30" data-categories="frequency,holidays" data-listing-date-sort="1695448800000" data-listing-file-modified-sort="1726403475788" data-listing-date-modified-sort="1726403475000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1596">
 <div class="thumbnail">
-<p><a href="./posts/general_conference/index.html"> <p class="card-img-top"><img data-src="posts/general_conference/genconf_annual.jpeg"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/general_conference/index.html" class="no-external"></a></p><a href="./posts/general_conference/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/general_conference/genconf_annual.jpeg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/general_conference/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/general_conference/index.html">
 <h3 class="no-anchor listing-title">
-What hymns are sung around General Conference?
+<a href="./posts/general_conference/index.html" class="no-external">What hymns are sung around General Conference?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/general_conference/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('frequency'); return false;">
 frequency
@@ -1400,14 +1376,12 @@ frequency
 holidays
 </div>
 </div>
-<a href="./posts/general_conference/index.html">
 <div class="listing-description">
-General Conference is next week and many wards will be singing hymns about it. Of course, no one has sacrament…
+<a href="./posts/general_conference/index.html" class="no-external">General Conference is next week and many wards will be singing hymns about it. Of course, no one has sacrament meeting on General Conference Sunday, but many wards…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/general_conference/index.html">
+<a href="./posts/general_conference/index.html" class="no-external">
 <div class="listing-date">
 Sep 23, 2023
 </div>
@@ -1417,19 +1391,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="31" data-categories="frequency,musicology,soprano line,tenor line" data-listing-date-sort="1695103200000" data-listing-file-modified-sort="1726458371813" data-listing-date-modified-sort="1726458371000" data-listing-reading-time-sort="17">
+<div class="quarto-post image-right" data-index="31" data-categories="frequency,musicology,soprano line,tenor line" data-listing-date-sort="1695103200000" data-listing-file-modified-sort="1726458371813" data-listing-date-modified-sort="1726458371000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3231">
 <div class="thumbnail">
-<p><a href="./posts/mens_womens_arrangements/index.html"> <p class="card-img-top"><img data-src="posts/mens_womens_arrangements/womens_mens.jpeg"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/mens_womens_arrangements/index.html" class="no-external"></a></p><a href="./posts/mens_womens_arrangements/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/mens_womens_arrangements/womens_mens.jpeg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/mens_womens_arrangements/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/mens_womens_arrangements/index.html">
 <h3 class="no-anchor listing-title">
-Does anyone sing the women’s and men’s arrangements?
+<a href="./posts/mens_womens_arrangements/index.html" class="no-external">Does anyone sing the women’s and men’s arrangements?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/mens_womens_arrangements/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('frequency'); return false;">
 frequency
@@ -1444,14 +1418,12 @@ soprano line
 tenor line
 </div>
 </div>
-<a href="./posts/mens_womens_arrangements/index.html">
 <div class="listing-description">
-At the back of the hymnal, there are 29 hymns that are designated as being for women or for men, either because of the text and/or because of the musical arrangement. This…
+<a href="./posts/mens_womens_arrangements/index.html" class="no-external">At the back of the hymnal, there are 29 hymns that are designated as being for women or for men, either because of the text and/or because of the musical arrangement. This…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/mens_womens_arrangements/index.html">
+<a href="./posts/mens_womens_arrangements/index.html" class="no-external">
 <div class="listing-date">
 Sep 19, 2023
 </div>
@@ -1461,19 +1433,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="32" data-categories="key signatures,musicology,soprano line,bass line" data-listing-date-sort="1694844000000" data-listing-file-modified-sort="1726458059519" data-listing-date-modified-sort="1726458059000" data-listing-reading-time-sort="15">
+<div class="quarto-post image-right" data-index="32" data-categories="key signatures,musicology,soprano line,bass line" data-listing-date-sort="1694844000000" data-listing-file-modified-sort="1726458059519" data-listing-date-modified-sort="1726458059000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2907">
 <div class="thumbnail">
-<p><a href="./posts/key_signatures/index.html"> <p class="card-img-top"><img data-src="posts/key_signatures/index_files/figure-html/fig-key_sigs-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/key_signatures/index.html" class="no-external"></a></p><a href="./posts/key_signatures/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/key_signatures/index_files/figure-html/fig-key_sigs-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/key_signatures/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/key_signatures/index.html">
 <h3 class="no-anchor listing-title">
-What are the most common key signatures?
+<a href="./posts/key_signatures/index.html" class="no-external">What are the most common key signatures?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/key_signatures/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('key signatures'); return false;">
 key signatures
@@ -1488,14 +1460,12 @@ soprano line
 bass line
 </div>
 </div>
-<a href="./posts/key_signatures/index.html">
 <div class="listing-description">
-Which key signatures are the most common and why? Which ones are people most…
+<a href="./posts/key_signatures/index.html" class="no-external">Which key signatures are the most common and why? Which ones are people most likely to see? What hymns are in a minor key? In this post I take a deep dive into key…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/key_signatures/index.html">
+<a href="./posts/key_signatures/index.html" class="no-external">
 <div class="listing-date">
 Sep 16, 2023
 </div>
@@ -1505,32 +1475,30 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="33" data-categories="general" data-listing-date-sort="1694325600000" data-listing-file-modified-sort="1726457859479" data-listing-date-modified-sort="1726457859000" data-listing-reading-time-sort="15">
+<div class="quarto-post image-right" data-index="33" data-categories="general" data-listing-date-sort="1694325600000" data-listing-file-modified-sort="1726457859479" data-listing-date-modified-sort="1726457859000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2866">
 <div class="thumbnail">
-<p><a href="./posts/hymns_per_year/index.html"> <p class="card-img-top"><img data-src="posts/hymns_per_year/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/hymns_per_year/index.html" class="no-external"></a></p><a href="./posts/hymns_per_year/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/hymns_per_year/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/hymns_per_year/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/hymns_per_year/index.html">
 <h3 class="no-anchor listing-title">
-How many unique hymns does a ward sing in a year?
+<a href="./posts/hymns_per_year/index.html" class="no-external">How many unique hymns does a ward sing in a year?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/hymns_per_year/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
 </div>
 </div>
-<a href="./posts/hymns_per_year/index.html">
 <div class="listing-description">
-Let’s say you’re an ambitious music coordinator and you want to sing as many different hymns as possible. How many could you get through in a year? How many hymns do wards…
+<a href="./posts/hymns_per_year/index.html" class="no-external">Let’s say you’re an ambitious music coordinator and you want to sing as many different hymns as possible. How many could you get through in a year? How many hymns do wards…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/hymns_per_year/index.html">
+<a href="./posts/hymns_per_year/index.html" class="no-external">
 <div class="listing-date">
 Sep 10, 2023
 </div>
@@ -1540,19 +1508,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="34" data-categories="general,frequency" data-listing-date-sort="1694152800000" data-listing-file-modified-sort="1726490108729" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
+<div class="quarto-post image-right" data-index="34" data-categories="general,frequency" data-listing-date-sort="1694152800000" data-listing-file-modified-sort="1726490108729" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1689">
 <div class="thumbnail">
-<p><a href="./posts/most_common/index.html"> <p class="card-img-top"><img data-src="posts/most_common/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+<p><a href="./posts/most_common/index.html" class="no-external"></a></p><a href="./posts/most_common/index.html" class="no-external">
+<p class="card-img-top"><img data-src="posts/most_common/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/most_common/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/most_common/index.html">
 <h3 class="no-anchor listing-title">
-What are the most common hymns?
+<a href="./posts/most_common/index.html" class="no-external">What are the most common hymns?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/most_common/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('general'); return false;">
 general
@@ -1561,14 +1529,12 @@ general
 frequency
 </div>
 </div>
-<a href="./posts/most_common/index.html">
 <div class="listing-description">
-This post shows what the most common hymns are overall in LDS sacrament meetings. It is based on data from 25,638 sacrament meetings.
+<a href="./posts/most_common/index.html" class="no-external">This post shows what the most common hymns are overall in LDS sacrament meetings. It is based on data from 25,638 sacrament meetings.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/most_common/index.html">
+<a href="./posts/most_common/index.html" class="no-external">
 <div class="listing-date">
 Sep 8, 2023
 </div>
@@ -1578,19 +1544,19 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="35" data-categories="sacrament,frequency" data-listing-date-sort="1694066400000" data-listing-file-modified-sort="1726405445243" data-listing-date-modified-sort="1726405445000" data-listing-reading-time-sort="15">
+<div class="quarto-post image-right" data-index="35" data-categories="sacrament,frequency" data-listing-date-sort="1694066400000" data-listing-file-modified-sort="1726405445243" data-listing-date-modified-sort="1726405445000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2927">
 <div class="thumbnail">
-<p><a href="./posts/sacrament/index.html"> <img data-src="./posts/sacrament/cover.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/sacrament/index.html" class="no-external"></a></p><a href="./posts/sacrament/index.html" class="no-external">
+<p><img loading="lazy" data-src="./posts/sacrament/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/sacrament/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/sacrament/index.html">
 <h3 class="no-anchor listing-title">
-What are the most and least common Sacrament Hymns?
+<a href="./posts/sacrament/index.html" class="no-external">What are the most and least common Sacrament Hymns?</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/sacrament/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('sacrament'); return false;">
 sacrament
@@ -1599,14 +1565,12 @@ sacrament
 frequency
 </div>
 </div>
-<a href="./posts/sacrament/index.html">
 <div class="listing-description">
-In this post, I dive into just the canonical sacrament hymns (i.e.&nbsp;hymns 169–196).
+<a href="./posts/sacrament/index.html" class="no-external">In this post, I dive into just the canonical sacrament hymns (i.e.&nbsp;hymns 169–196).</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/sacrament/index.html">
+<a href="./posts/sacrament/index.html" class="no-external">
 <div class="listing-date">
 Sep 7, 2023
 </div>
@@ -1659,18 +1623,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1702,11 +1655,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1716,8 +1708,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1729,7 +1730,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1773,6 +1897,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1798,6 +1923,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1863,12 +2014,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2024, Joey Stanley</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
