@@ -1,0 +1,375 @@
+---
+title: "Math on the Hymn Boards (Part 1)"
+author: "Joey Stanley"
+date: "2024-10-09"
+date-modified: last-modified
+categories:
+    - general
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+
+# Apply a date stamp
+sf <- stamp("June 2, 2024", quiet = TRUE)
+
+# get last Sunday
+last_sunday <- ymd(floor_date(today(), "week"))
+```
+
+When I was a teenager, my brother got up to the pulpit on during Fast and Testimony. This was a highly unusual thing for him. In fact, I can't remember as single other time when he did that. We all recognized this and were eagerly waiting to hear him publicly bear his testimony for the first time. What he said though, no one anticipated. 
+
+> "I just got up here because I wanted to point out that the hymns today are a subtraction equation. The first minus the second is the third. That's all."
+
+We all quickly did the math in our head and, sure enough, he was right. I have no idea if my brother checked every week for math equations, or if he happened to notice this one. But I've been thinking about this recently and have been curious to see how often this happens. So, this blog post looks at math equations and other numeric patterns displayed on hymn boards. I realized though that I had way too many ideas to explore, so this will be just the first of several blog posts on this topic.
+
+
+## Math on three-hymn Sundays
+
+```{r}
+three_hymn_sundays <- freqs |> 
+    filter(sum(type == "Opening") == 1, 
+           sum(type == "Sacrament") == 1,
+           sum(type == "Intermediate") == 0,
+           sum(type == "Closing") == 1, 
+           .by = meeting_id) |> 
+    select(date, meeting_id, type, hymn_num) |>
+    pivot_wider(names_from = type, values_from = hymn_num) |> 
+    print()
+```
+
+I'll start off with math on Sundays like the one my brother noticed, those with just three hymns. The interesting constraint about this is the sacrament hymn. Because the second hymn is almost always in the 169--196 range, that really limits how often math can occur. Let's take a look anyway. I have data from `r comma(get_n_distinct_meetings())` sacrament meetings, but for now I'll look at the `r comma(nrow(three_hymn_sundays))` that have just three: an opening hymn, a sacrament hymn, and a closing hymn. 
+
+I want to first start of by considering how likely something like this is. I'm going to assume we're only using the 341 hymns in the hymnal, that a ward sings one of the 28 hymns in the 169--196 range for the sacrament hymn, and *not* those hymns as the opening and closing hymns. It turns out there are 4,050 ways to have a subtraction problem displayed on the hymn board. The numbers are the same for addition problems, just with the opening and closing hymns swapped. But of those, which are most likely to happen?
+
+```{r}
+all_add_possibilities <- crossing(opening = 1:168,
+         sacrament = 169:196,
+         closing = 197:341) |> 
+    rowid_to_column("id") |> 
+    mutate(diff = opening + sacrament - closing) |> 
+    filter(diff == 0) |> 
+    arrange(opening, sacrament, closing) |> 
+    print()
+all_minus_possibilities <- crossing(opening = 197:341,
+         sacrament = 169:196,
+         closing = 1:168) |> 
+    rowid_to_column("id") |> 
+    mutate(diff = opening - sacrament - closing) |> 
+    filter(diff == 0) |> 
+    arrange(opening, sacrament, closing) |> 
+    print()
+
+```
+
+```{r}
+# Lookup the probabiltiy of each hymn occurring in the data.
+probabilities <- freqs |> 
+    cleveland_plot(return = "table") |> 
+    select(hymn_num, prop_of_meetings) |> 
+    filter(hymn_num %in% 1:341) |> 
+    mutate(hymn_num = as.numeric(as.character(hymn_num)))
+
+# add in zeros for the unattested ones
+props_lookup <- tibble(hymn_num = 1:341) |> 
+    left_join(probabilities, by = "hymn_num") |> 
+    mutate(prop_of_meetings = if_else(is.na(prop_of_meetings), 0, prop_of_meetings))
+
+probabilty_lookup_function <- function(.n) {
+    props_lookup[props_lookup$hymn_num == .n,]$prop_of_meetings
+}
+
+probabilty_lookup_function(1)
+all_add_possibilities |> 
+    rowwise() |> 
+    mutate(opening_prop   = probabilty_lookup_function(opening),
+           sacrament_prop = probabilty_lookup_function(sacrament),
+           closing_prop   = probabilty_lookup_function(closing)) |> 
+    mutate(prop_this_combo = opening_prop * sacrament_prop * closing_prop) |> 
+    arrange(-prop_this_combo) |> 
+    print()
+```
+
+I cross referenced the hymn numbers from all 4,050 possibilities with the overall frequency of the hymns based on the `r  comma(get_n_distinct_meetings())` I have. The most likely case is <hymn>I Believe in Christ (#134)</hymn> as the opening hymn, <hymn>God, Our Father, Hear Us Pray (#170)</hymn> as the sacrament hymn, and <hymn>Teach Me to Walk in the Light (#304)</hymn> as the closing hymn. It's lightly more probable to see those as an addition equation than a subtraction one since <hymn>Teach Me to Walk in the Light (#304)</hymn> is more likely a closing hymn in general.
+
+```{r}
+all_times_possibilities <- crossing(opening = 197:341,
+         sacrament = 169:196,
+         closing = 1:168) |> 
+    rowid_to_column("id") |> 
+    mutate(diff = opening / sacrament - closing) |> 
+    filter(diff == 0) |> 
+    arrange(opening, sacrament, closing) |> 
+    print()
+all_times_possibilities |> 
+    rowwise() |> 
+    mutate(opening_prop   = probabilty_lookup_function(opening),
+           sacrament_prop = probabilty_lookup_function(sacrament),
+           closing_prop   = probabilty_lookup_function(closing)) |> 
+    mutate(prop_this_combo = opening_prop * sacrament_prop * closing_prop) |> 
+    arrange(-prop_this_combo)
+```
+
+
+If we just consider the 341 hymns, there are actually two ways to see multiplication or division problems. It could happen by singing <hymn>The Spirit of God (#2)</hymn> with either <hymn>As Now We Take the Sacrament (#169)</hymn> and <hymn>America the Beautiful (#338)</hymn> or with <hymn>God, Our Father, Hear Us Pray (#170)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn>. Both of these are not too improbable. The first is more common than 4,010 of the addition or subtraction ones and the second is still in the 97th percentile for most likely combinations. But, either one of them occurring would only happen about once every 43,200 sacrament meetings. So, still pretty rare.
+
+```{r}
+1/(1.568523e-05 + 7.463816e-06)
+```
+
+I won't bog you down with the details of other possibilities, but there are many that seem reasonably plausible. Let's look at what actually did happen.
+
+### Subtraction
+
+Let's look at cases like the one in my ward that Sunday. How often do we see meetings where the opening hymn number minus the intermediate hymn number equals the closing hymn number? As it turns out, a subtraction problem was inadvertently displayed on the hymn board 9 times! Here they are:
+
+```{r, include = TRUE}
+subtractions <- three_hymn_sundays |> 
+    mutate(diff = Opening - Sacrament - Closing) |> 
+    arrange(abs(diff)) |> 
+    filter(diff == 0)
+freqs |> 
+    filter(meeting_id %in% subtractions$meeting_id) |> 
+    mutate(location = if_else(country == "United States", state, paste0(state, ", ", country)),
+           location = str_replace(location, "Unknown, Unknown", "Unknown"))|>
+    filter(country != "France") |>
+    select(date, type, name_num, location) |> 
+    pivot_wider(names_from = type, values_from = name_num) |>
+    arrange(str_extract(Sacrament, "\\d+"), str_extract(Opening, "\\d+")) |>
+    mutate(date = sf(date)) |> 
+    mutate(`−` = "", .after = Opening) |> 
+    mutate(`=` = "", .after = Sacrament) |> 
+    gt()
+```
+
+Two things worth noting. First, as rare as this is, amazingly, two of them occurred on the same day, Februray 12th, 2017! Second, there was another worth mentioning. A ward in France sang the hymns 152, 113, and 26, which are not a math problem. But if we look at the English translations of those hymns, the hymn numbers of those three hymns do indeed make a subtraction problem! They were <hymn>We Love Thy House, O God (#247)</hymn>, <hymn>How Great the Wisdom and the Love (#195)</hymn>, and <hymn>The Day Dawn Is Breaking (#52)</hymn>. It may be the case that the numbers from one sacrament meeting, when translated into another language, make math, but I'm not going to consider all possibilities between all pairs of languages. 
+
+### Addition
+
+Let's move on to addition problems. Even though they're mathematically equally probable as subtraction problems, they occurred almost twice as often as subtraction problems. Here are the nineteen instances when an additional problem was accidentally displayed on the hymn board.
+
+```{r, include = TRUE}
+additions <- three_hymn_sundays |> 
+    mutate(diff = Opening + Sacrament - Closing) |> 
+    arrange(abs(diff)) |> 
+    filter(diff == 0)
+freqs |> 
+    filter(date != mdy("July 27, 2008")) |> 
+    filter(country != "Argentina") |> 
+    filter(meeting_id %in% additions$meeting_id) |> 
+    mutate(state = if_else(state == "CABA", "Buenos Aires", state),
+           state = if_else(country == "Liberia", "Monrovia", state),
+           location = if_else(country == "United States", state, paste0(state, ", ", country)),
+           location = str_replace(location, "Unknown, Unknown", "Unknown")) |>
+    select(date, type, name_num, location) |> 
+    pivot_wider(names_from = type, values_from = name_num) |>
+    arrange(str_extract(Sacrament, "\\d+"), str_extract(Opening, "\\d+")) |>
+    mutate(date = sf(date)) |> 
+    mutate(`+` = "", .after = Opening) |> 
+    mutate(`=` = "", .after = Sacrament) |> 
+    gt()
+```
+
+
+There was another case like the one in France, where the numbers when referring to their equivalents in the English hymnal, were an addition problem, but this time in Argentina. The case where the location is unknown was contributed by a person on social media, so I don't have where they're from.
+
+### Overall probability
+
+So, of the `r comma(nrow(three_hymn_sundays))` chances where math like this could happen, there was a subtraction problem `r nrow(subtractions)` times and an addition problem `r nrow(additions)` times. (I checked for the multiplication and division ones and I didn't see any.) That means math happened about once every `r round(1/((nrow(additions) + nrow(subtractions)) / nrow(three_hymn_sundays)))` sacrament meetings, or about once every decade or so.
+
+
+## Math on four-hymn Sundays
+
+When there are four numbers to work with, the number of possible ways math could happen goes up quite a bit. I'm not a mathematician or logician, so I'm not going to entertain every concievable possibility. Instead, I'll just focus on these four possibilities
+
+> Opening + Sacrament + Intermediate = Closing
+
+> Opening + Sacrament = Intermediate + Closing
+
+> Opening = Sacrament + Intermediate + Closing
+
+> Opening = Sacrament - Intermediate - Closing
+
+In other words, we're looking at either adding hymn numbers together or subtracting them and then moving the equals sign to each of the three locations. Much to my surprise, all of these possibilities are attested in my data! Let's look at each one.
+
+```{r}
+four_hymn_sundays <- freqs |> 
+    filter(sum(type == "Opening") == 1, 
+           sum(type == "Sacrament") == 1,
+           sum(type == "Intermediate") == 1,
+           sum(type == "Closing") == 1, 
+           .by = meeting_id) |> 
+    select(date, meeting_id, type, hymn_num) |>
+    pivot_wider(names_from = type, values_from = hymn_num) |> 
+    print()
+```
+
+The first two is where the opening, sacrament, and intermediate hymns equal the closing hymn. This was found three times in my data:
+
+```{r, include = TRUE}
+to_show <- four_hymn_sundays |> 
+    filter( (Opening + Sacrament + Intermediate) == Closing)
+freqs |> 
+    filter(meeting_id %in% to_show$meeting_id) |> 
+    mutate(location = if_else(country == "United States", state, paste0(state, ", ", country))) |>
+    select(date, type, name_num, location) |> 
+    pivot_wider(names_from = type, values_from = name_num) |>
+    arrange(date) |>
+    mutate(date = sf(date)) |> 
+    gt()
+```
+
+
+Next are cases where the opening plus the sacrament equal the intermediate plus the closing. This happened 25 times.
+
+```{r, include = TRUE}
+to_show <- four_hymn_sundays |> 
+    filter( (Opening + Sacrament) == (Intermediate + Closing))
+freqs |> 
+    filter(meeting_id %in% to_show$meeting_id) |> 
+    mutate(location = if_else(country == "United States", state, paste0(state, ", ", country))) |>
+    select(date, type, name_num, location) |> 
+    pivot_wider(names_from = type, values_from = name_num) |>
+    arrange(date) |>
+    mutate(date = sf(date)) |> 
+    gt()
+```
+
+Last on the list additions are cases where the the opening equals the sum of the other three. This happened just once. 
+
+```{r, include = TRUE}
+to_show <-four_hymn_sundays |> 
+    filter(Opening == (Sacrament + Intermediate + Closing))
+freqs |> 
+    filter(meeting_id %in% to_show$meeting_id) |> 
+    mutate(location = if_else(country == "United States", state, paste0(state, ", ", country))) |>
+    select(date, type, name_num, location) |> 
+    pivot_wider(names_from = type, values_from = name_num) |>
+    arrange(date) |>
+    mutate(date = sf(date)) |> 
+    gt()
+```
+
+
+And finally, for a subtraction-based case that isn't equal to the others, here are the two times when the opening minus the sacrament minus the intermediate equals the closing.
+
+```{r, include = TRUE}
+to_show <- four_hymn_sundays |> 
+    filter(Opening == (Sacrament - Intermediate - Closing))
+
+freqs |> 
+    filter(meeting_id %in% to_show$meeting_id) |> 
+    filter(country != "New Caledonia") |> 
+    mutate(location = if_else(country == "United States", state, paste0(state, ", ", country)),
+           location = str_remove(location, "NULL, ")) |>
+    select(date, type, name_num, location) |> 
+    pivot_wider(names_from = type, values_from = name_num) |>
+    arrange(date) |>
+    mutate(date = sf(date)) |> 
+    gt()
+```
+
+
+### Overall probability
+
+```{r}
+n_matches <- 31
+n_four_hymn_sundays <- nrow(four_hymn_sundays)
+prop_sundays <- n_matches/nrow(four_hymn_sundays)
+percent_sundays <- paste0(round(n_matches/n_four_hymn_sundays * 100, 2), "%")
+once_every <- 1/prop_sundays
+```
+
+
+So, with four hymns, there are many more ways that math could happen. And it seems like it does happen every once in a while. Overall, one of these four patterns happened `r n_matches` times out of `r comma(n_four_hymn_sundays)` four-hymn meetings, or in about `r percent_sundays` of them. That means, you might see one of these four about once every `r round(once_every/48)` years. So, not too unusual.
+
+
+## Increasing and Decreasing
+
+The last pattern I want to look at is more just a pattern: how often are all the hymns in increasing order or in decreasing order. It turns out this is much more common than the math ones discussed above. 
+
+```{r}
+decreasing_four <- four_hymn_sundays |> 
+    filter(Opening > Sacrament,
+           Sacrament > Intermediate,
+           Intermediate > Closing) |> 
+    mutate(range = Opening - Closing) |> 
+    arrange(range)
+increasing_four <- four_hymn_sundays |> 
+    filter(Opening < Sacrament,
+           Sacrament < Intermediate,
+           Intermediate < Closing) |> 
+    mutate(range = Closing - Opening) |> 
+    arrange(range)
+prop_both_three <- (nrow(increasing_four) + nrow(decreasing_four))/nrow(four_hymn_sundays)
+```
+
+For Sundays with four hymns, I have `r nrow(increasing_four)` instances of all increasing numbers and `r nrow(decreasing_four)` instances of all decreasing numbers. Combined, this occurs about `r percent(prop_both_three)` of the time, or once every `r round(1/prop_both_three)` times you sing four hymns. So, really not too uncommon. 
+
+```{r}
+decreasing_three <- three_hymn_sundays |> 
+    filter(Opening > Sacrament,
+           Sacrament > Closing) |> 
+    mutate(range = Opening - Closing) |> 
+    arrange(range)
+increasing_three <- three_hymn_sundays |> 
+    filter(Opening < Sacrament,
+           Sacrament < Closing) |> 
+    mutate(range = Closing - Opening) |> 
+    arrange(range)
+prop_both_three <- (nrow(increasing_three) + nrow(decreasing_three))/nrow(three_hymn_sundays)
+```
+
+Just probability-wise, it's far more likely to see all increasing numbers or all decreasing numbers on three-hymn Sundays because there are three numbers to work with instead of four. This makes sense if you think about it. The sacrament hymn will be close to the middle. (I think it's by design so that the book is most often opened to the middle.) The opening hymn is going to be either lower than it or higher than it. As long as the closing hymn is the opposite, then we're good. So far, I've seen `r comma(nrow(increasing_three))` instances of three increasing numbers and `r comma(nrow(decreasing_three))` instances of three decreasing numbers. Combined, this occurs about `r percent(prop_both_three)` of the time, or once every `r round(1/prop_both_three)` times you sing three hymns. So, really actually quite common. 
+
+```{r}
+without_news <- bind_rows(decreasing_four, increasing_four, decreasing_three, increasing_three) |> 
+    filter(Opening <= 341, Closing <= 341) |> 
+    mutate(n_hymns = if_else(is.na(Intermediate), 3, 4)) |> 
+    arrange(-range) |> 
+    mutate(direction = if_else(Opening < Closing, "increasing", "decreasing")) |> 
+    count(direction, n_hymns, name = "n_new_original")
+bind_rows(decreasing_four, increasing_four, decreasing_three, increasing_three) |> 
+    mutate(n_hymns = if_else(is.na(Intermediate), 3, 4)) |> 
+    arrange(-range) |> 
+    mutate(direction = if_else(Opening < Closing, "increasing", "decreasing")) |> 
+    count(direction, n_hymns, name = "n_new_all") |>
+    left_join(without_news, by = c("direction", "n_hymns")) |> 
+    mutate(diff = n_new_all - n_new_original,
+           prop = n_new_original / n_new_all)
+```
+
+
+```{r}
+without_news_dates <- bind_rows(decreasing_four, increasing_four, decreasing_three, increasing_three) |> 
+    filter(Opening <= 341, Closing <= 341) |>
+    mutate(n_hymns = if_else(is.na(Intermediate), 3, 4)) |> 
+    arrange(-range) |> 
+    mutate(direction = if_else(Opening < Closing, "increasing", "decreasing")) |> 
+    summarize(n_meetings = n(),
+              n_dates = n_distinct(date), 
+              .by = c(direction, n_hymns)) |> 
+    mutate(n_per_date = n_meetings / n_dates)
+bind_rows(decreasing_four, increasing_four, decreasing_three, increasing_three) |> 
+    mutate(n_hymns = if_else(is.na(Intermediate), 3, 4)) |> 
+    arrange(-range) |> 
+    mutate(direction = if_else(Opening < Closing, "increasing", "decreasing")) |> 
+    summarize(n_meetings = n(),
+              n_dates = n_distinct(date), 
+              .by = c(direction, n_hymns)) |> 
+    mutate(n_per_date = n_meetings / n_dates) |> 
+    left_join(without_news_dates, by = c("direction", "n_hymns")) |>
+    mutate(prop_increase_with_new = n_per_date.x / n_per_date.y)
+```
+
+
+For what it's worth, the odds of this happening has gone up a little bit recently because the new hymns' numbers are all greater than the old hymns' numbers. It seems to occur about 3.8% more often with three-hymn Sundays and 1.2% more often with four-hymn Sundays.
+
+## Conclusion
+
+This just a silly post that says nothing about hymns and who or why they're chosen. But it is fun to think about possible math that could be done on the hymn numbers diplayed on the hymn board.

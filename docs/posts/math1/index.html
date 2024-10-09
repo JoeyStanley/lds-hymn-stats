@@ -1,0 +1,3990 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2024-10-09">
+
+<title>Math on the Hymn Boards (Part 1) – LDS Hymn Stats</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Math on the Hymn Boards (Part 1) – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta name="twitter:title" content="Math on the Hymn Boards (Part 1) – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#math-on-three-hymn-sundays" id="toc-math-on-three-hymn-sundays" class="nav-link active" data-scroll-target="#math-on-three-hymn-sundays">Math on three-hymn Sundays</a>
+  <ul class="collapse">
+  <li><a href="#subtraction" id="toc-subtraction" class="nav-link" data-scroll-target="#subtraction">Subtraction</a></li>
+  <li><a href="#addition" id="toc-addition" class="nav-link" data-scroll-target="#addition">Addition</a></li>
+  <li><a href="#overall-probability" id="toc-overall-probability" class="nav-link" data-scroll-target="#overall-probability">Overall probability</a></li>
+  </ul></li>
+  <li><a href="#math-on-four-hymn-sundays" id="toc-math-on-four-hymn-sundays" class="nav-link" data-scroll-target="#math-on-four-hymn-sundays">Math on four-hymn Sundays</a>
+  <ul class="collapse">
+  <li><a href="#overall-probability-1" id="toc-overall-probability-1" class="nav-link" data-scroll-target="#overall-probability-1">Overall probability</a></li>
+  </ul></li>
+  <li><a href="#increasing-and-decreasing" id="toc-increasing-and-decreasing" class="nav-link" data-scroll-target="#increasing-and-decreasing">Increasing and Decreasing</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Math on the Hymn Boards (Part 1)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">general</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 9, 2024</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 9, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>When I was a teenager, my brother got up to the pulpit on during Fast and Testimony. This was a highly unusual thing for him. In fact, I can’t remember as single other time when he did that. We all recognized this and were eagerly waiting to hear him publicly bear his testimony for the first time. What he said though, no one anticipated.</p>
+<blockquote class="blockquote">
+<p>“I just got up here because I wanted to point out that the hymns today are a subtraction equation. The first minus the second is the third. That’s all.”</p>
+</blockquote>
+<p>We all quickly did the math in our head and, sure enough, he was right. I have no idea if my brother checked every week for math equations, or if he happened to notice this one. But I’ve been thinking about this recently and have been curious to see how often this happens. So, this blog post looks at math equations and other numeric patterns displayed on hymn boards. I realized though that I had way too many ideas to explore, so this will be just the first of several blog posts on this topic.</p>
+<section id="math-on-three-hymn-sundays" class="level2">
+<h2 class="anchored" data-anchor-id="math-on-three-hymn-sundays">Math on three-hymn Sundays</h2>
+<p>I’ll start off with math on Sundays like the one my brother noticed, those with just three hymns. The interesting constraint about this is the sacrament hymn. Because the second hymn is almost always in the 169–196 range, that really limits how often math can occur. Let’s take a look anyway. I have data from 26,030 sacrament meetings, but for now I’ll look at the 15,184 that have just three: an opening hymn, a sacrament hymn, and a closing hymn.</p>
+<p>I want to first start of by considering how likely something like this is. I’m going to assume we’re only using the 341 hymns in the hymnal, that a ward sings one of the 28 hymns in the 169–196 range for the sacrament hymn, and <em>not</em> those hymns as the opening and closing hymns. It turns out there are 4,050 ways to have a subtraction problem displayed on the hymn board. The numbers are the same for addition problems, just with the opening and closing hymns swapped. But of those, which are most likely to happen?</p>
+<p>I cross referenced the hymn numbers from all 4,050 possibilities with the overall frequency of the hymns based on the 26,030 I have. The most likely case is <hymn>I Believe in Christ (#134)</hymn> as the opening hymn, <hymn>God, Our Father, Hear Us Pray (#170)</hymn> as the sacrament hymn, and <hymn>Teach Me to Walk in the Light (#304)</hymn> as the closing hymn. It’s lightly more probable to see those as an addition equation than a subtraction one since <hymn>Teach Me to Walk in the Light (#304)</hymn> is more likely a closing hymn in general.</p>
+<p>If we just consider the 341 hymns, there are actually two ways to see multiplication or division problems. It could happen by singing <hymn>The Spirit of God (#2)</hymn> with either <hymn>As Now We Take the Sacrament (#169)</hymn> and <hymn>America the Beautiful (#338)</hymn> or with <hymn>God, Our Father, Hear Us Pray (#170)</hymn> and <hymn>The Star-Spangled Banner (#340)</hymn>. Both of these are not too improbable. The first is more common than 4,010 of the addition or subtraction ones and the second is still in the 97th percentile for most likely combinations. But, either one of them occurring would only happen about once every 43,200 sacrament meetings. So, still pretty rare.</p>
+<p>I won’t bog you down with the details of other possibilities, but there are many that seem reasonably plausible. Let’s look at what actually did happen.</p>
+<section id="subtraction" class="level3">
+<h3 class="anchored" data-anchor-id="subtraction">Subtraction</h3>
+<p>Let’s look at cases like the one in my ward that Sunday. How often do we see meetings where the opening hymn number minus the intermediate hymn number equals the closing hymn number? As it turns out, a subtraction problem was inadvertently displayed on the hymn board 9 times! Here they are:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="ryjhjyptfl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ryjhjyptfl table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ryjhjyptfl thead, #ryjhjyptfl tbody, #ryjhjyptfl tfoot, #ryjhjyptfl tr, #ryjhjyptfl td, #ryjhjyptfl th {
+  border-style: none;
+}
+
+#ryjhjyptfl p {
+  margin: 0;
+  padding: 0;
+}
+
+#ryjhjyptfl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ryjhjyptfl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ryjhjyptfl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ryjhjyptfl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ryjhjyptfl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ryjhjyptfl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ryjhjyptfl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ryjhjyptfl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ryjhjyptfl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ryjhjyptfl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ryjhjyptfl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ryjhjyptfl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ryjhjyptfl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ryjhjyptfl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ryjhjyptfl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ryjhjyptfl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ryjhjyptfl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ryjhjyptfl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ryjhjyptfl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ryjhjyptfl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ryjhjyptfl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ryjhjyptfl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ryjhjyptfl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ryjhjyptfl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ryjhjyptfl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ryjhjyptfl .gt_left {
+  text-align: left;
+}
+
+#ryjhjyptfl .gt_center {
+  text-align: center;
+}
+
+#ryjhjyptfl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ryjhjyptfl .gt_font_normal {
+  font-weight: normal;
+}
+
+#ryjhjyptfl .gt_font_bold {
+  font-weight: bold;
+}
+
+#ryjhjyptfl .gt_font_italic {
+  font-style: italic;
+}
+
+#ryjhjyptfl .gt_super {
+  font-size: 65%;
+}
+
+#ryjhjyptfl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ryjhjyptfl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ryjhjyptfl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ryjhjyptfl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ryjhjyptfl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ryjhjyptfl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ryjhjyptfl .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="location" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location</th>
+<th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Opening</th>
+<th id="−" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">−</th>
+<th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
+<th id="=" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">=</th>
+<th id="Closing" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Closing</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">July 30, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">We Are All Enlisted (250)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">As Now We Take the Sacrament (169)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Press Forward, Saints (81)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">September 24, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Behold! A Royal Army (251)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">O God, the Eternal Father (175)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">God of Our Fathers, We Come unto Thee (76)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">February 12, 2017</td>
+<td class="gt_row gt_left" headers="location">Alberta, Canada</td>
+<td class="gt_row gt_left" headers="Opening">Come Away to the Sunday School (276)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">O God, the Eternal Father (175)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Guide Me to Thee (101)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 05, 2024</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">I Know My Father Lives (302)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">'Tis Sweet to Sing the Matchless Love (177)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">How Gentle God's Commands (125)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">September 07, 2014</td>
+<td class="gt_row gt_left" headers="location">California</td>
+<td class="gt_row gt_left" headers="Opening">Teach Me to Walk in the Light (304)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">Father in Heaven, We Do Believe (180)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Be Still, My Soul (124)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 28, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Called to Serve (249)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">In Remembrance of Thy Suffering (183)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Rejoice, the Lord Is King! (66)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 28, 2016</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">The Light Divine (305)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">Again We Meet Around the Board (186)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Come, We That Love the Lord (119)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">October 25, 2015</td>
+<td class="gt_row gt_left" headers="location">Arizona</td>
+<td class="gt_row gt_left" headers="Opening">In Our Lovely Deseret (307)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">Behold the Great Redeemer Die (191)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Come, Follow Me (116)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">February 12, 2017</td>
+<td class="gt_row gt_left" headers="location">Wyoming</td>
+<td class="gt_row gt_left" headers="Opening">Love One Another (308)</td>
+<td class="gt_row gt_right" headers="−"></td>
+<td class="gt_row gt_left" headers="Sacrament">How Great the Wisdom and the Love (195)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Our Savior's Love (113)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Two things worth noting. First, as rare as this is, amazingly, two of them occurred on the same day, Februray 12th, 2017! Second, there was another worth mentioning. A ward in France sang the hymns 152, 113, and 26, which are not a math problem. But if we look at the English translations of those hymns, the hymn numbers of those three hymns do indeed make a subtraction problem! They were <hymn>We Love Thy House, O God (#247)</hymn>, <hymn>How Great the Wisdom and the Love (#195)</hymn>, and <hymn>The Day Dawn Is Breaking (#52)</hymn>. It may be the case that the numbers from one sacrament meeting, when translated into another language, make math, but I’m not going to consider all possibilities between all pairs of languages.</p>
+</section>
+<section id="addition" class="level3">
+<h3 class="anchored" data-anchor-id="addition">Addition</h3>
+<p>Let’s move on to addition problems. Even though they’re mathematically equally probable as subtraction problems, they occurred almost twice as often as subtraction problems. Here are the nineteen instances when an additional problem was accidentally displayed on the hymn board.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="yzhnbjefga" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yzhnbjefga table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yzhnbjefga thead, #yzhnbjefga tbody, #yzhnbjefga tfoot, #yzhnbjefga tr, #yzhnbjefga td, #yzhnbjefga th {
+  border-style: none;
+}
+
+#yzhnbjefga p {
+  margin: 0;
+  padding: 0;
+}
+
+#yzhnbjefga .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yzhnbjefga .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yzhnbjefga .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yzhnbjefga .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yzhnbjefga .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yzhnbjefga .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yzhnbjefga .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yzhnbjefga .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yzhnbjefga .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yzhnbjefga .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yzhnbjefga .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yzhnbjefga .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yzhnbjefga .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yzhnbjefga .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yzhnbjefga .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yzhnbjefga .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yzhnbjefga .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yzhnbjefga .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yzhnbjefga .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yzhnbjefga .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yzhnbjefga .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yzhnbjefga .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yzhnbjefga .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yzhnbjefga .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yzhnbjefga .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yzhnbjefga .gt_left {
+  text-align: left;
+}
+
+#yzhnbjefga .gt_center {
+  text-align: center;
+}
+
+#yzhnbjefga .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yzhnbjefga .gt_font_normal {
+  font-weight: normal;
+}
+
+#yzhnbjefga .gt_font_bold {
+  font-weight: bold;
+}
+
+#yzhnbjefga .gt_font_italic {
+  font-style: italic;
+}
+
+#yzhnbjefga .gt_super {
+  font-size: 65%;
+}
+
+#yzhnbjefga .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yzhnbjefga .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yzhnbjefga .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yzhnbjefga .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yzhnbjefga .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yzhnbjefga .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yzhnbjefga .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="location" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location</th>
+<th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Opening</th>
+<th id="+" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">+</th>
+<th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
+<th id="=" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">=</th>
+<th id="Closing" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Closing</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 14, 2017</td>
+<td class="gt_row gt_left" headers="location">Wyoming</td>
+<td class="gt_row gt_left" headers="Opening">More Holiness Give Me (131)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">As Now We Take the Sacrament (169)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Families Can Be Together Forever (300)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">March 26, 2023</td>
+<td class="gt_row gt_left" headers="location">Idaho</td>
+<td class="gt_row gt_left" headers="Opening">We Thank Thee, O God, for a Prophet (19)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">O God, the Eternal Father (175)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">There Is a Green Hill Far Away (194)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">March 01, 2015</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Be Thou Humble (130)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">O Lord of Hosts (178)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Love One Another (308)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">November 19, 2023</td>
+<td class="gt_row gt_left" headers="location">Idaho</td>
+<td class="gt_row gt_left" headers="Opening">Lead Me into Life Eternal (45)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">O Lord of Hosts (178)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Have I Done Any Good? (223)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">March 29, 2015</td>
+<td class="gt_row gt_left" headers="location">Northern Territory, Australia</td>
+<td class="gt_row gt_left" headers="Opening">How Great Thou Art (86)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">O Lord of Hosts (178)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Hark, All Ye Nations! (264)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">November 27, 2016</td>
+<td class="gt_row gt_left" headers="location">Georgia</td>
+<td class="gt_row gt_left" headers="Opening">Dearest Children, God Is Near You (96)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus of Nazareth, Savior and King (181)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">As I Search the Holy Scriptures (277)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 10, 2008</td>
+<td class="gt_row gt_left" headers="location">Washington</td>
+<td class="gt_row gt_left" headers="Opening">Our Savior's Love (113)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">We'll Sing All Hail to Jesus' Name (182)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">O Love That Glorifies the Son (295)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 28, 2016</td>
+<td class="gt_row gt_left" headers="location">Nevada</td>
+<td class="gt_row gt_left" headers="Opening">Come, Follow Me (116)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">God Loved Us, So He Sent His Son (187)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Keep the Commandments (303)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">October 22, 2017</td>
+<td class="gt_row gt_left" headers="location">Texas</td>
+<td class="gt_row gt_left" headers="Opening">The Day Dawn Is Breaking (52)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">God Loved Us, So He Sent His Son (187)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Choose the Right (239)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">April 30, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">God of Our Fathers, Whose Almighty Hand (78)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">He Died! The Great Redeemer Died (192)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">I'll Go Where You Want Me to Go (270)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 17, 2015</td>
+<td class="gt_row gt_left" headers="location">California</td>
+<td class="gt_row gt_left" headers="Opening">Praise to the Man (27)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">I Stand All Amazed (193)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Lord, I Would Follow Thee (220)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">September 21, 2014</td>
+<td class="gt_row gt_left" headers="location">California</td>
+<td class="gt_row gt_left" headers="Opening">Come, Ye Children of the Lord (58)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">I Stand All Amazed (193)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Behold! A Royal Army (251)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">November 12, 2023</td>
+<td class="gt_row gt_left" headers="location">Ohio</td>
+<td class="gt_row gt_left" headers="Opening">All Creatures of Our God and King (62)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">There Is a Green Hill Far Away (194)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">As Zion's Youth in Latter Days (256)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">September 04, 2016</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Rejoice, the Lord Is King! (66)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">There Is a Green Hill Far Away (194)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Who's on the Lord's Side? (260)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">October 09, 2016</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">With Songs of Praise (71)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">There Is a Green Hill Far Away (194)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Arise, O God, and Shine (265)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">June 04, 2017</td>
+<td class="gt_row gt_left" headers="location">Maryland</td>
+<td class="gt_row gt_left" headers="Opening">Glory to God on High (67)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus, Once of Humble Birth (196)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Go Forth with Faith (263)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 28, 2017</td>
+<td class="gt_row gt_left" headers="location">Monrovia, Liberia</td>
+<td class="gt_row gt_left" headers="Opening">Sing Praise to Him (70)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus, Once of Humble Birth (196)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">The Time Is Far Spent (266)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 12, 2024</td>
+<td class="gt_row gt_left" headers="location">Unknown</td>
+<td class="gt_row gt_left" headers="Opening">I Need Thee Every Hour (98)</td>
+<td class="gt_row gt_right" headers="+"></td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus, Once of Humble Birth (196)</td>
+<td class="gt_row gt_right" headers="="></td>
+<td class="gt_row gt_left" headers="Closing">Love at Home (294)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>There was another case like the one in France, where the numbers when referring to their equivalents in the English hymnal, were an addition problem, but this time in Argentina. The case where the location is unknown was contributed by a person on social media, so I don’t have where they’re from.</p>
+</section>
+<section id="overall-probability" class="level3">
+<h3 class="anchored" data-anchor-id="overall-probability">Overall probability</h3>
+<p>So, of the 15,184 chances where math like this could happen, there was a subtraction problem 10 times and an addition problem 20 times. (I checked for the multiplication and division ones and I didn’t see any.) That means math happened about once every 506 sacrament meetings, or about once every decade or so.</p>
+</section>
+</section>
+<section id="math-on-four-hymn-sundays" class="level2">
+<h2 class="anchored" data-anchor-id="math-on-four-hymn-sundays">Math on four-hymn Sundays</h2>
+<p>When there are four numbers to work with, the number of possible ways math could happen goes up quite a bit. I’m not a mathematician or logician, so I’m not going to entertain every concievable possibility. Instead, I’ll just focus on these four possibilities</p>
+<blockquote class="blockquote">
+<p>Opening + Sacrament + Intermediate = Closing</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Opening + Sacrament = Intermediate + Closing</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Opening = Sacrament + Intermediate + Closing</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Opening = Sacrament - Intermediate - Closing</p>
+</blockquote>
+<p>In other words, we’re looking at either adding hymn numbers together or subtracting them and then moving the equals sign to each of the three locations. Much to my surprise, all of these possibilities are attested in my data! Let’s look at each one.</p>
+<p>The first two is where the opening, sacrament, and intermediate hymns equal the closing hymn. This was found three times in my data:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="ecakzxotxf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ecakzxotxf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ecakzxotxf thead, #ecakzxotxf tbody, #ecakzxotxf tfoot, #ecakzxotxf tr, #ecakzxotxf td, #ecakzxotxf th {
+  border-style: none;
+}
+
+#ecakzxotxf p {
+  margin: 0;
+  padding: 0;
+}
+
+#ecakzxotxf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ecakzxotxf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ecakzxotxf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ecakzxotxf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ecakzxotxf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ecakzxotxf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ecakzxotxf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ecakzxotxf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ecakzxotxf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ecakzxotxf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ecakzxotxf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ecakzxotxf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ecakzxotxf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ecakzxotxf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ecakzxotxf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ecakzxotxf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ecakzxotxf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ecakzxotxf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ecakzxotxf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ecakzxotxf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ecakzxotxf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ecakzxotxf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ecakzxotxf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ecakzxotxf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ecakzxotxf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ecakzxotxf .gt_left {
+  text-align: left;
+}
+
+#ecakzxotxf .gt_center {
+  text-align: center;
+}
+
+#ecakzxotxf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ecakzxotxf .gt_font_normal {
+  font-weight: normal;
+}
+
+#ecakzxotxf .gt_font_bold {
+  font-weight: bold;
+}
+
+#ecakzxotxf .gt_font_italic {
+  font-style: italic;
+}
+
+#ecakzxotxf .gt_super {
+  font-size: 65%;
+}
+
+#ecakzxotxf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ecakzxotxf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ecakzxotxf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ecakzxotxf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ecakzxotxf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ecakzxotxf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ecakzxotxf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="location" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location</th>
+<th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Opening</th>
+<th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
+<th id="Intermediate" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Intermediate</th>
+<th id="Closing" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Closing</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">September 17, 2017</td>
+<td class="gt_row gt_left" headers="location">England, United Kingdom</td>
+<td class="gt_row gt_left" headers="Opening">High on the Mountain Top (5)</td>
+<td class="gt_row gt_left" headers="Sacrament">Upon the Cross of Calvary (184)</td>
+<td class="gt_row gt_left" headers="Intermediate">How Firm a Foundation (85)</td>
+<td class="gt_row gt_left" headers="Closing">The Iron Rod (274)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">February 11, 2018</td>
+<td class="gt_row gt_left" headers="location">Alberta, Canada</td>
+<td class="gt_row gt_left" headers="Opening">High on the Mountain Top (5)</td>
+<td class="gt_row gt_left" headers="Sacrament">In Memory of the Crucified (190)</td>
+<td class="gt_row gt_left" headers="Intermediate">The Day Dawn Is Breaking (52)</td>
+<td class="gt_row gt_left" headers="Closing">We Love Thy House, O God (247)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">September 08, 2024</td>
+<td class="gt_row gt_left" headers="location">Idaho</td>
+<td class="gt_row gt_left" headers="Opening">Come, O Thou King of Kings (59)</td>
+<td class="gt_row gt_left" headers="Sacrament">'Tis Sweet to Sing the Matchless Love (176)</td>
+<td class="gt_row gt_left" headers="Intermediate">Come, Listen to a Prophet's Voice (21)</td>
+<td class="gt_row gt_left" headers="Closing">As Zion's Youth in Latter Days (256)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Next are cases where the opening plus the sacrament equal the intermediate plus the closing. This happened 25 times.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="gfngxmxzum" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gfngxmxzum table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gfngxmxzum thead, #gfngxmxzum tbody, #gfngxmxzum tfoot, #gfngxmxzum tr, #gfngxmxzum td, #gfngxmxzum th {
+  border-style: none;
+}
+
+#gfngxmxzum p {
+  margin: 0;
+  padding: 0;
+}
+
+#gfngxmxzum .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gfngxmxzum .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gfngxmxzum .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gfngxmxzum .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gfngxmxzum .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gfngxmxzum .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gfngxmxzum .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gfngxmxzum .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gfngxmxzum .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gfngxmxzum .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gfngxmxzum .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gfngxmxzum .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gfngxmxzum .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gfngxmxzum .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gfngxmxzum .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfngxmxzum .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gfngxmxzum .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gfngxmxzum .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gfngxmxzum .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfngxmxzum .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gfngxmxzum .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfngxmxzum .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gfngxmxzum .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfngxmxzum .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gfngxmxzum .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfngxmxzum .gt_left {
+  text-align: left;
+}
+
+#gfngxmxzum .gt_center {
+  text-align: center;
+}
+
+#gfngxmxzum .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gfngxmxzum .gt_font_normal {
+  font-weight: normal;
+}
+
+#gfngxmxzum .gt_font_bold {
+  font-weight: bold;
+}
+
+#gfngxmxzum .gt_font_italic {
+  font-style: italic;
+}
+
+#gfngxmxzum .gt_super {
+  font-size: 65%;
+}
+
+#gfngxmxzum .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gfngxmxzum .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gfngxmxzum .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gfngxmxzum .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gfngxmxzum .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gfngxmxzum .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gfngxmxzum .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="location" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location</th>
+<th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Opening</th>
+<th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
+<th id="Intermediate" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Intermediate</th>
+<th id="Closing" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Closing</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">March 24, 2013</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Awake and Arise (8)</td>
+<td class="gt_row gt_left" headers="Sacrament">O Savior, Thou Who Wearest a Crown (197)</td>
+<td class="gt_row gt_left" headers="Intermediate">Israel, Israel, God Is Calling (7)</td>
+<td class="gt_row gt_left" headers="Closing">That Easter Morn (198)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 10, 2014</td>
+<td class="gt_row gt_left" headers="location">South Dakota</td>
+<td class="gt_row gt_left" headers="Opening">On This Day of Joy and Gladness (64)</td>
+<td class="gt_row gt_left" headers="Sacrament">He Died! The Great Redeemer Died (192)</td>
+<td class="gt_row gt_left" headers="Intermediate">Nearer, Dear Savior, to Thee (99)</td>
+<td class="gt_row gt_left" headers="Closing">Thy Spirit, Lord, Has Stirred Our Souls (157)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">March 15, 2015</td>
+<td class="gt_row gt_left" headers="location">Iowa</td>
+<td class="gt_row gt_left" headers="Opening">Did You Think to Pray? (140)</td>
+<td class="gt_row gt_left" headers="Sacrament">'Tis Sweet to Sing the Matchless Love (177)</td>
+<td class="gt_row gt_left" headers="Intermediate">Lead, Kindly Light (97)</td>
+<td class="gt_row gt_left" headers="Closing">Lord, I Would Follow Thee (220)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">July 19, 2015</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Come, Sing to the Lord (10)</td>
+<td class="gt_row gt_left" headers="Sacrament">He Died! The Great Redeemer Died (192)</td>
+<td class="gt_row gt_left" headers="Intermediate">Jesus, the Very Thought of Thee (141)</td>
+<td class="gt_row gt_left" headers="Closing">Raise Your Voices to the Lord (61)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">December 25, 2016</td>
+<td class="gt_row gt_left" headers="location">Northern Territory, Australia</td>
+<td class="gt_row gt_left" headers="Opening">Hark! the Herald Angels Sing (209)</td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus, Once of Humble Birth (196)</td>
+<td class="gt_row gt_left" headers="Intermediate">Joy to the World (201)</td>
+<td class="gt_row gt_left" headers="Closing">Silent Night (204)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">March 26, 2017</td>
+<td class="gt_row gt_left" headers="location">Washington</td>
+<td class="gt_row gt_left" headers="Opening">The Day Dawn Is Breaking (52)</td>
+<td class="gt_row gt_left" headers="Sacrament">There Is a Green Hill Far Away (194)</td>
+<td class="gt_row gt_left" headers="Intermediate">High on the Mountain Top (5)</td>
+<td class="gt_row gt_left" headers="Closing">Count Your Blessings (241)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">April 09, 2017</td>
+<td class="gt_row gt_left" headers="location">Virginia</td>
+<td class="gt_row gt_left" headers="Opening">Faith of Our Fathers (84)</td>
+<td class="gt_row gt_left" headers="Sacrament">God, Our Father, Hear Us Pray (170)</td>
+<td class="gt_row gt_left" headers="Intermediate">Called to Serve (249)</td>
+<td class="gt_row gt_left" headers="Closing">High on the Mountain Top (5)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">April 30, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Abide with Me! (166)</td>
+<td class="gt_row gt_left" headers="Sacrament">In Remembrance of Thy Suffering (183)</td>
+<td class="gt_row gt_left" headers="Intermediate">On This Day of Joy and Gladness (64)</td>
+<td class="gt_row gt_left" headers="Closing">God Moves in a Mysterious Way (285)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 11, 2017</td>
+<td class="gt_row gt_left" headers="location">North Carolina</td>
+<td class="gt_row gt_left" headers="Opening">Master, the Tempest Is Raging (105)</td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus, Once of Humble Birth (196)</td>
+<td class="gt_row gt_left" headers="Intermediate">Abide with Me! (166)</td>
+<td class="gt_row gt_left" headers="Closing">My Redeemer Lives (135)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">July 30, 2017</td>
+<td class="gt_row gt_left" headers="location">New York</td>
+<td class="gt_row gt_left" headers="Opening">Come, Come, Ye Saints (30)</td>
+<td class="gt_row gt_left" headers="Sacrament">With Humble Heart (171)</td>
+<td class="gt_row gt_left" headers="Intermediate">They, the Builders of the Nation (36)</td>
+<td class="gt_row gt_left" headers="Closing">Abide with Me; 'Tis Eventide (165)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">July 30, 2017</td>
+<td class="gt_row gt_left" headers="location">Oregon</td>
+<td class="gt_row gt_left" headers="Opening">Israel, Israel, God Is Calling (7)</td>
+<td class="gt_row gt_left" headers="Sacrament">As Now We Take the Sacrament (169)</td>
+<td class="gt_row gt_left" headers="Intermediate">God of Our Fathers, We Come unto Thee (76)</td>
+<td class="gt_row gt_left" headers="Closing">Nearer, My God, to Thee (100)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 20, 2017</td>
+<td class="gt_row gt_left" headers="location">Idaho</td>
+<td class="gt_row gt_left" headers="Opening">God Speed the Right (106)</td>
+<td class="gt_row gt_left" headers="Sacrament">We'll Sing All Hail to Jesus' Name (182)</td>
+<td class="gt_row gt_left" headers="Intermediate">Lead Me into Life Eternal (45)</td>
+<td class="gt_row gt_left" headers="Closing">Let Us All Press On (243)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 27, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Today, While the Sun Shines (229)</td>
+<td class="gt_row gt_left" headers="Sacrament">As Now We Take the Sacrament (169)</td>
+<td class="gt_row gt_left" headers="Intermediate">Come Along, Come Along (244)</td>
+<td class="gt_row gt_left" headers="Closing">Father, This Hour Has Been One of Joy (154)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">October 15, 2017</td>
+<td class="gt_row gt_left" headers="location">Oregon</td>
+<td class="gt_row gt_left" headers="Opening">Teach Me to Walk in the Light (304)</td>
+<td class="gt_row gt_left" headers="Sacrament">As Now We Take the Sacrament (169)</td>
+<td class="gt_row gt_left" headers="Intermediate">Love One Another (308)</td>
+<td class="gt_row gt_left" headers="Closing">Abide with Me; 'Tis Eventide (165)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">October 22, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">There Is Sunshine in My Soul Today (227)</td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus of Nazareth, Savior and King (181)</td>
+<td class="gt_row gt_left" headers="Intermediate">I Am a Child of God (301)</td>
+<td class="gt_row gt_left" headers="Closing">Lord, Accept Our True Devotion (107)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">November 12, 2017</td>
+<td class="gt_row gt_left" headers="location">Tennessee</td>
+<td class="gt_row gt_left" headers="Opening">All Creatures of Our God and King (62)</td>
+<td class="gt_row gt_left" headers="Sacrament">In Remembrance of Thy Suffering (183)</td>
+<td class="gt_row gt_left" headers="Intermediate">For the Beauty of the Earth (92)</td>
+<td class="gt_row gt_left" headers="Closing">Lord, We Ask Thee Ere We Part (153)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">November 26, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">We Thank Thee, O God, for a Prophet (19)</td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus, Once of Humble Birth (196)</td>
+<td class="gt_row gt_left" headers="Intermediate">The Lord My Pasture Will Prepare (109)</td>
+<td class="gt_row gt_left" headers="Closing">God Speed the Right (106)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">December 24, 2017</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Hark! the Herald Angels Sing (209)</td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus, Once of Humble Birth (196)</td>
+<td class="gt_row gt_left" headers="Intermediate">Joy to the World (201)</td>
+<td class="gt_row gt_left" headers="Closing">Silent Night (204)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">February 18, 2018</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">The Lord Is My Light (89)</td>
+<td class="gt_row gt_left" headers="Sacrament">'Tis Sweet to Sing the Matchless Love (176)</td>
+<td class="gt_row gt_left" headers="Intermediate">When Faith Endures (128)</td>
+<td class="gt_row gt_left" headers="Closing">Testimony (137)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 19, 2019</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">The Iron Rod (274)</td>
+<td class="gt_row gt_left" headers="Sacrament">Gently Raise the Sacred Strain (146)</td>
+<td class="gt_row gt_left" headers="Intermediate">Let the Holy Spirit Guide (143)</td>
+<td class="gt_row gt_left" headers="Closing">As I Search the Holy Scriptures (277)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">January 08, 2023</td>
+<td class="gt_row gt_left" headers="location">Idaho</td>
+<td class="gt_row gt_left" headers="Opening">Joseph Smith's First Prayer (26)</td>
+<td class="gt_row gt_left" headers="Sacrament">God, Our Father, Hear Us Pray (170)</td>
+<td class="gt_row gt_left" headers="Intermediate">The Lord Is My Light (89)</td>
+<td class="gt_row gt_left" headers="Closing">Lord, Accept Our True Devotion (107)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 28, 2023</td>
+<td class="gt_row gt_left" headers="location">Nevada</td>
+<td class="gt_row gt_left" headers="Opening">Redeemer of Israel (6)</td>
+<td class="gt_row gt_left" headers="Sacrament">Behold the Great Redeemer Die (191)</td>
+<td class="gt_row gt_left" headers="Intermediate">How Gentle God's Commands (125)</td>
+<td class="gt_row gt_left" headers="Closing">Praise to the Lord, the Almighty (72)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 25, 2023</td>
+<td class="gt_row gt_left" headers="location">Nevada</td>
+<td class="gt_row gt_left" headers="Opening">Battle Hymn of the Republic (60)</td>
+<td class="gt_row gt_left" headers="Sacrament">How Great the Wisdom and the Love (195)</td>
+<td class="gt_row gt_left" headers="Intermediate">The Lord Is My Light (89)</td>
+<td class="gt_row gt_left" headers="Closing">Abide with Me! (166)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">January 21, 2024</td>
+<td class="gt_row gt_left" headers="location">Nevada</td>
+<td class="gt_row gt_left" headers="Opening">Praise to the Lord, the Almighty (72)</td>
+<td class="gt_row gt_left" headers="Sacrament">Jesus of Nazareth, Savior and King (181)</td>
+<td class="gt_row gt_left" headers="Intermediate">Redeemer of Israel (6)</td>
+<td class="gt_row gt_left" headers="Closing">We Love Thy House, O God (247)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 09, 2024</td>
+<td class="gt_row gt_left" headers="location">Nevada</td>
+<td class="gt_row gt_left" headers="Opening">Guide Us, O Thou Great Jehovah (83)</td>
+<td class="gt_row gt_left" headers="Sacrament">Upon the Cross of Calvary (184)</td>
+<td class="gt_row gt_left" headers="Intermediate">Jesus, Savior, Pilot Me (104)</td>
+<td class="gt_row gt_left" headers="Closing">Lord, Dismiss Us with Thy Blessing (163)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Last on the list additions are cases where the the opening equals the sum of the other three. This happened just once.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="xjgrccjdkp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xjgrccjdkp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xjgrccjdkp thead, #xjgrccjdkp tbody, #xjgrccjdkp tfoot, #xjgrccjdkp tr, #xjgrccjdkp td, #xjgrccjdkp th {
+  border-style: none;
+}
+
+#xjgrccjdkp p {
+  margin: 0;
+  padding: 0;
+}
+
+#xjgrccjdkp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xjgrccjdkp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xjgrccjdkp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xjgrccjdkp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xjgrccjdkp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xjgrccjdkp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xjgrccjdkp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xjgrccjdkp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xjgrccjdkp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xjgrccjdkp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xjgrccjdkp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xjgrccjdkp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xjgrccjdkp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xjgrccjdkp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xjgrccjdkp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjgrccjdkp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xjgrccjdkp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xjgrccjdkp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xjgrccjdkp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjgrccjdkp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xjgrccjdkp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjgrccjdkp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xjgrccjdkp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjgrccjdkp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xjgrccjdkp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjgrccjdkp .gt_left {
+  text-align: left;
+}
+
+#xjgrccjdkp .gt_center {
+  text-align: center;
+}
+
+#xjgrccjdkp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xjgrccjdkp .gt_font_normal {
+  font-weight: normal;
+}
+
+#xjgrccjdkp .gt_font_bold {
+  font-weight: bold;
+}
+
+#xjgrccjdkp .gt_font_italic {
+  font-style: italic;
+}
+
+#xjgrccjdkp .gt_super {
+  font-size: 65%;
+}
+
+#xjgrccjdkp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xjgrccjdkp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xjgrccjdkp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xjgrccjdkp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xjgrccjdkp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xjgrccjdkp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xjgrccjdkp .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="location" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location</th>
+<th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Opening</th>
+<th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
+<th id="Intermediate" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Intermediate</th>
+<th id="Closing" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Closing</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">September 11, 2011</td>
+<td class="gt_row gt_left" headers="location">Colorado</td>
+<td class="gt_row gt_left" headers="Opening">We Are All Enlisted (250)</td>
+<td class="gt_row gt_left" headers="Sacrament">O God, the Eternal Father (175)</td>
+<td class="gt_row gt_left" headers="Intermediate">Israel, Israel, God Is Calling (7)</td>
+<td class="gt_row gt_left" headers="Closing">A Mighty Fortress Is Our God (68)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>And finally, for a subtraction-based case that isn’t equal to the others, here are the two times when the opening minus the sacrament minus the intermediate equals the closing.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fhbpggiwmz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fhbpggiwmz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#fhbpggiwmz thead, #fhbpggiwmz tbody, #fhbpggiwmz tfoot, #fhbpggiwmz tr, #fhbpggiwmz td, #fhbpggiwmz th {
+  border-style: none;
+}
+
+#fhbpggiwmz p {
+  margin: 0;
+  padding: 0;
+}
+
+#fhbpggiwmz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#fhbpggiwmz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fhbpggiwmz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fhbpggiwmz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fhbpggiwmz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fhbpggiwmz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fhbpggiwmz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fhbpggiwmz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fhbpggiwmz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#fhbpggiwmz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#fhbpggiwmz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fhbpggiwmz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fhbpggiwmz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fhbpggiwmz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fhbpggiwmz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fhbpggiwmz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#fhbpggiwmz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#fhbpggiwmz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#fhbpggiwmz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fhbpggiwmz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#fhbpggiwmz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fhbpggiwmz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fhbpggiwmz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fhbpggiwmz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fhbpggiwmz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fhbpggiwmz .gt_left {
+  text-align: left;
+}
+
+#fhbpggiwmz .gt_center {
+  text-align: center;
+}
+
+#fhbpggiwmz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fhbpggiwmz .gt_font_normal {
+  font-weight: normal;
+}
+
+#fhbpggiwmz .gt_font_bold {
+  font-weight: bold;
+}
+
+#fhbpggiwmz .gt_font_italic {
+  font-style: italic;
+}
+
+#fhbpggiwmz .gt_super {
+  font-size: 65%;
+}
+
+#fhbpggiwmz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#fhbpggiwmz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#fhbpggiwmz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#fhbpggiwmz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#fhbpggiwmz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#fhbpggiwmz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#fhbpggiwmz .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="location" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location</th>
+<th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Opening</th>
+<th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
+<th id="Intermediate" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Intermediate</th>
+<th id="Closing" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Closing</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 27, 2023</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">Now Let Us Rejoice (3)</td>
+<td class="gt_row gt_left" headers="Sacrament">Father in Heaven, We Do Believe (180)</td>
+<td class="gt_row gt_left" headers="Intermediate">Dearest Children, God Is Near You (96)</td>
+<td class="gt_row gt_left" headers="Closing">Press Forward, Saints (81)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">September 10, 2023</td>
+<td class="gt_row gt_left" headers="location">Utah</td>
+<td class="gt_row gt_left" headers="Opening">O Ye Mountains High (34)</td>
+<td class="gt_row gt_left" headers="Sacrament">In Remembrance of Thy Suffering (183)</td>
+<td class="gt_row gt_left" headers="Intermediate">We Thank Thee, O God, for a Prophet (19)</td>
+<td class="gt_row gt_left" headers="Closing">Be Thou Humble (130)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="overall-probability-1" class="level3">
+<h3 class="anchored" data-anchor-id="overall-probability-1">Overall probability</h3>
+<p>So, with four hymns, there are many more ways that math could happen. And it seems like it does happen every once in a while. Overall, one of these four patterns happened 31 times out of 8,640 four-hymn meetings, or in about 0.36% of them. That means, you might see one of these four about once every 6 years. So, not too unusual.</p>
+</section>
+</section>
+<section id="increasing-and-decreasing" class="level2">
+<h2 class="anchored" data-anchor-id="increasing-and-decreasing">Increasing and Decreasing</h2>
+<p>The last pattern I want to look at is more just a pattern: how often are all the hymns in increasing order or in decreasing order. It turns out this is much more common than the math ones discussed above.</p>
+<p>For Sundays with four hymns, I have 512 instances of all increasing numbers and 252 instances of all decreasing numbers. Combined, this occurs about 9% of the time, or once every 11 times you sing four hymns. So, really not too uncommon.</p>
+<p>Just probability-wise, it’s far more likely to see all increasing numbers or all decreasing numbers on three-hymn Sundays because there are three numbers to work with instead of four. This makes sense if you think about it. The sacrament hymn will be close to the middle. (I think it’s by design so that the book is most often opened to the middle.) The opening hymn is going to be either lower than it or higher than it. As long as the closing hymn is the opposite, then we’re good. So far, I’ve seen 2,934 instances of three increasing numbers and 2,202 instances of three decreasing numbers. Combined, this occurs about 34% of the time, or once every 3 times you sing three hymns. So, really actually quite common.</p>
+<p>For what it’s worth, the odds of this happening has gone up a little bit recently because the new hymns’ numbers are all greater than the old hymns’ numbers. It seems to occur about 3.8% more often with three-hymn Sundays and 1.2% more often with four-hymn Sundays.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This just a silly post that says nothing about hymns and who or why they’re chosen. But it is fun to think about possible math that could be done on the hymn numbers diplayed on the hymn board.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
