@@ -1,0 +1,117 @@
+---
+title: "Math on the Hymn Boards (Part 2)"
+author: "Joey Stanley"
+date: "2024-10-09"
+date-modified: last-modified
+categories:
+    - general
+reference-location: margin
+draft: TRUE
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+
+# Apply a date stamp
+sf <- stamp("June 2, 2024", quiet = TRUE)
+
+# get last Sunday
+last_sunday <- ymd(floor_date(today(), "week"))
+```
+
+
+## Ranges
+
+The follow-up question I have is this: what are the widest and narrowest ranges of hymns shown on the hymn board? Have I ever seen, for example hymn 1 and hymn 341 in the same meeting? Or maybe three hymns that are all very close to each other? The following plot shows the distribution of the ranges of these hymns when they're in increasing or decreasing order. For now, I've excluded weeks that included any of the new hymns because they throw things off quite a bit. 
+
+
+```{r}
+three_hymn_sundays <- freqs |> 
+    filter(sum(type == "Opening") == 1, 
+           sum(type == "Sacrament") == 1,
+           sum(type == "Intermediate") == 0,
+           sum(type == "Closing") == 1, 
+           .by = meeting_id) |> 
+    select(date, meeting_id, type, hymn_num) |>
+    pivot_wider(names_from = type, values_from = hymn_num) |> 
+    print()
+four_hymn_sundays <- freqs |> 
+    filter(sum(type == "Opening") == 1, 
+           sum(type == "Sacrament") == 1,
+           sum(type == "Intermediate") == 1,
+           sum(type == "Closing") == 1, 
+           .by = meeting_id) |> 
+    select(date, meeting_id, type, hymn_num) |>
+    pivot_wider(names_from = type, values_from = hymn_num) |> 
+    print()
+decreasing_four <- four_hymn_sundays |> 
+    filter(Opening > Sacrament,
+           Sacrament > Intermediate,
+           Intermediate > Closing) |> 
+    mutate(range = Opening - Closing) |> 
+    arrange(range)
+increasing_four <- four_hymn_sundays |> 
+    filter(Opening < Sacrament,
+           Sacrament < Intermediate,
+           Intermediate < Closing) |> 
+    mutate(range = Closing - Opening) |> 
+    arrange(range)
+decreasing_three <- three_hymn_sundays |> 
+    filter(Opening > Sacrament,
+           Sacrament > Closing) |> 
+    mutate(range = Opening - Closing) |> 
+    arrange(range)
+increasing_three <- three_hymn_sundays |> 
+    filter(Opening < Sacrament,
+           Sacrament < Closing) |> 
+    mutate(range = Closing - Opening) |> 
+    arrange(range)
+bind_rows(decreasing_four, increasing_four, decreasing_three, increasing_three) |> 
+    filter(Opening <= 341, Closing <= 341) |>
+    mutate(n_hymns = if_else(is.na(Intermediate), 3, 4)) |> 
+    arrange(-range) |> 
+    mutate(direction = if_else(Opening < Closing, "increasing", "decreasing")) |> 
+    ggplot(aes(range)) + 
+    geom_histogram(binwidth = 5) + 
+    facet_grid(n_hymns ~ direction)
+```
+
+```{r}
+ranges_all <- freqs |> 
+    filter(hymn_num %in% 1:341,
+           !ward %in% c("Unknown", "NA", "Anonymous")) |> 
+    summarize(n = n(),
+              range = max(hymn_num) - min(hymn_num), .by = meeting_id) |> 
+    filter(n %in% 3:4) |> 
+    print()
+
+ranges_all |> 
+    filter(range < 5)
+
+freqs |> 
+    filter(meeting_id == "2011-04-24 Kelso Ward")
+```
+
+
+Looks like the small ones are mostly Christmas and some Easter.
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+ggplot(ranges_all, aes(range)) + 
+    geom_histogram(binwidth = 5) + 
+    facet_wrap(~n, scales = "free_y") + 
+    theme_bw()
+```
+
+
+
+## Similar numbers
+
+111,222, etc.
+
+37, 137, 237, etc.
+
+50, 100, 150 or other integer multiples
