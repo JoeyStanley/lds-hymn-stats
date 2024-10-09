@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joey Stanley">
 <meta name="dcterms.date" content="2024-06-25">
 
-<title>LDS Hymn Stats - The First Batch of New Hymns!</title>
+<title>The First Batch of New Hymns! – LDS Hymn Stats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -73,75 +80,70 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="LDS Hymn Stats - The First Batch of New Hymns!">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/new_hymns_batch1/index_files/figure-html/unnamed-chunk-4-1.png">
-<meta property="og:site-name" content="LDS Hymn Stats">
-<meta property="og:image:height" content="768">
-<meta property="og:image:width" content="1536">
-<meta name="twitter:title" content="LDS Hymn Stats - The First Batch of New Hymns!">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/new_hymns_batch1/index_files/figure-html/unnamed-chunk-4-1.png">
-<meta name="twitter:image-height" content="768">
-<meta name="twitter:image-width" content="1536">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="The First Batch of New Hymns! – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta name="twitter:title" content="The First Batch of New Hymns! – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../findings.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../overview.html" rel="" target="">
- <span class="menu-text">Summarized Data</span></a>
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../contribute.html" rel="" target="">
- <span class="menu-text">Contribute</span></a>
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -149,7 +151,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -207,37 +208,38 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 20, 2024</p>
+      <p class="date-modified">October 9, 2024</p>
     </div>
   </div>
     
   </div>
   
 
+
 </header>
 
-<p>On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the <a href="posts/new_hymns_week1">first</a>, <a href="posts/new_hymns_week2">second</a>, and <a href="posts/new_hymns_week3">third</a> weeks since their release, but this page covers the 15 weeks between when the first and second batches came out. When I get more data from this period I will update this page, but it will largely remain as is. Currently I have data from 1,889 sacrament meetings between June 2nd and September 8th from 308 wards. For now, I’ll just focus on hymns 1001–1009 and will wait to bring in the new holiday hymns later on.</p>
+
+<p>On May 30th, the church released the first batch of new hymns. I have done posts on how those hymns have been used during the <a href="posts/new_hymns_week1">first</a>, <a href="posts/new_hymns_week2">second</a>, and <a href="posts/new_hymns_week3">third</a> weeks since their release, but this page covers the 15 weeks between when the first and second batches came out. When I get more data from this period I will update this page, but it will largely remain as is. Currently I have data from 1,898 sacrament meetings between June 2nd and September 8th from 307 wards. For now, I’ll just focus on hymns 1001–1009 and will wait to bring in the new holiday hymns later on.</p>
 <p>But first, here’s how much data I have for each week, just so you have an idea of what I’m working with.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="frexoyztlr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#frexoyztlr table {
+<div id="gicvljfwqp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gicvljfwqp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#frexoyztlr thead, #frexoyztlr tbody, #frexoyztlr tfoot, #frexoyztlr tr, #frexoyztlr td, #frexoyztlr th {
+#gicvljfwqp thead, #gicvljfwqp tbody, #gicvljfwqp tfoot, #gicvljfwqp tr, #gicvljfwqp td, #gicvljfwqp th {
   border-style: none;
 }
 
-#frexoyztlr p {
+#gicvljfwqp p {
   margin: 0;
   padding: 0;
 }
 
-#frexoyztlr .gt_table {
+#gicvljfwqp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -263,12 +265,12 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-left-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_caption {
+#gicvljfwqp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#frexoyztlr .gt_title {
+#gicvljfwqp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -280,7 +282,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-width: 0;
 }
 
-#frexoyztlr .gt_subtitle {
+#gicvljfwqp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -292,7 +294,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-top-width: 0;
 }
 
-#frexoyztlr .gt_heading {
+#gicvljfwqp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -304,13 +306,13 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_bottom_border {
+#gicvljfwqp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_col_headings {
+#gicvljfwqp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -325,7 +327,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_col_heading {
+#gicvljfwqp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -345,7 +347,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   overflow-x: hidden;
 }
 
-#frexoyztlr .gt_column_spanner_outer {
+#gicvljfwqp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -357,15 +359,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 4px;
 }
 
-#frexoyztlr .gt_column_spanner_outer:first-child {
+#gicvljfwqp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#frexoyztlr .gt_column_spanner_outer:last-child {
+#gicvljfwqp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#frexoyztlr .gt_column_spanner {
+#gicvljfwqp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -377,11 +379,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   width: 100%;
 }
 
-#frexoyztlr .gt_spanner_row {
+#gicvljfwqp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#frexoyztlr .gt_group_heading {
+#gicvljfwqp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -407,7 +409,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   text-align: left;
 }
 
-#frexoyztlr .gt_empty_group_heading {
+#gicvljfwqp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -422,15 +424,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   vertical-align: middle;
 }
 
-#frexoyztlr .gt_from_md > :first-child {
+#gicvljfwqp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#frexoyztlr .gt_from_md > :last-child {
+#gicvljfwqp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#frexoyztlr .gt_row {
+#gicvljfwqp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -449,7 +451,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   overflow-x: hidden;
 }
 
-#frexoyztlr .gt_stub {
+#gicvljfwqp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -462,7 +464,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#frexoyztlr .gt_stub_row_group {
+#gicvljfwqp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -476,15 +478,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   vertical-align: top;
 }
 
-#frexoyztlr .gt_row_group_first td {
+#gicvljfwqp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#frexoyztlr .gt_row_group_first th {
+#gicvljfwqp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#frexoyztlr .gt_summary_row {
+#gicvljfwqp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -494,16 +496,16 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#frexoyztlr .gt_first_summary_row {
+#gicvljfwqp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_first_summary_row.thick {
+#gicvljfwqp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#frexoyztlr .gt_last_summary_row {
+#gicvljfwqp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -513,7 +515,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_grand_summary_row {
+#gicvljfwqp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -523,7 +525,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#frexoyztlr .gt_first_grand_summary_row {
+#gicvljfwqp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -533,7 +535,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-top-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_last_grand_summary_row_top {
+#gicvljfwqp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -543,11 +545,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_striped {
+#gicvljfwqp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#frexoyztlr .gt_table_body {
+#gicvljfwqp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -556,7 +558,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_footnotes {
+#gicvljfwqp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -570,7 +572,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_footnote {
+#gicvljfwqp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -579,7 +581,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#frexoyztlr .gt_sourcenotes {
+#gicvljfwqp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -593,7 +595,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#frexoyztlr .gt_sourcenote {
+#gicvljfwqp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -601,114 +603,144 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#frexoyztlr .gt_left {
+#gicvljfwqp .gt_left {
   text-align: left;
 }
 
-#frexoyztlr .gt_center {
+#gicvljfwqp .gt_center {
   text-align: center;
 }
 
-#frexoyztlr .gt_right {
+#gicvljfwqp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#frexoyztlr .gt_font_normal {
+#gicvljfwqp .gt_font_normal {
   font-weight: normal;
 }
 
-#frexoyztlr .gt_font_bold {
+#gicvljfwqp .gt_font_bold {
   font-weight: bold;
 }
 
-#frexoyztlr .gt_font_italic {
+#gicvljfwqp .gt_font_italic {
   font-style: italic;
 }
 
-#frexoyztlr .gt_super {
+#gicvljfwqp .gt_super {
   font-size: 65%;
 }
 
-#frexoyztlr .gt_footnote_marks {
+#gicvljfwqp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#frexoyztlr .gt_asterisk {
+#gicvljfwqp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#frexoyztlr .gt_indent_1 {
+#gicvljfwqp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#frexoyztlr .gt_indent_2 {
+#gicvljfwqp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#frexoyztlr .gt_indent_3 {
+#gicvljfwqp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#frexoyztlr .gt_indent_4 {
+#gicvljfwqp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#frexoyztlr .gt_indent_5 {
+#gicvljfwqp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Number of wards I have data from, by week</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Since June 2</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="date">date</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wards">wards</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="date" class="gt_row gt_left">June 02</td>
-<td headers="wards" class="gt_row gt_right">125</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">June 09</td>
-<td headers="wards" class="gt_row gt_right">98</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">June 16</td>
-<td headers="wards" class="gt_row gt_right">114</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">June 23</td>
-<td headers="wards" class="gt_row gt_right">134</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">June 30</td>
-<td headers="wards" class="gt_row gt_right">123</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">July 07</td>
-<td headers="wards" class="gt_row gt_right">114</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">July 14</td>
-<td headers="wards" class="gt_row gt_right">134</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">July 21</td>
-<td headers="wards" class="gt_row gt_right">135</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">July 28</td>
-<td headers="wards" class="gt_row gt_right">139</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">August 04</td>
-<td headers="wards" class="gt_row gt_right">135</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">August 11</td>
-<td headers="wards" class="gt_row gt_right">130</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">August 18</td>
-<td headers="wards" class="gt_row gt_right">134</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">August 25</td>
-<td headers="wards" class="gt_row gt_right">136</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">September 01</td>
-<td headers="wards" class="gt_row gt_right">136</td></tr>
-    <tr><td headers="date" class="gt_row gt_left">September 08</td>
-<td headers="wards" class="gt_row gt_right">102</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Number of wards I have data from, by week</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since June 2</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="wards" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wards</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 02</td>
+<td class="gt_row gt_right" headers="wards">125</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">June 09</td>
+<td class="gt_row gt_right" headers="wards">98</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 16</td>
+<td class="gt_row gt_right" headers="wards">114</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">June 23</td>
+<td class="gt_row gt_right" headers="wards">134</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 30</td>
+<td class="gt_row gt_right" headers="wards">123</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">July 07</td>
+<td class="gt_row gt_right" headers="wards">114</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">July 14</td>
+<td class="gt_row gt_right" headers="wards">134</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">July 21</td>
+<td class="gt_row gt_right" headers="wards">136</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">July 28</td>
+<td class="gt_row gt_right" headers="wards">140</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 04</td>
+<td class="gt_row gt_right" headers="wards">136</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 11</td>
+<td class="gt_row gt_right" headers="wards">131</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 18</td>
+<td class="gt_row gt_right" headers="wards">135</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 25</td>
+<td class="gt_row gt_right" headers="wards">137</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">September 01</td>
+<td class="gt_row gt_right" headers="wards">136</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">September 08</td>
+<td class="gt_row gt_right" headers="wards">105</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -717,7 +749,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <p>The following plot shows the number of new hymns sung per ward each week between the first and second batches of the new hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>During this period, the number of wards that have sung new hymns has been remarkably stable. Typically, only about a quarter to a third of wards sing new hymns each week. A small number sing two each week. There are rare cases of three or more, but they are so infrequent, I’ve left them off this chart.</p>
@@ -735,52 +771,63 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="768"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>So, in this plot, there is a general trend upward: the more data I have from a ward (so, the further left go you in the plot), the more new hymns I see in their data (the darker cells are higher up). I’ve illustrated this by overlaying a line that tries to capture this trend as best as possible (which you can see by clicking on the “plot with line tab”). The takeaway here is that the line suggests that the typical ward introduces a new hymn about once every three weeks.</p><div class="no-row-height column-margin column-container"><span class="">For the statisticians there, it’s just a simple linear regression line with an intercept of 0.21, a slope of 0.333, and a <em>p</em>-value &lt; 0.001. The adjusted r-squared is 0.21</span></div></div>
+</div>
+<div class="page-columns page-full"><p>So, in this plot, there is a general trend upward: the more data I have from a ward (so, the further left go you in the plot), the more new hymns I see in their data (the darker cells are higher up). I’ve illustrated this by overlaying a line that tries to capture this trend as best as possible (which you can see by clicking on the “plot with line tab”). The takeaway here is that the line suggests that the typical ward introduces a new hymn about once every three weeks.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">For the statisticians there, it’s just a simple linear regression line with an intercept of 0.21, a slope of 0.333, and a <em>p</em>-value &lt; 0.001. The adjusted r-squared is 0.21</span></div></div>
 <p>So, while this technically shows the number of new hymns I have from each ward given the amount of data I have in that ward, I think it’s safe to interpret as the number of hymns wards are likely to sing after that many weeks since the release of the new hymns. So, after nine weeks (so, by July 28th), we can estimate that about 43% of wards have sung just one new hymn. This is a safe interpretation as long as the rate at which wards introduce new hymns is consistent during these 15 weeks (and judging from the plot in the previous section, that might be true) and if there’s not a systemtic bias against <em>not</em> getting data when a ward is more or less likely to sing a new hymn (which I can’t imagine being the case). It’s not a perfect interpretation, but it’s another look at the data.</p>
 </section>
 <section id="what-hymns-are-most-popular" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="what-hymns-are-most-popular">What hymns are most popular?</h2>
-<div class="page-columns page-full"><p>It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular was it? The following table shows the new hymns in order of how often they were sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns during this period.</p><div class="no-row-height column-margin column-container"><span class="">Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once.</span></div></div>
+<div class="page-columns page-full"><p>It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular was it? The following table shows the new hymns in order of how often they were sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns during this period.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once.</span></div></div>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="mfauovvxjc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mfauovvxjc table {
+<div id="gubzbjnxky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gubzbjnxky table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mfauovvxjc thead, #mfauovvxjc tbody, #mfauovvxjc tfoot, #mfauovvxjc tr, #mfauovvxjc td, #mfauovvxjc th {
+#gubzbjnxky thead, #gubzbjnxky tbody, #gubzbjnxky tfoot, #gubzbjnxky tr, #gubzbjnxky td, #gubzbjnxky th {
   border-style: none;
 }
 
-#mfauovvxjc p {
+#gubzbjnxky p {
   margin: 0;
   padding: 0;
 }
 
-#mfauovvxjc .gt_table {
+#gubzbjnxky .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -806,12 +853,12 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-left-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_caption {
+#gubzbjnxky .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mfauovvxjc .gt_title {
+#gubzbjnxky .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -823,7 +870,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-width: 0;
 }
 
-#mfauovvxjc .gt_subtitle {
+#gubzbjnxky .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -835,7 +882,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-top-width: 0;
 }
 
-#mfauovvxjc .gt_heading {
+#gubzbjnxky .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -847,13 +894,13 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_bottom_border {
+#gubzbjnxky .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_col_headings {
+#gubzbjnxky .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -868,7 +915,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_col_heading {
+#gubzbjnxky .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -888,7 +935,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   overflow-x: hidden;
 }
 
-#mfauovvxjc .gt_column_spanner_outer {
+#gubzbjnxky .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -900,15 +947,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 4px;
 }
 
-#mfauovvxjc .gt_column_spanner_outer:first-child {
+#gubzbjnxky .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mfauovvxjc .gt_column_spanner_outer:last-child {
+#gubzbjnxky .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mfauovvxjc .gt_column_spanner {
+#gubzbjnxky .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -920,11 +967,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   width: 100%;
 }
 
-#mfauovvxjc .gt_spanner_row {
+#gubzbjnxky .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mfauovvxjc .gt_group_heading {
+#gubzbjnxky .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -950,7 +997,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   text-align: left;
 }
 
-#mfauovvxjc .gt_empty_group_heading {
+#gubzbjnxky .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -965,15 +1012,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   vertical-align: middle;
 }
 
-#mfauovvxjc .gt_from_md > :first-child {
+#gubzbjnxky .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mfauovvxjc .gt_from_md > :last-child {
+#gubzbjnxky .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mfauovvxjc .gt_row {
+#gubzbjnxky .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -992,7 +1039,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   overflow-x: hidden;
 }
 
-#mfauovvxjc .gt_stub {
+#gubzbjnxky .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1005,7 +1052,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#mfauovvxjc .gt_stub_row_group {
+#gubzbjnxky .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1019,15 +1066,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   vertical-align: top;
 }
 
-#mfauovvxjc .gt_row_group_first td {
+#gubzbjnxky .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mfauovvxjc .gt_row_group_first th {
+#gubzbjnxky .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mfauovvxjc .gt_summary_row {
+#gubzbjnxky .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1037,16 +1084,16 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#mfauovvxjc .gt_first_summary_row {
+#gubzbjnxky .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_first_summary_row.thick {
+#gubzbjnxky .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mfauovvxjc .gt_last_summary_row {
+#gubzbjnxky .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1056,7 +1103,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_grand_summary_row {
+#gubzbjnxky .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1066,7 +1113,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#mfauovvxjc .gt_first_grand_summary_row {
+#gubzbjnxky .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1076,7 +1123,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-top-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_last_grand_summary_row_top {
+#gubzbjnxky .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1086,11 +1133,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_striped {
+#gubzbjnxky .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mfauovvxjc .gt_table_body {
+#gubzbjnxky .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1099,7 +1146,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_footnotes {
+#gubzbjnxky .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1113,7 +1160,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_footnote {
+#gubzbjnxky .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1122,7 +1169,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#mfauovvxjc .gt_sourcenotes {
+#gubzbjnxky .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1136,7 +1183,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#mfauovvxjc .gt_sourcenote {
+#gubzbjnxky .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1144,102 +1191,120 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#mfauovvxjc .gt_left {
+#gubzbjnxky .gt_left {
   text-align: left;
 }
 
-#mfauovvxjc .gt_center {
+#gubzbjnxky .gt_center {
   text-align: center;
 }
 
-#mfauovvxjc .gt_right {
+#gubzbjnxky .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mfauovvxjc .gt_font_normal {
+#gubzbjnxky .gt_font_normal {
   font-weight: normal;
 }
 
-#mfauovvxjc .gt_font_bold {
+#gubzbjnxky .gt_font_bold {
   font-weight: bold;
 }
 
-#mfauovvxjc .gt_font_italic {
+#gubzbjnxky .gt_font_italic {
   font-style: italic;
 }
 
-#mfauovvxjc .gt_super {
+#gubzbjnxky .gt_super {
   font-size: 65%;
 }
 
-#mfauovvxjc .gt_footnote_marks {
+#gubzbjnxky .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mfauovvxjc .gt_asterisk {
+#gubzbjnxky .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mfauovvxjc .gt_indent_1 {
+#gubzbjnxky .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mfauovvxjc .gt_indent_2 {
+#gubzbjnxky .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mfauovvxjc .gt_indent_3 {
+#gubzbjnxky .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mfauovvxjc .gt_indent_4 {
+#gubzbjnxky .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mfauovvxjc .gt_indent_5 {
+#gubzbjnxky .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Approximate percentage of wards new hymns have been sung in</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Between June 2 and September 8</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Hymn">Hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="percent of wards">percent of wards</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="percent of wards" class="gt_row gt_right">91.6%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="percent of wards" class="gt_row gt_right">67.7%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="percent of wards" class="gt_row gt_right">52.5%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
-<td headers="percent of wards" class="gt_row gt_right">47.8%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="percent of wards" class="gt_row gt_right">46.2%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="percent of wards" class="gt_row gt_right">45.4%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="percent of wards" class="gt_row gt_right">24.7%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="percent of wards" class="gt_row gt_right">22.3%</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
-<td headers="percent of wards" class="gt_row gt_right">14.3%</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Approximate percentage of wards new hymns have been sung in</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Between June 2 and September 8</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Hymn" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Hymn</th>
+<th id="percent of wards" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">percent of wards</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Come, Thou Fount of Every Blessing (1001)</td>
+<td class="gt_row gt_right" headers="percent of wards">91.9%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">It Is Well with My Soul (1003)</td>
+<td class="gt_row gt_right" headers="percent of wards">68.1%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">As Bread is Broken (1007)</td>
+<td class="gt_row gt_right" headers="percent of wards">53.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">I Will Walk with Jesus (1004)</td>
+<td class="gt_row gt_right" headers="percent of wards">47.5%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Bread of Life, Living Water (1008)</td>
+<td class="gt_row gt_right" headers="percent of wards">46.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">His Eye Is on the Sparrow (1005)</td>
+<td class="gt_row gt_right" headers="percent of wards">45.2%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Gethsemane (1009)</td>
+<td class="gt_row gt_right" headers="percent of wards">24.6%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">When the Savior Comes Again (1002)</td>
+<td class="gt_row gt_right" headers="percent of wards">22.2%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Think a Sacred Song (1006)</td>
+<td class="gt_row gt_right" headers="percent of wards">14.3%</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1251,7 +1316,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <p>We can see to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, <em>given that they sang a new hymn that week</em>. So, we’re only focused on wards that have used these hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="768"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was most popular during the first week. Of the wards that sang new hymns, two thirds of them sang it on June 2nd. My guess is we will never see a hymn hit that kind of popularity again, with the possible exception of new holiday hymns. Since then, the popularity of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> has gone down. It went through a very tidy rise and fall, and then suddenly on August 25, it saw a huge spike again. Perhaps a lot of wards are singing it a second time now.</p>
@@ -1262,24 +1331,23 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <p>We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="omdbruvcls" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#omdbruvcls table {
+<div id="cthqawlrtn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cthqawlrtn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#omdbruvcls thead, #omdbruvcls tbody, #omdbruvcls tfoot, #omdbruvcls tr, #omdbruvcls td, #omdbruvcls th {
+#cthqawlrtn thead, #cthqawlrtn tbody, #cthqawlrtn tfoot, #cthqawlrtn tr, #cthqawlrtn td, #cthqawlrtn th {
   border-style: none;
 }
 
-#omdbruvcls p {
+#cthqawlrtn p {
   margin: 0;
   padding: 0;
 }
 
-#omdbruvcls .gt_table {
+#cthqawlrtn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1305,12 +1373,12 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-left-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_caption {
+#cthqawlrtn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#omdbruvcls .gt_title {
+#cthqawlrtn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1322,7 +1390,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-width: 0;
 }
 
-#omdbruvcls .gt_subtitle {
+#cthqawlrtn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1334,7 +1402,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-top-width: 0;
 }
 
-#omdbruvcls .gt_heading {
+#cthqawlrtn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1346,13 +1414,13 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_bottom_border {
+#cthqawlrtn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_col_headings {
+#cthqawlrtn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1367,7 +1435,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_col_heading {
+#cthqawlrtn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1387,7 +1455,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   overflow-x: hidden;
 }
 
-#omdbruvcls .gt_column_spanner_outer {
+#cthqawlrtn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1399,15 +1467,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 4px;
 }
 
-#omdbruvcls .gt_column_spanner_outer:first-child {
+#cthqawlrtn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#omdbruvcls .gt_column_spanner_outer:last-child {
+#cthqawlrtn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#omdbruvcls .gt_column_spanner {
+#cthqawlrtn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1419,11 +1487,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   width: 100%;
 }
 
-#omdbruvcls .gt_spanner_row {
+#cthqawlrtn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#omdbruvcls .gt_group_heading {
+#cthqawlrtn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1449,7 +1517,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   text-align: left;
 }
 
-#omdbruvcls .gt_empty_group_heading {
+#cthqawlrtn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1464,15 +1532,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   vertical-align: middle;
 }
 
-#omdbruvcls .gt_from_md > :first-child {
+#cthqawlrtn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#omdbruvcls .gt_from_md > :last-child {
+#cthqawlrtn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#omdbruvcls .gt_row {
+#cthqawlrtn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1491,7 +1559,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   overflow-x: hidden;
 }
 
-#omdbruvcls .gt_stub {
+#cthqawlrtn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1504,7 +1572,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#omdbruvcls .gt_stub_row_group {
+#cthqawlrtn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1518,15 +1586,15 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   vertical-align: top;
 }
 
-#omdbruvcls .gt_row_group_first td {
+#cthqawlrtn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#omdbruvcls .gt_row_group_first th {
+#cthqawlrtn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#omdbruvcls .gt_summary_row {
+#cthqawlrtn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1536,16 +1604,16 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#omdbruvcls .gt_first_summary_row {
+#cthqawlrtn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_first_summary_row.thick {
+#cthqawlrtn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#omdbruvcls .gt_last_summary_row {
+#cthqawlrtn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1555,7 +1623,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_grand_summary_row {
+#cthqawlrtn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1565,7 +1633,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#omdbruvcls .gt_first_grand_summary_row {
+#cthqawlrtn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1575,7 +1643,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-top-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_last_grand_summary_row_top {
+#cthqawlrtn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1585,11 +1653,11 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_striped {
+#cthqawlrtn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#omdbruvcls .gt_table_body {
+#cthqawlrtn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1598,7 +1666,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-bottom-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_footnotes {
+#cthqawlrtn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1612,7 +1680,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_footnote {
+#cthqawlrtn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1621,7 +1689,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#omdbruvcls .gt_sourcenotes {
+#cthqawlrtn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1635,7 +1703,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   border-right-color: #D3D3D3;
 }
 
-#omdbruvcls .gt_sourcenote {
+#cthqawlrtn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1643,132 +1711,150 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   padding-right: 5px;
 }
 
-#omdbruvcls .gt_left {
+#cthqawlrtn .gt_left {
   text-align: left;
 }
 
-#omdbruvcls .gt_center {
+#cthqawlrtn .gt_center {
   text-align: center;
 }
 
-#omdbruvcls .gt_right {
+#cthqawlrtn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#omdbruvcls .gt_font_normal {
+#cthqawlrtn .gt_font_normal {
   font-weight: normal;
 }
 
-#omdbruvcls .gt_font_bold {
+#cthqawlrtn .gt_font_bold {
   font-weight: bold;
 }
 
-#omdbruvcls .gt_font_italic {
+#cthqawlrtn .gt_font_italic {
   font-style: italic;
 }
 
-#omdbruvcls .gt_super {
+#cthqawlrtn .gt_super {
   font-size: 65%;
 }
 
-#omdbruvcls .gt_footnote_marks {
+#cthqawlrtn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#omdbruvcls .gt_asterisk {
+#cthqawlrtn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#omdbruvcls .gt_indent_1 {
+#cthqawlrtn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#omdbruvcls .gt_indent_2 {
+#cthqawlrtn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#omdbruvcls .gt_indent_3 {
+#cthqawlrtn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#omdbruvcls .gt_indent_4 {
+#cthqawlrtn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#omdbruvcls .gt_indent_5 {
+#cthqawlrtn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">When were new hymns sung in sacrament meeting?</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Between June 2 and September 8</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="New Hymn">New Hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Opening">Opening</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Sacrament">Sacrament</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Intermediate">Intermediate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Closing">Closing</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="New Hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="Opening" class="gt_row gt_right">39%</td>
-<td headers="Sacrament" class="gt_row gt_right">1%</td>
-<td headers="Intermediate" class="gt_row gt_right">21%</td>
-<td headers="Closing" class="gt_row gt_right">38%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="Opening" class="gt_row gt_right">22%</td>
-<td headers="Sacrament" class="gt_row gt_right">3%</td>
-<td headers="Intermediate" class="gt_row gt_right">44%</td>
-<td headers="Closing" class="gt_row gt_right">31%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="Opening" class="gt_row gt_right">28%</td>
-<td headers="Sacrament" class="gt_row gt_right">0%</td>
-<td headers="Intermediate" class="gt_row gt_right">27%</td>
-<td headers="Closing" class="gt_row gt_right">46%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
-<td headers="Opening" class="gt_row gt_right">27%</td>
-<td headers="Sacrament" class="gt_row gt_right">0%</td>
-<td headers="Intermediate" class="gt_row gt_right">39%</td>
-<td headers="Closing" class="gt_row gt_right">33%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="Opening" class="gt_row gt_right">30%</td>
-<td headers="Sacrament" class="gt_row gt_right">2%</td>
-<td headers="Intermediate" class="gt_row gt_right">35%</td>
-<td headers="Closing" class="gt_row gt_right">32%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
-<td headers="Opening" class="gt_row gt_right">21%</td>
-<td headers="Sacrament" class="gt_row gt_right">0%</td>
-<td headers="Intermediate" class="gt_row gt_right">37%</td>
-<td headers="Closing" class="gt_row gt_right">37%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="Opening" class="gt_row gt_right">0%</td>
-<td headers="Sacrament" class="gt_row gt_right">90%</td>
-<td headers="Intermediate" class="gt_row gt_right">6%</td>
-<td headers="Closing" class="gt_row gt_right">1%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="Opening" class="gt_row gt_right">0%</td>
-<td headers="Sacrament" class="gt_row gt_right">91%</td>
-<td headers="Intermediate" class="gt_row gt_right">1%</td>
-<td headers="Closing" class="gt_row gt_right">6%</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="Opening" class="gt_row gt_right">15%</td>
-<td headers="Sacrament" class="gt_row gt_right">32%</td>
-<td headers="Intermediate" class="gt_row gt_right">21%</td>
-<td headers="Closing" class="gt_row gt_right">32%</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal">When were new hymns sung in sacrament meeting?</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Between June 2 and September 8</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="New Hymn" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">New Hymn</th>
+<th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Opening</th>
+<th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
+<th id="Intermediate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Intermediate</th>
+<th id="Closing" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Closing</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="New Hymn">Come, Thou Fount of Every Blessing (1001)</td>
+<td class="gt_row gt_right" headers="Opening">39%</td>
+<td class="gt_row gt_right" headers="Sacrament">1%</td>
+<td class="gt_row gt_right" headers="Intermediate">21%</td>
+<td class="gt_row gt_right" headers="Closing">38%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">When the Savior Comes Again (1002)</td>
+<td class="gt_row gt_right" headers="Opening">22%</td>
+<td class="gt_row gt_right" headers="Sacrament">3%</td>
+<td class="gt_row gt_right" headers="Intermediate">44%</td>
+<td class="gt_row gt_right" headers="Closing">31%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="New Hymn">It Is Well with My Soul (1003)</td>
+<td class="gt_row gt_right" headers="Opening">27%</td>
+<td class="gt_row gt_right" headers="Sacrament">0%</td>
+<td class="gt_row gt_right" headers="Intermediate">26%</td>
+<td class="gt_row gt_right" headers="Closing">46%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">I Will Walk with Jesus (1004)</td>
+<td class="gt_row gt_right" headers="Opening">27%</td>
+<td class="gt_row gt_right" headers="Sacrament">0%</td>
+<td class="gt_row gt_right" headers="Intermediate">39%</td>
+<td class="gt_row gt_right" headers="Closing">33%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="New Hymn">His Eye Is on the Sparrow (1005)</td>
+<td class="gt_row gt_right" headers="Opening">30%</td>
+<td class="gt_row gt_right" headers="Sacrament">2%</td>
+<td class="gt_row gt_right" headers="Intermediate">35%</td>
+<td class="gt_row gt_right" headers="Closing">32%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">Think a Sacred Song (1006)</td>
+<td class="gt_row gt_right" headers="Opening">21%</td>
+<td class="gt_row gt_right" headers="Sacrament">0%</td>
+<td class="gt_row gt_right" headers="Intermediate">37%</td>
+<td class="gt_row gt_right" headers="Closing">37%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="New Hymn">As Bread is Broken (1007)</td>
+<td class="gt_row gt_right" headers="Opening">0%</td>
+<td class="gt_row gt_right" headers="Sacrament">90%</td>
+<td class="gt_row gt_right" headers="Intermediate">6%</td>
+<td class="gt_row gt_right" headers="Closing">1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">Bread of Life, Living Water (1008)</td>
+<td class="gt_row gt_right" headers="Opening">0%</td>
+<td class="gt_row gt_right" headers="Sacrament">91%</td>
+<td class="gt_row gt_right" headers="Intermediate">1%</td>
+<td class="gt_row gt_right" headers="Closing">6%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="New Hymn">Gethsemane (1009)</td>
+<td class="gt_row gt_right" headers="Opening">15%</td>
+<td class="gt_row gt_right" headers="Sacrament">32%</td>
+<td class="gt_row gt_right" headers="Intermediate">21%</td>
+<td class="gt_row gt_right" headers="Closing">32%</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1776,7 +1862,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This post shows a handful of trends in the first batch of hymns in the first 15 weeks since their release. Again, this is only based on 1889 sacrament meetings from 308 wards. It’s not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I’m collecting more data and if you’d like to contribute your ward’s data, you can do so <a href="../../contribute.html">here</a>.</p>
+<p>This post shows a handful of trends in the first batch of hymns in the first 15 weeks since their release. Again, this is only based on 1898 sacrament meetings from 307 wards. It’s not an insignificant amount of data, but it is just a sliver of the many wards across the country and the world. As always, I’m collecting more data and if you’d like to contribute your ward’s data, you can do so <a href="../../contribute.html">here</a>.</p>
 
 
 </section>
@@ -1817,18 +1903,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1860,11 +1935,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1874,8 +1988,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1887,7 +2010,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1931,6 +2177,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1956,6 +2203,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2021,12 +2294,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2024, Joey Stanley</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

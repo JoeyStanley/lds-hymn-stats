@@ -12,6 +12,15 @@
 <generator>quarto-1.5.57</generator>
 <lastBuildDate>Wed, 09 Oct 2024 06:00:00 GMT</lastBuildDate>
 <item>
+  <title></title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/math2/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>general</category>
+  <guid>https://hymnstats.joeystanley.com/posts/math2/</guid>
+  <pubDate>Wed, 09 Oct 2024 06:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Math on the Hymn Boards (Part 1)</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/math1/</link>
@@ -3363,23 +3372,23 @@
 <p>But first, here’s how much data I have for each week, just so you have an idea of what I’m working with. For now, there’s not too much, but this table will grow longer as time passes.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="smznavbwlb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#smznavbwlb table {
+<div id="kuxhmliiga" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kuxhmliiga table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#smznavbwlb thead, #smznavbwlb tbody, #smznavbwlb tfoot, #smznavbwlb tr, #smznavbwlb td, #smznavbwlb th {
+#kuxhmliiga thead, #kuxhmliiga tbody, #kuxhmliiga tfoot, #kuxhmliiga tr, #kuxhmliiga td, #kuxhmliiga th {
   border-style: none;
 }
 
-#smznavbwlb p {
+#kuxhmliiga p {
   margin: 0;
   padding: 0;
 }
 
-#smznavbwlb .gt_table {
+#kuxhmliiga .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3405,12 +3414,12 @@
   border-left-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_caption {
+#kuxhmliiga .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#smznavbwlb .gt_title {
+#kuxhmliiga .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3422,7 +3431,7 @@
   border-bottom-width: 0;
 }
 
-#smznavbwlb .gt_subtitle {
+#kuxhmliiga .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3434,7 +3443,7 @@
   border-top-width: 0;
 }
 
-#smznavbwlb .gt_heading {
+#kuxhmliiga .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3446,13 +3455,13 @@
   border-right-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_bottom_border {
+#kuxhmliiga .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_col_headings {
+#kuxhmliiga .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3467,7 +3476,7 @@
   border-right-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_col_heading {
+#kuxhmliiga .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3487,7 +3496,7 @@
   overflow-x: hidden;
 }
 
-#smznavbwlb .gt_column_spanner_outer {
+#kuxhmliiga .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3499,15 +3508,15 @@
   padding-right: 4px;
 }
 
-#smznavbwlb .gt_column_spanner_outer:first-child {
+#kuxhmliiga .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#smznavbwlb .gt_column_spanner_outer:last-child {
+#kuxhmliiga .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#smznavbwlb .gt_column_spanner {
+#kuxhmliiga .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3519,11 +3528,11 @@
   width: 100%;
 }
 
-#smznavbwlb .gt_spanner_row {
+#kuxhmliiga .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#smznavbwlb .gt_group_heading {
+#kuxhmliiga .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3549,7 +3558,7 @@
   text-align: left;
 }
 
-#smznavbwlb .gt_empty_group_heading {
+#kuxhmliiga .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3564,15 +3573,15 @@
   vertical-align: middle;
 }
 
-#smznavbwlb .gt_from_md > :first-child {
+#kuxhmliiga .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#smznavbwlb .gt_from_md > :last-child {
+#kuxhmliiga .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#smznavbwlb .gt_row {
+#kuxhmliiga .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3591,7 +3600,7 @@
   overflow-x: hidden;
 }
 
-#smznavbwlb .gt_stub {
+#kuxhmliiga .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3604,7 +3613,7 @@
   padding-right: 5px;
 }
 
-#smznavbwlb .gt_stub_row_group {
+#kuxhmliiga .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3618,15 +3627,15 @@
   vertical-align: top;
 }
 
-#smznavbwlb .gt_row_group_first td {
+#kuxhmliiga .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#smznavbwlb .gt_row_group_first th {
+#kuxhmliiga .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#smznavbwlb .gt_summary_row {
+#kuxhmliiga .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3636,16 +3645,16 @@
   padding-right: 5px;
 }
 
-#smznavbwlb .gt_first_summary_row {
+#kuxhmliiga .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_first_summary_row.thick {
+#kuxhmliiga .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#smznavbwlb .gt_last_summary_row {
+#kuxhmliiga .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3655,7 +3664,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_grand_summary_row {
+#kuxhmliiga .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3665,7 +3674,7 @@
   padding-right: 5px;
 }
 
-#smznavbwlb .gt_first_grand_summary_row {
+#kuxhmliiga .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3675,7 +3684,7 @@
   border-top-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_last_grand_summary_row_top {
+#kuxhmliiga .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3685,11 +3694,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_striped {
+#kuxhmliiga .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#smznavbwlb .gt_table_body {
+#kuxhmliiga .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3698,7 +3707,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_footnotes {
+#kuxhmliiga .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3712,7 +3721,7 @@
   border-right-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_footnote {
+#kuxhmliiga .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3721,7 +3730,7 @@
   padding-right: 5px;
 }
 
-#smznavbwlb .gt_sourcenotes {
+#kuxhmliiga .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3735,7 +3744,7 @@
   border-right-color: #D3D3D3;
 }
 
-#smznavbwlb .gt_sourcenote {
+#kuxhmliiga .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3743,63 +3752,63 @@
   padding-right: 5px;
 }
 
-#smznavbwlb .gt_left {
+#kuxhmliiga .gt_left {
   text-align: left;
 }
 
-#smznavbwlb .gt_center {
+#kuxhmliiga .gt_center {
   text-align: center;
 }
 
-#smznavbwlb .gt_right {
+#kuxhmliiga .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#smznavbwlb .gt_font_normal {
+#kuxhmliiga .gt_font_normal {
   font-weight: normal;
 }
 
-#smznavbwlb .gt_font_bold {
+#kuxhmliiga .gt_font_bold {
   font-weight: bold;
 }
 
-#smznavbwlb .gt_font_italic {
+#kuxhmliiga .gt_font_italic {
   font-style: italic;
 }
 
-#smznavbwlb .gt_super {
+#kuxhmliiga .gt_super {
   font-size: 65%;
 }
 
-#smznavbwlb .gt_footnote_marks {
+#kuxhmliiga .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#smznavbwlb .gt_asterisk {
+#kuxhmliiga .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#smznavbwlb .gt_indent_1 {
+#kuxhmliiga .gt_indent_1 {
   text-indent: 5px;
 }
 
-#smznavbwlb .gt_indent_2 {
+#kuxhmliiga .gt_indent_2 {
   text-indent: 10px;
 }
 
-#smznavbwlb .gt_indent_3 {
+#kuxhmliiga .gt_indent_3 {
   text-indent: 15px;
 }
 
-#smznavbwlb .gt_indent_4 {
+#kuxhmliiga .gt_indent_4 {
   text-indent: 20px;
 }
 
-#smznavbwlb .gt_indent_5 {
+#kuxhmliiga .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3859,23 +3868,23 @@
 <p>With only three weeks of data and relatively few people singing from the second batch, it’s hard to make any assertive claims about the popularity of the hymns within this batch. Nevertheless, we can look at the results for now just for curiosity. The table below shows how many wards sang each of the newest hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="hzwvzuvjlo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hzwvzuvjlo table {
+<div id="lhdrjelvha" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lhdrjelvha table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hzwvzuvjlo thead, #hzwvzuvjlo tbody, #hzwvzuvjlo tfoot, #hzwvzuvjlo tr, #hzwvzuvjlo td, #hzwvzuvjlo th {
+#lhdrjelvha thead, #lhdrjelvha tbody, #lhdrjelvha tfoot, #lhdrjelvha tr, #lhdrjelvha td, #lhdrjelvha th {
   border-style: none;
 }
 
-#hzwvzuvjlo p {
+#lhdrjelvha p {
   margin: 0;
   padding: 0;
 }
 
-#hzwvzuvjlo .gt_table {
+#lhdrjelvha .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3901,12 +3910,12 @@
   border-left-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_caption {
+#lhdrjelvha .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hzwvzuvjlo .gt_title {
+#lhdrjelvha .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3918,7 +3927,7 @@
   border-bottom-width: 0;
 }
 
-#hzwvzuvjlo .gt_subtitle {
+#lhdrjelvha .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3930,7 +3939,7 @@
   border-top-width: 0;
 }
 
-#hzwvzuvjlo .gt_heading {
+#lhdrjelvha .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3942,13 +3951,13 @@
   border-right-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_bottom_border {
+#lhdrjelvha .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_col_headings {
+#lhdrjelvha .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3963,7 +3972,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_col_heading {
+#lhdrjelvha .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3983,7 +3992,7 @@
   overflow-x: hidden;
 }
 
-#hzwvzuvjlo .gt_column_spanner_outer {
+#lhdrjelvha .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3995,15 +4004,15 @@
   padding-right: 4px;
 }
 
-#hzwvzuvjlo .gt_column_spanner_outer:first-child {
+#lhdrjelvha .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hzwvzuvjlo .gt_column_spanner_outer:last-child {
+#lhdrjelvha .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hzwvzuvjlo .gt_column_spanner {
+#lhdrjelvha .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4015,11 +4024,11 @@
   width: 100%;
 }
 
-#hzwvzuvjlo .gt_spanner_row {
+#lhdrjelvha .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hzwvzuvjlo .gt_group_heading {
+#lhdrjelvha .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4045,7 +4054,7 @@
   text-align: left;
 }
 
-#hzwvzuvjlo .gt_empty_group_heading {
+#lhdrjelvha .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4060,15 +4069,15 @@
   vertical-align: middle;
 }
 
-#hzwvzuvjlo .gt_from_md > :first-child {
+#lhdrjelvha .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hzwvzuvjlo .gt_from_md > :last-child {
+#lhdrjelvha .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hzwvzuvjlo .gt_row {
+#lhdrjelvha .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4087,7 +4096,7 @@
   overflow-x: hidden;
 }
 
-#hzwvzuvjlo .gt_stub {
+#lhdrjelvha .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4100,7 +4109,7 @@
   padding-right: 5px;
 }
 
-#hzwvzuvjlo .gt_stub_row_group {
+#lhdrjelvha .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4114,15 +4123,15 @@
   vertical-align: top;
 }
 
-#hzwvzuvjlo .gt_row_group_first td {
+#lhdrjelvha .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hzwvzuvjlo .gt_row_group_first th {
+#lhdrjelvha .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hzwvzuvjlo .gt_summary_row {
+#lhdrjelvha .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4132,16 +4141,16 @@
   padding-right: 5px;
 }
 
-#hzwvzuvjlo .gt_first_summary_row {
+#lhdrjelvha .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_first_summary_row.thick {
+#lhdrjelvha .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hzwvzuvjlo .gt_last_summary_row {
+#lhdrjelvha .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4151,7 +4160,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_grand_summary_row {
+#lhdrjelvha .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4161,7 +4170,7 @@
   padding-right: 5px;
 }
 
-#hzwvzuvjlo .gt_first_grand_summary_row {
+#lhdrjelvha .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4171,7 +4180,7 @@
   border-top-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_last_grand_summary_row_top {
+#lhdrjelvha .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4181,11 +4190,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_striped {
+#lhdrjelvha .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hzwvzuvjlo .gt_table_body {
+#lhdrjelvha .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4194,7 +4203,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_footnotes {
+#lhdrjelvha .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4208,7 +4217,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_footnote {
+#lhdrjelvha .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4217,7 +4226,7 @@
   padding-right: 5px;
 }
 
-#hzwvzuvjlo .gt_sourcenotes {
+#lhdrjelvha .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4231,7 +4240,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hzwvzuvjlo .gt_sourcenote {
+#lhdrjelvha .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4239,63 +4248,63 @@
   padding-right: 5px;
 }
 
-#hzwvzuvjlo .gt_left {
+#lhdrjelvha .gt_left {
   text-align: left;
 }
 
-#hzwvzuvjlo .gt_center {
+#lhdrjelvha .gt_center {
   text-align: center;
 }
 
-#hzwvzuvjlo .gt_right {
+#lhdrjelvha .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hzwvzuvjlo .gt_font_normal {
+#lhdrjelvha .gt_font_normal {
   font-weight: normal;
 }
 
-#hzwvzuvjlo .gt_font_bold {
+#lhdrjelvha .gt_font_bold {
   font-weight: bold;
 }
 
-#hzwvzuvjlo .gt_font_italic {
+#lhdrjelvha .gt_font_italic {
   font-style: italic;
 }
 
-#hzwvzuvjlo .gt_super {
+#lhdrjelvha .gt_super {
   font-size: 65%;
 }
 
-#hzwvzuvjlo .gt_footnote_marks {
+#lhdrjelvha .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hzwvzuvjlo .gt_asterisk {
+#lhdrjelvha .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hzwvzuvjlo .gt_indent_1 {
+#lhdrjelvha .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hzwvzuvjlo .gt_indent_2 {
+#lhdrjelvha .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hzwvzuvjlo .gt_indent_3 {
+#lhdrjelvha .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hzwvzuvjlo .gt_indent_4 {
+#lhdrjelvha .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hzwvzuvjlo .gt_indent_5 {
+#lhdrjelvha .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -4378,23 +4387,23 @@
 <p>We can see when these hymns tend to be sung and get an overall look at the popularity of the second batch of hymns. Again, it’s based on so little data, so take these results with a grain of salt.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="daxwxxrkfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#daxwxxrkfh table {
+<div id="fkyivxxdgp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fkyivxxdgp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#daxwxxrkfh thead, #daxwxxrkfh tbody, #daxwxxrkfh tfoot, #daxwxxrkfh tr, #daxwxxrkfh td, #daxwxxrkfh th {
+#fkyivxxdgp thead, #fkyivxxdgp tbody, #fkyivxxdgp tfoot, #fkyivxxdgp tr, #fkyivxxdgp td, #fkyivxxdgp th {
   border-style: none;
 }
 
-#daxwxxrkfh p {
+#fkyivxxdgp p {
   margin: 0;
   padding: 0;
 }
 
-#daxwxxrkfh .gt_table {
+#fkyivxxdgp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4420,12 +4429,12 @@
   border-left-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_caption {
+#fkyivxxdgp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#daxwxxrkfh .gt_title {
+#fkyivxxdgp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4437,7 +4446,7 @@
   border-bottom-width: 0;
 }
 
-#daxwxxrkfh .gt_subtitle {
+#fkyivxxdgp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4449,7 +4458,7 @@
   border-top-width: 0;
 }
 
-#daxwxxrkfh .gt_heading {
+#fkyivxxdgp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4461,13 +4470,13 @@
   border-right-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_bottom_border {
+#fkyivxxdgp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_col_headings {
+#fkyivxxdgp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4482,7 +4491,7 @@
   border-right-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_col_heading {
+#fkyivxxdgp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4502,7 +4511,7 @@
   overflow-x: hidden;
 }
 
-#daxwxxrkfh .gt_column_spanner_outer {
+#fkyivxxdgp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4514,15 +4523,15 @@
   padding-right: 4px;
 }
 
-#daxwxxrkfh .gt_column_spanner_outer:first-child {
+#fkyivxxdgp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#daxwxxrkfh .gt_column_spanner_outer:last-child {
+#fkyivxxdgp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#daxwxxrkfh .gt_column_spanner {
+#fkyivxxdgp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4534,11 +4543,11 @@
   width: 100%;
 }
 
-#daxwxxrkfh .gt_spanner_row {
+#fkyivxxdgp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#daxwxxrkfh .gt_group_heading {
+#fkyivxxdgp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4564,7 +4573,7 @@
   text-align: left;
 }
 
-#daxwxxrkfh .gt_empty_group_heading {
+#fkyivxxdgp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4579,15 +4588,15 @@
   vertical-align: middle;
 }
 
-#daxwxxrkfh .gt_from_md > :first-child {
+#fkyivxxdgp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#daxwxxrkfh .gt_from_md > :last-child {
+#fkyivxxdgp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#daxwxxrkfh .gt_row {
+#fkyivxxdgp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4606,7 +4615,7 @@
   overflow-x: hidden;
 }
 
-#daxwxxrkfh .gt_stub {
+#fkyivxxdgp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4619,7 +4628,7 @@
   padding-right: 5px;
 }
 
-#daxwxxrkfh .gt_stub_row_group {
+#fkyivxxdgp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4633,15 +4642,15 @@
   vertical-align: top;
 }
 
-#daxwxxrkfh .gt_row_group_first td {
+#fkyivxxdgp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#daxwxxrkfh .gt_row_group_first th {
+#fkyivxxdgp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#daxwxxrkfh .gt_summary_row {
+#fkyivxxdgp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4651,16 +4660,16 @@
   padding-right: 5px;
 }
 
-#daxwxxrkfh .gt_first_summary_row {
+#fkyivxxdgp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_first_summary_row.thick {
+#fkyivxxdgp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#daxwxxrkfh .gt_last_summary_row {
+#fkyivxxdgp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4670,7 +4679,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_grand_summary_row {
+#fkyivxxdgp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4680,7 +4689,7 @@
   padding-right: 5px;
 }
 
-#daxwxxrkfh .gt_first_grand_summary_row {
+#fkyivxxdgp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4690,7 +4699,7 @@
   border-top-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_last_grand_summary_row_top {
+#fkyivxxdgp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4700,11 +4709,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_striped {
+#fkyivxxdgp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#daxwxxrkfh .gt_table_body {
+#fkyivxxdgp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4713,7 +4722,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_footnotes {
+#fkyivxxdgp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4727,7 +4736,7 @@
   border-right-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_footnote {
+#fkyivxxdgp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4736,7 +4745,7 @@
   padding-right: 5px;
 }
 
-#daxwxxrkfh .gt_sourcenotes {
+#fkyivxxdgp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4750,7 +4759,7 @@
   border-right-color: #D3D3D3;
 }
 
-#daxwxxrkfh .gt_sourcenote {
+#fkyivxxdgp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4758,63 +4767,63 @@
   padding-right: 5px;
 }
 
-#daxwxxrkfh .gt_left {
+#fkyivxxdgp .gt_left {
   text-align: left;
 }
 
-#daxwxxrkfh .gt_center {
+#fkyivxxdgp .gt_center {
   text-align: center;
 }
 
-#daxwxxrkfh .gt_right {
+#fkyivxxdgp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#daxwxxrkfh .gt_font_normal {
+#fkyivxxdgp .gt_font_normal {
   font-weight: normal;
 }
 
-#daxwxxrkfh .gt_font_bold {
+#fkyivxxdgp .gt_font_bold {
   font-weight: bold;
 }
 
-#daxwxxrkfh .gt_font_italic {
+#fkyivxxdgp .gt_font_italic {
   font-style: italic;
 }
 
-#daxwxxrkfh .gt_super {
+#fkyivxxdgp .gt_super {
   font-size: 65%;
 }
 
-#daxwxxrkfh .gt_footnote_marks {
+#fkyivxxdgp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#daxwxxrkfh .gt_asterisk {
+#fkyivxxdgp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#daxwxxrkfh .gt_indent_1 {
+#fkyivxxdgp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#daxwxxrkfh .gt_indent_2 {
+#fkyivxxdgp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#daxwxxrkfh .gt_indent_3 {
+#fkyivxxdgp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#daxwxxrkfh .gt_indent_4 {
+#fkyivxxdgp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#daxwxxrkfh .gt_indent_5 {
+#fkyivxxdgp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -7314,23 +7323,23 @@ Click to see that plot
 <p>But first, here’s how much data I have for each week, just so you have an idea of what I’m working with.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="rygugvcctx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rygugvcctx table {
+<div id="gicvljfwqp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gicvljfwqp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rygugvcctx thead, #rygugvcctx tbody, #rygugvcctx tfoot, #rygugvcctx tr, #rygugvcctx td, #rygugvcctx th {
+#gicvljfwqp thead, #gicvljfwqp tbody, #gicvljfwqp tfoot, #gicvljfwqp tr, #gicvljfwqp td, #gicvljfwqp th {
   border-style: none;
 }
 
-#rygugvcctx p {
+#gicvljfwqp p {
   margin: 0;
   padding: 0;
 }
 
-#rygugvcctx .gt_table {
+#gicvljfwqp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -7356,12 +7365,12 @@ Click to see that plot
   border-left-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_caption {
+#gicvljfwqp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rygugvcctx .gt_title {
+#gicvljfwqp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -7373,7 +7382,7 @@ Click to see that plot
   border-bottom-width: 0;
 }
 
-#rygugvcctx .gt_subtitle {
+#gicvljfwqp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -7385,7 +7394,7 @@ Click to see that plot
   border-top-width: 0;
 }
 
-#rygugvcctx .gt_heading {
+#gicvljfwqp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -7397,13 +7406,13 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_bottom_border {
+#gicvljfwqp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_col_headings {
+#gicvljfwqp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7418,7 +7427,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_col_heading {
+#gicvljfwqp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7438,7 +7447,7 @@ Click to see that plot
   overflow-x: hidden;
 }
 
-#rygugvcctx .gt_column_spanner_outer {
+#gicvljfwqp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7450,15 +7459,15 @@ Click to see that plot
   padding-right: 4px;
 }
 
-#rygugvcctx .gt_column_spanner_outer:first-child {
+#gicvljfwqp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rygugvcctx .gt_column_spanner_outer:last-child {
+#gicvljfwqp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rygugvcctx .gt_column_spanner {
+#gicvljfwqp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -7470,11 +7479,11 @@ Click to see that plot
   width: 100%;
 }
 
-#rygugvcctx .gt_spanner_row {
+#gicvljfwqp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rygugvcctx .gt_group_heading {
+#gicvljfwqp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7500,7 +7509,7 @@ Click to see that plot
   text-align: left;
 }
 
-#rygugvcctx .gt_empty_group_heading {
+#gicvljfwqp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -7515,15 +7524,15 @@ Click to see that plot
   vertical-align: middle;
 }
 
-#rygugvcctx .gt_from_md > :first-child {
+#gicvljfwqp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rygugvcctx .gt_from_md > :last-child {
+#gicvljfwqp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rygugvcctx .gt_row {
+#gicvljfwqp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7542,7 +7551,7 @@ Click to see that plot
   overflow-x: hidden;
 }
 
-#rygugvcctx .gt_stub {
+#gicvljfwqp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7555,7 +7564,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#rygugvcctx .gt_stub_row_group {
+#gicvljfwqp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7569,15 +7578,15 @@ Click to see that plot
   vertical-align: top;
 }
 
-#rygugvcctx .gt_row_group_first td {
+#gicvljfwqp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rygugvcctx .gt_row_group_first th {
+#gicvljfwqp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rygugvcctx .gt_summary_row {
+#gicvljfwqp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7587,16 +7596,16 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#rygugvcctx .gt_first_summary_row {
+#gicvljfwqp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_first_summary_row.thick {
+#gicvljfwqp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rygugvcctx .gt_last_summary_row {
+#gicvljfwqp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7606,7 +7615,7 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_grand_summary_row {
+#gicvljfwqp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7616,7 +7625,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#rygugvcctx .gt_first_grand_summary_row {
+#gicvljfwqp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7626,7 +7635,7 @@ Click to see that plot
   border-top-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_last_grand_summary_row_top {
+#gicvljfwqp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7636,11 +7645,11 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_striped {
+#gicvljfwqp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rygugvcctx .gt_table_body {
+#gicvljfwqp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7649,7 +7658,7 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_footnotes {
+#gicvljfwqp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7663,7 +7672,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_footnote {
+#gicvljfwqp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -7672,7 +7681,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#rygugvcctx .gt_sourcenotes {
+#gicvljfwqp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7686,7 +7695,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#rygugvcctx .gt_sourcenote {
+#gicvljfwqp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -7694,63 +7703,63 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#rygugvcctx .gt_left {
+#gicvljfwqp .gt_left {
   text-align: left;
 }
 
-#rygugvcctx .gt_center {
+#gicvljfwqp .gt_center {
   text-align: center;
 }
 
-#rygugvcctx .gt_right {
+#gicvljfwqp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rygugvcctx .gt_font_normal {
+#gicvljfwqp .gt_font_normal {
   font-weight: normal;
 }
 
-#rygugvcctx .gt_font_bold {
+#gicvljfwqp .gt_font_bold {
   font-weight: bold;
 }
 
-#rygugvcctx .gt_font_italic {
+#gicvljfwqp .gt_font_italic {
   font-style: italic;
 }
 
-#rygugvcctx .gt_super {
+#gicvljfwqp .gt_super {
   font-size: 65%;
 }
 
-#rygugvcctx .gt_footnote_marks {
+#gicvljfwqp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rygugvcctx .gt_asterisk {
+#gicvljfwqp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rygugvcctx .gt_indent_1 {
+#gicvljfwqp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rygugvcctx .gt_indent_2 {
+#gicvljfwqp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rygugvcctx .gt_indent_3 {
+#gicvljfwqp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rygugvcctx .gt_indent_4 {
+#gicvljfwqp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rygugvcctx .gt_indent_5 {
+#gicvljfwqp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -7902,23 +7911,23 @@ Click to see that plot
 <div class="page-columns page-full"><p>It should come as no surprise that the most popular hymn in this new batch is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. But just how popular was it? The following table shows the new hymns in order of how often they were sung. The percent column shows what percentage of wards each hymn has been sung in as congregational hymns during this period.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">Note that these numbers might be slightly inflated because some wards have sung the more popular hymns more than once.</span></div></div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="wmkjesmwht" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wmkjesmwht table {
+<div id="gubzbjnxky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gubzbjnxky table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wmkjesmwht thead, #wmkjesmwht tbody, #wmkjesmwht tfoot, #wmkjesmwht tr, #wmkjesmwht td, #wmkjesmwht th {
+#gubzbjnxky thead, #gubzbjnxky tbody, #gubzbjnxky tfoot, #gubzbjnxky tr, #gubzbjnxky td, #gubzbjnxky th {
   border-style: none;
 }
 
-#wmkjesmwht p {
+#gubzbjnxky p {
   margin: 0;
   padding: 0;
 }
 
-#wmkjesmwht .gt_table {
+#gubzbjnxky .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -7944,12 +7953,12 @@ Click to see that plot
   border-left-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_caption {
+#gubzbjnxky .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wmkjesmwht .gt_title {
+#gubzbjnxky .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -7961,7 +7970,7 @@ Click to see that plot
   border-bottom-width: 0;
 }
 
-#wmkjesmwht .gt_subtitle {
+#gubzbjnxky .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -7973,7 +7982,7 @@ Click to see that plot
   border-top-width: 0;
 }
 
-#wmkjesmwht .gt_heading {
+#gubzbjnxky .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -7985,13 +7994,13 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_bottom_border {
+#gubzbjnxky .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_col_headings {
+#gubzbjnxky .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8006,7 +8015,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_col_heading {
+#gubzbjnxky .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8026,7 +8035,7 @@ Click to see that plot
   overflow-x: hidden;
 }
 
-#wmkjesmwht .gt_column_spanner_outer {
+#gubzbjnxky .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8038,15 +8047,15 @@ Click to see that plot
   padding-right: 4px;
 }
 
-#wmkjesmwht .gt_column_spanner_outer:first-child {
+#gubzbjnxky .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wmkjesmwht .gt_column_spanner_outer:last-child {
+#gubzbjnxky .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wmkjesmwht .gt_column_spanner {
+#gubzbjnxky .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -8058,11 +8067,11 @@ Click to see that plot
   width: 100%;
 }
 
-#wmkjesmwht .gt_spanner_row {
+#gubzbjnxky .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wmkjesmwht .gt_group_heading {
+#gubzbjnxky .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8088,7 +8097,7 @@ Click to see that plot
   text-align: left;
 }
 
-#wmkjesmwht .gt_empty_group_heading {
+#gubzbjnxky .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -8103,15 +8112,15 @@ Click to see that plot
   vertical-align: middle;
 }
 
-#wmkjesmwht .gt_from_md > :first-child {
+#gubzbjnxky .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wmkjesmwht .gt_from_md > :last-child {
+#gubzbjnxky .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wmkjesmwht .gt_row {
+#gubzbjnxky .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8130,7 +8139,7 @@ Click to see that plot
   overflow-x: hidden;
 }
 
-#wmkjesmwht .gt_stub {
+#gubzbjnxky .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8143,7 +8152,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#wmkjesmwht .gt_stub_row_group {
+#gubzbjnxky .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8157,15 +8166,15 @@ Click to see that plot
   vertical-align: top;
 }
 
-#wmkjesmwht .gt_row_group_first td {
+#gubzbjnxky .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wmkjesmwht .gt_row_group_first th {
+#gubzbjnxky .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wmkjesmwht .gt_summary_row {
+#gubzbjnxky .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8175,16 +8184,16 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#wmkjesmwht .gt_first_summary_row {
+#gubzbjnxky .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_first_summary_row.thick {
+#gubzbjnxky .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wmkjesmwht .gt_last_summary_row {
+#gubzbjnxky .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8194,7 +8203,7 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_grand_summary_row {
+#gubzbjnxky .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8204,7 +8213,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#wmkjesmwht .gt_first_grand_summary_row {
+#gubzbjnxky .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8214,7 +8223,7 @@ Click to see that plot
   border-top-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_last_grand_summary_row_top {
+#gubzbjnxky .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8224,11 +8233,11 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_striped {
+#gubzbjnxky .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wmkjesmwht .gt_table_body {
+#gubzbjnxky .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8237,7 +8246,7 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_footnotes {
+#gubzbjnxky .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8251,7 +8260,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_footnote {
+#gubzbjnxky .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -8260,7 +8269,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#wmkjesmwht .gt_sourcenotes {
+#gubzbjnxky .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8274,7 +8283,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#wmkjesmwht .gt_sourcenote {
+#gubzbjnxky .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -8282,63 +8291,63 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#wmkjesmwht .gt_left {
+#gubzbjnxky .gt_left {
   text-align: left;
 }
 
-#wmkjesmwht .gt_center {
+#gubzbjnxky .gt_center {
   text-align: center;
 }
 
-#wmkjesmwht .gt_right {
+#gubzbjnxky .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wmkjesmwht .gt_font_normal {
+#gubzbjnxky .gt_font_normal {
   font-weight: normal;
 }
 
-#wmkjesmwht .gt_font_bold {
+#gubzbjnxky .gt_font_bold {
   font-weight: bold;
 }
 
-#wmkjesmwht .gt_font_italic {
+#gubzbjnxky .gt_font_italic {
   font-style: italic;
 }
 
-#wmkjesmwht .gt_super {
+#gubzbjnxky .gt_super {
   font-size: 65%;
 }
 
-#wmkjesmwht .gt_footnote_marks {
+#gubzbjnxky .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wmkjesmwht .gt_asterisk {
+#gubzbjnxky .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wmkjesmwht .gt_indent_1 {
+#gubzbjnxky .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wmkjesmwht .gt_indent_2 {
+#gubzbjnxky .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wmkjesmwht .gt_indent_3 {
+#gubzbjnxky .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wmkjesmwht .gt_indent_4 {
+#gubzbjnxky .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wmkjesmwht .gt_indent_5 {
+#gubzbjnxky .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -8422,23 +8431,23 @@ Click to see that plot
 <p>We can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="qvxodozcmv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qvxodozcmv table {
+<div id="cthqawlrtn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cthqawlrtn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qvxodozcmv thead, #qvxodozcmv tbody, #qvxodozcmv tfoot, #qvxodozcmv tr, #qvxodozcmv td, #qvxodozcmv th {
+#cthqawlrtn thead, #cthqawlrtn tbody, #cthqawlrtn tfoot, #cthqawlrtn tr, #cthqawlrtn td, #cthqawlrtn th {
   border-style: none;
 }
 
-#qvxodozcmv p {
+#cthqawlrtn p {
   margin: 0;
   padding: 0;
 }
 
-#qvxodozcmv .gt_table {
+#cthqawlrtn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -8464,12 +8473,12 @@ Click to see that plot
   border-left-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_caption {
+#cthqawlrtn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qvxodozcmv .gt_title {
+#cthqawlrtn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -8481,7 +8490,7 @@ Click to see that plot
   border-bottom-width: 0;
 }
 
-#qvxodozcmv .gt_subtitle {
+#cthqawlrtn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -8493,7 +8502,7 @@ Click to see that plot
   border-top-width: 0;
 }
 
-#qvxodozcmv .gt_heading {
+#cthqawlrtn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -8505,13 +8514,13 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_bottom_border {
+#cthqawlrtn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_col_headings {
+#cthqawlrtn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8526,7 +8535,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_col_heading {
+#cthqawlrtn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8546,7 +8555,7 @@ Click to see that plot
   overflow-x: hidden;
 }
 
-#qvxodozcmv .gt_column_spanner_outer {
+#cthqawlrtn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8558,15 +8567,15 @@ Click to see that plot
   padding-right: 4px;
 }
 
-#qvxodozcmv .gt_column_spanner_outer:first-child {
+#cthqawlrtn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qvxodozcmv .gt_column_spanner_outer:last-child {
+#cthqawlrtn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qvxodozcmv .gt_column_spanner {
+#cthqawlrtn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -8578,11 +8587,11 @@ Click to see that plot
   width: 100%;
 }
 
-#qvxodozcmv .gt_spanner_row {
+#cthqawlrtn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qvxodozcmv .gt_group_heading {
+#cthqawlrtn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8608,7 +8617,7 @@ Click to see that plot
   text-align: left;
 }
 
-#qvxodozcmv .gt_empty_group_heading {
+#cthqawlrtn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -8623,15 +8632,15 @@ Click to see that plot
   vertical-align: middle;
 }
 
-#qvxodozcmv .gt_from_md > :first-child {
+#cthqawlrtn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qvxodozcmv .gt_from_md > :last-child {
+#cthqawlrtn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qvxodozcmv .gt_row {
+#cthqawlrtn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8650,7 +8659,7 @@ Click to see that plot
   overflow-x: hidden;
 }
 
-#qvxodozcmv .gt_stub {
+#cthqawlrtn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8663,7 +8672,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#qvxodozcmv .gt_stub_row_group {
+#cthqawlrtn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8677,15 +8686,15 @@ Click to see that plot
   vertical-align: top;
 }
 
-#qvxodozcmv .gt_row_group_first td {
+#cthqawlrtn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qvxodozcmv .gt_row_group_first th {
+#cthqawlrtn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qvxodozcmv .gt_summary_row {
+#cthqawlrtn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8695,16 +8704,16 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#qvxodozcmv .gt_first_summary_row {
+#cthqawlrtn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_first_summary_row.thick {
+#cthqawlrtn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qvxodozcmv .gt_last_summary_row {
+#cthqawlrtn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8714,7 +8723,7 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_grand_summary_row {
+#cthqawlrtn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8724,7 +8733,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#qvxodozcmv .gt_first_grand_summary_row {
+#cthqawlrtn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8734,7 +8743,7 @@ Click to see that plot
   border-top-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_last_grand_summary_row_top {
+#cthqawlrtn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8744,11 +8753,11 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_striped {
+#cthqawlrtn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qvxodozcmv .gt_table_body {
+#cthqawlrtn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8757,7 +8766,7 @@ Click to see that plot
   border-bottom-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_footnotes {
+#cthqawlrtn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8771,7 +8780,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_footnote {
+#cthqawlrtn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -8780,7 +8789,7 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#qvxodozcmv .gt_sourcenotes {
+#cthqawlrtn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8794,7 +8803,7 @@ Click to see that plot
   border-right-color: #D3D3D3;
 }
 
-#qvxodozcmv .gt_sourcenote {
+#cthqawlrtn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -8802,63 +8811,63 @@ Click to see that plot
   padding-right: 5px;
 }
 
-#qvxodozcmv .gt_left {
+#cthqawlrtn .gt_left {
   text-align: left;
 }
 
-#qvxodozcmv .gt_center {
+#cthqawlrtn .gt_center {
   text-align: center;
 }
 
-#qvxodozcmv .gt_right {
+#cthqawlrtn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qvxodozcmv .gt_font_normal {
+#cthqawlrtn .gt_font_normal {
   font-weight: normal;
 }
 
-#qvxodozcmv .gt_font_bold {
+#cthqawlrtn .gt_font_bold {
   font-weight: bold;
 }
 
-#qvxodozcmv .gt_font_italic {
+#cthqawlrtn .gt_font_italic {
   font-style: italic;
 }
 
-#qvxodozcmv .gt_super {
+#cthqawlrtn .gt_super {
   font-size: 65%;
 }
 
-#qvxodozcmv .gt_footnote_marks {
+#cthqawlrtn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qvxodozcmv .gt_asterisk {
+#cthqawlrtn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qvxodozcmv .gt_indent_1 {
+#cthqawlrtn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qvxodozcmv .gt_indent_2 {
+#cthqawlrtn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qvxodozcmv .gt_indent_3 {
+#cthqawlrtn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qvxodozcmv .gt_indent_4 {
+#cthqawlrtn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qvxodozcmv .gt_indent_5 {
+#cthqawlrtn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -13231,6 +13240,21 @@ Note
   <pubDate>Sun, 12 May 2024 06:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>New to 1985</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/new_to_1985/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+ ]]></description>
+  <guid>https://hymnstats.joeystanley.com/posts/new_to_1985/</guid>
+  <pubDate>Sat, 06 Apr 2024 06:00:00 GMT</pubDate>
+</item>
+<item>
   <title>What hymns have recently gotten more or less popular?</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/change_over_time/</link>
@@ -14694,3303 +14718,6 @@ other Sundays</p> </caption>
   <category>frequency</category>
   <guid>https://hymnstats.joeystanley.com/posts/valentines/</guid>
   <pubDate>Sat, 20 Jan 2024 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>How much data do I have and where did it all come from?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/frequency-data/</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>In this post, I’ll explain a bit more about the data itself. You’re not going to see any interesting findings about hymn stats here; instead, this page will be mostly to satisfy people that are curious about the project itself. How much data do I have? Where did it all come from? What is the nature of the data?</p>
-<p>For this project, I have two main datasets. One is the <code>Frequency</code> data, which I use to answer questions like, “What is the most common hymn?”, “What hymns are hardly ever sung?” or “What hymns are popular around Valentine’s Day?”. The other is the <code>Notes</code> data, which I use to answer questions like, “What is the highest alto note?” or “What is the widest range a single part has to sing?”, or “What is the most common final chord?”. I’ll explain just the <code>Frequency</code> data in this blog post and will save the <code>Notes</code> data for a future post.</p>
-<p>The dataset I’m calling the <code>Frequency</code> data is which is collected by having people in other wards and branches submit to me what hymns they sing in sacrament meeting. I use it to answer questions about how common or uncommon a hymn is or anything about annual trends. Let’s dive into this dataset a little bit.</p>
-<section id="where-did-the-data-come-from" class="level2">
-<h2 class="anchored" data-anchor-id="where-did-the-data-come-from">Where did the data come from?</h2>
-<p>The data presented in this project comes from about five different sources. Table&nbsp;1 shows these five projects and how much data they’ve contributed to the overall dataset, in terms of number of wards, number of sacrament meetings, and number of hymns overall.</p>
-<div class="cell">
-<div id="tbl-source_breakdown" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-source_breakdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Breakdown of the Frequency dataset by source
-</figcaption>
-<div aria-describedby="tbl-source_breakdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<div id="rgphnmzprm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rgphnmzprm table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#rgphnmzprm thead, #rgphnmzprm tbody, #rgphnmzprm tfoot, #rgphnmzprm tr, #rgphnmzprm td, #rgphnmzprm th {
-  border-style: none;
-}
-
-#rgphnmzprm p {
-  margin: 0;
-  padding: 0;
-}
-
-#rgphnmzprm .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#rgphnmzprm .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#rgphnmzprm .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#rgphnmzprm .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#rgphnmzprm .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#rgphnmzprm .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#rgphnmzprm .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#rgphnmzprm .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#rgphnmzprm .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#rgphnmzprm .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#rgphnmzprm .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#rgphnmzprm .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#rgphnmzprm .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#rgphnmzprm .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#rgphnmzprm .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgphnmzprm .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#rgphnmzprm .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#rgphnmzprm .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#rgphnmzprm .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgphnmzprm .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#rgphnmzprm .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgphnmzprm .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#rgphnmzprm .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgphnmzprm .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rgphnmzprm .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgphnmzprm .gt_left {
-  text-align: left;
-}
-
-#rgphnmzprm .gt_center {
-  text-align: center;
-}
-
-#rgphnmzprm .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#rgphnmzprm .gt_font_normal {
-  font-weight: normal;
-}
-
-#rgphnmzprm .gt_font_bold {
-  font-weight: bold;
-}
-
-#rgphnmzprm .gt_font_italic {
-  font-style: italic;
-}
-
-#rgphnmzprm .gt_super {
-  font-size: 65%;
-}
-
-#rgphnmzprm .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#rgphnmzprm .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#rgphnmzprm .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#rgphnmzprm .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#rgphnmzprm .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#rgphnmzprm .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#rgphnmzprm .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="header gt_heading">
-<th colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">Frequency data, by source</th>
-</tr>
-<tr class="odd gt_col_headings gt_spanner_row">
-<th rowspan="2" id="source" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">source</th>
-<th colspan="2" id="wards" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">wards</span></th>
-<th colspan="2" id="sacrament meetings" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">sacrament meetings</span></th>
-<th colspan="2" id="hymns" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">hymns</span></th>
-</tr>
-<tr class="header gt_col_headings">
-<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
-<th id="%" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%</th>
-<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
-<th id="%" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%</th>
-<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
-<th id="%" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_center" headers="source">joey2015</td>
-<td class="gt_row gt_right" headers="wards_n">21</td>
-<td class="gt_row gt_right" headers="wards_percent">1.5%</td>
-<td class="gt_row gt_right" headers="meetings_n">2,042</td>
-<td class="gt_row gt_right" headers="meetings_percent">7.8%</td>
-<td class="gt_row gt_right" headers="hymns_n">7,006</td>
-<td class="gt_row gt_right" headers="hymns_percent">7.88%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center" headers="source">joey2023</td>
-<td class="gt_row gt_right" headers="wards_n">417</td>
-<td class="gt_row gt_right" headers="wards_percent">29.7%</td>
-<td class="gt_row gt_right" headers="meetings_n">10,191</td>
-<td class="gt_row gt_right" headers="meetings_percent">39.1%</td>
-<td class="gt_row gt_right" headers="hymns_n">33,264</td>
-<td class="gt_row gt_right" headers="hymns_percent">37.42%</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="source">kjerste2015</td>
-<td class="gt_row gt_right" headers="wards_n">60</td>
-<td class="gt_row gt_right" headers="wards_percent">4.3%</td>
-<td class="gt_row gt_right" headers="meetings_n">403</td>
-<td class="gt_row gt_right" headers="meetings_percent">1.5%</td>
-<td class="gt_row gt_right" headers="hymns_n">3,759</td>
-<td class="gt_row gt_right" headers="hymns_percent">4.23%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center" headers="source">samuel2015</td>
-<td class="gt_row gt_right" headers="wards_n">214</td>
-<td class="gt_row gt_right" headers="wards_percent">15.2%</td>
-<td class="gt_row gt_right" headers="meetings_n">2,328</td>
-<td class="gt_row gt_right" headers="meetings_percent">8.9%</td>
-<td class="gt_row gt_right" headers="hymns_n">7,805</td>
-<td class="gt_row gt_right" headers="hymns_percent">8.78%</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="source">samuel2017</td>
-<td class="gt_row gt_right" headers="wards_n">692</td>
-<td class="gt_row gt_right" headers="wards_percent">49.3%</td>
-<td class="gt_row gt_right" headers="meetings_n">11,068</td>
-<td class="gt_row gt_right" headers="meetings_percent">42.5%</td>
-<td class="gt_row gt_right" headers="hymns_n">37,068</td>
-<td class="gt_row gt_right" headers="hymns_percent">41.70%</td>
-</tr>
-</tbody><tfoot class="gt_sourcenotes">
-<tr class="even">
-<td colspan="7" class="gt_sourcenote">Reflects the dataset as of June 2024.</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>Let me go through each one individually.</p>
-<section id="joeys-2015-collection" class="level3">
-<h3 class="anchored" data-anchor-id="joeys-2015-collection">Joey’s 2015 collection</h3>
-<p>I first began this project sometime around 2013. I had the idea to collect as much data as I could from as many wards as I could to answer the question of what hymn is most common and what hymns are the least common.</p>
-<p>In my project planning phase, I considered setting up a survey that people could quickly take every week to report their hymns. However, I didn’t think I could get very many people to commit to that kind of consistency. So, I decided that rather than collecting hymns from the <em>next</em> 52 weeks, what if I collected hymns from the <em>past</em> 52 weeks? I figure many wards have a spreadsheet of some sort that they use to keep track of hymns. If not a spreadsheet, then at least copies of old sacrament meeting programs or notes that the Bishopric uses when conducting. All I’d need then is for someone from each ward to send me their data once, rather than many times.</p>
-<p>So I started asking around in online spaces where LDS music people might gather, but I soon found out it was going to be harder than I expected to get people to send me their data. After a few weeks I was able to get data from 21 wards, ranging from a few months to several years. My own ward’s clerk was cleaning out old files and sent me years of sacrament meeting programs. Because this data collection happened through 2015. I call this chunk of the overall sample the <code>Joey2015</code> data.</p>
-<p>Table&nbsp;1 shows that I collected data from 2,042 sacrament meetings from 21 wards. So, not too many wards, but I did get a fair amount of data from each one. However, the issue I ran across was that the characteristics of any one ward would sometimes overwhelm the overall findings because there were so few wards in total. For example, a ward that sent several years’ worth of data had two quirks: they would systematically cycle through all the sacrament hymns, and they would sing <hymn>I Know That My Redeemer Lives (#136)</hymn> <em>every</em> fast Sunday. With the larger dataset I now have, those idiosyncrasies were washed out. But, it was enough data to start to see some of the trends I report elsewhere in this blog.</p>
-<p>Figure&nbsp;1 shows how this <code>Joey2015</code> sample is distributed over time. In this plot, the height of each bar represents how many sacrament meetings I had data from within each month. You can tell that most of the recruitment efforts were done in 2014 since that’s when the most data comes from. There’s a recency effect here: if I put a call out to people in June 2014, I’ll get a lot of data from the weeks and months leading up to June 2014, and less data the further back I go because fewer wards keep records for that long.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-joey2015_time" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-joey2015_time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/frequency-data/index_files/figure-html/fig-joey2015_time-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-joey2015_time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Sacrament meetings per month in the Joey 2015 sample
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="joeys-2023-collection" class="level3">
-<h3 class="anchored" data-anchor-id="joeys-2023-collection">Joey’s 2023 collection</h3>
-<p>My interest in the project waned after about 2017, partly because I was in graduate school and was starting a family, and partly because I was having a hard time collecting more data. In 2023 though, my interest was revitalized, coincidentally right before the church announced the new hymnal. I figured since I had been working on this for over a decade and since I’ve collected so much data, I might as well get the results out before it all becomes irrelevant. It’s probably too late to send these findings to the church in case they want to use them to help make decisions about the new hymnal.</p>
-<p>As I began this blog, I started sharing it and results from it in new online spaces, primarily social media. As I do so, I encourage people to send me their data if they have it. Through these efforts, I actually collected more data than I had in 2015. More wards, more sacrament meetings, and more hymns.</p>
-<p>Figure&nbsp;2 shows the distribution of dates over time for the <code>joey2023</code> sample. There are three interesting things to note. One, is there’s a large dip in 2020 because of covid. Through the many spreadsheets I’ve been sent, it’s been interesting to see how and when wards returned back to normal meetings. The other major thing is that there’s a general increase in time and the recency effect is quite visible. As I continue advertising the project, more and more people send stuff to me. But, I have gotten some data from as far back as 2009, which is pretty cool.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-joey2023_time" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-joey2023_time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/frequency-data/index_files/figure-html/fig-joey2023_time-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-joey2023_time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Sacrament meetings per month in the Joey2023 sample
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Of course, the biggest thing to notice in this plot is that I really increased my data solicitation efforts around the time the first batch of new hymns were released, so there’s a huge spike in May and June 2024. I joined music calling–related Facebook groups and started weekly posts on Twitter asking for hymn data. I also realized around then that there are hundreds of wards that still broadcast their sacrament meetings on YouTube, so I have a constant source of new data. Some wards keep those videos up forever while others only a few days, so I have to check back every week to get the latest batch.</p>
-</section>
-<section id="kjerstes-2015-survey" class="level3">
-<h3 class="anchored" data-anchor-id="kjerstes-2015-survey">Kjerste’s 2015 survey</h3>
-<p>Around the same time I was beginning my project, but completely independently of me, another hymn stats fan, Kjerste Christensen, began her own project. She ran a weekly hymn survey for a little over a year. Her thinking was that it was important to get a full year in order to get all the holiday and seasonal variation (and I agree with that). The project was mainly for her own curiosity and she never did much with it other than use it for personal use like figuring out what hymns would be common to sing in church. I’ll call this dataset the <code>kjerste2015</code> collection.</p>
-<p>On average, Kjerste had roughly 20 people per week fill out her survey. It’s not clear how many wards contributed to the survey total because many people did not include information about their ward, but there were at least 60 and likely 2–3 times that many. Figure&nbsp;3 shows the distribution of the <code>kjerste2015</code> data across time.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-kjerste" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-kjerste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/frequency-data/index_files/figure-html/fig-kjerste-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kjerste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Number of hymns per week in the <code>kjerste2015</code> dataset
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="samuels-2015-survey" class="level3">
-<h3 class="anchored" data-anchor-id="samuels-2015-survey">Samuel’s 2015 survey</h3>
-<p>There must have been something going around in 2014–2015 because, coincidentally, just as I was getting interested in my project <em>and</em> just as Kjerste was too, Samuel Bradshaw, yet another curious LDS musician, wanted to collect some data for a hymn stats project. Samuel had the same idea as Kjerste and wanted to get people to fill out a quick survey every week saying what hymns they sang.</p>
-<p>Fortunately, Samuel runs SingPraises.net and appears to have many more connections and resources than me and Kjerste. So, he was much more successful in advertising the project and getting people to submit data. Basically, he did was I was not able to do and actually got people to submit week after week. After a year of data collection, Samuel ended up with data from 214 unique wards and 2,328 sacrament meetings, as seen in Table&nbsp;1. Samuel ended up publishing the results of his survey on his website.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-sam2015-dates" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-sam2015-dates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/frequency-data/index_files/figure-html/fig-sam2015-dates-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sam2015-dates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Number of hymns per week in the <code>samuel2015</code> dataset
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>I got my hands on the <code>samuel2015</code> dataset early on when Samuel and I agreed to share our data.</p>
-</section>
-<section id="samuels-2017-survey" class="level3">
-<h3 class="anchored" data-anchor-id="samuels-2017-survey">Samuel’s 2017 survey</h3>
-<p>After a successful project in 2015, Samuel Bradshaw revamped the survey and distributed it again in 2017. Again, he has more resources, a wider network of musicians, and his SingPraises.net website to help advertise. He put a link to the survey at the top of every page of SingPraises.net, so everyone who visited the site during that year saw it. He created a Google Groups mailing list for people to join and get updates about the project. People got reminder emails sent to them automatically to remind them to fill out the survey and to spread the word. He asked people with music callings to submit their spreadsheets they used for planning their hymns (like what my <code>joey2015</code> dataset did). He created Spanish and Portuguese versions of the survey to hopefully reach a wider audience. And he followed up with wards if they were missing a few weeks.</p>
-<p>Through these efforts, Samuel collected an enormous amount of data: 11,068 sacrament meetings from 692 wards from around the world! He averaged 112 responses every week through 2017. Plus, for a few wards he was able to get a long history of hymns sung: two wards submitted over 14 years’ worth of data! At this point, Samuel already had access to the <code>kjerste2015</code>, <code>joey2015</code>, and of course <code>samuel2015</code> datasets, so when he published the results on his website, it was by far the largest hymn stats project to date.</p>
-<p>Samuel has again graciously agreed to share his data with me for the purposes of this project. At the time of writing, the <code>samuel2017</code> collection comprises 55% of the total dataset, so his contribution more than doubled the amount of data I have.</p>
-</section>
-</section>
-<section id="comparing-the-data-collecton-methods" class="level2">
-<h2 class="anchored" data-anchor-id="comparing-the-data-collecton-methods">Comparing the data collecton methods</h2>
-<p>I think it’s important to pause and compare the two approaches to data collection. The <code>joey2015</code> dataset has 2,042 sacrament meetings from 21 wards. The median number of sacrament meetings per ward that that dataset has is 40, and the average is 97. So, a lot of data from a few wards. The <code>samuel2015</code> collection is a little larger, 2,328 sacrament meetings, but it comes from 214 wards, which is ten times as many. The average number of weeks submitted per ward is 11, and the median is just two. So while many, many more wards are represented, we only get a snapshot of what that ward is like. In the <code>samuel2017</code> collection, the numbers were the same: the average number of weeks each ward submitted was 11 but the median was still 2. So, though the attrition rate was about the same as in his 2015 survey, just the sheer volume of data that he collected was astounding. The <code>kjerste2015</code> collection is similar to Samuel’s and has a lot of data from a few wards and a little bit of data from many wards. One method gets depth and the other gets breadth and I think the two methods complement each other nicely.</p>
-<p>Figure&nbsp;5 and Figure&nbsp;6 illustrate these differences. For both figures, we have time represented on the <em>x</em>-axis, with older dates on the left and newer dates on the right. Along the <em>y</em> axis, we have each ward, anonymized. Wards are arranged from top to bottom based on the oldest date the submitted data from. Each contribution is a single dot on the plot.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-joey2015-wards" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-joey2015-wards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/frequency-data/index_files/figure-html/fig-joey2015-wards-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-joey2015-wards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Contributions by date and ward in the <code>joey2015</code> dataset.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Figure&nbsp;5 above is from the <code>joey2015</code> data. Again, fewer wards, but many contributions from each ward because I was specifically seeking out spreadsheets that music coordinators were already using. The smallest contribution from a ward was a single week’s worth of data from when I was visiting there. This plot spans over a decade because some wards had many years’ worth of data.</p>
-<p>Compare this to Figure&nbsp;6 below. The plot is organized in the exact same way. Again, ten times as many wards. However, you can see that the vast majority of these wards only contributed one or two weeks’ worth of data. Some did more, but even the most dedicated people had gaps in their submissions (even after Samuel’s dutiful efforts of following up with people).</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-sam2015-wards" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-sam2015-wards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/frequency-data/index_files/figure-html/fig-sam2015-wards-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sam2015-wards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Contributions by date and ward in the <code>samuel2015</code> dataset.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>These plots only show the <code>joey2015</code> and the <code>samuel2015</code> datasets. Since the <code>joey2023</code> dataset mostly follows the same methods as the <code>joey2015</code> one, it looks the same, just with more wards. The <code>kjerste2015</code> dataset looks very similar to the <code>samuel2015</code>. The <code>samuel2017</code> mostly does too, except it’s so much bigger because there is so much data.</p>
-<p>I say that these two methods complement each other because they can be used to answer different questions. The sheer number of contributions from so many wards in Samuel’s and Kjerste’s collections means we can see what happens at a macro level. What hymns are the <a href="../../posts/most-common">most common</a>, <a href="../../least-common-hymns">least common</a>, popular around <a href="../../findings.html#category=holidays">holidays</a>, etc. And since the bulk of the data came from the same year, we get a really nice snapshot of what the church was doing at that time.</p>
-<p>However, having data from many years means I can answer other questions that would not be possible no matter how much data is collected from a single year. For example, I’ve shown that people usually sing Thanksgiving hymns the <a href="../../posts/week-after-thanksgiving">Sunday after Thanksgiving</a>, unless that day falls on December 1st, in which case we get a surge of Christmas hymns, most notably <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, suggesting that the Christmas season truly starts on December 1st and not just the Sunday after Thanksgiving. Similarly, I’ve <a href="../../posts/new-years">shown</a> that Christmas hymns wane the further you get from Christmas, and that New Year’s hymns peak not on New Year’s Day, but on New Year’s Eve. Again, the data I have spans many years, so I have a lot of data from every calendar day of the year.</p>
-<p>I was also able to do a pretty cool (but rather technical) analysis (<a href="../../posts/hymns_per_year">part 1</a> and <a href="hymn_per_year_part2">part 2</a>) on how many hymns a ward sings and how long it takes for them to level out. It seems like wards sing about 105 unique hymns per year, and average about 3.47 per week. Most wards level out at around 240 hymns, give or take a couple dozen, and it takes about five years to get to that point. This kind of analysis is only possible if you’ve got many wards contributing many years of data.</p>
-</section>
-<section id="how-much-data-do-i-have" class="level2">
-<h2 class="anchored" data-anchor-id="how-much-data-do-i-have">How much data do I have?</h2>
-<p>Now that we’ve talked about where this data came from, let’s talk about how much data I actually have. I have pooled the data from all five sources together, cleaned them up, made them compatible with each other, and now have a pretty hefty spreadsheet of hymn stats data, the <code>Frequency</code> data.</p>
-<section id="how-many-sacrament-meetings" class="level3">
-<h3 class="anchored" data-anchor-id="how-many-sacrament-meetings">How many sacrament meetings?</h3>
-<p>The <code>Frequency</code> dataset currently has information from 26,030 sacrament meetings. Assuming a rate of one sacrament meeting a year, and 48 meetings a year (52 minus two for ward conference and two for stake conference), it would take a person 542.29 years to experience that many congregational hymns. So, this collection represents far more than what any one person can experience in a lifetime.</p>
-</section>
-<section id="how-many-wards" class="level3">
-<h3 class="anchored" data-anchor-id="how-many-wards">How many wards?</h3>
-<p>This data comes from 1310 unique wards and branches. We’ll se below that most of that comes from the United States. Specifically, 1022 are from the US. At the time of writing, the church <a href="https://newsroom.churchofjesuschrist.org/facts-and-statistics/country/united-states">reports</a> that there are 14,614 congregations in the United States. That means that this sample has information from 6.99% of the wards in the United States, which is not too shabby. We can certainly thank Samuel Bradshaw for this since only 31% of the all the wards in this sample are from my own data collection efforts.</p>
-</section>
-<section id="how-many-hymns" class="level3">
-<h3 class="anchored" data-anchor-id="how-many-hymns">How many hymns?</h3>
-<p>The whole spreadsheet has 88,902 rows in it, each representing a congregational hymn sung in some ward or branch sometime in the past 22 years somewhere in the world. Table&nbsp;2 shows just a snapshot of what the raw dataset looks like under the hood.</p>
-<div class="cell">
-<div id="tbl-raw_sample" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-raw_sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: A sample of the raw dataset
-</figcaption>
-<div aria-describedby="tbl-raw_sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 27%">
-<col style="width: 11%">
-<col style="width: 10%">
-<col style="width: 43%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">id</th>
-<th style="text-align: left;">ward</th>
-<th style="text-align: left;">type</th>
-<th style="text-align: right;">hymn_num</th>
-<th style="text-align: left;">hymn_name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">8777</td>
-<td style="text-align: left;">Winnebago YSA Branch</td>
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: right;">194</td>
-<td style="text-align: left;">There Is a Green Hill Far Away</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">13945</td>
-<td style="text-align: left;">Ashcroft Ward</td>
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: right;">197</td>
-<td style="text-align: left;">O Savior, Thou Who Wearest a Crown</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">17741</td>
-<td style="text-align: left;">Gouda Wijk</td>
-<td style="text-align: left;">Closing</td>
-<td style="text-align: right;">134</td>
-<td style="text-align: left;">I Believe in Christ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">29086</td>
-<td style="text-align: left;">Southshore YSA Ward</td>
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: right;">171</td>
-<td style="text-align: left;">With Humble Heart</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">29881</td>
-<td style="text-align: left;">Redding 1st Ward</td>
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: right;">172</td>
-<td style="text-align: left;">In Humility, Our Savior</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">30020</td>
-<td style="text-align: left;">Banff Branch</td>
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: right;">182</td>
-<td style="text-align: left;">We’ll Sing All Hail to Jesus’ Name</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">37497</td>
-<td style="text-align: left;">Walnut Park Ward</td>
-<td style="text-align: left;">Opening</td>
-<td style="text-align: right;">259</td>
-<td style="text-align: left;">Hope of Israel</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">48412</td>
-<td style="text-align: left;">Whitewater Ward</td>
-<td style="text-align: left;">Sacrament</td>
-<td style="text-align: right;">174</td>
-<td style="text-align: left;">While of These Emblems We Partake</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">65590</td>
-<td style="text-align: left;">American Fork 26th Ward</td>
-<td style="text-align: left;">Closing</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: left;">What Glorious Scenes Mine Eyes Behold</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">76025</td>
-<td style="text-align: left;">Sanford Ward</td>
-<td style="text-align: left;">Opening</td>
-<td style="text-align: right;">305</td>
-<td style="text-align: left;">The Light Divine</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>As you can see, it’s pretty straightforward data. I have columns for the ward name, what I’m calling the “type” (which is just whether it’s the opening, sacrament, intermediate, or closing hymn), the hymn number and the hymn name. The first column, “id”, is simply a unique identifier for each row in the spreadsheet.</p>
-<p>For the most part, there are no partial rows in this spreadsheet. However, a few wards have organized their spreadsheets in such a way that I can recover the dates, but not the “type.” For such wards, I have put an NA in the “type” column and they are excluded from any sort of analysis that uses those types. In a few instances, I’m sent data that has partial information about a sacrament meeting, such as just the opening hymn but not the others. In such cases, I toss the data because I only want to include complete sacrament meetings.</p>
-</section>
-</section>
-<section id="geographic-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="geographic-distribution">Geographic Distribution</h2>
-<p>For each ward/branch I have a separate spreadsheet that includes basic metadata about them. Table&nbsp;3 shows that I have the name (for simplicity, I call it “ward” even though branches are included), and the city, state, and country.</p>
-<div class="cell">
-<div id="tbl-ward_sample" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ward_sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: A sample of the ward metadata
-</figcaption>
-<div aria-describedby="tbl-ward_sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">ward</th>
-<th style="text-align: left;">city</th>
-<th style="text-align: left;">state</th>
-<th style="text-align: left;">country</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Rexburg 14th Ward</td>
-<td style="text-align: left;">Rexburg</td>
-<td style="text-align: left;">Idaho</td>
-<td style="text-align: left;">United States</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">奈良ワード</td>
-<td style="text-align: left;">Nara</td>
-<td style="text-align: left;">NULL</td>
-<td style="text-align: left;">Japan</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Edison Ward</td>
-<td style="text-align: left;">Kennewick</td>
-<td style="text-align: left;">Washington</td>
-<td style="text-align: left;">United States</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Barrio de Pocuro</td>
-<td style="text-align: left;">Santiago</td>
-<td style="text-align: left;">NULL</td>
-<td style="text-align: left;">Chile</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Barrio Las Araucarias</td>
-<td style="text-align: left;">Santiago</td>
-<td style="text-align: left;">NULL</td>
-<td style="text-align: left;">Chile</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Provo YSA 161st Ward</td>
-<td style="text-align: left;">Provo</td>
-<td style="text-align: left;">Utah</td>
-<td style="text-align: left;">United States</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Amman 1st Branch</td>
-<td style="text-align: left;">Amman</td>
-<td style="text-align: left;">NULL</td>
-<td style="text-align: left;">Jordan</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Morgan 5th Ward</td>
-<td style="text-align: left;">Morgan</td>
-<td style="text-align: left;">Utah</td>
-<td style="text-align: left;">United States</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DaveOnFaith Ward</td>
-<td style="text-align: left;">Unknown</td>
-<td style="text-align: left;">Unknown</td>
-<td style="text-align: left;">Unknown</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mesa 5th Ward</td>
-<td style="text-align: left;">Mesa</td>
-<td style="text-align: left;">Arizona</td>
-<td style="text-align: left;">United States</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<section id="countries" class="level3">
-<h3 class="anchored" data-anchor-id="countries">Countries</h3>
-<p>I currently have data from 59 countries, however, 87.51% of the data comes from the United States. A fair amount also comes from Canada, the United Kingdom, and Australia. Table&nbsp;4 (click to expand) shows the full breakdown of how much data I have from each country, in terms of how many hymns, how many sacrament meetings, and how many wards. So, the US is over-represented in this dataset, compared to how members of the church are distributed around the world. This makes sense given that recruitment efforts were based in the United States and were in English. Therefore, while I can’t say that the patterns here do not represent wards outside of the US, any extrapolation of these patterns to other countries should be taken with a grain of salt.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand to see the breakdown by country
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="cell">
-<div id="tbl-countries" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-countries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Countries in the dataset
-</figcaption>
-<div aria-describedby="tbl-countries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 42%">
-<col style="width: 7%">
-<col style="width: 11%">
-<col style="width: 7%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">country</th>
-<th style="text-align: right;">hymns</th>
-<th style="text-align: right;">meetings</th>
-<th style="text-align: right;">wards</th>
-<th style="text-align: left;">percent of full dataset</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">United States</td>
-<td style="text-align: right;">77166</td>
-<td style="text-align: right;">22668</td>
-<td style="text-align: right;">1022</td>
-<td style="text-align: left;">87.51%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Canada</td>
-<td style="text-align: right;">3110</td>
-<td style="text-align: right;">869</td>
-<td style="text-align: right;">31</td>
-<td style="text-align: left;">3.53%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">United Kingdom</td>
-<td style="text-align: right;">1828</td>
-<td style="text-align: right;">501</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">2.07%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Netherlands</td>
-<td style="text-align: right;">900</td>
-<td style="text-align: right;">255</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">1.02%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">France</td>
-<td style="text-align: right;">865</td>
-<td style="text-align: right;">245</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">0.98%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Australia</td>
-<td style="text-align: right;">436</td>
-<td style="text-align: right;">118</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">0.49%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Denmark</td>
-<td style="text-align: right;">413</td>
-<td style="text-align: right;">144</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.47%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Northern Mariana Islands</td>
-<td style="text-align: right;">354</td>
-<td style="text-align: right;">101</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.40%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mexico</td>
-<td style="text-align: right;">318</td>
-<td style="text-align: right;">89</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">0.36%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Taiwan</td>
-<td style="text-align: right;">254</td>
-<td style="text-align: right;">75</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.29%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Spain</td>
-<td style="text-align: right;">251</td>
-<td style="text-align: right;">77</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.28%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Brazil</td>
-<td style="text-align: right;">201</td>
-<td style="text-align: right;">57</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.23%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Argentina</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">63</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.20%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Democratic Republic of the Congo</td>
-<td style="text-align: right;">164</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.19%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Germany</td>
-<td style="text-align: right;">156</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.18%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">New Zealand</td>
-<td style="text-align: right;">149</td>
-<td style="text-align: right;">41</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.17%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Chile</td>
-<td style="text-align: right;">146</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.17%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ghana</td>
-<td style="text-align: right;">145</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">0.16%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">England</td>
-<td style="text-align: right;">140</td>
-<td style="text-align: right;">42</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.16%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Japan</td>
-<td style="text-align: right;">92</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.10%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Indonesia</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">26</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">0.09%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Philippines</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.09%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Finland</td>
-<td style="text-align: right;">74</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.08%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Liberia</td>
-<td style="text-align: right;">68</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.08%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Trinidad and Tobago</td>
-<td style="text-align: right;">68</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">0.08%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Uganda</td>
-<td style="text-align: right;">64</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.07%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Italy</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.06%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Samoa</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.05%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sweden</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.05%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Bulgaria</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ecuador</td>
-<td style="text-align: right;">37</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Colombia</td>
-<td style="text-align: right;">34</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Guyana</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">0.03%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Paraguay</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.03%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Vanuatu</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.02%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Peru</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.02%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">French Polynesia</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.02%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Poland</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">China</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">New Caledonia</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Jordan</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Uruguay</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Belgium</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Puerto Rico</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Zimbabwe</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">India</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Suriname</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Dominican Republic</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Guam</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Guatemala</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Israel</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Nigeria</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Panama</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">South Africa</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">American Samoa</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Dominica</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Switzerland</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Thailand</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="states-and-provinces" class="level3">
-<h3 class="anchored" data-anchor-id="states-and-provinces">States and Provinces</h3>
-<p>Within the United States, I have data from 47 states and the District of Columbia, as seen in Table&nbsp;5. The only states I don’t have data from are Arkansas, Delaware, and North Dakota. Unsurprisingly, the bulk of the data (42.58%) comes from Utah. Other western states are well-represented, but so are Texas, North Carolina, and Georgia. Georgia is probably so high on this list because I lived there and contributed many years’ worth of data from my own wards. Again, this is not representative of the distribution of church members in the US. Especially for the states that have less data, the influence of a large contribution by a single ward can have an overwhelming influence on the overall results for that state. For that reason, I do very little geographic analysis in this blog.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand to see the breakdown by state
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="cell">
-<div id="tbl-states" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-states-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5: US states in the dataset
-</figcaption>
-<div aria-describedby="tbl-states-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">state</th>
-<th style="text-align: right;">hymns</th>
-<th style="text-align: right;">meetings</th>
-<th style="text-align: right;">wards</th>
-<th style="text-align: left;">percent of US data</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Utah</td>
-<td style="text-align: right;">32784</td>
-<td style="text-align: right;">9786</td>
-<td style="text-align: right;">401</td>
-<td style="text-align: left;">42.58%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Colorado</td>
-<td style="text-align: right;">4246</td>
-<td style="text-align: right;">1248</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">5.52%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Idaho</td>
-<td style="text-align: right;">4067</td>
-<td style="text-align: right;">1213</td>
-<td style="text-align: right;">94</td>
-<td style="text-align: left;">5.28%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">North Carolina</td>
-<td style="text-align: right;">3288</td>
-<td style="text-align: right;">1012</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">4.27%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">California</td>
-<td style="text-align: right;">3072</td>
-<td style="text-align: right;">886</td>
-<td style="text-align: right;">73</td>
-<td style="text-align: left;">3.99%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Texas</td>
-<td style="text-align: right;">2963</td>
-<td style="text-align: right;">889</td>
-<td style="text-align: right;">44</td>
-<td style="text-align: left;">3.85%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Georgia</td>
-<td style="text-align: right;">2326</td>
-<td style="text-align: right;">673</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: left;">3.02%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Washington</td>
-<td style="text-align: right;">2264</td>
-<td style="text-align: right;">702</td>
-<td style="text-align: right;">36</td>
-<td style="text-align: left;">2.94%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Virginia</td>
-<td style="text-align: right;">2143</td>
-<td style="text-align: right;">644</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">2.78%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Arizona</td>
-<td style="text-align: right;">1947</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: left;">2.53%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Maryland</td>
-<td style="text-align: right;">1652</td>
-<td style="text-align: right;">492</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">2.15%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Florida</td>
-<td style="text-align: right;">1397</td>
-<td style="text-align: right;">423</td>
-<td style="text-align: right;">22</td>
-<td style="text-align: left;">1.81%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Wisconsin</td>
-<td style="text-align: right;">1388</td>
-<td style="text-align: right;">406</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">1.80%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ohio</td>
-<td style="text-align: right;">1297</td>
-<td style="text-align: right;">385</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">1.68%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Iowa</td>
-<td style="text-align: right;">1262</td>
-<td style="text-align: right;">374</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">1.64%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Nevada</td>
-<td style="text-align: right;">1122</td>
-<td style="text-align: right;">337</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">1.46%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Missouri</td>
-<td style="text-align: right;">998</td>
-<td style="text-align: right;">308</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: left;">1.30%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">New Mexico</td>
-<td style="text-align: right;">998</td>
-<td style="text-align: right;">324</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">1.30%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Illinois</td>
-<td style="text-align: right;">976</td>
-<td style="text-align: right;">296</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">1.27%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Oregon</td>
-<td style="text-align: right;">877</td>
-<td style="text-align: right;">268</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">1.14%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Michigan</td>
-<td style="text-align: right;">803</td>
-<td style="text-align: right;">240</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">1.04%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Wyoming</td>
-<td style="text-align: right;">652</td>
-<td style="text-align: right;">191</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">0.85%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Tennessee</td>
-<td style="text-align: right;">638</td>
-<td style="text-align: right;">193</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: left;">0.83%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">New York</td>
-<td style="text-align: right;">527</td>
-<td style="text-align: right;">155</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: left;">0.68%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Louisiana</td>
-<td style="text-align: right;">407</td>
-<td style="text-align: right;">113</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.53%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Indiana</td>
-<td style="text-align: right;">394</td>
-<td style="text-align: right;">110</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">0.51%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Pennsylvania</td>
-<td style="text-align: right;">379</td>
-<td style="text-align: right;">114</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">0.49%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Maine</td>
-<td style="text-align: right;">335</td>
-<td style="text-align: right;">98</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.44%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Hawaii</td>
-<td style="text-align: right;">313</td>
-<td style="text-align: right;">90</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">0.41%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Connecticut</td>
-<td style="text-align: right;">263</td>
-<td style="text-align: right;">77</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.34%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Oklahoma</td>
-<td style="text-align: right;">181</td>
-<td style="text-align: right;">54</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.24%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Kentucky</td>
-<td style="text-align: right;">137</td>
-<td style="text-align: right;">38</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.18%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Nebraska</td>
-<td style="text-align: right;">136</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.18%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Minnesota</td>
-<td style="text-align: right;">133</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.17%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">South Carolina</td>
-<td style="text-align: right;">124</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.16%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">New Hampshire</td>
-<td style="text-align: right;">121</td>
-<td style="text-align: right;">33</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.16%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Alabama</td>
-<td style="text-align: right;">75</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.10%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Alberta</td>
-<td style="text-align: right;">65</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.08%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">South Dakota</td>
-<td style="text-align: right;">55</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.07%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Kansas</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.06%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Alaska</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.06%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Montana</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">0.05%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">District of Columbia</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.02%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mississippi</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Rhode Island</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">New Jersey</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Vermont</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">West Virginia</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Massachusetts</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Since Canada is the second largest country in this dataset, it’s worth a look to see how that data is broken down (Table&nbsp;6). Only five provinces are represented in this sample, and they definitely don’t reflect the distribution of members there. About half the Canadian data comes from a single contribution of over eight years of data from a ward in New Brunswick. So even though there are many more members in Alberta, that one ward overwhelms the rest of the Canadian sample.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand to see the breakdown by Canadian province
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="cell">
-<div id="tbl-canada" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-canada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;6: Canadian provinces in the dataset
-</figcaption>
-<div aria-describedby="tbl-canada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 31%">
-<col style="width: 8%">
-<col style="width: 13%">
-<col style="width: 8%">
-<col style="width: 37%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">state</th>
-<th style="text-align: right;">hymns</th>
-<th style="text-align: right;">meetings</th>
-<th style="text-align: right;">wards</th>
-<th style="text-align: left;">percent of Canadian data</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">New Brunswick</td>
-<td style="text-align: right;">1642</td>
-<td style="text-align: right;">445</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">52.80%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Alberta</td>
-<td style="text-align: right;">1315</td>
-<td style="text-align: right;">383</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: left;">42.28%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Quebec</td>
-<td style="text-align: right;">90</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">2.89%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Nova Scotia</td>
-<td style="text-align: right;">59</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">1.90%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Prince Edward Island</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.13%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="cities-in-utah" class="level3">
-<h3 class="anchored" data-anchor-id="cities-in-utah">Cities in Utah</h3>
-<p>Within Utah, we can even break it down by city. Table&nbsp;7 shows that Provo has the largest representation. A big chunk of these come from YSA and Married Student wards. This again makes sense since much of the recruitment efforts took place in Provo. Spanish Fork is high on the list because that’s where I currently live.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand to see the breakdown by city in Utah
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="cell">
-<div id="tbl-utah" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-utah-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;7: Utah cities in the dataset
-</figcaption>
-<div aria-describedby="tbl-utah-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">city</th>
-<th style="text-align: right;">hymns</th>
-<th style="text-align: right;">meetings</th>
-<th style="text-align: right;">wards</th>
-<th style="text-align: left;">percent of Utah data</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Provo</td>
-<td style="text-align: right;">6435</td>
-<td style="text-align: right;">1962</td>
-<td style="text-align: right;">65</td>
-<td style="text-align: left;">20.39%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Salt Lake City</td>
-<td style="text-align: right;">2181</td>
-<td style="text-align: right;">670</td>
-<td style="text-align: right;">25</td>
-<td style="text-align: left;">6.91%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">American Fork</td>
-<td style="text-align: right;">2030</td>
-<td style="text-align: right;">633</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">6.43%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Spanish Fork</td>
-<td style="text-align: right;">1970</td>
-<td style="text-align: right;">604</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">6.24%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Orem</td>
-<td style="text-align: right;">1709</td>
-<td style="text-align: right;">533</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">5.42%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Draper</td>
-<td style="text-align: right;">1374</td>
-<td style="text-align: right;">452</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">4.35%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Lehi</td>
-<td style="text-align: right;">1256</td>
-<td style="text-align: right;">389</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">3.98%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Saratoga Springs</td>
-<td style="text-align: right;">1211</td>
-<td style="text-align: right;">360</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">3.84%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">West Jordan</td>
-<td style="text-align: right;">1052</td>
-<td style="text-align: right;">331</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">3.33%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Taylorsville</td>
-<td style="text-align: right;">794</td>
-<td style="text-align: right;">237</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">2.52%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Hyrum</td>
-<td style="text-align: right;">723</td>
-<td style="text-align: right;">242</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">2.29%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">West Valley City</td>
-<td style="text-align: right;">675</td>
-<td style="text-align: right;">198</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">2.14%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Payson</td>
-<td style="text-align: right;">513</td>
-<td style="text-align: right;">159</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">1.63%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Roy</td>
-<td style="text-align: right;">509</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">1.61%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mount Pleasant</td>
-<td style="text-align: right;">502</td>
-<td style="text-align: right;">143</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">1.59%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Hurricane</td>
-<td style="text-align: right;">439</td>
-<td style="text-align: right;">146</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">1.39%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Cedar City</td>
-<td style="text-align: right;">393</td>
-<td style="text-align: right;">117</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">1.25%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Bountiful</td>
-<td style="text-align: right;">339</td>
-<td style="text-align: right;">106</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">1.07%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">South Jordan</td>
-<td style="text-align: right;">335</td>
-<td style="text-align: right;">113</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">1.06%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Herriman</td>
-<td style="text-align: right;">303</td>
-<td style="text-align: right;">91</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.96%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Layton</td>
-<td style="text-align: right;">280</td>
-<td style="text-align: right;">82</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">0.89%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">St.&nbsp;George</td>
-<td style="text-align: right;">278</td>
-<td style="text-align: right;">87</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">0.88%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sandy</td>
-<td style="text-align: right;">271</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">0.86%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Highland</td>
-<td style="text-align: right;">270</td>
-<td style="text-align: right;">83</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">0.86%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Logan</td>
-<td style="text-align: right;">268</td>
-<td style="text-align: right;">78</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">0.85%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Springville</td>
-<td style="text-align: right;">268</td>
-<td style="text-align: right;">82</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">0.85%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Farr West</td>
-<td style="text-align: right;">255</td>
-<td style="text-align: right;">93</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.81%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Riverton</td>
-<td style="text-align: right;">248</td>
-<td style="text-align: right;">77</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.79%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Centerville</td>
-<td style="text-align: right;">240</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.76%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pleasant Grove</td>
-<td style="text-align: right;">225</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.71%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">North Logan</td>
-<td style="text-align: right;">224</td>
-<td style="text-align: right;">61</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.71%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Huntsville</td>
-<td style="text-align: right;">223</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.71%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Coalville</td>
-<td style="text-align: right;">221</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.70%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sunset</td>
-<td style="text-align: right;">217</td>
-<td style="text-align: right;">65</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.69%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Kamas</td>
-<td style="text-align: right;">196</td>
-<td style="text-align: right;">59</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.62%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Bluffdale</td>
-<td style="text-align: right;">175</td>
-<td style="text-align: right;">54</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.55%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ogden</td>
-<td style="text-align: right;">164</td>
-<td style="text-align: right;">48</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.52%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Moab</td>
-<td style="text-align: right;">154</td>
-<td style="text-align: right;">44</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.49%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Washington</td>
-<td style="text-align: right;">154</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.49%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Harrisville</td>
-<td style="text-align: right;">153</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.48%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">West Haven</td>
-<td style="text-align: right;">147</td>
-<td style="text-align: right;">48</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.47%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Providence</td>
-<td style="text-align: right;">143</td>
-<td style="text-align: right;">48</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.45%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Heber City</td>
-<td style="text-align: right;">141</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.45%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Manti</td>
-<td style="text-align: right;">136</td>
-<td style="text-align: right;">44</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">0.43%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Parowan</td>
-<td style="text-align: right;">129</td>
-<td style="text-align: right;">41</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.41%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Murray</td>
-<td style="text-align: right;">102</td>
-<td style="text-align: right;">30</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.32%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Farmington</td>
-<td style="text-align: right;">98</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.31%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Indianola</td>
-<td style="text-align: right;">94</td>
-<td style="text-align: right;">28</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.30%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Woods Cross</td>
-<td style="text-align: right;">90</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.29%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Oakley</td>
-<td style="text-align: right;">89</td>
-<td style="text-align: right;">30</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.28%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Jordan River</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.25%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Holladay</td>
-<td style="text-align: right;">75</td>
-<td style="text-align: right;">22</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.24%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Salem</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">22</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.22%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Tremonton</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">22</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.22%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Woodland Hills</td>
-<td style="text-align: right;">66</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.21%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Eagle Mountain</td>
-<td style="text-align: right;">65</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.21%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Unknown</td>
-<td style="text-align: right;">63</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.20%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Kanab</td>
-<td style="text-align: right;">59</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.19%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Erda</td>
-<td style="text-align: right;">51</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.16%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Monticello</td>
-<td style="text-align: right;">48</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.15%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Woodruff</td>
-<td style="text-align: right;">44</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.14%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Alpine</td>
-<td style="text-align: right;">42</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.13%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Morgan</td>
-<td style="text-align: right;">41</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.13%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Richmond</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.11%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Smithfield</td>
-<td style="text-align: right;">34</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.11%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Eden</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.10%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Midvale</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.10%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Santaquin</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.09%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Syracuse</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.09%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Kaysville</td>
-<td style="text-align: right;">26</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.08%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Brigham City</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fruit Heights</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Clinton</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Lahi</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">West Point</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">0.04%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fountain Green</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">0.03%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Hoytsville</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.03%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Saint George</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.03%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sun City</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.03%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Plain City</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.02%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">North Salt Lake</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.02%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Clearfield</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Hyde Park</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Maple Mountain</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Paradise</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Wallsburg</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Alton</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Bennion</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Elwood</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Enoch</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ephraim</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Kearns</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mapleton</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pleasant View</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Riverdale</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sterling</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Tooele</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.01%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Marion</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.00%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>So, at all levels of geography, there are sampling errors, many of them biased towards where the recruitment has happened. There’s not much I can do about that, but it’s still useful to see where the data comes from.</p>
-</section>
-</section>
-<section id="distribution-across-time" class="level2">
-<h2 class="anchored" data-anchor-id="distribution-across-time">Distribution across time</h2>
-<p>The oldest datapoint in this sample comes from April 28, 2002 and the newest is currently from December 31, 2024 (some wards’ spreadsheets have future meetings planned already). So, the data spans over twenty years. Considering I started data collection in 2013, it’s amazing that I have data from 2002 and 2003 at all—amazing that someone held on to those records for so long, that they happened to hear about the project, and that they were willing to contribute it all! If we ignore a few gaps in 2002 and 2003 and the second quarter of 2020 when in-person sacrament meetings were suspended, I have a nearly unbroken line of data spanning two decades.</p>
-<p>Of course, like the geographic distribution, the temporal distribution of this dataset, is not even. Figure&nbsp;7 shows that there is a major spike in data in the mid-2010s. The project started in 2013, so anything from before then is from old spreadsheets that people sent us, and unsurprisingly, the further back you go the less data I have. In 2013 and 2014 it picks up as I began my recruitment efforts. Samuel’s first survey explains the increase in 2015. And his 2017 survey, which began in the second half of 2016, explains the monstrous spike that year. Samuel stopped collecting data in early 2018, and I only recently started getting more in late 2023, so anything from 2018 on is mostly from spreadsheets collected in 2023. Data from 2024 is from my increased efforts around the time of the new batch of hymns coming out.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-years" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/frequency-data/index_files/figure-html/fig-years-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Sacrament meetings by year
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>So, like the geographic data, it’s a wide sample, but very highly biased towards when and where data collection was happening. For that reason, I am hesitant to make any claims about changes over time. Especially because the early years are only represented by a few wards.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>On this page, I’ve explained where the data came from and how much of it I have. It is a conglomeration of five different projects by three people, all of whom started to get interested in hymn stats around 2014 completely independently of each other. Samuel Bradshaw and Kjerste Christensen’s surveys got data from many wards, while mine got lots of data from a smaller number of wards. There are over 400 years’ worth of sacrament meetings represented in this sample. It mostly comes from the United States, with the bulk of that being from Utah, but many states and countries are represented in this sample.</p>
-<p>Hopefully that answers any questions you might have about the data used in this blog. If you would like to contribute your own data, you may certainly do so <a href="../../contribute.html">here</a>!</p>
-
-
-</section>
-
- ]]></description>
-  <category>meta</category>
-  <guid>https://hymnstats.joeystanley.com/posts/frequency-data/</guid>
-  <pubDate>Sat, 30 Dec 2023 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>What hymns are sung around New Year’s Day?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/new-years/</link>
-  <description><![CDATA[ 
-
-
-
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This post is based on data from 658 sacrament meetings from 250 wards. It covers includes data from late 2003 to late 2023. 34% of the data comes from Utah, 53% comes from elsewhere in the US, and 13% comes from outside the US.</p>
-</div>
-</div>
-<section id="what-hymns-are-sung" class="level2">
-<h2 class="anchored" data-anchor-id="what-hymns-are-sung">What hymns are sung?</h2>
-<p>Figure&nbsp;1 shows the most popular congregational hymns between December 26th and January 7th. I’ve color-coded the hymn names to correspond to the holiday they are most closely associated with. Hymns 201–214 are Christmas hymns and are colored in red. Hymns 215 and 217 are New Year’s hymns and are colored in blue. Everything else is colored in gray.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-limbo_plus" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-limbo_plus-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Most popular congregational hymns the two Sundays after Christmas</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>It’s apparent that it is quite popular to sung New Year’s hymns the Sunday after Christmas. Almost 50% of wards sing <hymn>Come, Let Us Anew (#217)</hymn> and about 44% sing <hymn>Ring Out, Wild Bells (#215)</hymn>. There is also a clear stand out for the most most popular Christmas hymn during this week, which is <hymn>I Heard the Bells on Christmas Day (#215)</hymn>, but only about 17% of wards sing it the Sunday after Christmas.</p>
-<p>What is interesting is that <hymn>We Are Sowing (#216)</hymn> made it on this chart. It’s not a New Year’s hymn (it’s not listed as one in topics index), but it is, for some reason, sandwiched between the two that are. What seems like is happening is that it gets lumped in by association. Unsurprising, but pretty interesting that it happens enough to show up on the plot.</p>
-<p>But, you might argue that the week after Christmas is a totally different Sunday than the week after New Year’s. And you’d be right! If we break the data down into those two weeks, we get very different pictures! <span class="citation" data-cites="fig_limbo">@fig_limbo</span> shows the most popular hymns just in the last week of December. You can see that while the New Year’s hymns are still at the top, all the rest are all Christmas hymns. And if you look closely, <hymn>Ring Out, Wild Bells (#215)</hymn> is the more common of the two New Year’s hymns.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-limbo" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-limbo-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Most popular congregational hymns December 26th–31st</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>If we now look at the first Sunday in January, we get a totally different picture. Figure&nbsp;3 shows that once we’re on the January side of New Year’s, no Christmas hymn is popular. We again get the New Year’s hymns, but all the other hymns are just generic <a href="../../posts/most_common">popular hymns</a> without much of a theme.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-jan_only" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-jan_only-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Most popular congregational hymns January 1st–7th</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>So, while this blog post is intending to cover both of these weeks at the same time, it’s important to separate them out as best I can.</p>
-</section>
-<section id="christmas-vs.-new-years" class="level2">
-<h2 class="anchored" data-anchor-id="christmas-vs.-new-years">Christmas vs.&nbsp;New Year’s</h2>
-<p>Let’s dive just a little bit deeper into just the Sunday after Christmas, Table&nbsp;1 shows the percentage of wards in my sample that sing Christmas and New Year’s hymns the Sunday after Christmas The top right cell shows that 34.6% of wards sing at least one Christmas hymn and no New Year’s hymns. The bottom left cell shows that 28.2% of wards sing at least one New Year’s hymn and no Christmas hymns. It is interesting that these numbers are so similar even, so even though the two blue bars in Figure&nbsp;2 above were much longer, the many shorter red bars add up to be about the same.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-n_of_each" class="anchored">
-
-<div id="xvkauwiksa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xvkauwiksa table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#xvkauwiksa thead, #xvkauwiksa tbody, #xvkauwiksa tfoot, #xvkauwiksa tr, #xvkauwiksa td, #xvkauwiksa th {
-  border-style: none;
-}
-
-#xvkauwiksa p {
-  margin: 0;
-  padding: 0;
-}
-
-#xvkauwiksa .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#xvkauwiksa .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#xvkauwiksa .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#xvkauwiksa .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#xvkauwiksa .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#xvkauwiksa .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#xvkauwiksa .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#xvkauwiksa .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#xvkauwiksa .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#xvkauwiksa .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#xvkauwiksa .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#xvkauwiksa .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#xvkauwiksa .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#xvkauwiksa .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#xvkauwiksa .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xvkauwiksa .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#xvkauwiksa .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#xvkauwiksa .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#xvkauwiksa .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xvkauwiksa .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#xvkauwiksa .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xvkauwiksa .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#xvkauwiksa .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xvkauwiksa .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#xvkauwiksa .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#xvkauwiksa .gt_left {
-  text-align: left;
-}
-
-#xvkauwiksa .gt_center {
-  text-align: center;
-}
-
-#xvkauwiksa .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#xvkauwiksa .gt_font_normal {
-  font-weight: normal;
-}
-
-#xvkauwiksa .gt_font_bold {
-  font-weight: bold;
-}
-
-#xvkauwiksa .gt_font_italic {
-  font-style: italic;
-}
-
-#xvkauwiksa .gt_super {
-  font-size: 65%;
-}
-
-#xvkauwiksa .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#xvkauwiksa .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#xvkauwiksa .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#xvkauwiksa .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#xvkauwiksa .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#xvkauwiksa .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#xvkauwiksa .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>Percentage of wards that sing Thanksgiving and Christmas hymns the
-Sunday after Thanksgiving</p> </caption>
-  <thead>
-    
-    <tr class="gt_col_headings gt_spanner_row">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Christmas hymns">Christmas hymns</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="New Year's hymns">
-        <span class="gt_column_spanner">New Year's hymns</span>
-      </th>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="yes">yes</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="no">no</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">yes</th>
-<td headers="stub_1_1 yes" class="gt_row gt_right">18.1%</td>
-<td headers="stub_1_1 no" class="gt_row gt_right">34.6%</td></tr>
-    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">no</th>
-<td headers="stub_1_2 yes" class="gt_row gt_right">28.2%</td>
-<td headers="stub_1_2 no" class="gt_row gt_right">19.1%</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-</div>
-<p>Interestingly, the numbers in the other corners of the box are also pretty even. About 18.1% of wards sing both Christmas and New Year’s hymns, while 19.1% of wards sing neither. And if we add up the rows and the columns, they all come close to about 50%. Here’s a (maybe confusing) summary of what’s happening:</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Fun Fact
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>About half of the wards sing Christmas hymns and half don’t. Of the ones that do, about a third also sing New Year’s hymns. Of the one’s that don’t, about a third also do not sing New Year’s hymns.</p>
-</div>
-</div>
-<p>The amazing thing is that if you swap Christmas and New Year’s in all those statements, it’s still true!</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Funner Fact
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>About half of the wards sing New Year’s hymns and half don’t. Of the ones that do, about a third also sing Christmas hymns. Of the one’s that don’t, about a third also do not sing Christmas hymns.</p>
-</div>
-</div>
-<p>I find the symmetry in those results <em>very</em> satisfying.</p>
-<p>I took a look at the wards that didn’t sing either Christmas or New Year’s hymns the last week of December and I didn’t see too much about what hymns they did sing. There were a few that I could see fitting with the theme of the closing of a year, like <hymn>God Be With You Till We Meet Again (#152)</hymn>, <hymn>The Time is Far Spent (#266)</hymn>, <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>, <hymn>Sing We Now at Parting (#156)</hymn>, <hymn>Lord, Dismiss Us with Thy Blessing (#163)</hymn>, <hymn>Lord, We Ask Thee Ere We Part (#153)</hymn>, and <hymn>Now the Day Is Over (#159)</hymn>. Another theme was people choosing “forward looking” hymns like <hymn>Go Forth with Faith (#263)</hymn>, <hymn>Let Us All Press On (#243)</hymn>, <hymn>Onward, Christian Soldiers (#246)</hymn>, <hymn>Put Your Shoulder to the Wheel (#252)</hymn>. Personally, I appreciate the thought behind the selection of these hymns. Unfortunately, they are just not common enough to show up on any of these plots.</p>
-<p>The other pattern, singing both a Christmas hymn <em>and</em> a New Year’s hymn, is just as common as singing neither. Like what we saw for <a href="../../posts/week-after-thanksgiving">the week after Thanksgiving</a>, there does seem to be a pattern though for when within the meeting these Christmas and New Year’s hymns are sung. Perhaps unsurprisingly, the most common configuration is for the opening hymn to be a Christmas hymn and the closing hymn to be a New Year’s hymn. That happened in 90% of the wards I have data from that sang both hymn types in the same meeting. Of those, the most sang some other hymn as the intermediate hymn, then Christmas, then New Year’s. The other configurations I have attestations of are shown in Table&nbsp;2 and only showed up once or twice. (Note here that “Other” means any hymn that is not a Christmas or New Year’s hymn.)</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-both-configs" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: Configurations of Christmas and New Year’s hymns among wards that sing both the Sunday after Christmas</caption>
-<colgroup>
-<col style="width: 14%">
-<col style="width: 12%">
-<col style="width: 16%">
-<col style="width: 14%">
-<col style="width: 20%">
-<col style="width: 21%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Opening</th>
-<th style="text-align: left;">Sacrament</th>
-<th style="text-align: left;">Intermediate</th>
-<th style="text-align: left;">Closing</th>
-<th style="text-align: right;">number of wards</th>
-<th style="text-align: left;">percent of wards</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">None/Other</td>
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: left;">51.9%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">28.8%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">7.7%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">5.8%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">None/Other</td>
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">1.9%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">1.9%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">Christmas</td>
-<td style="text-align: left;">New Year’s</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">1.9%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="new-years-day" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="new-years-day">New Year’s Day</h2>
-<p>Like what we saw with <a href="../../posts/week-after-thanksgiving">the Sunday after Thanksgiving</a>, there is an effect that the actual <em>date</em> has on the hymns. Specifically, if that Sunday lands on December 1st, the numnber of Christmas hymns goes up quite a bit. Do we see the same kind of pattern with New Year’s Day?</p>
-<p>Probably unsurprisingly, yes! Figure&nbsp;4 shows the breakdown of Christmas, New Year’s and other hymns from December 26th through January 7th.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-by_date" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-by_date-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Proportion of Christmas, New Year’s, and Other hymns by date</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>I think this is a largely unsurprising pattern. First, we see that the number of Christmas hymns decreases the further you get from Christmas. In secular American Christmas culture, it seems like the Christmas season ends sometime between Christmas and New Year’s. However, in some Christian traditions, they do honor the fact that the “twelve days of Christmas” <em>starts</em> on Christmas day, meaning it extends until January 5th, with various celebrations happening after that, like <a href="https://en.wikipedia.org/wiki/Epiphany_(holiday)">Epiphany</a> on the 6th. In my experience (keeping mind that I’m not an expert in Mormon culture), the end of the Christmas season for Latter-day Saints is in-line with mainstream American culture and happens pretty soon after the 25th. This plot shows pretty strong evidence for that: there was no indication of Christmas hymns being sung during the last three days of Christmas.</p>
-<p>The second pattern we see is the rise and fall of the popularity of New Year’s hymns. The closer you are to New Year’s Eve—and yes, it appears to peak on New Year’s Eve—the more likely you are to sing New Year’s hymns.</p>
-<p>Finally, all the other hymns gradually become more common as you progress from December 26th to January 7th. It’s actually quite a straight line, so there doesn’t appear to be a jump at any one point.</p>
-<p>So, when looking at the transition from Thanksgiving to Christmas, there was an abrupt pivot point at December 1st. In this case, there is no such abrupt change. Instead, we gradually transition away from Christmas, into New Year’s, and away from both over the course of two weeks. I think this is quite a cool pattern to see because, as far as I’m aware, this is almost entirely unconscious. I don’t think any music coordinator looks at their notes from previous years and thinks, “well, this year, we’re one day further to New Year’s than we were last year, so I’ll lower the odds of choosing a New Year’s hymn by 5%.” But, when aggregating many wards over many years, the pattern is pretty tidy.</p>
-<p>I should mention that seeing the trend shown in Figure&nbsp;4 is only possible because I have data spanning over 20 years. Since the the Sundays around New Year’s Day fall on different dates, I can compare those days to each other. So, for example, in 2024, New Year’s Day will be on a Monday, so Sunday will be New Year’s Eve. This was also true in 2007 and 2018, so that column represents those three years pooled together. I think this is important to mention because no matter how much data is collected from one year, you’ll still only see just one of these columns. It takes a lot of data over many years to be able to see this kind of nuance.</p>
-<p>To dig just a little deeper, I wanted to see the trends for specific hymns across these dates. In Figure&nbsp;5 (sorry for the small text), each of the 14 Christmas hymns and two New Year’s Hymns is in their own panel. Lines and dots are higher if that hymn is sung more often on that day.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-facet" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-facet-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Christmas and New Year’s hymn frequencies, Dec 26 through Jan 7</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="page-columns page-full"><p>Among the New Year’s hymns, we again see that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December and that <hymn>Come, Let Us Anew (#217)</hymn> is more common in January. Among the Christmas hymns, there’s nothing that really stands out. Each hymn has its own story of course, but it’s nothing that we haven’t already seen when looking at <a href="../../posts/christmas">Christmas hymns over the course of December</a>.</p><div class="no-row-height column-margin column-container"><span class="">A <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> test suggests that this difference—that <hymn>Ring Out, Wild Bells (#215)</hymn> is more common before New Year’s and <hymn>Come, Let Us Anew (#217)</hymn> is more common after—is statistically significant (<img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> = 8.78, df = 1, <em>p</em> = 0.002). This may be another case where the order that they appear in the hymnal influences when they’re sung.</span></div></div>
-<p>Finally, just to dig a even deeper, Figure&nbsp;6 shows when the two New Year’s hymns are sung within Sacrament meeting. Because intermediate hymns are not common, it’s no surprise that their bars are smaller. And it’s highly unusual to sing these as sacrament hymns, but apparently it has been done.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-type" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/new-years/index_files/figure-html/fig-type-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: When New Year’s hymns are sung in Sacrament meeting</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="page-columns page-full"><p>I’ve split the data up by month because I thought there might be a difference, and it turns out I was right. <hymn>Come, Let Us Anew (#217)</hymn> is about equally likely to be sung as an opening hymn or a closing hymn, regardless of whether it’s before New Year’s or after, with maybe a slight preference for it as an opening hymn in January. But <hymn>Ring Out, Wild Bells (#215)</hymn> is far more common as a closing hymn in December and as an opening hymn in January.  I think the general idea is that New Year’s hymns are most common in the slot closest to New Year’s itself, so since closing hymns in December are closer to New Year’s, you sing them last, and since opening hymns are closer in January, you sing them as opening hymns.</p><div class="no-row-height column-margin column-container"><span class="">Once again, a <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> test suggests that this difference in when <hymn>Ring Out, Wild Bells (#215)</hymn> is sung in the meeting is statistically significant (<img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> = 29.56, df = 1, <em>p</em> &lt; 0.001).</span></div></div>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Christmas hymns are less common the further you are from Christmas. New Year’s hymns are common the closer you are to New Year’s. Specifically, <hymn>Ring Out, Wild Bells (#215)</hymn> is more common in December (specifically as a closing hymn) and <hymn>Come, Let Us Anew (#217)</hymn> is more common in January. Other hymns gradually become more and more common so that by the time the twelve days of Christmas are over, almost all congregations have transitioned completely away from either holiday.</p>
-
-
-</section>
-
- ]]></description>
-  <category>holidays</category>
-  <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/new-years/</guid>
-  <pubDate>Fri, 29 Dec 2023 07:00:00 GMT</pubDate>
-  <media:content url="https://hymnstats.joeystanley.com/posts/new-years/cover.png" medium="image" type="image/png" height="89" width="144"/>
 </item>
 </channel>
 </rss>
