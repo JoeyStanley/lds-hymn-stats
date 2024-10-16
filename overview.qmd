@@ -139,12 +139,12 @@ post_june_data <- freqs %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
     # don't know children's songs or non-English songs in this section
     filter(!(hymn_num %in% c(500:999, 2000:3000) & is.na(n))) |>
-    mutate(percent_wards = if_else(is.na(every_x_weeks), 
-                                   "0%", 
-                                   scales::percent(round(n_weeks_since_release / every_x_weeks, 3))),
+    mutate(percent_wards = case_when(is.na(every_x_weeks) ~ "0%",
+                                     n_weeks_since_release / every_x_weeks > 0.9 ~ "almost all",
+                                     TRUE ~ scales::percent(round(n_weeks_since_release / every_x_weeks, 3))),
            hymn_num = paste0("#", hymn_num),
-           pred_times_per_year = if_else(is.na(every_x_weeks), 
-                                         "—", 
+           pred_times_per_year = if_else(is.na(every_x_weeks),
+                                         "—",
                                          format(round(avg_per_year, 2), nsmall = 1)))
 
 # Get the rows of the new hymns so I can color them.
