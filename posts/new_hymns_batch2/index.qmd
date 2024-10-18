@@ -156,7 +156,7 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
     theme_minimal() +
     labs(x = "number of new hymns per sacrament meeting",
          y = "percentage of wards",
-         title = "Percentage of wards singing new hymns between June 2 and Sept 18",
+         title = "Percentage of wards singing new hymns since June 2",
          subtitle = paste("Based on data from", n_wards_since_release1, "wards"),
          fill = "date")
     # theme(legend.position = "none")
