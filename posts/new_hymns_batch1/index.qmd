@@ -223,7 +223,7 @@ p +
              fill = "#FFFFFF00", color = "#f1a340", linewidth = 1) + 
     annotate(geom = "curve", xend = 8.75, x = 7, yend = 1.5, y = 6.5, curvature = -0.2,
              arrow = arrow(angle = 20, length = unit(0.2, "cm"), type = "closed")) +
-    annotate(geom = "text", x = 7, y = 7, label = "Of the wards I have have\nnine weeks of data from, 43% of\nthem sang just 1 new hymn.",
+    annotate(geom = "text", x = 7, y = 7, label = "Of the wards I have have\nnine weeks of data from, 33% of\nthem sang just 1 new hymn.",
              hjust = 1) + 
     
     # highlighting the 15 box
