@@ -60,7 +60,7 @@ n_weeks_since_release2 <- meetings_since_release2 |>
 
 On September 12th, the church released the second batch of new hymns. In [a previous post](/posts/new_hymns_batch1), I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release2)` sacrament meetings since September 15th from `r n_wards_since_release1` wards.
 
-But first, here's how much data I have for each week, just so you have an idea of what I'm working with. For now, there's not too much, but this table will grow longer as time passes.
+But first, here's how much data I have for each week, just so you have an idea of what I'm working with. For what it's worth, I have more data from each of the past few weeks than any other week in my entire dataset.
 
 ```{r, include = TRUE}
 meetings_since_release2 |> 
@@ -72,9 +72,6 @@ meetings_since_release2 |>
     tab_header(title = "Number of wards I have data from, by week",
                subtitle = "Since September 15th")
 ```
-
-
-
 
 
 
@@ -164,18 +161,15 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
 
 With the [first batch](/posts/new_hymns_batch1) of hymns, the reception was very warm. Pretty consistently over the 15 weeks after the first batch of hymns was released, we saw about 30% of wards singing at least one of the new ones, with a small percentage singing two or more. 
 
-So far, the second batch is represented in this plot with just a few line segments. The green ones represent the number of wards singing hymns from the first batch (#1001--1009), with the lighter color for just one and the darker color for two in a meeting. The red/pink dots represent the second batch of hymns. 
+Since the introduction of the second batch, I thought it'd be helpful to split it up into various colors. The green ones represent the number of wards singing hymns from the first batch (#1001--1009), with the lighter color for just one and the darker color for two in a meeting. The red/pink dots represent the second batch of hymns. 
 
-In the first week after the release of the second batch, relatively few wards (around 7%) sang any of them. Meanwhile, the first batch continued as normal. This is about a quarter as many wards as what we saw with the first batch. So it started off with a lukewarm reception. However, the following Sunday, September 22nd, about 20% of wards sang from the second batch, which is about three times as much as the previous Sunday. This is represented by the pink and red lines going up in the plot. In fact, more wards sang from the second batch than the first batch by a small margin. In fact, since their initial release in June, September 22nd was the week that saw the fewest wards singing from the first batch. Those numbers have been somewhat consistent since then, with September 29 seeing slightly fewer wards and October 15th seeing more ward singing from the second batch.
+In the first week after the release of the second batch, relatively few wards (around 7%) sang any of them. Meanwhile, the first batch continued as normal. This is about a quarter as many wards as what we saw with the first batch. However, the following Sunday, September 22nd, about 20% of wards sang from the second batch, which is about three times as much as the previous Sunday. This is represented by the pink and red lines going up in the plot. Since General Conference, we're seeing more wards sing from the second batch than the first batch, which is in stark contrast to the lukewarm reception they initially got.
 
-What is perhaps more interesting though is not which batch people sang from, but whether they sang any new hymns at all. Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They have gone up over the past few weeks.To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. On September 29th, only 55% of wards didn't sing any new hymns. Roughly 40% sang one and another 5% sang two or more. 
-
-Overall, fewer wards sang from the second batch than even the first batch's worst week. But, it shows that more wards are singing new hymns, which is pretty awesome if you ask me. 
-
+What is perhaps more interesting though is not which batch people sang from, but whether they sang any new hymns at all. Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They have gone up over the past few weeks. To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. Most recently, on October 20th, almost half of the wards I have data from sang at least one of the new hymns!
 
 ## What hymns are most popular?
 
-With only three weeks of data and relatively few people singing from the second batch, it's hard to make any assertive claims about the popularity of the hymns within this batch. Nevertheless, we can look at the results for now just for curiosity. The table below shows how many wards sang each of the newest hymns.
+The following table shows the hymns from the second batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn since its release. 
 
 ```{r, include = TRUE}
 freqs |> 
@@ -203,13 +197,13 @@ freqs |>
 ```
 
 
-So, perhaps unsurprisingly, <hymn>Amazing Grace (#1010)</hymn> is far and away the most popular in this batch. A distant second is <hymn>My Shepherd Will Supply My Need (#1014)</hymn>. I still have not yet seen any ward sing <hymn>Come, Lord Jesus (#1018)</hymn>. 
+So, perhaps unsurprisingly, <hymn>Amazing Grace (#1010)</hymn> is far and away the most popular in this batch. A distant second is <hymn>My Shepherd Will Supply My Need (#1014)</hymn> and third is <hymn>This Is the Christ (#1017)</hymn>. 
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
 ## What hymns are most popular each week?
 
-Now that we're a few weeks past the release, we can start to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
+Now that we're several weeks past the release, we can start to see a glimpse of how the adoption of these new hymns has ebbed and flowed and how each hymn has been introduced. The figure below shows what proportion of wards sang what hymns each week, *given that they sang a new hymn that week*. So, we're only focused on wards that have used these hymns. 
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 meetings_since_release2 |> 
@@ -245,7 +239,7 @@ meetings_since_release2 |>
     theme_bw()
 ```
 
-So, <hymn>Amazing Grace (#1010)</hymn> has taken the lion's share of the new hymns. In the first four weeks, if a ward sang any from the second batch, about half of the time that hymn was <hymn>Amazing Grace (#1010)</hymn>. Not enough time has passed to see what patterns will emerge for that and the other hymns. 
+So, <hymn>Amazing Grace (#1010)</hymn> has taken the lion's share of the new hymns. In the first four weeks, if a ward sang any from the second batch, about half of the time that hymn was <hymn>Amazing Grace (#1010)</hymn>. But it has waned slightly and other hymns have gotten more popular. Perhaps now that some wards have gotten it out of the way, they've freed themselves up to sing others. There aren't really any other patterns in the hymns over time.
 
 
 ## When during meetings are these hymns sung?
@@ -270,9 +264,12 @@ meetings_since_release2 |>
 ```
 
 
-Looks like <hymn>Amazing Grace (#1010)</hymn> is sung throughout the meeting somewhat evenly. The only hymn that has been sing a significant amount as a sacrament hymn is <hymn>Behold the Wounds in Jesus' Hands (#1016)</hymn>. 
+Looks like <hymn>Amazing Grace (#1010)</hymn> is about split between being an opening hymn or a closing hymn, with the possibility of an intermediate hymn being about half as likely. <hymn>My Shepherd Will Supply My Need (#1014)</hymn> is pretty even across all three non-sacrament slots and <hymn>This Is the Christ (#1017)</hymn> is about even across all four slots in a sacrament meeting. 
+
+The other hymns show some patterns but because I've seen them far less often, I have to take these distributions with a grain of salt. It looks like some hymns are most likely to be intermediate hymns, like <hymn>Anytime, Anywhere (#1012)</hymn>, <hymn>God's Gracious Love (#1013)</hymn>, and <hymn>Come, Lord Jesus (#1018)</hymn>. <hymn>Oh, the Deep, Deep Love of Jesus (#1015)</hymn> is more common towards the end of the meeting, while <hymn>Behold the Wounds in Jesus' Hands (#1016)</hymn> is most common at the beginning. Finally, <hymn>Holding Hands Around the World (#1011)</hymn> shows an interesting distrubiton of being sung in all fours slots, but with different frequencies for each one. 
 
 ## Conclusion
 
-At first, people didn't seen as eager to incorporate this second batch of hymns into their sacrament meetings right away. It may be the case that wards had their hymns planned already and it took them few weeks still before incorporating this second batch. It may also be because church musicians need time to prepare. However, the same reasons applied to the first batch and far more people sang new hymns in June 2. So, my guess is that the novelty of singing new hymns has waned a little bit, and there's less of a rush to burn through all of them as there might have been over the summer. However, we're now four weeks since the release of the second batch, and it's clear that they're warming up to them. I suspect as the weeks pass, we'll see more and more being used as music coordinators begin to plan future meetings. 
+At first, people didn't seen as eager to incorporate this second batch of hymns into their sacrament meetings right away. It may be the case that wards had their hymns planned already and it took them few weeks still before incorporating this second batch. It may also be because church musicians need time to prepare. However, the same reasons applied to the first batch and far more people sang new hymns in June 2. So, my guess is that the novelty of singing new hymns has waned a little bit, and there's less of a rush to burn through all of them as there might have been over the summer. 
 
+However, we're now five weeks since the release of the second batch, and it's clear that people are warming up to them. I believe we're at the cusp of their peak popularity. I predict that in the next couple of weeks, we'll see more than half of wards singing at least one new hymn. Once we get into Thanksgiving (in the US) and Christmas, those holidays will take precedent and we'll see fewer new hymns (except of course the new Christmas ones). In January, once the next batch is scheduled to come out, I think we'll see that third batch becoming more popular than either of the other two for a while.
