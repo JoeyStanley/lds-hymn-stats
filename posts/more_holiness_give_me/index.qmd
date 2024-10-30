@@ -1,0 +1,47 @@
+---
+title: "More Holiness Give Me"
+author: "Joey Stanley"
+date: "2024-10-09"
+date-modified: last-modified
+categories:
+    - general
+reference-location: margin
+draft: TRUE
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+
+# Apply a date stamp
+sf <- stamp("June 2, 2024", quiet = TRUE)
+
+# get last Sunday
+last_sunday <- ymd(floor_date(today(), "week"))
+```
+
+```{r}
+freqs |> 
+    summarize(has_131 = sum(hymn_num == 131) >= 1, .by = c(meeting_id, date)) |> 
+    summarize(sum_131 = sum(has_131),
+              meetings_per_date = n(),
+              .by = date) |> 
+    filter(meetings_per_date > 25) |>
+    mutate(prop_that_week = sum_131 / meetings_per_date, .by = date) |>
+    print() |> 
+    # filter(prop_that_week > 0.10) |> 
+    ggplot(aes(date, prop_that_week, color = meetings_per_date)) +
+    geom_point() + 
+    geom_path()
+```
+
+```{r}
+freqs |> 
+    filter(date == ymd("2024-10-27"),
+           hymn_num == 131) |>
+    print()
+```
+
