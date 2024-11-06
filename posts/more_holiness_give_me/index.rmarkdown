@@ -23,12 +23,15 @@ sf <- stamp("June 2, 2024", quiet = TRUE)
 last_sunday <- ymd(floor_date(today(), "week"))
 ```
 
+
+
 As I was going through the data from last Sunday (October 27, 2024), I noticed that it seems like a lot of wards sang <hymn>More Holiness Give Me (#131)</hymn>. I think I noticed this because my ward sang it and it's fun to see other wards singing the same hymns. But as I collected more and more data, an unusually large number of wards sang it as well! This brief post looks at this one hymn to see what's going on.
+
+
 
 ```{r}
 single_hymn_lookup(131)
 ```
-
 
 ```{r}
 (n_131 <- single_hymn_lookup(131)[[1]]$n)
@@ -50,7 +53,11 @@ rank_nonsacarment_131 <- freqs |>
 ```
 
 
+
+
 But first, how common is <hymn>More Holiness Give Me (#131)</hymn> generally? I currently have data from `r comma(get_n_distinct_meetings())` sacrament meetings. Of those, that hymn was sung in `r n_131` of them, or about `r prop_131`. This comes out to about once every `r every_x_years_131` years. It's the `r rank_all_131` most common hymn if you include sacrament hymns, or the `r rank_nonsacarment_131` most common hymn excluding sacrament hymns. So, it's a pretty common hymn. 
+
+
 
 ```{r}
 avg_per_week_since_june2 <- freqs |> 
@@ -78,7 +85,11 @@ ggplot(n131_per_week, aes(sum_131)) +
     geom_histogram(binwidth = 1)
 ```
 
+
+
 The amount of data I have each week varies, but since June 2024, when my most recent data collection began in earnest, I've gotten data from an average of `r avg_per_week_since_june2` sacrament meetings each week. That means we'd expect `r round(avg_per_week_since_june2 / every_x_years_131 / 48, 2)` of them to sing <hymn>More Holiness Give Me (#131)</hymn> each week if nothing interesting is happening. Sure enough, it was sung in only about 0--4 of those sacrament meetings each week.
+
+
 
 ```{r}
 prop_this_week <- n131_per_week |> 
@@ -91,7 +102,11 @@ times_more_often <- round(prop_this_week / single_hymn_lookup(131)[[1]]$prop_of_
 ```
 
 
+
+
 So then what happened on October 27? A whopping `r percent_thisweek` sang <hymn>More Holiness Give Me (#131)</hymn>. That's `r times_more_often` more often than normal. Here's what that looks like visually:
+
+
 
 ```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
 ggplot(n131_per_week, aes(date, prop_wards)) + 
@@ -100,6 +115,8 @@ ggplot(n131_per_week, aes(date, prop_wards)) +
     scale_y_continuous(labels = percent) + 
     theme_bw() 
 ```
+
+
 
 Okay, let's be real, that's not a tremendous amount. But, it's about once or twice per stake, which, for a hymn that otherwise only gets sung about once a year, is quite a jump.
 
@@ -131,6 +148,8 @@ I happened to notice <hymn>More Holiness Give Me (#131)</hymn> this week, possib
 * Jun 16: 98, 136, 
 * Jun 9: 137
 * Jun 2: 193
+
+
 
 
 ```{r}
