@@ -1,0 +1,269 @@
+---
+title: "*Come, Follow Me* Hymns"
+author: "Joey Stanley"
+date: "2024-11-06"
+date-modified: last-modified
+categories:
+    - general
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+
+# Apply a date stamp
+sf <- stamp("June 2, 2024", quiet = TRUE)
+
+# get last Sunday
+last_sunday <- ymd(floor_date(today(), "week"))
+```
+
+As I was going through the data from October 27, I noticed that it seems like a lot of wards sang <hymn>More Holiness Give Me (#131)</hymn>. I think I noticed this because my ward sang it and it's fun to see other wards singing the same hymns. But as I collected more and more data, an unusually large number of wards sang it as well! What's going on? Is the spike in popularity of <hymn>More Holiness Give Me (#131)</hymn> just one example of a more widespread pattern?
+
+```{r}
+single_hymn_lookup(131)
+```
+
+
+```{r}
+(n_131 <- single_hymn_lookup(131)[[1]]$n)
+(prop_131 <- paste0(round(single_hymn_lookup(131)[[1]]$prop_of_meetings * 100, 2), "%"))
+(every_x_years_131 <- round(single_hymn_lookup(131)[[1]]$every_x_years, 2))
+rank_all_131 <- freqs |> 
+    count(hymn_num, sort = TRUE) |> 
+    rowid_to_column("rank") |> 
+    filter(hymn_num == 131) |>
+    pull(rank) |> 
+    ordinal()
+rank_nonsacarment_131 <- freqs |> 
+    filter(!hymn_num %in% 169:196) |> 
+    count(hymn_num, sort = TRUE) |> 
+    rowid_to_column("rank") |> 
+    filter(hymn_num == 131) |>
+    pull(rank) |> 
+    ordinal()
+```
+
+
+But first, how common is <hymn>More Holiness Give Me (#131)</hymn> generally? I currently have data from `r comma(get_n_distinct_meetings())` sacrament meetings. Of those, that hymn was sung in `r n_131` of them, or about `r prop_131`. This comes out to about once every `r every_x_years_131` years. It's the `r rank_all_131` most common hymn if you include sacrament hymns, or the `r rank_nonsacarment_131` most common hymn excluding sacrament hymns. So, it's a pretty common hymn. 
+
+```{r}
+avg_per_week_since_june2 <- freqs |> 
+    filter(date >= "2024-06-02",
+           date <= today()) |> 
+    count(meeting_id, date) |>
+    count(date) |>
+    pull(n) |> 
+    mean() |> 
+    round()
+```
+
+```{r}
+n131_per_week <- freqs |> 
+    filter(date >= "2024-06-02",
+           date <= today()) |> 
+    summarize(has_131 = sum(hymn_num == 131) >= 1, .by = c(meeting_id, date)) |> 
+    summarize(sum_131 = sum(has_131),
+              meetings_per_date = n(),
+              .by = date) |> 
+    mutate(prop_wards = sum_131/meetings_per_date) |> 
+    print()
+
+ggplot(n131_per_week, aes(sum_131)) + 
+    geom_histogram(binwidth = 1)
+```
+
+The amount of data I have each week varies, but since June 2024, when my most recent data collection began in earnest, I've gotten data from an average of `r avg_per_week_since_june2` sacrament meetings each week. That means we'd expect `r round(avg_per_week_since_june2 / every_x_years_131 / 48, 2)` of them to sing <hymn>More Holiness Give Me (#131)</hymn> each week if nothing interesting is happening. Sure enough, it was sung in between zero to four of those sacrament meetings each week.
+
+```{r}
+prop_this_week <- n131_per_week |> 
+    filter(date == "2024-10-27") |> 
+    pull(prop_wards)
+percent_thisweek <- prop_this_week |> 
+    percent(accuracy = 0.1) |> 
+    print()
+times_more_often <- round(prop_this_week / single_hymn_lookup(131)[[1]]$prop_of_meetings, 1)
+```
+
+
+So then what happened on October 27? A whopping `r percent_thisweek` sang <hymn>More Holiness Give Me (#131)</hymn>. That's `r times_more_often` more often than normal. Here's what that looks like visually:
+
+```{r, include = TRUE, fig.height = 4, fig.width = 6.5}
+these_date_breaks <- n131_per_week |> 
+    distinct(date) |> 
+    mutate(label = paste0(month.abb[month(date)], " ", day(date))) |> 
+    rowid_to_column("id") |> 
+    filter(id %% 2 == 1)
+
+ggplot(n131_per_week, aes(date, prop_wards)) + 
+    geom_point() + 
+    geom_path() + 
+    scale_x_date(breaks = these_date_breaks$date, 
+                 labels = these_date_breaks$label,
+                 minor_breaks = NULL) +
+    scale_y_continuous(labels = percent, breaks = seq(0, 1, 0.02)) + 
+    labs(title = "Percentage of wards singing More Holiness Give Me (#131), by week",
+         subtitle = "Since June 2, 2024",
+         x = "date", 
+         y = "percent of wards") + 
+    theme_bw() 
+```
+
+Okay, let's be real, 12% is not a tremendous amount compared to some holiday hymns around certain holidays. But, it's about once or twice per stake, which, for a hymn that otherwise only gets sung about once a year, is quite a jump.
+
+So, why? Well, the most likely answer is that *Come, Follow Me* specifically mentions <hymn>More Holiness Give Me (#131)</hymn> as a good hymn to accompany 3 Nephi 28:1--11. It's very possible that many music coordinators saw that and chose it for sacrament meeting. Even if they didn't see it in the *Come, Follow Me* manual, the scriptures at the bottom of the hymn are related to the *Come, Follow Me* readings for this week. So, I think what we're seeing is that many music coordinators are getting ideas for hymns to be sung from the manual, which I think is a pretty cool thing. 
+
+
+## Other *Come, Follow Me* Hymns?
+
+I happened to notice <hymn>More Holiness Give Me (#131)</hymn> this week because my own ward sang it. But, if it's the case that the reason why this was so popular this week is because of *Come, Follow Me*, perhaps there were other spikes on other Sundays that specifically mention hymns. To test this hypothesis, I went through the manual and found that most weeks mention a hymn. So, the following plot shows all those weeks with those key hymns highlighted. You should notice a pretty apparent spike for almost all of them!
+
+
+```{r, fig.height = 3, fig.width = 6}
+make_a_focus_plot <- function(.hymn_num, .date) {
+    data_to_plot <- freqs |> 
+        filter(date >= "2024-06-02",
+               date <= today()) |> 
+        summarize(has_this_hymn = sum(hymn_num == .hymn_num) >= 1, .by = c(meeting_id, date)) |> 
+        summarize(sum_this_hymn = sum(has_this_hymn),
+                  meetings_per_date = n(),
+                  .by = date) |> 
+        mutate(prop_that_week = sum_this_hymn / meetings_per_date, .by = date)
+    
+    highlight_point <- data_to_plot |> 
+        filter(date == .date)
+    
+    this_hymn_label <- name_num_lookup[name_num_lookup$hymn_num == .hymn_num,]$hymn_name[[1]]
+    this_date_label = paste(month.name[month(.date)], day(.date))
+    
+    ggplot(data_to_plot, aes(date, prop_that_week)) +
+        geom_point(data = highlight_point, color = "yellow", size = 5) + 
+        geom_point() + 
+        geom_path() + 
+        scale_x_date(date_breaks = "2 weeks", 
+                     date_labels = "%m-%d") + 
+        labs(title = paste0(this_hymn_label, " (#", .hymn_num, ") on ", this_date_label)) + 
+        theme_bw()
+}
+make_a_focus_plot(131, "2024-10-27")
+```
+
+
+```{r, fig.height = 3, fig.width = 6}
+dates_and_hymns <- tribble( ~"date", ~"hymn_num",
+    "2024-11-03", 117,
+    "2024-10-27", 131,
+    "2024-10-13", 169,
+    # "2024-10-06", 220,
+    #"2024-09-29: NA,
+    #"2024-09-22: NA,
+    "2024-09-15", 125,
+    "2024-09-08", 185,
+    "2024-09-01", 98,
+    "2024-08-25", 254,
+    "2024-08-18", 250,
+    "2024-08-18", 68,
+    "2024-08-11", 195,
+    "2024-08-04", 277,
+    "2024-07-28", 142,
+    "2024-07-21", 272,
+    "2024-07-14", 102,
+    "2024-07-07", 335,
+    "2024-06-30", 117,
+    "2024-06-23", 281,
+    "2024-06-16", 98,
+    "2024-06-16", 136, 
+    "2024-06-09", 137,
+    "2024-06-02", 193
+)
+```
+
+
+```{r, eval = FALSE, fig.height = 3, fig.width = 6}
+dates_and_hymns |> 
+    mutate(p = map2(hymn_num, date, make_a_focus_plot)) |> 
+    pull(p)
+```
+
+```{r, include = TRUE, fig.height = 14, fig.width = 6.5}
+get_dates_and_hymns_data <- function(.date, .hymn_num) {
+    freqs |> 
+        filter(date >= "2024-06-02",
+               date <= today()) |> 
+        summarize(has_this_hymn = sum(hymn_num == .hymn_num) >= 1, .by = c(meeting_id, date)) |> 
+        summarize(sum_this_hymn = sum(has_this_hymn),
+                  meetings_per_date = n(),
+                  .by = date) |> 
+        mutate(prop_that_week = sum_this_hymn / meetings_per_date, .by = date) |> 
+        mutate(hymn_label = name_num_lookup[name_num_lookup$hymn_num == .hymn_num,]$hymn_name[[1]],
+               date_label = paste(month.name[month(.date)], day(.date)),
+               title_label = paste0(hymn_label, " (#", .hymn_num, ")\non ", date_label))
+}
+
+dates_and_hymns_df <- dates_and_hymns |> 
+    mutate(df = map2(date, hymn_num, get_dates_and_hymns_data)) |> 
+    rename(focus_date = date, focus_hymn = hymn_num) |> 
+    unnest(df) |> 
+    arrange(focus_date, date) |> 
+    mutate(title_label = fct_inorder(title_label))
+
+yellow_dots_df <- dates_and_hymns_df |> 
+    filter(focus_date == date)
+
+ggplot(dates_and_hymns_df, aes(date, prop_that_week)) + 
+    geom_point(data = yellow_dots_df, color = "yellow", size = 4) + 
+    geom_point(size = 1) + 
+    geom_path() + 
+    scale_y_continuous(labels = percent,
+                       breaks = seq(0, 1, 0.04)) + 
+    facet_wrap(~title_label, ncol = 2) + 
+    labs(title = "Popularty of hymns mentioned in Come, Follow Me by week",
+         subtitle = "Since June 2, 2024",
+         x = "date", 
+         y = "percent of wards") + 
+    theme_bw()
+```
+
+```{r}
+dates_and_hymns_df |> 
+    mutate(is_focus_date = date == focus_date) |> 
+    summarize(mean_prop = mean(prop_that_week), .by = c(title_label, is_focus_date)) |> 
+    pivot_wider(names_from = is_focus_date, values_from = mean_prop) |> 
+    mutate(prop_more = `TRUE` / `FALSE`) |> 
+    arrange(-prop_more) |> 
+    print() |> 
+    pull(prop_more) |> 
+    mean()
+```
+
+```{r}
+single_hymn_lookup(281)
+single_hymn_lookup(335)
+freqs |> 
+    filter(date == "2024-07-07",
+           hymn_num == 335)
+single_hymn_lookup(117)
+```
+
+
+
+There is remarkable consistency in almost every panel. With only a few exceptions, there is a significant spike in the popularity of hymns mentioned in *Come, Follow Me*. On average, hymns are about 9--10 times more common during the weeks that they're mentioned in *Come, Follow Me* compared to other times they're sung since June 2, and <hymn>More Holiness Give Me (#131)</hymn> from October 27, which is the first time I noticed this trend, is right at that average. 
+
+The biggest jump was <hymn>Help Me Teach with Inspiration (#281)</hymn>. Normally, it's sung only about once every five years, but on June 23, around 10% of wards sang it; it was 45 times more popular that day than on other days. These big spikes are most apparent for other less-common hymns like <hymn>Jesus, Lover of My Soul (#102)</hymn>, which was 21 times more popular that it usually is on July 14, and <hymn>Oh Say, What Is Truth? (#272)</hymn> which was 16 times more common on July 21. 
+
+Even <hymn>Brightly Beams Our Father's Mercy (#335)</hymn> showed a small increase. As a men's chorus arrangement, is extremely rare. In my `r comma(get_n_distinct_meetings())` sacrament meetings, I've only seen it 49 times, meaning it's sung maybe once every 11 years or so. But did show up once on July 7. (I would say it ousted a [Fourth of July hymn](/posts/fourth_of_july), but it was actually in England that I saw this hymn.)
+
+There are some exceptions. <hymn>I Need Thee Every Hour (#98)</hymn> spiked on June 16, but it had a larger spike on September 1 for some reason. The same can be said about <hymn>I Know That My Redeemer Lives (#136)</hymn> and <hymn>Come Unto Jesus (#113)</hymn> one June 13. Some of the sacrament hymns were less "spiky", like <hymn>As Now We Take the Sacrament (#169)</hymn> and <hymn>I Stand All Amazed (#193)</hymn>, but others showed a big spike like <hymn>How Great the Wisdom and the Love (#195)</hymn> and <hymn>Reverently and Meekly Now (#185)</hymn>.
+
+One interesting recent development is the hymn <hymn>Come Unto Jesus (#117)</hymn>. It was mentioned in *Come, Follow Me* twice since June 2, once for June 30 and once for November 3. The number of wards that sang it was about the same both times (about 7%) making it at least three times as common as it normally is. Even more remarkably, the hymn is typically sung about once every 14 months, but here we have cases where it spiked twice in about five months. This suggests to me that this trend of using hymns mentioned in *Come, Follow Me* is pretty stable, even if it means potentially repeating a hymn more often than normal.
+
+## Conclusion
+
+I initially started this post to just talk about <hymn>More Holiness Give Me (#131)</hymn> and to speculate about what the general church membership was thinking around that time. As it turns out, thanks to the insight by a student of mine (hi, Sydney!), I was able to find out that it's just one instance of a pretty regular pattern of singing hymns mentioned in *Come, Follow Me*. I only looked at data since June 2 since that's when I regularly have data from over 100 sacrament meetings, but I presume that this trend goes all the way back to the beginning of *Come, Follow Me*. It's good to see that so manay ward music coordinators are reading *Come, Follow Me*. It's also interesting to see that this schedule of gospel study not only applies to personal scripture reading, Sunday School, but also hymns in sacrament meeting. 
+
+
+
