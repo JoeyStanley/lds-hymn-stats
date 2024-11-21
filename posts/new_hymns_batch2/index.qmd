@@ -93,9 +93,9 @@ count_new_hymns <- function(.category_name, .hymns) {
         pivot_wider(names_from = n_new, values_from = prop_new)
 }
 data_to_plot <- bind_rows(
-    count_new_hymns("batch1", 1001:1009), 
+    count_new_hymns("batch1", c(1001:1009, 1201:1204)), 
     count_new_hymns("batch2", 1010:1018), 
-    count_new_hymns("new",    1001:1018)) |> 
+    count_new_hymns("new",    c(1001:1018, 1201:1204))) |> 
     pivot_longer(cols = -c(date, category), names_to = "n_new", values_to = "prop") |>
     mutate(group = paste(n_new, category)) |>
     arrange(date) |>
@@ -110,6 +110,8 @@ data_to_plot <- bind_rows(
     filter(!is.na(prop)) |> 
     print()
 
+
+
 # Place labels a little above the max from most recent three weeks
 # (Will need to raise to four as more dates come in.)
 labels <- data_to_plot |> 
@@ -120,12 +122,19 @@ labels <- data_to_plot |>
     mutate(label = case_when(n_new == 0 ~ "no new hymns",
                              n_new == 1 ~ "1 new hymn",
                              n_new >= 2 ~ "2 or more new hymns"))
+```
 
-date_breaks <- data_to_plot |> 
-    distinct(date) |> 
-    rowid_to_column("week_num") |> 
-    filter(week_num %% 2 == 0) |> 
-    pull(date)
+
+```{r, fig.height = 4, fig.width = 8}
+# Get date breaks for this post.
+date_minor_breaks <- tibble(weeks_since = 0:52,
+                            date = last_sunday) |> 
+    mutate(date = last_sunday - weeks_since*7) |> 
+    filter(date >= "2024-06-02")
+date_breaks <- date_minor_breaks |> 
+    filter(weeks_since %% 3 == 0)
+batch2_date_breaks <- date_minor_breaks |> 
+    filter(weeks_since %% 2 == 0)
 ```
 
 
@@ -135,7 +144,8 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
     geom_path() +
     geom_point() +
     # geom_text(data = labels, aes(y = prop + 0.05, label = label), hjust = 1) +
-    scale_x_date(breaks = date_breaks,
+    scale_x_date(breaks = date_breaks$date,
+                 minor_breaks = date_minor_breaks$date,
                  date_labels = "%b %d",
                  expand = expansion(0.02, 0)) +
     scale_y_continuous(expand = expansion(0, 0.02),
@@ -151,8 +161,9 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
                                   "#a6cee3", "#b2df8a", "#fb9a99",
                                   "#1f78b4", "#33a02c", "#e31a1c")) + 
     theme_minimal() +
-    labs(x = "number of new hymns per sacrament meeting",
+    labs(x = NULL,
          y = "percentage of wards",
+         color = "number of new hymns",
          title = "Percentage of wards singing new hymns since June 2",
          subtitle = paste("Based on data from", n_wards_since_release1, "wards"),
          fill = "date")
@@ -165,7 +176,7 @@ Since the introduction of the second batch, I thought it'd be helpful to split i
 
 In the first week after the release of the second batch, relatively few wards (around 7%) sang any of them. Meanwhile, the first batch continued as normal. This is about a quarter as many wards as what we saw with the first batch. However, the following Sunday, September 22nd, about 20% of wards sang from the second batch, which is about three times as much as the previous Sunday. This is represented by the pink and red lines going up in the plot. Since General Conference, we're seeing more wards sing from the second batch than the first batch, which is in stark contrast to the lukewarm reception they initially got.
 
-What is perhaps more interesting though is not which batch people sang from, but whether they sang any new hymns at all. Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They have gone up over the past few weeks. To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. On October 20th, almost half of the wards I have data from sang at least one of the new hymns! Since then, more wards than ever (around 7%) have sang two new hymns in one meeting. In general, it appears to be stabalizing with around 40% of wards singing at least one new hymn. 
+What is perhaps more interesting though is not which batch people sang from, but whether they sang any new hymns at all. Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They have gone up over the past few weeks. To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. On October 20th, almost half of the wards I have data from sang at least one of the new hymns! Since then, more wards than ever (around 7%) have sang two new hymns in one meeting. Since then, it appears that it's stabilizing at around 40% of wards singing at least one new hymn. 
 
 ## What hymns are most popular?
 
@@ -229,7 +240,10 @@ meetings_since_release2 |>
     ggplot(aes(date, prop, group = name_num)) + 
     geom_path() + 
     geom_point() + 
-    scale_x_date(date_breaks = "2 weeks", date_labels = "%m/%d") +
+    scale_x_date(breaks = batch2_date_breaks$date,
+                 minor_breaks = date_minor_breaks$date,
+                 date_labels = "%b %d",
+                 expand = expansion(0.02, 0)) +
     scale_y_continuous(labels = scales::percent) + 
     facet_wrap(~name_num, ncol = 2) + 
     labs(title = "Proportion of wards singing new hymns by week",
@@ -272,4 +286,4 @@ The other hymns show some patterns but because I've seen them far less often, I 
 
 At first, people didn't seen as eager to incorporate this second batch of hymns into their sacrament meetings right away. It may be the case that wards had their hymns planned already and it took them few weeks still before incorporating this second batch. It may also be because church musicians need time to prepare. However, the same reasons applied to the first batch and far more people sang new hymns in June 2. So, my guess is that the novelty of singing new hymns has waned a little bit, and there's less of a rush to burn through all of them as there might have been over the summer. 
 
-However, we're now seven weeks since the release of the second batch, and it's clear that people are warming up to them. Late October was the peak popularity. Now that we're getting into Thanksgiving (in the US) and Christmas, those holidays will take precedent and we'll see fewer new hymns (except of course the new Christmas ones). In January, once the next batch is scheduled to come out, I think we'll see that third batch becoming more popular than either of the other two for a while.
+However, we're now several weeks since the release of the second batch, and it's clear that people are warming up to them. Late October was the peak popularity. Now that we're getting into Thanksgiving (in the US) and Christmas, those holidays will take precedent and we'll see fewer new hymns (except of course the new Christmas ones). In January, once the next batch is scheduled to come out, I think we'll see that third batch becoming more popular than either of the other two for a while.
