@@ -21,6 +21,7 @@ sf <- stamp("June 2", quiet = TRUE)
 
 # get last Sunday
 last_sunday <- ymd(floor_date(today(), "week"))
+library(gtExtras)
 ```
 
 
@@ -73,7 +74,7 @@ meetings_since_release2 |>
                subtitle = "Since September 15th")
 ```
 
-For some reason I have about half as much data from November 10 as I do the other weeks and I'm not sure why because the way I've been collecting data has been the same.
+
 
 ## How many wards sang new hymns each week?
 
@@ -178,6 +179,8 @@ In the first week after the release of the second batch, relatively few wards (a
 
 What is perhaps more interesting though is not which batch people sang from, but whether they sang any new hymns at all. Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They have gone up over the past few weeks. To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. On October 20th, almost half of the wards I have data from sang at least one of the new hymns! Since then, more wards than ever (around 7%) have sang two new hymns in one meeting. Since then, it appears that it's stabilizing at around 40% of wards singing at least one new hymn. 
 
+The most recent update is that now that we're approaching the holiday season, we're seeing a dip in the number of new hymns being sung. On November 24, for example, most wards sang hymns of gratitude because of Thanksgiving. (Keep in mind that [most of my data comes from the United States](/posts/frequency-data.). I anticipate another several weeks of that until January. 
+
 ## What hymns are most popular?
 
 The following table shows the hymns from the second batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn since its release. 
@@ -253,28 +256,36 @@ meetings_since_release2 |>
     theme_bw()
 ```
 
-So, <hymn>Amazing Grace (#1010)</hymn> has taken the lion's share of the new hymns. In the first four weeks, if a ward sang any from the second batch, about half of the time that hymn was <hymn>Amazing Grace (#1010)</hymn>. But it has waned a bit since the initial release, and other hymns have gotten more popular. Perhaps now that some wards have gotten it out of the way, they've freed themselves up to sing others. This is similar to [what we saw](/posts/new_hymns_batch1) with <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, though in a less extreme way. Mostly recently, we're seeing <hymn>God's Gracious Love (#1013)</hymn> and <hymn>Come, Lord Jesus (#1018)</hymn> spike in popularity.
+So, <hymn>Amazing Grace (#1010)</hymn> has taken the lion's share of the new hymns. In the first four weeks, if a ward sang any from the second batch, about half of the time that hymn was <hymn>Amazing Grace (#1010)</hymn>. But it has waned a bit since the initial release, and other hymns have gotten more popular. Perhaps now that some wards have gotten it out of the way, they've freed themselves up to sing others. This is similar to [what we saw](/posts/new_hymns_batch1) with <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, though in a less extreme way. Mostly recently, we're seeing <hymn>Behold the Wounds in Jesus' Hands (#1016)</hymn> spike in popularity.
 
 
 ## When during meetings are these hymns sung?
 
-We can see when these hymns tend to be sung and get an overall look at the popularity of the second batch of hymns. Again, it's based on so little data, so take these results with a grain of salt. 
+We can see when these hymns tend to be sung and get an overall look at the popularity of the second batch of hymns. Again, it's based on so little data, so take these results with a grain of salt.
 
 ```{r, include = TRUE}
 meetings_since_release2 |> 
     filter(hymn_num %in% 1010:1019) |> 
     count(name_num, hymn_num, type) |> 
-    mutate(n = round(n/sum(n), 2), 
-           n = scales::percent(n),
+    mutate(n = round(n/sum(n), 2)*100, 
            .by = name_num) |> 
-    pivot_wider(names_from = type, values_from = n, values_fill = "0%") |> 
+    pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
     arrange(hymn_num) |> 
     select(-hymn_num) |> 
     select(name_num, Opening, Sacrament, Intermediate, Closing) |> 
     rename(`New Hymn` = name_num) |> 
     gt() |> 
+    gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE, 
+                   fill = "#4F2B47", height = 20, font_size = "14px") |> 
+    gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE, 
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE, 
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE, 
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
     tab_header(title = "When were new hymns sung in sacrament meeting?",
-               subtitle = "Since September 15")
+               subtitle = "Since September 15") |> 
+    tab_source_note("Note: Each row adds up to 100%.")
 ```
 
 
