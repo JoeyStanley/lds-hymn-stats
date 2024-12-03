@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joey Stanley">
 <meta name="dcterms.date" content="2024-05-12">
 
-<title>LDS Hymn Stats - What hymns are sung around Mother’s Day?</title>
+<title>What hymns are sung around Mother’s Day? – LDS Hymn Stats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -73,75 +80,70 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="LDS Hymn Stats - What hymns are sung around Mother’s Day?">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/mothers_day/hymn_topics.png">
-<meta property="og:site-name" content="LDS Hymn Stats">
-<meta property="og:image:height" content="1110">
-<meta property="og:image:width" content="1839">
-<meta name="twitter:title" content="LDS Hymn Stats - What hymns are sung around Mother’s Day?">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/mothers_day/hymn_topics.png">
-<meta name="twitter:image-height" content="1110">
-<meta name="twitter:image-width" content="1839">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="What hymns are sung around Mother’s Day? – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta name="twitter:title" content="What hymns are sung around Mother’s Day? – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../findings.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../overview.html" rel="" target="">
- <span class="menu-text">Summarized Data</span></a>
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../contribute.html" rel="" target="">
- <span class="menu-text">Contribute</span></a>
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -149,7 +151,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -196,19 +197,25 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
+
 
 <p>Mother’s Day is approaching. In our church, we place a lot of value on Mother’s Day. Primary kids usually sing a song or two in sacrament meeting to their mothers and this used to be one of only two days during which missionaries could call home. Let’s see what hymns are sung on Mother’s Day. In this post, I’ll only focus on data from the United States and Canada since they’re the two countries with <a href="../../posts/frequency-data">the most amount of data</a> that also celebrate it on the second Sunday in May. This amounts to 328 sacrament meetings from 184 wards.</p>
 <p>If you look in the Topics index at the back of the hymnal, you’ll see five songs listed under the “Motherhood” entry: <hymn>From Homes of Saints Glad Songs Arise (#297)</hymn>, <hymn>Home Can Be a Heaven on Earth (#298)</hymn>, <hymn>Love at Home (#294)</hymn>, <hymn>O My Father (#292)</hymn>, and <hymn>Teach Me to Walk in the Light (#304)</hymn>. You’ll also be redirected to the “Family” and “Marriage” entries, both of which contain no hymns of their own but redirect you again to “Children”, “Fatherhood”, and “Home.” We’ll skip the “Fatherhood” songs for now and just focus on the “Motherhood,” “Children,” and “Home” categories.</p>
 <p>This figure shows the hymns in these categories and how they intersect. Note that all the Motherhood hymns are also listed under the “Home” category. If you’re like me, you might not even recognize some of the Home hymns. Five of them (<hymn>The Lord Be with Us (#161)</hymn>, <hymn>Our Mountain Home So Dear (#33)</hymn>, <hymn>Up, Awake, Ye Defenders of Zion (#248)</hymn>, <hymn>Father, Cheer Our Souls Tonight (#231)</hymn>, and <hymn>The Wintry Day, Descending to Its Close (#37)</hymn>) are sung less than once a decade on average per ward, so they’re not likely to show up as Mother’s Day hymns.</p>
 <p><img src="hymn_topics.png" class="img-fluid"></p>
-<p>So, those hymns are supposedly the ones we would be most likely to draw from. Let’s see what hymns are actually sung. Figure <a href="#fig-cleveland">Figure&nbsp;1</a> shows the most popular hymns sung on Mother’s Day, excluding sacrament hymns.</p>
+<p>So, those hymns are supposedly the ones we would be most likely to draw from. Let’s see what hymns are actually sung. Figure <a href="#fig-cleveland" class="quarto-xref">Figure&nbsp;1</a> shows the most popular hymns sung on Mother’s Day, excluding sacrament hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Most popular hymns sung on Mother's Day (sacrament hymns excluded)</figcaption>
+<div id="fig-cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Most popular hymns sung on Mother's Day (sacrament hymns excluded)
+</figcaption>
 </figure>
 </div>
 </div>
@@ -217,13 +224,17 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <p>The next most popular category of hymns on Mother’s Day was the “Home” category. As mentioned above, some of the hymns in that category are rather infrequent, but others are pretty popular, including <hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>For the Beauty of the Earth (#92)</hymn>, and <hymn>Love One Another (#308)</hymn>. Relatively few of the “Children” hymns were very popular, but some were <hymn>I Am a Child of God (#301)</hymn> and <hymn>Dearest Children, God Is Near You (#96)</hymn>.</p>
 <p>So, it’s clear that most music coordinators look at the “Motherhood” entry in the index, with some looking at the “Home” category. I think an honorable mention hymn is <hymn>Each Life That Touches Ours for Good (#293)</hymn>. The lyrics suggest it’s more about friends or even a funeral hymn, but it’s a relatively uncommon hymn that doesn’t appear to be sung at any other time of the year too much.</p>
 <p>While the likelihood of your ward singing any one of these hymns is relatively low, the likely hood of your ward singing any of these, say, top 10 hymns is pretty good. In fact, 89.3% of wards sing at least one of those 10 hymns each year. Over half sing two of them, a third sing just one, and a few wards sing three of them. So, odds are pretty good you’ll sing one or two of those most popular hymns.</p>
-<p>Finally, we can look at when during sacrament meeting these most popular hymns are sung. <a href="#fig-types">Figure&nbsp;2</a> shows the data for the top 10 Mother’s Day hymns. Perhaps the most striking trend is that <hymn>Love One Another (#308)</hymn> is almost always a closing hymn when it’s sung on Mother’s Day. <hymn>Families Can Be Together Forever (#300)</hymn> and <hymn>Teach Me to Walk in the Light (#304)</hymn> are also typically a closing hymn. Pretty much all the others, including most of the “Motherhood” hymns, are more commonly opening hymns.</p>
+<p>Finally, we can look at when during sacrament meeting these most popular hymns are sung. <a href="#fig-types" class="quarto-xref">Figure&nbsp;2</a> shows the data for the top 10 Mother’s Day hymns. Perhaps the most striking trend is that <hymn>Love One Another (#308)</hymn> is almost always a closing hymn when it’s sung on Mother’s Day. <hymn>Families Can Be Together Forever (#300)</hymn> and <hymn>Teach Me to Walk in the Light (#304)</hymn> are also typically a closing hymn. Pretty much all the others, including most of the “Motherhood” hymns, are more commonly opening hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-types" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-types-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Top 10 Mother’s Day hymns and when they’re sung.</figcaption>
+<div id="fig-types" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-types-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Top 10 Mother’s Day hymns and when they’re sung.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -268,18 +279,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -311,11 +311,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -325,8 +364,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -338,7 +386,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -382,6 +553,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -407,6 +579,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -472,12 +670,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

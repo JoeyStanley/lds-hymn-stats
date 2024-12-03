@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joey Stanley">
 <meta name="dcterms.date" content="2024-07-21">
 
-<title>LDS Hymn Stats - What hymns are sung around Pioneer Day?</title>
+<title>What hymns are sung around Pioneer Day? – LDS Hymn Stats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -71,79 +78,101 @@ gtag('js', new Date());
 gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="LDS Hymn Stats - What hymns are sung around Pioneer Day?">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/pioneer_day/index_files/figure-html/fig-cleveland-1.png">
-<meta property="og:site-name" content="LDS Hymn Stats">
-<meta property="og:image:height" content="576">
-<meta property="og:image:width" content="1536">
-<meta name="twitter:title" content="LDS Hymn Stats - What hymns are sung around Pioneer Day?">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/pioneer_day/index_files/figure-html/fig-cleveland-1.png">
-<meta name="twitter:image-height" content="576">
-<meta name="twitter:image-width" content="1536">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="What hymns are sung around Pioneer Day? – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta name="twitter:title" content="What hymns are sung around Pioneer Day? – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../findings.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../overview.html" rel="" target="">
- <span class="menu-text">Summarized Data</span></a>
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../contribute.html" rel="" target="">
- <span class="menu-text">Contribute</span></a>
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -151,7 +180,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -213,7 +241,9 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
+
 
 <p>Pioneer Day is coming up, so it’s worth it to look and see what wards typically do with regard to their congregational hymns. We have a few hymns that are explicitly related to pioneers, so we’d expect those to be more popular. Since Pioneer Day is technically a Utah state holiday, the bulk of this post will be based on the 393 sacrament meetings that fall within a week of July 24th from the 148 wards in Utah I have data from. However, towards the end, I’ll take a broader look and see if these patterns are the same even outside of Utah.</p>
 <section id="pioneer-day-hymns" class="level2">
@@ -221,10 +251,14 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <p>First, let’s first figure out what hymns are considered Pioneer Day hymns. The figure below shows the most common hymns sung within a week of Pioneer Day, excluding sacrament hymns. Probably to no one’s surprise, the most common one is <hymn>Come, Come, Ye Saints (#30)</hymn>, which is sung by about a third of wards in Utah around Pioneer Day. The next most common is <hymn>They, the Builders of the Nation (#36)</hymn>, which is sung by about a quarter of wards. There appear to be about five other hymns that stand out during this time: <hymn>Carry On (#255)</hymn>, <hymn>O Ye Mountains High (#34)</hymn>, <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Press Forward, Saints (#81)</hymn>, and <hymn>High on the Mountain Top (#5)</hymn>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Most common hymns around Pioneer Day</figcaption>
+<div id="fig-cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Most common hymns around Pioneer Day
+</figcaption>
 </figure>
 </div>
 </div>
@@ -233,7 +267,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <p>There are a few other hymns that are more popular around Pioneer Day but are just not as common overall so they don’t show up on that plot. The following table shows the hymns that are more likely to be sung within a week of the 24th than during the rest of the year combined. Hymns that show up this table include <hymn>We Are Marching On to Glory (#225)</hymn>, <hymn>Press Forward, Saints (81)</hymn>, and <hymn>In Our Lovely Deseret (#307)</hymn>. It’s not a huge trend, so they’re sung at other times during the year, but they might get a little extra boost around Pioneer Day.</p>
 <div class="cell">
 <div class="cell-output-display">
-
 <div id="brdskeooks" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#brdskeooks table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -674,61 +707,89 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Hymns most likely be sung around July 24th</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Compared to the rest of the year combined</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="hymn">hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="times more likely">times more likely</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="hymn" class="gt_row gt_left">They, the Builders of the Nation (36)</td>
-<td headers="times more likely" class="gt_row gt_right">34.07</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">Come, Come, Ye Saints (30)</td>
-<td headers="times more likely" class="gt_row gt_right">19.49</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">O Ye Mountains High (34)</td>
-<td headers="times more likely" class="gt_row gt_right">17.40</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">For the Strength of the Hills (35)</td>
-<td headers="times more likely" class="gt_row gt_right">16.29</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">Carry On (255)</td>
-<td headers="times more likely" class="gt_row gt_right">13.72</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">Come, All Ye Saints of Zion (38)</td>
-<td headers="times more likely" class="gt_row gt_right">5.34</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">Oh Say, What Is Truth? (272)</td>
-<td headers="times more likely" class="gt_row gt_right">3.19</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">We Are Marching On to Glory (225)</td>
-<td headers="times more likely" class="gt_row gt_right">3.05</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">Turn Your Hearts (291)</td>
-<td headers="times more likely" class="gt_row gt_right">2.55</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">O God, Our Help in Ages Past (31)</td>
-<td headers="times more likely" class="gt_row gt_right">2.55</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">In Our Lovely Deseret (307)</td>
-<td headers="times more likely" class="gt_row gt_right">2.42</td></tr>
-    <tr><td headers="hymn" class="gt_row gt_left">Press Forward, Saints (81)</td>
-<td headers="times more likely" class="gt_row gt_right">2.18</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Hymns most likely be sung around July 24th</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Compared to the rest of the year combined</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="hymn" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">hymn</th>
+<th id="times more likely" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">times more likely</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="hymn">They, the Builders of the Nation (36)</td>
+<td class="gt_row gt_right" headers="times more likely">34.07</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="hymn">Come, Come, Ye Saints (30)</td>
+<td class="gt_row gt_right" headers="times more likely">19.49</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="hymn">O Ye Mountains High (34)</td>
+<td class="gt_row gt_right" headers="times more likely">17.40</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="hymn">For the Strength of the Hills (35)</td>
+<td class="gt_row gt_right" headers="times more likely">16.29</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="hymn">Carry On (255)</td>
+<td class="gt_row gt_right" headers="times more likely">13.72</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="hymn">Come, All Ye Saints of Zion (38)</td>
+<td class="gt_row gt_right" headers="times more likely">5.34</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="hymn">Oh Say, What Is Truth? (272)</td>
+<td class="gt_row gt_right" headers="times more likely">3.19</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="hymn">We Are Marching On to Glory (225)</td>
+<td class="gt_row gt_right" headers="times more likely">3.05</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="hymn">Turn Your Hearts (291)</td>
+<td class="gt_row gt_right" headers="times more likely">2.55</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="hymn">O God, Our Help in Ages Past (31)</td>
+<td class="gt_row gt_right" headers="times more likely">2.55</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="hymn">In Our Lovely Deseret (307)</td>
+<td class="gt_row gt_right" headers="times more likely">2.42</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="hymn">Press Forward, Saints (81)</td>
+<td class="gt_row gt_right" headers="times more likely">2.18</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="pioneer-season" class="level2">
 <h2 class="anchored" data-anchor-id="pioneer-season">Pioneer Season</h2>
-<p>Now that we’ve established what the most typical Pioneer Day hymns are, we should actually determine when the Pioneer Day “season” is. First, we’ll boil all the hymns down as either “Pioneer Day” or “not Pioneer Day.” They’re considered Pioneer Day hymns if they’re one of the top seven hymns shown in <a href="#fig-cleveland">Figure&nbsp;1</a> above. For each day of the year, I’ll simply calculate the proportion of Pioneer Day hymns out of the total number of congregational hymns. Since I have data from the past 20 or so years, I have data on every calendar day, so even though the Sunday before Pioneer Day is the 21st this year, if I look back at previous years, I can fill in the gaps. <a href="#fig-by_date">Figure&nbsp;2</a> shows the rise and fall of the number of Pioneer Day hymns by date.</p>
+<p>Now that we’ve established what the most typical Pioneer Day hymns are, we should actually determine when the Pioneer Day “season” is. First, we’ll boil all the hymns down as either “Pioneer Day” or “not Pioneer Day.” They’re considered Pioneer Day hymns if they’re one of the top seven hymns shown in <a href="#fig-cleveland" class="quarto-xref">Figure&nbsp;1</a> above. For each day of the year, I’ll simply calculate the proportion of Pioneer Day hymns out of the total number of congregational hymns. Since I have data from the past 20 or so years, I have data on every calendar day, so even though the Sunday before Pioneer Day is the 21st this year, if I look back at previous years, I can fill in the gaps. <a href="#fig-by_date" class="quarto-xref">Figure&nbsp;2</a> shows the rise and fall of the number of Pioneer Day hymns by date.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-by_date" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-by_date-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Proportion of patriotic congregational hymns by date</figcaption>
+<div id="fig-by_date" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-by_date-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-by_date-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-by_date-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Proportion of patriotic congregational hymns by date
+</figcaption>
 </figure>
 </div>
 </div>
@@ -740,40 +801,52 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <section id="outside-of-utah" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="outside-of-utah">Outside of Utah</h2>
 <p>Now, everything we’ve talked about so far has been based on wards in Utah. That makes sense since Pioneer Day is a Utah state holiday. Do wards outside of Utah also sing these same hymns around July 24th? Currently, I have data from 393 sacrament meetings Utah and 505 from outside of Utah. Let’s take a look and see how the non-Utahn wards compare.</p>
-<p><a href="#fig-cleveland_US">Figure&nbsp;3</a> is just like <a href="#fig-cleveland">Figure&nbsp;1</a>, except it is based on data from the other 49 states in the US outside of Utah. If you’re like me, you probably don’t see much of a difference. The same hymns are the most popular and, perhaps more interestingly, they’re nearly popular as they are in Utah.</p>
+<p><a href="#fig-cleveland_US" class="quarto-xref">Figure&nbsp;3</a> is just like <a href="#fig-cleveland" class="quarto-xref">Figure&nbsp;1</a>, except it is based on data from the other 49 states in the US outside of Utah. If you’re like me, you probably don’t see much of a difference. The same hymns are the most popular and, perhaps more interestingly, they’re nearly popular as they are in Utah.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cleveland_US" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-cleveland_US-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Most common hymns around Pioneer Day in the United States outside of Utah</figcaption>
+<div id="fig-cleveland_US" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cleveland_US-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-cleveland_US-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_US-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Most common hymns around Pioneer Day in the United States outside of Utah
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>To make the comparisons a little easier, <a href="#fig-cleveland_both">Figure&nbsp;4</a> show those top seven hymns with the Utah numbers and the non-Utah numbers together. Here, the Utah frequencies are in green and are in all cases higher than the non-Utah frequencies, which are in blue. These hymns are slightly less common outside of Utah, but they are pretty close.</p>
+<p>To make the comparisons a little easier, <a href="#fig-cleveland_both" class="quarto-xref">Figure&nbsp;4</a> show those top seven hymns with the Utah numbers and the non-Utah numbers together. Here, the Utah frequencies are in green and are in all cases higher than the non-Utah frequencies, which are in blue. These hymns are slightly less common outside of Utah, but they are pretty close.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cleveland_both" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-cleveland_both-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Most common hymns around Pioneer Day in the United States in and out of Utah</figcaption>
+<div id="fig-cleveland_both" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cleveland_both-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-cleveland_both-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_both-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Most common hymns around Pioneer Day in the United States in and out of Utah
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Another way of looking at this is to just focus on the differences. So, for example, about 36.3% of wards in Utah sing <hymn>Come, Come, Ye Saints (#30)</hymn> while only about 31.8% of wards outside of Utah do. (We’re still just focused on the United States.) The difference would be about 4.6%. If we calculate those differences for each of these seven hymns and then plot them, <a href="#fig-diffs">Figure&nbsp;5</a> is the result. Here we see how much less common these Pioneer Day hymns are, given that Utah wards are the baseline.</p>
+<p>Another way of looking at this is to just focus on the differences. So, for example, about 36.3% of wards in Utah sing <hymn>Come, Come, Ye Saints (#30)</hymn> while only about 31.8% of wards outside of Utah do. (We’re still just focused on the United States.) The difference would be about 4.6%. If we calculate those differences for each of these seven hymns and then plot them, <a href="#fig-diffs" class="quarto-xref">Figure&nbsp;5</a> is the result. Here we see how much less common these Pioneer Day hymns are, given that Utah wards are the baseline.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-diffs" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-diffs-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Difference in popularity between Utah and non-Utah wards</figcaption>
+<div id="fig-diffs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-diffs-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Difference in popularity between Utah and non-Utah wards
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>Here, we see that <hymn>Come, Come, Ye Saints (#30)</hymn> is, relative to the others, the least common outside of Utah. To be clear, and as seen in <a href="#fig-cleveland_both">Figure&nbsp;4</a> above, it is still the most common hymn around Pioneer Day even outside of Utah. It’s almost as common though: 31.8% is not that much lower than 37.1%. That comes out to about 1 in 20 wards outside of Utah <em>not</em> singing it. So, again, not a drastic difference.</p><div class="no-row-height column-margin column-container"><span class="">A <span class="math inline">\(\chi^2\)</span> test fails to find an association between whether a ward sings <hymn>Come, Come, Ye Saints (#30)</hymn> and whether they’re in Utah (<span class="math inline">\(\chi^2\)</span> = 3.27, df = 1, <em>p</em> = 0.07).</span></div></div>
+<div class="page-columns page-full"><p>Here, we see that <hymn>Come, Come, Ye Saints (#30)</hymn> is, relative to the others, the least common outside of Utah. To be clear, and as seen in <a href="#fig-cleveland_both" class="quarto-xref">Figure&nbsp;4</a> above, it is still the most common hymn around Pioneer Day even outside of Utah. It’s almost as common though: 31.8% is not that much lower than 37.1%. That comes out to about 1 in 20 wards outside of Utah <em>not</em> singing it. So, again, not a drastic difference.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">A <span class="math inline">\(\chi^2\)</span> test fails to find an association between whether a ward sings <hymn>Come, Come, Ye Saints (#30)</hymn> and whether they’re in Utah (<span class="math inline">\(\chi^2\)</span> = 3.27, df = 1, <em>p</em> = 0.07).</span></div></div>
 <p>Again, it is striking to me that these hymns are still relatively common outside of Utah, especially given that this is a Utah state holiday. Yes, there are lots of Utah transplants all over the country, but are so many of them in callings that decide what hymns are sung? No, I think there are a significant number of people outside of Utah—who have never lived in Utah—who are still choosing to sing pioneer-related hymns around the time the state of Utah is celebrating Pioneer Day.</p>
 <p>What about the rest of the world? I only have data from 89 sacrament meetings on Sundays within a week of July 24th, so I’m hesitant to make any definitive claims. Nevertheless, <hymn>Come, Come, Ye Saints (#30)</hymn> is indeed <em>tied</em> with a few other hymns as being the most common hymn. Six those wards sang it, and for what it’s worth, two come from England and two from Canada. So, while definitely not as common as inside the United States, it does seem to be the case that this <em>Utah state holiday</em> is being celebrated through hymn-singing in some wards around the world.</p>
 </section>
@@ -822,18 +895,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -865,11 +927,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -879,8 +980,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -892,7 +1002,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -936,6 +1169,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -961,6 +1195,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1026,12 +1286,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

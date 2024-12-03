@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joey Stanley">
 <meta name="dcterms.date" content="2023-11-04">
 
-<title>LDS Hymn Stats - What hymns are sung around Thanksgiving?</title>
+<title>What hymns are sung around Thanksgiving? – LDS Hymn Stats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -71,79 +78,101 @@ gtag('js', new Date());
 gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="LDS Hymn Stats - What hymns are sung around Thanksgiving?">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/thanksgiving/index_files/figure-html/fig-thanksgiving_freqs-1.png">
-<meta property="og:site-name" content="LDS Hymn Stats">
-<meta property="og:image:height" content="480">
-<meta property="og:image:width" content="1248">
-<meta name="twitter:title" content="LDS Hymn Stats - What hymns are sung around Thanksgiving?">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/thanksgiving/index_files/figure-html/fig-thanksgiving_freqs-1.png">
-<meta name="twitter:image-height" content="480">
-<meta name="twitter:image-width" content="1248">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="What hymns are sung around Thanksgiving? – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta name="twitter:title" content="What hymns are sung around Thanksgiving? – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../findings.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../overview.html" rel="" target="">
- <span class="menu-text">Summarized Data</span></a>
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../contribute.html" rel="" target="">
- <span class="menu-text">Contribute</span></a>
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -151,7 +180,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -171,6 +199,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   <li><a href="#patterns-within-the-thanksgiving-season" id="toc-patterns-within-the-thanksgiving-season" class="nav-link" data-scroll-target="#patterns-within-the-thanksgiving-season">Patterns within the Thanksgiving “season”</a></li>
   <li><a href="#patterns-within-sacrament-meeting" id="toc-patterns-within-sacrament-meeting" class="nav-link" data-scroll-target="#patterns-within-sacrament-meeting">Patterns within Sacrament Meeting</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#update-thanksgiving-in-2024" id="toc-update-thanksgiving-in-2024" class="nav-link" data-scroll-target="#update-thanksgiving-in-2024">Update: Thanksgiving in 2024</a></li>
   </ul>
 </nav>
     </div>
@@ -204,29 +233,54 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">December 3, 2024</p>
+    </div>
+  </div>
     
   </div>
   
 
+
 </header>
 
-<div class="page-columns page-full"><p>Thanksgiving in the United States is coming up, and many wards sing hymns to reflect the season. What hymns are sung around Thanksgiving? When does the Thanksgiving season start? What trends are there within November? In this post, I’ll only look at the hymns that come from wards in the United States, which is about 84% of the full dataset. When focusing on November, I’ll be drawing from data from the 1,472 sacrament meetings.</p><div class="no-row-height column-margin column-container"><span class="">I gratefully acknowledge <a href="https://singpraises.net">Samuel Bradshaw</a> for sharing his very large dataset with me!</span></div></div>
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This was originally posted in November 2023. Since then, I have collected a lot more data. The bulk of this post has been updated to reflect additional data that has been collected from 2023, but does not include data from 2024. The analysis of 2024 has been added to the bottom of the page.</p>
+</div>
+</div>
+<div class="page-columns page-full"><p>Thanksgiving in the United States is coming up, and many wards sing hymns to reflect the season. What hymns are sung around Thanksgiving? When does the Thanksgiving season start? What trends are there within November? In this post, I’ll only look at the hymns that come from wards in the United States, which is about 84% of the full dataset. When focusing on November, I’ll be drawing from data from the 1,472 sacrament meetings.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">I gratefully acknowledge <a href="https://singpraises.net">Samuel Bradshaw</a> for sharing his very large dataset with me!</span></div></div>
 <section id="what-are-the-thanksgiving-hymns" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-the-thanksgiving-hymns">What are the Thanksgiving hymns?</h2>
 <p>The Table of Contents in the front of the hymnal doesn’t have a dedicated section for Thanksgiving, but there is a “Praise and Thanksgiving” section, which includes hymns 62–96. In my mind though, the unofficial list of Thanksgiving hymns are hymns 91 through 95. This checks out with the “Thanksgiving” entry in the Topics index. The Topics index also recommends looking at the “Gratitude” entry, which lists an additional 22 hymns. So, the question then is this: what hymns are <em>actually</em> sung around Thanksgiving?</p>
-<p>Let’s take a look at what is sung in November in the United States. <a href="#fig-thanksgiving_freqs">Figure&nbsp;1</a> shows the hymns that are the most common in November. As expected, the five “Thanksgiving” hymns (hymns 91–95), which are highlighted in red, are on this list. We also see two other hymns that are about gratitude, <hymn>Count Your Blessings (#241)</hymn> and <hymn>Because I Have Been Given Much (#219)</hymn>. Finally we see <hymn>All Creatures of Our God and King (#62)</hymn>, a hymn that is probably more about praise than gratitude but it fits. So, of the 22 hymns listed in the back of the hymnal under the Gratitude entry, only three of them surface as being sung more in November than in other months.</p>
+<p>Let’s take a look at what is sung in November in the United States. <a href="#fig-thanksgiving_freqs" class="quarto-xref">Figure&nbsp;1</a> shows the hymns that are the most common in November. As expected, the five “Thanksgiving” hymns (hymns 91–95), which are highlighted in red, are on this list. We also see two other hymns that are about gratitude, <hymn>Count Your Blessings (#241)</hymn> and <hymn>Because I Have Been Given Much (#219)</hymn>. Finally we see <hymn>All Creatures of Our God and King (#62)</hymn>, a hymn that is probably more about praise than gratitude but it fits. So, of the 22 hymns listed in the back of the hymnal under the Gratitude entry, only three of them surface as being sung more in November than in other months.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-thanksgiving_freqs" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-thanksgiving_freqs-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Most common hymns in November (excluding sacrament hymns)</figcaption>
+<div id="fig-thanksgiving_freqs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thanksgiving_freqs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-thanksgiving_freqs-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thanksgiving_freqs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Most common hymns in November (excluding sacrament hymns)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -235,10 +289,10 @@ Stats for nerds :)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>These eight hymns shown in <a href="#fig-thanksgiving_freqs">Figure&nbsp;1</a> are not only the most frequent hymns in November generally, but they’re also eight of the nine whose increased frequency in November is statistically significant. For each hymn, I ran a <span class="math inline">\(\chi^2\)</span> test comparing how often it occurs in November to the other 11 months of the year. A sample table for <hymn>Come, Ye Thankful People (#94)</hymn> looks like this:</p>
-<table class="table">
+<p>These eight hymns shown in <a href="#fig-thanksgiving_freqs" class="quarto-xref">Figure&nbsp;1</a> are not only the most frequent hymns in November generally, but they’re also eight of the nine whose increased frequency in November is statistically significant. For each hymn, I ran a <span class="math inline">\(\chi^2\)</span> test comparing how often it occurs in November to the other 11 months of the year. A sample table for <hymn>Come, Ye Thankful People (#94)</hymn> looks like this:</p>
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: right;"></th>
@@ -249,44 +303,52 @@ Stats for nerds :)
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">Number of times sung in November</td>
-<td style="text-align: right;">243</td>
-<td style="text-align: right;">5778</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">6962</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">Number of times not sung in November</td>
-<td style="text-align: right;">33</td>
-<td style="text-align: right;">59243</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">71045</td>
 </tr>
 </tbody>
 </table>
-<p>The <span class="math inline">\(\chi^2\)</span> suggests that the association between Hymn 94 and being sung in November is statistically significant (<span class="math inline">\(\chi^2\)</span> = 2047.811, df = 1, <span class="math inline">\(p\)</span> &lt; 0.001).</p>
+<p>The <span class="math inline">\(\chi^2\)</span> suggests that the association between Hymn 94 and being sung in November is statistically significant (<span class="math inline">\(\chi^2\)</span> = 2607.555, df = 1, <span class="math inline">\(p\)</span> &lt; 0.001).</p>
 <p>However, I had to do that for all 242 hymns that were ever sung in November in this sample. So, to avoid the potential of false positives when running that many independent tests, I decided to do a Bonferroni correction, so only hymns that had a <em>p</em>-value less than <span class="math inline">\(0.001 / 242\)</span> ≈ 0.00000413 were considered statistically significant. I know Bonferroni is known to be a bit harsh of a penalty, but in this case it seems to work well.</p>
 <p>(I’ll be honest, I’m not sure if <span class="math inline">\(\chi^2\)</span>-tests should be done with the sample size is so large or if they’re so disproportionate. Please let me know if there’s a different test I could use!)</p>
-<p>What is very interesting to me is that one other hymn stood out as being sung statistically significantly more in November than in the rest of the year: <hymn>Silent Night (#203)</hymn>. Of course it’s sung more in December too. But of all the Christmas hymns, <hymn>Silent Night (#203)</hymn> appears to be one to kick off the Christmas season. I’ll do a whole blog post about the Sunday after Thanksgiving and whether people sing Thanksgiving or Christmas hymns then.</p>
+<p>For what it’s worth a handful of hymns were statistically <em>less</em> likely to be sung in November compared other months. They are mostly ones with clear connections to other holidays: <hymn>Silent Night (#203)</hymn> (popular around <a href="../../posts/Christmas">Christmas</a>), <hymn>Ring Out, Wild Bells (#215)</hymn> (popular around <a href="../../posts/new-years">New Years</a>), <hymn>Home Can Be a Heaven on Earth (#298)</hymn> (popular around <a href="../../posts/mothers_day">Mother’s Day</a>), <hymn>America the Beautiful (#338)</hymn> (popular around the <a href="../../posts/4th_of_july">4th of July</a>), <hymn>Come, Come, Ye Saints (#30)</hymn>, <hymn>They, the Builders of the Nation (#36)</hymn>, and <hymn>Carry On (#255)</hymn> (all popular around <a href="../../posts/pioneer_day">Pioneer Day</a>), and <hymn>Come, Listen to a Prophet’s Voice (21)</hymn> (popular around the October <a href="../../posts/general_conference">General Conference</a>).</p>
 </div>
 </div>
 </div>
-<p>For what it’s worth, I’ve excluded sacrament hymns in <a href="#fig-thanksgiving_freqs">Figure&nbsp;1</a> and I will for the rest of this blog post. One reason is because they distract from the real patterns that occur. <hymn>I Stand All Amazed (#193)</hymn> was about as common in November as <hymn>Count Your Blessings (#241)</hymn> was. Does that mean it’s a Thanksgiving hymn? Probably not. It’s just a really common hymn and it’s likely to be sung any time of the year. Another reason is because no sacrament hymn is sung in November statistically significantly more than you’d expect if they were evenly distributed throughout the year.</p>
-<p>Just to show that the other 19 hymns listed in the “Gratitude” entry in the back of the hymnal were not popular around Thanksgiving, let’s look at how often each of the 27 total hymns we’ve discussed so far are sung throughout the year. <a href="#fig-thanksgiving_annual">Figure&nbsp;2</a> shows this data. From left to right (within each panel), we have the first week of the year to the last week of the year. Higher points on the plot mean the hymn was sung more that week. Each of the 22 gratitude and Thanksgiving hymns is in its own panel, in order of hymn number. I’ve put a pink line where Thanksgiving typically falls in the year to give a point of reference.</p>
+<p>For what it’s worth, I’ve excluded sacrament hymns in <a href="#fig-thanksgiving_freqs" class="quarto-xref">Figure&nbsp;1</a> and I will for the rest of this blog post. One reason is because they distract from the real patterns that occur. <hymn>I Stand All Amazed (#193)</hymn> was about as common in November as <hymn>Count Your Blessings (#241)</hymn> was. Does that mean it’s a Thanksgiving hymn? Probably not. It’s just a really common hymn and it’s likely to be sung any time of the year. Another reason is because no sacrament hymn is sung in November statistically significantly more than you’d expect if they were evenly distributed throughout the year.</p>
+<p>Just to show that the other 19 hymns listed in the “Gratitude” entry in the back of the hymnal were not popular around Thanksgiving, let’s look at how often each of the 27 total hymns we’ve discussed so far are sung throughout the year. <a href="#fig-thanksgiving_annual" class="quarto-xref">Figure&nbsp;2</a> shows this data. From left to right (within each panel), we have the first week of the year to the last week of the year. Higher points on the plot mean the hymn was sung more that week. Each of the 22 gratitude and Thanksgiving hymns is in its own panel, in order of hymn number. I’ve put a pink line where Thanksgiving typically falls in the year to give a point of reference.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-thanksgiving_annual" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-thanksgiving_annual-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Annual trends of 27 gratitude and Thanksgiving hymns</figcaption>
+<div id="fig-thanksgiving_annual" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thanksgiving_annual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-thanksgiving_annual-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thanksgiving_annual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Annual trends of 27 gratitude and Thanksgiving hymns
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="#fig-thanksgiving_annual">Figure&nbsp;2</a> makes it pretty clear that hymns 91–95 really are mostly sung in November and really not very often outside of November. The others that made the cut as being Thanksgiving hymns have a burst of currency in November, but not quite as large. <hymn>All Creatures of Our God and King (#62)</hymn> is also common around Easter and <hymn>Because I Have Been Given Much (#219)</hymn> and <hymn>Count Your Blessings (#241)</hymn> are common all year but especially in November. All the other hymns in <a href="#fig-thanksgiving_annual">Figure&nbsp;2</a> either peak at other times of the year (the topic of which will be the subject of later blog posts) and/or have no apparent jump in frequency in November whatsoever.</p>
+<p><a href="#fig-thanksgiving_annual" class="quarto-xref">Figure&nbsp;2</a> makes it pretty clear that hymns 91–95 really are mostly sung in November and really not very often outside of November. The others that made the cut as being Thanksgiving hymns have a burst of currency in November, but not quite as large. <hymn>All Creatures of Our God and King (#62)</hymn> is also common around Easter and <hymn>Because I Have Been Given Much (#219)</hymn> and <hymn>Count Your Blessings (#241)</hymn> are common all year but especially in November. All the other hymns in <a href="#fig-thanksgiving_annual" class="quarto-xref">Figure&nbsp;2</a> either peak at other times of the year (like <a href="../../posts/pioneer_day">Pioneer Day</a> or <a href="../../posts/general_conference">General Conference</a>) and/or have no apparent jump in frequency in November whatsoever.</p>
 <p>Looking at this plot, I’ll speculate a little bit about what goes on in music coordinators’ heads as they decide what hymns to sing. If they’re familiar with the hymnal already, they may knows that hymns 91–95 are Thanksgiving hymns. They choose one of those, except maybe <hymn>Father, They Children to Thee Now Raise (#91)</hymn> because it’s unfamiliar, too difficult to play for the organist, or some other reason. If they think outside the box, they draw on one or more other well-known hymns (<hymn>All Creatures of Our God and King (#62)</hymn>, <hymn>Because I Have Been Given Much (#219)</hymn>, and <hymn>Count Your Blessings (#241)</hymn>) to fill out their November. If the music coordinator is not as familiar with the hymnal, they may turn to the Topics Index and see hymns 91–95 in the Thanksgiving entry, and go from there. It appears that very few people turn to the “Gratitude” section of the hymnal. Again, this is purely speculation; I have never been a music coordinator, so I’ve never been in a position to regularly choose hymns. But if more people did use these other 19 hymns, we should see more of these hymns being sung in November.</p>
-<p>I’ll end this section with an observation that <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> has not been mentioned at all. It does not come out as being more common in November and it is not listed in the Gratitude or Thanksgiving entries in the topics index at the back of the hymnal. I’ve already shared my feelings about this hymn when I talked about <a href="../../posts/general_conference.qmd">General Conference hymns</a> how it should be thought of as a hymns of praise and thanksgiving rather than a hymn about prophets. Again, changing the title to, simply, “We Thank Thee, O God,” might draw people’s attention away from the first line and more to the overall theme. <a href="#fig-we_thank_thee">Figure&nbsp;3</a> here shows the popularity of <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> over the year and you can see that it’s no more popular in November than it is in some other random month like June.</p>
+<p>I’ll end this section with an observation that <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> has not been mentioned at all. It does not come out as being more common in November and it is not listed in the Gratitude or Thanksgiving entries in the topics index at the back of the hymnal. I’ve already shared my feelings about this hymn when I talked about <a href="../../posts/general_conference">General Conference hymns</a> how it should be thought of as a hymns of praise and thanksgiving rather than a hymn about prophets. Again, changing the title to, simply, “We Thank Thee, O God,” might draw people’s attention away from the first line and more to the overall theme. <a href="#fig-we_thank_thee" class="quarto-xref">Figure&nbsp;3</a> here shows the popularity of <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> over the year and you can see that it’s no more popular in November than it is in pretty much any other week of the year.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-we_thank_thee" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-we_thank_thee-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Frequency of “We Thank Thee, O God, for a Prophet” over the year.</figcaption>
+<div id="fig-we_thank_thee" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-we_thank_thee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-we_thank_thee-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-we_thank_thee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Frequency of “We Thank Thee, O God, for a Prophet” over the year.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -305,28 +367,36 @@ Recommendation to music coordinators
 </div>
 </div>
 </section>
-<section id="how-many-thanksgiving-hymns-do-wards-sing-in-november" class="level2">
+<section id="how-many-thanksgiving-hymns-do-wards-sing-in-november" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="how-many-thanksgiving-hymns-do-wards-sing-in-november">How many Thanksgiving hymns do wards sing in November?</h2>
-<p>Going back to <a href="#fig-thanksgiving_freqs">Figure&nbsp;1</a>, we see that <hymn>Come, Ye Thankful People (#94)</hymn> is sung in about 73.3% of wards as a congregational hymn at least some time during the month of November. <hymn>Prayer of Thanksgiving (#93)</hymn> is about 67.8% and <hymn>For the Beauty of the Earth (#93)</hymn> is (60.6%). This interpretation works because most wards sing these hymns more more than once a year, and they’re unlikely to repeat the hymn within the month of November. When I first saw these numbers, I actually thought they were a little low. I figured pretty much every ward in the US would sing some of these hymns. I guess not everyone sings Thanksgiving hymns around Thanksgiving!</p>
-<p>So the question then is this: how many wards sing <em>at least one</em> of these five (or eight) Thanksgiving songs in November? For this question, I’ll only draw from the wards that have contributed data from the entire month of November for a given year. I currently have 206 Novembers worth of data from 110 different wards.</p>
-<p>Focusing on the five prototypical Thanksgiving hymns (hymns 91–95), <a href="#fig-one_of_the_five">Figure&nbsp;4</a> shows how many of them a ward is likely to sing in November. The most common scenario (a little less than a third of the wards) is that only two of them are sung. But, a fair number of wards sing three or four of them. Less common is one or even all five. To my surprise, 11.7% of wards in the US don’t sing any of these Thanksgiving hymns in November. But that means that 88.3% of wards <em>do</em>, which is a lot. And, yes, there were two wards that had more than five. One ward in 2016 sang <hymn>Now Thank We All Our God (#95)</hymn> as the closing hymn two weeks in a row. Another ward sang <hymn>For the Beauty of the Earth (#92)</hymn> three times in four weeks in 2015.</p>
+<p>Going back to <a href="#fig-thanksgiving_freqs" class="quarto-xref">Figure&nbsp;1</a>, we see that <hymn>Come, Ye Thankful People (#94)</hymn> is sung in about 70.3% of wards as a congregational hymn at least some time during the month of November. <hymn>Prayer of Thanksgiving (#93)</hymn> is about 62.6% and <hymn>For the Beauty of the Earth (#92)</hymn> is (57.1%). This interpretation works because most wards sing these hymns more more than once a year, and they’re unlikely to repeat the hymn within the month of November. When I first saw these numbers, I actually thought they were a little low. I figured pretty much every ward in the US would sing some of these hymns. I guess not everyone sings Thanksgiving hymns around Thanksgiving!</p>
+<p>So the question then is this: how many wards sing <em>at least one</em> of these five (or eight) Thanksgiving songs in November? For this question, I’ll only draw from the wards that have contributed data from the entire month of November for a given year. I currently have 273 Novembers worth of data from 138 different wards.</p>
+<p>Focusing on the five prototypical Thanksgiving hymns (hymns 91–95), <a href="#fig-one_of_the_five" class="quarto-xref">Figure&nbsp;4</a> shows how many of them a ward is likely to sing in November. The most common scenario (a little less than a third of the wards) is that only two of them are sung. But, a fair number of wards sing three or four of them. Less common is one or even all five. To my surprise, 10.6% of wards in the US don’t sing any of these Thanksgiving hymns in November. But that means that 89.4% of wards <em>do</em>, which is a lot. And, yes, there were two wards that had more than five. One ward in 2016 sang <hymn>Now Thank We All Our God (#95)</hymn> as the closing hymn two weeks in a row. Another ward sang <hymn>For the Beauty of the Earth (#92)</hymn> three times in four weeks in 2015.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-one_of_the_five" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-one_of_the_five-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: How many canonical Thanksgiving hymns does a ward sing in November?</figcaption>
+<div id="fig-one_of_the_five" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-one_of_the_five-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-one_of_the_five-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-one_of_the_five-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: How many canonical Thanksgiving hymns does a ward sing in November?
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Let’s do the exact same thing, but include the three “honorary mention” Thanksgiving hymns (<hymn>All Creatures of Our God and King (#62)</hymn>, <hymn>Because I Have Been Given Much (#219)</hymn>, and <hymn>Count Your Blessings (#241)</hymn>) into the mix. <a href="#fig-one_of_the_eight">Figure&nbsp;5</a> shows that data. Again, singing just two of these eight is the most common possibility, but odds are perhaps two wards in your stake will sing three, maybe 1 or 2 will sing four, and maybe one ward in your stake will sing five of them. A few especially thankful wards sang six or seven of them. And still, to my surprise, 6.8% of wards didn’t sing any of these eight hymns in the month of November at all. But, on the flip side, 93.2% of wards sing at least one of them.</p>
+<div class="page-columns page-full"><p>Let’s do the exact same thing, but include the three “honorary mention” Thanksgiving hymns (<hymn>All Creatures of Our God and King (#62)</hymn>, <hymn>Because I Have Been Given Much (#219)</hymn>, and <hymn>Count Your Blessings (#241)</hymn>) into the mix. <a href="#fig-one_of_the_eight" class="quarto-xref">Figure&nbsp;5</a> shows that data. Singing two to four of these eight is the most common possibility, but odds are good that perhaps one or two wards in your stake will sing five of them. A few especially thankful wards sang six or seven of these Thanksgiving hymns But still, to my surprise, 5.1% of wards didn’t sing any of these eight hymns in the month of November at all. But, on the flip side, 94.9% of wards sing at least one of them.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">When I originally wrote this post in 2023, two hymns was the most likely scenario. But after additional data collection in 2024 from sacrament meetings in 2023, and fixing a bug in the code, it is now clear between two and four.</span></div></div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-one_of_the_eight" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-one_of_the_eight-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: How many canonical Thanksgiving hymns does a ward sing in November?</figcaption>
+<div id="fig-one_of_the_eight" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-one_of_the_eight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-one_of_the_eight-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-one_of_the_eight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: How many total Thanksgiving hymns does a ward sing in November?
+</figcaption>
 </figure>
 </div>
 </div>
@@ -335,54 +405,70 @@ Recommendation to music coordinators
 <section id="patterns-within-the-thanksgiving-season" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="patterns-within-the-thanksgiving-season">Patterns within the Thanksgiving “season”</h2>
 <p>Now that we’ve seen what hymns are considered Thanksgiving hymns and how many are sung each year in a ward, let’s dive a little deeper into November and see if we can uncover some more patterns.</p>
-<p><a href="#fig-within_november">Figure&nbsp;6</a> below shows the within-November trends for each of these eight Thanksgiving hymns. This is basically <a href="#fig-thanksgiving_annual">Figure&nbsp;2</a> above but zoomed in to just show four weeks and just these eight hymns. There are a few small changes though. First, rather than group the data by week of the year, I’ve grouped the data by the number of Sundays leading up to Thanksgiving. So, the Sunday before Thanksgiving would be 1, the second Sunday before Thanksgiving, would be 2, and so on. The Sunday after Thanksgiving (which will be treated separately in its own blog post) is a 0. Second, rather than show the raw count of how many wards have sung that hymn (which is an arbitrary number dependent on how much data I have), I’ve shown what percentage of the time that particular hymn is sung per week. In other words, the totals within each panel of <a href="#fig-within_november">Figure&nbsp;6</a> add up to 100%.</p>
+<p><a href="#fig-within_november" class="quarto-xref">Figure&nbsp;6</a> below shows the within-November trends for each of these eight Thanksgiving hymns. This is basically <a href="#fig-thanksgiving_annual" class="quarto-xref">Figure&nbsp;2</a> above but zoomed in to just show four weeks and just these eight hymns. There are a few small changes though. First, rather than group the data by week of the year, I’ve grouped the data by the number of Sundays leading up to Thanksgiving. So, the Sunday before Thanksgiving would be 1, the second Sunday before Thanksgiving, would be 2, and so on. The <a href="../../posts/week-after-thanksgiving">Sunday after Thanksgiving</a> is a 0. Second, rather than show the raw count of how many wards have sung that hymn (which is an arbitrary number dependent on how much data I have), I’ve shown what percentage of the time that particular hymn is sung per week. In other words, the totals within each panel of <a href="#fig-within_november" class="quarto-xref">Figure&nbsp;6</a> add up to 100%.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-within_november" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-within_november-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: The eight Thanksgiving hymns and when they’re sung in November</figcaption>
+<div id="fig-within_november" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-within_november-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-within_november-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-within_november-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: The eight Thanksgiving hymns and when they’re sung in November
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>In this figure, we can see some pretty interesting trends. First off, each of these eight hymns were sung by at least one ward in each month of November. In other words, there are no gaps in the data. Second, we see that almost all hymns peak the Sunday before Thanksgiving. This is especially true of the more popular hymns (hymns 92–95), but also applies to 91 and 219. In two cases, <hymn>All Creates of Our God and King (#62)</hymn> and <hymn>Count Your Blessings (#241)</hymn>, we don’t see a spike. Instead, they’re equally likely whether it be two weeks before Thanksgiving, the Sunday right before, or the Sunday after.</p>
-<p>The issue with this plot is that there’s a confounding factor: how likely Thanksgiving hymns are sung within November. The reason why most of the hymns spike the Sunday before Thanksgiving is simply because that’s when Thanksgiving hymns are most likely to be sung. <a href="#fig-prop_wards_per_week">Figure&nbsp;7</a> shows what percentage of US wards sing at least one Thanksgiving hymn by week leading up to Thanksgiving. Unsurprisingly, the Sunday before Thanksgiving is the most common time to sing any of these hymns. So, it makes sense then that, for any Thanksgiving hymn, the most common week to sing it is the Sunday before Thanksgiving.</p>
+<p>The issue with this plot is that there’s a confounding factor: how likely Thanksgiving hymns are sung within November. The reason why most of the hymns spike the Sunday before Thanksgiving is simply because that’s when Thanksgiving hymns are most likely to be sung. <a href="#fig-prop_wards_per_week" class="quarto-xref">Figure&nbsp;7</a> shows what percentage of US wards sing at least one Thanksgiving hymn by week leading up to Thanksgiving. Unsurprisingly, the Sunday before Thanksgiving is the most common time to sing any of these hymns. So, it makes sense then that, for any Thanksgiving hymn, the most common week to sing it is the Sunday before Thanksgiving.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-prop_wards_per_week" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-prop_wards_per_week-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;7: Percentage of wards that sing at least one Thanksgiving hymn by week</figcaption>
+<div id="fig-prop_wards_per_week" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prop_wards_per_week-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-prop_wards_per_week-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prop_wards_per_week-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Percentage of wards that sing at least one Thanksgiving hymn by week
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>So, perhaps a better way to look at the data is to change the percentages. <a href="#fig-props_across_november">Figure&nbsp;8</a> shows the same data as <a href="#fig-within_november">Figure&nbsp;6</a>, but instead of the data within each panel adding up to 100%, the data within each week (4 weeks before, 3 weeks before, etc) add up to 100% across all eight panels. So, the way you interpret this is that given all the Thanksgiving hymns sung, for example, four weeks before Thanksgiving, a quarter of them will be <hymn>Because I Have Been Given Much (#219)</hymn>. Given all the Thanksgiving hymns the Sunday before Thanksgiving, about a quarter of them will be <hymn>Prayer of Thanksgiving (#93)</hymn>. So, the higher a number is on any one of these panels, the more typical it is for it to be sung that week.</p>
+<p>So, perhaps a better way to look at the data is to change the percentages. <a href="#fig-props_across_november" class="quarto-xref">Figure&nbsp;8</a> shows the same data as <a href="#fig-within_november" class="quarto-xref">Figure&nbsp;6</a>, but instead of the data within each panel adding up to 100%, the data within each week (4 weeks before, 3 weeks before, etc) add up to 100% across all eight panels. So, the way you interpret this is that given all the Thanksgiving hymns sung, for example, four weeks before Thanksgiving, a quarter of them will be <hymn>Because I Have Been Given Much (#219)</hymn>. Given all the Thanksgiving hymns the Sunday before Thanksgiving, about a quarter of them will be <hymn>Prayer of Thanksgiving (#93)</hymn>. So, the higher a number is on any one of these panels, the more typical it is for it to be sung that week.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-props_across_november" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-props_across_november-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;8: The eight Thanksgiving hymns and the likihood of being sung across November weeks.</figcaption>
+<div id="fig-props_across_november" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-props_across_november-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-props_across_november-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-props_across_november-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: The eight Thanksgiving hymns and the likihood of being sung across November weeks.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>So here, we see some, in my opinion, more interesting trends. Some hymns, like <hymn>Because I Have Been Given Much (#219)</hymn> and <hymn>For the Beauty of the Earth (#92)</hymn>, are more popular further from Thanksgiving, and get less popular leading up to it.  Other hymns are more common the closer it is to Thanksgiving.</p><div class="no-row-height column-margin column-container"><span class="">To be clear, the raw numbers in <a href="#fig-within_november">Figure&nbsp;6</a> show an increase through the month, but here we’re focused on how often a hymn is selected, <em>given that it’s one of these eight hymns being sung</em>, per week. I don’t know, I think this plot shows a more accurate picture of my intuition.</span></div></div>
-<p>This chart reveals some additional insight into how music coordinators choose hymns. You’re not likely to sing any one of these Thanksgiving hymns more than once in the Thanksgiving “season.” So, the music coordinator is left to decide which hymns to choose and when to sing them during the month. We already saw in <a href="#fig-prop_wards_per_week">Figure&nbsp;7</a> that these hymns are more common the closer it is to Thanksgiving and that most wards sing maybe 2–4 of these. So, let’s say a ward ends up with four of them. Well they can’t sing them all in one week, so one of them will be pushed to the week prior. Which hymn does the music coordinator choose? I think what people think is that they don’t want to “waste” the “good” hymn on an earlier week. Or rather, they save the “best” hymns for the preferred weeks. So, the “throwaway” hymns like <hymn>Because I Have Been Given Much (#219)</hymn>, <hymn>Count Your Blessings (#241)</hymn>, or even <hymn>Father, Thy Children to Thee Now Raise (#91)</hymn> are sung in the nonideal weeks, and ones like <hymn>Prayer of Thanksgiving (#93)</hymn> and <hymn>Come, Ye Thankful People (#94)</hymn> are reserved for the best week. As we’ll see in later blog posts, this is a recurring pattern for many holidays.</p>
-<p>I think these patterns feed into each other. How does a music coordinator know which hymns are “best”? Experience in the church and general intuition is helpful, I think words like <em>Thanksgiving</em> and <em>Thankful</em> that line up with the name of the holiday are almost guarenteed to make them quintessential. Imagine if there were a hymn that had the word “Valentine” in it, I think it’d be sung the week before Valentine’s Day a <em>lot</em> had hardly ever any other week! So when a hymn becomes strongly associated with a holiday, they’re likely to sing it the week prior to that holiday and <em>not</em> choose it any other week of the year, which is what we see in <a href="#fig-thanksgiving_annual">Figure&nbsp;2</a> with the annual trends for all hymns. The less quintessential ones are more flexible.</p>
+<div class="page-columns page-full"><p>So here, we see some, in my opinion, more interesting trends. Some hymns, like <hymn>Because I Have Been Given Much (#219)</hymn> and <hymn>For the Beauty of the Earth (#92)</hymn>, are more popular further from Thanksgiving, and get less popular leading up to it.  Other hymns are more common the closer it is to Thanksgiving.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">To be clear, the raw numbers in <a href="#fig-within_november" class="quarto-xref">Figure&nbsp;6</a> show an increase through the month, but here we’re focused on how often a hymn is selected, <em>given that it’s one of these eight hymns being sung</em>, per week. I don’t know, I think this plot shows a more accurate picture of my intuition.</span></div></div>
+<p>This chart reveals some additional insight into how music coordinators choose hymns. You’re not likely to sing any one of these Thanksgiving hymns more than once in the Thanksgiving “season.” So, the music coordinator is left to decide which hymns to choose and when to sing them during the month. We already saw in <a href="#fig-prop_wards_per_week" class="quarto-xref">Figure&nbsp;7</a> that these hymns are more common the closer it is to Thanksgiving and that most wards sing maybe 2–4 of these. So, let’s say a ward ends up with four of them. Well they can’t sing them all in one week, so one of them will be pushed to the week prior. Which hymn does the music coordinator choose? I think what people think is that they don’t want to “waste” the “good” hymn on an earlier week. Or rather, they save the “best” hymns for the preferred weeks. So, the “throwaway” hymns like <hymn>Because I Have Been Given Much (#219)</hymn>, <hymn>Count Your Blessings (#241)</hymn>, or even <hymn>Father, Thy Children to Thee Now Raise (#91)</hymn> are sung in the nonideal weeks, and ones like <hymn>Prayer of Thanksgiving (#93)</hymn> and <hymn>Come, Ye Thankful People (#94)</hymn> are reserved for the best week. We see the same thing around <a href="../../post/Christmas">Christmas time</a> too.</p>
+<p>I think these patterns feed into each other. How does a music coordinator know which hymns are “best”? Experience in the church and general intuition is helpful, but I think words like <em>Thanksgiving</em> and <em>Thankful</em> that line up with the name of the holiday are almost guaranteed to make them quintessential. Imagine if there were a hymn that had the word “Valentine” in it, I think it’d be sung the week before Valentine’s Day a <em>lot</em> and hardly ever any other week! So when a hymn becomes strongly associated with a holiday, they’re likely to sing it the week prior to that holiday and <em>not</em> choose it any other week of the year, which is what we see in <a href="#fig-thanksgiving_annual" class="quarto-xref">Figure&nbsp;2</a> with the annual trends for all hymns. The less quintessential ones are more flexible.</p>
 <p>Another potential factor that I haven’t mentioned at all is that there is more to a sacrament meeting besides when in the year it happens. The topic of a particular sacrament meeting can often have a strong effect on what hymns are being sung. If topics are more or less random across wards, the topic-specific effects will cancel each other out. However, topics are often chosen based on proximity to holidays, and while I don’t have the data to show this, I would suspect that many sacrament meetings in November are on the topic of Gratitude. So, especially earlier in the month when Thanksgiving itself is less on people’s minds, a more general gratitude-related hymn is selected. But, the point I’m trying to make is that both sacrament meeting topics and hymns are often chosen because of holidays and they mutually reinforce each other to create these November-specific patterns discussed on this page.</p>
 </section>
 <section id="patterns-within-sacrament-meeting" class="level2">
 <h2 class="anchored" data-anchor-id="patterns-within-sacrament-meeting">Patterns within Sacrament Meeting</h2>
-<p>I’ll end this post with a look into patterns within Sacrament Meeting itself. Are these hymns likely to be sung as opening hymns, intermediate hymns, or closing hymns? <a href="#fig-type">Figure&nbsp;9</a> shows the eight Thanksgiving hymns and how often they occured within sacrament meeting. The totals in each panel add up to 100%.</p>
+<p>I’ll end this post with a look into patterns within Sacrament Meeting itself. Are these hymns likely to be sung as opening hymns, intermediate hymns, or closing hymns? <a href="#fig-type" class="quarto-xref">Figure&nbsp;9</a> shows the eight Thanksgiving hymns and how often they occured within sacrament meeting. The totals in each panel add up to 100%.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-type" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-type-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;9: When each Thanksgiving hymn is sung within sacrament meeting.</figcaption>
+<div id="fig-type" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-type-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-type-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-type-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: When each Thanksgiving hymn is sung within sacrament meeting.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -392,6 +478,42 @@ Recommendation to music coordinators
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>In the United States, there are eight hymns that are sung mostly around Thanksgiving. The majority of wards sing between two and four of these hymns per year, but some sing as many as seven and others sing none at all. The Thanksgiving season starts in November and you’re more likely to sing Thanksgiving hymns the closer you are to the holiday itself. The most “Thanksgivingy” hymns are most likely right before Thanksgiving. Some hymns are more commonly sung as opening hymns, but other hymns have their own patterns. Clearly, there is a lot that can be uncovered by just looking at hymns in November!</p>
+</section>
+<section id="update-thanksgiving-in-2024" class="level2">
+<h2 class="anchored" data-anchor-id="update-thanksgiving-in-2024">Update: Thanksgiving in 2024</h2>
+<p>A year has passed and I thought I’d take a look at how the Thanksgiving season of 2024 has compared to the general trends reported in this post. In this section, I report on the 599 sacrament meetings I have from 204 wards.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-thanksgiving_freqs2024" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thanksgiving_freqs2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-thanksgiving_freqs2024-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thanksgiving_freqs2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Most common hymns in November in 2024 (excluding sacrament hymns)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>There are a few differences in 2024 compared to what was described above. While the top five hymns are the same, <hymn>Now Thank We All Our God (#95)</hymn> is a little less popular this year compared to before. Also, <hymn>All Creatures of Our God and King (#62)</hymn> was about 20% less popular in 2024 as it was before, and <hymn>Father, Thy Children to Thee Now Raise (#91)</hymn> didn’t even make it onto this chart because it was half as popular as before. What has taken their place? Several of the most popular new hymns (from the <a href="../../posts/new_hymns_batch1">first</a> and <a href="../../posts/new_hymns_batch2">second</a> batch) and two hymns that I think were popular in many <a href="../../post/primary_program">Primary Programs</a> this year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-n_hymns2024" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-n_hymns2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-n_hymns2024-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-n_hymns2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: How many Thanksgiving hymns did wards sing in November 2024?
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In <a href="#fig-one_of_the_five" class="quarto-xref">Figure&nbsp;4</a> and <a href="#fig-one_of_the_eight" class="quarto-xref">Figure&nbsp;5</a>, I showed that typically a ward sings about two of the canonical Thanksgiving hymns and up to maybe four of the eight most Thanksgiving-related hymns per year. <a href="#fig-n_hymns2024" class="quarto-xref">Figure&nbsp;11</a> shows these same numbers (in the top two panels) together with their 2024 equivalents (in the bottom two panels). Beginning with the five canonical Thanksgiving hymns on the left, there were equal numbers of wards singing two or three of them. A few more just sang one and fewer wards sang more than three. When we add the three “honorary” Thanksgiving hymns in the right panels, we see a remarkably balanced distribution. A third of wards sang three of these eight hymns. About one in five each did two or four. And a less less sang just one or greater than five. Overall, 97% of wards that I have complete data from sang at least one of these eight hymns in in 2024, which is pretty cool. There were fewer wards singing six or more Thanksgiving hymns.</p>
+<p>Overall, about 23.2% of all hymns sung in November before 2024 were one of the eight Thanksgiving hymns. In November 2024, the number is just slightly lower at 22.8%. The difference between these is not statistically significant (<span class="math inline">\(\chi^2\)</span> = 0.110, df = 1, <span class="math inline">\(p\)</span> = 0.74), meaning we’re not singing fewer Thanksgiving hymns. Looking at <a href="#fig-n_hymns2024" class="quarto-xref">Figure&nbsp;11</a>, I suspected that we might be singing fewer of the non-canonical Thanksgiving hymns and focusing on the canonical five, but the differences in those groups of hymns across years was also not significant.</p>
+<p>Basically, the overall trend is that we sang about the same number of Thanksgiving hymns this as we have in years past. I think the biggest change is that when non-Thanksgiving hymns are sung, they tend to be one of the new hymns rather than any other hymn.</p>
 
 
 </section>
@@ -432,18 +554,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -475,11 +586,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -489,8 +639,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -502,7 +661,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -546,6 +828,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -571,6 +854,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -636,12 +945,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
