@@ -61,7 +61,7 @@ n_weeks_since_release2 <- meetings_since_release2 |>
 
 On September 12th, the church released the second batch of new hymns. In [a previous post](/posts/new_hymns_batch1), I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release2)` sacrament meetings since September 15th from `r n_wards_since_release1` wards.
 
-But first, here's how much data I have for each week, just so you have an idea of what I'm working with. For what it's worth, I have more data from some of the past few weeks than any other week in my entire dataset.
+But first, here's how much data I have for each week, just so you have an idea of what I'm working with. I have collected more data per week from the past few months than from any other time period in my dataset.
 
 ```{r, include = TRUE}
 meetings_since_release2 |> 
@@ -73,6 +73,9 @@ meetings_since_release2 |>
     tab_header(title = "Number of wards I have data from, by week",
                subtitle = "Since September 15th")
 ```
+
+
+
 
 
 
@@ -179,7 +182,7 @@ In the first week after the release of the second batch, relatively few wards (a
 
 What is perhaps more interesting though is not which batch people sang from, but whether they sang any new hymns at all. Look at the blue lines. Those represent the number of wards singing new hymns total, across both batches. They have gone up over the past few weeks. To accompany that, the gray line, which represents the number of wards that sang none of the new hymns, goes down. On October 20th, almost half of the wards I have data from sang at least one of the new hymns! Since then, more wards than ever (around 7%) have sang two new hymns in one meeting. Since then, it appears that it's stabilizing at around 40% of wards singing at least one new hymn. 
 
-The most recent update is that now that we're approaching the holiday season, we're seeing a dip in the number of new hymns being sung. On November 24, for example, most wards sang hymns of gratitude because of Thanksgiving. (Keep in mind that [most of my data comes from the United States](/posts/frequency-data.). I anticipate another several weeks of that until January. 
+Now that we're in the holiday season, there's a dip in the number of new hymns being sung. It started on November 24 when most wards sang hymns of gratitude because of Thanksgiving. (Keep in mind that [most of my data comes from the United States](/posts/frequency-data.). On December 1st, there were even fewer new hymns being sung as people transitioned to singing Christmas hymns. Most notably though, while hymns from the second batch are not sung very much, the first batch is staying steady. This is because many wards are now singing the new Christmas hymns, particularly, <hymn>He Is Born, the Divine Christ Child (#1202)</hymn> and <hymn>What Child Is This? (#1203)</hymn>.
 
 ## What hymns are most popular?
 
@@ -256,7 +259,9 @@ meetings_since_release2 |>
     theme_bw()
 ```
 
-So, <hymn>Amazing Grace (#1010)</hymn> has taken the lion's share of the new hymns. In the first four weeks, if a ward sang any from the second batch, about half of the time that hymn was <hymn>Amazing Grace (#1010)</hymn>. But it has waned a bit since the initial release, and other hymns have gotten more popular. Perhaps now that some wards have gotten it out of the way, they've freed themselves up to sing others. This is similar to [what we saw](/posts/new_hymns_batch1) with <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, though in a less extreme way. Mostly recently, we're seeing <hymn>Behold the Wounds in Jesus' Hands (#1016)</hymn> spike in popularity.
+So, <hymn>Amazing Grace (#1010)</hymn> has taken the lion's share of the new hymns. In the first four weeks, if a ward sang any from the second batch, about half of the time that hymn was <hymn>Amazing Grace (#1010)</hymn>. But it has waned a bit since the initial release, and other hymns have gotten more popular. Perhaps now that some wards have gotten it out of the way, they've freed themselves up to sing others. This is similar to [what we saw](/posts/new_hymns_batch1) with <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, though in a less extreme way. 
+
+The latest pattern is the huge spike on December 1st with <hymn>Come, Lord Jesus (#1018)</hymn>. The lyrics in the first first do mention the manger, so it makes sense. It's interesting to see a hymn that previously was not sung very often suddenly gain some popularity.
 
 
 ## When during meetings are these hymns sung?
@@ -297,4 +302,4 @@ The other hymns show some patterns but because I've seen them far less often, I 
 
 At first, people didn't seen as eager to incorporate this second batch of hymns into their sacrament meetings right away. It may be the case that wards had their hymns planned already and it took them few weeks still before incorporating this second batch. It may also be because church musicians need time to prepare. However, the same reasons applied to the first batch and far more people sang new hymns in June 2. So, my guess is that the novelty of singing new hymns has waned a little bit, and there's less of a rush to burn through all of them as there might have been over the summer. 
 
-However, we're now several weeks since the release of the second batch, and it's clear that people are warming up to them. Late October was the peak popularity. Now that we're getting into Thanksgiving (in the US) and Christmas, those holidays will take precedent and we'll see fewer new hymns (except of course the new Christmas ones). In January, once the next batch is scheduled to come out, I think we'll see that third batch becoming more popular than either of the other two for a while.
+However, we're now several weeks since the release of the second batch, and it's clear that people are warming up to them. Late October was the peak popularity. Now that we're in December, Christmas holidays will take precedent and we'll see fewer new hymns (except of course the new Christmas ones). In January, once the next batch is scheduled to come out, I think we'll see that third batch becoming more popular than either of the other two for a while.
