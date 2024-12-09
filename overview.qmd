@@ -94,7 +94,17 @@ freqs %>%
 
 ### Before June 2024
 
-This table includes data from before any new hymns were introduced. It is likely the most informative, publicly-available view of the overall popularity of hymns in the 1985 hymnal. 
+```{r, echo = FALSE}
+n_meetings_preJune2024 <- freqs %>%
+    filter(date <= ymd("2024-06-01")) |> 
+    pull(meeting_id) |> 
+    unique() |> 
+    length() |> 
+    comma()
+```
+
+
+This table includes data from before any new hymns were introduced. It is likely the most informative, publicly-available view of the overall popularity of hymns in the 1985 hymnal. This table is based on data from `r n_meetings_preJune2024` sacrament meetings. 
 
 ```{r, include = TRUE, echo = FALSE}
 freqs %>%
@@ -108,7 +118,17 @@ freqs %>%
 
 ### Since June 2024
 
-This table includes data from sacrament meetings since June 2024 when the new hymns were released. I've given some approximate numbers for how popular they are. New hymns are highlighted in blue and orange.
+```{r, echo = FALSE}
+n_meetings_sinceJune2024 <- freqs %>%
+    filter(date >= ymd("2024-06-01")) |> 
+    pull(meeting_id) |> 
+    unique() |> 
+    length() |> 
+    comma()
+```
+
+
+This table includes data from sacrament meetings since June 2024 when the new hymns were released. I've given some approximate numbers for how popular they are. New hymns are highlighted in blue and orange. This table is based on data from `r n_meetings_sinceJune2024` sacrament meetings.
 
 ```{r, echo = FALSE}
 weeks_since_june2 <- freqs |> 
