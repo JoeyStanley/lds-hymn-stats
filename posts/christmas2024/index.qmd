@@ -1,0 +1,180 @@
+---
+title: "Christmas 2024"
+author: "Joey Stanley"
+date: 2023-12-04
+categories:
+    - holidays
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+Last year, I did [a detailed analysis](/posts/christmas) of Christmas hymns. This year, things have changed a little bit because of the introduction of some new hymns. So, in this post I'll give a brief look at what Christmas hymns are sung. It'll be similar in style to my ongoing post about [the second batch of new hymns](/posts/new_hymns_batch2), and I'll update it weekly until a negligible number of wards sing Christmas hymns. 
+
+```{r}
+december <- freqs |> 
+    filter(date >= "2024-12-01",
+           date <= today()) |> 
+    print()
+
+n_wards_here <- length(unique(december$ward))
+n_weeks_here <- length(unique(december$date))
+n_meetings_here <- length(unique(december$meeting_id))
+```
+
+
+
+```{r}
+count_new_hymns <- function(.category_name, .hymns) {
+    december |> 
+        mutate(is_christmas = hymn_num %in% .hymns) |>
+        summarize(n_christmas = sum(is_christmas), .by = c(date, ward)) |>
+        count(date, n_christmas) |>
+        arrange(date) |>
+        mutate(prop_christmas = n/sum(n), .by = date) |>
+        mutate(n_christmas = as.factor(n_christmas)) |>
+        mutate(category = .category_name) |>
+        select(-n) |>
+        pivot_wider(names_from = n_christmas, values_from = prop_christmas)
+}
+data_to_plot <- bind_rows(count_new_hymns("Old Christmas", c(201:214)), 
+                          count_new_hymns("New Christmas", c(1018, 1202:1204)), 
+                          count_new_hymns("Christmas",     c(201:214, 1018, 1202:1204))) |> 
+    pivot_longer(cols = -c(date, category), names_to = "n_christmas", values_to = "prop") |>
+    mutate(group = paste(n_christmas, category)) |>
+    arrange(date) |>
+    # # don't need zeros from all three
+    filter(!(n_christmas == 0 & category != "Christmas")) |>
+    # don't need the 3s because they're so rare
+    filter(n_christmas <= 2) |>
+    filter(!is.na(prop)) |>
+    print()
+# Place labels a little above the max from most recent three weeks
+# (Will need to raise to four as more dates come in.)
+labels <- data_to_plot |> 
+    slice_max(order_by = date, n = 3, by = n_christmas) |> 
+    summarize(prop = max(prop), 
+              date = max(date),
+              .by = n_christmas) |> 
+    mutate(label = case_when(n_christmas == 0 ~ "no Christmas hymns",
+                             n_christmas == 1 ~ "1 Christmas hymn",
+                             n_christmas >= 2 ~ "2 or more Christmas hymns"))
+# Get date breaks for this post.
+date_breaks <- tibble(weeks_since = 0:52,
+                            date = last_sunday) |> 
+    mutate(date = last_sunday - weeks_since*7) |> 
+    filter(date >= "2024-11-01")
+```
+
+First, what proportion of wards are singing Christmas hymns? For now, I won't show a plot because it's only been one week, but I can summarize it in bullet points instead:
+
+* 96.4% of wards sang at least one Christmas hymn.
+* 12.5% of wards sang just one Christmas hymn.
+* 83.5% of wards sang two or more Christmas hymns. (There was one ward that did three---yes, even on Fast Sunday---because they sang two closing hymns, both of which were Christmas. I've never seen that before!)
+* 22.7% of wards sang one of the new hymns. The most common was <hymn>What Child Is This? (#1203)</hymn> by a fair margin, though see the figure below for some more detail. 
+
+
+
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8, eval = FALSE}
+ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
+    # stat_smooth(formula = "y ~ x", method = "loess", color = "gray85", alpha = 0.25) +
+    geom_path() +
+    geom_point() +
+    # geom_text(data = labels, aes(y = prop + 0.05, label = label), hjust = 1) +
+    scale_x_date(breaks = date_breaks$date,
+                 date_labels = "%b %d",
+                 expand = expansion(0.02, 0)) +
+    scale_y_continuous(expand = expansion(0, 0.02),
+                       breaks = seq(0, 1, 0.1),
+                       labels = scales::percent) +
+    scale_color_manual(breaks = c("0 Christmas",
+                                  "1 Christmas", "1 Old Christmas", "1 New Christmas",
+                                  "2 Christmas", "2 Old Christmas", "2 New Christmas"),
+                       labels = c("no Christmas hymns",
+                                  "1 Christmas hymn (total)", "1 old Christmas hymn", "1 new Christmas hymn",
+                                 "2 Christmas hymns (total)", "2 old Christmas hymns","2 new Christmas hymns"),
+                       values = c("gray66", 
+                                  "#a6cee3", "#b2df8a", "#fb9a99",
+                                  "#1f78b4", "#33a02c", "#e31a1c")) +
+    theme_minimal() +
+    labs(x = NULL,
+         y = "percentage of wards",
+         color = "number of new hymns",
+         title = "Percentage of wards singing Christmas hymns since December 1st",
+         subtitle = paste("Based on data from", n_wards_here, "wards"),
+         fill = "date")
+    # theme(legend.position = "none")
+```
+
+
+## What Christmas hymns have been most popular?
+
+The following plot shows which Christmas hymns have been most popular in December so far. About half have sung <hymn>Oh, Come, All Ye Faithful (#202)</hymn> and less than 5% have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. I'm hesitant to make any comparisons to last year quite yet since we're just one week into December and [some hymns are more popular earlier in the month than others](/posts/christmas/#trends-within-december). 
+
+```{r, include = TRUE, fig.height = 5, fig.width = 6.5}
+cleveland_data <- freqs |> 
+    mutate(color = case_when(hymn_num %in% c(201:214) ~ "old Christmas",
+                             hymn_num %in% c(1018, 1202:1204) ~ "new Christmas",
+                             TRUE ~ "other")) |> 
+    filter(!hymn_num %in% c(91:94, 169:196, 1008),
+           date >= "2024-12-01", 
+           date <= last_sunday)
+
+cleveland_plot(cleveland_data, 
+               return = "plot", 
+               col_to_plot = avg_per_year,
+               filter_n = 3,
+               extra_cols = color,
+               color = color,
+               unique_meetings = get_n_distinct_meetings(cleveland_data), 
+               n_weeks = n_weeks_here) + 
+    scale_x_continuous(breaks = seq(0, 1, 0.05),
+                       minor_breaks = seq(0, 1, 0.01),
+                       labels = scales::percent,
+                       expand = expansion(0, c(0, 0.25))) +
+    scale_color_manual(breaks = c("old Christmas", "new Christmas", "other"),
+                       labels = c("1985 Hymnal", "New Hymnal", "other"),
+                       values = c("gray10", "#33a02c", "gray66")) + 
+    labs(title = "Popularity of Christmas hymns in 2024",
+         subtitle = paste0("Based on ", n_meetings_here, " sacrament meetings from ", n_wards_here, " wards")) + 
+    theme_minimal() +
+    theme(axis.text.y = element_blank())
+```
+
+
+Interspersed among these hymns are four new hymns. Of them, <hymn>What Child Is This? (#1203)</hymn> is far and away the most popular. The other three are towards the bottom, more popular than just two: <hymn>I Heard the Bells on Christmas Day (#214)</hymn> which tends to be most popular just before or even after Christmas, and <hymn>While Shepherds Watched Their Flocks (#211)</hymn> which has always been less popular.
+
+The following table shows the same data plotted above but in table format so you can see the exact numbers.
+
+```{r, eval = FALSE}
+december |> 
+    
+    # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
+    mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
+    filter(nth_time == 1) |> 
+    
+    cleveland_plot(return = "table") |> 
+    mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
+    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
+    filter(hymn_num %in% c(201:214, 1018, 1202:1204)) |> 
+    mutate(percent_wards = scales::percent(round(n_weeks_here / every_x_weeks, 3))) |> 
+    
+    # add label for missing hymns
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           percent_wards = if_else(is.na(percent_wards), "0%", percent_wards)) |> 
+    select(Hymn = label, `percent of wards` = percent_wards) |> 
+    
+    gt() |> 
+    tab_header(title = "Approximate percentage of wards Christmas hymns have been sung in",
+               subtitle = "Since December 1st")
+```
+
+
+## Conclusion
+
+That's it for now! Stay tuned for more updates each week this month!
