@@ -141,7 +141,8 @@ cleveland_plot(cleveland_data,
                        labels = c("1985 Hymnal", "New Hymnal", "other"),
                        values = c("gray10", "#33a02c", "gray66")) + 
     labs(title = "Popularity of Christmas hymns in 2024",
-         subtitle = paste0("Based on ", n_meetings_here, " sacrament meetings from ", n_wards_here, " wards")) + 
+         #subtitle = paste0("Based on ", n_meetings_here, " sacrament meetings from ", n_wards_here, " wards")) + 
+    ) + 
     theme_minimal() +
     theme(axis.text.y = element_blank())
 ```
