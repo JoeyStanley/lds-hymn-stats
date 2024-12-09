@@ -116,7 +116,7 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
 
 The following plot shows which Christmas hymns have been most popular in December so far. About half have sung <hymn>Oh, Come, All Ye Faithful (#202)</hymn> and less than 5% have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. I'm hesitant to make any comparisons to last year quite yet since we're just one week into December and [some hymns are more popular earlier in the month than others](/posts/christmas/#trends-within-december). 
 
-```{r, include = TRUE, fig.height = 5, fig.width = 6.5}
+```{r, include = TRUE, fig.height = 5, fig.width = 8}
 cleveland_data <- freqs |> 
     mutate(color = case_when(hymn_num %in% c(201:214) ~ "old Christmas",
                              hymn_num %in% c(1018, 1202:1204) ~ "new Christmas",
@@ -136,7 +136,7 @@ cleveland_plot(cleveland_data,
     scale_x_continuous(breaks = seq(0, 1, 0.05),
                        minor_breaks = seq(0, 1, 0.01),
                        labels = scales::percent,
-                       expand = expansion(0, c(0, 0.25))) +
+                       expand = expansion(0, c(0, 0.18))) +
     scale_color_manual(breaks = c("old Christmas", "new Christmas", "other"),
                        labels = c("1985 Hymnal", "New Hymnal", "other"),
                        values = c("gray10", "#33a02c", "gray66")) + 
@@ -151,7 +151,7 @@ Interspersed among these hymns are four new hymns. Of them, <hymn>What Child Is 
 
 The following table shows the same data plotted above but in table format so you can see the exact numbers.
 
-```{r, eval = FALSE}
+```{r, include = TRUE}
 december |> 
     
     # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
