@@ -84,7 +84,7 @@ First, what proportion of wards are singing Christmas hymns? The following plot 
 
 
 
-```{r, include = TRUE, fig.height = 4, fig.width = 8, eval = FALSE}
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
 ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
     # stat_smooth(formula = "y ~ x", method = "loess", color = "gray85", alpha = 0.25) +
     geom_path() +
