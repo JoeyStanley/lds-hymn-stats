@@ -17,7 +17,7 @@ Last year, I did [a detailed analysis](/posts/christmas) of Christmas hymns. Thi
 
 ```{r}
 december <- freqs |> 
-    filter(date >= "2024-12-01",
+    filter(date >= "2024-11-01",
            date <= today()) |> 
     print()
 
@@ -43,6 +43,7 @@ count_new_hymns <- function(.category_name, .hymns) {
 }
 data_to_plot <- bind_rows(count_new_hymns("Old Christmas", c(201:214)), 
                           count_new_hymns("New Christmas", c(1018, 1202:1204)), 
+                          count_new_hymns("Primary Christmas", c(2036:2054)),
                           count_new_hymns("Christmas",     c(201:214, 1018, 1202:1204))) |> 
     pivot_longer(cols = -c(date, category), names_to = "n_christmas", values_to = "prop") |>
     mutate(group = paste(n_christmas, category)) |>
@@ -70,12 +71,15 @@ date_breaks <- tibble(weeks_since = 0:52,
     filter(date >= "2024-11-01")
 ```
 
-First, what proportion of wards are singing Christmas hymns? For now, I won't show a plot because it's only been one week, but I can summarize it in bullet points instead:
+First, what proportion of wards are singing Christmas hymns? The following plot shows the number of wards singing the number of Christmas hymsn per week. To make it easier to read, I've included the month of November, just so that there's a little bit of context. And yes, there were some wards that sang Christmas hymns in November, mostly wards outside the US since they don't celebrate Thanksgiving during that time, but also shout-out to a ward in Arizona that sang a Christmas hymn on November 17th! Anyway, the plot is a little confusing to look at, so let's see if I can explain it. 
+
+<!--For now, I won't show a plot because it's only been one week, but I can summarize it in bullet points instead:
 
 * 96.4% of wards sang at least one Christmas hymn.
 * 12.5% of wards sang just one Christmas hymn.
 * 83.5% of wards sang two or more Christmas hymns. (There was one ward that did three---yes, even on Fast Sunday---because they sang two closing hymns, both of which were Christmas. I've never seen that before!)
 * 22.7% of wards sang one of the new hymns. The most common was <hymn>What Child Is This? (#1203)</hymn> by a fair margin, though see the figure below for some more detail. 
+-->
 
 
 
@@ -93,23 +97,30 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
                        breaks = seq(0, 1, 0.1),
                        labels = scales::percent) +
     scale_color_manual(breaks = c("0 Christmas",
-                                  "1 Christmas", "1 Old Christmas", "1 New Christmas",
+                                  "1 Christmas", "1 Primary Christmas", "1 Old Christmas", "1 New Christmas",
                                   "2 Christmas", "2 Old Christmas", "2 New Christmas"),
                        labels = c("no Christmas hymns",
-                                  "1 Christmas hymn (total)", "1 old Christmas hymn", "1 new Christmas hymn",
+                                  "1 Christmas hymn (total)", "1 Primary Christmas", "1 old Christmas hymn", "1 new Christmas hymn",
                                  "2 Christmas hymns (total)", "2 old Christmas hymns","2 new Christmas hymns"),
                        values = c("gray66", 
-                                  "#a6cee3", "#b2df8a", "#fb9a99",
+                                  "#a6cee3", "#fdbf6f", "#b2df8a", "#fb9a99",
                                   "#1f78b4", "#33a02c", "#e31a1c")) +
     theme_minimal() +
     labs(x = NULL,
          y = "percentage of wards",
          color = "number of new hymns",
-         title = "Percentage of wards singing Christmas hymns since December 1st",
+         title = "Wards singing Christmas hymns since November 1st",
          subtitle = paste("Based on data from", n_wards_here, "wards"),
          fill = "date")
     # theme(legend.position = "none")
 ```
+
+
+First, we'll start with the gray line, which represents wards singing zero Christmas hymns. It's near the top during November and then quickly falls to the bottom. This means during November, the majorirty of wards I have data from sang zero Christmas hymns. But [as soon as December hit](/posts/Christmas), most wards sing at least one Christmas hymn. 
+
+Let's move on to the blue lines, which represent the total number of Christmas hymns being sung. The darker line shows the number of wards that sing two or more Christmas hymns while the lighter line is for wards that sing exactly one. On December 1st, around 85% of wards sang two Christmas hymns, while just about 13% or so sang just one. 
+
+The green, red, and orange lines give us a little insight into which hymns are sung. We'll start with the green lines. They're labeled "old" Christmas hymns, meaning they come from the 1985 hymnal. Most of the Christmas hymns come from this selection, which makes sense because there are more of them. Roughly 55% of wards sing two hymns from the existing hymnal with another 25% or so singing just one. With the red lines, we see that another 25% of wards sing one new hymn and a small number of wards sing two new hymns. Finally, I put the orange line in there because very occasionally, a ward will sing a Christmas song from the Children's Songbook. 
 
 
 ## What Christmas hymns have been most popular?
@@ -124,6 +135,9 @@ cleveland_data <- freqs |>
     filter(!hymn_num %in% c(91:94, 169:196, 1008),
            date >= "2024-12-01", 
            date <= last_sunday)
+n_weeks_cleveland_data <- cleveland_data |> 
+    distinct(date) |> 
+    nrow()
 
 cleveland_plot(cleveland_data, 
                return = "plot", 
@@ -131,8 +145,8 @@ cleveland_plot(cleveland_data,
                filter_n = 3,
                extra_cols = color,
                color = color,
-               unique_meetings = get_n_distinct_meetings(cleveland_data), 
-               n_weeks = n_weeks_here) + 
+               unique_meetings = get_n_distinct_meetings(cleveland_data),
+               n_weeks = n_weeks_cleveland_data) + 
     scale_x_continuous(breaks = seq(0, 1, 0.05),
                        minor_breaks = seq(0, 1, 0.01),
                        labels = scales::percent,
@@ -141,7 +155,8 @@ cleveland_plot(cleveland_data,
                        labels = c("1985 Hymnal", "New Hymnal", "other"),
                        values = c("gray10", "#33a02c", "gray66")) + 
     labs(title = "Popularity of Christmas hymns in 2024",
-         #subtitle = paste0("Based on ", n_meetings_here, " sacrament meetings from ", n_wards_here, " wards")) + 
+         # subtitle = paste0("Based on ", n_meetings_here, " sacrament meetings from ", n_wards_here, " wards")) +
+         x = "Percentage of wards that have sung it"
     ) + 
     theme_minimal() +
     theme(axis.text.y = element_blank())
