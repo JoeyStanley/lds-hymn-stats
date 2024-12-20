@@ -33,47 +33,81 @@
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/christmas2024/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>First, we’ll start with the gray line, which represents wards singing zero Christmas hymns. It’s near the top during November and then quickly falls to the bottom. This means during November, the majorirty of wards I have data from sang zero Christmas hymns. But <a href="../../posts/Christmas">as soon as December hit</a>, most wards sing at least one Christmas hymn.</p>
-<p>Let’s move on to the blue lines, which represent the total number of Christmas hymns being sung. The darker line shows the number of wards that sing two or more Christmas hymns while the lighter line is for wards that sing exactly one. On December 1st, around 85% of wards sang two Christmas hymns, while just about 13% or so sang just one.</p>
-<p>The green, red, and orange lines give us a little insight into which hymns are sung. We’ll start with the green lines. They’re labeled “old” Christmas hymns, meaning they come from the 1985 hymnal. Most of the Christmas hymns come from this selection, which makes sense because there are more of them. Roughly 55% of wards sing two hymns from the existing hymnal with another 25% or so singing just one. With the red lines, we see that another 25% of wards sing one new hymn and a small number of wards sing two new hymns. Finally, I put the orange line in there because very occasionally, a ward will sing a Christmas song from the Children’s Songbook.</p>
-<section id="what-christmas-hymns-have-been-most-popular" class="level2">
-<h2 class="anchored" data-anchor-id="what-christmas-hymns-have-been-most-popular">What Christmas hymns have been most popular?</h2>
-<p>The following plot shows which Christmas hymns have been most popular in December so far. About half have sung <hymn>Oh, Come, All Ye Faithful (#202)</hymn> and less than 5% have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. I’m hesitant to make any comparisons to last year quite yet since we’re just one week into December and <a href="../../posts/christmas/#trends-within-december">some hymns are more popular earlier in the month than others</a>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
 <p><img src="https://hymnstats.joeystanley.com/posts/christmas2024/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Interspersed among these hymns are four new hymns. Of them, <hymn>What Child Is This? (#1203)</hymn> is far and away the most popular. The other three are towards the bottom, more popular than just two: <hymn>I Heard the Bells on Christmas Day (#214)</hymn> which tends to be most popular just before or even after Christmas, and <hymn>While Shepherds Watched Their Flocks (#211)</hymn> which has always been less popular.</p>
+<p>First, we’ll start with the gray line, which represents wards singing zero Christmas hymns. It’s near the top during November and then quickly falls to the bottom. This means during November, the majorirty of wards I have data from sang zero Christmas hymns. But <a href="../../posts/Christmas">as soon as December hit</a>, most wards sing at least one Christmas hymn. (But not all, as we’ll see below!)</p>
+<p>Let’s move on to the blue lines, which represent the total number of Christmas hymns being sung. The darker line shows the number of wards that sing two or more Christmas hymns while the lighter line is for wards that sing exactly one. On December 1st, around 85% of wards sang two Christmas hymns, while just about 13% or so sang just one. Those numbers went up on December 8th and 15th.</p>
+<p>The green, red, and orange lines give us a little insight into which hymns are sung. We’ll start with the green lines. They’re labeled “old” Christmas hymns, meaning they come from the 1985 hymnal. Most of the Christmas hymns come from this selection, which makes sense because there are more of them. Roughly two-thirds of wards sing two hymns from the existing hymnal with another 25% or so singing just one. With the red lines, we see that another 30% of wards sing one new hymn and a small number of wards sing two new hymns. Finally, I put the orange line in there because very occasionally, a ward will sing a Christmas song from the Children’s Songbook.</p>
+<section id="how-many-christmas-hymns-have-wards-sung-so-far" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-christmas-hymns-have-wards-sung-so-far">How many Christmas hymns have wards sung so far?</h2>
+<p>Turning the question on its head then, we can now focus on individual wards and see how many Christmas hymns wards have sung so far.</p>
+<p>First off, there were 9 sacrament meetings in December that I have data from that did not include any congregational Christmas hymns. One example was from a ward in Nevada. On December 8th, they sang <hymn>The Iron Rod (#274)</hymn>, <hymn>I Stand All Amazed (#193)</hymn>, and <hymn>I Believe in Christ (#134)</hymn>. I don’t know why they didn’t sing Christmas hymns well into December, but it just goes to show that it does happen very occasionally.</p>
+<p>The following plot shows an estimate of the cumulative number of Christmas hymns a ward sings over the course of the month of December.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A little explanation of this plot might be necessary to fully understand it. When I collect my data, a lot of my data comes from the same wards each week, but a lot also comes from various other one-off contributions from people. So, the data for some wards is complete while for others it’s not. That means I might have a complete dataset for some wards for the entire month and for other wards there might be just one or two contributions.</p>
+<p>So, the plot below shows that <em>of the wards I have just one week of data from</em>, around 81% of them sang two Christmas hymns. That doesn’t mean that 81% of wards will necessarily sing two Christmas hymn on the first Sunday of the month. (Although, the plot above, I show that it’s more like 85%.) It just means given one random week out of the month, the majority sing just two. A few wards will sing fewer than that and a few will sing more.</p>
+<p>See <a href="../../posts/new_hymns_batch1">here</a> for a similar plot, but applied to the first batch of new hymns.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2024/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So, as expected, the more data I have from a ward, the more Christmas hymns I observe them singing. Currently, we’re three weeks into December, and just over half of wards have sung six congregational Christmas hymns, with most of the rest singing more than that.</p>
+</section>
+<section id="what-christmas-hymns-have-been-most-popular" class="level2">
+<h2 class="anchored" data-anchor-id="what-christmas-hymns-have-been-most-popular">What Christmas hymns have been most popular?</h2>
+<p>The following plot shows which Christmas hymns have been most popular in December so far. Almost 60% have sung <hymn>Oh, Come, All Ye Faithful (#202)</hymn> and less than 12% have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. I’m hesitant to make any comparisons to last year quite yet since we’re still partway through December and <a href="../../posts/christmas/#trends-within-december">some hymns are more popular earlier in the month than others</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2024/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Interspersed among these hymns are four new hymns. Of them, <hymn>What Child Is This? (#1203)</hymn> is far and away the most popular. The other three are closer to the bottom, more popular than a few of the ones in the 1985 hymnal.</p>
 <p>The following table shows the same data plotted above but in table format so you can see the exact numbers.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="cnhpbxxnee" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cnhpbxxnee table {
+<div id="lujvqabhts" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lujvqabhts table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cnhpbxxnee thead, #cnhpbxxnee tbody, #cnhpbxxnee tfoot, #cnhpbxxnee tr, #cnhpbxxnee td, #cnhpbxxnee th {
+#lujvqabhts thead, #lujvqabhts tbody, #lujvqabhts tfoot, #lujvqabhts tr, #lujvqabhts td, #lujvqabhts th {
   border-style: none;
 }
 
-#cnhpbxxnee p {
+#lujvqabhts p {
   margin: 0;
   padding: 0;
 }
 
-#cnhpbxxnee .gt_table {
+#lujvqabhts .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -99,12 +133,12 @@
   border-left-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_caption {
+#lujvqabhts .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cnhpbxxnee .gt_title {
+#lujvqabhts .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -116,7 +150,7 @@
   border-bottom-width: 0;
 }
 
-#cnhpbxxnee .gt_subtitle {
+#lujvqabhts .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -128,7 +162,7 @@
   border-top-width: 0;
 }
 
-#cnhpbxxnee .gt_heading {
+#lujvqabhts .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -140,13 +174,13 @@
   border-right-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_bottom_border {
+#lujvqabhts .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_col_headings {
+#lujvqabhts .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -161,7 +195,7 @@
   border-right-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_col_heading {
+#lujvqabhts .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -181,7 +215,7 @@
   overflow-x: hidden;
 }
 
-#cnhpbxxnee .gt_column_spanner_outer {
+#lujvqabhts .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -193,15 +227,15 @@
   padding-right: 4px;
 }
 
-#cnhpbxxnee .gt_column_spanner_outer:first-child {
+#lujvqabhts .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cnhpbxxnee .gt_column_spanner_outer:last-child {
+#lujvqabhts .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cnhpbxxnee .gt_column_spanner {
+#lujvqabhts .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -213,11 +247,11 @@
   width: 100%;
 }
 
-#cnhpbxxnee .gt_spanner_row {
+#lujvqabhts .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cnhpbxxnee .gt_group_heading {
+#lujvqabhts .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -243,7 +277,7 @@
   text-align: left;
 }
 
-#cnhpbxxnee .gt_empty_group_heading {
+#lujvqabhts .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -258,15 +292,15 @@
   vertical-align: middle;
 }
 
-#cnhpbxxnee .gt_from_md > :first-child {
+#lujvqabhts .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cnhpbxxnee .gt_from_md > :last-child {
+#lujvqabhts .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cnhpbxxnee .gt_row {
+#lujvqabhts .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -285,7 +319,7 @@
   overflow-x: hidden;
 }
 
-#cnhpbxxnee .gt_stub {
+#lujvqabhts .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -298,7 +332,7 @@
   padding-right: 5px;
 }
 
-#cnhpbxxnee .gt_stub_row_group {
+#lujvqabhts .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -312,15 +346,15 @@
   vertical-align: top;
 }
 
-#cnhpbxxnee .gt_row_group_first td {
+#lujvqabhts .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cnhpbxxnee .gt_row_group_first th {
+#lujvqabhts .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cnhpbxxnee .gt_summary_row {
+#lujvqabhts .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -330,16 +364,16 @@
   padding-right: 5px;
 }
 
-#cnhpbxxnee .gt_first_summary_row {
+#lujvqabhts .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_first_summary_row.thick {
+#lujvqabhts .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cnhpbxxnee .gt_last_summary_row {
+#lujvqabhts .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -349,7 +383,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_grand_summary_row {
+#lujvqabhts .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -359,7 +393,7 @@
   padding-right: 5px;
 }
 
-#cnhpbxxnee .gt_first_grand_summary_row {
+#lujvqabhts .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -369,7 +403,7 @@
   border-top-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_last_grand_summary_row_top {
+#lujvqabhts .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -379,11 +413,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_striped {
+#lujvqabhts .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cnhpbxxnee .gt_table_body {
+#lujvqabhts .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -392,7 +426,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_footnotes {
+#lujvqabhts .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -406,7 +440,7 @@
   border-right-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_footnote {
+#lujvqabhts .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -415,7 +449,7 @@
   padding-right: 5px;
 }
 
-#cnhpbxxnee .gt_sourcenotes {
+#lujvqabhts .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -429,7 +463,7 @@
   border-right-color: #D3D3D3;
 }
 
-#cnhpbxxnee .gt_sourcenote {
+#lujvqabhts .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -437,63 +471,63 @@
   padding-right: 5px;
 }
 
-#cnhpbxxnee .gt_left {
+#lujvqabhts .gt_left {
   text-align: left;
 }
 
-#cnhpbxxnee .gt_center {
+#lujvqabhts .gt_center {
   text-align: center;
 }
 
-#cnhpbxxnee .gt_right {
+#lujvqabhts .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cnhpbxxnee .gt_font_normal {
+#lujvqabhts .gt_font_normal {
   font-weight: normal;
 }
 
-#cnhpbxxnee .gt_font_bold {
+#lujvqabhts .gt_font_bold {
   font-weight: bold;
 }
 
-#cnhpbxxnee .gt_font_italic {
+#lujvqabhts .gt_font_italic {
   font-style: italic;
 }
 
-#cnhpbxxnee .gt_super {
+#lujvqabhts .gt_super {
   font-size: 65%;
 }
 
-#cnhpbxxnee .gt_footnote_marks {
+#lujvqabhts .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cnhpbxxnee .gt_asterisk {
+#lujvqabhts .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cnhpbxxnee .gt_indent_1 {
+#lujvqabhts .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cnhpbxxnee .gt_indent_2 {
+#lujvqabhts .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cnhpbxxnee .gt_indent_3 {
+#lujvqabhts .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cnhpbxxnee .gt_indent_4 {
+#lujvqabhts .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cnhpbxxnee .gt_indent_5 {
+#lujvqabhts .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -513,76 +547,76 @@
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">Oh, Come, All Ye Faithful (202)</td>
-<td class="gt_row gt_right" headers="percent of wards">44.5%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">Joy to the World (201)</td>
-<td class="gt_row gt_right" headers="percent of wards">40.8%</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Angels We Have Heard on High (203)</td>
-<td class="gt_row gt_right" headers="percent of wards">35.3%</td>
+<td class="gt_row gt_right" headers="percent of wards">59%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Hymn">The First Noel (213)</td>
-<td class="gt_row gt_right" headers="percent of wards">33.5%</td>
+<td class="gt_row gt_left" headers="Hymn">Oh, Come, All Ye Faithful (202)</td>
+<td class="gt_row gt_right" headers="percent of wards">57%</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Joy to the World (201)</td>
+<td class="gt_row gt_right" headers="percent of wards">54%</td>
+</tr>
+<tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Hark! the Herald Angels Sing (209)</td>
-<td class="gt_row gt_right" headers="percent of wards">32.9%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">What Child is This? (1203)</td>
-<td class="gt_row gt_right" headers="percent of wards">29.8%</td>
+<td class="gt_row gt_right" headers="percent of wards">49%</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">The First Noel (213)</td>
+<td class="gt_row gt_right" headers="percent of wards">47%</td>
+</tr>
+<tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Away in a Manger (206)</td>
-<td class="gt_row gt_right" headers="percent of wards">28.0%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">O Little Town of Bethlehem (208)</td>
-<td class="gt_row gt_right" headers="percent of wards">26.8%</td>
+<td class="gt_row gt_right" headers="percent of wards">45%</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">What Child is This? (1203)</td>
+<td class="gt_row gt_right" headers="percent of wards">42%</td>
+</tr>
+<tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Far, Far Away on Judea's Plains (212)</td>
-<td class="gt_row gt_right" headers="percent of wards">21.9%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">Silent Night (204)</td>
-<td class="gt_row gt_right" headers="percent of wards">21.3%</td>
+<td class="gt_row gt_right" headers="percent of wards">40%</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">He Is Born, the Divine Christ Child (1202)</td>
-<td class="gt_row gt_right" headers="percent of wards">19.5%</td>
+<td class="gt_row gt_left" headers="Hymn">O Little Town of Bethlehem (208)</td>
+<td class="gt_row gt_right" headers="percent of wards">39%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Hymn">Once in Royal David's City (205)</td>
-<td class="gt_row gt_right" headers="percent of wards">18.9%</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">It Came upon the Midnight Clear (207)</td>
-<td class="gt_row gt_right" headers="percent of wards">18.9%</td>
+<td class="gt_row gt_right" headers="percent of wards">36%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Silent Night (204)</td>
+<td class="gt_row gt_right" headers="percent of wards">34%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">With Wondering Awe (210)</td>
-<td class="gt_row gt_right" headers="percent of wards">18.9%</td>
+<td class="gt_row gt_right" headers="percent of wards">30%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">He Is Born, the Divine Christ Child (1202)</td>
+<td class="gt_row gt_right" headers="percent of wards">28%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">Once in Royal David's City (205)</td>
+<td class="gt_row gt_right" headers="percent of wards">25%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">I Heard the Bells on Christmas Day (214)</td>
-<td class="gt_row gt_right" headers="percent of wards">12.2%</td>
+<td class="gt_row gt_right" headers="percent of wards">19%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">Star Bright (1204)</td>
+<td class="gt_row gt_right" headers="percent of wards">16%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">While Shepherds Watched Their Flocks (211)</td>
+<td class="gt_row gt_right" headers="percent of wards">11%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Come, Lord Jesus (1018)</td>
-<td class="gt_row gt_right" headers="percent of wards">12.2%</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">Star Bright (1204)</td>
-<td class="gt_row gt_right" headers="percent of wards">11.0%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">While Shepherds Watched Their Flocks (211)</td>
-<td class="gt_row gt_right" headers="percent of wards">6.7%</td>
+<td class="gt_row gt_right" headers="percent of wards">10%</td>
 </tr>
 </tbody>
 </table>
@@ -4005,27 +4039,27 @@
 
 
 
-<p>On September 12th, the church released the second batch of new hymns. In <a href="../../posts/new_hymns_batch1">a previous post</a>, I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from 1,912 sacrament meetings since September 15th from 408 wards.</p>
+<p>On September 12th, the church released the second batch of new hymns. In <a href="../../posts/new_hymns_batch1">a previous post</a>, I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from 2,056 sacrament meetings since September 15th from 413 wards.</p>
 <p>But first, here’s how much data I have for each week, just so you have an idea of what I’m working with. I have collected more data per week from the past few months than from any other time period in my dataset.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="kncroagmvm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kncroagmvm table {
+<div id="rwpyvyfcwa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rwpyvyfcwa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kncroagmvm thead, #kncroagmvm tbody, #kncroagmvm tfoot, #kncroagmvm tr, #kncroagmvm td, #kncroagmvm th {
+#rwpyvyfcwa thead, #rwpyvyfcwa tbody, #rwpyvyfcwa tfoot, #rwpyvyfcwa tr, #rwpyvyfcwa td, #rwpyvyfcwa th {
   border-style: none;
 }
 
-#kncroagmvm p {
+#rwpyvyfcwa p {
   margin: 0;
   padding: 0;
 }
 
-#kncroagmvm .gt_table {
+#rwpyvyfcwa .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4051,12 +4085,12 @@
   border-left-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_caption {
+#rwpyvyfcwa .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kncroagmvm .gt_title {
+#rwpyvyfcwa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4068,7 +4102,7 @@
   border-bottom-width: 0;
 }
 
-#kncroagmvm .gt_subtitle {
+#rwpyvyfcwa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4080,7 +4114,7 @@
   border-top-width: 0;
 }
 
-#kncroagmvm .gt_heading {
+#rwpyvyfcwa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4092,13 +4126,13 @@
   border-right-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_bottom_border {
+#rwpyvyfcwa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_col_headings {
+#rwpyvyfcwa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4113,7 +4147,7 @@
   border-right-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_col_heading {
+#rwpyvyfcwa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4133,7 +4167,7 @@
   overflow-x: hidden;
 }
 
-#kncroagmvm .gt_column_spanner_outer {
+#rwpyvyfcwa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4145,15 +4179,15 @@
   padding-right: 4px;
 }
 
-#kncroagmvm .gt_column_spanner_outer:first-child {
+#rwpyvyfcwa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kncroagmvm .gt_column_spanner_outer:last-child {
+#rwpyvyfcwa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kncroagmvm .gt_column_spanner {
+#rwpyvyfcwa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4165,11 +4199,11 @@
   width: 100%;
 }
 
-#kncroagmvm .gt_spanner_row {
+#rwpyvyfcwa .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kncroagmvm .gt_group_heading {
+#rwpyvyfcwa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4195,7 +4229,7 @@
   text-align: left;
 }
 
-#kncroagmvm .gt_empty_group_heading {
+#rwpyvyfcwa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4210,15 +4244,15 @@
   vertical-align: middle;
 }
 
-#kncroagmvm .gt_from_md > :first-child {
+#rwpyvyfcwa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kncroagmvm .gt_from_md > :last-child {
+#rwpyvyfcwa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kncroagmvm .gt_row {
+#rwpyvyfcwa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4237,7 +4271,7 @@
   overflow-x: hidden;
 }
 
-#kncroagmvm .gt_stub {
+#rwpyvyfcwa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4250,7 +4284,7 @@
   padding-right: 5px;
 }
 
-#kncroagmvm .gt_stub_row_group {
+#rwpyvyfcwa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4264,15 +4298,15 @@
   vertical-align: top;
 }
 
-#kncroagmvm .gt_row_group_first td {
+#rwpyvyfcwa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kncroagmvm .gt_row_group_first th {
+#rwpyvyfcwa .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kncroagmvm .gt_summary_row {
+#rwpyvyfcwa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4282,16 +4316,16 @@
   padding-right: 5px;
 }
 
-#kncroagmvm .gt_first_summary_row {
+#rwpyvyfcwa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_first_summary_row.thick {
+#rwpyvyfcwa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kncroagmvm .gt_last_summary_row {
+#rwpyvyfcwa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4301,7 +4335,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_grand_summary_row {
+#rwpyvyfcwa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4311,7 +4345,7 @@
   padding-right: 5px;
 }
 
-#kncroagmvm .gt_first_grand_summary_row {
+#rwpyvyfcwa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4321,7 +4355,7 @@
   border-top-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_last_grand_summary_row_top {
+#rwpyvyfcwa .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4331,11 +4365,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_striped {
+#rwpyvyfcwa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kncroagmvm .gt_table_body {
+#rwpyvyfcwa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4344,7 +4378,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_footnotes {
+#rwpyvyfcwa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4358,7 +4392,7 @@
   border-right-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_footnote {
+#rwpyvyfcwa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4367,7 +4401,7 @@
   padding-right: 5px;
 }
 
-#kncroagmvm .gt_sourcenotes {
+#rwpyvyfcwa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4381,7 +4415,7 @@
   border-right-color: #D3D3D3;
 }
 
-#kncroagmvm .gt_sourcenote {
+#rwpyvyfcwa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4389,63 +4423,63 @@
   padding-right: 5px;
 }
 
-#kncroagmvm .gt_left {
+#rwpyvyfcwa .gt_left {
   text-align: left;
 }
 
-#kncroagmvm .gt_center {
+#rwpyvyfcwa .gt_center {
   text-align: center;
 }
 
-#kncroagmvm .gt_right {
+#rwpyvyfcwa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kncroagmvm .gt_font_normal {
+#rwpyvyfcwa .gt_font_normal {
   font-weight: normal;
 }
 
-#kncroagmvm .gt_font_bold {
+#rwpyvyfcwa .gt_font_bold {
   font-weight: bold;
 }
 
-#kncroagmvm .gt_font_italic {
+#rwpyvyfcwa .gt_font_italic {
   font-style: italic;
 }
 
-#kncroagmvm .gt_super {
+#rwpyvyfcwa .gt_super {
   font-size: 65%;
 }
 
-#kncroagmvm .gt_footnote_marks {
+#rwpyvyfcwa .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kncroagmvm .gt_asterisk {
+#rwpyvyfcwa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kncroagmvm .gt_indent_1 {
+#rwpyvyfcwa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kncroagmvm .gt_indent_2 {
+#rwpyvyfcwa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kncroagmvm .gt_indent_3 {
+#rwpyvyfcwa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kncroagmvm .gt_indent_4 {
+#rwpyvyfcwa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kncroagmvm .gt_indent_5 {
+#rwpyvyfcwa .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -4510,7 +4544,11 @@
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="date">December 08</td>
-<td class="gt_row gt_right" headers="wards">162</td>
+<td class="gt_row gt_right" headers="wards">163</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">December 15</td>
+<td class="gt_row gt_right" headers="wards">143</td>
 </tr>
 </tbody>
 </table>
@@ -4520,7 +4558,7 @@
 </div>
 <section id="how-many-wards-sang-new-hymns-each-week" class="level2">
 <h2 class="anchored" data-anchor-id="how-many-wards-sang-new-hymns-each-week">How many wards sang new hymns each week?</h2>
-<p>This plot shows what percentage of wards sing new hymns each week. For context, includes all the data since June 2nd when the first batch came out so we can see how the roll-out of the second batch compares to that of the first batch. I’ve color-coded it by batch: green is for the first batch, red/pink is for the second, and blue is for both combined. This division is only relevant since September 15th when the second batch came out so prior to then, only the blue lines are used. In all cases, a lighter color indicates wards that sang exactly one new hymn while a darker color is for wards that since two or more in a single meeting.</p>
+<p>This plot shows what percentage of wards sing new hymns each week. For context, includes all the data since June 2nd when the first batch came out so we can see how the roll-out of the second batch compares to that of the first batch. I’ve color-coded it by batch: green is for the first batch, red/pink is for the second, and blue is for both combined. This division is only relevant beginning on September 15th when the second batch came out so prior to then, only the blue lines are used. In all cases, a lighter color indicates wards that sang exactly one new hymn while a darker color is for wards that since two or more in a single meeting.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -4541,23 +4579,23 @@
 <p>The following table shows the hymns from the second batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn since its release.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="pmxlnmoeys" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pmxlnmoeys table {
+<div id="yvsyanzllf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yvsyanzllf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pmxlnmoeys thead, #pmxlnmoeys tbody, #pmxlnmoeys tfoot, #pmxlnmoeys tr, #pmxlnmoeys td, #pmxlnmoeys th {
+#yvsyanzllf thead, #yvsyanzllf tbody, #yvsyanzllf tfoot, #yvsyanzllf tr, #yvsyanzllf td, #yvsyanzllf th {
   border-style: none;
 }
 
-#pmxlnmoeys p {
+#yvsyanzllf p {
   margin: 0;
   padding: 0;
 }
 
-#pmxlnmoeys .gt_table {
+#yvsyanzllf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4583,12 +4621,12 @@
   border-left-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_caption {
+#yvsyanzllf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pmxlnmoeys .gt_title {
+#yvsyanzllf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4600,7 +4638,7 @@
   border-bottom-width: 0;
 }
 
-#pmxlnmoeys .gt_subtitle {
+#yvsyanzllf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4612,7 +4650,7 @@
   border-top-width: 0;
 }
 
-#pmxlnmoeys .gt_heading {
+#yvsyanzllf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4624,13 +4662,13 @@
   border-right-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_bottom_border {
+#yvsyanzllf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_col_headings {
+#yvsyanzllf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4645,7 +4683,7 @@
   border-right-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_col_heading {
+#yvsyanzllf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4665,7 +4703,7 @@
   overflow-x: hidden;
 }
 
-#pmxlnmoeys .gt_column_spanner_outer {
+#yvsyanzllf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4677,15 +4715,15 @@
   padding-right: 4px;
 }
 
-#pmxlnmoeys .gt_column_spanner_outer:first-child {
+#yvsyanzllf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pmxlnmoeys .gt_column_spanner_outer:last-child {
+#yvsyanzllf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pmxlnmoeys .gt_column_spanner {
+#yvsyanzllf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4697,11 +4735,11 @@
   width: 100%;
 }
 
-#pmxlnmoeys .gt_spanner_row {
+#yvsyanzllf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pmxlnmoeys .gt_group_heading {
+#yvsyanzllf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4727,7 +4765,7 @@
   text-align: left;
 }
 
-#pmxlnmoeys .gt_empty_group_heading {
+#yvsyanzllf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4742,15 +4780,15 @@
   vertical-align: middle;
 }
 
-#pmxlnmoeys .gt_from_md > :first-child {
+#yvsyanzllf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pmxlnmoeys .gt_from_md > :last-child {
+#yvsyanzllf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pmxlnmoeys .gt_row {
+#yvsyanzllf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4769,7 +4807,7 @@
   overflow-x: hidden;
 }
 
-#pmxlnmoeys .gt_stub {
+#yvsyanzllf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4782,7 +4820,7 @@
   padding-right: 5px;
 }
 
-#pmxlnmoeys .gt_stub_row_group {
+#yvsyanzllf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4796,15 +4834,15 @@
   vertical-align: top;
 }
 
-#pmxlnmoeys .gt_row_group_first td {
+#yvsyanzllf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pmxlnmoeys .gt_row_group_first th {
+#yvsyanzllf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pmxlnmoeys .gt_summary_row {
+#yvsyanzllf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4814,16 +4852,16 @@
   padding-right: 5px;
 }
 
-#pmxlnmoeys .gt_first_summary_row {
+#yvsyanzllf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_first_summary_row.thick {
+#yvsyanzllf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pmxlnmoeys .gt_last_summary_row {
+#yvsyanzllf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4833,7 +4871,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_grand_summary_row {
+#yvsyanzllf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4843,7 +4881,7 @@
   padding-right: 5px;
 }
 
-#pmxlnmoeys .gt_first_grand_summary_row {
+#yvsyanzllf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4853,7 +4891,7 @@
   border-top-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_last_grand_summary_row_top {
+#yvsyanzllf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4863,11 +4901,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_striped {
+#yvsyanzllf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pmxlnmoeys .gt_table_body {
+#yvsyanzllf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4876,7 +4914,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_footnotes {
+#yvsyanzllf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4890,7 +4928,7 @@
   border-right-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_footnote {
+#yvsyanzllf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4899,7 +4937,7 @@
   padding-right: 5px;
 }
 
-#pmxlnmoeys .gt_sourcenotes {
+#yvsyanzllf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4913,7 +4951,7 @@
   border-right-color: #D3D3D3;
 }
 
-#pmxlnmoeys .gt_sourcenote {
+#yvsyanzllf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4921,63 +4959,63 @@
   padding-right: 5px;
 }
 
-#pmxlnmoeys .gt_left {
+#yvsyanzllf .gt_left {
   text-align: left;
 }
 
-#pmxlnmoeys .gt_center {
+#yvsyanzllf .gt_center {
   text-align: center;
 }
 
-#pmxlnmoeys .gt_right {
+#yvsyanzllf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pmxlnmoeys .gt_font_normal {
+#yvsyanzllf .gt_font_normal {
   font-weight: normal;
 }
 
-#pmxlnmoeys .gt_font_bold {
+#yvsyanzllf .gt_font_bold {
   font-weight: bold;
 }
 
-#pmxlnmoeys .gt_font_italic {
+#yvsyanzllf .gt_font_italic {
   font-style: italic;
 }
 
-#pmxlnmoeys .gt_super {
+#yvsyanzllf .gt_super {
   font-size: 65%;
 }
 
-#pmxlnmoeys .gt_footnote_marks {
+#yvsyanzllf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pmxlnmoeys .gt_asterisk {
+#yvsyanzllf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pmxlnmoeys .gt_indent_1 {
+#yvsyanzllf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pmxlnmoeys .gt_indent_2 {
+#yvsyanzllf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pmxlnmoeys .gt_indent_3 {
+#yvsyanzllf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pmxlnmoeys .gt_indent_4 {
+#yvsyanzllf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pmxlnmoeys .gt_indent_5 {
+#yvsyanzllf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -4998,39 +5036,39 @@
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Amazing Grace (1010)</td>
-<td class="gt_row gt_right" headers="percent of wards">59.8%</td>
+<td class="gt_row gt_right" headers="percent of wards">60.2%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">My Shepherd Will Supply My Need (1014)</td>
-<td class="gt_row gt_right" headers="percent of wards">38.4%</td>
+<td class="gt_row gt_right" headers="percent of wards">38.7%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Behold the Wounds in Jesus' Hands (1016)</td>
-<td class="gt_row gt_right" headers="percent of wards">26.4%</td>
+<td class="gt_row gt_right" headers="percent of wards">27.3%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">God's Gracious Love (1013)</td>
-<td class="gt_row gt_right" headers="percent of wards">22.7%</td>
+<td class="gt_row gt_right" headers="percent of wards">22.8%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">This Is the Christ (1017)</td>
-<td class="gt_row gt_right" headers="percent of wards">20.8%</td>
+<td class="gt_row gt_right" headers="percent of wards">20.9%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Come, Lord Jesus (1018)</td>
-<td class="gt_row gt_right" headers="percent of wards">13.8%</td>
+<td class="gt_row gt_right" headers="percent of wards">15.8%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Holding Hands Around the World (1011)</td>
-<td class="gt_row gt_right" headers="percent of wards">13.2%</td>
+<td class="gt_row gt_right" headers="percent of wards">13.3%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Oh, the Deep, Deep Love of Jesus (1015)</td>
-<td class="gt_row gt_right" headers="percent of wards">13.2%</td>
+<td class="gt_row gt_right" headers="percent of wards">13.3%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Anytime, Anywhere (1012)</td>
-<td class="gt_row gt_right" headers="percent of wards">6.9%</td>
+<td class="gt_row gt_right" headers="percent of wards">7.0%</td>
 </tr>
 </tbody>
 </table>
@@ -5061,23 +5099,23 @@
 <p>We can see when these hymns tend to be sung and get an overall look at the popularity of the second batch of hymns. Again, it’s based on so little data, so take these results with a grain of salt.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="dncrrutywi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dncrrutywi table {
+<div id="lmslvhpvef" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lmslvhpvef table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dncrrutywi thead, #dncrrutywi tbody, #dncrrutywi tfoot, #dncrrutywi tr, #dncrrutywi td, #dncrrutywi th {
+#lmslvhpvef thead, #lmslvhpvef tbody, #lmslvhpvef tfoot, #lmslvhpvef tr, #lmslvhpvef td, #lmslvhpvef th {
   border-style: none;
 }
 
-#dncrrutywi p {
+#lmslvhpvef p {
   margin: 0;
   padding: 0;
 }
 
-#dncrrutywi .gt_table {
+#lmslvhpvef .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -5103,12 +5141,12 @@
   border-left-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_caption {
+#lmslvhpvef .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dncrrutywi .gt_title {
+#lmslvhpvef .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -5120,7 +5158,7 @@
   border-bottom-width: 0;
 }
 
-#dncrrutywi .gt_subtitle {
+#lmslvhpvef .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5132,7 +5170,7 @@
   border-top-width: 0;
 }
 
-#dncrrutywi .gt_heading {
+#lmslvhpvef .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -5144,13 +5182,13 @@
   border-right-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_bottom_border {
+#lmslvhpvef .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_col_headings {
+#lmslvhpvef .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5165,7 +5203,7 @@
   border-right-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_col_heading {
+#lmslvhpvef .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5185,7 +5223,7 @@
   overflow-x: hidden;
 }
 
-#dncrrutywi .gt_column_spanner_outer {
+#lmslvhpvef .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5197,15 +5235,15 @@
   padding-right: 4px;
 }
 
-#dncrrutywi .gt_column_spanner_outer:first-child {
+#lmslvhpvef .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dncrrutywi .gt_column_spanner_outer:last-child {
+#lmslvhpvef .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dncrrutywi .gt_column_spanner {
+#lmslvhpvef .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -5217,11 +5255,11 @@
   width: 100%;
 }
 
-#dncrrutywi .gt_spanner_row {
+#lmslvhpvef .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dncrrutywi .gt_group_heading {
+#lmslvhpvef .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5247,7 +5285,7 @@
   text-align: left;
 }
 
-#dncrrutywi .gt_empty_group_heading {
+#lmslvhpvef .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5262,15 +5300,15 @@
   vertical-align: middle;
 }
 
-#dncrrutywi .gt_from_md > :first-child {
+#lmslvhpvef .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dncrrutywi .gt_from_md > :last-child {
+#lmslvhpvef .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dncrrutywi .gt_row {
+#lmslvhpvef .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5289,7 +5327,7 @@
   overflow-x: hidden;
 }
 
-#dncrrutywi .gt_stub {
+#lmslvhpvef .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5302,7 +5340,7 @@
   padding-right: 5px;
 }
 
-#dncrrutywi .gt_stub_row_group {
+#lmslvhpvef .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5316,15 +5354,15 @@
   vertical-align: top;
 }
 
-#dncrrutywi .gt_row_group_first td {
+#lmslvhpvef .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dncrrutywi .gt_row_group_first th {
+#lmslvhpvef .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dncrrutywi .gt_summary_row {
+#lmslvhpvef .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5334,16 +5372,16 @@
   padding-right: 5px;
 }
 
-#dncrrutywi .gt_first_summary_row {
+#lmslvhpvef .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_first_summary_row.thick {
+#lmslvhpvef .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dncrrutywi .gt_last_summary_row {
+#lmslvhpvef .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5353,7 +5391,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_grand_summary_row {
+#lmslvhpvef .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5363,7 +5401,7 @@
   padding-right: 5px;
 }
 
-#dncrrutywi .gt_first_grand_summary_row {
+#lmslvhpvef .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5373,7 +5411,7 @@
   border-top-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_last_grand_summary_row_top {
+#lmslvhpvef .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5383,11 +5421,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_striped {
+#lmslvhpvef .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dncrrutywi .gt_table_body {
+#lmslvhpvef .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5396,7 +5434,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_footnotes {
+#lmslvhpvef .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5410,7 +5448,7 @@
   border-right-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_footnote {
+#lmslvhpvef .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5419,7 +5457,7 @@
   padding-right: 5px;
 }
 
-#dncrrutywi .gt_sourcenotes {
+#lmslvhpvef .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5433,7 +5471,7 @@
   border-right-color: #D3D3D3;
 }
 
-#dncrrutywi .gt_sourcenote {
+#lmslvhpvef .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5441,63 +5479,63 @@
   padding-right: 5px;
 }
 
-#dncrrutywi .gt_left {
+#lmslvhpvef .gt_left {
   text-align: left;
 }
 
-#dncrrutywi .gt_center {
+#lmslvhpvef .gt_center {
   text-align: center;
 }
 
-#dncrrutywi .gt_right {
+#lmslvhpvef .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dncrrutywi .gt_font_normal {
+#lmslvhpvef .gt_font_normal {
   font-weight: normal;
 }
 
-#dncrrutywi .gt_font_bold {
+#lmslvhpvef .gt_font_bold {
   font-weight: bold;
 }
 
-#dncrrutywi .gt_font_italic {
+#lmslvhpvef .gt_font_italic {
   font-style: italic;
 }
 
-#dncrrutywi .gt_super {
+#lmslvhpvef .gt_super {
   font-size: 65%;
 }
 
-#dncrrutywi .gt_footnote_marks {
+#lmslvhpvef .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dncrrutywi .gt_asterisk {
+#lmslvhpvef .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dncrrutywi .gt_indent_1 {
+#lmslvhpvef .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dncrrutywi .gt_indent_2 {
+#lmslvhpvef .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dncrrutywi .gt_indent_3 {
+#lmslvhpvef .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dncrrutywi .gt_indent_4 {
+#lmslvhpvef .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dncrrutywi .gt_indent_5 {
+#lmslvhpvef .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -5706,8 +5744,8 @@
 <tr class="odd">
 <td class="gt_row gt_left" headers="New Hymn">Come, Lord Jesus (1018)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:57%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">57%</span>
+<div style="background:#4F2B47;width:58%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">58%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -5716,13 +5754,13 @@
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:13%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:13px;font-weight:bold;font-size:14px;">13%</span>
+<div style="background:#4F2B47;width:15%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:15px;font-weight:bold;font-size:14px;">15%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:30%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">30%</span>
+<div style="background:#4F2B47;width:27%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">27%</span>
 </div>
 </div></td>
 </tr>

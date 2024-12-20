@@ -81,7 +81,7 @@ meetings_since_release2 |>
 
 ## How many wards sang new hymns each week?
 
-This plot shows what percentage of wards sing new hymns each week. For context, includes all the data since June 2nd when the first batch came out so we can see how the roll-out of the second batch compares to that of the first batch. I've color-coded it by batch: green is for the first batch, red/pink is for the second, and blue is for both combined. This division is only relevant since September 15th when the second batch came out so prior to then, only the blue lines are used. In all cases, a lighter color indicates wards that sang exactly one new hymn while a darker color is for wards that since two or more in a single meeting.
+This plot shows what percentage of wards sing new hymns each week. For context, includes all the data since June 2nd when the first batch came out so we can see how the roll-out of the second batch compares to that of the first batch. I've color-coded it by batch: green is for the first batch, red/pink is for the second, and blue is for both combined. This division is only relevant beginning on September 15th when the second batch came out so prior to then, only the blue lines are used. In all cases, a lighter color indicates wards that sang exactly one new hymn while a darker color is for wards that since two or more in a single meeting.
 
 ```{r, fig.height = 4, fig.width = 8}
 count_new_hymns <- function(.category_name, .hymns) {
