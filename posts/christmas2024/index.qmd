@@ -27,6 +27,15 @@ n_weeks_here <- length(unique(december$date))
 n_meetings_here <- length(unique(december$meeting_id))
 ```
 
+
+```{r}
+december |> 
+    filter(wday(date, label = TRUE) != "Sun") |> 
+    print()
+```
+
+
+
 ```{r}
 december |> 
     summarize(sang_new = sum(hymn_num %in% c(1018, 1201:1204)) > 0, .by = ward) |> 
@@ -164,7 +173,7 @@ See [here](/posts/new_hymns_batch1) for a similar plot, but applied to the first
 :::
 
 
-```{r, include = TRUE, fig.height = 5, fig.width = 4}
+```{r, include = TRUE, fig.height = 7, fig.width = 4}
 n_christmas_per_ward <- december |> 
     filter(date >= "2024-12-01") |> 
     summarize(n_weeks = length(unique(date)),
@@ -181,9 +190,9 @@ ggplot(n_christmas_per_ward, aes(n_weeks, n_christmas, color = prop_per_n)) +
     scale_x_continuous(breaks = 1:5,
                        expand = expansion(0, 0.5),
                        limits = c(0.5, 5.5)) + 
-    scale_y_continuous(breaks = 0:20,
+    scale_y_continuous(breaks = 0:18,
                        minor_breaks = NULL,
-                       limits = c(0, 13),
+                       limits = c(0, 20),
                        expand = expansion(0, 0.5)) + 
     scale_color_distiller(palette = "Purples", direction = 1) + 
     labs(title = "Christmas hymns per ward in December",
@@ -194,21 +203,21 @@ ggplot(n_christmas_per_ward, aes(n_weeks, n_christmas, color = prop_per_n)) +
     theme(legend.position = "none")
 ```
 
-So, as expected, the more data I have from a ward, the more Christmas hymns I observe them singing. Currently, we're three weeks into December, and just over half of wards have sung six congregational Christmas hymns, with most of the rest singing more than that.
+So, as expected, the more data I have from a ward, the more Christmas hymns I observe them singing. Currently, we're four weeks into December, and the most common pattern is for a ward to have sung between 8 and 10 Christmas hymns this year.
 
 
 
 
 ## What Christmas hymns have been most popular?
 
-The following plot shows which Christmas hymns have been most popular in December so far. Almost 60% have sung <hymn>Oh, Come, All Ye Faithful (#202)</hymn> and less than 12% have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. I'm hesitant to make any comparisons to last year quite yet since we're still partway through December and [some hymns are more popular earlier in the month than others](/posts/christmas/#trends-within-december). 
+The following plot shows the estimated number of times each Christmas hymn is estimated to have been sung per ward this year. Yes, some are over 1.0 because some wards have sung them more than once, so they average out to be greater than one! Less than about 20% of wards have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. 
 
 ```{r, include = TRUE, fig.height = 5, fig.width = 8}
 cleveland_data <- freqs |> 
     mutate(color = case_when(hymn_num %in% c(201:214) ~ "old Christmas",
                              hymn_num %in% c(1018, 1202:1204) ~ "new Christmas",
                              TRUE ~ "other")) |> 
-    filter(!hymn_num %in% c(91:94, 169:196, 1008),
+    filter(!hymn_num %in% c(91:94, 169:195, 1008),
            date >= "2024-12-01", 
            date <= last_sunday)
 n_weeks_cleveland_data <- cleveland_data |> 
@@ -218,21 +227,21 @@ n_weeks_cleveland_data <- cleveland_data |>
 cleveland_plot(cleveland_data, 
                return = "plot", 
                col_to_plot = avg_per_year,
-               filter_n = 4,
+               filter_n = 15,
                extra_cols = color,
                color = color,
                unique_meetings = get_n_distinct_meetings(cleveland_data),
                n_weeks = n_weeks_cleveland_data) + 
-    scale_x_continuous(breaks = seq(0, 1, 0.05),
-                       minor_breaks = seq(0, 1, 0.01),
-                       labels = scales::percent,
+    scale_x_continuous(breaks = seq(0, 1.5, 0.1),
+                       minor_breaks = seq(0, 1.5, 0.05),
+                       # labels = scales::percent,
                        expand = expansion(0, c(0, 0.22))) +
     scale_color_manual(breaks = c("old Christmas", "new Christmas", "other"),
-                       labels = c("1985 Hymnal", "New Hymnal", "other"),
+                       labels = c("Christmas hymns from the 1985 Hymnal", "Hymns from the New Hymnal", "other 1985 hymnal hymns"),
                        values = c("gray10", "#33a02c", "gray66")) + 
     labs(title = "Popularity of Christmas hymns in 2024",
          # subtitle = paste0("Based on ", n_meetings_here, " sacrament meetings from ", n_wards_here, " wards")) +
-         x = "Percentage of wards that have sung it",
+         x = "Estimated times sung this season",
          color = NULL
     ) + 
     theme_minimal() +
@@ -241,8 +250,7 @@ cleveland_plot(cleveland_data,
           legend.key.spacing.x = unit(1, "cm"))
 ```
 
-
-Interspersed among these hymns are four new hymns. Of them, <hymn>What Child Is This? (#1203)</hymn> is far and away the most popular. The other three are closer to the bottom, more popular than a few of the ones in the 1985 hymnal.
+Interspersed among these hymns are  new hymns. Of them, <hymn>What Child Is This? (#1203)</hymn> is the most popular; it is estimated to have been sung 0.6 times per ward, which means about 60% of wards sang it. The other three are closer to the bottom, more popular than a few of the ones in the 1985 hymnal, although <hymn>Come, Lord Jesus (#1018)</hymn> appears to have dethroned <hymn>While Shepherds Watched Their Glocks (#211)</hymn> for least popular Christmas hymn. I've added <hymn>Jesus, Once of Humble Birth (#196)</hymn> in there as well because it is far and away the most popular sacrament hymn around Christmas. This year, it was more common than half of the Christmas hymns.
 
 The following table shows the same data plotted above but in table format so you can see the exact numbers.
 
@@ -257,7 +265,7 @@ cleveland_plot(cleveland_data,
                n_weeks = n_weeks_cleveland_data) |> 
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
-    filter(hymn_num %in% c(201:214, 1018, 1202:1204),) |> 
+    filter(hymn_num %in% c(196, 201:214, 1018, 1202:1204),) |> 
     mutate(percent_wards = scales::percent(round(n_weeks_here / every_x_weeks, 3))) |> 
     
     # add label for missing hymns
@@ -271,6 +279,114 @@ cleveland_plot(cleveland_data,
 ```
 
 
+## Comparison to previous years
+
+This year, we introduced about four new Christmas hymns. Presumably, wards didn't simply add them to their existing programs. There are, after all, a finite number of hymns a ward can sing in December. So, by incorporating new Christmas hymns, some hymns had to get cut. So, which hymns got cut and were some hymns cut more than others? 
+
+The following plot shows hymns in order of of how much more or less they were sung in 2024 compared to all the previous years I have data for. The way you read it is this: if the number is positive, it means the hymn was that much more common this year (e.g. "Silent Night was almost 30% more common in 2024") but if it's negative, it means the hymn was that much less common this year (e.g. "While Shepherds Watched Their Flocks was almost 50% less common, or rather, half as common, in 2024").
+
+```{r}
+check_significance <- function(.hymn_num) {
+    freqs |> 
+        filter(month == 12) |> 
+        mutate(is_2024 = year == 2024) |> 
+        filter(!is.na(is_2024)) |> 
+        mutate(is_211 = hymn_num == .hymn_num) |> 
+        summarize(has_211 = sum(is_211) > 0, .by = c(meeting_id, is_2024)) |> 
+    
+        count(is_2024, has_211) |>
+        pivot_wider(names_from = has_211, values_from = n) |>
+            
+            
+        mutate(is_2024 = fct_recode(as.character(is_2024), 
+                                    "in_2024" = "TRUE",
+                                    "before_2024" = "FALSE")) |> 
+        rename(meetings_sung = `TRUE`, meetings_not_sung = `FALSE`) |> 
+        pivot_wider(names_from = is_2024, values_from = c(`meetings_sung`, `meetings_not_sung`)) |> 
+        mutate(prop_meetings_2024 = meetings_sung_in_2024 / meetings_not_sung_in_2024,
+               prop_meetings_before_2024 = meetings_sung_before_2024 / meetings_not_sung_before_2024,
+               diff_in_2024 = prop_meetings_2024 / prop_meetings_before_2024)
+}
+check_significance(201)
+diffs_2024 <- name_num_lookup |> 
+    filter(hymn_num %in% c(196, 201:214)) |> 
+    rowwise() |> 
+    mutate(info = map(hymn_num, check_significance)) |> 
+    unnest(info) |> 
+    arrange(diff_in_2024) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) |> 
+    print()
+```
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+diffs_2024 |> 
+    mutate(diff_in_2024 = diff_in_2024 - 1) |> 
+    ggplot(aes(diff_in_2024, label, color = diff_in_2024)) + 
+    geom_vline(xintercept = 0, color = "gray75", linetype = "dashed") + 
+    geom_point(size = 5, color = "black") + 
+    geom_point(size = 4) + 
+    geom_text(aes(label = label), nudge_x = -0.03, color = "gray20", hjust = 1, size = 3) + 
+    scale_x_continuous(breaks = seq(-0.5, 0.5, 0.1), 
+                       labels = percent,
+                       expand = expansion(0, c(0.45, 0.05))) + 
+    scale_color_gradient2(high = "#117733", mid = "white", low = "red", midpoint = 0) + 
+    labs(title = "How more/less common were Christmas hymns in 2024 compared to previous Decembers?",
+         x = "percent more/less common") + 
+    theme_minimal() + 
+    theme(axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          legend.position = "none",
+          axis.title.x = element_text(hjust = 0.74))
+```
+
+This is a pretty cool look at the characteristics of the 2024 season. It seems like <hymn>Silent Night (#204)</hymn> was *quite* a bit more common in 2024 than in previous years. It was sung in something like 30% more sacrament meetings this year than during previous Decembers. That's a lot! That's like 2--3 times more per stake this year. I'm not quite sure what accounts for that jump. 
+
+Some of the more common hymns were a little bit more common this year too. But, keep in mind that these are *congregational* hymns. It may not be that the most popular ones are getting even more popular. I think what's happening is that more wards choirs and other musical ensembles are singing/playing the new hymns, so in order to not hear the same Christmas hymn more than once per year, the music coordinator works around those. That means hymns that had been sung as choir pieces or as special musical numbers previously are now being shifted to the congregation. This is just speculation and since I haven't been collecting data on the special musical numbers themselves, I'll never know. But it's plausible. 
+
+Some hymns are less common in 2024 than they were before. They're the ones towards the right and bottom of the plot in red. I think these are the ones that are being left out in favor of the new hymns. Given the choice between <hymn>What Child Is This? (#1203)</hymn> and <hymn>While Shepherds Watched Their Flocks (#211)</hymn>, I'll bet most music coordinators went with the former. 
+
+It's worth noting that <hymn>I Heard the Bells on Christmas Day (#214)</hymn> is so low on this list because I have a lot less data from December 29th. That hymn is more common later in the month, so I suspect that it'll move its way up the plot once I get more of that data in.
+
+::: {.callout-caution collapse="true"}
+### Statistical analysis for nerds :)
+
+Is there anything special about that order? Maybe it's just the case that the new hymns were sung at the expense of the most popular hymns the least at the least popular hymns the most. In other words, perhaps there's a correlation between how popular a hymn is generally and how much *more* (or less) popular it was in 2024. Well, let's look at that correlation.
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8, warning = FALSE}
+diffs_2024 |> 
+    mutate(residual = lm(diff_in_2024 ~ prop_meetings_before_2024, data = diffs_2024)$residuals,
+           diff_in_2024 = diff_in_2024 - 1) |> 
+    ggplot(aes(prop_meetings_before_2024, diff_in_2024, color = residual)) +
+    stat_smooth(method = "lm", formula = "y ~ x") + 
+    geom_point(size = 4, color = "black") + 
+    geom_point(size = 3) + 
+    ggrepel::geom_text_repel(aes(label = hymn_name), color = "gray20", size = 3) + 
+    scale_x_continuous(breaks = seq(0, 0.3, 0.04),
+                       labels = percent) + 
+    scale_y_continuous(breaks = seq(-0.5, 0.5, 0.25)) + 
+    scale_color_gradient2(high = "#117733", mid = "white", low = "red", midpoint = 0) + 
+    labs(title = "Difference in 2024 by general popularity of Christmas hymns",
+         x = "percent sacrament meetings in December",
+         y = "percent more/less common") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+```{r}
+cor_coef <- round(cor(diffs_2024$diff_in_2024, diffs_2024$prop_meetings_before_2024), 2)
+mdl <- lm(diff_in_2024 ~ prop_meetings_before_2024, data = diffs_2024)
+p_value <- round(summary(mdl)$coefficients[2,4], 3)
+```
+
+The plot shows that correlation is there (ρ = `r cor_coef`) and is statistically significant (*p* = `r p_value`). However, in this plot, I've colored the values based on how far off they are from where we'd expect them to be if there was a perfect correlation (for any statisticians reading this, it's their residuals). More popular hymns are towards the right and less popular are to the left (based on data prior to 2024). Meanwhile, how much more or less common a hymn was in 2024 is shown on the *y*-axis, with hymns sung far more than normal higher up and far less than normal towards the bottom. Points outside of the shaded area could be considered noteworthy, or rather, significantly more or less popular *given how popular that hymn has historically been*. 
+
+So, we've already talked about the extremes, <hymn>Silent Night (#204)</hymn> and <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. But, here we see that <hymn>Away in a Manger (#206)</hymn> is punching above its weight: it was sung far more in 2024 than you might expect solely based on how popular it has been in previous years. Same thing with <hymn>O Little Town of Bethlehem (#208)</hymn>. Meanwhile, <hymn>Far, Far Away on Judea's Plains (#212)</hymn> was sung quite a bit less this year even though it's about as popular as those two. 
+
+So, this plot just shows that each hymn has its own story. It's not clear to me why these differences happened in 2024 the way they did. Perhaps it has something to do with the new hymns. But perhaps it's something else. (It could also be the case that if I ran the numbers for any year, I'd find big differences like these, which would mean 2024 is nothing special!) 
+
+:::
+
 ## Conclusion
 
-That's it for now! Stay tuned for more updates each week this month!
+That's it for now! Hopefully this analysis of the 2024 Christmas season has been interesting. This is a special year because of the introduction of new Christmas hymns, so it's pretty cool to see how that has affected the trend for the past few years. 
