@@ -210,7 +210,7 @@ So, as expected, the more data I have from a ward, the more Christmas hymns I ob
 
 ## What Christmas hymns have been most popular?
 
-The following plot shows the estimated number of times each Christmas hymn is estimated to have been sung per ward this year. Yes, some are over 1.0 because some wards have sung them more than once, so they average out to be greater than one! Less than about 20% of wards have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. 
+The following plot shows the estimated number of times each Christmas hymn is estimated to have been sung per ward this year. It's estimated that almost every ward sang <hymn>Joy to the World (#201)</hymn>. Meanwhile, less than about 20% of wards have sung <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. 
 
 ```{r, include = TRUE, fig.height = 5, fig.width = 8}
 cleveland_data <- freqs |> 
@@ -283,7 +283,7 @@ cleveland_plot(cleveland_data,
 
 This year, we introduced about four new Christmas hymns. Presumably, wards didn't simply add them to their existing programs. There are, after all, a finite number of hymns a ward can sing in December. So, by incorporating new Christmas hymns, some hymns had to get cut. So, which hymns got cut and were some hymns cut more than others? 
 
-The following plot shows hymns in order of of how much more or less they were sung in 2024 compared to all the previous years I have data for. The way you read it is this: if the number is positive, it means the hymn was that much more common this year (e.g. "Silent Night was almost 30% more common in 2024") but if it's negative, it means the hymn was that much less common this year (e.g. "While Shepherds Watched Their Flocks was almost 50% less common, or rather, half as common, in 2024").
+The following plot shows hymns in order of of how much more or less they were sung in 2024 compared to all the previous years I have data for. The way you read it is this: if the number is positive, it means the hymn was that much more common this year (e.g. "Away in a Manger was about 7% more common in 2024") but if it's negative, it means the hymn was that much less common this year (e.g. "While Shepherds Watched Their Flocks was a little over 40% less common in 2024").
 
 ```{r}
 check_significance <- function(.hymn_num) {
@@ -329,7 +329,7 @@ diffs_2024 |>
     geom_text(aes(label = label), nudge_x = -0.03, color = "gray20", hjust = 1, size = 3) + 
     scale_x_continuous(breaks = seq(-0.5, 0.5, 0.1), 
                        labels = percent,
-                       expand = expansion(0, c(0.45, 0.05))) + 
+                       expand = expansion(0, c(0.25, 0.05))) + 
     scale_color_gradient2(high = "#117733", mid = "white", low = "red", midpoint = 0) + 
     labs(title = "How more/less common were Christmas hymns in 2024 compared to previous Decembers?",
          x = "percent more/less common") + 
@@ -340,13 +340,9 @@ diffs_2024 |>
           axis.title.x = element_text(hjust = 0.74))
 ```
 
-This is a pretty cool look at the characteristics of the 2024 season. It seems like <hymn>Silent Night (#204)</hymn> was *quite* a bit more common in 2024 than in previous years. It was sung in something like 30% more sacrament meetings this year than during previous Decembers. That's a lot! That's like 2--3 times more per stake this year. I'm not quite sure what accounts for that jump. 
+This is a pretty cool look at the characteristics of the 2024 season. A few of the more common hymns were a little bit more common this year. But, keep in mind that these are *congregational* hymns. It may not simply be that the most popular ones are getting even more popular. I think what's happening is that more wards choirs and other musical ensembles are singing/playing the new hymns, so in order to not hear the same Christmas hymn more than once per year, the music coordinator works around those. That means hymns that had been sung as choir pieces or as special musical numbers previously are now being shifted to the congregation. This is just speculation and since I haven't been collecting data on the special musical numbers themselves, I'll never know. But it's plausible. 
 
-Some of the more common hymns were a little bit more common this year too. But, keep in mind that these are *congregational* hymns. It may not be that the most popular ones are getting even more popular. I think what's happening is that more wards choirs and other musical ensembles are singing/playing the new hymns, so in order to not hear the same Christmas hymn more than once per year, the music coordinator works around those. That means hymns that had been sung as choir pieces or as special musical numbers previously are now being shifted to the congregation. This is just speculation and since I haven't been collecting data on the special musical numbers themselves, I'll never know. But it's plausible. 
-
-Some hymns are less common in 2024 than they were before. They're the ones towards the right and bottom of the plot in red. I think these are the ones that are being left out in favor of the new hymns. Given the choice between <hymn>What Child Is This? (#1203)</hymn> and <hymn>While Shepherds Watched Their Flocks (#211)</hymn>, I'll bet most music coordinators went with the former. 
-
-It's worth noting that <hymn>I Heard the Bells on Christmas Day (#214)</hymn> is so low on this list because I have a lot less data from December 29th. That hymn is more common later in the month, so I suspect that it'll move its way up the plot once I get more of that data in.
+Most hymns were less common in 2024 than they were previously. They're the ones towards the right and bottom of the plot in red. I think these are the ones that are being left out in favor of the new hymns. Given the choice between <hymn>What Child Is This? (#1203)</hymn> and <hymn>While Shepherds Watched Their Flocks (#211)</hymn>, I'll bet most music coordinators went with the former. 
 
 ::: {.callout-caution collapse="true"}
 ### Statistical analysis for nerds :)
@@ -381,7 +377,7 @@ p_value <- round(summary(mdl)$coefficients[2,4], 3)
 
 The plot shows that correlation is there (ρ = `r cor_coef`) and is statistically significant (*p* = `r p_value`). However, in this plot, I've colored the values based on how far off they are from where we'd expect them to be if there was a perfect correlation (for any statisticians reading this, it's their residuals). More popular hymns are towards the right and less popular are to the left (based on data prior to 2024). Meanwhile, how much more or less common a hymn was in 2024 is shown on the *y*-axis, with hymns sung far more than normal higher up and far less than normal towards the bottom. Points outside of the shaded area could be considered noteworthy, or rather, significantly more or less popular *given how popular that hymn has historically been*. 
 
-So, we've already talked about the extremes, <hymn>Silent Night (#204)</hymn> and <hymn>While Shepherds Watched Their Flocks (#211)</hymn>. But, here we see that <hymn>Away in a Manger (#206)</hymn> is punching above its weight: it was sung far more in 2024 than you might expect solely based on how popular it has been in previous years. Same thing with <hymn>O Little Town of Bethlehem (#208)</hymn>. Meanwhile, <hymn>Far, Far Away on Judea's Plains (#212)</hymn> was sung quite a bit less this year even though it's about as popular as those two. 
+Here we see that <hymn>Away in a Manger (#206)</hymn> is punching above its weight: it was sung far more in 2024 than you might expect solely based on how popular it has been in previous years. Same thing with <hymn>O Little Town of Bethlehem (#208)</hymn>. Meanwhile, <hymn>Far, Far Away on Judea's Plains (#212)</hymn> and <hymn>I Heard the Bells on Christmas Day (#214)</hymn> were sung quite a bit less this year even though it's about as popular as those two. 
 
 So, this plot just shows that each hymn has its own story. It's not clear to me why these differences happened in 2024 the way they did. Perhaps it has something to do with the new hymns. But perhaps it's something else. (It could also be the case that if I ran the numbers for any year, I'd find big differences like these, which would mean 2024 is nothing special!) 
 

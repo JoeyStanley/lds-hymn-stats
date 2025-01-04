@@ -30,10 +30,12 @@ library(gtExtras)
 ```{r}
 meetings_since_release1 <- freqs |> 
     filter(date <= last_sunday,
-           date >= ymd("2024-06-02"))
+           date >= ymd("2024-06-02"),
+           !date == ymd("2024-10-06"))
 meetings_since_release2 <- freqs |> 
     filter(date <= last_sunday,
-           date >= ymd("2024-09-15"))
+           date >= ymd("2024-09-15"),
+           !date == ymd("2024-10-06"))
 n_meetings_since_release1 <- meetings_since_release1 |> 
     distinct(meeting_id) |> 
     nrow()
