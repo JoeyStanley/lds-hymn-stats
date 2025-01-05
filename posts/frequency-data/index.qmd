@@ -25,10 +25,17 @@ The dataset I'm calling the `Frequency` data is which is collected by having peo
 
 The data presented in this project comes from about five different sources. @tbl-source_breakdown shows these five projects and how much data they've contributed to the overall dataset, in terms of number of wards, number of sacrament meetings, and number of hymns overall.
 
+```{r}
+freqs |> 
+    count(source)
+```
+
+
 ```{r, include = TRUE}
 #| label: tbl-source_breakdown
 #| tbl-cap: Breakdown of the Frequency dataset by source
 source_summary <- freqs %>%
+    mutate(source = fct_collapse(source, "joey2023" = c("wardBulletManual", "wardBulletScraped"))) |> 
     summarize(wards = length(unique(ward)),
               meetings = length(unique(meeting_id)),
               hymns = length(hymn_num),
@@ -45,7 +52,7 @@ source_summary <- freqs %>%
 source_summary %>%
     gt() %>%
     tab_header(title = "Frequency data, by source") %>%
-    tab_source_note(source_note = "Reflects the dataset as of June 2024.") %>%
+    tab_source_note(source_note = "Reflects the dataset as of January 2025.") %>%
     tab_spanner(label = "wards", columns = matches("ward")) %>%
     tab_spanner(label = "sacrament meetings", columns = matches("meet")) %>%
     tab_spanner(label = "hymns", columns = matches("hymns")) %>%
@@ -484,7 +491,9 @@ For each ward/branch I have a separate spreadsheet that includes basic metadata 
 #| tbl-cap: A sample of the ward metadata
 set.seed(1)
 freqs %>%
-    filter(ward != "Anonymous") %>%
+    filter(ward != "Anonymous",
+           !is.na(city),
+           !city %in% c("Unknown")) %>%
     distinct(ward, city, state, country) %>%
     slice_sample(n = 10) %>%
     knitr::kable()
