@@ -24,6 +24,16 @@ last_sunday <- ymd(floor_date(today(), "week"))
 library(gtExtras)
 ```
 
+```{r}
+freqs |> 
+    filter(date == last_sunday) |> 
+    summarize(n_new = sum(hymn_num %in% c(1001:1250)), 
+              n_hymns_per_meeting = n(), 
+              .by = meeting_id) |> 
+    count(n_hymns_per_meeting) |>
+    print()
+```
+
 
 
 
@@ -59,6 +69,7 @@ n_weeks_since_release2 <- meetings_since_release2 |>
     count(date) |> 
     nrow()
 ```
+
 
 
 On September 12th, the church released the second batch of new hymns. In [a previous post](/posts/new_hymns_batch1), I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release2)` sacrament meetings since September 15th from `r n_wards_since_release1` wards.
@@ -171,7 +182,7 @@ ggplot(data_to_plot, aes(date, prop, group = group, color = group)) +
          y = "percentage of wards",
          color = "number of new hymns",
          title = "Percentage of wards singing new hymns since June 2",
-         subtitle = paste("Based on data from", n_wards_since_release1, "wards"),
+         subtitle = paste("Based on data from", comma(n_meetings_since_release1), "sacrament meetings from", comma(n_wards_since_release1), "wards"),
          fill = "date")
     # theme(legend.position = "none")
 ```
@@ -186,7 +197,7 @@ What is perhaps more interesting though is not which batch people sang from, but
 
 Once we hit the Thanksgiving/Christmas season, there was a dip in the number of new hymns being sung. It started on November 24 when most wards sang hymns of gratitude because of Thanksgiving. (Keep in mind that [most of my data comes from the United States](/posts/frequency-data.). On December 1st, there were even fewer new hymns being sung as people transitioned to singing Christmas hymns. Most notably though, while hymns from the second batch are not sung very much, the first batch is staying steady. This is because many wards are now singing the new Christmas hymns, particularly, <hymn>He Is Born, the Divine Christ Child (#1202)</hymn> and <hymn>What Child Is This? (#1203)</hymn>. (I have a dedicated post on [the 2024 Christmas season](/posts/christmas2024).)
 
-Since Christmas, the number of wards singing new hymns hasn't quite returned to its pre-Thanksgiving numbers, but it seems like people are swapping out hymns from the first batch and are going back to singing from the second batch a little more again. As we'll see below, a lot of this is wards singing <hymn>Amazing Grace (#1010)</hymn> again.
+Since Christmas, the number of wards singing new hymns has returned to its pre-Thanksgiving numbers. The second batch hasn't quite gotten back to where it was, although as we'll see below, a lot of people have been singing <hymn>Amazing Grace (#1010)</hymn> again.
 
 ## What hymns are most popular?
 
