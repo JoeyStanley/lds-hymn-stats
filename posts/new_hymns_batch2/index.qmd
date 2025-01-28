@@ -72,7 +72,7 @@ n_weeks_since_release2 <- meetings_since_release2 |>
 
 
 
-On September 12th, the church released the second batch of new hymns. In [a previous post](/posts/new_hymns_batch1), I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release2)` sacrament meetings since September 15th from `r scales::comma(n_wards_since_release1)` wards.
+On September 12th, the church released the second batch of new hymns. In [a previous post](/posts/new_hymns_batch1), I covered in detail as much as I could about the first batch of hymns and how they rolled out between June 2 and September 8th. This page covers period between when the second batch came out and when the third batch will come out, whenever that will be and will update regularly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release2)` sacrament meetings from `r scales::comma(n_wards_since_release1)` wards since September 15th.
 
 But first, here's how much data I have for each week, just so you have an idea of what I'm working with. I have collected more data per week from the past few months than from any other time period in my dataset.
 
@@ -285,7 +285,8 @@ We can see when these hymns tend to be sung and get an overall look at the popul
 
 ```{r, include = TRUE}
 meetings_since_release2 |> 
-    filter(hymn_num %in% 1010:1019) |> 
+    filter(hymn_num %in% 1010:1019,
+           !is.na(type)) |> # the Bullet data has no type, which is a major chunk of this data now
     count(name_num, hymn_num, type) |> 
     mutate(n = round(n/sum(n), 2)*100, 
            .by = name_num) |> 
