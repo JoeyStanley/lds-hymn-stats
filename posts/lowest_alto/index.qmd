@@ -1,0 +1,224 @@
+---
+title: "What are the sopranos' lowest notes?"
+description: "What hymn has the lowest soprano note? What is a typical lowest note for a soprano line? What is the highest lowest note for a soprano? If you can only sing down to a C, what proportion of hymns would you be able to sing melody on?"
+author: "Joey Stanley"
+date: "10/12/2023"
+aliases: 
+  - "/posts/lowest_melody"
+categories:
+  - soprano line
+  - lowest notes
+  - musicology
+knitr:
+  opts_chunk:
+    out.width: "100%"
+draft: TRUE
+---
+
+Previously, I wrote about [the highest alto notes](/posts/highest_melody) and [the lowest soprano notes](/posts/lowest_soprano]. In this long-overdue post, we'll explore the lowest notes the alto line sings. As a reminder, in addition to collecting frequency data about how often hymns are sung, I have also analyzed the notes and rhythms in the hymnal. Mark Mitchell has already done [fantastic work](https://markmitchell-music.com/music/documents/HymnStats.pdf) related to this. I hope to add to what he's reported already. 
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      fig.width = 6.5)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+alto <- notes %>% filter(voice == "alto")
+```
+
+```{r}
+alto %>%
+    filter(midi == min(midi, na.rm = TRUE), .by = name_num) %>%
+    count(note_label) %>%
+    ggplot(aes(note_label, n)) + 
+    geom_col()
+```
+
+
+## Lowest alto notes
+
+Let's cut to the chase: the lowest note that an alto part has in the 1985 hymnal is a G3, which is the G below the treble clef. This occurs in eight different hymns for sure. Here they are in order of how common those hymns are sung as congregational hymns in sacrament meeting:
+
+* Because I Have Been Given Much (#219)
+* There Is Sunshine in My Soul Today (#227)
+* In Fasting We Approach Thee (#139)
+* Be Thou Humble (#130)
+* Keep the Commandments (#303)
+* Know This, That Every Soul Is Free (#240)
+* God of Our Fathers, Known of Old (#80)
+* Up, Awake, Ye Defenders of Zion (#248)
+
+:::{.callout-tip collapse="true"}
+
+### Click to see those hymns
+
+![title](name)
+
+---
+
+![title]name)
+
+:::
+
+Several of these deserve some commentary. First, as mentioned I reported on the [lowest soprano notes](/posts/lowest_soprano), that G3 in <hymn>There Is Sunshine in My Soul Today (#227)</hymn> is sung with the lowest melody note that is not in unison with the alto. <hymn>Keep the Commandments (#303)</hymn> is a legitimate alto line, but it's only a duet, rather than a full SATB arrangement. The rest seem to be just simply lower-than-usual notes in an otherwise normal arrangement.
+
+There are two more in the [men's and women's arrangements] in the back of the hymnal. One is in <hymn>Love at Home [Women] (#318)</hymn>, but I'm hesitant to treat that the same as the others because it's a SSA arrangement, so it's a little bit different than an SATB hymn. And the other is kinda not really an alto part in <hymn>The Priesthood of Our Lord [Men] (#320)</hymn>, which doesn't really count because it appears to be more of a unison hymn anyway, and that's if we should ecven consider a men's harmony line an "alto" part. 
+
+```{r}
+alto %>%
+    filter(midi == min(midi, na.rm = TRUE)) |> 
+    pull(hymn_num) |> 
+    single_hymn_lookup()
+highest_lowest_note_stats("alto", "G3", "low")
+```
+
+Because some of these hymns are pretty common, singing this record-low note happens fairly often, a little less than once every three months on average. 
+
+## Other low alto notes
+
+The next lowest note, A♭3, is a little bit more common. It's found in 13 hymns, including <hymn>I Stand All Amazed (#193)</hymn>, <hymn>As Now We Take the Sacrament (#169)</hymn>, <hymn>How Firm a Foundation (#85)</hymn>, <hymn>Because I Have Been Given Much</hymn>, <hymn>O Lord of Hosts (178)</hymn>, and <hymn>A Poor Wayfaring Man of Grief (29)</hymn>. At least one of these, combined with the others, is sung about once every 5--6 weeks. So, a pretty common occurrance for altos to see that low A♭. 
+
+```{r}
+alto %>%
+    filter(note_label == "Ab3") |> 
+    pull(hymn_num) |> 
+    single_hymn_lookup()
+highest_lowest_note_stats("alto", "Ab3", "low")
+```
+
+Not too many hymns even approach that low A♭3. Just one hymn goes down to an A3. <hymn>Zion Stands with Hills Surrounded (#43)</hymn> just pops down there one time, unison with the altos, and never really comes close to it again. It is also extremely rare, being sung about once a generation or so.
+
+```{r}
+alto %>%
+    filter(note_label == "A3") |> 
+    pull(hymn_num) |> 
+    single_hymn_lookup()
+highest_lowest_note_stats("alto", "A3", "low")
+```
+
+
+
+
+## Typical lowest notes
+
+So, we've established that G3 and A♭3 are unusually low. Looking at the distribution of the lowest notes across the hymnal---as seen below---we see that the typical low end of alto lines is around an A3, B♭3, or B3. 
+
+
+```{r, include = TRUE, echo = FALSE, fig.height = 4}
+lowest_notes_dist <- notes %>%
+    filter(voice == "alto") %>%
+    filter(midi == min(midi, na.rm = TRUE), .by = name_num) %>%
+    distinct(name_num, note_label) %>%
+    count(note_label)
+ggplot(lowest_notes_dist, aes(note_label, n)) + 
+    geom_col() + 
+    scale_y_continuous(breaks = seq(0, 600, 20)) +
+    labs(title = "Distributon of lowest notes in the alto line",
+         x = "lowest note",
+         y = "number of hymns") + 
+    theme_minimal() + 
+    theme(panel.grid.minor.x = element_blank())
+```
+
+```{r}
+highest_lowest_note_stats("alto", "A3", "low")
+```
+
+
+
+```{r}
+highest_lowest_note_stats("alto", "Bb3", "low")
+```
+
+```{r}
+highest_lowest_note_stats("alto", "B3", "low")
+```
+
+
+79 hymns have an alto line going down to A3, 64 hymns go down to a B♭3, and another 94 go down to a B3. You're likely to see each of these a couple times a month. So, not at all unusual. 
+
+
+## Lowest notes that aren't all that low
+
+Let's continue to work our way up to see what hymns have relatively high notes as their lowest notes.
+
+```{r}
+alto %>%
+    filter(midi == min(midi), .by = name_num) |> 
+    filter(note_label == "C4") |> 
+    distinct(name_num, key_signature, note_label, inscale)
+highest_lowest_note_stats("alto", "C4", "low")
+```
+There are 25 hymns that only go down to a C4, middle C. There's one very common sacrament hymn, <hymn>In Humility, Our Savior (#172)</hymn>, several fairly common ones like <hymn>Angels We Have Heard on High (#203)</hymn> and <hymn>I'll Go Where You Want Me to Go (#270)</hymn>, and several quite unusual ones like <hymn>This House We Dedicate to Thee (#245)</hymn>, <hymn>God Save the King (#341)</hymn>. Collectively, they're sung about once every five weeks. 
+
+
+
+There are 26 hymns that have E♭4 as their lowest note, including five sacrament hymns. Almost all of these 26 hymns are in the key of E♭ major and almost all of those have E♭4 as their highest notes. The exceptions are <hymn>We Have Partaken of Thy Love (#155)</hymn> and <hymn>Now the Day Is Over (#159)</hymn>, which are in the key of A♭ major making the lowest note the dominant instead of the tonic, and all three of the women's choir arrangements that are on this list: <hymn>God Is Love (#313)</hymn>, <hymn>Sweet Is the Work (#317)</hymn>, <hymn>Love at Home (#318)</hymn>. 
+
+```{r, include = TRUE, echo = FALSE,  fig.height = 3.5, fig.width=7}
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "Eb4", "low", .return = "table")$hymn_num) %>%
+    cleveland_plot(title = "Frequency of hymns with soprano lines that have Eb3 as the lowest note",
+                   subtitle = NULL,
+                   breaks = 0.5,
+                   x_buffer = 1.2)
+```
+
+### E4
+
+```{r}
+highest_lowest_note_stats("soprano", "C#4", "low")
+```
+Just 13 hymns have E4 as their lowest note. Many of these are in the key of C major, but otherwise there's nothing noteworthy to say about these hymns other than the most common of them is the only one sung on average once every two years. So, you'll encounter one of these hymns maybe once every 14 weeks.
+
+```{r, include = TRUE, echo = FALSE,  fig.height = 2.5}
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "E4", "low", .return = "table")$hymn_num) %>%
+    cleveland_plot(title = "Frequency of hymns with soprano lines that have E4 as the lowest note",
+                   subtitle = NULL,
+                   breaks = 0.2,
+                   x_buffer = 0.3)
+```
+
+### F4
+
+```{r}
+highest_lowest_note_stats("soprano", "D4", "low")
+```
+
+Only nine hymns have F4 as their lowest notes. We'll see in a later blog post that when the melody never goes too low, it makes the whole hymn "feel" high, even if none of the notes are especially high. <hymn>Come, Ye Children of the Lord (58)</hymn> and <hymn>What Was Witnessed in the Heavens? (11)</hymn> are the hymns with the highest "average" note, and not dipping below F4 certainly contributes to that.
+
+```{r, include = TRUE, echo = FALSE, fig.height = 2}
+freqs %>%
+    filter(hymn_num %in% highest_lowest_note_stats("soprano", "F4", "low", .return = "table")$hymn_num) %>%
+    cleveland_plot(title = "Frequency of hymns with soprano lines that have F4 as the lowest note",
+                   subtitle = NULL,
+                   x_buffer = 1)
+```
+
+
+### F♯4
+
+```{r}
+highest_lowest_note_stats("soprano", "F#4", "low")
+single_hymn_lookup(17)
+single_hymn_lookup(61)
+```
+
+Finally we get to the confusingly worded "highest lowest notes" in the hymnal. Here, *lowest notes* refers to the lowest notes of the melody within each song out of all the other notes in that song. But if we take all those lowest notes and put them in order from low to high, one of them is going to be the highest. So, *highest* here refers to the highest across all the lowest notes. Thus, we have the highest lowest notes in the soprano line. 
+
+::: {.callout-tip icon="false"}
+### Fun Fact
+
+Two hymns have soprano lines that go no lower than an F♯4: <hymn>Awake, Ye Saints of God, Awake! (#17)</hymn> and <hymn>Raise Your Voices to the Lord (#61)</hymn>.
+:::
+
+If you haven't heard of either of these hymns, it's probably because they're not very common. <hymn>Awake, Ye Saints of God, Awake! (#17)</hymn> is sung about once every 8.6 years, typically as an opening hymn. However, though the soprano line indeed never dips below an F♯4, the *melody* goes lower. For one portion the sopranos have rests while the altos carry the melody. In the 1948 version of the hymnal, it was #229 and was a "Choir" arrangement, more or less unchanged except in the key of D major. So, this hymn only makes it to the top of this list because of a technicality, and my guess is a typical ward member people will sing that alto line anyway. 
+
+![Awake, Ye Saints of God, Awake! (#17)](awake-ye-saints.png)
+
+The other hymn, <hymn>Raise Your Voices to the Lord (#61)</hymn>, has an F♯4 as its lowest note fair and square. In fact, I wonder if setting this hymn in a relatively high key may have been intentional: it is called "*Raise* Your Voices" after all. In fact, when comparing the current arrangement to the one in the 1948 hymnal, I think there are cases where they deliberately made the parts higher. The bass line currently has C3 as its lowest note instead of the G2 in the previous version and the tenor line is pretty consistently above the bass clef. (The alto line is in about the same range and is is only different because the chords have changed a little bit.) So while none of the parts have extremely high notes, they are often in the upper parts of their ranges. If this was on purpose, that is some nice word painting. It's too bad hardly anyone gets to enjoy that though because this short hymn is sung about once every 10.6 years, typically as a closing hymn. 
+
+![Raise Your Voices to the Lord (#61)](raise.png)
+
+## Summary
+
+The lowest a soprano note goes is A♭3, but only when it's in unison with other parts. Melodies typically to go about a D4 or a C4, but sometimes they only go down to an F♯4. 

@@ -89,7 +89,7 @@ meetings_since_release3 |>
     rename(wards = n) |> 
     gt() |> 
     tab_header(title = "Number of wards I have data from, by week",
-               subtitle = "Since Fegbruary 16th")
+               subtitle = "Since February 16th")
 ```
 
 
@@ -144,7 +144,7 @@ data_to_plot <- meetings_since_release1 |>
 labels <- tibble(
     batch = c("none", "batch1", "batch2", "batch3"),
     prop  = c(0.73, 0.26, 0.11, 0.04),
-    date  = ymd(c("2025-02-08", "2025-02-04", "2024-12-15", "2025-02-04")),
+    date  = ymd(c("2025-02-08", "2025-02-14", "2024-12-15", "2025-02-04")),
     label = c("no new hymns", "batch 1", "batch 2", "batch 3")
 )
 ```
@@ -240,10 +240,15 @@ prop_new_batch3_week2 <- data_to_plot |>
            batch == "batch3") |>
     pull(prop_sung) |> 
     as_percent_joey()
+prop_new_batch3_week3 <- data_to_plot |> 
+    filter(date == "2025-03-02",
+           batch == "batch3") |>
+    pull(prop_sung) |> 
+    as_percent_joey()
 ```
 
 
-Now we get to the third batch. If the second batch's reception was lukewarm, the third batch has been downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever.
+Now we get to the third batch. If the second batch's reception was lukewarm, the third batch has been downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. The third week was actually *worse*, at `r prop_new_batch3_week3`! It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever.
 
 That so few wards are singing from this third batch may be due to a few reasons. Perhaps music coordinators have the hymns planned out for the month or quarter already and don't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been popular so far.
 
@@ -278,15 +283,14 @@ meetings_since_release1 |>
                subtitle = "Since February 16")
 ```
 
-
-It's too early to predict which hymns will become the most popular. But, it's telling that some hymns have been sung in multiple wards and others haven't been sung at all. Of course the Easter ones aren't likely to be sung quite yet. But, at least in my dataset, <hymn>This Little Light of Mine (#1028)</hymn> has been sung the most as a congregational hymn so far. This is honestly a surprise to be because I figurd it'd be popular in primary but maybe not many people would choose it to be sung in sacrament meeting. After that one, <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> are next. I suppose that last one will likely be popular around Pioneer Day or for missionary farewells. 
+Even though it has been just a few weeks, I've seen almost all the new hymns sung at least once in my dataset. It looks like <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn> is currently the most popular of the new hymns, but the order will likely change over the next few weeks and months. 
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
 
 ## What hymns are most popular each week?
 
-The plot below is not particularly informative yet because it has only been two weeks, not all the hymns have been sung (at least in my sample), and the overall number of wards singing the new hymns is not high. But we can start to get an idea of what hymns were popular when *of the wards that sang them*. For now, I'm not going to provide any other commentary until more time has passed.
+The plot below is not too informative yet because it has only been three weeks, not all the hymns have been sung (at least in my sample), and the overall number of wards singing the new hymns is not high. But we can start to get an idea of what hymns were popular when *of the wards that sang them*. For now, I'm not going to provide any other commentary until more time has passed.
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 13}
 #| column: page
@@ -365,4 +369,4 @@ meetings_since_release3 |>
 
 ## Conclusion
 
-There's not much to be said so far about the third batch because it's only been two weeks and because so few wards have sung those hymns so far. Presumably, the hymns for most sacrament meetings were set and music coordinators and ward leaders didn't want to change things last minute. Over the next couple of weeks though, I suspect we'll see a major rise in the number of wards singing from this third batch of hymns.
+It's hard to say too much about the third batch of hymns because so few wards have sung those hymns so far. We're starting to see which are more popular than others, but that could change in the future. What is clear though is the cold reception these hymns have gotten. After three weeks, only a small proportion of wards have sung from this third batch. I suspect the number will go up a little bit, but now I'm not sure! We'll see next week I guess. 
