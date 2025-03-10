@@ -245,10 +245,15 @@ prop_new_batch3_week3 <- data_to_plot |>
            batch == "batch3") |>
     pull(prop_sung) |> 
     as_percent_joey()
+prop_new_batch3_week4 <- data_to_plot |> 
+    filter(date == "2025-03-09",
+           batch == "batch3") |>
+    pull(prop_sung) |> 
+    as_percent_joey()
 ```
 
 
-Now we get to the third batch. If the second batch's reception was lukewarm, the third batch has been downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. The third week was actually *worse*, at `r prop_new_batch3_week3`! It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever.
+Now we get to the third batch. If the second batch's reception was lukewarm, the third batch has been downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. The third week was actually *worse*, at `r prop_new_batch3_week3`! It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. The most recent Sunday has been the best so far with almost 10% of people singing from the third batch---almost surpassing the second batch.
 
 That so few wards are singing from this third batch may be due to a few reasons. Perhaps music coordinators have the hymns planned out for the month or quarter already and don't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been popular so far.
 
@@ -325,7 +330,7 @@ meetings_since_release3 |>
     facet_wrap(~name_num, ncol = 4) + 
     labs(title = "Proportion of wards singing new hymns by week",
          subtitle = "Of the sacrament meetings with new hymns",
-         x = "date",
+         x = NULL,
          y = "proportion of wards") + 
     theme_bw()
 ```
@@ -369,4 +374,4 @@ meetings_since_release3 |>
 
 ## Conclusion
 
-It's hard to say too much about the third batch of hymns because so few wards have sung those hymns so far. We're starting to see which are more popular than others, but that could change in the future. What is clear though is the cold reception these hymns have gotten. After three weeks, only a small proportion of wards have sung from this third batch. I suspect the number will go up a little bit, but now I'm not sure! We'll see next week I guess. 
+It's hard to say too much about the third batch of hymns because so few wards have sung those hymns so far. We're starting to see which are more popular than others, but that could change in the future. What is clear though is the cold reception these hymns have gotten. After a month, still only a small proportion of wards have sung from this third batch. I suspect the number will go up a little bit, but now I'm not sure! We'll see next week I guess. 
