@@ -245,17 +245,16 @@ prop_new_batch3_week3 <- data_to_plot |>
            batch == "batch3") |>
     pull(prop_sung) |> 
     as_percent_joey()
-prop_new_batch3_week5 <- data_to_plot |> 
-    filter(date == "2025-03-16",
+prop_new_batch3_week6 <- data_to_plot |> 
+    filter(date == "2025-03-23",
            batch == "batch3") |>
     pull(prop_sung) |> 
     as_percent_joey()
 ```
 
+Now we get to the third batch. If the second batch's reception was lukewarm, the third batch was downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. The third week was actually *worse*, at `r prop_new_batch3_week3`! It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. The most recent two weeks have been the best so far and has now it about 12% of wards singing from the third batch, finally surpassing the second batch.
 
-Now we get to the third batch. If the second batch's reception was lukewarm, the third batch was downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. The third week was actually *worse*, at `r prop_new_batch3_week3`! It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. The most recent two weeks have been the best so far and has now it 13.4% of wards singing from the third batch, finally surpassing the second batch.
-
-That so few wards are singing from this third batch may be due to a few reasons. Perhaps music coordinators have the hymns planned out for the month or quarter already and don't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been popular so far.
+There may be a few reasons why so few wards are singing from this third batch. Perhaps music coordinators have the hymns planned out for the month or quarter already and don't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been popular so far.
 
 
 
@@ -294,12 +293,12 @@ I've now seen all the new hymns sung at least once in my dataset. It looks like 
 
 ## What hymns are most popular each week?
 
-The plot below is not too informative yet because it has only been a month and the overall number of wards singing the new hymns is not high. But we can start to get an idea of what hymns were popular when *of the wards that sang them*. 
+Even though still relatively few wards have sung from the third batch, we can start to get an idea of what hymns were popular when *of the wards that sang them*. 
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 13}
 #| column: page
 meetings_since_release3 |> 
-    filter(hymn_num %in% c(1019:1031, 1205:1206)) |>  
+    filter(hymn_num %in% c(1019:1031, 1205:1206)) |>
     count(date, hymn_num, name_num) |> 
     
     # pivot and stuff to get zeros
@@ -333,6 +332,8 @@ meetings_since_release3 |>
          y = "proportion of wards") + 
     theme_bw()
 ```
+
+Now that it's been over a month, we can start to see some patterns. It seems like the most popular hymns are somewhat erratic: <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, <hymn>I Know That My Savior Loves Me (#1021)</hymn>, and <hymn>This Little Light of Mine (#1028)</hymn> jump around a lot for some reason. It's likely a sample size issue, again because so few wards are singing them. Some of the less common ones don't show a clear pattern, other than they're generally present but not common. Some become slightly more popular after a few weeks, again suggesting (like the other batches) that once wards have gotten the favorites out of the way, they are then open to trying new ones. Most notable, <hymn>Let Easter Anthens Ring (#1205)</hymn> is increasing 
 
 I'm a little surprised that there aren't too many clear patterns. It might be a sample size issue: less data means proportional data like this is more erratic. But, a few hymns seem to be steadily increasing in popularity. But, we'll have to wait for more time to pass and more wards to sing these hymns before we can say much for sure.
 
