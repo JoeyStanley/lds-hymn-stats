@@ -170,11 +170,15 @@ post_june_data <- freqs %>%
 # Get the rows of the new hymns so I can color them.
 batch1_rows <- post_june_data |> 
     rowid_to_column("real_row") |> 
-    filter(as.numeric(str_remove(hymn_num, "#")) %in% 1000:1009) |> 
+    filter(as.numeric(str_remove(hymn_num, "#")) %in% c(1001:1009, 1201:1204)) |> 
     pull(real_row)
 batch2_rows <- post_june_data |> 
     rowid_to_column("real_row") |> 
     filter(as.numeric(str_remove(hymn_num, "#")) %in% 1010:1018) |> 
+    pull(real_row)
+batch3_rows <- post_june_data |> 
+    rowid_to_column("real_row") |> 
+    filter(as.numeric(str_remove(hymn_num, "#")) %in% c(1019:1031, 1205:1206)) |> 
     pull(real_row)
 
 post_june_data |> 
@@ -191,8 +195,9 @@ post_june_data |>
     kable_styling(fixed_thead = TRUE) |> 
     scroll_box(height = "1080px") |> 
     column_spec(5, color = make_things_gray(post_june_data, pred_times_per_year)) |> 
-    row_spec(row = batch1_rows, background = "#deebf7") |>  # I don't remember where I got this color
-    row_spec(row = batch2_rows, background = "#f7eade") # secondary from https://www.colorbook.io/hexcolors/view/deebf7
+    row_spec(row = batch1_rows, background = "#b3cde3") |>  
+    row_spec(row = batch2_rows, background = "#fbb4ae") |> 
+    row_spec(row = batch3_rows, background = "#ccebc5")
 ```
 
 
