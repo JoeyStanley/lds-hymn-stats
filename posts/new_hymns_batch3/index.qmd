@@ -30,14 +30,17 @@ library(gtExtras)
 meetings_since_release1 <- freqs |> 
     filter(date <= last_sunday,
            date >= ymd("2024-06-02"),
-           !date == ymd("2024-10-06"))
+           !date %in% ymd("2024-10-06",
+                        "2025-04-06"))
 meetings_since_release2 <- freqs |> 
     filter(date <= last_sunday,
            date >= ymd("2024-09-15"),
-           !date == ymd("2024-10-06"))
+           !date %in% ymd("2024-10-06",
+                        "2025-04-06"))
 meetings_since_release3 <- freqs |> 
     filter(date <= last_sunday,
-           date >= ymd("2025-02-16"))
+           date >= ymd("2025-02-16"),
+           !date %in% ymd("2025-04-06"))
 
 n_meetings_since_release1 <- meetings_since_release1 |> 
     distinct(meeting_id) |> 
@@ -160,7 +163,7 @@ date_minor_breaks <- tibble(weeks_since = 0:52,
 date_breaks <- date_minor_breaks |> 
     filter(weeks_since %% 3 == 0)
 batch3_date_breaks <- date_minor_breaks |> 
-    filter(weeks_since %% 3 == 0)
+    filter(weeks_since %% 2 == 0)
 ```
 
 ```{r, include = TRUE, fig.height = 5.5, fig.width = 14}
@@ -245,14 +248,14 @@ prop_new_batch3_week3 <- data_to_plot |>
            batch == "batch3") |>
     pull(prop_sung) |> 
     as_percent_joey()
-prop_new_batch3_week6 <- data_to_plot |> 
-    filter(date == "2025-03-23",
+prop_new_batch3_week7 <- data_to_plot |> 
+    filter(date == "2025-04-13",
            batch == "batch3") |>
     pull(prop_sung) |> 
     as_percent_joey()
 ```
 
-Now we get to the third batch. If the second batch's reception was lukewarm, the third batch was downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. The third week was actually *worse*, at `r prop_new_batch3_week3`! It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. The most recent two weeks have been the best so far and has now it about 12% of wards singing from the third batch, finally surpassing the second batch.
+Now we get to the third batch. If the second batch's reception was lukewarm, the third batch was downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. In the past few weeks, the third batch has finally surpassed the second batch in weekly popularity, partly due to <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> around Easter, but it still trails behind the first batch.
 
 There may be a few reasons why so few wards are singing from this third batch. Perhaps music coordinators have the hymns planned out for the month or quarter already and don't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been popular so far.
 
@@ -320,7 +323,7 @@ meetings_since_release3 |>
     ggplot(aes(date, prop, group = name_num)) + 
     geom_path() + 
     geom_point() + 
-    scale_x_date(breaks = date_minor_breaks$date,
+    scale_x_date(breaks = batch3_date_breaks$date,
                  minor_breaks = date_minor_breaks$date,
                  date_labels = "%b %d",
                  expand = expansion(0.1, 0)) +
@@ -333,14 +336,12 @@ meetings_since_release3 |>
     theme_bw()
 ```
 
-Now that it's been over a month, we can start to see some patterns. It seems like the most popular hymns are somewhat erratic: <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, <hymn>I Know That My Savior Loves Me (#1021)</hymn>, and <hymn>This Little Light of Mine (#1028)</hymn> jump around a lot for some reason. It's likely a sample size issue, again because so few wards are singing them. Some of the less common ones don't show a clear pattern, other than they're generally present but not common. Some become slightly more popular after a few weeks, again suggesting (like the other batches) that once wards have gotten the favorites out of the way, they are then open to trying new ones. Most notable, <hymn>Let Easter Anthens Ring (#1205)</hymn> is increasing 
-
-I'm a little surprised that there aren't too many clear patterns. It might be a sample size issue: less data means proportional data like this is more erratic. But, a few hymns seem to be steadily increasing in popularity. But, we'll have to wait for more time to pass and more wards to sing these hymns before we can say much for sure.
+Now that it's been over a month, we can start to see some patterns. It seems like the most popular hymns are somewhat erratic: <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, <hymn>I Know That My Savior Loves Me (#1021)</hymn>, and <hymn>This Little Light of Mine (#1028)</hymn> jump around a lot for some reason. It's likely a sample size issue, again because so few wards are singing them. Some of the less common ones don't show a clear pattern, other than they're generally present but not common. Some become slightly more popular after a few weeks, again suggesting (like the other batches) that once wards have gotten the favorites out of the way, they are then open to trying new ones. The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around Easter.
 
 
 ## When during meetings are these hymns sung?
 
-We can now see when during sacrament meetings these hymns have been sung. Again, since I have not seen very many wards singing from this third batch quite yet, it's difficult to notice any patterns. So this is just a very preliminary look based on just a little bit of data. It is noteworthy though that none have been sung as sacrament hymns.
+We can now see when during sacrament meetings these hymns have been sung. Again, since I have not seen very many wards singing from this third batch quite yet, it's difficult to notice any patterns. So this is just a very preliminary look based on just a little bit of data. 
 
 ```{r, include = TRUE}
 meetings_since_release3 |> 
@@ -352,13 +353,13 @@ meetings_since_release3 |>
     pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
     arrange(hymn_num) |> 
     select(-hymn_num) |> 
-    select(name_num, Opening, Intermediate, Closing) |> 
+    select(name_num, Opening, Sacrament, Intermediate, Closing) |> 
     rename(`New Hymn` = name_num) |> 
     gt() |> 
     gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE, 
                    fill = "#4F2B47", height = 20, font_size = "14px") |> 
-    # gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE, 
-    #                fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
     gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE, 
                    fill = "#4F2B47", height = 20, font_size = "14px") |>
     gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE, 
@@ -372,4 +373,4 @@ meetings_since_release3 |>
 
 ## Conclusion
 
-It's hard to say too much about the third batch of hymns because not too many wards have sung those hymns so far. We're starting to see which are more popular than others and when they're sung during the meeting. What is clear though is the relatively cold reception these hymns have gotten. After a month, still only a small proportion of wards have sung from this third batch. But, the past two weeks have shown some signs of greater use. As we approach Easter, we might see more and more wards singing these new hymns.
+Now that it has been a couple months since the third batch was released, we can see which are more popular than others and when they're sung during the meeting. What is clear though is the relatively cold reception these hymns got in the first month. But, people have warmed up to them, especially the Easter ones. 
