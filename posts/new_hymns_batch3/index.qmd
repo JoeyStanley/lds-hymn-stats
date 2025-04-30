@@ -257,7 +257,7 @@ prop_new_batch3_week7 <- data_to_plot |>
 
 Now we get to the third batch. If the second batch's reception was lukewarm, the third batch was downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. In the past few weeks, the third batch has finally surpassed the second batch in weekly popularity, partly due to <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> around Easter, but it still trails behind the first batch.
 
-There may be a few reasons why so few wards are singing from this third batch. Perhaps music coordinators have the hymns planned out for the month or quarter already and don't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been popular so far.
+There may be a few reasons why fewer wards are singing from this third batch. At first, perhaps music coordinators had the hymns planned out for the month or quarter already and didn't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been as popular so far.
 
 
 
@@ -290,7 +290,7 @@ meetings_since_release1 |>
                subtitle = "Since February 16")
 ```
 
-I've now seen all the new hymns sung at least once in my dataset. It looks like <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn> is currently the most popular of the new hymns. It's followed by <hymn>This Little Light of Mine (#1028)<hymn> and then <hymn>I Know That the Savior Loves Me (1021)</hymn>, but we'll likely see this change a little bit over the next few weeks and months. 
+I've now seen all the new hymns sung at least once in my dataset. <hymn>Let Easter Anthems Ring (#1205)</hymn> has been sung the most in this batch, but that's only because of [Easter](/posts/easter2025). If we ignore that one, it looks like <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn> is currently the most popular of the new hymns generally. It's followed by <hymn>This Little Light of Mine (#1028)</hymn> and then <hymn>I Know That the Savior Loves Me (1021)</hymn>, but we'll likely see this change a little bit over the next few weeks and months. 
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
@@ -298,7 +298,7 @@ I've now seen all the new hymns sung at least once in my dataset. It looks like 
 
 Even though still relatively few wards have sung from the third batch, we can start to get an idea of what hymns were popular when *of the wards that sang them*. 
 
-```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 13}
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
 meetings_since_release3 |> 
     filter(hymn_num %in% c(1019:1031, 1205:1206)) |>
@@ -336,12 +336,12 @@ meetings_since_release3 |>
     theme_bw()
 ```
 
-Now that it's been over a month, we can start to see some patterns. It seems like the most popular hymns are somewhat erratic: <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, <hymn>I Know That My Savior Loves Me (#1021)</hymn>, and <hymn>This Little Light of Mine (#1028)</hymn> jump around a lot for some reason. It's likely a sample size issue, again because so few wards are singing them. Some of the less common ones don't show a clear pattern, other than they're generally present but not common. Some become slightly more popular after a few weeks, again suggesting (like the other batches) that once wards have gotten the favorites out of the way, they are then open to trying new ones. The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around Easter.
+It seems like the most popular hymns are somewhat erratic: <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, <hymn>I Know That My Savior Loves Me (#1021)</hymn>, and <hymn>This Little Light of Mine (#1028)</hymn> jump around a lot for some reason. It's possibly a sample size issue, because relatively few wards are singing them. Some of the less common ones don't show a clear pattern, other than they're generally present but not common. Some become slightly more popular after a few weeks, again suggesting (like the other batches) that once wards have gotten the favorites out of the way, they are then open to trying new ones. The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around [Easter](/posts/easter2025).
 
 
 ## When during meetings are these hymns sung?
 
-We can now see when during sacrament meetings these hymns have been sung. Again, since I have not seen very many wards singing from this third batch quite yet, it's difficult to notice any patterns. So this is just a very preliminary look based on just a little bit of data. 
+We can now see when during sacrament meetings these hymns have been sung. These results will likely change slightly as more time passes, but it's been long enough and enough data has come in that we can get a good idea of what's going on.
 
 ```{r, include = TRUE}
 meetings_since_release3 |> 
@@ -369,6 +369,7 @@ meetings_since_release3 |>
     tab_source_note("Note: Each row adds up to 100%.")
 ```
 
+The most notable pattern is that <hymn>I Have Faith in the Lord Jesus Christ (#1024)</hymn> is pretty much only sung as a closing hymn. But, it's the least popular hymn in this batch and I've only seen nine wards sing it. Most hymns are sung either as opening or closing hymns, with roughly equal frequencies. Some, like <hymn>Faith in Every Footstep (#1022)</hymn> are sung equally as opening, intermediate, or closing hymns. <hymn>This Little Light of Mine (#1028)</hymn> stands out as being the only one that is most popular as an intermediate hymn. We didn't get any that were obviously intended for the sacrament this time.
 
 
 ## Conclusion
