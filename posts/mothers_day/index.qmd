@@ -26,7 +26,8 @@ Mother's Day is approaching. In our church, we place a lot of value on Mother's 
 mothers <- freqs |> 
     filter(month == 5,
            nth_sunday == 2,
-           country %in% c("United States", "Canada")) |> 
+           country %in% c("United States", "Canada"),
+           year < 2025) |> 
     filter(!ward %in% c("Anonymous")) |> 
     print()
 mothers |> 
@@ -65,29 +66,40 @@ So, those hymns are supposedly the ones we would be most likely to draw from. Le
 #| fig-cap: Most popular hymns sung on Mother\'s Day (sacrament hymns excluded)
 #| label: fig-cleveland
 mothers |> 
-    filter(!hymn_num %in% 169:196) |> 
-    cleveland_plot(filter_n = 5, breaks = 0.1, x_buffer = 0.1,
-                   extra_cols = mothers_category, color = mothers_category) + 
+    cleveland(filter_n = 8, hymns_to_plot = c(1:168, 197:5000),
+              stat_to_plot = sum_prop_wards,
+              extra_cols = mothers_category, color = mothers_category) + 
     scale_color_manual(values = c("motherhood" = "#e78ac3",
                                   "children"   = "#8da0cb",
                                   "home"       = "#66c2a5",
                                   "other"      = "gray50")) + 
+    scale_x_continuous(breaks = seq(0, 1, 0.1), 
+                       labels = percent,
+                       expand = expansion(0, c(0, 0.15))) + 
     labs(title = "Most popular hymns sung on Mother's Day",
          subtitle = "Sacrament hymns are not shown",
          x = "proportion of wards that sing it per year on Mother's day",
          color = "hymn category")
 ```
 
-The most popular Mother's Day hymn is <hymn>Love at Home (#294)</hymn>, with about 36% of wards singing it each year. The next most popular was <hymn>Home Can Be a Heaven on Earth (#298)</hymn>, <hymn>Teach Me to Walk in the the Light (#304)</hymn>, and <hymn>O My Father (#292)</hymn>. All four of these, are part of the "Motherhood" category of hymns in the index. The last of the five in that category is <hymn>From Home of Saints Glad Songs Arise (#297)</hymn> and while less than one in 20 wards sing it each year, it's still in 7th place for most popular hymn on Mother's Day. 
+```{r}
+mothers |> 
+    cleveland(filter_n = 8, hymns_to_plot = c(1:168, 197:5000),
+              stat_to_plot = sum_prop_wards,
+              extra_cols = mothers_category, color = mothers_category,
+              return = "table")
+```
 
-The next most popular category of hymns on Mother's Day was the "Home" category. As mentioned above, some of the hymns in that category are rather infrequent, but others are pretty popular, including <hymn>Families Can Be Together Forever (#300)</hymn>, <hymn>For the Beauty of the Earth (#92)</hymn>, and <hymn>Love One Another (#308)</hymn>. Relatively few of the "Children" hymns were very popular, but some were <hymn>I Am a Child of God (#301)</hymn> and <hymn>Dearest Children, God Is Near You (#96)</hymn>. 
+
+The most popular Mother's Day hymn is <hymn>Love at Home (#294)</hymn>, with more than half of wards singing it each year. The next most popular was <hymn>Home Can Be a Heaven on Earth (#298)</hymn>, <hymn>Teach Me to Walk in the the Light (#304)</hymn>, and <hymn>O My Father (#292)</hymn>. All four of these, are part of the "Motherhood" category of hymns in the index. The last of the five in that category is <hymn>From Home of Saints Glad Songs Arise (#297)</hymn> and while less than 4% of wards sing it each year, it's still in the top 10 for most popular hymn on Mother's Day. 
+
+The next most popular category of hymns on Mother's Day was the "Home" category. As mentioned above, some of the hymns in that category are rather infrequent, but others are pretty popular, including <hymn>For the Beauty of the Earth (#92)</hymn>, <hymn>Families Can Be Together Forever (#300)</hymn>, and <hymn>Love One Another (#308)</hymn>. Relatively few of the "Children" hymns were very popular, but <hymn>I Am a Child of God (#301)</hymn> and <hymn>Dearest Children, God Is Near You (#96)</hymn> were somewhat.
 
 So, it's clear that most music coordinators look at the "Motherhood" entry in the index, with some looking at the "Home" category. I think an honorable mention hymn is <hymn>Each Life That Touches Ours for Good (#293)</hymn>. The lyrics suggest it's more about friends or even a funeral hymn, but it's a relatively uncommon hymn that doesn't appear to be sung at any other time of the year too much.  
 
 ```{r}
 top_10 <- mothers |> 
-    filter(!hymn_num %in% 169:196) |> 
-    cleveland_plot(return = "table") |> 
+    cleveland(return = "table", hymns_to_plot = c(1:168, 197:5000)) |> 
     head(10) |> 
     pull(hymn_num) |> 
     print()
@@ -101,7 +113,7 @@ mothers |>
     print()
 ```
 
-While the likelihood of your ward singing any one of these hymns is relatively low, the likely hood of your ward singing any of these, say, top 10 hymns is pretty good. In fact, 89.3% of wards sing at least one of those 10 hymns each year. Over half sing two of them, a third sing just one, and a few wards sing three of them. So, odds are pretty good you'll sing one or two of those most popular hymns. 
+While the likelihood of your ward singing any one of these hymns is relatively low, the likelihood of your ward singing any of these, say, top 10 hymns is pretty good. In fact, 83.7% of wards sing at least one of those 10 hymns each year. About half sing two of them, a third sing just one, and a few wards sing three of them. So, odds are pretty good you'll sing one or two of those most popular hymns. 
 
 ```{r}
 davies_method(month == 5 & nth_sunday == 2)
