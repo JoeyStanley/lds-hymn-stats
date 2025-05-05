@@ -49,7 +49,7 @@ easters <- data.frame(date = c("2001-04-15",
 ```{r}
 freqs_easters <- freqs |>
     # not 2025
-    filter(date < dmy("01-01-2025")) |> 
+    filter(year < 2025) |> 
     mutate(easter = case_when(date %in%   easters$date ~ "easter", 
                               date %in% c(easters$date -  7) ~ "week before",
                               date %in% c(easters$date - 14) ~ "two weeks before",
@@ -137,7 +137,7 @@ sacs_with_easter <- freqs |>
     print()
 ```
 
-```{r, include = TRUE, fig.height = 4}
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
 #| fig-cap: Percentage of sacrament meetings with Easter hymns around Easter
 #| label: fig-weeks_around_easter
 freqs_easters |> 
@@ -170,7 +170,7 @@ So, to get a gauge for how often these supposed Easter hymns are sung, I looked 
 
 First, here is a plot showing the proportion of sacrament meetings in my dataset that have at least one "Easter" hymn across the year.
 
-```{r, include = TRUE, fig.height = 4, warning=FALSE}
+```{r, include = TRUE, fig.height = 4, fig.width = 8, warning=FALSE}
 ggplot(sacs_with_easter, aes(week, prop_easter)) + 
     geom_col() + scale_x_continuous(breaks = seq(0, 100, 10)) + 
     scale_y_continuous(labels = scales::percent) + 
@@ -192,7 +192,7 @@ I acknowledge that this is very US-centric, but since [around 85% of my data](/p
 
 With that in mind, here's the same plot as above, but with those weeks highlighted.
 
-```{r, include = TRUE, fig.height = 4}
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
 sacs_with_easter |> 
     mutate(in_range = week %in% c(2:5, 22:23, 32:38)) |> 
     ggplot(aes(week, prop_easter, fill = in_range)) + 
@@ -217,7 +217,7 @@ sacs_with_easter |>
     mutate(in_range = week %in% c(2:5, 22:23, 32:38)) |> 
     filter(in_range) |> 
     pull(prop_easter) |> 
-    quantile(c(0.25, 0.5, 0.75, 0.8, 0.9, 16/17))
+    quantile(c(0.25, 0.5, 0.75, 0.8, 0.9, 12/13))
 ```
 
 So, we'll round up and say the baseline is 25% of sacrament meetings. So, that means that we can consider any week around Eastertime where more than 25% of wards sing "Easter" hymns as being more than normal and indicative of wards singing these hymns to celebrate Easter. 
@@ -226,7 +226,7 @@ So, we'll round up and say the baseline is 25% of sacrament meetings. So, that m
 
 It turns out it's around 25% of wards per week. So, if we go back to @fig-weeks_around_easter, we can highlight all the weeks that have more than 25% of sacrament meetings. @fig-weeks_around_easter_highlighted shows the result:
 
-```{r, include = TRUE, fig.height = 4}
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
 #| fig-cap: Percentage of sacrament meetings with Easter hymns around Easter
 #| label: fig-weeks_around_easter_highlighted
 freqs_easters |> 
@@ -277,8 +277,7 @@ freqs_easters |>
     select(ward, date, type, name_num) %>%
     pivot_wider(names_from = type, values_from = name_num, 
                 values_fn = ~paste(., collapse=" & ")) |> 
-    select(ward, date, Opening, Sacrament, Intermediate, Closing) |> 
-    View()
+    select(ward, date, Opening, Sacrament, Intermediate, Closing)
 ```
 
 * In 2007, a ward in Iowa sang <hymn>Praise to the Man (#27)</hymn>, <hymn>There Is a Green Hill Far Away (#194)</hymn>, and <hymn>How Gentle God's Commands (#125)</hymn>. The first is perhaps in reference to the First Vision, and the second is essentially an honorary Easter sacrament hymn.
@@ -301,34 +300,28 @@ First, we'll start off by looking from the perspective of the hymns themselves. 
 ```{r, include = TRUE, fig.height = 5, fig.width = 8, message=FALSE}
 #| fig-cap: Percentage of wards that sing each Easter hymn per year
 #| label: fig-cleveland
-around_easter_data <- freqs_easters |>
-    filter(easter %in% c("easter", "week before", "week after", "two weeks before"),
-           hymn_num %in% all_easter_hymns)
-wards_with_complete_data <- around_easter_data |> 
-    add_count(ward) |> 
-    filter(n == 4)
-around_easter_data |> 
-    filter(ward %in% wards_with_complete_data) |> 
-    cleveland_plot(col_to_plot = prop_of_meetings, 
-                   n_weeks = 3) + 
+freqs_easters |> 
+    filter(easter %in% c("easter", "week before", "week after", "two weeks before")) |> 
+    cleveland(stat_to_plot = sum_prop_wards, 
+              hymns_to_plot = all_easter_hymns) + 
     labs(title = "Percentage of wards that sing each Easter hymn per year",
-                   subtitle = "Between two weeks before and a week after Easter") + 
+         subtitle = "Between two weeks before and a week after Easter") + 
     scale_x_continuous(name = "percent of wards",
                        labels = percent,
-                       expand = expansion(0, c(0, 0.15)),
+                       expand = expansion(0, c(0, 0.2)),
                        breaks = seq(0, 1, 0.1),
                        minor_breaks = seq(0, 1, 0.05))
 ```
 
-We can immediately see that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common hymns during this time, with the former just slightly ahead but the difference is so small we could probably consider them being in joint first place. What is the most surprising to me is how low those percentages are: each of those hymns is sung by the congregation in less than half of wards each year! But, like what we saw with the [Christmas](/posts/christmas) hymns, it's very possible that many more wards *hear* these hymns each year just as musical numbers of some sort, rather than as a congregational hymn. 
+We can immediately see that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common hymns during this time, with the former just slightly ahead. I'm honestly surprised that more wards aren't singing those hymns! But, like what we saw with the [Christmas](/posts/christmas) hymns, it's very possible that many more wards *hear* these hymns each year just as musical numbers of some sort, rather than as a congregational hymn. 
 
-Let's dive into each of those hymns then and see when during that four-week period they're sung. @fig-rel_freq shows how often each Easter hymn is sung across the Easter season. In this plot, the percentages add up to 100% for each hymn, regardless of how often the hymn is sung generally, so it's not necessarily meaningful to compare across hymns. Instead, we focus on each hymn and see when it peaks within the Easter season.
+Let's dive into each of those hymns then and see when during that five-week period they're sung. @fig-rel_freq shows how often each Easter hymn is sung across the Easter season. In this plot, the percentages add up to 100% for each hymn, regardless of how often the hymn is sung generally, so it's not necessarily meaningful to compare across hymns. Instead, we focus on each hymn and see when it peaks within the Easter season.
 
 ```{r, include = TRUE, fig.height = 8, fig.width = 8, message=FALSE}
 #| fig-cap: Relative frequency of Easter hymns across the Easter season
 #| label: fig-rel_freq
 freqs_easters |>
-    filter(easter %in% c("easter", "week before", "week after", "two weeks before"),
+    filter(easter %in% c("easter", "week before", "week after", "two weeks before", "three weeks before"),
            hymn_num %in% all_easter_hymns) |>
     mutate(easter = as.numeric(easter) - 7) |> 
     count(easter, hymn_name, hymn_num, name_num) |> 
@@ -347,7 +340,7 @@ freqs_easters |>
     theme_bw()
 ```
 
-There are a few interesting patterns here. For one, the very infrequent hymns, <hymn>Lo, the Mighty God Appearing (#55)</hymn> and <hymn>The Glorious Gospel Light Has Shone (#283)</hymn>, appear to peak after or before Easter, but it's important to keep in mind that both of those were extrmely rare in the Easter season in my database, so we shouldn't draw too many strong conclusions about those.
+There are a few interesting patterns here. For one, the very infrequent hymns, <hymn>Lo, the Mighty God Appearing (#55)</hymn> and <hymn>The Glorious Gospel Light Has Shone (#283)</hymn>, don't appear to be sung on Easter itself, but it's important to keep in mind that both of those were extremely rare in the Easter season in my database, so we shouldn't draw too many strong conclusions about those. Meanwhile, the most quinticessential Easter hymns peak on Easter Sunday itself.
 
 Perhaps unsurprisingly, most hymns peak on Easter day itself. The notable exception is <hymn>All Glory, Laud, and Honor (#69)</hymn>. It is a Palm Sunday hymn, so it is appropriate that it is most common on Palm Sunday. (I personally didn't know that before putting together this blog post, so I'm glad other people are aware of it!) We also see that <hymn>All Creatures of Our God and King (#62)</hymn> and <hymn>My Redeemer Lives (#135)</hymn> peak on Palm Sunday. From what I can tell, all other hymns are most common on Easter Sunday.
 
@@ -355,7 +348,7 @@ Perhaps unsurprisingly, most hymns peak on Easter day itself. The notable except
 
 We can look at the same data a slightly different way and focus on one week at a time. We'll start with Pqlm Sunday. We just mentioned above that <hymn>All Glory, Laud, and Honor (#69)</hymn> shows a very clear peak the week before Easter. Is it the most common hymn on Palm Sunday? @fig-cleveland_palm shows that it is actually not. 
 
-```{r, include = TRUE, fig.height = 4, fig.width = 6.5, message=FALSE}
+```{r, include = TRUE, fig.height = 4, fig.width = 8, message=FALSE}
 #| fig-cap: Most common hymns on Palm Sunday
 #| label: fig-cleveland_palm
 palm_sunday <- freqs_easters |>
@@ -364,38 +357,36 @@ palm_sunday <- freqs_easters |>
 palm_sunday_dates <- palm_sunday |> 
     distinct(month, day) |> 
     nrow()
-palm_sunday |> 
-    cleveland_plot(return = "table")
 palm_sunday |>
-    cleveland_plot(filter_n = 15, 
-                   col_to_plot = prop_of_meetings,
-                   n_weeks = palm_sunday_dates/7,
-                   extra_cols = is_easter,
-                   color = is_easter,
-                   return = "plot") + 
+    cleveland(filter_n = 20, 
+              col_to_plot = sum_prop_wards,
+              n_weeks = palm_sunday_dates/7,
+              extra_cols = is_easter,
+              color = is_easter,
+              return = "plot") + 
     labs(title = "Frequency of hymns on Palm Sunday",
          subtitle = "Easter hymns are highlighted in <span style = 'color: #4477AA;'>blue</span>") +
     scale_x_continuous(name = "percent",
                        labels = scales::percent,
-                       expand = expansion(0, c(0, 0.03)),
+                       expand = expansion(0, c(0, 0.04)),
                        breaks = seq(0, 1, 0.02)) +
     scale_color_manual(values = c(`TRUE` = ptol_blue, `FALSE` = ptol_grey)) +
     theme(legend.position = "none",
           plot.subtitle = ggtext::element_markdown())
 ```
 
-Several other hymns are simply more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> overall, so even though a hymn like <hymn>He is Risen! (#199)</hymn> is much more common on Easter than on Palm Sunday, the sheer fact that it's sung so much more in general means that even when it's not at its peak, it's still more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> on its peak. Palm Sunday also has competition with [General Conference](/posts/general_conference), so <hymn>We Thank Thee, O God, for a Prophet (#19), even wins out on Palm Sunday. Overall, only 7.6% of wards sung <hymn>All Glory, Laud, and Honor (#69)</hymn> on Palm Sunday.
+Several other hymns are simply more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> overall, so even though a hymn like <hymn>He is Risen! (#199)</hymn> is much more common on Easter than on Palm Sunday, the sheer fact that it's sung so much more in general means that even when it's not at its peak, it's still more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> on its peak. Palm Sunday also has competition with [General Conference](/posts/general_conference), so <hymn>We Thank Thee, O God, for a Prophet (#19), even wins out on Palm Sunday. Overall, only 6.4% of wards sung <hymn>All Glory, Laud, and Honor (#69)</hymn> on Palm Sunday.
 
 Let's go back one week and look at two Sundays before Easter. @fig-cleveland_two_before shows what hymns are most common then. 
 
-```{r, include = TRUE, fig.height = 4, fig.width = 6.5, message=FALSE}
+```{r, include = TRUE, fig.height = 4, fig.width = 8, message=FALSE}
 #| fig-cap: Most common hymns two weeks before Easter Sunday
 #| label: fig-cleveland_two_before
 freqs_easters |>
     filter(easter %in% c("two weeks before")) |> 
     mutate(is_easter = hymn_num %in% all_easter_hymns) |> 
-    cleveland_plot(col_to_plot = prop_of_meetings,
-                   filter_n = 10,
+    cleveland(col_to_plot = sum_prop_wards,
+                   filter_n = 15,
                    n_weeks = 1,
                    extra_cols = is_easter,
                    color = is_easter,
@@ -411,27 +402,27 @@ freqs_easters |>
           plot.subtitle = ggtext::element_markdown())
 ```
 
-You can immediately see that there really aren't many Easter hymns during this week. The only two that would be considered Easter hymns are both sacrament hymns, so it's hard to tell whether they're on this chart because of Easter or coincidence. I think it's pretty clear than that in Latter-day Saint congregations, celebrating Easter does not include singing Easter hymns two weeks before Easter Sunday.
+You can immediately see that there really aren't many Easter hymns during this week. I think it's pretty clear than that in Latter-day Saint congregations, celebrating Easter does not include singing Easter hymns two weeks before Easter Sunday.
 
 
 We now move on to Easter Sunday itself. @fig-cleveland_easter show the most commonly sung hymns on Easter. This looks similar to @fig-cleveland, but here we're just looking at Easter Sunday but we're expanding it to include all hymns, regardless of whether they're "technically" Easter hymns. 
 
-
-```{r, include = TRUE, fig.height = 4, fig.width = 6.5, message=FALSE}
+```{r, include = TRUE, fig.height = 4, fig.width = 8, message=FALSE}
 #| fig-cap: Most common hymns on Easter Sunday
 #| label: fig-cleveland_easter
 freqs_easters |>
     filter(easter %in% c("easter")) |> 
     mutate(is_easter = hymn_num %in% all_easter_hymns) |> 
-    cleveland_plot(col_to_plot = prop_of_meetings,
-                   n_weeks = 1,
-                   filter_n = 7,
-                   extra_cols = is_easter,
-                   color = is_easter) + 
+    cleveland(col_to_plot = sum_prop_wards,
+              n_weeks = 1,
+              filter_n = 15,
+              extra_cols = is_easter,
+              color = is_easter) + 
     scale_x_continuous(name = "percent of wards",
                        labels = scales::percent,
                        expand = expansion(0, c(0, 0.35)),
-                       breaks = seq(0, 1, 0.1)) +
+                       breaks = seq(0, 1, 0.1),
+                       minor_breaks = seq(0, 0, 0.05)) +
     labs(title = "Frequency of hymns on Easter Sunday",
         subtitle = "Easter hymns are highlighted in <span style = 'color: #4477AA;'>blue</span>") + 
     scale_color_manual(values = c(`TRUE` = ptol_blue, `FALSE` = ptol_grey)) + 
@@ -446,29 +437,29 @@ Like what we've seen already, <hymn>Christ the Lord Is Risen Today (#200)</hymn>
 ```{r}
 freqs_easters |>
     filter(easter %in% c("easter")) |> 
-    cleveland_plot(col_to_plot = prop_of_meetings,
-                   n_weeks = 1,
-                   filter_n = 7,
-                   return = "table")
+    cleveland(col_to_plot = sum_prop_wards,
+              n_weeks = 1,
+              filter_n = 7,
+              return = "table")
 ```
 
 
-The two other most canonical Easter hymns, <hymn>That Easter Morn (#198)</hymn> and <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, are less common, being sung by 24.6% and 9.6% of wards each year on Easter, respectively. Most of the rest of the hymns on this list are sacrament hymns. The four sacrament hymns listed in the Easter entry of the Index are the most common, with the exception of <hymn>There is a Green Hill Far Away (#194)</hymn>, which has clear reference to the crucifixion. As for the other hymns, <hymn>I Know that My Redeemer Lives (#136)</hymn>, <hymn>All Creatures of Our God and King (#62)</hymn>, and <hymn>I Believe in Christ (#134)</hymn> are the only others on this list. 
+The two other most canonical Easter hymns, <hymn>That Easter Morn (#198)</hymn> and <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, are less common, being sung by 20.4% and 6.6% of wards each year on Easter, respectively. Most of the rest of the hymns on this list are sacrament hymns. The four sacrament hymns listed in the Easter entry of the Index are the most common, with the exception of <hymn>There is a Green Hill Far Away (#194)</hymn>, which has clear reference to the crucifixion. As for the other hymns, <hymn>I Know that My Redeemer Lives (#136)</hymn>, <hymn>All Creatures of Our God and King (#62)</hymn>, and <hymn>I Believe in Christ (#134)</hymn> are the only others on this list. 
 
 So, it seems like music coordinators are primarily choosing from the hymns listed in the Easter entry of the Table of Contents or the Index. What we do not see on this list are any of the four hymns that are listed in the Resurrection entry in the Index that are not also part of the Easter entry (i.e. the green portion of @fig-venn that does not overlap with the blue portion).
 
-Finally, let's look at the week after Easter. @fig-cleveland_week_after shows that there are far fewer Easter hymns. <hymn>He is Risen! (#199)</hymn> is still quite popular, with <hymn>Christ the Lord Is Risen Today (#200)</hymn> trailing behind a little bit. All the other "Easter" hymns on this list are either sacrament hymns or are popular in other contexts (like [Fast Sunday](/posts/fast_sunday)). The rest of the top 10 hymns are other sacrament hymns and below that are a mix of more [General Conference](/posts/general_conference) hymns, First Vision hymns, or generally popular hymns. So, like what we saw in @fig-weeks_around_easter_highlighted, there are some residual Easter hymns being sung, but for the most part, people have moved on. 
+Finally, let's look at the week after Easter. @fig-cleveland_week_after shows that there are far fewer Easter hymns. <hymn>He is Risen! (#199)</hymn> is still quite popular, with <hymn>Christ the Lord Is Risen Today (#200)</hymn> trailing behind a bit more. All the other "Easter" hymns on this list are either sacrament hymns or are popular in other contexts (like [Fast Sunday](/posts/fast_sunday)). The rest of the top 10 hymns are other sacrament hymns and below that are a mix of more [General Conference](/posts/general_conference) hymns, First Vision hymns, or generally popular hymns. So, like what we saw in @fig-weeks_around_easter_highlighted, there are some residual Easter hymns being sung, but for the most part, people have moved on. 
 
-```{r, include = TRUE, fig.height = 4, fig.width = 6.5, message=FALSE}
+```{r, include = TRUE, fig.height = 4, fig.width = 8, message=FALSE}
 #| fig-cap: Most common hymns on the Sunday after Easter
 #| label: fig-cleveland_week_after
 freqs_easters |>
     filter(easter %in% c("week after")) |> 
     mutate(is_easter = hymn_num %in% all_easter_hymns) |> 
-    cleveland_plot(col_to_plot = prop_of_meetings,
-                   filter_n = 13,
-                   extra_cols = is_easter,
-                   color = is_easter) + 
+    cleveland(stat_to_plot = sum_prop_wards,
+              filter_n = 17,
+              extra_cols = is_easter,
+              color = is_easter) + 
     scale_x_continuous(name = "percent of wards", 
                        labels = scales::percent, 
                        expand = expansion(0, c(0, 0.03)),
@@ -482,7 +473,7 @@ freqs_easters |>
 
 One final thing we can explore with these hymns is when during sacrament meeting they're sung. By that, I mean are they opening hymns, intermediate hymns, or closing hymns? Here, I'll just focus on the two hymns that have clearly shown to be the most popular: <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn>. We've already seen that the two are basically neck-and-neck in popularity, and the only difference we've seen between them is that <hymn>Christ the Lord is Risen Today (#200)</hymn> is slightly more popular on Easter Sunday and while <hymn>He Is Risen! (#199)</hymn> is slightly more popular on neighboring weeks. Are there any differences within the meeting itself?
 
-@fig-types shows the number of times each of these two hymns were sung as opening, intermediate, and closing hymns between two weeks before Easter to a week after. Rather astonishingly, the two hymns are virtually identical! They're almost evenly split between opening and closing hymns, with opening being slightly more common. They're occasionally sung as intermediate hymns, but not too often. But the fact that the red and blue bars look basically the same means that the two hymns pattern the same way. It seems then that the most common thing that music coordinators do is they pick one to be the opening hymn and the other to be the closing hymn. What is so interesting is that it's basically a coin toss as far as which one is which! (I don't know why, but this plot, which essentially shows a null result, is pretty fascinating to me. Normally, each hymn has its own story and I can dig deep enough to find it, but here, these two are essentially twins.)
+@fig-types shows the number of times each of these two hymns were sung as opening, intermediate, and closing hymns between two weeks before Easter to a week after. The two hymns are very similar! They're almost evenly split between opening and closing hymns, with opening being slightly more common. They're occasionally sung as intermediate hymns, but not too often. <hymn>Christ the Lord is Risen Today (#200)</hymn> is slightly more popular as an opening hymn while <hymn>He Is Risen! (#199)</hymn> is slightly more commonly a closing hymn. It seems then that the most common thing that music coordinators do is they pick one to be the opening hymn and the other to be the closing hymn. 
 
 ```{r, include = TRUE, fig.height = 3, fig.width = 8}
 #| fig-cap: When are the top two Easter hymns sung in Sacrament meeting?
@@ -496,7 +487,6 @@ freqs_easters |>
     geom_bar(position = position_dodge2()) + 
     scale_fill_ptol(name = "Hymn") + 
     labs(title = "When are the two most popular Easter hymns sung in the meeting?",
-         subtitle = "They're almost identical!",
          y = "count") + 
     theme_bw()
 ```

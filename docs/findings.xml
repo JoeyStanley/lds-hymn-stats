@@ -16305,7 +16305,7 @@ Figure&nbsp;2: Top 10 Mother’s Day hymns and when they’re sung.
 
 
 <p>Compared to other Christian religions, we don’t have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the church are incorporating more celebratory activities for things like Palm Sunday and Good Friday, but this change is happening slowly and idiosyncratically. On Easter Sunday, the hymns we sing are usually focused on the resurrection of the Savior. In this post, I explore Easter hymns and other hymns sung around Eastertime.</p>
-<p>This post is based primarily on 5,855 sacrament meetings from 1,118 wards between 2001 and 2024. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>. You can read about Easter 2025, which incorporates new hymns, <a href="../../posts/easter2025">here</a>.</p>
+<p>This post is based primarily on 6,104 sacrament meetings from 1,178 wards between 2001 and 2024. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>. You can read about Easter 2025, which incorporates new hymns, <a href="../../posts/easter2025">here</a>.</p>
 <section id="what-are-the-easter-hymns" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-the-easter-hymns">What are the Easter hymns?</h2>
 <p>From what I can tell, we have four places to look for finding Easter hymns: The Easter section in the Table of Contents (TOC), the Easter entry in the index, the resurrection entry in the index, and sacrament hymns. This figure below shows which hymns fall into which category and how they intersect.</p>
@@ -16446,8 +16446,8 @@ Figure&nbsp;4: Percentage of wards that sing each Easter hymn per year
 </div>
 </div>
 </div>
-<p>We can immediately see that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common hymns during this time, with the former just slightly ahead but the difference is so small we could probably consider them being in joint first place. What is the most surprising to me is how low those percentages are: each of those hymns is sung by the congregation in less than half of wards each year! But, like what we saw with the <a href="../../posts/christmas">Christmas</a> hymns, it’s very possible that many more wards <em>hear</em> these hymns each year just as musical numbers of some sort, rather than as a congregational hymn.</p>
-<p>Let’s dive into each of those hymns then and see when during that four-week period they’re sung. Figure&nbsp;5 shows how often each Easter hymn is sung across the Easter season. In this plot, the percentages add up to 100% for each hymn, regardless of how often the hymn is sung generally, so it’s not necessarily meaningful to compare across hymns. Instead, we focus on each hymn and see when it peaks within the Easter season.</p>
+<p>We can immediately see that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common hymns during this time, with the former just slightly ahead. I’m honestly surprised that more wards aren’t singing those hymns! But, like what we saw with the <a href="../../posts/christmas">Christmas</a> hymns, it’s very possible that many more wards <em>hear</em> these hymns each year just as musical numbers of some sort, rather than as a congregational hymn.</p>
+<p>Let’s dive into each of those hymns then and see when during that five-week period they’re sung. Figure&nbsp;5 shows how often each Easter hymn is sung across the Easter season. In this plot, the percentages add up to 100% for each hymn, regardless of how often the hymn is sung generally, so it’s not necessarily meaningful to compare across hymns. Instead, we focus on each hymn and see when it peaks within the Easter season.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rel_freq" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -16462,36 +16462,18 @@ Figure&nbsp;5: Relative frequency of Easter hymns across the Easter season
 </div>
 </div>
 </div>
-<p>There are a few interesting patterns here. For one, the very infrequent hymns, <hymn>Lo, the Mighty God Appearing (#55)</hymn> and <hymn>The Glorious Gospel Light Has Shone (#283)</hymn>, appear to peak after or before Easter, but it’s important to keep in mind that both of those were extrmely rare in the Easter season in my database, so we shouldn’t draw too many strong conclusions about those.</p>
+<p>There are a few interesting patterns here. For one, the very infrequent hymns, <hymn>Lo, the Mighty God Appearing (#55)</hymn> and <hymn>The Glorious Gospel Light Has Shone (#283)</hymn>, don’t appear to be sung on Easter itself, but it’s important to keep in mind that both of those were extremely rare in the Easter season in my database, so we shouldn’t draw too many strong conclusions about those. Meanwhile, the most quinticessential Easter hymns peak on Easter Sunday itself.</p>
 <p>Perhaps unsurprisingly, most hymns peak on Easter day itself. The notable exception is <hymn>All Glory, Laud, and Honor (#69)</hymn>. It is a Palm Sunday hymn, so it is appropriate that it is most common on Palm Sunday. (I personally didn’t know that before putting together this blog post, so I’m glad other people are aware of it!) We also see that <hymn>All Creatures of Our God and King (#62)</hymn> and <hymn>My Redeemer Lives (#135)</hymn> peak on Palm Sunday. From what I can tell, all other hymns are most common on Easter Sunday.</p>
 </section>
 <section id="what-hymns-are-most-common-each-week" class="level3">
 <h3 class="anchored" data-anchor-id="what-hymns-are-most-common-each-week">What hymns are most common each week?</h3>
 <p>We can look at the same data a slightly different way and focus on one week at a time. We’ll start with Pqlm Sunday. We just mentioned above that <hymn>All Glory, Laud, and Honor (#69)</hymn> shows a very clear peak the week before Easter. Is it the most common hymn on Palm Sunday? Figure&nbsp;6 shows that it is actually not.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 229 × 10
-   hymn_num     n hymn_name           prop_of_data prop_of_meetings avg_per_year
-   &lt;fct&gt;    &lt;int&gt; &lt;chr&gt;                      &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;
- 1 199         60 He Is Risen!              0.0350           0.114          5.46
- 2 19          44 We Thank Thee, O G…       0.0257           0.0835         4.01
- 3 136         42 I Know That My Red…       0.0245           0.0797         3.83
- 4 62          35 All Creatures of O…       0.0204           0.0664         3.19
- 5 69          34 All Glory, Laud, a…       0.0199           0.0645         3.10
- 6 200         33 Christ the Lord Is…       0.0193           0.0626         3.01
- 7 191         29 Behold the Great R…       0.0169           0.0550         2.64
- 8 169         28 As Now We Take the…       0.0164           0.0531         2.55
- 9 194         28 There Is a Green H…       0.0164           0.0531         2.55
-10 190         25 In Memory of the C…       0.0146           0.0474         2.28
-# ℹ 219 more rows
-# ℹ 4 more variables: every_x_years &lt;dbl&gt;, every_x_months &lt;dbl&gt;,
-#   every_x_weeks &lt;dbl&gt;, label &lt;chr&gt;</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-cleveland_palm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cleveland_palm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_palm-1.png" class="img-fluid figure-img" width="624">
+<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_palm-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_palm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: Most common hymns on Palm Sunday
@@ -16500,14 +16482,14 @@ Figure&nbsp;6: Most common hymns on Palm Sunday
 </div>
 </div>
 </div>
-<p>Several other hymns are simply more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> overall, so even though a hymn like <hymn>He is Risen! (#199)</hymn> is much more common on Easter than on Palm Sunday, the sheer fact that it’s sung so much more in general means that even when it’s not at its peak, it’s still more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> on its peak. Palm Sunday also has competition with <a href="../../posts/general_conference">General Conference</a>, so <hymn>We Thank Thee, O God, for a Prophet (#19), even wins out on Palm Sunday. Overall, only 7.6% of wards sung <hymn>All Glory, Laud, and Honor (#69)</hymn> on Palm Sunday.</hymn></p>
+<p>Several other hymns are simply more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> overall, so even though a hymn like <hymn>He is Risen! (#199)</hymn> is much more common on Easter than on Palm Sunday, the sheer fact that it’s sung so much more in general means that even when it’s not at its peak, it’s still more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> on its peak. Palm Sunday also has competition with <a href="../../posts/general_conference">General Conference</a>, so <hymn>We Thank Thee, O God, for a Prophet (#19), even wins out on Palm Sunday. Overall, only 6.4% of wards sung <hymn>All Glory, Laud, and Honor (#69)</hymn> on Palm Sunday.</hymn></p>
 <p>Let’s go back one week and look at two Sundays before Easter. Figure&nbsp;7 shows what hymns are most common then.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cleveland_two_before" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cleveland_two_before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_two_before-1.png" class="img-fluid figure-img" width="624">
+<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_two_before-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_two_before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: Most common hymns two weeks before Easter Sunday
@@ -16516,14 +16498,14 @@ Figure&nbsp;7: Most common hymns two weeks before Easter Sunday
 </div>
 </div>
 </div>
-<p>You can immediately see that there really aren’t many Easter hymns during this week. The only two that would be considered Easter hymns are both sacrament hymns, so it’s hard to tell whether they’re on this chart because of Easter or coincidence. I think it’s pretty clear than that in Latter-day Saint congregations, celebrating Easter does not include singing Easter hymns two weeks before Easter Sunday.</p>
+<p>You can immediately see that there really aren’t many Easter hymns during this week. I think it’s pretty clear than that in Latter-day Saint congregations, celebrating Easter does not include singing Easter hymns two weeks before Easter Sunday.</p>
 <p>We now move on to Easter Sunday itself. Figure&nbsp;8 show the most commonly sung hymns on Easter. This looks similar to Figure&nbsp;4, but here we’re just looking at Easter Sunday but we’re expanding it to include all hymns, regardless of whether they’re “technically” Easter hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cleveland_easter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cleveland_easter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_easter-1.png" class="img-fluid figure-img" width="624">
+<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_easter-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_easter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8: Most common hymns on Easter Sunday
@@ -16534,15 +16516,15 @@ Figure&nbsp;8: Most common hymns on Easter Sunday
 </div>
 <p>Here we see that all the hymns on this list are Easter hymns as discussed above or are Sacrament hymns. It’s been hinted at already, but it’s clear that the bulk of Easter singing happens on Easter. As is evident in this plot, Easter hymns dominate on Easter Sunday, and as we saw already in Figure&nbsp;2, 98.6% of wards sing at least one Easter hymn that week.</p>
 <p>Like what we’ve seen already, <hymn>Christ the Lord Is Risen Today (#200)</hymn> and <hymn>He Is Risen! (#199)</hymn> are by far the most common. Interestingly, when we look at the Easter season as a whole, the two are about equal, with <hymn>He Is Risen! (#199)</hymn> having a very slight lead. But on Easter Sunday itself, <hymn>Christ the Lord Is Risen Today (#200)</hymn> is slightly more common. Going back to Figure&nbsp;5, we can see that it has perhaps a stronger, more concentrated peak on Easter, while <hymn>He Is Risen! (#199)</hymn> is slightly more common on Palm Sunday and the week after.</p>
-<p>The two other most canonical Easter hymns, <hymn>That Easter Morn (#198)</hymn> and <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, are less common, being sung by 24.6% and 9.6% of wards each year on Easter, respectively. Most of the rest of the hymns on this list are sacrament hymns. The four sacrament hymns listed in the Easter entry of the Index are the most common, with the exception of <hymn>There is a Green Hill Far Away (#194)</hymn>, which has clear reference to the crucifixion. As for the other hymns, <hymn>I Know that My Redeemer Lives (#136)</hymn>, <hymn>All Creatures of Our God and King (#62)</hymn>, and <hymn>I Believe in Christ (#134)</hymn> are the only others on this list.</p>
+<p>The two other most canonical Easter hymns, <hymn>That Easter Morn (#198)</hymn> and <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, are less common, being sung by 20.4% and 6.6% of wards each year on Easter, respectively. Most of the rest of the hymns on this list are sacrament hymns. The four sacrament hymns listed in the Easter entry of the Index are the most common, with the exception of <hymn>There is a Green Hill Far Away (#194)</hymn>, which has clear reference to the crucifixion. As for the other hymns, <hymn>I Know that My Redeemer Lives (#136)</hymn>, <hymn>All Creatures of Our God and King (#62)</hymn>, and <hymn>I Believe in Christ (#134)</hymn> are the only others on this list.</p>
 <p>So, it seems like music coordinators are primarily choosing from the hymns listed in the Easter entry of the Table of Contents or the Index. What we do not see on this list are any of the four hymns that are listed in the Resurrection entry in the Index that are not also part of the Easter entry (i.e.&nbsp;the green portion of Figure&nbsp;1 that does not overlap with the blue portion).</p>
-<p>Finally, let’s look at the week after Easter. Figure&nbsp;9 shows that there are far fewer Easter hymns. <hymn>He is Risen! (#199)</hymn> is still quite popular, with <hymn>Christ the Lord Is Risen Today (#200)</hymn> trailing behind a little bit. All the other “Easter” hymns on this list are either sacrament hymns or are popular in other contexts (like <a href="../../posts/fast_sunday">Fast Sunday</a>). The rest of the top 10 hymns are other sacrament hymns and below that are a mix of more <a href="../../posts/general_conference">General Conference</a> hymns, First Vision hymns, or generally popular hymns. So, like what we saw in Figure&nbsp;3, there are some residual Easter hymns being sung, but for the most part, people have moved on.</p>
+<p>Finally, let’s look at the week after Easter. Figure&nbsp;9 shows that there are far fewer Easter hymns. <hymn>He is Risen! (#199)</hymn> is still quite popular, with <hymn>Christ the Lord Is Risen Today (#200)</hymn> trailing behind a bit more. All the other “Easter” hymns on this list are either sacrament hymns or are popular in other contexts (like <a href="../../posts/fast_sunday">Fast Sunday</a>). The rest of the top 10 hymns are other sacrament hymns and below that are a mix of more <a href="../../posts/general_conference">General Conference</a> hymns, First Vision hymns, or generally popular hymns. So, like what we saw in Figure&nbsp;3, there are some residual Easter hymns being sung, but for the most part, people have moved on.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cleveland_week_after" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cleveland_week_after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_week_after-1.png" class="img-fluid figure-img" width="624">
+<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_week_after-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_week_after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9: Most common hymns on the Sunday after Easter
@@ -16552,7 +16534,7 @@ Figure&nbsp;9: Most common hymns on the Sunday after Easter
 </div>
 </div>
 <p>One final thing we can explore with these hymns is when during sacrament meeting they’re sung. By that, I mean are they opening hymns, intermediate hymns, or closing hymns? Here, I’ll just focus on the two hymns that have clearly shown to be the most popular: <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn>. We’ve already seen that the two are basically neck-and-neck in popularity, and the only difference we’ve seen between them is that <hymn>Christ the Lord is Risen Today (#200)</hymn> is slightly more popular on Easter Sunday and while <hymn>He Is Risen! (#199)</hymn> is slightly more popular on neighboring weeks. Are there any differences within the meeting itself?</p>
-<p>Figure&nbsp;10 shows the number of times each of these two hymns were sung as opening, intermediate, and closing hymns between two weeks before Easter to a week after. Rather astonishingly, the two hymns are virtually identical! They’re almost evenly split between opening and closing hymns, with opening being slightly more common. They’re occasionally sung as intermediate hymns, but not too often. But the fact that the red and blue bars look basically the same means that the two hymns pattern the same way. It seems then that the most common thing that music coordinators do is they pick one to be the opening hymn and the other to be the closing hymn. What is so interesting is that it’s basically a coin toss as far as which one is which! (I don’t know why, but this plot, which essentially shows a null result, is pretty fascinating to me. Normally, each hymn has its own story and I can dig deep enough to find it, but here, these two are essentially twins.)</p>
+<p>Figure&nbsp;10 shows the number of times each of these two hymns were sung as opening, intermediate, and closing hymns between two weeks before Easter to a week after. The two hymns are very similar! They’re almost evenly split between opening and closing hymns, with opening being slightly more common. They’re occasionally sung as intermediate hymns, but not too often. <hymn>Christ the Lord is Risen Today (#200)</hymn> is slightly more popular as an opening hymn while <hymn>He Is Risen! (#199)</hymn> is slightly more commonly a closing hymn. It seems then that the most common thing that music coordinators do is they pick one to be the opening hymn and the other to be the closing hymn.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-types" class="quarto-float quarto-figure quarto-figure-center anchored">
