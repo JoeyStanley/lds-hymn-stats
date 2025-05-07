@@ -16305,7 +16305,7 @@ Figure&nbsp;2: Top 10 Mother’s Day hymns and when they’re sung.
 
 
 <p>Compared to other Christian religions, we don’t have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the church are incorporating more celebratory activities for things like Palm Sunday and Good Friday, but this change is happening slowly and idiosyncratically. On Easter Sunday, the hymns we sing are usually focused on the resurrection of the Savior. In this post, I explore Easter hymns and other hymns sung around Eastertime.</p>
-<p>This post is based primarily on 6,104 sacrament meetings from 1,178 wards between 2001 and 2024. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>. You can read about Easter 2025, which incorporates new hymns, <a href="../../posts/easter2025">here</a>.</p>
+<p>This post is based primarily on 6,169 sacrament meetings from 1,179 wards between 2001 and 2024. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>. You can read about Easter 2025, which incorporates new hymns, <a href="../../posts/easter2025">here</a>.</p>
 <section id="what-are-the-easter-hymns" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-the-easter-hymns">What are the Easter hymns?</h2>
 <p>From what I can tell, we have four places to look for finding Easter hymns: The Easter section in the Table of Contents (TOC), the Easter entry in the index, the resurrection entry in the index, and sacrament hymns. This figure below shows which hymns fall into which category and how they intersect.</p>
@@ -16555,7 +16555,7 @@ Figure&nbsp;10: When are the top two Easter hymns sung in Sacrament meeting?
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <p>In this post, I’ve explored Easter hymns. First, I defined a list of potential Easter hymns by looking at relevant topics in the Index and Table of Contents and found a list of 17 hymns. I then determined when the Easter “season” is, as far as how it’s reflected in singing, and determined that two weeks before through one week after is when we see a noticeable increase in Easter hymns, above and beyond what is to be expected. As part of that, I showed that 98.6% of wards sing at least one Easter hymn on Easter Sunday itself, which is pretty remarkable.</p>
 <p>I then looked at each hymn and found that most hymns peak on Easter Sunday, with the most notable exception being <hymn>All Glory, Laud, and Honor (#69)</hymn>, which peaks on Palm Sunday. It is clear that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are the most common hymns around Easter. Other than the latter being slightly more concentrated on Easter Sunday itself, the two pattern almost identically which suggests that music coordinators basically treat them the same.</p>
-<p>I hope the next hymnal introduces more Easter hymns because I think we as Latter-day Saints could do more to celebrate Easter. Because we mostly celebrate the Resurrection on Easter Sunday itself, and because there are so few hymns to choose from,</p>
+<p>I hope the next hymnal introduces more Easter hymns because I think we as Latter-day Saints could do more to celebrate Easter. We mostly celebrate the Resurrection on Easter Sunday itself, and because there are so few hymns to choose from, most of the hymns occur only on Easter. With more hymns, we’d be able to start singing them a few weeks before, and I think that would be a great thing to see.</p>
 
 
 </section>
@@ -16567,576 +16567,161 @@ Figure&nbsp;10: When are the top two Easter hymns sung in Sacrament meeting?
   <pubDate>Sun, 24 Mar 2024 06:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>What hymns are sung around Fast Sunday?</title>
+  <title>Easter 2025</title>
   <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/fast_sunday/</link>
+  <link>https://hymnstats.joeystanley.com/posts/easter2025/</link>
   <description><![CDATA[ 
 
 
 
-<p>In this post, I take a look at what hymns are sung on Fast Sundays.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+
+<p>Last year, I posted about <a href="../../posts/easter">general trends with hymns around Easter</a>. Now that we have a couple new Easter hymns, I thought it’d be good to take a look at this year’s data and see how it compares. This post is based primarily on data from 1,069 wards. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>.</p>
+<p>In <a href="(/posts/easter)">my previous post</a>, I went into detail trying to figure out which hymns are considered “Easter” hymns. I included hymns that were listed in the table of contents under “Easter” or listed in the index under “Easter”, “Resurrection”, or “Sacrament.” I’ll use the same list, but I’ll add the new hymns that fit that criteria. This includes three Easter hymns (<hymn>Hail the Day that Sees Him Rise (#1201)</hymn>, <hymn>Let Easter Anthems Ring (#1205)</hymn>, and <hymn>Were You There? (#1206)</hymn>) and six sacrament hymns (<hymn>It Is Well with My Soul (#1003)</hymn>, <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, <hymn>Gethsemane (#1009)</hymn>, <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, and <hymn>This Is the Christ (#1017)</hymn>).</p>
+<section id="the-easter-season" class="level2">
+<h2 class="anchored" data-anchor-id="the-easter-season">The Easter Season</h2>
+<p>Again, like I said in my <a href="../../posts/easter">previous post</a>, since many of these sacrament hymns are commonly sung outside of the Easter season, we can’t assume that if a ward sings, say, <hymn>As Bread is Broken (#1007)</hymn>, that they’re doing so in celebration of Easter. I found that around 20%–25% of wards sing at least one of those “Easter” hymns, so I decided that the Easter season was defined as the period around Easter when more than 25% of wards sing from that set.</p>
+<p>Since some of these new hymns are generally pretty common, I’ll have to recalculate those numbers based on 2025 data. (See details below if you’d like.)</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Technical details
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Methodologically, it’s a little tricky to actually filter out just the Fast Sundays. They’re on the first Sunday of the month, unless there’s a reason to move them. They get shifted around because of General Conference, often to the last Sunday in March and September but it depends on the stake I think. And in January, they are sometimes shifted a week later because of New Year’s Day. Plus, individual wards or stakes may move things around to accommodate for ward or stake conferences.</p>
-<p>So, for this blog post, I’ll analyzed data from the first Sundays of the month, plus the last Sundays in March and September to account for General Conference. (I forget if Fast Sunday typically comes before General Conference or after, but I think it’s more often before.) As you’ll be able to see throughout this post, the results seem alright even though it’s not perfect. With that methodological caveat in mind, this post is based on the 4,115 sacrament meetings I have data from that fit that description. Please see <a href="../../posts/frequency-data">this post</a> for a more detailed breakdown of the data by time and state/country.</p>
-</div>
-</div>
-<section id="what-hymns-are-most-often-sung-on-fast-sunday" class="level2">
-<h2 class="anchored" data-anchor-id="what-hymns-are-most-often-sung-on-fast-sunday">What hymns are most often sung on Fast Sunday?</h2>
-<p>If you look through the Topics index at the back of the hymnal, the two most relevant entries are “Fasting” and “Testimony.” There are just three fasting hymns: <hymn>Bless Our Fast, We Pray (#138)</hymn>, <hymn>In Fasting We Approach Thee (#139)</hymn>, and <hymn>Because I Have Been Given Much (#219)</hymn>. There are another 11 more testimony hymns, not including two of the fasting hymns, for a total of 13 hymns. If you ignore <hymn>We Meet Again as Sisters (#311)</hymn>, which is probably not intended for sacrament meeting anyway, that’s 12 hymns. It’s convenient then that we also have 12 Fast and Testimony Meetings a year, although some of those compete with other holidays like <a href="../../posts/new-years">New Year’s</a>, Fourth of July, <a href="../../posts/christmas">Christmas</a>, and <a href="../../posts/general_conference">General Conference</a>. For the purposes of this post, I’ve removed the holiday hymns since they obscured the pattern that we’re really trying to focus on.</p>
-<p>Let’s see if these twelve hymns are indeed sung more during Fast Sunday. Figure&nbsp;1 shows what hymns are the most common on the Fast Sundays. These results are perhaps rather unsurprising. The three fasting hymns, highlighted in blue, are in the top five. Five of testimony hymns are in the the top nine. (The fact that <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> makes this list is because of interferance from General Conference.) Another three testimony hymns still make it on the list of most common hymns but are no more common than other more generic common hymns.</p>
+<p>First, here is a plot showing the proportion of sacrament meetings in my dataset that have at least one “Easter” hymn across the year. Here, I’ll just focus on sacrament meetings since June 2, 2024 when the first batch of new hymns came out.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cleveland" class="quarto-figure quarto-figure-center anchored">
+<div>
 <figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/fast_sunday/index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Most common hymns on fast Sundays</figcaption>
+<p><img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The testimony hymns that were not particularly common on first Sundays are <hymn>Called to Serve (#249)</hymn> and <hymn>Go Forth with Faith (#263)</hymn>. It’s not clear to me why those two other hymns are less common on Fast Sunday. They’re a little more upbeat than the others, but then again, so are <hymn>The Lord is My Light (#89)</hymn> and <hymn>Glory to God on High (#67)</hymn>. It may be because they might fit in more with other topics like missionary work and praise.</p>
-<p>Of course <hymn>We Meet Again As Sisters (#311)</hymn> didn’t make the list of most common hymns. In fact, out of the 25,638 sacrament meetings I have data from, <hymn>We Meet Again As Sisters (#311)</hymn> was sung just once. It was a second Sunday in September in 2016 by a ward in Layton, Utah.</p>
-<p>What is most surprising to me from Figure&nbsp;1 is that these hymns are not more popular than they already are. Some hymns are sung more generally, such as <hymn>Because I Have Been Given Much (#219)</hymn>, which is <a href="../../post/most_common">the most common non-sacrament hymn</a>). But even <hymn>In Fasting We Approach Thee (#139)</hymn> is only sung on Fast Sunday by a little more than half of wards per year. I feel like I sing this one at least once or twice a year on Fast Sunday, but when I checked my own ward’s data, we’ve indeed only sung it twice in the past 114 weeks, which is pretty close to the typical frequency of this hymn.</p>
-<p>Now, that’s just one hymn. If we look at all three of the fasting hymns collectively, do we see more wards singing them? Again, surprisingly not. It looks like about 84.3% of Fast Sundays in my data don’t have any of the three fasting hymns. 14.7% do, which again, seems low to me. 0.9% actually had two of them. This again, is perhaps the most surprising thing in this blog post: fasting hymns are just not that common—even on Fast Sunday.</p>
-<p>If we expand our list to include testimony hymns, the picture is a little different. This time, 62.5% of Fast Sundays don’t have either fasting or testimony–themed hymn. 28.8% have one, 8.6% have two, and four meetings total have three. So still, in the minority. I reran the numbers after excluding the last Sundays in March and September and they were hardly any different. So, it seems like no matter how I look at it, it is more common to <em>not</em> see any Fast and Testimony hymns in Fast and Testimony meetings than it is to see them.</p>
-</section>
-<section id="the-most-fasty-and-testimony-y-hymns" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-most-fasty-and-testimony-y-hymns">The Most Fasty and Testimony-y Hymns</h2>
-<p>So, while none of these hymns are particularly common, we can see which ones are the most quintessentially Fasty and Testimony-y. We can quantify this by comparing how often they’re sung on Fast Sundays and compare them to how often they’re sung on any other Sunday. We would expect a hymn about Fasting to be sung most of the time on Fast Sunday and hardly ever elsewhere. If we divide these two numbers, we can get a ratio. Anything greater than 1 means it’s more common on Fast Sundays while anything less than 1 means it’s more common on other Sundays.</p>
-<div class="page-columns page-full"><p>Table&nbsp;1 shows these numbers for the Fast and Testimony hymns. We can see that while <hymn>In Fasting We Approach Thee (#139)</hymn> is not particularly common overall, it is sung on Fast Sundays 17.5 times more often than it is on any other Sunday. <hymn>Bless Our Fast, We Pray (#138)</hymn> is also quintessentially a Fast and Testimony hymn, coming in 12.6 times more often in those meetings than in other meetings. Meanwhile, <hymn>Called to Serve (#249)</hymn> is actually rather uncommon on Fast Sundays and is is (<code>1 / 0.4 =</code>) 2.5 times <em>less</em> likely to be sung on a Fast Sunday than on another Sunday. <sup>1</sup></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Presumably, that one is more common on missionary farewells or homecomings or even missionary work–themed sacrament meetings, which are typically not Fast Sundays so that the missionary or other people can give a proper talk.</p></li></div></div>
+<p>We can see that other than Easter and the week before, which has many Easter hymns, and in December, which has mostly Christmas hymns, the number of wards singing “Easter” hymns is pretty stable. So, rather than use the technique I did in my previous plot of getting the average number of Easter hymns sung in week not near holidays, I’ll just take the average of all these weeks except for those within a month of Christmas or Easter.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="tbl-fasty" class="anchored">
-
-<div id="bdbqcmxbhb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bdbqcmxbhb table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#bdbqcmxbhb thead, #bdbqcmxbhb tbody, #bdbqcmxbhb tfoot, #bdbqcmxbhb tr, #bdbqcmxbhb td, #bdbqcmxbhb th {
-  border-style: none;
-}
-
-#bdbqcmxbhb p {
-  margin: 0;
-  padding: 0;
-}
-
-#bdbqcmxbhb .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#bdbqcmxbhb .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#bdbqcmxbhb .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#bdbqcmxbhb .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#bdbqcmxbhb .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#bdbqcmxbhb .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#bdbqcmxbhb .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#bdbqcmxbhb .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#bdbqcmxbhb .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#bdbqcmxbhb .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#bdbqcmxbhb .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#bdbqcmxbhb .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#bdbqcmxbhb .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#bdbqcmxbhb .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#bdbqcmxbhb .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#bdbqcmxbhb .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#bdbqcmxbhb .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#bdbqcmxbhb .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#bdbqcmxbhb .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#bdbqcmxbhb .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#bdbqcmxbhb .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#bdbqcmxbhb .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#bdbqcmxbhb .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#bdbqcmxbhb .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#bdbqcmxbhb .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#bdbqcmxbhb .gt_left {
-  text-align: left;
-}
-
-#bdbqcmxbhb .gt_center {
-  text-align: center;
-}
-
-#bdbqcmxbhb .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#bdbqcmxbhb .gt_font_normal {
-  font-weight: normal;
-}
-
-#bdbqcmxbhb .gt_font_bold {
-  font-weight: bold;
-}
-
-#bdbqcmxbhb .gt_font_italic {
-  font-style: italic;
-}
-
-#bdbqcmxbhb .gt_super {
-  font-size: 65%;
-}
-
-#bdbqcmxbhb .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#bdbqcmxbhb .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#bdbqcmxbhb .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#bdbqcmxbhb .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#bdbqcmxbhb .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#bdbqcmxbhb .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#bdbqcmxbhb .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>How many more times certain hymns are sung on Fast Sunday compared to
-other Sundays</p> </caption>
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Hymn">Hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Times More Likely on Fast Sundays">Times More Likely on Fast Sundays</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Hymn" class="gt_row gt_left">In Fasting We Approach Thee (#139)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">20.5</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Bless Our Fast, We Pray (#138)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">15.0</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Testimony (#137)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">9.1</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">My Redeemer Lives (#135)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">3.6</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Thy Spirit, Lord, Has Stirred Our Souls (#157)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">2.6</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">I Know That My Redeemer Lives (#136)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">2.2</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">I Believe in Christ (#134)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">1.7</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Glory to God on High (#67)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">1.6</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">I Know My Father Lives (#302)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">1.5</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Because I Have Been Given Much (#219)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">1.5</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">The Lord Is My Light (#89)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">1.2</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Go Forth with Faith (#263)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">0.8</td></tr>
-    <tr><td headers="Hymn" class="gt_row gt_left">Called to Serve (#249)</td>
-<td headers="Times More Likely on Fast Sundays" class="gt_row gt_right">0.4</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="page-columns page-full"><p>So, while these hymns are not too commonly sung on Fast Sundays, they’re rather rare otherwise. Another way of looking at it is with probabilities: the odds of singing a fasting hymn given that it’s a Fast Sunday is not too high, but the odds of it being a Fast Sunday given that you’re singing a fast or testimony hymn is quite high.<sup>2</sup> This gives these the sense of being strongly associated with Fast Sundays even though they’re not sung every month.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;i.e.&nbsp;P(fasting hymn | Fast Sunday) is small, but P(Fast Sunday | fasting hymn) is large.</p></li></div></div>
-</section>
-<section id="sacrament-hymns" class="level2">
-<h2 class="anchored" data-anchor-id="sacrament-hymns">Sacrament hymns</h2>
-<p>Okay, so we’ve looked at fast and testimony–themed hymns, but what about the sacrament hymn? Do people do anything different on Fast Sundays when choosing sacrament hymns?</p>
-<p>There are two hymns that <em>might</em> be a little more common, <hymn>With Humble Heart (#171)</hymn> and <hymn>In Humility, Our Savior (#186)</hymn>. The effect is not super strong: they’re only about 20% more likely to be sung on a Fast Sunday compared to any other Sunday of the month. The fact that they both have forms of the word “humble” in the title is perhaps the reason why they’re more common.</p>
-<p>In general though, the correlation between how often a hymn is sung on Fast Sundays compared to the rest of the year is quite high (0.968), meaning it doesn’t matter whether it’s Fast Sunday or not, the selection of the sacrament hymn is the same either way.</p>
-</section>
-<section id="other-times-in-the-meeting" class="level2">
-<h2 class="anchored" data-anchor-id="other-times-in-the-meeting">Other times in the meeting</h2>
-<p>Finally, let’s look at those hymns about fasting or testimonies, and see when during the meeting they’re sung. In other wards, are they more common as opening hymns, intermediate hymns, or closing hymns?</p>
-<p>Figure&nbsp;2 shows these hymns, split up by how often they’re sung during the meeting. For some hymns, there is a pretty clear pattern. For example, the two hymns that are more explicitly about fasting, <hymn>Bless Our Fast, We Pray (#138)</hymn> and <hymn>In Fasting We Approach Thee (#139)</hymn>, are clearly preferred as opening hymns. It’s quite unusual to see them being sung as closing and especially intermediate hymns. Meanwhile, <hymn>Testimony (#137)</hymn>, <hymn>I Know My Father Lives (#302)</hymn>, and <hymn>Thy Spirit Lord, Has Stirred Our Souls (#157)</hymn> are preferred as closing hymns, with the latter being nearly categorically closing. For most of the other hymns, it’s a pretty even split between opening and closing hymns.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-type" class="quarto-figure quarto-figure-center anchored">
+<div>
 <figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/fast_sunday/index_files/figure-html/fig-type-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: When Fast and Testimony hymns are sung</figcaption>
+<p><img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Anyway, the purpose of all this avoidance of holidays is to get the typical percentage of sacrament meetings that contain one or more of these “Easter” hymns during times when you wouldn’t expect them. Basically, get a baseline. As it turns out, the average percentage of sacrament meetings that sing these hymns is 31%. The upper end is about 36%.</p>
+<p>So, that means that we can consider any week around Eastertime where more than 36% of wards sing “Easter” hymns as being more than normal and indicative of wards singing these hymns to celebrate Easter.</p>
+</div>
+</div>
+</div>
+<p>It turns out it’s around 36% of wards per week. That is quite a bit higher than the 27% I reported in my <a href="../../posts/easter">previous post</a>. But, keep in mind that six new sacrament hymns were added (<hymn>It Is Well with My Soul (#1003)</hymn>, <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, <hymn>Gethsemane (#1009)</hymn>, <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, and <hymn>This Is the Christ (#1017)</hymn>), and those have been pretty popular. So, on average, we’re singing more Easter-adjacent hymns than before simply because of those six new ones, so we’ll have to adjust the number accordingly.</p>
+<p>In Figure&nbsp;1, I’ve highlighted all the weeks that have more than 36% of sacrament meetings:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-weeks_around_easter_highlighted" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-weeks_around_easter_highlighted-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Percentage of sacrament meetings with Easter hymns around Easter
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Last year, three weeks before just barely made the cut for having more Easter hymns than usual. This year, it didn’t. So, it was only the week before, Easter itself, and the week after where we saw a significant number of Easter hymns beyond what is normally sung. The number of wards singing Easter hymns on Easter itself is comparable to last year (around 97%). But last year, about 45% of wards sang Easter hymns on Palm Sunday. This year, it was about 57%. So, it seems like the addition of the two new Easter hymns really made a difference! Looking back at previous years, the only time I’ve seen more wards singing Easter hymns on Palm Sunday is when General Conference falls on Easter.</p>
+</section>
+<section id="whats-sung-around-easter" class="level2">
+<h2 class="anchored" data-anchor-id="whats-sung-around-easter">What’s sung around Easter?</h2>
+<p>Now that we’ve established which hymns are Easter hymns and when those hymns are sung relative to Easter, let’s answer the questions of <em>which</em> of these Easter hymns are sung <em>when</em>.</p>
+<p>We’ll first start off by looking at how common the Easter hymns were during this Easter season. The following plot shows the percentage of wards that sang each hymn at least some point within one week of Easter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Percentage of wards that sing each Easter hymn per year
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Superficially, relatively little has changed compared to last year, except with the addition of new hymns. <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common still. They were a bit less common this year though, presumably because of the addition of the new hymns cutting in on some of the slots. Figure&nbsp;3 below compares 2025 to all previous years, showing the number of wards that sing each hymn within a week of Easter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-comparison-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Easter hymn change in popularity in 2025
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, for all but one hymn, the big dot, which represents 2025, is further to the left than the smaller black dot, which represents everything before 2025. This means that basically every hymn was sung in fewer wards in 2025 than in previous years. The obvious explanation for this is the addition of the new hymns, and as you can see in the green dots, there were several that were sung around Easter this year. So, with more hymns to choose from, and the same number of slots to fill, something’s going to take a hit. It looks like proportionally, the two most popular ones, were affected the most.</p>
+<p>The one teeny exception to this pattern is <hymn>All Glory, Laud, and Honor (#69)</hymn>. Like I mentioned last time, this a Palm Sunday hymn, though relatively few wards sing it on Palm Sunday. I’m heartened to see that there was actually a very slight <em>increase</em> in how many wards sang it this year. I hope to see it sung more in the future, so this is an encouraging sign.</p>
+<section id="when-are-hymns-sung-within-the-easter-season" class="level3">
+<h3 class="anchored" data-anchor-id="when-are-hymns-sung-within-the-easter-season">When are hymns sung within the Easter season?</h3>
+<p>Let’s dive into each of those hymns then and see when during that three-week period they were sung. Figure&nbsp;4 shows how often each Easter hymn is sung across the Easter season. Here, the gray represents general tendencies before 2025 and the red represents the data from 2025.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-rel_freq" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-rel_freq-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Relative frequency of Easter hymns across the Easter season
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Starting with the most popular hymns, <hymn>He Is Risen (#199)</hymn> and <hymn>Christ the Lord Is Risen Today (#200)</hymn> were basically the same this year as in previous years. Pretty much all the other hymns were more popular the week before Easter this year than they were last year, some of them drastically so. By that, I mean that some of them were previously most popular on Easter Sunday, but this year they were most popular on Palm Sunday. Among the new hymns, <hymn>Gethsemane (#1009)</hymn> and <hymn>Let Easter Anthems Ring (#1205)</hymn> had a clear peak in popularity on Easter Sunday. The others were about as popular on Palm Sunday as they were on Easter.</p>
+</section>
+<section id="when-during-sacrament-meeting" class="level3">
+<h3 class="anchored" data-anchor-id="when-during-sacrament-meeting">When during sacrament meeting?</h3>
+<p>The last thing I want to show is when during sacrament meeting these hymns are sung. By that, I mean I want to lok at whether hymns are sung as opening, intermediate, or closing hymns. (We’ll ignore sacrament hymns in this plot.) Last year, I only showed this plot for the two most common hymns but this time I’ll show the ones that are most directly related to Easter. Figure&nbsp;5 shows those results. The gray is the general trend from before 2025 and the blue shows just the 2025 data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-types" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-types-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: When during sacrament meeting is each Easter hymn sung?
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The pattern shown here is one that I can’t quite make sense of. If we just focus on the hymns from the 1985 hymnal, we see that they are all more popular as opening hymns in 2025 than they were before this year. They’re also all less commonly sung as closing hymns in 2025. This suggests that there is a shift from the end of the meeting towards the beginning for these hymns. We would expect then that the new hymns take their place as closing hymns. But, if we now look at those three hymns, we see that they’re all about twice as commonly sung as opening hymns than closing hymns. So, every hymn is more likely an opening hymn than a closing hymn. What are people singing as closing hymns then? I’m not sure, but it’s a cool pattern to see!</p>
+</section>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>We have Fast and Testimony meting every month, and there are some differences in the hymns that we sing. The three Fasting hymns that show up in the topical guide and some of the 11 testimony hymns are the most commonly sung hymns. However, only about one in every three or four wards sing one of these hymns on any given Fast Sunday, so it’s not an overwhelming trend. The hymns we see most likely on Fast Sunday and not during other weeks are also the ones that are most common: <hymn>In Fasting We Approach Thee (#139)</hymn> and <hymn>Bless Our Fast, We Pray (#138)</hymn>. These are most commonly sung as opening hymns. Some testimony hymns are also common as closing hymns. Sacrament hymns don’t seem to be any different, other than a slight preference for hymns mentioning humility in the titles on Fast Sundays.</p>
+<p>Last year, I ended the analysis of Easter hymns by saying that I hope the new hymnal has Easter hymns. I’m grateful we have more so that we can sing more Easter hymns each year, especially beyond Easter Sunday itself. It seems like these new hymns have been incorporated quite well in Sacrament meeting. However, it seems like these new hymns are mostly taking the place of the old ones, rather than adding to them. We had a few more wards singing more Easter hymns on Palm Sunday, but I’d love to see that extended to more weeks before Easter. I guess we’ll see if we get more Easter hymns in later batches of new hymns!</p>
 
 
 </section>
-
 
  ]]></description>
   <category>holidays</category>
   <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/fast_sunday/</guid>
-  <pubDate>Mon, 19 Feb 2024 07:00:00 GMT</pubDate>
+  <guid>https://hymnstats.joeystanley.com/posts/easter2025/</guid>
+  <pubDate>Sun, 24 Mar 2024 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
