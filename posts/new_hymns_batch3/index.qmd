@@ -274,16 +274,18 @@ meetings_since_release1 |>
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
     filter(nth_time == 1) |> 
     
-    cleveland_plot(return = "table", hymns_to_plot = c(1019:1031, 1205:1206)) |> 
+    cleveland(return = "table", 
+              stat_to_plot = sum_prop_wards,
+              hymns_to_plot = c(1019:1031, 1205:1206)) |> 
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
     filter(hymn_num %in% c(1019:1031, 1205:1206)) |>
-    mutate(percent_wards = scales::percent(round(n_weeks_since_release2 / every_x_weeks, 3))) |> 
+    mutate(sum_prop_wards = scales::percent(round(sum_prop_wards, 3))) |> 
     
     # add label for missing hymns
     mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
-           percent_wards = if_else(is.na(percent_wards), "0%", percent_wards)) |> 
-    select(Hymn = label, `percent of wards` = percent_wards) |> 
+           sum_prop_wards = if_else(is.na(sum_prop_wards), "0%", sum_prop_wards)) |> 
+    select(Hymn = label, `percent of wards` = sum_prop_wards) |> 
     
     gt() |> 
     tab_header(title = "Approximate percentage of wards new hymns have been sung in",
@@ -337,7 +339,6 @@ meetings_since_release3 |>
 ```
 
 It seems like the most popular hymns are somewhat erratic: <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, <hymn>I Know That My Savior Loves Me (#1021)</hymn>, and <hymn>This Little Light of Mine (#1028)</hymn> jump around a lot for some reason. It's possibly a sample size issue, because relatively few wards are singing them. Some of the less common ones don't show a clear pattern, other than they're generally present but not common. Some become slightly more popular after a few weeks, again suggesting (like the other batches) that once wards have gotten the favorites out of the way, they are then open to trying new ones. The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around [Easter](/posts/easter2025).
-
 
 ## When during meetings are these hymns sung?
 
