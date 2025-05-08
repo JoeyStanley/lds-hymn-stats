@@ -17,7 +17,6 @@ This page just has a summary of all the hymns and their frequency stats, includi
 I currently have data from `r scales::comma(get_n_distinct_meetings())` sacrament meetings. If you were to attend that many, it would take about `r round(get_n_distinct_meetings()/48, 0)` years---so, more than a couple lifetimes' worth of data. It's also the equivalent of the entire 40-year lifetime of the 1985 hymnal in `r round(get_n_distinct_meetings()/48/40, 0)` wards. This data comes from `r scales::comma(length(unique(freqs$ward)))` wards, mostly in the United States. Across all these meetings, there are `r scales::comma(nrow(freqs))` hymns. See [here](/posts/frequency-data) for a detailed breakdown of how this data is distributed across time and space, as well as an explanation of where it call came from. 
 
 
-
 ## Frequency Table
 
 Note that songs from the Children's Songbook are listed with their page number plus 2000. So, <hymn>We'll Bring the World His Truth</hymn> is on page 172 but I've listed it as hymn 2172. Also, when a non-English speaking ward sings a hymn that's not found in the English hymnal, I find the translation on Samuel Bradshaw's amazing [SingPraises.net](https://singpraises.net/collections?lang=nl&category=book) and sequentially number them in the order I see them starting with 500. So, if a ward sings <hymn>O, Canada</hymn>, it's listed here as hymn 501.
@@ -36,7 +35,12 @@ make_things_gray <- function(.df, .col) {
 
 process_table <- function(.df) {
     data_to_show <- .df |> 
-        mutate(hymn_num = paste0("#", hymn_num)) |> 
+        # Fix Children's Songbook
+        mutate(hymn_num = case_when(hymn_num > 2000 ~ str_replace(hymn_num, "\\A20*", "CS #"), 
+                                    hymn_num %in% 501:1000 ~ "",
+                                    TRUE ~ paste0("#", as.character(hymn_num))),
+               hymn_name = str_remove(hymn_name, " \\(Children's Songbook\\)")) |>
+        
         mutate(n = if_else(is.na(n), 0, n),
                # with kable(escape = FALSE), this is supposed to work, I think, but it doesn't
                #hymn_name = str_replace(hymn_name, "\\[", "<span>["),
@@ -59,6 +63,7 @@ process_table <- function(.df) {
                                          TRUE ~ "—"))
         
     data_to_show |> 
+
         select(`#` = hymn_num,
            `Hymn` = hymn_name,
            `Times Sung` = n,
@@ -66,17 +71,17 @@ process_table <- function(.df) {
            `Every X Weeks` = every_x_weeks,
            `Every X Months` = every_x_months,
            `Every X Years`  = every_x_years) %>%
-        
+
         # Make ties the same rank
         rowid_to_column("Rank") %>%
         mutate(Rank = min(Rank), .by = `Times Sung`) %>%
-        # print()
-        knitr::kable(align = "rrlrrrrr") |> 
-        kable_styling(fixed_thead = TRUE) |> 
-        scroll_box(height = "1080px") |> 
-        column_spec(5, color = make_things_gray(data_to_show, avg_per_year)) |> 
-        column_spec(6, color = make_things_gray(data_to_show, every_x_weeks)) |> 
-        column_spec(7, color = make_things_gray(data_to_show, every_x_months)) |> 
+
+        knitr::kable(align = "rrlrrrrr") |>
+        kable_styling(fixed_thead = TRUE) |>
+        scroll_box(height = "1080px") |>
+        column_spec(5, color = make_things_gray(data_to_show, avg_per_year)) |>
+        column_spec(6, color = make_things_gray(data_to_show, every_x_weeks)) |>
+        column_spec(7, color = make_things_gray(data_to_show, every_x_months)) |>
         column_spec(8, color = make_things_gray(data_to_show, every_x_years))
 }
 ```
@@ -85,8 +90,9 @@ process_table <- function(.df) {
 ### All data
 
 ```{r, include = TRUE, echo = FALSE}
+#| column: page
 freqs %>%
-    cleveland_plot(return = "table") %>%
+    cleveland(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
     process_table()
@@ -107,9 +113,10 @@ n_meetings_preJune2024 <- freqs %>%
 This table includes data from before any new hymns were introduced. It is likely the most informative, publicly-available view of the overall popularity of hymns in the 1985 hymnal. This table is based on data from `r n_meetings_preJune2024` sacrament meetings. 
 
 ```{r, include = TRUE, echo = FALSE}
+#| column: page
 freqs %>%
     filter(date <= ymd("2024-06-01")) |> 
-    cleveland_plot(return = "table") %>%
+    cleveland(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
     process_table()
@@ -141,6 +148,7 @@ weeks_since_june2 <- freqs |>
 
 
 ```{r, include = TRUE, echo = FALSE}
+#| column: page
 n_weeks_since_release <- freqs |> 
     filter(date >= ymd("2024-06-02"),
            date <= today()) |> 
@@ -154,14 +162,16 @@ post_june_data <- freqs %>%
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |>
     filter(nth_time == 1) |>
     
-    cleveland_plot(return = "table") %>%
+    cleveland(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
+    arrange(-sum_prop_wards) |> 
     # don't know children's songs or non-English songs in this section
     filter(!(hymn_num %in% c(500:999, 2000:3000) & is.na(n))) |>
-    mutate(percent_wards = case_when(is.na(every_x_weeks) ~ "0%",
-                                     n_weeks_since_release / every_x_weeks > 0.9 ~ "almost all",
-                                     TRUE ~ scales::percent(round(n_weeks_since_release / every_x_weeks, 3))),
+    mutate(percent_wards = paste0(round(sum_prop_wards, 4)*100, "%"),
+    # mutate(percent_wards = case_when(is.na(every_x_weeks) ~ "0%",
+    #                                  n_weeks_since_release / every_x_weeks > 0.9 ~ "almost all",
+    #                                  TRUE ~ scales::percent(round(n_weeks_since_release / every_x_weeks, 3))),
            hymn_num = paste0("#", hymn_num),
            pred_times_per_year = if_else(is.na(every_x_weeks),
                                          "—",
@@ -209,11 +219,10 @@ post_june_data |>
 
 Here is the same information, but as a plot.
 
-```{r, echo = FALSE, fig.height = 40, fig.width = 8}
+```{r, echo = FALSE, fig.height = 45, fig.width = 8}
 freqs %>%
-    cleveland_plot(return = "plot", 
-                   subtitle = NULL,
-                   x_buffer = 0) + 
+    cleveland(return = "plot") + 
+    scale_x_continuous(expand = expansion(0, c(0.02, 0.6))) + 
     labs(title = "Frequency of all hymns",
          subtitle = NULL)
 ```
