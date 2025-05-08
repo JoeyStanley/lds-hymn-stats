@@ -19,8 +19,6 @@ I currently have data from `r scales::comma(get_n_distinct_meetings())` sacramen
 
 ## Frequency Table
 
-Note that songs from the Children's Songbook are listed with their page number plus 2000. So, <hymn>We'll Bring the World His Truth</hymn> is on page 172 but I've listed it as hymn 2172. Also, when a non-English speaking ward sings a hymn that's not found in the English hymnal, I find the translation on Samuel Bradshaw's amazing [SingPraises.net](https://singpraises.net/collections?lang=nl&category=book) and sequentially number them in the order I see them starting with 500. So, if a ward sings <hymn>O, Canada</hymn>, it's listed here as hymn 501.
-
 ::: {.panel-tabset}
 
 ```{r, include = FALSE}
@@ -217,7 +215,7 @@ post_june_data |>
 
 ## Visualization
 
-Here is the same information, but as a plot.
+Here is the same information, but as a plot. Note that songs from the Children's Songbook are listed with their page number plus 2000. So, <hymn>We'll Bring the World His Truth</hymn> is on page 172 but I've listed it as hymn 2172. Also, when a non-English speaking ward sings a hymn that's not found in the English hymnal, I find the translation on Samuel Bradshaw's amazing [SingPraises.net](https://singpraises.net/collections?lang=nl&category=book) and sequentially number them in the order I see them starting with 500. So, if a ward sings <hymn>O, Canada</hymn>, it's listed here as hymn 501.
 
 ```{r, echo = FALSE, fig.height = 45, fig.width = 8}
 freqs %>%
