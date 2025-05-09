@@ -10,7 +10,165 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Sun, 16 Feb 2025 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 20 Apr 2025 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Easter 2025</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/easter2025/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Last year, I posted about <a href="../../posts/easter">general trends with hymns around Easter</a>. Now that we have a couple new Easter hymns, I thought it’d be good to take a look at this year’s data and see how it compares. This post is based primarily on data from 1,075 wards. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>.</p>
+<p>In <a href="(/posts/easter)">my previous post</a>, I went into detail trying to figure out which hymns are considered “Easter” hymns. I included hymns that were listed in the table of contents under “Easter” or listed in the index under “Easter”, “Resurrection”, or “Sacrament.” I’ll use the same list, but I’ll add the new hymns that fit that criteria. This includes three Easter hymns (<hymn>Hail the Day that Sees Him Rise (#1201)</hymn>, <hymn>Let Easter Anthems Ring (#1205)</hymn>, and <hymn>Were You There? (#1206)</hymn>) and six sacrament hymns (<hymn>It Is Well with My Soul (#1003)</hymn>, <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, <hymn>Gethsemane (#1009)</hymn>, <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, and <hymn>This Is the Christ (#1017)</hymn>).</p>
+<section id="the-easter-season" class="level2">
+<h2 class="anchored" data-anchor-id="the-easter-season">The Easter Season</h2>
+<p>Again, like I said in my <a href="../../posts/easter">previous post</a>, since many of these sacrament hymns are commonly sung outside of the Easter season, we can’t assume that if a ward sings, say, <hymn>As Bread is Broken (#1007)</hymn>, that they’re doing so in celebration of Easter. I found that around 20%–25% of wards sing at least one of those “Easter” hymns, so I decided that the Easter season was defined as the period around Easter when more than 25% of wards sing from that set.</p>
+<p>Since some of these new hymns are generally pretty common, I’ll have to recalculate those numbers based on 2025 data. (See details below if you’d like.)</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Technical details
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First, here is a plot showing the proportion of sacrament meetings in my dataset that have at least one “Easter” hymn across the year. Here, I’ll just focus on sacrament meetings since June 2, 2024 when the first batch of new hymns came out.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that other than Easter and the week before, which has many Easter hymns, and in December, which has mostly Christmas hymns, the number of wards singing “Easter” hymns is pretty stable. So, rather than use the technique I did in my previous plot of getting the average number of Easter hymns sung in week not near holidays, I’ll just take the average of all these weeks except for those within a month of Christmas or Easter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Anyway, the purpose of all this avoidance of holidays is to get the typical percentage of sacrament meetings that contain one or more of these “Easter” hymns during times when you wouldn’t expect them. Basically, get a baseline. As it turns out, the average percentage of sacrament meetings that sing these hymns is 31%. The upper end is about 36%.</p>
+<p>So, that means that we can consider any week around Eastertime where more than 36% of wards sing “Easter” hymns as being more than normal and indicative of wards singing these hymns to celebrate Easter.</p>
+</div>
+</div>
+</div>
+<p>It turns out it’s around 36% of wards per week. That is quite a bit higher than the 27% I reported in my <a href="../../posts/easter">previous post</a>. But, keep in mind that six new sacrament hymns were added (<hymn>It Is Well with My Soul (#1003)</hymn>, <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, <hymn>Gethsemane (#1009)</hymn>, <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, and <hymn>This Is the Christ (#1017)</hymn>), and those have been pretty popular. So, on average, we’re singing more Easter-adjacent hymns than before simply because of those six new ones, so we’ll have to adjust the number accordingly.</p>
+<p>In Figure&nbsp;1, I’ve highlighted all the weeks that have more than 36% of sacrament meetings:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-weeks_around_easter_highlighted" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-weeks_around_easter_highlighted-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Percentage of sacrament meetings with Easter hymns around Easter
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Last year, three weeks before just barely made the cut for having more Easter hymns than usual. This year, it didn’t. So, it was only the week before, Easter itself, and the week after where we saw a significant number of Easter hymns beyond what is normally sung. The number of wards singing Easter hymns on Easter itself is comparable to last year (around 97%). But last year, about 45% of wards sang Easter hymns on Palm Sunday. This year, it was about 57%. So, it seems like the addition of the two new Easter hymns really made a difference! Looking back at previous years, the only time I’ve seen more wards singing Easter hymns on Palm Sunday is when General Conference falls on Easter.</p>
+</section>
+<section id="whats-sung-around-easter" class="level2">
+<h2 class="anchored" data-anchor-id="whats-sung-around-easter">What’s sung around Easter?</h2>
+<p>Now that we’ve established which hymns are Easter hymns and when those hymns are sung relative to Easter, let’s answer the questions of <em>which</em> of these Easter hymns are sung <em>when</em>.</p>
+<p>We’ll first start off by looking at how common the Easter hymns were during this Easter season. The following plot shows the percentage of wards that sang each hymn at least some point within one week of Easter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Percentage of wards that sing each Easter hymn per year
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Superficially, relatively little has changed compared to last year, except with the addition of new hymns. <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common still. They were a bit less common this year though, presumably because of the addition of the new hymns cutting in on some of the slots. Figure&nbsp;3 below compares 2025 to all previous years, showing the number of wards that sing each hymn within a week of Easter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-comparison-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Easter hymn change in popularity in 2025
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, for all but one hymn, the big dot, which represents 2025, is further to the left than the smaller black dot, which represents everything before 2025. This means that basically every hymn was sung in fewer wards in 2025 than in previous years. The obvious explanation for this is the addition of the new hymns, and as you can see in the green dots, there were several that were sung around Easter this year. So, with more hymns to choose from, and the same number of slots to fill, something’s going to take a hit. It looks like proportionally, the two most popular ones, were affected the most.</p>
+<p>The one teeny exception to this pattern is <hymn>All Glory, Laud, and Honor (#69)</hymn>. Like I mentioned last time, this a Palm Sunday hymn, though relatively few wards sing it on Palm Sunday. I’m heartened to see that there was actually a very slight <em>increase</em> in how many wards sang it this year. I hope to see it sung more in the future, so this is an encouraging sign.</p>
+<section id="when-are-hymns-sung-within-the-easter-season" class="level3">
+<h3 class="anchored" data-anchor-id="when-are-hymns-sung-within-the-easter-season">When are hymns sung within the Easter season?</h3>
+<p>Let’s dive into each of those hymns then and see when during that three-week period they were sung. Figure&nbsp;4 shows how often each Easter hymn is sung across the Easter season. Here, the gray represents general tendencies before 2025 and the red represents the data from 2025.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-rel_freq" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-rel_freq-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Relative frequency of Easter hymns across the Easter season
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Starting with the most popular hymns, <hymn>He Is Risen (#199)</hymn> and <hymn>Christ the Lord Is Risen Today (#200)</hymn> were basically the same this year as in previous years. Pretty much all the other hymns were more popular the week before Easter this year than they were last year, some of them drastically so. By that, I mean that some of them were previously most popular on Easter Sunday, but this year they were most popular on Palm Sunday. Among the new hymns, <hymn>Gethsemane (#1009)</hymn> and <hymn>Let Easter Anthems Ring (#1205)</hymn> had a clear peak in popularity on Easter Sunday. The others were about as popular on Palm Sunday as they were on Easter.</p>
+</section>
+<section id="when-during-sacrament-meeting" class="level3">
+<h3 class="anchored" data-anchor-id="when-during-sacrament-meeting">When during sacrament meeting?</h3>
+<p>The last thing I want to show is when during sacrament meeting these hymns are sung. By that, I mean I want to lok at whether hymns are sung as opening, intermediate, or closing hymns. (We’ll ignore sacrament hymns in this plot.) Last year, I only showed this plot for the two most common hymns but this time I’ll show the ones that are most directly related to Easter. Figure&nbsp;5 shows those results. The gray is the general trend from before 2025 and the blue shows just the 2025 data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-types" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-types-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: When during sacrament meeting is each Easter hymn sung?
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The pattern shown here is one that I can’t quite make sense of. If we just focus on the hymns from the 1985 hymnal, we see that they are all more popular as opening hymns in 2025 than they were before this year. They’re also all less commonly sung as closing hymns in 2025. This suggests that there is a shift from the end of the meeting towards the beginning for these hymns. We would expect then that the new hymns take their place as closing hymns. But, if we now look at those three hymns, we see that they’re all about twice as commonly sung as opening hymns than closing hymns. So, every hymn is more likely an opening hymn than a closing hymn. What are people singing as closing hymns then? I’m not sure, but it’s a cool pattern to see!</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Last year, I ended the analysis of Easter hymns by saying that I hope the new hymnal has Easter hymns. I’m grateful we have more so that we can sing more Easter hymns each year, especially beyond Easter Sunday itself. It seems like these new hymns have been incorporated quite well in Sacrament meeting. However, it seems like these new hymns are mostly taking the place of the old ones, rather than adding to them. We had a few more wards singing more Easter hymns on Palm Sunday, but I’d love to see that extended to more weeks before Easter. I guess we’ll see if we get more Easter hymns in later batches of new hymns!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>holidays</category>
+  <category>frequency</category>
+  <guid>https://hymnstats.joeystanley.com/posts/easter2025/</guid>
+  <pubDate>Sun, 20 Apr 2025 06:00:00 GMT</pubDate>
+  <media:content url="https://hymnstats.joeystanley.com/posts/easter2025/cover.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
 <item>
   <title>The Third Batch of New Hymns!</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -16568,163 +16726,6 @@ Figure&nbsp;10: When are the top two Easter hymns sung in Sacrament meeting?
   <category>holidays</category>
   <category>frequency</category>
   <guid>https://hymnstats.joeystanley.com/posts/easter/</guid>
-  <pubDate>Sun, 24 Mar 2024 06:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Easter 2025</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/easter2025/</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Last year, I posted about <a href="../../posts/easter">general trends with hymns around Easter</a>. Now that we have a couple new Easter hymns, I thought it’d be good to take a look at this year’s data and see how it compares. This post is based primarily on data from 1,069 wards. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>.</p>
-<p>In <a href="(/posts/easter)">my previous post</a>, I went into detail trying to figure out which hymns are considered “Easter” hymns. I included hymns that were listed in the table of contents under “Easter” or listed in the index under “Easter”, “Resurrection”, or “Sacrament.” I’ll use the same list, but I’ll add the new hymns that fit that criteria. This includes three Easter hymns (<hymn>Hail the Day that Sees Him Rise (#1201)</hymn>, <hymn>Let Easter Anthems Ring (#1205)</hymn>, and <hymn>Were You There? (#1206)</hymn>) and six sacrament hymns (<hymn>It Is Well with My Soul (#1003)</hymn>, <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, <hymn>Gethsemane (#1009)</hymn>, <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, and <hymn>This Is the Christ (#1017)</hymn>).</p>
-<section id="the-easter-season" class="level2">
-<h2 class="anchored" data-anchor-id="the-easter-season">The Easter Season</h2>
-<p>Again, like I said in my <a href="../../posts/easter">previous post</a>, since many of these sacrament hymns are commonly sung outside of the Easter season, we can’t assume that if a ward sings, say, <hymn>As Bread is Broken (#1007)</hymn>, that they’re doing so in celebration of Easter. I found that around 20%–25% of wards sing at least one of those “Easter” hymns, so I decided that the Easter season was defined as the period around Easter when more than 25% of wards sing from that set.</p>
-<p>Since some of these new hymns are generally pretty common, I’ll have to recalculate those numbers based on 2025 data. (See details below if you’d like.)</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Technical details
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>First, here is a plot showing the proportion of sacrament meetings in my dataset that have at least one “Easter” hymn across the year. Here, I’ll just focus on sacrament meetings since June 2, 2024 when the first batch of new hymns came out.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1152"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can see that other than Easter and the week before, which has many Easter hymns, and in December, which has mostly Christmas hymns, the number of wards singing “Easter” hymns is pretty stable. So, rather than use the technique I did in my previous plot of getting the average number of Easter hymns sung in week not near holidays, I’ll just take the average of all these weeks except for those within a month of Christmas or Easter.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Anyway, the purpose of all this avoidance of holidays is to get the typical percentage of sacrament meetings that contain one or more of these “Easter” hymns during times when you wouldn’t expect them. Basically, get a baseline. As it turns out, the average percentage of sacrament meetings that sing these hymns is 31%. The upper end is about 36%.</p>
-<p>So, that means that we can consider any week around Eastertime where more than 36% of wards sing “Easter” hymns as being more than normal and indicative of wards singing these hymns to celebrate Easter.</p>
-</div>
-</div>
-</div>
-<p>It turns out it’s around 36% of wards per week. That is quite a bit higher than the 27% I reported in my <a href="../../posts/easter">previous post</a>. But, keep in mind that six new sacrament hymns were added (<hymn>It Is Well with My Soul (#1003)</hymn>, <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, <hymn>Gethsemane (#1009)</hymn>, <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, and <hymn>This Is the Christ (#1017)</hymn>), and those have been pretty popular. So, on average, we’re singing more Easter-adjacent hymns than before simply because of those six new ones, so we’ll have to adjust the number accordingly.</p>
-<p>In Figure&nbsp;1, I’ve highlighted all the weeks that have more than 36% of sacrament meetings:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-weeks_around_easter_highlighted" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-weeks_around_easter_highlighted-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Percentage of sacrament meetings with Easter hymns around Easter
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Last year, three weeks before just barely made the cut for having more Easter hymns than usual. This year, it didn’t. So, it was only the week before, Easter itself, and the week after where we saw a significant number of Easter hymns beyond what is normally sung. The number of wards singing Easter hymns on Easter itself is comparable to last year (around 97%). But last year, about 45% of wards sang Easter hymns on Palm Sunday. This year, it was about 57%. So, it seems like the addition of the two new Easter hymns really made a difference! Looking back at previous years, the only time I’ve seen more wards singing Easter hymns on Palm Sunday is when General Conference falls on Easter.</p>
-</section>
-<section id="whats-sung-around-easter" class="level2">
-<h2 class="anchored" data-anchor-id="whats-sung-around-easter">What’s sung around Easter?</h2>
-<p>Now that we’ve established which hymns are Easter hymns and when those hymns are sung relative to Easter, let’s answer the questions of <em>which</em> of these Easter hymns are sung <em>when</em>.</p>
-<p>We’ll first start off by looking at how common the Easter hymns were during this Easter season. The following plot shows the percentage of wards that sang each hymn at least some point within one week of Easter.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Percentage of wards that sing each Easter hymn per year
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Superficially, relatively little has changed compared to last year, except with the addition of new hymns. <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common still. They were a bit less common this year though, presumably because of the addition of the new hymns cutting in on some of the slots. Figure&nbsp;3 below compares 2025 to all previous years, showing the number of wards that sing each hymn within a week of Easter.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-comparison-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Easter hymn change in popularity in 2025
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>As you can see, for all but one hymn, the big dot, which represents 2025, is further to the left than the smaller black dot, which represents everything before 2025. This means that basically every hymn was sung in fewer wards in 2025 than in previous years. The obvious explanation for this is the addition of the new hymns, and as you can see in the green dots, there were several that were sung around Easter this year. So, with more hymns to choose from, and the same number of slots to fill, something’s going to take a hit. It looks like proportionally, the two most popular ones, were affected the most.</p>
-<p>The one teeny exception to this pattern is <hymn>All Glory, Laud, and Honor (#69)</hymn>. Like I mentioned last time, this a Palm Sunday hymn, though relatively few wards sing it on Palm Sunday. I’m heartened to see that there was actually a very slight <em>increase</em> in how many wards sang it this year. I hope to see it sung more in the future, so this is an encouraging sign.</p>
-<section id="when-are-hymns-sung-within-the-easter-season" class="level3">
-<h3 class="anchored" data-anchor-id="when-are-hymns-sung-within-the-easter-season">When are hymns sung within the Easter season?</h3>
-<p>Let’s dive into each of those hymns then and see when during that three-week period they were sung. Figure&nbsp;4 shows how often each Easter hymn is sung across the Easter season. Here, the gray represents general tendencies before 2025 and the red represents the data from 2025.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-rel_freq" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-rel_freq-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Relative frequency of Easter hymns across the Easter season
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Starting with the most popular hymns, <hymn>He Is Risen (#199)</hymn> and <hymn>Christ the Lord Is Risen Today (#200)</hymn> were basically the same this year as in previous years. Pretty much all the other hymns were more popular the week before Easter this year than they were last year, some of them drastically so. By that, I mean that some of them were previously most popular on Easter Sunday, but this year they were most popular on Palm Sunday. Among the new hymns, <hymn>Gethsemane (#1009)</hymn> and <hymn>Let Easter Anthems Ring (#1205)</hymn> had a clear peak in popularity on Easter Sunday. The others were about as popular on Palm Sunday as they were on Easter.</p>
-</section>
-<section id="when-during-sacrament-meeting" class="level3">
-<h3 class="anchored" data-anchor-id="when-during-sacrament-meeting">When during sacrament meeting?</h3>
-<p>The last thing I want to show is when during sacrament meeting these hymns are sung. By that, I mean I want to lok at whether hymns are sung as opening, intermediate, or closing hymns. (We’ll ignore sacrament hymns in this plot.) Last year, I only showed this plot for the two most common hymns but this time I’ll show the ones that are most directly related to Easter. Figure&nbsp;5 shows those results. The gray is the general trend from before 2025 and the blue shows just the 2025 data.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-types" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter2025/index_files/figure-html/fig-types-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: When during sacrament meeting is each Easter hymn sung?
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The pattern shown here is one that I can’t quite make sense of. If we just focus on the hymns from the 1985 hymnal, we see that they are all more popular as opening hymns in 2025 than they were before this year. They’re also all less commonly sung as closing hymns in 2025. This suggests that there is a shift from the end of the meeting towards the beginning for these hymns. We would expect then that the new hymns take their place as closing hymns. But, if we now look at those three hymns, we see that they’re all about twice as commonly sung as opening hymns than closing hymns. So, every hymn is more likely an opening hymn than a closing hymn. What are people singing as closing hymns then? I’m not sure, but it’s a cool pattern to see!</p>
-</section>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Last year, I ended the analysis of Easter hymns by saying that I hope the new hymnal has Easter hymns. I’m grateful we have more so that we can sing more Easter hymns each year, especially beyond Easter Sunday itself. It seems like these new hymns have been incorporated quite well in Sacrament meeting. However, it seems like these new hymns are mostly taking the place of the old ones, rather than adding to them. We had a few more wards singing more Easter hymns on Palm Sunday, but I’d love to see that extended to more weeks before Easter. I guess we’ll see if we get more Easter hymns in later batches of new hymns!</p>
-
-
-</section>
-
- ]]></description>
-  <category>holidays</category>
-  <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/easter2025/</guid>
   <pubDate>Sun, 24 Mar 2024 06:00:00 GMT</pubDate>
 </item>
 </channel>

@@ -1,12 +1,13 @@
 ---
 title: "Easter 2025"
 author: "Joey Stanley"
-date: 2024-03-24
+date: 2025-04-20
 date-modified: last-modified
 categories:
   - holidays
   - frequency
 reference-location: margin
+image: cover.png
 ---
 
 
@@ -332,6 +333,11 @@ around_easter_pre2025 |>
           plot.subtitle = ggtext::element_markdown(),
           legend.position = "none")
 ```
+
+```{r}
+ggsave("cover.png", height = 4.5, width = 8)
+```
+
 
 As you can see, for all but one hymn, the big dot, which represents 2025, is further to the left than the smaller black dot, which represents everything before 2025. This means that basically every hymn was sung in fewer wards in 2025 than in previous years. The obvious explanation for this is the addition of the new hymns, and as you can see in the green dots, there were several that were sung around Easter this year. So, with more hymns to choose from, and the same number of slots to fill, something's going to take a hit. It looks like proportionally, the two most popular ones, were affected the most. 
 
