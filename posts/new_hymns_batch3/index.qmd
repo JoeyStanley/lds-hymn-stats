@@ -259,6 +259,12 @@ Now we get to the third batch. If the second batch's reception was lukewarm, the
 
 There may be a few reasons why fewer wards are singing from this third batch. At first, perhaps music coordinators had the hymns planned out for the month or quarter already and didn't want to change plans, particularly for the sake of the organists. Maybe the novelty of new hymns has worn off a little bit. I *would* say maybe because there weren't any "bangers" like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and <hymn>Amazing Grace (#1010)</hymn>, but I'd put <hymn>This Little Light of Mine (#1028)</hymn> and <hymn>Faith in Every Footstep (#1022)</hymn> up there. Regardless, the point of the matter is that the third batch has not been as popular so far.
 
+```{r}
+data_to_plot |> 
+    filter(batch == "none") |> 
+    arrange(prop_sung) |> 
+    print()
+```
 
 
 
@@ -292,13 +298,13 @@ meetings_since_release1 |>
                subtitle = "Since February 16")
 ```
 
-I've now seen all the new hymns sung at least once in my dataset. <hymn>Let Easter Anthems Ring (#1205)</hymn> has been sung the most in this batch, but that's only because of [Easter](/posts/easter2025). If we ignore that one, it looks like <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn> is currently the most popular of the new hymns generally. It's followed by <hymn>This Little Light of Mine (#1028)</hymn> and then <hymn>I Know That the Savior Loves Me (1021)</hymn>, but we'll likely see this change a little bit over the next few weeks and months. 
+I've now seen all the new hymns sung at least once in my dataset. <hymn>Let Easter Anthems Ring (#1205)</hymn> is high on this list, but that's only because of [Easter](/posts/easter2025). It looks like <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn> is currently the most popular of the new hymns generally. It's followed by <hymn>This Little Light of Mine (#1028)</hymn> and then <hymn>I Know That the Savior Loves Me (1021)</hymn>, but we'll likely see this change a little bit over the next few weeks and months. 
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
 ## What hymns are most popular each week?
 
-Even though still relatively few wards have sung from the third batch, we can start to get an idea of what hymns were popular when *of the wards that sang them*. 
+It's been long enough that we can get an idea of which hymns were popular when. The following plot shows the percentage of wards that sang each hymn *of the wards that sang any third batch hymns*. 
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
