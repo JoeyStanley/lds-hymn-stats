@@ -10,7 +10,614 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.</description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Sun, 20 Apr 2025 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 15 Jun 2025 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>The Fourth Batch of New Hymns!</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/new_hymns_batch4/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>On June 12th, 2025, the church <a href="https://newsroom.churchofjesuschrist.org/article/eleven-new-hymns-now-available-in-hymns-for-home-and-church">released</a> the fourth batch of new hymns. In previous posts, I have covered in detail the <a href="../../posts/new_hymns_batch1">first</a>, <a href="../../posts/new_hymns_batch2">second</a>, and <a href="../../posts/new_hymns_batch3">third</a> batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fourth batch came out and will update weekly as more data comes in. <!--Currently I have data from 577 sacrament meetings from 576 wards since June 15, 2025.--></p>
+<p>I’ll tell you right now, the results are pretty boring. I have data from 576 wards and just one of them sang from the fourth batch. The hymn they sang was <hymn>Because (#1039)</hymn>. Honestly, I fully expected this one to be among the least common congregational hymns from this batch, so this is a surprise!</p>
+<!--
+
+So, I'll continue with the stats anyway, here's how much data I have for each week so far, just so you have an idea of what I'm working with.
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+
+
+```{=html}
+<div id="lwpnbkbtaw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lwpnbkbtaw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lwpnbkbtaw thead, #lwpnbkbtaw tbody, #lwpnbkbtaw tfoot, #lwpnbkbtaw tr, #lwpnbkbtaw td, #lwpnbkbtaw th {
+  border-style: none;
+}
+
+#lwpnbkbtaw p {
+  margin: 0;
+  padding: 0;
+}
+
+#lwpnbkbtaw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lwpnbkbtaw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lwpnbkbtaw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lwpnbkbtaw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lwpnbkbtaw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lwpnbkbtaw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lwpnbkbtaw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lwpnbkbtaw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lwpnbkbtaw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lwpnbkbtaw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lwpnbkbtaw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lwpnbkbtaw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lwpnbkbtaw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lwpnbkbtaw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lwpnbkbtaw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwpnbkbtaw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lwpnbkbtaw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lwpnbkbtaw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lwpnbkbtaw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwpnbkbtaw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lwpnbkbtaw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwpnbkbtaw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lwpnbkbtaw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwpnbkbtaw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lwpnbkbtaw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwpnbkbtaw .gt_left {
+  text-align: left;
+}
+
+#lwpnbkbtaw .gt_center {
+  text-align: center;
+}
+
+#lwpnbkbtaw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lwpnbkbtaw .gt_font_normal {
+  font-weight: normal;
+}
+
+#lwpnbkbtaw .gt_font_bold {
+  font-weight: bold;
+}
+
+#lwpnbkbtaw .gt_font_italic {
+  font-style: italic;
+}
+
+#lwpnbkbtaw .gt_super {
+  font-size: 65%;
+}
+
+#lwpnbkbtaw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lwpnbkbtaw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lwpnbkbtaw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lwpnbkbtaw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lwpnbkbtaw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lwpnbkbtaw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lwpnbkbtaw .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lwpnbkbtaw .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lwpnbkbtaw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Number of wards I have data from, by week</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since June 15th, 2025</th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="wards" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wards</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 15</td>
+<td class="gt_row gt_right" headers="wards">577</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+```
+
+
+:::
+:::
+
+
+
+
+
+## How many wards sang new hymns each week?
+
+The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all three batches just so you can compare them to each other.
+
+
+
+
+
+
+
+
+
+::: {.cell .column-page}
+::: {.cell-output-display}
+![](index_files/figure-html/unnamed-chunk-7-1.png){width=1344}
+:::
+:::
+
+
+
+
+
+Since it's only been one week, there's not a lot to say, almost nobody sang from the fourth batch. In fairness, it was Father's Day in the United States, so people likely had other plans. 
+
+Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. We can use this plot to spot any parallel trends across the batches, especially in the first few weeks of their release.
+
+
+
+::: {.cell .column-page}
+::: {.cell-output-display}
+![](index_files/figure-html/unnamed-chunk-9-1.png){width=1344}
+:::
+:::
+
+
+
+Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. 
+
+
+
+
+
+
+
+
+<!--
+## What hymns are most popular?
+
+The following table shows the hymns from the third batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn during this period. 
+
+
+
+::: {.cell}
+
+:::
+
+
+
+The only hymn that was sung was <hymn>Because (#1039)</hymn>. It's not showing up on this plot because of rounding issues. Honestly, I fully expected this one to be among the least common congregational hymns from this batch, so this is a surprise! 
+
+
+## What hymns are most popular each week?
+
+It's been long enough that we can get an idea of which hymns were popular when. The following plot shows the percentage of wards that sang each hymn *of the wards that sang any third batch hymns*. 
+
+
+
+::: {.cell .column-page}
+
+:::
+
+
+
+The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around [Easter](/posts/easter2025). Other than that, there isn't much of a pattern for these hymns. Some of the more popular ones jumped around in popularity a little bit from week to week, but it's not like we're seeing an obvious trend of one hymn being sung more often soon after the release of the batch---as if wards were anxious to sing it---like what we saw in the [first batch](/posts/new_hymns_batch1)
+
+## When during meetings are these hymns sung?
+
+We can now see when during sacrament meetings these hymns have been sung. 
+
+
+::: {.cell}
+
+:::
+
+
+
+Again, like any plot like this, each hymn has its own story it seems. Some are simply more popular as opening hymns, or closing hymns, or intermediate hymns. We didn't really get any sacrament hymns in this batch, but that didn't stop people from singing some from this batch very occasionally. It seems like most of these hymns were pretty evenly spread out between being sung as opening, intermediate, and closing hymns. 
+
+-->
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>There’s really not much more to say right now! We’ll see if more people sing from this batch next week!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>general</category>
+  <category>frequency</category>
+  <category>new hymns</category>
+  <guid>https://hymnstats.joeystanley.com/posts/new_hymns_batch4/</guid>
+  <pubDate>Sun, 15 Jun 2025 06:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Easter 2025</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -16502,277 +17109,6 @@ Figure&nbsp;2: Top 10 Mother’s Day hymns and when they’re sung.
   <guid>https://hymnstats.joeystanley.com/posts/change_over_time/</guid>
   <pubDate>Thu, 04 Apr 2024 06:00:00 GMT</pubDate>
   <media:content url="https://hymnstats.joeystanley.com/posts/change_over_time/cover.png" medium="image" type="image/png" height="89" width="144"/>
-</item>
-<item>
-  <title>What hymns are sung around Easter?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/easter/</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Compared to other Christian religions, we don’t have a lot of celebration around Easter, whether in the home or in church meetings. My impression is that some members of the church are incorporating more celebratory activities for things like Palm Sunday and Good Friday, but this change is happening slowly and idiosyncratically. On Easter Sunday, the hymns we sing are usually focused on the resurrection of the Savior. In this post, I explore Easter hymns and other hymns sung around Eastertime.</p>
-<p>This post is based primarily on 6,169 sacrament meetings from 1,179 wards between 2001 and 2024. You can read more about the full dataset <a href="../../posts/frequency-data">here</a>. You can read about Easter 2025, which incorporates new hymns, <a href="../../posts/easter2025">here</a>.</p>
-<section id="what-are-the-easter-hymns" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-the-easter-hymns">What are the Easter hymns?</h2>
-<p>From what I can tell, we have four places to look for finding Easter hymns: The Easter section in the Table of Contents (TOC), the Easter entry in the index, the resurrection entry in the index, and sacrament hymns. This figure below shows which hymns fall into which category and how they intersect.</p>
-<div id="fig-venn" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/diagram.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Easter and Easter-adjacent hymns and how they overlap
-</figcaption>
-</figure>
-</div>
-<p>So, this figure shows that according to the Table of Contents, we have four Easter Hymns: <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, <hymn>That Easter Morn (#198)</hymn>, <hymn>He Is Risen! (#199)</hymn>, and <hymn>Christ the Lord Is Risen Today (#200)</hymn>. However, if you look up “Easter” in the Index, there are an additional nine hymns. Four of those are sacrament hymns, but there are others that are not: <hymn>All Creatures of Our God and King (#62)</hymn>, <hymn>All Glory, Laud, and Honor (#69)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, <hymn>My Redeemer Lives (#135)</hymn>, and <hymn>I Know That My Redeemer Lives (#136)</hymn>. To add to that, if you look up “Resurrection” in the Index, there are an additional four hymns not included elsewhere: <hymn>Lo, the Mighty God Appearing! (#55)</hymn>, <hymn>Lord, Accept Our True Devotion (#107)</hymn>, <hymn>Though Deepening Trials (#122)</hymn>, and <hymn>The Glorious Gospel Light Has Shone (#283)</hymn>. Sprinkled among these lists are four sacrament hymns: <hymn>While of These Emblems We Partake (#173)</hymn>, <hymn>While of These Emblems We Partake (#174)</hymn>, <hymn>Behold the Great Redeemer Die (#191)</hymn>, and <hymn>He Died! The Great Redeemer Died (#192)</hymn>. And, since the Last Supper happened during Holy Week, any sacrament hymn would probably be appropriate for Palm Sunday or Easter. So, while that initial list of four Easter hymns was small, when expanded to include adjacent topics, the list can get pretty long!</p>
-<p>So, for the remainder of this post, I’ll focus on that set of hymns.</p>
-</section>
-<section id="when-are-easter-hymns-sung" class="level2">
-<h2 class="anchored" data-anchor-id="when-are-easter-hymns-sung">When are Easter hymns sung?</h2>
-<p>While figuring out the exact date of when Easter will be <a href="https://en.wikipedia.org/wiki/Date_of_Easter">can be calculated</a>, it is a lot easier to just get a list of when Easter was from 2002 to 2024 and look at sacrament meetings relative to those dates. So I just took that list of dates and looked at hymns relative to them. This means, unlike my post on <a href="../../posts/fast_sunday">Fast Sundays</a>, which were pretty approximate, here I’ve got a pretty accurate look at Easter.</p>
-<p>If we focus on the period from about six weeks before Easter to two weeks after, we can see how many wards since any of the hymns shown in Figure&nbsp;1 each week. Figure&nbsp;2 shows these numbers. As you can see, there is obviously a spike on Easter itself and a whopping 98.3% of wards sing at least one Easter hymn on Easter Sunday. But, there seems to be a fair number of Easter hymns sung even six weeks before.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-weeks_around_easter" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-weeks_around_easter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-weeks_around_easter-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weeks_around_easter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Percentage of sacrament meetings with Easter hymns around Easter
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>But, hold on a second. Before we pat ourselves on the back for singing Easter hymns as much as six weeks before the holiday, let’s take a closer look at the data. These “Easter” hymns include a fair number of regular hymns that would be perfectly appropriate in other weeks of the year. Obviously the four sacrament hymns are sung outside of the Easter season (like <hymn>I Believe in Christ (#134)</hymn>), and some of these hymns (like <hymn>I Know That My Redeemer Lives (#136)</hymn>) are common during <a href="../../posts/fast_sunday">Fast and Testimony meeting</a>.</p>
-<p>So, to get a gauge for how often these supposed Easter hymns are sung, I looked at how many of these were sung during weeks that aren’t influenced by major holidays. (See details below if you’d like.)</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Technical details
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>First, here is a plot showing the proportion of sacrament meetings in my dataset that have at least one “Easter” hymn across the year.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>There is an obvious peak around Easter, but Easter varies across years, so it’s a little spread out. There’s also a noticeable dip towards the end of the year as we sing more <a href="../../posts/christmas">Christmas</a> hymns. But, the rest of the year is pretty consistent, with maybe a slight dip in the summer.</p>
-<p>Again, to get an idea of the number of “Easter” hymns, I decided to look at the following:</p>
-<ul>
-<li>The second through fifth weeks of the year, which is January 8 through February 4. This avoids residual <a href="../../posts/new-years">New Year’s Day</a> hymns and is before when <a href="../../posts/valentines">Valentine’s Day</a> hymns might be sung.</li>
-<li>The 22nd and 23rd weeks of the year, which is May 22 through June 10th, which is after Mother’s Day and before Father’s Day.</li>
-<li>The 32nd through 38th weeks of the year, which corresponds to August 5 through September 23. There are no major holidays during that period. It’s after Pioneer Day (in Utah) and before when <a href="../../posts/general_conference">General Conference</a> hymns pick up.</li>
-</ul>
-<p>I acknowledge that this is very US-centric, but since <a href="../../posts/frequency-data">around 85% of my data</a> comes from the US, I guess I’m considering the influence of other countries to be somewhat negligible for this basic calculation.</p>
-<p>With that in mind, here’s the same plot as above, but with those weeks highlighted.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Anyway, the purpose of all this avoidance of holidays is to get the typical percentage of sacrament meetings that contain one or more of these “Easter” hymns during times when you wouldn’t expect them. Basically, get a baseline. As it turns out, the average percentage of sacrament meetings was 19.9%. On the upper end is about 24.5%.</p>
-<p>So, we’ll round up and say the baseline is 25% of sacrament meetings. So, that means that we can consider any week around Eastertime where more than 25% of wards sing “Easter” hymns as being more than normal and indicative of wards singing these hymns to celebrate Easter.</p>
-</div>
-</div>
-</div>
-<p>It turns out it’s around 25% of wards per week. So, if we go back to Figure&nbsp;2, we can highlight all the weeks that have more than 25% of sacrament meetings. Figure&nbsp;3 shows the result:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-weeks_around_easter_highlighted" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-weeks_around_easter_highlighted-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weeks_around_easter_highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Percentage of sacrament meetings with Easter hymns around Easter
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>As it turns out, in Latter-day Saint congregations, between three weeks before and the week after Easter have a greater number of Easter hymns than a typical week. Even then, three and two weeks before are only marginally more Eastery than other weeks. All the other weeks are under the threshold for what is considered normal and have no more “Easter” hymns than any other week of the year. To me, this is unsurprising and matches pretty much any other holiday that we sing about in our church. It’s also interesting to see that, for a holiday we consider most important, it’s actually reflected in our hymns far less than it is in other Christian worship services.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tangent about Easter Sundays without any Easter hymns
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Up above, I showed that 98.3% of wards sing at least one Easter hymn on Easter Sunday. That means there are, very occasionally, wards that don’t. What did they sing? In my data, there were exactly twelve such Easter Sundays. For four of them, I’m missing some of the data, so it’s very possible that they did in fact sing an Easter hymn then. Here are some examples of what some of the remaining wards did on Easter:</p>
-<ul>
-<li>In 2007, a ward in Iowa sang <hymn>Praise to the Man (#27)</hymn>, <hymn>There Is a Green Hill Far Away (#194)</hymn>, and <hymn>How Gentle God’s Commands (#125)</hymn>. The first is perhaps in reference to the First Vision, and the second is essentially an honorary Easter sacrament hymn.</li>
-<li>In 2017, a ward in Weber County, Utah sang <hymn>High on the Mountain Top (#5)</hymn>, <hymn>O God, the Eternal Father (#175)</hymn>, and <hymn>Hark, All Ye Nations! (#264)</hymn>. It’s not clear what the motivations for those were. Perhaps they had a musical number that was an Easter hymn.</li>
-<li>In 2022, a ward in Salt Lake County, Utah sang <hymn>I Am a Child of God (#301)</hymn>, <hymn>I Stand All Amazed (#193)</hymn>, and <hymn>Teach Me to Walk in the Light (304)</hymn>. I wonder if they wanted to sing hymns the children would know on Easter.</li>
-</ul>
-<p>So, it does happen. But not very often!</p>
-</div>
-</div>
-</div>
-</section>
-<section id="whats-sung-around-easter" class="level2">
-<h2 class="anchored" data-anchor-id="whats-sung-around-easter">What’s sung around Easter?</h2>
-<p>Now that we’ve established which hymns are Easter hymns and when those hymns are sung relative to Easter, let’s answer the questions of <em>which</em> of these Easter hymns are sung <em>when</em>.</p>
-<section id="when-are-hymns-sung-within-the-easter-season" class="level3">
-<h3 class="anchored" data-anchor-id="when-are-hymns-sung-within-the-easter-season">When are hymns sung within the Easter season?</h3>
-<p>First, we’ll start off by looking from the perspective of the hymns themselves. If we just focus on the Sundays from three weeks before through one week after, given that any particular hymn is sung, when is that hymn likely going to be sung? It turns out that all 17 of the hymns that could be considered Easter hymns were indeed sung in the Easter season in my database, though obviously some were far less common than others. Figure&nbsp;4 shows these 17 hymns in order of frequency and how often they are sung in a ward in a given year.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Percentage of wards that sing each Easter hymn per year
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>We can immediately see that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are far and away the most common hymns during this time, with the former just slightly ahead. I’m honestly surprised that more wards aren’t singing those hymns! But, like what we saw with the <a href="../../posts/christmas">Christmas</a> hymns, it’s very possible that many more wards <em>hear</em> these hymns each year just as musical numbers of some sort, rather than as a congregational hymn.</p>
-<p>Let’s dive into each of those hymns then and see when during that five-week period they’re sung. Figure&nbsp;5 shows how often each Easter hymn is sung across the Easter season. In this plot, the percentages add up to 100% for each hymn, regardless of how often the hymn is sung generally, so it’s not necessarily meaningful to compare across hymns. Instead, we focus on each hymn and see when it peaks within the Easter season.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-rel_freq" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-rel_freq-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rel_freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Relative frequency of Easter hymns across the Easter season
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>There are a few interesting patterns here. For one, the very infrequent hymns, <hymn>Lo, the Mighty God Appearing (#55)</hymn> and <hymn>The Glorious Gospel Light Has Shone (#283)</hymn>, don’t appear to be sung on Easter itself, but it’s important to keep in mind that both of those were extremely rare in the Easter season in my database, so we shouldn’t draw too many strong conclusions about those. Meanwhile, the most quinticessential Easter hymns peak on Easter Sunday itself.</p>
-<p>Perhaps unsurprisingly, most hymns peak on Easter day itself. The notable exception is <hymn>All Glory, Laud, and Honor (#69)</hymn>. It is a Palm Sunday hymn, so it is appropriate that it is most common on Palm Sunday. (I personally didn’t know that before putting together this blog post, so I’m glad other people are aware of it!) We also see that <hymn>All Creatures of Our God and King (#62)</hymn> and <hymn>My Redeemer Lives (#135)</hymn> peak on Palm Sunday. From what I can tell, all other hymns are most common on Easter Sunday.</p>
-</section>
-<section id="what-hymns-are-most-common-each-week" class="level3">
-<h3 class="anchored" data-anchor-id="what-hymns-are-most-common-each-week">What hymns are most common each week?</h3>
-<p>We can look at the same data a slightly different way and focus on one week at a time. We’ll start with Pqlm Sunday. We just mentioned above that <hymn>All Glory, Laud, and Honor (#69)</hymn> shows a very clear peak the week before Easter. Is it the most common hymn on Palm Sunday? Figure&nbsp;6 shows that it is actually not.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cleveland_palm" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cleveland_palm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_palm-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_palm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Most common hymns on Palm Sunday
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Several other hymns are simply more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> overall, so even though a hymn like <hymn>He is Risen! (#199)</hymn> is much more common on Easter than on Palm Sunday, the sheer fact that it’s sung so much more in general means that even when it’s not at its peak, it’s still more common than <hymn>All Glory, Laud, and Honor (#69)</hymn> on its peak. Palm Sunday also has competition with <a href="../../posts/general_conference">General Conference</a>, so <hymn>We Thank Thee, O God, for a Prophet (#19), even wins out on Palm Sunday. Overall, only 6.4% of wards sung <hymn>All Glory, Laud, and Honor (#69)</hymn> on Palm Sunday.</hymn></p>
-<p>Let’s go back one week and look at two Sundays before Easter. Figure&nbsp;7 shows what hymns are most common then.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cleveland_two_before" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cleveland_two_before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_two_before-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_two_before-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Most common hymns two weeks before Easter Sunday
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>You can immediately see that there really aren’t many Easter hymns during this week. I think it’s pretty clear than that in Latter-day Saint congregations, celebrating Easter does not include singing Easter hymns two weeks before Easter Sunday.</p>
-<p>We now move on to Easter Sunday itself. Figure&nbsp;8 show the most commonly sung hymns on Easter. This looks similar to Figure&nbsp;4, but here we’re just looking at Easter Sunday but we’re expanding it to include all hymns, regardless of whether they’re “technically” Easter hymns.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cleveland_easter" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cleveland_easter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_easter-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_easter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Most common hymns on Easter Sunday
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Here we see that all the hymns on this list are Easter hymns as discussed above or are Sacrament hymns. It’s been hinted at already, but it’s clear that the bulk of Easter singing happens on Easter. As is evident in this plot, Easter hymns dominate on Easter Sunday, and as we saw already in Figure&nbsp;2, 98.6% of wards sing at least one Easter hymn that week.</p>
-<p>Like what we’ve seen already, <hymn>Christ the Lord Is Risen Today (#200)</hymn> and <hymn>He Is Risen! (#199)</hymn> are by far the most common. Interestingly, when we look at the Easter season as a whole, the two are about equal, with <hymn>He Is Risen! (#199)</hymn> having a very slight lead. But on Easter Sunday itself, <hymn>Christ the Lord Is Risen Today (#200)</hymn> is slightly more common. Going back to Figure&nbsp;5, we can see that it has perhaps a stronger, more concentrated peak on Easter, while <hymn>He Is Risen! (#199)</hymn> is slightly more common on Palm Sunday and the week after.</p>
-<p>The two other most canonical Easter hymns, <hymn>That Easter Morn (#198)</hymn> and <hymn>O Savior, Thou Who Wearest a Crown (#197)</hymn>, are less common, being sung by 20.4% and 6.6% of wards each year on Easter, respectively. Most of the rest of the hymns on this list are sacrament hymns. The four sacrament hymns listed in the Easter entry of the Index are the most common, with the exception of <hymn>There is a Green Hill Far Away (#194)</hymn>, which has clear reference to the crucifixion. As for the other hymns, <hymn>I Know that My Redeemer Lives (#136)</hymn>, <hymn>All Creatures of Our God and King (#62)</hymn>, and <hymn>I Believe in Christ (#134)</hymn> are the only others on this list.</p>
-<p>So, it seems like music coordinators are primarily choosing from the hymns listed in the Easter entry of the Table of Contents or the Index. What we do not see on this list are any of the four hymns that are listed in the Resurrection entry in the Index that are not also part of the Easter entry (i.e.&nbsp;the green portion of Figure&nbsp;1 that does not overlap with the blue portion).</p>
-<p>Finally, let’s look at the week after Easter. Figure&nbsp;9 shows that there are far fewer Easter hymns. <hymn>He is Risen! (#199)</hymn> is still quite popular, with <hymn>Christ the Lord Is Risen Today (#200)</hymn> trailing behind a bit more. All the other “Easter” hymns on this list are either sacrament hymns or are popular in other contexts (like <a href="../../posts/fast_sunday">Fast Sunday</a>). The rest of the top 10 hymns are other sacrament hymns and below that are a mix of more <a href="../../posts/general_conference">General Conference</a> hymns, First Vision hymns, or generally popular hymns. So, like what we saw in Figure&nbsp;3, there are some residual Easter hymns being sung, but for the most part, people have moved on.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cleveland_week_after" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cleveland_week_after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-cleveland_week_after-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleveland_week_after-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Most common hymns on the Sunday after Easter
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>One final thing we can explore with these hymns is when during sacrament meeting they’re sung. By that, I mean are they opening hymns, intermediate hymns, or closing hymns? Here, I’ll just focus on the two hymns that have clearly shown to be the most popular: <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn>. We’ve already seen that the two are basically neck-and-neck in popularity, and the only difference we’ve seen between them is that <hymn>Christ the Lord is Risen Today (#200)</hymn> is slightly more popular on Easter Sunday and while <hymn>He Is Risen! (#199)</hymn> is slightly more popular on neighboring weeks. Are there any differences within the meeting itself?</p>
-<p>Figure&nbsp;10 shows the number of times each of these two hymns were sung as opening, intermediate, and closing hymns between two weeks before Easter to a week after. The two hymns are very similar! They’re almost evenly split between opening and closing hymns, with opening being slightly more common. They’re occasionally sung as intermediate hymns, but not too often. <hymn>Christ the Lord is Risen Today (#200)</hymn> is slightly more popular as an opening hymn while <hymn>He Is Risen! (#199)</hymn> is slightly more commonly a closing hymn. It seems then that the most common thing that music coordinators do is they pick one to be the opening hymn and the other to be the closing hymn.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-types" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://hymnstats.joeystanley.com/posts/easter/index_files/figure-html/fig-types-1.png" class="img-fluid figure-img" width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: When are the top two Easter hymns sung in Sacrament meeting?
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this post, I’ve explored Easter hymns. First, I defined a list of potential Easter hymns by looking at relevant topics in the Index and Table of Contents and found a list of 17 hymns. I then determined when the Easter “season” is, as far as how it’s reflected in singing, and determined that two weeks before through one week after is when we see a noticeable increase in Easter hymns, above and beyond what is to be expected. As part of that, I showed that 98.6% of wards sing at least one Easter hymn on Easter Sunday itself, which is pretty remarkable.</p>
-<p>I then looked at each hymn and found that most hymns peak on Easter Sunday, with the most notable exception being <hymn>All Glory, Laud, and Honor (#69)</hymn>, which peaks on Palm Sunday. It is clear that <hymn>He Is Risen! (#199)</hymn> and <hymn>Christ the Lord is Risen Today (#200)</hymn> are the most common hymns around Easter. Other than the latter being slightly more concentrated on Easter Sunday itself, the two pattern almost identically which suggests that music coordinators basically treat them the same.</p>
-<p>I hope the next hymnal introduces more Easter hymns because I think we as Latter-day Saints could do more to celebrate Easter. We mostly celebrate the Resurrection on Easter Sunday itself, and because there are so few hymns to choose from, most of the hymns occur only on Easter. With more hymns, we’d be able to start singing them a few weeks before, and I think that would be a great thing to see.</p>
-
-
-</section>
-
- ]]></description>
-  <category>holidays</category>
-  <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/easter/</guid>
-  <pubDate>Sun, 24 Mar 2024 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
