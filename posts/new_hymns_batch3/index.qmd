@@ -20,7 +20,7 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 sf <- stamp("June 2", quiet = TRUE)
 
 # get last Sunday
-last_sunday <- ymd(floor_date(today(), "week"))
+last_sunday <- ymd("2025-06-08")
 library(gtExtras)
 ```
 
@@ -31,7 +31,7 @@ meetings_since_release1 <- freqs |>
     filter(date <= last_sunday,
            date >= ymd("2024-06-02"),
            !date %in% ymd("2024-10-06",
-                        "2025-04-06"))
+                          "2025-04-06"))
 meetings_since_release2 <- freqs |> 
     filter(date <= last_sunday,
            date >= ymd("2024-09-15"),
@@ -80,9 +80,9 @@ n_weeks_since_release3 <- meetings_since_release3 |>
 ```
 
 
-On February 13th, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/fifteen-new-hymns-available-to-use-in-church-and-at-home) the third batch of new hymns. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1) and [second](/posts/new_hymns_batch2) batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the third batch came out. I'll update this page weekly as I collect more data. Currently I have data from `r scales::comma(n_meetings_since_release3)` sacrament meetings from `r scales::comma(n_wards_since_release3)` wards since February 16th.
+On February 13th, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/fifteen-new-hymns-available-to-use-in-church-and-at-home) the third batch of new hymns. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1) and [second](/posts/new_hymns_batch2) batches of hymns and how they were incorporated into sacrament meetings. This page covers period from when the third batch came out until the fourth batch came out June 12th, with occasionally slight updates as more data from that period trickles in. Currently I have data from `r scales::comma(n_meetings_since_release3)` sacrament meetings from `r scales::comma(n_wards_since_release3)` wards between February 16th and June 8, 2025.
 
-But first, here's how much data I have for each week so far, just so you have an idea of what I'm working with.
+First, here's how much data I have for each week so far, just so you have an idea of what I'm working with.
 
 ```{r, include = TRUE}
 meetings_since_release3 |> 
@@ -92,7 +92,7 @@ meetings_since_release3 |>
     rename(wards = n) |> 
     gt() |> 
     tab_header(title = "Number of wards I have data from, by week",
-               subtitle = "Since February 16th")
+               subtitle = "Between February 16th and June 8th, 2025")
 ```
 
 
@@ -158,7 +158,7 @@ date_minor_breaks <- tibble(weeks_since = 0:52,
 date_breaks <- date_minor_breaks |> 
     filter(weeks_since %% 3 == 0)
 batch3_date_breaks <- date_minor_breaks |> 
-    filter(weeks_since %% 2 == 0)
+    filter(weeks_since %% 3 == 0)
 ```
 
 
@@ -268,7 +268,7 @@ prop_new_batch2_Oct20 <- data_to_plot |>
     as_percent_joey()
 ```
 
-When the second batch came out, only about `r prop_new_batch2_week1` of wards sang at least one of those hymns right away. But, that jumped up to `r prop_new_batch2_week2` and eventually peaked five weeks in at `r prop_new_batch2_Oct20` on October 20. It took a nosedive during Christmastime since there weren't any Christmas hymns in that batch. After that, it partially recovered in January and early February, hovering around 13% of wards singing from it each week. Meanwhile, the first batch of hymns has almost always been more popular. In October 2024, when the second batch was most popular, the two were about even. Since Christmas, the first batch has consistently been more popular than the second batch.
+When the second batch came out, only about `r prop_new_batch2_week1` of wards sang at least one of those hymns right away. But, that jumped up to `r prop_new_batch2_week2` and eventually peaked five weeks in at `r prop_new_batch2_Oct20` on October 20. It took a nosedive during Christmastime since there weren't any Christmas hymns in that batch. After that, it partially recovered in January and early February, hovering around 13% of wards singing from it each week. Meanwhile, the first batch of hymns has almost always been more popular. In October 2024, when the second batch was most popular, the two were about even. After Christmas, the first batch has consistently been more popular than the second batch.
 
 ```{r}
 n_meetings_on_Feb16 <- meetings_since_release1 |> 
@@ -291,13 +291,13 @@ prop_new_batch3_week3 <- data_to_plot |>
     pull(prop_sung) |> 
     as_percent_joey()
 prop_new_batch3_week7 <- data_to_plot |> 
-    filter(date == "2025-04-13",
+    filter(date == "2025-05-25",
            batch == "batch3") |>
     pull(prop_sung) |> 
     as_percent_joey()
 ```
 
-Now we get to the third batch. If the second batch's reception was lukewarm, the third batch was downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. Around Easter, the third batch has finally surpassed the second batch in weekly popularity, partly due to <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> around Easter. Since then, it has been as popular or even more popular than the first batch.
+Now we get to the third batch. If the second batch's reception was lukewarm, the third batch was downright cold. On the first week of the third batch, I have data from `r n_meetings_on_Feb16` wards and just `r prop_new_batch3_week1` of them sang one of the brand new songs. The second week was better, with `r prop_new_batch3_week2`, but still far below where the other batches were during their first few weeks. It's not like people are no longer singing new hymns; in fact, the first and second batches are going as strong as ever. Around Easter, the third batch has finally surpassed the second batch in weekly popularity, partly due to <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> around Easter. After a dip on Mother's Day, it finally hit its high point on May 25th with `r prop_new_batch3_week7` of wards singing it, finally passing the first batch of hymns in weekly popularity. For some reason, it dipped again the followng week, and then the fourth batch came out! 
 
 ```{r}
 data_to_plot |> 
@@ -311,10 +311,10 @@ data_to_plot |>
 
 ## What hymns are most popular?
 
-The following table shows the hymns from the third batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn since its release. 
+The following table shows the hymns from the third batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn during this period. 
 
 ```{r, include = TRUE}
-meetings_since_release1 |> 
+meetings_since_release3 |> 
     
     # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
@@ -335,10 +335,10 @@ meetings_since_release1 |>
     
     gt() |> 
     tab_header(title = "Approximate percentage of wards new hymns have been sung in",
-               subtitle = "Since February 16")
+               subtitle = "Between February 16 and June 8, 2025")
 ```
 
-I've now seen all the new hymns sung at least once in my dataset. <hymn>Let Easter Anthems Ring (#1205)</hymn> is high on this list, but that's only because of [Easter](/posts/easter2025). It looks like <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn> is currently the most popular of the new hymns generally. It's followed by <hymn>This Little Light of Mine (#1028)</hymn> and then <hymn>I Know That the Savior Loves Me (1021)</hymn>, but we'll likely see this change a little bit over the next few weeks and months. 
+The most common hymns in this batch was <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, by a fair margin. It was followed by <hymn>I Know That the Savior Loves Me (1021)</hymn>, <hymn>This Little Light of Mine (#1028)</hymn>. Because this period included [Easter](/posts/easter2025), <hymn>Let Easter Anthems Ring (1205)</hymn> was among the top three in this batch. I'm honestly quite surprised that <hymn>Faith in Every Footstep (1022)</hymn> was not higher on this list. Other than <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, that one is the one I expected the most from the new hymns. 
 
 (For a complete version of this table that includes all hymns, see [here](/overview.qmd).)
 
@@ -384,12 +384,11 @@ meetings_since_release3 |>
     theme_bw()
 ```
 
-It seems like the most popular hymns are somewhat erratic: <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, <hymn>I Know That My Savior Loves Me (#1021)</hymn>, and <hymn>This Little Light of Mine (#1028)</hymn> jump around a lot for some reason. It's possibly a sample size issue, because relatively few wards are singing them. Some of the less common ones don't show a clear pattern, other than they're generally present but not common. Some become slightly more popular after a few weeks, again suggesting (like the other batches) that once wards have gotten the favorites out of the way, they are then open to trying new ones. The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around [Easter](/posts/easter2025).
+The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around [Easter](/posts/easter2025). Other than that, there isn't much of a pattern for these hymns. Some of the more popular ones jumped around in popularity a little bit from week to week, but it's not like we're seeing an obvious trend of one hymn being sung more often soon after the release of the batch---as if wards were anxious to sing it---like what we saw in the [first batch](/posts/new_hymns_batch1)
 
 ## When during meetings are these hymns sung?
 
-We can now see when during sacrament meetings these hymns have been sung. These results will likely change slightly as more time passes, but it's been long enough and enough data has come in that we can get a good idea of what's going on.
-
+We can now see when during sacrament meetings these hymns have been sung. 
 ```{r, include = TRUE}
 meetings_since_release3 |> 
     filter(hymn_num %in% c(1019:1031, 1205:1206),
@@ -416,8 +415,9 @@ meetings_since_release3 |>
     tab_source_note("Note: Each row adds up to 100%.")
 ```
 
+Again, like any plot like this, each hymn has its own story it seems. Some are simply more popular as opening hymns, or closing hymns, or intermediate hymns. We didn't really get any sacrament hymns in this batch, but that didn't stop people from singing some from this batch very occasionally. It seems like most of these hymns were pretty evenly spread out between being sung as opening, intermediate, and closing hymns. 
 
 
 ## Conclusion
 
-Now that it has been a couple months since the third batch was released, we can see which are more popular than others and when they're sung during the meeting. What is clear though is the relatively cold reception these hymns got in the first month. But, people have warmed up to them, especially the Easter ones. 
+It took longer for this third batch to catch on like the first and second batches did. In fact, it took right until before the fourth batch to come out for this one to become as popular as the first batch. I think it's safe to say though that the novelty of a new batch of hymns has worn off a little bit and people aren't quite as anxious to sing through every new hymn like they once might have been. We'll see how this batch compares to the next one!
