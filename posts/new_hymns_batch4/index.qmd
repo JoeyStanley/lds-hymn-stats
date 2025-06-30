@@ -100,8 +100,6 @@ On June 12th, 2025, the church [released](https://newsroom.churchofjesuschrist.o
 I'll tell you right now, the results are pretty boring. I have data from 576 wards and just one of them sang from the fourth batch. The hymn they sang was <hymn>Because (#1039)</hymn>. Honestly, I fully expected this one to be among the least common congregational hymns from this batch, so this is a surprise!
 
 
-<!--
-
 So, I'll continue with the stats anyway, here's how much data I have for each week so far, just so you have an idea of what I'm working with.
 
 ```{r, include = TRUE}
@@ -159,8 +157,10 @@ data_to_plot <- meetings_since_release1 |>
 
 
 ```{r, fig.height = 4, fig.width = 8}
+weeks_since_initial_release <- ceiling(as.numeric(today() - ymd("2024-06-02")) / 7)
+
 # Get date breaks for this post.
-date_minor_breaks <- tibble(weeks_since = 0:52,
+date_minor_breaks <- tibble(weeks_since = 0:weeks_since_initial_release,
                             date = last_sunday) |> 
     mutate(date = last_sunday - weeks_since*7) |> 
     filter(date >= "2024-06-02")
@@ -174,7 +174,7 @@ batch4_date_breaks <- date_minor_breaks |>
 ```{r}
 labels <- tibble(
     batch = c("none", "batch1", "batch2", "batch3", "batch4"),
-    prop  = c(0.73, 0.26, 0.08, 0.04, 0.05),
+    prop  = c(0.73, 0.26, 0.08, 0.04, 0.04),
     date  = ymd(c("2025-04-01", "2025-02-14", "2025-01-25", "2025-03-15", "2025-06-15")),
     label = c("no new hymns", "batch 1", "batch 2", "batch 3", "batch4"))
 
@@ -217,6 +217,13 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     annotate(geom = "text", x = ymd("2025-05-11"), y = 0.29, label = "Mother's\nDay", 
              vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
     
+    # Father's Day
+    annotate(geom = "segment", 
+             x = ymd("2025-06-15"), xend = ymd("2025-06-15"), y = 0.28, yend = 0.18, 
+             arrow = arrow(length = unit(2, "mm")), color = "gray50") +
+    annotate(geom = "text", x = ymd("2025-06-15"), y = 0.29, label = "Father's\nDay", 
+             vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
+    
     
     geom_path(linewidth = 1) +
     geom_point(size = 3) +
@@ -249,9 +256,9 @@ as_percent_joey <- function(x){
 }
 ```
 
-Since it's only been one week, there's not a lot to say, almost nobody sang from the fourth batch. In fairness, it was Father's Day in the United States, so people likely had other plans. 
+It's been three weeks and there's not a lot to say that very few wards have sung from the fourth batch. 
 
-Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. We can use this plot to spot any parallel trends across the batches, especially in the first few weeks of their release.
+Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
 
 ```{r, include = TRUE, fig.height = 5.5, fig.width = 14}
 #| column: page
@@ -263,7 +270,7 @@ data_to_plot |>
     geom_point(size = 3) +
     scale_x_continuous(breaks = seq(2, 100, 2),
                        expand = expansion(0, c(0.2, 2))) + 
-    scale_y_continuous(expand = expansion(0, 0.02),
+    scale_y_continuous(expand = expansion(0, c(0.01, 0.02)),
                        breaks = seq(0, 1, 0.1),
                        minor_breaks = seq(0, 1, 0.02),
                        labels = scales::percent) +
@@ -280,7 +287,7 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
-Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. 
+Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after three weeks, there have been hardly any more.
 
 
 ```{r}
@@ -288,12 +295,12 @@ data_to_plot |>
     filter(batch == "batch4")
 ```
 
-<!--
+
 ## What hymns are most popular?
 
-The following table shows the hymns from the third batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn during this period. 
+The following table shows the hymns from the fourth batch in order of how popular they are. On the right, I have an approximation of how many wards have sung that hymn during this period. I haven't even seen all of them yet, so this is just a very rough guess.
 
-```{r, include = TRUE, eval = FALSE}
+```{r, include = TRUE}
 meetings_since_release4 |> 
     
     # Because people are repeating 1001 now, I can't take it as the raw frequency. I'll have to remove duplicates.
@@ -318,17 +325,17 @@ meetings_since_release4 |>
                subtitle = "Since June 15, 2025")
 ```
 
-The only hymn that was sung was <hymn>Because (#1039)</hymn>. It's not showing up on this plot because of rounding issues. Honestly, I fully expected this one to be among the least common congregational hymns from this batch, so this is a surprise! 
 
 
+<!--
 ## What hymns are most popular each week?
 
 It's been long enough that we can get an idea of which hymns were popular when. The following plot shows the percentage of wards that sang each hymn *of the wards that sang any third batch hymns*. 
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13, eval = FALSE}
 #| column: page
-meetings_since_release3 |> 
-    filter(hymn_num %in% c(1019:1031, 1205:1206)) |>
+meetings_since_release4 |> 
+    filter(hymn_num %in% c(1032:1041, 1207)) |>
     count(date, hymn_num, name_num) |> 
     
     # pivot and stuff to get zeros
@@ -350,7 +357,7 @@ meetings_since_release3 |>
     ggplot(aes(date, prop, group = name_num)) + 
     geom_path() + 
     geom_point() + 
-    scale_x_date(breaks = batch3_date_breaks$date,
+    scale_x_date(breaks = batch4_date_breaks$date,
                  minor_breaks = date_minor_breaks$date,
                  date_labels = "%b %d",
                  expand = expansion(0.1, 0)) +
@@ -365,12 +372,15 @@ meetings_since_release3 |>
 
 The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> and <hymn>Were You There? (#1206)</hymn> being sung around [Easter](/posts/easter2025). Other than that, there isn't much of a pattern for these hymns. Some of the more popular ones jumped around in popularity a little bit from week to week, but it's not like we're seeing an obvious trend of one hymn being sung more often soon after the release of the batch---as if wards were anxious to sing it---like what we saw in the [first batch](/posts/new_hymns_batch1)
 
+-->
+
 ## When during meetings are these hymns sung?
 
 We can now see when during sacrament meetings these hymns have been sung. 
-```{r, include = TRUE, eval = FALSE}
-meetings_since_release3 |> 
-    filter(hymn_num %in% c(1019:1031, 1205:1206),
+
+```{r, include = TRUE}
+meetings_since_release4 |> 
+    filter(hymn_num %in% c(1032:1041, 1207),
            !is.na(type)) |>
     count(name_num, hymn_num, type) |> 
     mutate(n = round(n/sum(n), 2)*100, 
@@ -378,11 +388,12 @@ meetings_since_release3 |>
     pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
     arrange(hymn_num) |> 
     select(-hymn_num) |> 
-    select(name_num, Opening, Sacrament, Intermediate, Closing) |> 
+    select(name_num, 
+           Opening, Sacrament, Intermediate, Closing) |> 
     rename(`New Hymn` = name_num) |> 
     gt() |> 
-    gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE, 
-                   fill = "#4F2B47", height = 20, font_size = "14px") |> 
+    gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
     gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
                    fill = "#4F2B47", height = 20, font_size = "14px") |>
     gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE, 
@@ -390,13 +401,12 @@ meetings_since_release3 |>
     gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE, 
                    fill = "#4F2B47", height = 20, font_size = "14px") |>
     tab_header(title = "When were new hymns sung in sacrament meeting?",
-               subtitle = "Since February 15") |> 
+               subtitle = "Since June 15, 2025") |> 
     tab_source_note("Note: Each row adds up to 100%.")
 ```
 
-Again, like any plot like this, each hymn has its own story it seems. Some are simply more popular as opening hymns, or closing hymns, or intermediate hymns. We didn't really get any sacrament hymns in this batch, but that didn't stop people from singing some from this batch very occasionally. It seems like most of these hymns were pretty evenly spread out between being sung as opening, intermediate, and closing hymns. 
+Again, the data is so sparse, that there's not much to say. We'll have to wait a few more weeks or months to really see some more meaningful trends.
 
--->
 
 ## Conclusion
 
