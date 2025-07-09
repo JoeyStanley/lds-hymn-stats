@@ -94,13 +94,9 @@ n_weeks_since_release4 <- meetings_since_release4 |>
 ```
 
 
-On June 12th, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/eleven-new-hymns-now-available-in-hymns-for-home-and-church) the fourth batch of new hymns. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2), and [third](/posts/new_hymns_batch3) batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fourth batch came out and will update weekly as more data comes in. <!--Currently I have data from `r scales::comma(n_meetings_since_release4)` sacrament meetings from `r scales::comma(n_wards_since_release4)` wards since June 15, 2025.-->
+On June 12th, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/eleven-new-hymns-now-available-in-hymns-for-home-and-church) the fourth batch of new hymns. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2), and [third](/posts/new_hymns_batch3) batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fourth batch came out and will update weekly as more data comes in. 
 
-
-I'll tell you right now, the results are pretty boring. I have data from 576 wards and just one of them sang from the fourth batch. The hymn they sang was <hymn>Because (#1039)</hymn>. Honestly, I fully expected this one to be among the least common congregational hymns from this batch, so this is a surprise!
-
-
-So, I'll continue with the stats anyway, here's how much data I have for each week so far, just so you have an idea of what I'm working with.
+Currently I have data from `r scales::comma(n_meetings_since_release4)` sacrament meetings from `r scales::comma(n_wards_since_release4)` wards since June 15, 2025. Here's how much data I have for each week so far, just so you have an idea of what I'm working with.
 
 ```{r, include = TRUE}
 meetings_since_release4 |> 
@@ -117,7 +113,7 @@ meetings_since_release4 |>
 
 ## How many wards sang new hymns each week?
 
-The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all three batches just so you can compare them to each other.
+The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all batches just so you can compare them to each other.
 
 ```{r, fig.height = 4, fig.width = 8}
 count_new_hymns <- function(.category_name, .hymns) {
@@ -256,11 +252,11 @@ as_percent_joey <- function(x){
 }
 ```
 
-It's been three weeks and there's not a lot to say that very few wards have sung from the fourth batch. 
+It's been four weeks and there's not a lot to say, other than very few wards have sung from the fourth batch. This last Sunday (July 6th) was the best so far but still less than 2% of wards sang from the fourth batch this week.
 
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
 
-```{r, include = TRUE, fig.height = 5.5, fig.width = 14}
+```{r, include = TRUE, fig.height = 4.5, fig.width = 14}
 #| column: page
 data_to_plot |> 
     mutate(weeks_since_release = as.numeric(date - min(date))/7, .by = batch) |> 
@@ -286,9 +282,7 @@ data_to_plot |>
     theme_minimal(base_size = 16) +
     theme(legend.position = "none")
 ```
-
-Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after three weeks, there have been hardly any more.
-
+Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after four weeks, there have been hardly any more.
 
 ```{r}
 data_to_plot |> 
@@ -326,8 +320,8 @@ meetings_since_release4 |>
 ```
 
 
-
 <!--
+
 ## What hymns are most popular each week?
 
 It's been long enough that we can get an idea of which hymns were popular when. The following plot shows the percentage of wards that sang each hymn *of the wards that sang any third batch hymns*. 
@@ -376,7 +370,7 @@ The most obvious trend though is <hymn>Let Easter Anthems Ring (#1205)</hymn> an
 
 ## When during meetings are these hymns sung?
 
-We can now see when during sacrament meetings these hymns have been sung. 
+We can also see when during sacrament meetings these hymns have been sung. Data sparsity makes this a pretty unreliable though. We'll have to wait a few more weeks or months to really see some more meaningful trends.
 
 ```{r, include = TRUE}
 meetings_since_release4 |> 
@@ -405,9 +399,7 @@ meetings_since_release4 |>
     tab_source_note("Note: Each row adds up to 100%.")
 ```
 
-Again, the data is so sparse, that there's not much to say. We'll have to wait a few more weeks or months to really see some more meaningful trends.
-
 
 ## Conclusion
 
-There's really not much more to say right now! We'll see if more people sing from this batch next week!
+There's really not much more to say right now. We'll see if more people sing from this batch next week!
