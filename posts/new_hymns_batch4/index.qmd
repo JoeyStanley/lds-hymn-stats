@@ -252,7 +252,7 @@ as_percent_joey <- function(x){
 }
 ```
 
-It's been four weeks and there's not a lot to say, other than very few wards have sung from the fourth batch. This last Sunday (July 6th) was the best so far but still less than 2% of wards sang from the fourth batch this week.
+In the five weeks since the fourth batch was released, we've seen a very slow but pretty consistent rise in popularity. This last Sunday (July 13th) was the best so far but still less than 4% of wards sang from the fourth batch this week.
 
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
 
@@ -273,7 +273,7 @@ data_to_plot |>
     scale_color_manual(breaks = c("none", "batch1", "batch2", "batch3", "batch4"),
                        # Color brewer Set 1
                        values = c("gray66", "#e41a1c",  "#377eb8",  "#4daf4a", "#984ea3")) +
-    labs(x = NULL,
+    labs(x = "weeks since release",
          y = "percentage of wards",
          color = "number of new hymns",
          title = "Percentage of wards singing new hymns since their release date",
