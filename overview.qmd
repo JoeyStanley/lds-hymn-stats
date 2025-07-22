@@ -17,6 +17,7 @@ This page just has a summary of all the hymns and their frequency stats, includi
 I currently have data from `r scales::comma(get_n_distinct_meetings())` sacrament meetings. If you were to attend that many, it would take about `r round(get_n_distinct_meetings()/48, 0)` years---so, more than a couple lifetimes' worth of data. It's also the equivalent of the entire 40-year lifetime of the 1985 hymnal in `r round(get_n_distinct_meetings()/48/40, 0)` wards. This data comes from `r scales::comma(length(unique(freqs$ward)))` wards, mostly in the United States. Across all these meetings, there are `r scales::comma(nrow(freqs))` hymns. See [here](/posts/frequency-data) for a detailed breakdown of how this data is distributed across time and space, as well as an explanation of where it call came from. 
 
 
+
 ## Frequency Table
 
 ::: {.panel-tabset}
@@ -188,6 +189,10 @@ batch3_rows <- post_june_data |>
     rowid_to_column("real_row") |> 
     filter(as.numeric(str_remove(hymn_num, "#")) %in% c(1019:1031, 1205:1206)) |> 
     pull(real_row)
+batch4_rows <- post_june_data |> 
+    rowid_to_column("real_row") |> 
+    filter(as.numeric(str_remove(hymn_num, "#")) %in% c(1032:1041, 1207)) |> 
+    pull(real_row)
 
 post_june_data |> 
     select(`#` = hymn_num,
@@ -205,7 +210,8 @@ post_june_data |>
     column_spec(5, color = make_things_gray(post_june_data, pred_times_per_year)) |> 
     row_spec(row = batch1_rows, background = "#b3cde3") |>  
     row_spec(row = batch2_rows, background = "#fbb4ae") |> 
-    row_spec(row = batch3_rows, background = "#ccebc5")
+    row_spec(row = batch3_rows, background = "#ccebc5") |> 
+    row_spec(row = batch4_rows, background = "#decbe4")
 ```
 
 
