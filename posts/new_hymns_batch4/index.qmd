@@ -252,7 +252,12 @@ as_percent_joey <- function(x){
 }
 ```
 
-In the five weeks since the fourth batch was released, we've seen a very slow but pretty consistent rise in popularity. July 13th was the best so far with just over 5% of wards singing from this batch.
+Since the fourth batch was released, we've seen a very slow rise in popularity. July 27th was the best so far with almost 6% of wards singing from this batch.
+
+```{r}
+data_to_plot |> 
+    filter(batch == "batch4")
+```
 
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
 
@@ -282,12 +287,10 @@ data_to_plot |>
     theme_minimal(base_size = 16) +
     theme(legend.position = "none")
 ```
-Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after over a month, still only a few wards have ung from this batch.
 
-```{r}
-data_to_plot |> 
-    filter(batch == "batch4")
-```
+Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after almost two months, still only a few wards have sung from this batch.
+
+
 
 
 ## What hymns are most popular?
@@ -319,12 +322,14 @@ meetings_since_release4 |>
                subtitle = "Since June 15, 2025")
 ```
 
+It's perhaps not too surprising that the most popular one was <hymn>I'm a Pioneer Too (#1034)</hymn>. This batch was released just before [Pioneer Day](/posts/pioneer_day) in Utah, so it temporarily enjoys its spot in first place. After a few weeks though, I think we'll see it sink lower because I don't think too many wards will be singing it "off-season."
+
 
 ## What hymns are most popular each week?
 
 It's been long enough that we can get an idea of which hymns were popular when. The following plot shows the percentage of wards that sang each hymn *of the wards that sang any fourth batch hymns*. 
 
-```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13, eval = FALSE}
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
 meetings_since_release4 |> 
     filter(hymn_num %in% c(1032:1041, 1207)) |>
@@ -362,7 +367,7 @@ meetings_since_release4 |>
     theme_bw()
 ```
 
-The most obvious trend is that <hymn>I'm a Pioneer Too (#1034)</hymn> saw a big spike on July 20th, which is the Sunday before Pioneer Day here in Utah. Half of wards that sang from the fourth batch sang that hymn that day.
+The most obvious trend is that <hymn>I'm a Pioneer Too (#1034)</hymn> saw a big spike at the end of July, which is the Sunday before Pioneer Day here in Utah. On July 20th, half of wards that sang from the fourth batch sang that hymn that day.
 
 
 ## When during meetings are these hymns sung?
