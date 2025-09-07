@@ -366,6 +366,31 @@ uniques_over_time %>%
     theme_bw()
 ```
 
+```{r}
+# same as above but in proportion of the hymnal
+uniques_over_time %>%
+    filter(nth_unique_hymn %% 5 == 0,
+           date_id <= 480) %>%
+    filter(nth_unique_hymn < 200) |>
+    summarize(mean = mean(date_id), 
+              q05 = quantile(date_id, 0.05),
+              q25 = quantile(date_id, 0.25),
+              median = median(date_id),
+              q75 = quantile(date_id, 0.75),
+              q95 = quantile(date_id, 0.95),
+              .by = nth_unique_hymn)
+    ggplot(aes(nth_unique_hymn, date_id, group = nth_unique_hymn)) + 
+    geom_boxplot() + 
+    scale_x_continuous(breaks = seq(0, 300, 15),
+                       expand = expansion(0, 5)) + 
+    scale_y_continuous(breaks = seq(0, 700, 48),
+                       labels = 0:14,
+                       expand = expansion(0, 24)) + 
+    labs(x = "unique hymns",
+         y = "years",
+         title = "How long do wards take to sing a certain number of hymns?") + 
+    theme_bw()
+```
 
 
 ```{r, include = TRUE}

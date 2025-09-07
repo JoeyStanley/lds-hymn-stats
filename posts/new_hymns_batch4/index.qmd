@@ -21,6 +21,7 @@ sf <- stamp("June 2", quiet = TRUE)
 
 # get last Sunday
 last_sunday <- ymd(floor_date(today(), "week"))
+last_sunday <- ymd("2025-09-06")
 library(gtExtras)
 ```
 
@@ -94,6 +95,7 @@ n_weeks_since_release4 <- meetings_since_release4 |>
 ```
 
 
+
 On June 12th, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/eleven-new-hymns-now-available-in-hymns-for-home-and-church) the fourth batch of new hymns. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2), and [third](/posts/new_hymns_batch3) batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fourth batch came out and will update weekly as more data comes in. 
 
 Currently I have data from `r scales::comma(n_meetings_since_release4)` sacrament meetings from `r scales::comma(n_wards_since_release4)` wards since June 15, 2025. Here's how much data I have for each week so far, just so you have an idea of what I'm working with.
@@ -161,7 +163,7 @@ date_minor_breaks <- tibble(weeks_since = 0:weeks_since_initial_release,
     mutate(date = last_sunday - weeks_since*7) |> 
     filter(date >= "2024-06-02")
 date_breaks <- date_minor_breaks |> 
-    filter(weeks_since %% 3 == 0)
+    filter(weeks_since %% 4 == 0)
 batch4_date_breaks <- date_minor_breaks |> 
     filter(weeks_since %% 1 == 0)
 ```
@@ -252,7 +254,7 @@ as_percent_joey <- function(x){
 }
 ```
 
-Since the fourth batch was released, we've seen a very slow rise in popularity. July 27th was the best so far with almost 6% of wards singing from this batch.
+Since the fourth batch was released, we've seen a very slow rise in popularity. August 17th was the best so far with 6.5% of wards singing from it. All four batches have been pretty consistent for the past month or so, with the first batch most common, then the second, then the third, then the fourth. We are now to the point though where just about half of wards are singing at least one new hymn in a given week.
 
 ```{r}
 data_to_plot |> 
@@ -288,7 +290,7 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
-Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after almost two months, still only a few wards have sung from this batch.
+Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after almost two months, still only a few wards have sung from this batch. For the fourth batch, it has never been as popular as any of the others. 
 
 
 
@@ -322,7 +324,7 @@ meetings_since_release4 |>
                subtitle = "Since June 15, 2025")
 ```
 
-It's perhaps not too surprising that the most popular one was <hymn>I'm a Pioneer Too (#1034)</hymn>. This batch was released just before [Pioneer Day](/posts/pioneer_day) in Utah, so it temporarily enjoys its spot in first place. After a few weeks though, I think we'll see it sink lower because I don't think too many wards will be singing it "off-season."
+It's perhaps not too surprising that the most popular one is <hymn>O Lord, Who Gave Thy Life for Me (#1041)</hymn> since it's a sacrament hymn. For a while, <hymn>I'm a Pioneer Too (#1034)</hymn> was the #1 hymn in this batch, but keep in mind that it came out just before [Pioneer Day](/posts/pioneer_day) in Utah. After a few weeks though, it sunk a little lower because I don't think too many wards will be singing it "off-season."
 
 
 ## What hymns are most popular each week?
@@ -367,8 +369,7 @@ meetings_since_release4 |>
     theme_bw()
 ```
 
-The most obvious trend is that <hymn>I'm a Pioneer Too (#1034)</hymn> saw a big spike at the end of July, which is the Sunday before Pioneer Day here in Utah. On July 20th, half of wards that sang from the fourth batch sang that hymn that day.
-
+The most obvious trend is that <hymn>I'm a Pioneer Too (#1034)</hymn> saw a big spike at the end of July, which is the Sunday before Pioneer Day here in Utah. On July 20th, half of wards that sang from the fourth batch sang that hymn that day. The other spikes in the early weeks for two of the hymns were because there were so few wards singing from this batch, so it's a small sample size problem. But, we are seeing, <hymn>Oh, How Great Is our Joy (#1033)</hymn> and <hymn>I'm Gonna Live So God Can Use Me (#1037)</hymn> catching on a little bit and becoming more popular.
 
 ## When during meetings are these hymns sung?
 
