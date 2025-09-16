@@ -21,7 +21,6 @@ sf <- stamp("June 2", quiet = TRUE)
 
 # get last Sunday
 last_sunday <- ymd(floor_date(today(), "week"))
-last_sunday <- ymd("2025-09-06")
 library(gtExtras)
 ```
 
@@ -254,11 +253,14 @@ as_percent_joey <- function(x){
 }
 ```
 
-Since the fourth batch was released, we've seen a very slow rise in popularity. August 17th was the best so far with 6.5% of wards singing from it. All four batches have been pretty consistent for the past month or so, with the first batch most common, then the second, then the third, then the fourth. We are now to the point though where just about half of wards are singing at least one new hymn in a given week.
+Since the fourth batch was released, we've seen a very slow rise in popularity. August 24th was the best so far with 6.7% of wards singing from it. All four batches have been pretty consistent since about then, with the first batch generally the most common, then the second, then the third, then the fourth. We are now to the point though where just about half of wards are singing at least one new hymn in a given week.
 
 ```{r}
 data_to_plot |> 
     filter(batch == "batch4")
+data_to_plot |> 
+    filter(batch == "batch4") |> 
+    arrange(-prop_sung)
 ```
 
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
@@ -290,7 +292,7 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
-Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after almost two months, still only a few wards have sung from this batch. For the fourth batch, it has never been as popular as any of the others. 
+Here we can see that each batch is a little less popular than the previous one, both overall and week by week. Nearly 20% of wards sang from the first batch the week it came out. About 8% did for the second batch. About 1% for the third batch. And of the 576 wards I have data from on June 15th, just one of them sang from the fourth batch. Granted, it was Father's Day, but after almost two months, still only a few wards have sung from this batch. For the fourth batch, it has never been as popular as any of the others until recently where it has surpassed the second batch at this point since their respective releases. Although that's probably because the second batch was not super popular during Christmastime. 
 
 
 
@@ -324,7 +326,7 @@ meetings_since_release4 |>
                subtitle = "Since June 15, 2025")
 ```
 
-It's perhaps not too surprising that the most popular one is <hymn>O Lord, Who Gave Thy Life for Me (#1041)</hymn> since it's a sacrament hymn. For a while, <hymn>I'm a Pioneer Too (#1034)</hymn> was the #1 hymn in this batch, but keep in mind that it came out just before [Pioneer Day](/posts/pioneer_day) in Utah. After a few weeks though, it sunk a little lower because I don't think too many wards will be singing it "off-season."
+It's perhaps not too surprising that the most popular one is <hymn>O Lord, Who Gave Thy Life for Me (#1041)</hymn> since it's a sacrament hymn. For a while, <hymn>I'm a Pioneer Too (#1034)</hymn> was the #1 hymn in this batch, but keep in mind that it came out just before [Pioneer Day](/posts/pioneer_day) in Utah so it was briefly pretty popular. After a few weeks though, it sunk a little lower because I don't think too many wards will be singing it "off-season."
 
 
 ## What hymns are most popular each week?
@@ -356,8 +358,8 @@ meetings_since_release4 |>
     ggplot(aes(date, prop, group = name_num)) + 
     geom_path() + 
     geom_point() + 
-    scale_x_date(breaks = batch4_date_breaks$date,
-                 minor_breaks = date_minor_breaks$date,
+    scale_x_date(date_breaks = "3 weeks",
+                 date_minor_breaks = "1 week",
                  date_labels = "%b %d",
                  expand = expansion(0.1, 0)) +
     scale_y_continuous(labels = scales::percent) + 
