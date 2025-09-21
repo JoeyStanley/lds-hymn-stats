@@ -1,0 +1,389 @@
+---
+title: "The Fifth Batch of New Hymns!"
+author: "Joey Stanley"
+date: "2025-09-18"
+date-modified: last-modified
+categories: 
+  - general
+  - frequency
+  - new hymns
+reference-location: margin
+draft: TRUE
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+
+# Apply a date stamp
+sf <- stamp("June 2", quiet = TRUE)
+
+# get last Sunday
+last_sunday <- ymd(floor_date(today(), "week"))
+library(gtExtras)
+```
+
+```{r}
+batch1 <- c(1001:1009, 1201:1204)
+batch2 <- c(1010:1018)
+batch3 <- c(1019:1031, 1205:1206)
+batch4 <- c(1032:1041, 1207)
+batch5 <- c(1042:1051, 1208:1209)
+```
+
+
+
+```{r}
+general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04")
+get_meetings_since_release <- function(.date) {
+    freqs |> 
+        filter(date >= ymd(.date),
+               date <= last_sunday,
+               !date %in% general_conference_dates)
+}
+meetings_since_release1 <- get_meetings_since_release("2024-06-02")
+meetings_since_release2 <- get_meetings_since_release("2024-09-15")
+meetings_since_release3 <- get_meetings_since_release("2025-02-16")
+meetings_since_release4 <- get_meetings_since_release("2025-06-15")
+meetings_since_release5 <- get_meetings_since_release("2025-09-21")
+
+get_n_meetings_since_release <- function(.df) {nrow(distinct(.df, meeting_id))}
+n_meetings_since_release1 <- get_n_meetings_since_release(meetings_since_release1)
+n_meetings_since_release2 <- get_n_meetings_since_release(meetings_since_release2)
+n_meetings_since_release3 <- get_n_meetings_since_release(meetings_since_release3)
+n_meetings_since_release4 <- get_n_meetings_since_release(meetings_since_release4)
+n_meetings_since_release5 <- get_n_meetings_since_release(meetings_since_release5)
+
+get_n_wards_since_release <- function(.df) {
+    .df |> 
+        filter(date <= ymd(last_sunday)) |> 
+        pull(ward) |> 
+        unique() |> 
+        length()
+}
+n_wards_since_release1 <- get_n_wards_since_release(meetings_since_release1)
+n_wards_since_release2 <- get_n_wards_since_release(meetings_since_release2)
+n_wards_since_release3 <- get_n_wards_since_release(meetings_since_release3)
+n_wards_since_release4 <- get_n_wards_since_release(meetings_since_release4)
+n_wards_since_release5 <- get_n_wards_since_release(meetings_since_release5)
+
+get_n_weeks_since_release <- function(.df) {nrow(count(.df, date))}
+n_weeks_since_release1 <- get_n_weeks_since_release(meetings_since_release1)
+n_weeks_since_release2 <- get_n_weeks_since_release(meetings_since_release2)
+n_weeks_since_release3 <- get_n_weeks_since_release(meetings_since_release3)
+n_weeks_since_release4 <- get_n_weeks_since_release(meetings_since_release4)
+n_weeks_since_release5 <- get_n_weeks_since_release(meetings_since_release5)
+```
+
+
+On September 18, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/hymn-written-by-president-nelson-included-in-latest-release) the fifth batch of new hymns, which features another African American spiritual, a hymn written by a Tongan saint, and lyrics written by President Nelson. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2),  [third](/posts/new_hymns_batch3), and [fourth](/posts/new_hymns_batch4) batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fifth batch came out and will update weekly as more data comes in. 
+
+Currently I have data from `r scales::comma(n_meetings_since_release5)` sacrament meetings from `r scales::comma(n_wards_since_release5)` wards since September 21, 2025. Here's how much data I have for each week so far, just so you have an idea of what I'm working with.
+
+```{r, include = TRUE}
+meetings_since_release5 |> 
+    distinct(date, meeting_id) |> 
+    count(date) |> 
+    mutate(date = sf(date)) |> 
+    rename(wards = n) |> 
+    gt() |> 
+    tab_header(title = "Number of wards I have data from, by week",
+               subtitle = "Since September 21, 2025")
+```
+
+
+
+## How many wards sang new hymns each week?
+
+The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all batches just so you can compare them to each other.
+
+```{r, fig.height = 4, fig.width = 8}
+count_new_hymns <- function(.category_name, .hymns) {
+    meetings_since_release1 |> 
+        mutate(is_new = hymn_num %in% .hymns) |>
+        summarize(n_new = sum(is_new), .by = c(date, ward)) |>
+        count(date, n_new) |>
+        arrange(date) |>
+        mutate(prop_new = n/sum(n), .by = date) |>
+        mutate(n_new = as.factor(n_new)) |>
+        mutate(category = .category_name) |>
+        select(-n) |>
+        pivot_wider(names_from = n_new, values_from = prop_new)
+}
+data_to_plot <- meetings_since_release1 |> 
+    summarize(batch1 = sum(hymn_num %in% batch1) > 0,
+              batch2 = sum(hymn_num %in% batch2) > 0,
+              batch3 = sum(hymn_num %in% batch3) > 0,
+              batch4 = sum(hymn_num %in% batch4) > 0,
+              batch5 = sum(hymn_num %in% batch5) > 0,
+              .by = c(meeting_id, date)) |>
+    mutate(none = !batch1 & !batch2 & !batch3 & !batch4 & !batch5) |>
+    pivot_longer(cols = c(batch1, batch2, batch3, batch4, batch5, none), names_to = "batch", values_to = "present") |> 
+    count(date, batch, present) |> 
+    pivot_wider(names_from = present, values_from = n, values_fill = 0) |> 
+    mutate(prop_sung = `TRUE`/(`TRUE` + `FALSE`)) |> 
+    
+    # don't need batch 5 before Sept 21
+    filter(!(batch == "batch5" & date < ymd("2025-09-21"))) |>
+    # don't need batch 4 before June 15
+    filter(!(batch == "batch4" & date < ymd("2025-06-15"))) |>
+    # don't need batch 3 before Feb 13
+    filter(!(batch == "batch3" & date < ymd("2025-02-13"))) |>
+    # don't need batch 2 before Sep 15
+    filter(!(batch == "batch2" & date < ymd("2024-09-15"))) |>
+    # don't need batch 1 before June 2
+    filter(!(batch == "batch1" & date < ymd("2024-06-02"))) |>
+    print()
+```
+
+
+
+```{r, fig.height = 4, fig.width = 8}
+weeks_since_initial_release <- ceiling(as.numeric(last_sunday - ymd("2024-06-02")) / 7)
+
+# Get date breaks for this post.
+date_minor_breaks <- tibble(weeks_since = 0:weeks_since_initial_release,
+                            date = last_sunday) |> 
+    mutate(date = last_sunday - weeks_since*7) |> 
+    filter(date >= "2024-06-02")
+date_breaks <- date_minor_breaks |> 
+    filter(weeks_since %% 4 == 0)
+batch5_date_breaks <- date_minor_breaks |> 
+    filter(weeks_since %% 1 == 0)
+```
+
+
+```{r}
+labels <- tibble(
+    batch = c("none", "batch1", "batch2", "batch3", "batch4"),
+    prop  = c(0.73, 0.26, 0.08, 0.04, 0.04),
+    date  = ymd(c("2025-04-01", "2025-02-14", "2025-01-25", "2025-03-15", "2025-06-15")),
+    label = c("no new hymns", "batch 1", "batch 2", "batch 3", "batch4"))
+
+# Annotations
+christmas_data_to_highlight <- data_to_plot |> 
+    filter(batch %in% c("batch1", "batch2"),
+           date >= "2024-12-01",
+           date <= "2025-01-01") |> 
+    mutate(label = "Christmas")
+easter_data_to_highlight <- data_to_plot |> 
+    filter(batch %in% c("batch1", "batch2"),
+           date >= "2025-04-13",
+           date <= "2025-04-27") |> 
+    mutate(label = "Easter")
+```
+
+
+```{r, include = TRUE, fig.height = 5.5, fig.width = 14}
+#| column: page
+ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
+    
+    # Christmas annotation
+    ggforce::geom_mark_ellipse(data = christmas_data_to_highlight, group = 1, color = "gray50") + 
+    annotate(geom = "text", x = ymd("2024-11-03"), y = 0.35, label = "Christmas", hjust = 1, color = "gray50") + 
+    annotate(geom = "curve", color = "gray50",
+             x = ymd("2024-11-05"), xend = ymd("2024-11-25"), y = 0.35, yend = 0.30,
+             curvature = -0.25, arrow = arrow(length = unit(2, "mm"))) + 
+    
+    # Easter
+    ggforce::geom_mark_ellipse(data = easter_data_to_highlight, group = 1, color = "gray50") +
+    annotate(geom = "segment", color = "gray50",
+             x = ymd("2025-04-20"), xend = ymd("2025-04-20"), y = 0.35, yend = 0.275, 
+             arrow = arrow(length = unit(2, "mm"))) +
+    annotate(geom = "text", x = ymd("2025-04-20"), y = 0.37, label = "Easter", hjust = 0.5, color = "gray50") +
+    
+    # Mother's Day
+    annotate(geom = "segment", 
+             x = ymd("2025-05-11"), xend = ymd("2025-05-11"), y = 0.28, yend = 0.18, 
+             arrow = arrow(length = unit(2, "mm")), color = "gray50") +
+    annotate(geom = "text", x = ymd("2025-05-11"), y = 0.29, label = "Mother's\nDay", 
+             vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
+    
+    # Father's Day
+    annotate(geom = "segment", 
+             x = ymd("2025-06-15"), xend = ymd("2025-06-15"), y = 0.28, yend = 0.18, 
+             arrow = arrow(length = unit(2, "mm")), color = "gray50") +
+    annotate(geom = "text", x = ymd("2025-06-15"), y = 0.29, label = "Father's\nDay", 
+             vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
+    
+    
+    geom_path(linewidth = 1) +
+    geom_point(size = 3) +
+    geom_text(data = labels, aes(y = prop, label = label), hjust = 0.5, vjust = 0.5, size = 6) +
+    
+    
+    scale_x_date(breaks = date_breaks$date,
+                 minor_breaks = date_minor_breaks$date,
+                 date_labels = "%b %d",
+                 expand = expansion(0.02, 0)) +
+    scale_y_continuous(expand = expansion(0, 0.02),
+                       breaks = seq(0, 1, 0.1),
+                       labels = scales::percent) +
+    scale_color_manual(breaks = c("none", "batch1", "batch2", "batch3", "batch4", "batch5"),
+                       # Color brewer Set1
+                       values = c("gray66", "#e41a1c",  "#377eb8",  "#4daf4a", "#984ea3", "#ff7f00")) +
+    labs(x = NULL,
+         y = "percentage of wards",
+         color = "number of new hymns",
+         title = "Percentage of wards singing new hymns since June 2",
+         subtitle = paste("Based on data from", comma(n_meetings_since_release1), "sacrament meetings from", comma(n_wards_since_release1), "wards")) + 
+    theme_minimal(base_size = 16) +
+    theme(legend.position = "none")
+```
+
+
+
+
+```{r}
+data_to_plot |> 
+    filter(batch == "batch5")
+data_to_plot |> 
+    filter(batch == "batch5") |> 
+    arrange(-prop_sung)
+```
+
+Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
+
+```{r, include = TRUE, fig.height = 4.5, fig.width = 14}
+#| column: page
+data_to_plot |> 
+    mutate(weeks_since_release = as.numeric(date - min(date))/7, .by = batch) |> 
+    filter(!batch %in% "none") |> 
+    ggplot(aes(weeks_since_release, prop_sung, group = batch, color = batch)) +
+    geom_path(linewidth = 1) +
+    geom_point(size = 3) +
+    scale_x_continuous(breaks = seq(2, 100, 2),
+                       expand = expansion(0, c(0.2, 2))) + 
+    scale_y_continuous(expand = expansion(0, c(0.01, 0.02)),
+                       breaks = seq(0, 1, 0.1),
+                       minor_breaks = seq(0, 1, 0.02),
+                       labels = scales::percent) +
+    scale_color_manual(breaks = c("none", "batch1", "batch2", "batch3", "batch4", "batch5"),
+                       # Color brewer Set 1
+                       values = c("gray66", "#e41a1c",  "#377eb8",  "#4daf4a", "#984ea3", "#ff7f00")) +
+    labs(x = "weeks since release",
+         y = "percentage of wards",
+         color = "number of new hymns",
+         title = "Percentage of wards singing new hymns since their release date",
+         subtitle = paste("Based on data from", comma(n_meetings_since_release1), "sacrament meetings from", comma(n_wards_since_release1), "wards")) + 
+    theme_minimal(base_size = 16) +
+    theme(legend.position = "none")
+```
+
+<!--
+
+## What hymns are most popular?
+
+The following table shows the hymns from the fifth batch in order of how popular they are.  
+
+```{r, include = TRUE}
+meetings_since_release5 |> 
+    
+    # I can't take it as the raw frequency. I'll have to remove duplicates.
+    mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
+    filter(nth_time == 1) |> 
+    
+    cleveland(return = "table", 
+              stat_to_plot = sum_prop_wards,
+              hymns_to_plot = batch5) |> 
+    mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
+    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
+    filter(hymn_num %in% batch5) |>
+    mutate(sum_prop_wards = scales::percent(round(sum_prop_wards, 3))) |> 
+    
+    # add label for missing hymns
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           sum_prop_wards = if_else(is.na(sum_prop_wards), "0%", sum_prop_wards)) |> 
+    select(Hymn = label, `percent of wards` = sum_prop_wards) |> 
+    
+    gt() |> 
+    tab_header(title = "Approximate percentage of wards new hymns have been sung in",
+               subtitle = "Since June 15, 2025")
+```
+
+
+
+## What hymns are most popular each week?
+
+
+
+```{r, include = FALSE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
+#| column: page
+#| 
+# meetings_since_release5 |> 
+#     filter(hymn_num %in% batch5) |>
+#     count(date, hymn_num, name_num) |> 
+#     
+#     # pivot and stuff to get zeros
+#     pivot_wider(names_from = date, values_from = n, values_fill = 0) |> 
+#     pivot_longer(cols = -c(hymn_num, name_num), names_to = "date", values_to = "n") |>
+#     mutate(date = ymd(date)) |> 
+#     
+#     # put them in order
+#     arrange(hymn_num) |> 
+#     mutate(name_num = fct_inorder(name_num)) |> 
+#     
+#     # Put the dates in order
+#     arrange(date) |> 
+#     mutate(date = date) |> 
+#     
+#     # proportions per week
+#     mutate(prop = n/sum(n), .by = date) |> 
+#     
+#     ggplot(aes(date, prop, group = name_num)) + 
+#     geom_path() + 
+#     geom_point() + 
+#     scale_x_date(date_breaks = "3 weeks",
+#                  date_minor_breaks = "1 week",
+#                  date_labels = "%b %d",
+#                  expand = expansion(0.1, 0)) +
+#     scale_y_continuous(labels = scales::percent) + 
+#     facet_wrap(~name_num, ncol = 4) + 
+#     labs(title = "Proportion of wards singing new hymns by week",
+#          subtitle = "Of the sacrament meetings with new hymns",
+#          x = NULL,
+#          y = "proportion of wards") + 
+#     theme_bw()
+```
+
+
+
+## When during meetings are these hymns sung?
+
+We can also see when during sacrament meetings these hymns have been sung. Data sparsity makes this a pretty unreliable table though. We'll have to wait a few more weeks or months to really see some more meaningful trends.
+
+```{r, include = TRUE}
+# meetings_since_release5 |> 
+#     filter(hymn_num %in% batch5,
+#            !is.na(type)) |>
+#     count(name_num, hymn_num, type) |> 
+#     mutate(n = round(n/sum(n), 2)*100, 
+#            .by = name_num) |> 
+#     pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
+#     arrange(hymn_num) |> 
+#     select(-hymn_num) |> 
+#     select(name_num, 
+#            Opening, Sacrament, Intermediate, Closing) |> 
+#     rename(`New Hymn` = name_num) |> 
+#     gt() |> 
+#     gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE, 
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE, 
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     tab_header(title = "When were new hymns sung in sacrament meeting?",
+#                subtitle = "Since September 21, 2025") |> 
+#     tab_source_note("Note: Each row adds up to 100%.")
+```
+
+
+-->
+
+## Conclusion
+
+That's all.
