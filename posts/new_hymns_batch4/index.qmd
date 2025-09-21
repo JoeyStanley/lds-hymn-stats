@@ -27,24 +27,23 @@ library(gtExtras)
 
 
 ```{r}
+general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04")
 meetings_since_release1 <- freqs |> 
-    filter(date <= last_sunday,
-           date >= ymd("2024-06-02"),
-           !date %in% ymd("2024-10-06",
-                          "2025-04-06"))
+    filter(date >= ymd("2024-06-02"),
+           date <= last_sunday,
+           !date %in% general_conference_dates)
 meetings_since_release2 <- freqs |> 
-    filter(date <= last_sunday,
-           date >= ymd("2024-09-15"),
-           !date %in% ymd("2024-10-06",
-                        "2025-04-06"))
+    filter(date >= ymd("2024-09-15"),
+           date <= last_sunday,
+           !date %in% general_conference_dates)
 meetings_since_release3 <- freqs |> 
-    filter(date <= ymd("2025-06-08"),
-           date >= ymd("2025-02-16"),
-           !date %in% ymd("2025-04-06"))
+    filter(date >= ymd("2025-02-16"),
+           date <= last_sunday,
+           !date %in% general_conference_dates)
 meetings_since_release4 <- freqs |> 
-    filter(date <= last_sunday,
-           date >= ymd("2025-06-15"),
-           date <= ymd("2025-09-13"))
+    filter(date >= ymd("2025-06-15"),
+           date <= last_sunday,
+           !date %in% general_conference_dates)
 
 n_meetings_since_release1 <- meetings_since_release1 |> 
     distinct(meeting_id) |> 
