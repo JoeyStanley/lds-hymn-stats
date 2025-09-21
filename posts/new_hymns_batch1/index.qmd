@@ -223,7 +223,7 @@ p +
              fill = "#FFFFFF00", color = "#f1a340", linewidth = 1) + 
     annotate(geom = "curve", xend = 8.75, x = 7, yend = 1.5, y = 6.5, curvature = -0.2,
              arrow = arrow(angle = 20, length = unit(0.2, "cm"), type = "closed")) +
-    annotate(geom = "text", x = 7, y = 7, label = "Of the wards I have have\nnine weeks of data from, 33% of\nthem sang just 1 new hymn.",
+    annotate(geom = "text", x = 7, y = 7, label = "Of the wards I have have\nnine weeks of data from, 29% of\nthem sang just 1 new hymn.",
              hjust = 1) + 
     
     # highlighting the 15 box
@@ -249,7 +249,7 @@ p +
 
 :::
 
-So, in this plot, there is a general trend upward: the more data I have from a ward (so, the further left go you in the plot), the more new hymns I see in their data (the darker cells are higher up). I've illustrated this by overlaying a line that tries to capture this trend as best as possible (which you can see by clicking on the "plot with line tab").[For the statisticians there, it's just a simple linear regression line with an intercept of 0.21, a slope of 0.333, and a *p*-value < 0.001. The adjusted r-squared is 0.21]{.aside} The takeaway here is that the line suggests that the typical ward introduces a new hymn about once every three weeks. 
+So, in this plot, there is a general trend upward: the more data I have from a ward (so, the further left go you in the plot), the more new hymns I see in their data (the darker cells are higher up). I've illustrated this by overlaying a line that tries to capture this trend as best as possible (which you can see by clicking on the "plot with line tab").[For the statisticians there, it's just a simple linear regression line with an intercept of 0.36, a slope of 0.342, and a *p*-value < 0.001. The adjusted r-squared is 0.21]{.aside} The takeaway here is that the line suggests that the typical ward introduces a new hymn about once every three weeks. 
 
 So, while this technically shows the number of new hymns I have from each ward given the amount of data I have in that ward, I think it's safe to interpret as the number of hymns wards are likely to sing after that many weeks since the release of the new hymns. So, after nine weeks (so, by July 28th), we can estimate that about 43% of wards have sung just one new hymn. This is a safe interpretation as long as the rate at which wards introduce new hymns is consistent during these 15 weeks (and judging from the plot in the previous section, that might be true) and if there's not a systemtic bias against *not* getting data when a ward is more or less likely to sing a new hymn (which I can't imagine being the case). It's not a perfect interpretation, but it's another look at the data.
 
@@ -266,7 +266,7 @@ meetings_since_release |>
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
     filter(nth_time == 1) |> 
     
-    cleveland_plot(return = "table") |> 
+    cleveland(return = "table") |> 
     
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
@@ -324,9 +324,9 @@ meetings_since_release |>
 
 ```
 
-<hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was most popular during the first week. Of the wards that sang new hymns, two thirds of them sang it on June 2nd. My guess is we will never see a hymn hit that kind of popularity again, with the possible exception of new holiday hymns. Since then, the popularity of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> has gone down. It went through a very tidy rise and fall, and then suddenly on August 25, it saw a huge spike again. Perhaps a lot of wards are singing it a second time now.
+<hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was most popular during the first week. Of the wards that sang new hymns, two thirds of them sang it on June 2nd. My guess is we will never see a hymn hit that kind of popularity again, with the possible exception of new holiday hymns. Since then, the popularity of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> has gone down.
 
-There are a few other major trends so far. <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father's day. A common trend was to sing Father's Day songs for opening and closing hymns and that hymn as the sacrament hymn. Also, <hymn>It Is Well With My Soul (#1003)</hymn> got a little more popular July 14th and has been more popular since then. <hymn>His Eye Is on the Sparrow (#1005)</hymn> saw a spike on July 28th and appears to be more popular since then. Finally, <hymn>I Will Walk with Jesus (#1004)</hymn> wasn't very popular during the first two weeks, but it has been since then and was most popular on August 11th.
+There are a few other major trends so far. <hymn>As Bread is Broken (#1007)</hymn> was very popular on June 16th, Father's day. A common trend was to sing Father's Day songs for opening and closing hymns and that hymn as the sacrament hymn. Also, <hymn>It Is Well With My Soul (#1003)</hymn> got a little more popular July 14th and has been more popular since then. <hymn>His Eye Is on the Sparrow (#1005)</hymn> gradually got more popular. Finally, <hymn>I Will Walk with Jesus (#1004)</hymn> wasn't very popular during the first two weeks, but it has been since then and was most popular on August 5th.
 
 ## When during meetings were these hymns sung?
 
@@ -349,7 +349,7 @@ meetings_since_release |>
                subtitle = "Between June 2 and September 8")
 ```
 
-Each hymn has its own story. Unsurprisingly, the hymns that are most likely to be sacrament hymns are <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, and <hymn>Gethsemane (#1009)</hymn>, with that last one being sung pretty often elsewhere in the meeting. <hymn>Think a Sacred Song (#1006)</hymn> appears to be a little more common in the second half of the meeting, but I have only seen it sung in a few wards so that may change if more data comes in. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is about as likely to be an opening hymn as a closing hymn. <hymn>It Is Well with My Soul (#1003)</hymn> is most common as a clsoing hymn. <hymn>His Eye Is on the Sparrow (#1005)</hymn> is about evently split between all three slots. The last two hymns, <hymn>I Will Walk with Jesus (#1004)</hymn> and <hymn>When the Savior Comes Again (#1002)</hymn> are a little more commonly sung as intermediate hymns.
+Each hymn has its own story. Unsurprisingly, the hymns that are most likely to be sacrament hymns are <hymn>As Bread is Broken (#1007)</hymn>, <hymn>Bread of Life, Living Water (#1008)</hymn>, and <hymn>Gethsemane (#1009)</hymn>, with that last one being sung pretty often elsewhere in the meeting. <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is about as likely to be an opening hymn as a closing hymn. <hymn>It Is Well with My Soul (#1003)</hymn> is most common as a closing hymn. The rest seem to be evenly split across the three non-sacrament slots. 
 
 
 ## Conclusion

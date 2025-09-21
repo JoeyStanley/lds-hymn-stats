@@ -165,7 +165,7 @@ post_june_data <- freqs %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
     arrange(-sum_prop_wards) |> 
-    # don't know children's songs or non-English songs in this section
+    # don't show children's songs or non-English songs in this section
     filter(!(hymn_num %in% c(500:999, 2000:3000) & is.na(n))) |>
     mutate(percent_wards = paste0(round(sum_prop_wards, 4)*100, "%"),
     # mutate(percent_wards = case_when(is.na(every_x_weeks) ~ "0%",
