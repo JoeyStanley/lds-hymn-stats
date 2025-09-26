@@ -8,7 +8,6 @@ categories:
   - frequency
   - new hymns
 reference-location: margin
-draft: TRUE
 ---
 
 ```{r, include = FALSE}
@@ -97,7 +96,7 @@ meetings_since_release5 |>
 
 ## How many wards sang new hymns each week?
 
-The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all batches just so you can compare them to each other.
+The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all batches just so you can compare them to each other. There's not a lot to see quite yet because it's only been one week, but the fact that that orange dot is so low means it's doing worse than the first and second batches.
 
 ```{r, fig.height = 4, fig.width = 8}
 count_new_hymns <- function(.category_name, .hymns) {
@@ -233,10 +232,12 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     theme(legend.position = "none")
 ```
 
-
+Specifically, just three wards of the 361 that I have data from sang from the fifth batch. The hymns they sang were <hymn>Help Us Remember (#1043)</hymn>, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn>, and <hymn>Our Prayer to Thee (#1048)</hymn>. 
 
 
 ```{r}
+meetings_since_release5 |> 
+    filter(hymn_num %in% batch5)
 data_to_plot |> 
     filter(batch == "batch5")
 data_to_plot |> 
@@ -272,6 +273,8 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
+What stands out is that it seems like more people sang from the fifth batch on its first week than the fourth batch on its first week. That would be a first for a new batch to be more popular than a previous batch. We'll see what happens in future weeks. 
+
 <!--
 
 ## What hymns are most popular?
@@ -303,52 +306,51 @@ meetings_since_release5 |>
                subtitle = "Since June 15, 2025")
 ```
 
-
-
 ## What hymns are most popular each week?
 
 
 
 ```{r, include = FALSE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
-#| 
-# meetings_since_release5 |> 
-#     filter(hymn_num %in% batch5) |>
-#     count(date, hymn_num, name_num) |> 
-#     
-#     # pivot and stuff to get zeros
-#     pivot_wider(names_from = date, values_from = n, values_fill = 0) |> 
-#     pivot_longer(cols = -c(hymn_num, name_num), names_to = "date", values_to = "n") |>
-#     mutate(date = ymd(date)) |> 
-#     
-#     # put them in order
-#     arrange(hymn_num) |> 
-#     mutate(name_num = fct_inorder(name_num)) |> 
-#     
-#     # Put the dates in order
-#     arrange(date) |> 
-#     mutate(date = date) |> 
-#     
-#     # proportions per week
-#     mutate(prop = n/sum(n), .by = date) |> 
-#     
-#     ggplot(aes(date, prop, group = name_num)) + 
-#     geom_path() + 
-#     geom_point() + 
-#     scale_x_date(date_breaks = "3 weeks",
-#                  date_minor_breaks = "1 week",
-#                  date_labels = "%b %d",
-#                  expand = expansion(0.1, 0)) +
-#     scale_y_continuous(labels = scales::percent) + 
-#     facet_wrap(~name_num, ncol = 4) + 
-#     labs(title = "Proportion of wards singing new hymns by week",
-#          subtitle = "Of the sacrament meetings with new hymns",
-#          x = NULL,
-#          y = "proportion of wards") + 
-#     theme_bw()
+
+
+meetings_since_release5 |>
+     filter(hymn_num %in% batch5) |>
+     count(date, hymn_num, name_num) |>
+
+     # pivot and stuff to get zeros
+     pivot_wider(names_from = date, values_from = n, values_fill = 0) |>
+     pivot_longer(cols = -c(hymn_num, name_num), names_to = "date", values_to = "n") |>
+     mutate(date = ymd(date)) |>
+
+     # put them in order
+     arrange(hymn_num) |>
+     mutate(name_num = fct_inorder(name_num)) |>
+
+     # Put the dates in order
+     arrange(date) |>
+     mutate(date = date) |>
+
+     # proportions per week
+     mutate(prop = n/sum(n), .by = date) |>
+
+     ggplot(aes(date, prop, group = name_num)) +
+     geom_path() +
+     geom_point() +
+     scale_x_date(date_breaks = "3 weeks",
+                  date_minor_breaks = "1 week",
+                  date_labels = "%b %d",
+                  expand = expansion(0.1, 0)) +
+     scale_y_continuous(labels = scales::percent) +
+     facet_wrap(~name_num, ncol = 4) +
+     labs(title = "Proportion of wards singing new hymns by week",
+          subtitle = "Of the sacrament meetings with new hymns",
+          x = NULL,
+          y = "proportion of wards") +
+     theme_bw()
 ```
 
-
+<!--
 
 ## When during meetings are these hymns sung?
 
@@ -386,4 +388,4 @@ We can also see when during sacrament meetings these hymns have been sung. Data 
 
 ## Conclusion
 
-That's all.
+That's all for now. It's too soon to say anything else because so few wards have sung from the fifth batch. I can't wait to see what happens in the next few weeks though. 
