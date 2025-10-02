@@ -1,0 +1,262 @@
+---
+title: "Honoring President Nelson"
+author: "Joey Stanley"
+date: 2025-10-01
+date-modified: last-modified
+categories:
+  - holidays
+  - frequency
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+President Russell M. Nelson died on Saturday night, September 27th. In [a previous post](/posts/president_nelsons_birthday), I showed how some wards chose to honor President Nelson's 100th birthday by singing prophet-related hymns. Did wards do something similar by singing hymns in his honor upon his death?
+
+There are a few caveats before I begin this analysis. For one, the Sunday before General Conference historically is when the most number of [prophet-related hymns](/posts/general_conference) are sung. This is especially true before the October conference because there's no competition with Easter. So, it'll be difficult to disentangle what is a normal pattern from a Nelson-specific spike. As you'll see below, I think I've done a good job accounting for that.
+
+The other caveat will be harder for me to deal with I've heard many reports of wards that changed a hymn over the pulpit to something like <hymn>We Thank Thee, O God, For a Prophet (#19)</hymn>. Since much of my data comes from spreadsheets or other sources, and since the news of President Nelson's death came after most of those were filled in, I won't see any last-minute changes like that. So, whatever patterns I show here are probably smaller than what reality was.
+
+Now, on to the analysis.
+
+
+## Prophet hymns
+
+I'll start with the prophet-related hymns that spike the most around General Conference. The following plot shows the percentage of wards each year that sing each of the five most common prophet-related hymns on the last Sunday before October General Conference. I wish I had more data from several years before 2021 but I don't right now, so I can't make any long-term comparisons.
+
+
+```{r}
+sundaysbefore <- freqs |> 
+    filter((day %in% 25:31 & month == 3) | day %in% 24:30 & month == 9) |> 
+    mutate(month = if_else(month == 3, "March", "September")) |> 
+    print()
+
+sundaysbefore |> 
+    count(date)
+
+sundaysbefore |> 
+    filter(!hymn_num %in% 169:196) |> 
+    count(name_num, sort = TRUE)
+```
+
+```{r}
+prop_wards_in_sept <- sundaysbefore |> 
+    filter(year >= 2022,
+           month == "September",
+           !date == ymd("2020-03-29")) |> 
+    
+    # Get prop wards
+    mutate(year2 = year) |>  # I need year for the function so make a copy to nest with
+    group_by(year2) |> 
+    nest() |> 
+    mutate(props_per_year = map(data, prop_wards_per_hymn_in_these_dates)) |> 
+    select(-data) |> 
+    unnest(props_per_year) |> 
+    ungroup() |> 
+    
+    # clean up
+    filter(hymn_num %in% c(12, 18:19, 21:24)) |>
+    left_join(name_num_lookup, by = "hymn_num") |> 
+    mutate(name_num = paste0(hymn_name, " (", hymn_num, ")")) |> 
+    arrange(hymn_num) |> 
+    mutate(name_num = fct_inorder(name_num)) |> 
+    print()
+
+prop_wards_in_sept |> 
+    mutate(time_frame = if_else(year2 == 2025, "this_year", "previous_years")) |> 
+    summarize(mean_prop = mean(sum_prop_wards), .by = c(time_frame, name_num)) |>
+    pivot_wider(names_from = time_frame, values_from = mean_prop) |> 
+    mutate(diff = this_year - previous_years,
+           prop_increase = this_year / previous_years) |> 
+    print()
+
+sundaysbefore |> 
+    filter(year >= 2016,
+           month == "September",
+           !date == ymd("2020-03-29")) |>
+    group_by(date) |> 
+    count(meeting_id) |>
+    count(date) |> 
+    print()
+```
+
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+ggplot(prop_wards_in_sept, aes(year2, sum_prop_wards, group = name_num, color = name_num)) + 
+    geom_point(size = 3) + 
+    geom_path(linewidth = 1.5) + 
+    scale_color_ptol() +
+    scale_x_continuous(name = "year",
+                       breaks = 2010:2025) +
+    scale_y_continuous(name = "proportion of wards",
+                       breaks = seq(0, 0.4, 0.05),
+                       label = scales::percent) +
+    labs(title = "Popularity of prophet hymns on the last Sunday of September",
+         subtitle = "Expressed in terms of what percent of wards sang that hymn",
+         color = "hymn") +
+    theme_bw(base_size = 12)
+```
+
+So, you'll notice that each year on the last Sunday in September, no hymn was sung by more than 15% of wards. However, there is one exception that's evident in the plot: <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> saw a *huge* spike in September 2025 (i.e. last Sunday). Between 2022 and 2024, about 12.9% of wards sang that hymn just before the October General Conference. In 2025, that jumped up to 34.3%. So, if we subtract the expected amount (about 13%) from this year (about 34%), we get a difference of 21.4%. This brings me to the main take-home message for this post:
+
+:::{.callout-note}
+At least 1 in 5 wards sang <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> in response to the death of President Nelson.
+:::
+
+As I said in my caveat above, this number may actually be *lower* than reality because many wards reportedly changed the hymn at the last minute, and that wouldn't have been reflected in the data I gathered. 
+
+It's interesting too to notice the other hymns here. <hymn>God Bless Our Prophet Dear (#24)</hymn> is not especially common, with only about 1% of wards singing it around this time each year. But this year, it jumped up to 2.7% of wards. The other three hymns were sung less than they have been. This is most evident in <hymn>Come, Listen to a Prophet's Voice (#21)</hymn>, which was about 40% less popular this year, and <hymn>We Listen to a Prophet's Voice (#22)</hymn>, which was 25% less popular. Perhaps people didn't feel it was right to singing about listening to a prophet's voice after his death.
+
+
+```{r}
+# Same thing but prop hymns sung. Less interesting I think
+
+props_in_septs <- sundaysbefore |> 
+    filter(year >= 2016,
+           month == "September",
+           !date == ymd("2020-03-29")) |> 
+    # Get the prop of each hymn per day
+    count(name_num, hymn_num, year, month, date) |> 
+    mutate(prop = n/sum(n), .by = c(year, month, date)) |> 
+    filter(hymn_num %in% c(12, 18:19, 21:24)) |>
+    
+    # clean up
+    arrange(hymn_num) |> 
+    mutate(name_num = fct_inorder(name_num)) |> 
+    print()
+
+props_in_septs |> 
+    summarize(max_prop = max(prop), .by = name_num) |> 
+    arrange(-max_prop)
+
+ggplot(props_in_septs, aes(as.numeric(year), prop, group = name_num, color = name_num)) + 
+    geom_point() + 
+    geom_path() + 
+    scale_color_ptol() +
+    scale_x_continuous(name = "year", 
+                       breaks = 2010:2025) + 
+    scale_y_continuous(name = "proportion of hymns sung",
+                       breaks = seq(0, 0.2, 0.02),
+                       label = scales::percent) + 
+    labs(title = "Popularity of prophet hymns on the last Sunday of September",
+         subtitle = "Expressed in terms of percentage of all hymns sung that day",
+         color = "hymn") + 
+    theme_bw()
+```
+
+
+## Our Prayer to Thee
+
+The other candidate hymn that was likely more popular this past Sunday is a brand new hymn, <hymn>Our Prayer to Thee (#1048)</hymn>, which was written by President Nelson. 
+
+This is a tricky one to analyze. As seen in my [post about the fifth batch of hymns](/posts/new_hymns_batch5), the number of wards singing from this latest batch is quite low. Furthermore, the batch was only released a week prior to President Nelson's death. So, we really only have two weeks of data to go off of.
+
+Basically, all I can say is this. On September 21, of the 435 wards I have data from, just one of them sang <hymn>Our Prayer to Thee (#1048)</hymn>. However, of the 540 wards I have data from on September 28th, seven wards sang it, or about 1.2%. So, it hasn't instantly become popular. But it is a noticeable increase. 
+
+```{r}
+freqs |> 
+    filter(year == 2025, 
+           month == 9) |> 
+    group_by(date) |> 
+    count(meeting_id) |> 
+    count(date)
+freqs |> 
+    filter(hymn_num == 1048)
+```
+
+## Other hymns?
+
+Are there other hymns that were more popular last Sunday? I decided to check all hymns in a more objective way to see if anything stood out. So, what I've done is I've taken all my data from just 2024 and 2025. For each hymn, I found what percent of wards sang it each week. I then averaged those percentages across all dates between January 2024 and September 21, 2025 and compared them to the numbers for September 28, 2025. 
+
+So as an example, <hymn>Come, Follow Me (#116)</hymn> is generally a popular hymn, but I don't expect it to spike around General Conference time. On average, between January 2024 and September 21, 2025, it was sung in 2.8% of wards each week. On September 28th, 2025, it was sung in 2.2% of wards. So, about 20% less than normal. 
+
+These calculations favor some of the newer hymns. Not all wards sing General Conference--related hymns, so hymns will be higher on this list if they  appear in [Primary Programs](/posts/primary_program) or if they're in the latest two batches of new hymns. For example, <hymn>I Will Walk with Jesus (#1004)</hymn> has been sung in about 2.2% of wards each week since it came out, but last week it was sung by 3.2%, so there's a 40% increase, likely due to some wards having their Primary Programs last Sunday. As an extreme case, I didn't see any wards singing <hymn>Stand by Me (#1050)</hymn> two weeks ago, but one ward sang it last Sunday. So that 0.1% divided by zero means it was infinitely more popular last Sunday than the week before. So, I've removed those hymns from this list so that we can focus on the ones that I think are indeed in response to President Nelson's death.
+
+
+```{r}
+freqs |> 
+    filter(year %in% 2024:2025,
+           date <= ymd("2025-10-01")) |> 
+    
+    # count(name_num, date) |> 
+    # mutate(prop = n/sum(n), .by = date) |> 
+    
+    
+    # Get prop wards
+    mutate(date2 = date) |>  # I need date for the function so make a copy to nest with
+    group_by(date2) |> 
+    nest() |> 
+    mutate(props_per_date = map(data, prop_wards_per_hymn_in_these_dates)) |> 
+    select(-data) |> 
+    unnest(props_per_date) |> 
+    ungroup() |> 
+    
+    # clean up
+    filter(hymn_num %in% c(12, 18:19, 21:24)) |>
+    left_join(name_num_lookup, by = "hymn_num") |> 
+    mutate(name_num = paste0(hymn_name, " (", hymn_num, ")")) |> 
+    arrange(hymn_num) |> 
+    mutate(name_num = fct_inorder(name_num)) |> 
+    
+    ggplot(aes(date2, sum_prop_wards, group = name_num)) + 
+    geom_path()
+```
+
+
+```{r, include = TRUE}
+freqs |> 
+    filter(year %in% 2024:2025,
+           date <= ymd("2025-10-01")) |> 
+    
+    # Get prop wards
+    mutate(date2 = date) |>  # I need date for the function so make a copy to nest with
+    group_by(date2) |> 
+    nest() |> 
+    mutate(props_per_date = map(data, prop_wards_per_hymn_in_these_dates)) |> 
+    select(-data) |> 
+    rename(date = date2) |> 
+    unnest(props_per_date) |> 
+    ungroup() |> 
+    rename(prop = sum_prop_wards) |> 
+    
+    # clean up
+    left_join(name_num_lookup, by = "hymn_num") |> 
+    mutate(name_num = paste0(hymn_name, " (", hymn_num, ")")) |> 
+    arrange(hymn_num) |> 
+    mutate(name_num = fct_inorder(name_num)) |>
+    
+    # Get mean prop for all previous weeks
+    mutate(time_period = if_else(date == ymd("2025-09-28"), "this_week", "previous_weeks")) |> 
+    summarize(prop = mean(prop), .by = c(time_period, name_num)) |> 
+    
+    # Get the difference between this week and previous weeks
+    pivot_wider(names_from = time_period, values_from = prop, values_fill = 0) |> 
+    mutate(diff = this_week - previous_weeks,
+           times_greater = this_week / previous_weeks) |>
+    arrange(-times_greater) |> 
+
+    filter(!is.infinite(times_greater)) |> 
+    head(7) |> 
+    
+    mutate(across(-c(name_num, times_greater), ~paste0(round(.*100, 1), "%")),
+           times_greater = round(times_greater, 1)) |> 
+    rename(`Hymn` = name_num,
+           `% wards before last Sunday` = previous_weeks,
+           `% wards last Sunday` = this_week,
+           `% increase` = diff,
+           `times greater` = times_greater) |> 
+    
+    gt()
+```
+
+
+As expected, <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn> is at the top of this list, having been sung in 12.1 times as many wards this Sunday compared to the average of all previous Sundays for the past 20½ months. Normally, it's about 3.5 times as popular around Conference time, so this is a noteworthy increase. The other prophet-related hymns and <hymn>Our Prayer to Thee (#1048)</hymn> show up on this table as well. 
+
+The new one on this table is <hymn>God Be with You Till We Meet Again (#152)</hymn>. It was sung by 3% of wards, but that's about 3.1 times as many as what we normally see each week. I'll admit, if I had been in charge of the music in my ward, that would have been the one that I'd change to last minute. It looks like 2% of wards agree with me. 
+
+## Conclusion
+
+The passing of President Nelson triggers a handful of major events in our church. But the timing of it---less than a day before most wards held services---meant it was very fresh on our minds. I think that recency affected how people responded to it in the form of congregational hymns. The timing of it just before General Conference made it trickier to disentangle normal annual patterns from a spike this week, but I think I was able to do successfully separate them out. Finally, I'm not sure if it was coincidence or not, but I'm glad President Nelson got to see his own hymn be added to the hymanl before his passing. Besides being the church president who initiated the creation of the new hymnal, he leaves a legacy in our hymnal with his contribution. 
