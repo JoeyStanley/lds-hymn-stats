@@ -35,7 +35,7 @@ batch5 <- c(1042:1051, 1208:1209)
 
 
 ```{r}
-general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04")
+general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04", "2025-10-05")
 get_meetings_since_release <- function(.date) {
     freqs |> 
         filter(date >= ymd(.date),
@@ -96,7 +96,7 @@ meetings_since_release5 |>
 
 ## How many wards sang new hymns each week?
 
-The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all batches just so you can compare them to each other. There's not a lot to see quite yet because it's only been one week, but the fact that that orange dot is so low means it's doing worse than the first and second batches.
+The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I've included data from all batches just so you can compare them to each other. There's not a lot to see quite yet because it's only been a few weeks, but we an already see some cool trends.
 
 ```{r, fig.height = 4, fig.width = 8}
 count_new_hymns <- function(.category_name, .hymns) {
@@ -232,17 +232,39 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     theme(legend.position = "none")
 ```
 
-Specifically, just three wards of the 361 that I have data from sang from the fifth batch. The hymns they sang were <hymn>Help Us Remember (#1043)</hymn>, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn>, and <hymn>Our Prayer to Thee (#1048)</hymn>. 
+The first two weeks of the fifth batch were pretty lukewarm. Very few wards sang from it. A few wards sang <hymn>Our Prayer to Thee (#1048)</hymn> on September 28, [the day after President Nelson died](/posts/president_nelsons_death), but otherwise, fifth-batch hymns were quite rare. 
+
+There is a noticeable jump after General Conference though. More wards sang from the fifth batch on October 12 (7.5%) than even the best week of the fourth batch (August 24th: 6.9%). The bulk of this surge (about 62%) was, perhaps unsurprisingly, <hymn>Our Prayer to Thee (#1048)</hymn>. However, most of the hymns in the fifth batch have been attested at least once in my dataset.
 
 
 ```{r}
+# show all fifth batch data
 meetings_since_release5 |> 
     filter(hymn_num %in% batch5)
+
+# by hymn
+meetings_since_release5 |> 
+    filter(hymn_num %in% batch5) |> 
+    count(hymn_name, hymn_num, sort = TRUE) |> 
+    mutate(prop = n/sum(n))
+# by hymn and by date
+meetings_since_release5 |> 
+    filter(hymn_num %in% batch5) |> 
+    count(hymn_name, hymn_num, date, sort = TRUE) |> 
+    mutate(prop = n/sum(n), .by = date)
+
+# by date
 data_to_plot |> 
     filter(batch == "batch5")
+# sorted by best weeks
 data_to_plot |> 
     filter(batch == "batch5") |> 
     arrange(-prop_sung)
+# fourth batch for comparison
+data_to_plot |> 
+    filter(batch == "batch4") |> 
+    arrange(-prop_sung)
+
 ```
 
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
@@ -273,7 +295,7 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
-What stands out is that it seems like more people sang from the fifth batch on its first week than the fourth batch on its first week. That would be a first for a new batch to be more popular than a previous batch. We'll see what happens in future weeks. 
+In this version of the plot, It's clearer that the fifth batch is doing better than the fourth batch in all weeks so far. It's not quite as good as the third batch though (and certainly not the second or first). 
 
 
 ## What hymns are most popular?
@@ -306,16 +328,16 @@ meetings_since_release5 |>
 ```
 
 
-<!--
+It's hard to say whether <hymn>Our Prayer to Thee (#1048)</hymn> would have become as popular as it currently is had President Nelson not passed away recently. We'll never know. But the point is, that hymn is currently the leader in this fifth batch.
 
+
+<!--
 ## What hymns are most popular each week?
 
+It's still a little premature to include this plot, but I will anyway. This shows how popular each hymn is each week. Out of all the fifth batch hymns sing in a given week, what percentage of them were <hymn>Our Prayer to Thee (#1048)</hymn>, for example?
 
-
-```{r, include = FALSE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
+```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
-
-
 meetings_since_release5 |>
      filter(hymn_num %in% batch5) |>
      count(date, hymn_num, name_num) |>
@@ -352,41 +374,45 @@ meetings_since_release5 |>
      theme_bw()
 ```
 
-<!--
+Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns.
+
+-->
+
+
+
 
 ## When during meetings are these hymns sung?
 
-We can also see when during sacrament meetings these hymns have been sung. Data sparsity makes this a pretty unreliable table though. We'll have to wait a few more weeks or months to really see some more meaningful trends.
+We can also see when during sacrament meetings these hymns have been sung. Data sparsity makes this a pretty unreliable table though. We'll have to wait a few more weeks or months to really see some more meaningful trends. The only one that is somewhat trustworthy is, you guessed it, <hymn>Our Prayer to Thee (#1048)</hymn>.
 
 ```{r, include = TRUE}
-# meetings_since_release5 |> 
-#     filter(hymn_num %in% batch5,
-#            !is.na(type)) |>
-#     count(name_num, hymn_num, type) |> 
-#     mutate(n = round(n/sum(n), 2)*100, 
-#            .by = name_num) |> 
-#     pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
-#     arrange(hymn_num) |> 
-#     select(-hymn_num) |> 
-#     select(name_num, 
-#            Opening, Sacrament, Intermediate, Closing) |> 
-#     rename(`New Hymn` = name_num) |> 
-#     gt() |> 
-#     gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE, 
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE, 
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     tab_header(title = "When were new hymns sung in sacrament meeting?",
-#                subtitle = "Since September 21, 2025") |> 
-#     tab_source_note("Note: Each row adds up to 100%.")
+meetings_since_release5 |>
+    filter(hymn_num %in% batch5,
+           !is.na(type)) |>
+    count(name_num, hymn_num, type) |>
+    mutate(n = round(n/sum(n), 2)*100,
+           .by = name_num) |>
+    pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
+    arrange(hymn_num) |>
+    select(-hymn_num) |>
+    select(name_num,
+           Opening, Sacrament, Intermediate, Closing) |>
+    rename(`New Hymn` = name_num) |>
+    gt() |>
+    gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    tab_header(title = "When were new hymns sung in sacrament meeting?",
+               subtitle = "Since September 21, 2025") |>
+    tab_source_note("Note: Each row adds up to 100%.")
 ```
 
 
--->
 
 ## Conclusion
 
