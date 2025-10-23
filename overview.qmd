@@ -177,22 +177,17 @@ post_june_data <- freqs %>%
                                          format(round(avg_per_year, 2), nsmall = 1)))
 
 # Get the rows of the new hymns so I can color them.
-batch1_rows <- post_june_data |> 
-    rowid_to_column("real_row") |> 
-    filter(as.numeric(str_remove(hymn_num, "#")) %in% c(1001:1009, 1201:1204)) |> 
-    pull(real_row)
-batch2_rows <- post_june_data |> 
-    rowid_to_column("real_row") |> 
-    filter(as.numeric(str_remove(hymn_num, "#")) %in% 1010:1018) |> 
-    pull(real_row)
-batch3_rows <- post_june_data |> 
-    rowid_to_column("real_row") |> 
-    filter(as.numeric(str_remove(hymn_num, "#")) %in% c(1019:1031, 1205:1206)) |> 
-    pull(real_row)
-batch4_rows <- post_june_data |> 
-    rowid_to_column("real_row") |> 
-    filter(as.numeric(str_remove(hymn_num, "#")) %in% c(1032:1041, 1207)) |> 
-    pull(real_row)
+get_rows_of_new_hymns <- function(.hymn_nums) {
+    post_june_data |> 
+        rowid_to_column("real_row") |> 
+        filter(as.numeric(str_remove(hymn_num, "#")) %in% .hymn_nums) |> 
+        pull(real_row)
+}
+batch1_rows <- get_rows_of_new_hymns(batch1_hymn_nums)
+batch2_rows <- get_rows_of_new_hymns(batch2_hymn_nums)
+batch3_rows <- get_rows_of_new_hymns(batch3_hymn_nums)
+batch4_rows <- get_rows_of_new_hymns(batch4_hymn_nums)
+batch5_rows <- get_rows_of_new_hymns(batch5_hymn_nums)
 
 post_june_data |> 
     select(`#` = hymn_num,
@@ -208,13 +203,12 @@ post_june_data |>
     kable_styling(fixed_thead = TRUE) |> 
     scroll_box(height = "1080px") |> 
     column_spec(5, color = make_things_gray(post_june_data, pred_times_per_year)) |> 
-    row_spec(row = batch1_rows, background = "#b3cde3") |>  
+    row_spec(row = batch1_rows, background = "#b3cde3") |> # colorbrewer Pastel1
     row_spec(row = batch2_rows, background = "#fbb4ae") |> 
     row_spec(row = batch3_rows, background = "#ccebc5") |> 
-    row_spec(row = batch4_rows, background = "#decbe4")
+    row_spec(row = batch4_rows, background = "#decbe4") |> 
+    row_spec(row = batch5_rows, background = "#fed9a6")
 ```
-
-
 
 :::
 

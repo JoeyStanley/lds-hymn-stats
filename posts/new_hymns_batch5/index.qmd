@@ -24,15 +24,6 @@ last_sunday <- ymd(floor_date(today(), "week"))
 library(gtExtras)
 ```
 
-```{r}
-batch1 <- c(1001:1009, 1201:1204)
-batch2 <- c(1010:1018)
-batch3 <- c(1019:1031, 1205:1206)
-batch4 <- c(1032:1041, 1207)
-batch5 <- c(1042:1051, 1208:1209)
-```
-
-
 
 ```{r}
 general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04", "2025-10-05")
@@ -112,11 +103,11 @@ count_new_hymns <- function(.category_name, .hymns) {
         pivot_wider(names_from = n_new, values_from = prop_new)
 }
 data_to_plot <- meetings_since_release1 |> 
-    summarize(batch1 = sum(hymn_num %in% batch1) > 0,
-              batch2 = sum(hymn_num %in% batch2) > 0,
-              batch3 = sum(hymn_num %in% batch3) > 0,
-              batch4 = sum(hymn_num %in% batch4) > 0,
-              batch5 = sum(hymn_num %in% batch5) > 0,
+    summarize(batch1 = sum(hymn_num %in% batch1_hymn_nums) > 0,
+              batch2 = sum(hymn_num %in% batch2_hymn_nums) > 0,
+              batch3 = sum(hymn_num %in% batch3_hymn_nums) > 0,
+              batch4 = sum(hymn_num %in% batch4_hymn_nums) > 0,
+              batch5 = sum(hymn_num %in% batch5_hymn_nums) > 0,
               .by = c(meeting_id, date)) |>
     mutate(none = !batch1 & !batch2 & !batch3 & !batch4 & !batch5) |>
     pivot_longer(cols = c(batch1, batch2, batch3, batch4, batch5, none), names_to = "batch", values_to = "present") |> 
@@ -176,7 +167,7 @@ easter_data_to_highlight <- data_to_plot |>
 
 
 ```{r, include = TRUE, fig.height = 5.5, fig.width = 14}
-#| column: page
+#| column: screen
 ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     
     # Christmas annotation
@@ -234,22 +225,22 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
 
 The first two weeks of the fifth batch were pretty lukewarm. Very few wards sang from it. A few wards sang <hymn>Our Prayer to Thee (#1048)</hymn> on September 28, [the day after President Nelson died](/posts/president_nelsons_death), but otherwise, fifth-batch hymns were quite rare. 
 
-There is a noticeable jump after General Conference though. More wards sang from the fifth batch on October 12 (7.5%) than even the best week of the fourth batch (August 24th: 6.9%). The bulk of this surge (about 62%) was, perhaps unsurprisingly, <hymn>Our Prayer to Thee (#1048)</hymn>. However, most of the hymns in the fifth batch have been attested at least once in my dataset.
+There is a noticeable jump after General Conference though. More wards sang from the fifth batch on October 12 (7.2%) than even the best week of the fourth batch (August 24th: 6.9%). The bulk of this surge (about 62%) was, perhaps unsurprisingly, <hymn>Our Prayer to Thee (#1048)</hymn>. However, most of the hymns in the fifth batch have been attested at least once in my dataset.
 
 
 ```{r}
 # show all fifth batch data
 meetings_since_release5 |> 
-    filter(hymn_num %in% batch5)
+    filter(hymn_num %in% batch5_hymn_nums)
 
 # by hymn
 meetings_since_release5 |> 
-    filter(hymn_num %in% batch5) |> 
+    filter(hymn_num %in% batch5_hymn_nums) |> 
     count(hymn_name, hymn_num, sort = TRUE) |> 
     mutate(prop = n/sum(n))
 # by hymn and by date
 meetings_since_release5 |> 
-    filter(hymn_num %in% batch5) |> 
+    filter(hymn_num %in% batch5_hymn_nums) |> 
     count(hymn_name, hymn_num, date, sort = TRUE) |> 
     mutate(prop = n/sum(n), .by = date)
 
@@ -311,10 +302,10 @@ meetings_since_release5 |>
     
     cleveland(return = "table", 
               stat_to_plot = sum_prop_wards,
-              hymns_to_plot = batch5) |> 
+              hymns_to_plot = batch5_hymn_nums) |> 
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
-    filter(hymn_num %in% batch5) |>
+    filter(hymn_num %in% batch5_hymn_nums) |>
     mutate(sum_prop_wards = scales::percent(round(sum_prop_wards, 3))) |> 
     
     # add label for missing hymns
@@ -328,10 +319,10 @@ meetings_since_release5 |>
 ```
 
 
-It's hard to say whether <hymn>Our Prayer to Thee (#1048)</hymn> would have become as popular as it currently is had President Nelson not passed away recently. We'll never know. But the point is, that hymn is currently the leader in this fifth batch.
+It's hard to say whether <hymn>Our Prayer to Thee (#1048)</hymn> would have become as popular as it currently is had President Nelson not passed away recently. We'll never know. But the point is, that hymn is currently the leader in this fifth batch and will likely stay that way until Christmastime when <hymn>Go Tell It on the Mountain (#1208)</hymn> will likly take the lead.
 
 
-<!--
+
 ## What hymns are most popular each week?
 
 It's still a little premature to include this plot, but I will anyway. This shows how popular each hymn is each week. Out of all the fifth batch hymns sing in a given week, what percentage of them were <hymn>Our Prayer to Thee (#1048)</hymn>, for example?
@@ -339,7 +330,7 @@ It's still a little premature to include this plot, but I will anyway. This show
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
 meetings_since_release5 |>
-     filter(hymn_num %in% batch5) |>
+     filter(hymn_num %in% batch5_hymn_nums) |>
      count(date, hymn_num, name_num) |>
 
      # pivot and stuff to get zeros
@@ -374,11 +365,7 @@ meetings_since_release5 |>
      theme_bw()
 ```
 
-Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns.
-
--->
-
-
+Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns. Something we're seeing though is that two other hymns, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn> and <hymn>Help Us Remember (#1043)</hymn> have become more common recently, with roughly a quarter to a third of wards that have sung fifth-batch hymns singing them. 
 
 
 ## When during meetings are these hymns sung?
@@ -387,7 +374,7 @@ We can also see when during sacrament meetings these hymns have been sung. Data 
 
 ```{r, include = TRUE}
 meetings_since_release5 |>
-    filter(hymn_num %in% batch5,
+    filter(hymn_num %in% batch5_hymn_nums,
            !is.na(type)) |>
     count(name_num, hymn_num, type) |>
     mutate(n = round(n/sum(n), 2)*100,
