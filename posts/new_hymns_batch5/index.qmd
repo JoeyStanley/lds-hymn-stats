@@ -227,6 +227,8 @@ The first two weeks of the fifth batch were pretty lukewarm. Very few wards sang
 
 There is a noticeable jump after General Conference though. More wards sang from the fifth batch on October 12 (7.2%) than even the best week of the fourth batch (August 24th: 6.9%). The bulk of this surge (about 62%) was, perhaps unsurprisingly, <hymn>Our Prayer to Thee (#1048)</hymn>. However, most of the hymns in the fifth batch have been attested at least once in my dataset.
 
+Now that we're a few weeks removed from General Conference, fifth-batch hymns have slumped a little bit. They have returned to being less popular than fourth-batch hymns. 
+
 
 ```{r}
 # show all fifth batch data
@@ -286,7 +288,7 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
-In this version of the plot, It's clearer that the fifth batch is doing better than the fourth batch in all weeks so far. It's not quite as good as the third batch though (and certainly not the second or first). 
+In this version of the plot, it's easier to compare batches. Thanks to that post--General Conference surge, the fifth batch was nearly as popular as the third batch. But, the more recent slump is more easily seen here, to the point where fewer wards sang from it after five weeks than they did the fourth batch after five weeks.
 
 
 ## What hymns are most popular?
@@ -365,7 +367,7 @@ meetings_since_release5 |>
      theme_bw()
 ```
 
-Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns. Something we're seeing though is that two other hymns, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn> and <hymn>Help Us Remember (#1043)</hymn> have become more common recently, with roughly a quarter to a third of wards that have sung fifth-batch hymns singing them. 
+Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns. Something we're seeing though is that two other hymns, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn> and <hymn>Help Us Remember (#1043)</hymn> have become more common recently, with roughly a quarter to a third of wards that have sung fifth-batch hymns singing them. And in the fifth week, we're starting to see the other less common ones being used more too.
 
 
 ## When during meetings are these hymns sung?
