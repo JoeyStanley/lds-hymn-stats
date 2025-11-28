@@ -229,6 +229,8 @@ There is a noticeable jump after General Conference though. More wards sang from
 
 Now for a couple weeks few weeks after from General Conference, the fifth-batch hymns have slumped a little bit. They returned to being less popular than fourth-batch hymns. But, this past Sunday (November 2nd), they were more popular than ever, even more popular than the third batch!
 
+A noteworthy landmark is that October 26 was the day where the most number of wards sang at least one new hymn: about 55%. We've seen a handful of weeks were right around half of wards sang new hymns, but that day was quite a bit more than others.
+
 
 ```{r}
 # show all fifth batch data
@@ -258,7 +260,15 @@ data_to_plot |>
     filter(batch == "batch4") |> 
     arrange(-prop_sung)
 
+# gray line
+data_to_plot |> 
+    filter(batch == "none") |> 
+    arrange(prop_sung) |> 
+    mutate(1-prop_sung) |> 
+    print()
 ```
+
+
 
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
 
