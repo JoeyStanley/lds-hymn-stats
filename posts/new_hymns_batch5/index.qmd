@@ -229,7 +229,7 @@ There is a noticeable jump after General Conference though. More wards sang from
 
 Now for a couple weeks few weeks after from General Conference, the fifth-batch hymns have slumped a little bit. They returned to being less popular than fourth-batch hymns. But, this past Sunday (November 2nd), they were more popular than ever, even more popular than the third batch!
 
-A noteworthy landmark is that October 26 was the day where the most number of wards sang at least one new hymn: about 55%. We've seen a handful of weeks were right around half of wards sang new hymns, but that day was quite a bit more than others.
+A noteworthy landmark is that October 26 was the day where the most number of wards sang at least one new hymn: about 55%. We've seen a handful of weeks were right around half of wards sang new hymns, but that day was quite a bit more than others. We hit this number again on November 30, presumably as many wards started to sing the new Christmas hymns.
 
 
 ```{r}
@@ -298,7 +298,7 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
-In this version of the plot, it's easier to compare batches. Thanks to that post--General Conference surge, the fifth batch was nearly as popular as the third batch. But, the more recent slump is more easily seen here, to the point where fewer wards sang from it after five weeks than they did the fourth batch after five weeks.
+In this version of the plot, it's easier to compare batches. Thanks to that post--General Conference surge, the fifth batch was nearly as popular as the third batch for one week. Since then, it seems to be about as popular as the fourth batch was around this time.
 
 
 ## What hymns are most popular?
@@ -377,7 +377,7 @@ meetings_since_release5 |>
      theme_bw()
 ```
 
-Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns, at least for the first few weeks. Something we're seeing though is that two other hymns, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn> and <hymn>Help Us Remember (#1043)</hymn> have become more common recently, with roughly a quarter to a third of wards that have sung fifth-batch hymns singing them. And in the fifth week, we're starting to see the other less common ones being used more too. The biggest spike on November 2nd was <hymn>This Day Is a good Day, Lord (#1051)</hymn>, which made up about 25% of the fifth batch hymns that day.
+Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns, at least for the first few weeks. Something we're seeing though is that two other hymns, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn> and <hymn>Help Us Remember (#1043)</hymn> have become more common recently, with roughly a quarter to a third of wards that have sung fifth-batch hymns singing them. And in the fifth week, we're starting to see the other less common ones being used more too. Now that we're in the Christmas season, <hymn>Go Tell It on the Mountain (#1208) is more common.
 
 
 ## When during meetings are these hymns sung?
@@ -415,4 +415,4 @@ meetings_since_release5 |>
 
 ## Conclusion
 
-That's all for now. We're starting to see the fifth batch pick up in popularity a little bit, which is exciting. I expect it'll slump a little bit as we enter Thanksgiving (in the US) and Christmas season, but for another week or two, we might see some more fifth-batch hymns. I can't wait to see what happens in the next few weeks. 
+That's all for now. We're starting to see the fifth batch pick up in popularity a little bit, which is exciting. I expect we'll see Christmas affect things quite a bit, and then I think we're due for another batch in January. 
