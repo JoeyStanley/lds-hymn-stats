@@ -148,6 +148,23 @@ weeks_since_june2 <- freqs |>
 
 ```{r, include = TRUE, echo = FALSE}
 #| column: page
+freqs %>%
+    filter(date >= ymd("2024-06-01")) |> 
+    cleveland(return = "table") %>%
+    mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
+    full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
+    process_table()
+```
+
+
+
+
+
+```{r, include = FALSE, echo = FALSE}
+#| column: page
+
+# This version of the table is no longer used because it has been more than a year. Removed as of January 5, 2026. The coloring was cool but I don't want to bother redoing it. 
+
 n_weeks_since_release <- freqs |> 
     filter(date >= ymd("2024-06-02"),
            date <= today()) |> 
