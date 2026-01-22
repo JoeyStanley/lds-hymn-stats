@@ -33,11 +33,11 @@ get_meetings_since_release <- function(.date) {
                date <= last_sunday,
                !date %in% general_conference_dates)
 }
-meetings_since_release1 <- get_meetings_since_release("2024-06-02")
-meetings_since_release2 <- get_meetings_since_release("2024-09-15")
-meetings_since_release3 <- get_meetings_since_release("2025-02-16")
-meetings_since_release4 <- get_meetings_since_release("2025-06-15")
-meetings_since_release5 <- get_meetings_since_release("2025-09-21")
+meetings_since_release1 <- get_meetings_since_release(batch1_release_date)
+meetings_since_release2 <- get_meetings_since_release(batch2_release_date)
+meetings_since_release3 <- get_meetings_since_release(batch3_release_date)
+meetings_since_release4 <- get_meetings_since_release(batch4_release_date)
+meetings_since_release5 <- get_meetings_since_release(batch5_release_date)
 
 get_n_meetings_since_release <- function(.df) {nrow(distinct(.df, meeting_id))}
 n_meetings_since_release1 <- get_n_meetings_since_release(meetings_since_release1)
