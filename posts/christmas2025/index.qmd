@@ -1,0 +1,152 @@
+---
+title: "Christmas 2025"
+author: "Joey Stanley"
+date: 2025-12-25
+date-modified: last-modified
+categories:
+    - holidays
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+In 2023, I did [a detailed analysis](/posts/christmas) of Christmas hymns that summarized all the data up to that point. Since that was the last Christmas before the new hymns were introduced, it serves as a useful final snapshot of how Christmas were used in congregational singing based on the 1985 hymnal. Last year, I [redid the analysis](/posts/christmas2024) to see how the new hymns were being used. In 2025, we saw additional Christmas hymns introduced so this post serves as a description of how Christmas hymns were used in congregational singing right now. 
+
+I'll start off by looking at the hymns listed in the 1985 hymnal. I'll then move on to the new hymns that were introduced. I'll then take a step back and look at overall patterns across all hymns.
+
+```{r}
+get_complete_sesions <- function(.years, .weeks = 6) {
+    freqs |> 
+        
+        # Only wards that have a complete dataset
+        filter(!ward %in% c("Anonymous", "NA")) |> 
+        
+        # Only Advent and Christmas seasons
+        filter(month == 12 | (month == 11 & day >= 25) | (month == 1 & day <= 5)) |> 
+        # Find the nearest Christmas
+        mutate(nearest_christmas = if_else(month >= 11,
+                                           ymd(paste0(year, "-12-25")),
+                                           ymd(paste0(year-1, "-12-25"))),
+               nearest_christmas_year = year(nearest_christmas)) |> 
+        
+        filter(nearest_christmas_year %in% .years) |> 
+        
+        # Only keep wards that have data from at least five weeks (308 ward-years)
+        mutate(n_meetings = length(unique(meeting_id)), .by = c(ward, nearest_christmas)) |> 
+        filter(n_meetings %in% .weeks)
+}
+
+complete_seasons_to2023 <- get_complete_sesions(2002:2023)
+complete_seasons_2024   <- get_complete_sesions(2024)
+complete_seasons_2025   <- get_complete_sesions(2025)
+
+complete_seasons_to2023 |> 
+    count(ward, city, nearest_christmas)
+complete_seasons_2024 |> 
+    count(ward, city, nearest_christmas)
+complete_seasons_2025 |> 
+    count(ward, city, nearest_christmas)
+```
+
+
+
+
+## Number of Christmas hymns sung
+
+Two years ago, we only had 14 Christmas hymns in the hymnal. Even then, it was difficult to get through all of them. The traditional period of Christmastime goes from about four weeks before Christmas (what other Christian traditions call *Advent*) to about twelve days after (January 5th, or *Epiphony*). In our faith, we typically [stop singing Christmas hymns](/posts/week-after-thanksgiving) sooner than that. So, that means we have about (4×6=) 24 hymn slots to work with. Subtract one each week for sacrament, and that's (24−6=) 18. Subtract two intermediate hymns on the December and January Fast Sundays, and we're at (18−2=) 16 slots total. And that's assuming singing Christmas hymns as early as the last Sunday of November and as late as the first Sunday in January. Yes, some wards have additional congregational hymns during a week or two in January, but those are the exception.
+
+The point is most wards didn't get through all the hymns even then, so some were prioritized over others. 
+
+Two years ago I showed a plot like this. This shows the distribution of how many Christmas hymns are sung as congregational hymns per ward. This only includes data from wards that have complete datasets, meaning from four weeks before Christmas to two weeks after. Note that this plot may look a little different than the plot in my previous blog post because that one was based on just 38 wards whereas this time it's based on a little over 10 times that since I've collected quite a bit more data since then. It is noteworthy that none of the wards I have data from sang all 14 in a single year.
+
+```{r}
+n_hymns_per_season_to2023 <- complete_seasons_to2023 %>%
+    filter(hymn_num %in% 201:214) %>%
+    summarize(n_unique = length(unique(hymn_num)), .by = c(ward, nearest_christmas)) %>%
+    count(n_unique) %>%
+    print()
+
+n_hymns_per_season_to2023 |> 
+    mutate(prop = n/sum(n)) |> 
+    ggplot(aes(n_unique, prop)) + 
+    geom_col(fill = "gray80", color = "gray20") + 
+    scale_x_continuous(breaks = 0:14,
+                       labels = 0:14,
+                       limits = c(0, 14)) + 
+    scale_y_continuous(labels = percent,
+                       breaks = seq(0, 0.3, 0.05),
+                       minor_breaks = seq(0, 0.3, 0.01),
+                       expand = expansion(0, c(0, 0.03))) + 
+    labs(title = "Number of Christmas hymns sung per year",
+         subtitle = "Based on the 391 wards with six weeks of data around Christmas",
+         x = "number of Christmas hymns sung",
+         y = "percentage of wards") + 
+    theme_minimal()
+```
+
+So it is most common to sing between 7 and 10 congregational Christmas hymns each year. 
+
+In 2024, there were an additional four new hymns: <hymn>He Is Born, the Divine Christ Child (1202)</hymn>, <hymn>What Child is This? (1203)</hymn>, <hymn>Star Bright (1204)</hymn>, and <hymn>Come, Lord Jesus (1018)</hymn>. In 2025, there were three more: <hymn>Still, Still, Still (1207)</hymn>, <hymn>Go Tell It on the Mountain (1208)</hymn>, and <hymn>Little Baby in a Manger (1209)</hymn>. That means of the now 23 Christmas hymns in the hymnal, a typical ward might sing a third to a half of them. 
+
+Perhaps 
+
+```{r}
+n_hymns_per_season_2024 <- complete_seasons_2024 %>%
+    filter(hymn_num %in% c(201:214, 1202:1204, 1207:1209)) %>%
+    summarize(n_unique = length(unique(hymn_num)), .by = c(ward, nearest_christmas)) %>%
+    count(n_unique)
+n_hymns_per_season_2025 <- complete_seasons_2025 %>%
+    filter(hymn_num %in% c(201:214, 1202:1204, 1207:1209)) %>%
+    summarize(n_unique = length(unique(hymn_num)), .by = c(ward, nearest_christmas)) %>%
+    count(n_unique)
+```
+
+```{r}
+n_hymns_per_season <- bind_rows(`to 2023` = n_hymns_per_season_to2023, 
+                                `2024`    = n_hymns_per_season_2024, 
+                                # `2025`    = n_hymns_per_season_2025,
+                                .id = "year") |> 
+    mutate(year = factor(year, levels = c("to 2023", "2024", "2025")))
+
+n_hymns_per_season |> 
+    mutate(prop = n/sum(n), .by = year) |> 
+    ggplot(aes(n_unique, prop, fill = year)) + 
+    geom_col(color = "gray20", position = position_dodge2()) + 
+    scale_x_continuous(breaks = 0:14,
+                       labels = 0:14,
+                       limits = c(0, 14)) + 
+    scale_y_continuous(labels = percent,
+                       breaks = seq(0, 0.3, 0.05),
+                       minor_breaks = seq(0, 0.3, 0.01),
+                       expand = expansion(0, c(0, 0.03))) + 
+    labs(title = "Number of Christmas hymns sung per year",
+         x = "number of Christmas hymns sung",
+         y = "percentage of wards") + 
+    theme_minimal()
+```
+
+```{r}
+n_hymns_per_season |> 
+    mutate(prop = n/sum(n), .by = year) |> 
+    t_test(response = n_unique, explanatory = year, alternative = "greater")
+```
+
+
+
+## Canadians
+
+
+
+
+## How have the original hymns changed?
+
+
+
+
+
+
+

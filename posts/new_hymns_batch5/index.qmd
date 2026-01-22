@@ -139,7 +139,7 @@ date_minor_breaks <- tibble(weeks_since = 0:weeks_since_initial_release,
     mutate(date = last_sunday - weeks_since*7) |> 
     filter(date >= "2024-06-02")
 date_breaks <- date_minor_breaks |> 
-    filter(weeks_since %% 4 == 0)
+    filter(weeks_since %% 5 == 0)
 batch5_date_breaks <- date_minor_breaks |> 
     filter(weeks_since %% 1 == 0)
 ```
@@ -147,16 +147,21 @@ batch5_date_breaks <- date_minor_breaks |>
 
 ```{r}
 labels <- tibble(
-    batch = c("none", "batch1", "batch2", "batch3", "batch4"),
-    prop  = c(0.73, 0.26, 0.08, 0.04, 0.04),
-    date  = ymd(c("2025-04-01", "2025-02-14", "2025-01-25", "2025-03-15", "2025-06-15")),
-    label = c("no new hymns", "batch 1", "batch 2", "batch 3", "batch4"))
+    batch = c("none", "batch1", "batch2", "batch3", "batch4", "batch5"),
+    prop  = c(0.73, 0.33, 0.08, 0.04, 0.04, 0.01),
+    date  = ymd(c("2025-03-25", "2024-08-11", "2025-01-25", "2025-03-15", "2025-06-15", "2025-10-20")),
+    label = c("no new hymns", "batch 1", "batch 2", "batch 3", "batch4", "batch5"))
 
 # Annotations
-christmas_data_to_highlight <- data_to_plot |> 
-    filter(batch %in% c("batch1", "batch2"),
+christmas2024_data_to_highlight <- data_to_plot |> 
+    filter(!batch %in% c("none"),
            date >= "2024-12-01",
            date <= "2025-01-01") |> 
+    mutate(label = "Christmas")
+christmas2025_data_to_highlight <- data_to_plot |> 
+    filter(!batch %in% c("none"),
+           date >= "2025-12-01",
+           date <= "2026-01-01") |> 
     mutate(label = "Christmas")
 easter_data_to_highlight <- data_to_plot |> 
     filter(batch %in% c("batch1", "batch2"),
@@ -170,11 +175,17 @@ easter_data_to_highlight <- data_to_plot |>
 #| column: screen
 ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     
-    # Christmas annotation
-    ggforce::geom_mark_ellipse(data = christmas_data_to_highlight, group = 1, color = "gray50") + 
+    # Christmas annotations
+    ggforce::geom_mark_ellipse(data = christmas2024_data_to_highlight, group = 1, color = "gray50") + 
     annotate(geom = "text", x = ymd("2024-11-03"), y = 0.35, label = "Christmas", hjust = 1, color = "gray50") + 
     annotate(geom = "curve", color = "gray50",
              x = ymd("2024-11-05"), xend = ymd("2024-11-25"), y = 0.35, yend = 0.30,
+             curvature = -0.25, arrow = arrow(length = unit(2, "mm"))) + 
+    
+    ggforce::geom_mark_ellipse(data = christmas2025_data_to_highlight, group = 1, color = "gray50") + 
+    annotate(geom = "text", x = ymd("2025-11-03"), y = 0.35, label = "Christmas", hjust = 1, color = "gray50") + 
+    annotate(geom = "curve", color = "gray50",
+             x = ymd("2025-11-05"), xend = ymd("2025-11-25"), y = 0.35, yend = 0.30,
              curvature = -0.25, arrow = arrow(length = unit(2, "mm"))) + 
     
     # Easter
@@ -223,13 +234,15 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     theme(legend.position = "none")
 ```
 
-The first two weeks of the fifth batch were pretty lukewarm. Very few wards sang from it. A few wards sang <hymn>Our Prayer to Thee (#1048)</hymn> on September 28, [the day after President Nelson died](/posts/president_nelsons_death), but otherwise, fifth-batch hymns were quite rare. 
+The first two weeks of the fifth batch were pretty lukewarm. Very few wards sang those hymns. A few wards sang <hymn>Our Prayer to Thee (#1048)</hymn> on September 28, [the day after President Nelson died](/posts/president_nelsons_death), but otherwise, fifth-batch hymns were quite rare. 
 
-There is a noticeable jump after General Conference though. More wards sang from the fifth batch on October 12 (7.2%) than even the best week of the fourth batch (August 24th: 6.9%). The bulk of this surge (about 62%) was, perhaps unsurprisingly, <hymn>Our Prayer to Thee (#1048)</hymn>. However, most of the hymns in the fifth batch have been attested at least once in my dataset.
+There is a noticeable jump after General Conference though. More wards sang from the fifth batch on October 12 (7.9%) than even the best week of the fourth batch when it was the newest batch (August 24th: 6.8%). The bulk of this surge (about 62%) was, perhaps unsurprisingly because of President Nelson's recent passing, <hymn>Our Prayer to Thee (#1048)</hymn>. However, since then, I've seen all of the fifth batch hymns at least twice.
 
-Since General Conference and through Christmastime, the fifth batch has held pretty constant at around 5%--10% of wards each week. While other batches (notably the second and third) experience some slumps during Christmas time. 
+Since General Conference and through Christmastime, the fifth batch has held pretty constant at around 5%--10% of wards each week. Meanwhile, the other batches (notably the second and third) experience some slumps during Christmas time. 
 
-A noteworthy landmark is that October 26 was the day where the most number of wards sang at least one new hymn: about 55%. We've seen a handful of weeks were right around half of wards sang new hymns, but that day was quite a bit more than others. We hit came close to this again on November 30, presumably as many wards started to sing the new Christmas hymns.
+A noteworthy landmark is that October 26 was the day where the most number of wards sang at least one new hymn: about 55%. We've seen a handful of weeks were right around half of wards sang new hymns, but that day was quite a bit more than others. We hit came close to this again on November 30, presumably as many wards started to sing the new Christmas hymns. In January 2026, we're seeing even more wards singing new hymns.
+
+An interesting trend generally is that the first batch of hymns continues to be the most popular among any of the other ones. Even a year and a half after its release it still outperforms almost all of the more recent hymns. 
 
 
 ```{r}
@@ -269,7 +282,6 @@ data_to_plot |>
 ```
 
 
-
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
 
 ```{r, include = TRUE, fig.height = 4.5, fig.width = 14}
@@ -298,7 +310,7 @@ data_to_plot |>
     theme(legend.position = "none")
 ```
 
-In this version of the plot, it's easier to compare batches. Thanks to that post--General Conference surge, the fifth batch was nearly as popular as the third batch for one week. Since then, it seems to be about as popular as the fourth batch was around this time.
+In this version of the plot, it's easier to compare batches. Thanks to that post--General Conference surge, the fifth batch was nearly as popular as the third batch for one week. Since then, it seems to be about as popular as the fourth batch was around this time. But it's still not super popular: it's as common to sing fifth batch hymns as it was to sing second batch hymns during Christmastime 2024.
 
 
 ## What hymns are most popular?
@@ -331,7 +343,15 @@ meetings_since_release5 |>
 ```
 
 
-It's hard to say whether <hymn>Our Prayer to Thee (#1048)</hymn> would have become as popular as it currently is had President Nelson not passed away recently. We'll never know. But it lost its spot as the top hymn in this batch during Christmastime when <hymn>Go Tell It on the Mountain (#1208)</hymn> took the lead.
+The most popular hymn during this batch is <hymn>Go Tell It on the Mountain (#1208)</hymn>. This is almost certainly because it is a Christmas hymn and we recently celebrated Christmas. Since it is a Christmas hymn, we likely won't see it sung very often until the end of November 2026, which means other hymns will get a chance to be sung. We'll have to wait a full 52 weeks to see how <hymn>Go Tell It on the Mountain (#1208)</hymn> compares to the other hymns in this batch, but I suspect it might lose its place as the most popular hymn in this batch. 
+
+A distant second is <hymn>Our Prayer to Thee (#1048)</hymn>. There may be a few reasons for this. One, I think it's objectively a good hymn. Two, it uses a tune that is well known in the Christian world. In fact, we used this tune in the previous hymnal for <hymn>O Home Beloved (#337)</hymn>. But in the 85,000 sacrament meetings I have data for I have *not once* seen that hymn being sung. So I'm glad they're repurposing it for this hymn. And finally, President Russell M. Nelson wrote the lyrics to the hymn. Now, it might be a coincidence that he passed away just after this hymn was released, but I can't help but wonder whether it's as popular as it is because a fair number of wards sang it soon after that presumably in his honor. We'll never know. 
+
+The next one, <hymn>Help Us Remember (#1043)</hymn> is the only sacrament hymn in this batch, and [sacrament hymns tend to be sung more](/posts/sacrament).
+
+The rest of the hymns trail behind. I personally am a fan of <hymn>This Day Is a Good Day, Lord (#1051)</hymn>, so I'm goad to see it as high as it is on this list. It is interesting that while <hymn>Go Tell It on the Mountain (#1208)</hymn> was popular during Christmas, <hymn>Little Baby in a Manger (#1209)</hymn> was not so much. Familiarity and prior exposure to the hymn likely is an influence, but also I think maybe some wards are uncomfortable with that style of melody in congregational singing still. 
+
+There is a clear least popular hymn, <hymn>Joseph Prayed in Faith (#1049)</hymn>. While I have seen each of the other hymns sung at least a dozen times, this one I've only seen twice. My guess is that it'll become more popular in the spring when people tend to sing Joseph Smith--related hymns. So, I don't think it's any worse of a hymn, but it's just not the time of year for it.
 
 
 
@@ -377,12 +397,12 @@ meetings_since_release5 |>
      theme_bw()
 ```
 
-Since the data is still so sparse, it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> is the lion's share of fifth batch hymns, at least for the first few weeks. Something we're seeing though is that two other hymns, <hymn>Thou Gracious Lord, Whose Mercy Lends (#1042)</hymn> and <hymn>Help Us Remember (#1043)</hymn> were more common after about a month of their release, with roughly a quarter to a third of wards that have sung fifth-batch hymns singing them. In the Christmas season, <hymn>Go Tell It on the Mountain (#1208) saw a huge spike, as did <hymn>Little Baby in a Manger (#1209)</hymn>. 
+For some weeks, particularly in the beginning, the data is sparse, so it's important to to put too much weight into the percentages. But it is clear that <hymn>Our Prayer to Thee (#1048)</hymn> was the most popular in the batch when these first came out, but it has been waning since then. The other super clear pattern is the spike in the two Christmas hymns, <hymn>Go Tell It on the Mountain (#1208)</hymn> and <hymn>Little Baby in a Manger (#1209)</hymn>. There aren't too many other super clear patterns other than those three, although there does seem to be a trend for some hymns to be more popular in the past few weeks than earlier in this batch's time. 
 
 
 ## When during meetings are these hymns sung?
 
-We can also see when during sacrament meetings these hymns have been sung. Data sparsity makes this a pretty unreliable table though. We'll have to wait a few more weeks or months to really see some more meaningful trends. The only one that is somewhat trustworthy is, you guessed it, <hymn>Our Prayer to Thee (#1048)</hymn>.
+This table shows when during sacrament meetings these hymns have been sung. 
 
 ```{r, include = TRUE}
 meetings_since_release5 |>
@@ -412,7 +432,11 @@ meetings_since_release5 |>
 ```
 
 
+Like many other hymns and batches of hymns, each hymn here has their own story. So some hymns are more common as opening hymns while others are more common later in the meeting, and that's true generally. The clearest pattern is <hymn>Help Us Remember (#1043)</hymn> which is almost always sung as a sacrament hymn. Again, that makes sense since it is about the sacrament. A general trend that I see here though is that most hymns are most common as opening hymns. This is an interesting insight into when during sacrament meetings people like to sing new hymns. It's of course not a hard-and-fast rule of course, but it is a patterns shared among almost all these hymns. 
+
 
 ## Conclusion
 
-That's all for now. We're starting to see the fifth batch pick up in popularity a little bit, which is exciting. I expect we'll see Christmas affect things quite a bit, and then I think we're due for another batch soon.
+That's all for now. Overall, there are some cool things we learn from this batch. On the one hand, more wards are singing at least one new hymn each week. But, as seen in the first plot above, the first batch is where all the action is at. All batches are getting some attention, but the fifth batch is not doing any better than any of the other ones. In general, it seems like people are still enthusiastically singing new hymns, but not *all* the new hymns. 
+
+We're due for a sixth batch anytime now I believe, so I can't wait to see what we'll get to sing soon!

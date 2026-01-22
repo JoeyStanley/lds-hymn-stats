@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-25dddd147a97996fd9e58b4337ab8dc7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c55e9d64ff39e520df18b6c2fd6a6008.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -123,7 +124,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -159,6 +160,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
@@ -226,7 +229,7 @@ window.Quarto = {
 <p><img src="./images/logo.jpeg" class="img-fluid"></p>
 </div></div>
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(44)</span></div><div class="category" data-category="YWx0byUyMGxpbmU=">alto line <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YmFzcyUyMGxpbmU=">bass line <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y2hvcmRz">chords <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZnJlcXVlbmN5">frequency <span class="quarto-category-count">(31)</span></div><div class="category" data-category="Z2VuZXJhbA==">general <span class="quarto-category-count">(16)</span></div><div class="category" data-category="aGlnaGVzdCUyMG5vdGVz">highest notes <span class="quarto-category-count">(2)</span></div><div class="category" data-category="aG9saWRheXM=">holidays <span class="quarto-category-count">(19)</span></div><div class="category" data-category="a2V5JTIwc2lnbmF0dXJlcw==">key signatures <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG93ZXN0JTIwbm90ZXM=">lowest notes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0YQ==">meta <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVzaWNvbG9neQ==">musicology <span class="quarto-category-count">(6)</span></div><div class="category" data-category="bmV3JTIwaHltbnM=">new hymns <span class="quarto-category-count">(8)</span></div><div class="category" data-category="c2FjcmFtZW50">sacrament <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c29wcmFubyUyMGxpbmU=">soprano line <span class="quarto-category-count">(5)</span></div><div class="category" data-category="dGVub3IlMjBsaW5l">tenor line <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(45)</span></div><div class="category" data-category="YWx0byUyMGxpbmU=">alto line <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YmFzcyUyMGxpbmU=">bass line <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y2hvcmRz">chords <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZnJlcXVlbmN5">frequency <span class="quarto-category-count">(31)</span></div><div class="category" data-category="Z2VuZXJhbA==">general <span class="quarto-category-count">(16)</span></div><div class="category" data-category="aGlnaGVzdCUyMG5vdGVz">highest notes <span class="quarto-category-count">(2)</span></div><div class="category" data-category="aG9saWRheXM=">holidays <span class="quarto-category-count">(20)</span></div><div class="category" data-category="a2V5JTIwc2lnbmF0dXJlcw==">key signatures <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG93ZXN0JTIwbm90ZXM=">lowest notes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0YQ==">meta <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVzaWNvbG9neQ==">musicology <span class="quarto-category-count">(6)</span></div><div class="category" data-category="bmV3JTIwaHltbnM=">new hymns <span class="quarto-category-count">(8)</span></div><div class="category" data-category="c2FjcmFtZW50">sacrament <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c29wcmFubyUyMGxpbmU=">soprano line <span class="quarto-category-count">(5)</span></div><div class="category" data-category="dGVub3IlMjBsaW5l">tenor line <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -255,7 +258,40 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1759298400000" data-listing-file-modified-sort="1759405236308" data-listing-date-modified-sort="1759405236000" data-listing-reading-time-sort="14" data-listing-word-count-sort="2757">
+<div class="quarto-post image-right" data-index="0" data-categories="aG9saWRheXM=" data-listing-date-sort="1766646000000" data-listing-file-modified-sort="1768188373618" data-listing-date-modified-sort="1768188373000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1606">
+<div class="thumbnail"><a href="./posts/christmas2025/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/christmas2025/index.html" class="no-external">Christmas 2025</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/christmas2025/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('aG9saWRheXM='); return false;">holidays</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/christmas2025/index.html" class="no-external">
+In 2023, I did a detailed analysis of Christmas hymns that summarized all the data up to that point. Since that was the last Christmas before the new hymns were introduced…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/christmas2025/index.html" class="no-external">
+<div class="listing-date">
+Dec 25, 2025
+</div>
+<div class="listing-author">
+Joey Stanley
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1759298400000" data-listing-file-modified-sort="1759405236308" data-listing-date-modified-sort="1759405236000" data-listing-reading-time-sort="14" data-listing-word-count-sort="2757">
 <div class="thumbnail"><a href="./posts/president_nelsons_death/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/president_nelsons_death/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
@@ -290,7 +326,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1758175200000" data-listing-file-modified-sort="1767609725625" data-listing-date-modified-sort="1767609725000" data-listing-reading-time-sort="20" data-listing-word-count-sort="3865">
+<div class="quarto-post image-right" data-index="2" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1758175200000" data-listing-file-modified-sort="1769040502046" data-listing-date-modified-sort="1769040502000" data-listing-reading-time-sort="24" data-listing-word-count-sort="4617">
 <div class="thumbnail"><a href="./posts/new_hymns_batch5/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_batch5/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p>
@@ -327,7 +363,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1749967200000" data-listing-file-modified-sort="1758440423852" data-listing-date-modified-sort="1758440423000" data-listing-reading-time-sort="31" data-listing-word-count-sort="6081">
+<div class="quarto-post image-right" data-index="3" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1749967200000" data-listing-file-modified-sort="1758440423852" data-listing-date-modified-sort="1758440423000" data-listing-reading-time-sort="31" data-listing-word-count-sort="6081">
 <div class="thumbnail"><a href="./posts/new_hymns_batch4/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_batch4/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p>
@@ -364,7 +400,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1745128800000" data-listing-file-modified-sort="1746808353761" data-listing-date-modified-sort="1746808353000" data-listing-reading-time-sort="31" data-listing-word-count-sort="6031">
+<div class="quarto-post image-right" data-index="4" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1745128800000" data-listing-file-modified-sort="1746808353761" data-listing-date-modified-sort="1746808353000" data-listing-reading-time-sort="31" data-listing-word-count-sort="6031">
 <div class="thumbnail"><a href="./posts/easter2025/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/easter2025/cover.png" class="thumbnail-image">
@@ -399,7 +435,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1739689200000" data-listing-file-modified-sort="1750226321811" data-listing-date-modified-sort="1750226321000" data-listing-reading-time-sort="21" data-listing-word-count-sort="4043">
+<div class="quarto-post image-right" data-index="5" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1739689200000" data-listing-file-modified-sort="1750226321811" data-listing-date-modified-sort="1750226321000" data-listing-reading-time-sort="21" data-listing-word-count-sort="4043">
 <div class="thumbnail"><a href="./posts/new_hymns_batch3/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_batch3/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p>
@@ -436,7 +472,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="aG9saWRheXM=" data-listing-date-sort="1733295600000" data-listing-file-modified-sort="1736034723555" data-listing-date-modified-sort="1736034723000" data-listing-reading-time-sort="26" data-listing-word-count-sort="5167">
+<div class="quarto-post image-right" data-index="6" data-categories="aG9saWRheXM=" data-listing-date-sort="1733295600000" data-listing-file-modified-sort="1736034723555" data-listing-date-modified-sort="1736034723000" data-listing-reading-time-sort="26" data-listing-word-count-sort="5167">
 <div class="thumbnail"><a href="./posts/christmas2024/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/christmas2024/index_files/figure-html/unnamed-chunk-6-1.png"  class="thumbnail-image card-img"/></p>
@@ -469,7 +505,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1730876400000" data-listing-file-modified-sort="1732206418470" data-listing-date-modified-sort="1732206418000" data-listing-reading-time-sort="16" data-listing-word-count-sort="3169">
+<div class="quarto-post image-right" data-index="7" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1730876400000" data-listing-file-modified-sort="1732206418470" data-listing-date-modified-sort="1732206418000" data-listing-reading-time-sort="16" data-listing-word-count-sort="3169">
 <div class="thumbnail"><a href="./posts/come_follow_me/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/come_follow_me/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p>
@@ -502,7 +538,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1728453600000" data-listing-file-modified-sort="1728513831526" data-listing-date-modified-sort="1728513831000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3371">
+<div class="quarto-post image-right" data-index="8" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1728453600000" data-listing-file-modified-sort="1728513831526" data-listing-date-modified-sort="1728513831000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3371">
 <div class="thumbnail"><a href="./posts/math1/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -535,7 +571,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1726639200000" data-listing-file-modified-sort="1739789186250" data-listing-date-modified-sort="1739789186000" data-listing-reading-time-sort="20" data-listing-word-count-sort="3900">
+<div class="quarto-post image-right" data-index="9" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1726639200000" data-listing-file-modified-sort="1739789186250" data-listing-date-modified-sort="1739789186000" data-listing-reading-time-sort="20" data-listing-word-count-sort="3900">
 <div class="thumbnail"><a href="./posts/new_hymns_batch2/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_batch2/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p>
@@ -572,7 +608,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1726552800000" data-listing-file-modified-sort="1726632797112" data-listing-date-modified-sort="1726632797000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1189">
+<div class="quarto-post image-right" data-index="10" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1726552800000" data-listing-file-modified-sort="1726632797112" data-listing-date-modified-sort="1726632797000" data-listing-reading-time-sort="6" data-listing-word-count-sort="1189">
 <div class="thumbnail"><a href="./posts/president_nelsons_birthday/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/president_nelsons_birthday/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
@@ -607,7 +643,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1726466400000" data-listing-file-modified-sort="1726507278622" data-listing-date-modified-sort="1726507278000" data-listing-reading-time-sort="16" data-listing-word-count-sort="3191">
+<div class="quarto-post image-right" data-index="11" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1726466400000" data-listing-file-modified-sort="1726507278622" data-listing-date-modified-sort="1726507278000" data-listing-reading-time-sort="16" data-listing-word-count-sort="3191">
 <div class="thumbnail"><a href="./posts/cards/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/cards/cover.png" class="thumbnail-image">
@@ -640,7 +676,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="ZnJlcXVlbmN5" data-listing-date-sort="1724392800000" data-listing-file-modified-sort="1724343285847" data-listing-date-modified-sort="1724343285000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2983">
+<div class="quarto-post image-right" data-index="12" data-categories="ZnJlcXVlbmN5" data-listing-date-sort="1724392800000" data-listing-file-modified-sort="1724343285847" data-listing-date-modified-sort="1724343285000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2983">
 <div class="thumbnail"><a href="./posts/called_to_serve/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/called_to_serve/cover.png" class="thumbnail-image">
@@ -673,7 +709,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1721541600000" data-listing-file-modified-sort="1722614723438" data-listing-date-modified-sort="1722614723000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4254">
+<div class="quarto-post image-right" data-index="13" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1721541600000" data-listing-file-modified-sort="1722614723438" data-listing-date-modified-sort="1722614723000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4254">
 <div class="thumbnail"><a href="./posts/pioneer_day/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/pioneer_day/index_files/figure-html/fig-cleveland-1.png"  class="thumbnail-image card-img"/></p>
@@ -708,7 +744,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1720072800000" data-listing-file-modified-sort="1720890938954" data-listing-date-modified-sort="1720890938000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4241">
+<div class="quarto-post image-right" data-index="14" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1720072800000" data-listing-file-modified-sort="1720890938954" data-listing-date-modified-sort="1720890938000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4241">
 <div class="thumbnail"><a href="./posts/4th_of_july/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/4th_of_july/index_files/figure-html/fig-most_common-1.png"  class="thumbnail-image card-img"/></p>
@@ -743,7 +779,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1719813600000" data-listing-file-modified-sort="1719845707093" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1436">
+<div class="quarto-post image-right" data-index="15" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1719813600000" data-listing-file-modified-sort="1719845707093" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1436">
 <div class="thumbnail"><a href="./posts/martyrdom/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/martyrdom/cover.png" class="thumbnail-image">
@@ -778,7 +814,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1719295200000" data-listing-file-modified-sort="1758447062924" data-listing-date-modified-sort="1758447062000" data-listing-reading-time-sort="21" data-listing-word-count-sort="4151">
+<div class="quarto-post image-right" data-index="16" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1719295200000" data-listing-file-modified-sort="1758447062924" data-listing-date-modified-sort="1758447062000" data-listing-reading-time-sort="21" data-listing-word-count-sort="4151">
 <div class="thumbnail"><a href="./posts/new_hymns_batch1/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_batch1/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
@@ -815,7 +851,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1718517600000" data-listing-file-modified-sort="1719819392146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2302">
+<div class="quarto-post image-right" data-index="17" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1718517600000" data-listing-file-modified-sort="1719819392146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2302">
 <div class="thumbnail"><a href="./posts/fathers_day/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/fathers_day/index_files/figure-html/unnamed-chunk-6-1.png"  class="thumbnail-image card-img"/></p>
@@ -850,7 +886,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1719815645257" data-listing-date-modified-sort="1719815645000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2089">
+<div class="quarto-post image-right" data-index="18" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1719815645257" data-listing-date-modified-sort="1719815645000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2089">
 <div class="thumbnail"><a href="./posts/new_hymns_week3/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_week3/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
@@ -887,7 +923,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1718661516189" data-listing-date-modified-sort="1718661516000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1498">
+<div class="quarto-post image-right" data-index="19" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1717912800000" data-listing-file-modified-sort="1718661516189" data-listing-date-modified-sort="1718661516000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1498">
 <div class="thumbnail"><a href="./posts/new_hymns_week2/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_week2/index_files/figure-html/unnamed-chunk-4-1.png"  class="thumbnail-image card-img"/></p>
@@ -924,7 +960,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="19" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1717308000000" data-listing-file-modified-sort="1718643258613" data-listing-date-modified-sort="1718643258000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1622">
+<div class="quarto-post image-right" data-index="20" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeSUyQ25ldyUyMGh5bW5z" data-listing-date-sort="1717308000000" data-listing-file-modified-sort="1718643258613" data-listing-date-modified-sort="1718643258000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1622">
 <div class="thumbnail"><a href="./posts/new_hymns_week1/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/new_hymns_week1/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p>
@@ -961,7 +997,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="20" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1715493600000" data-listing-file-modified-sort="1746473230785" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1934">
+<div class="quarto-post image-right" data-index="21" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1715493600000" data-listing-file-modified-sort="1746473230785" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1934">
 <div class="thumbnail"><a href="./posts/mothers_day/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/mothers_day/hymn_topics.png"  class="thumbnail-image card-img"/></p>
@@ -996,7 +1032,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="21" data-categories="ZnJlcXVlbmN5JTJDZ2VuZXJhbA==" data-listing-date-sort="1712210400000" data-listing-file-modified-sort="1726286482207" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5556">
+<div class="quarto-post image-right" data-index="22" data-categories="ZnJlcXVlbmN5JTJDZ2VuZXJhbA==" data-listing-date-sort="1712210400000" data-listing-file-modified-sort="1726286482207" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5556">
 <div class="thumbnail"><a href="./posts/change_over_time/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/change_over_time/cover.png" class="thumbnail-image">
@@ -1031,7 +1067,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="22" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1711260000000" data-listing-file-modified-sort="1746657787503" data-listing-date-modified-sort="1746657787000" data-listing-reading-time-sort="38" data-listing-word-count-sort="7410">
+<div class="quarto-post image-right" data-index="23" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1711260000000" data-listing-file-modified-sort="1746657787503" data-listing-date-modified-sort="1746657787000" data-listing-reading-time-sort="38" data-listing-word-count-sort="7410">
 <div class="thumbnail"><a href="./posts/easter/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/easter/diagram.png"  class="thumbnail-image card-img"/></p>
@@ -1066,7 +1102,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="23" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1708326000000" data-listing-file-modified-sort="1726286247844" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2743">
+<div class="quarto-post image-right" data-index="24" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1708326000000" data-listing-file-modified-sort="1726286247844" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2743">
 <div class="thumbnail"><a href="./posts/fast_sunday/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/fast_sunday/index_files/figure-html/fig-cleveland-1.png"  class="thumbnail-image card-img"/></p>
@@ -1101,10 +1137,10 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="24" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1705734000000" data-listing-file-modified-sort="1705820880158" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2699">
+<div class="quarto-post image-right" data-index="25" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1705734000000" data-listing-file-modified-sort="1705820880158" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2699">
 <div class="thumbnail"><a href="./posts/valentines/index.html" class="no-external">
 
-<p class="card-img-top"><img src="posts/valentines/index_files/figure-html/fig-love_topic-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="posts/valentines/index_files/figure-html/fig-love_topic-1.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -1136,7 +1172,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="25" data-categories="bWV0YQ==" data-listing-date-sort="1703919600000" data-listing-file-modified-sort="1736035419592" data-listing-date-modified-sort="1736035419000" data-listing-reading-time-sort="38" data-listing-word-count-sort="7571">
+<div class="quarto-post image-right" data-index="26" data-categories="bWV0YQ==" data-listing-date-sort="1703919600000" data-listing-file-modified-sort="1736035419592" data-listing-date-modified-sort="1736035419000" data-listing-reading-time-sort="38" data-listing-word-count-sort="7571">
 <div class="thumbnail"><a href="./posts/frequency-data/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/frequency-data/index_files/figure-html/fig-joey2015_time-1.png"  class="thumbnail-image card-img"/></p>
@@ -1169,7 +1205,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="26" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1703833200000" data-listing-file-modified-sort="1703868713942" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5441">
+<div class="quarto-post image-right" data-index="27" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1703833200000" data-listing-file-modified-sort="1703868713942" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="28" data-listing-word-count-sort="5441">
 <div class="thumbnail"><a href="./posts/new-years/index.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/new-years/cover.png" class="thumbnail-image">
@@ -1204,7 +1240,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="27" data-categories="aG9saWRheXM=" data-listing-date-sort="1703401200000" data-listing-file-modified-sort="1703835912555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="45" data-listing-word-count-sort="8871">
+<div class="quarto-post image-right" data-index="28" data-categories="aG9saWRheXM=" data-listing-date-sort="1703401200000" data-listing-file-modified-sort="1703835912555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="45" data-listing-word-count-sort="8871">
 <div class="thumbnail"><a href="./posts/christmas/index.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/christmas/cover.png" class="thumbnail-image">
@@ -1237,7 +1273,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="28" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1700550000000" data-listing-file-modified-sort="1700577410713" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3570">
+<div class="quarto-post image-right" data-index="29" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1700550000000" data-listing-file-modified-sort="1700577410713" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3570">
 <div class="thumbnail"><a href="./posts/week-after-thanksgiving/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/week-after-thanksgiving/index_files/figure-html/fig-limbo-1.png"  class="thumbnail-image card-img"/></p>
@@ -1272,7 +1308,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="29" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1699772400000" data-listing-file-modified-sort="1757017116340" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="58" data-listing-word-count-sort="11491">
+<div class="quarto-post image-right" data-index="30" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1699772400000" data-listing-file-modified-sort="1757017116340" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="58" data-listing-word-count-sort="11491">
 <div class="thumbnail"><a href="./posts/hymns_per_year_part2/index.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/hymns_per_year_part2/cover.png" class="thumbnail-image">
@@ -1305,7 +1341,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="30" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1699077600000" data-listing-file-modified-sort="1733238189450" data-listing-date-modified-sort="1733238189000" data-listing-reading-time-sort="43" data-listing-word-count-sort="8592">
+<div class="quarto-post image-right" data-index="31" data-categories="aG9saWRheXMlMkNmcmVxdWVuY3k=" data-listing-date-sort="1699077600000" data-listing-file-modified-sort="1733238189450" data-listing-date-modified-sort="1733238189000" data-listing-reading-time-sort="43" data-listing-word-count-sort="8592">
 <div class="thumbnail"><a href="./posts/thanksgiving/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/thanksgiving/index_files/figure-html/fig-thanksgiving_freqs-1.png"  class="thumbnail-image card-img"/></p>
@@ -1340,7 +1376,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="31" data-categories="YWx0byUyMGxpbmUlMkNtdXNpY29sb2d5JTJDaGlnaGVzdCUyMG5vdGVz" data-listing-date-sort="1698904800000" data-listing-file-modified-sort="1698989495900" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6682">
+<div class="quarto-post image-right" data-index="32" data-categories="YWx0byUyMGxpbmUlMkNtdXNpY29sb2d5JTJDaGlnaGVzdCUyMG5vdGVz" data-listing-date-sort="1698904800000" data-listing-file-modified-sort="1698989495900" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6682">
 <div class="thumbnail"><a href="./posts/highest_alto/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/highest_alto/saints.png"  class="thumbnail-image card-img"/></p>
@@ -1377,7 +1413,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="32" data-categories="ZnJlcXVlbmN5JTJDaG9saWRheXM=" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286150691" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2545">
+<div class="quarto-post image-right" data-index="33" data-categories="ZnJlcXVlbmN5JTJDaG9saWRheXM=" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286150691" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2545">
 <div class="thumbnail"><a href="./posts/primary_program/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/primary_program/index_files/figure-html/unnamed-chunk-9-1.png"  class="thumbnail-image card-img"/></p>
@@ -1412,7 +1448,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="33" data-categories="ZnJlcXVlbmN5JTJDaG9saWRheXM=" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286151587" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2545">
+<div class="quarto-post image-right" data-index="34" data-categories="ZnJlcXVlbmN5JTJDaG9saWRheXM=" data-listing-date-sort="1698040800000" data-listing-file-modified-sort="1726286151587" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2545">
 <div class="thumbnail"><a href="./posts/primary_program/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/primary_program/index_files/figure-html/unnamed-chunk-9-1.png"  class="thumbnail-image card-img"/></p>
@@ -1447,7 +1483,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="34" data-categories="c29wcmFubyUyMGxpbmUlMkNhbHRvJTIwbGluZSUyQ3Rlbm9yJTIwbGluZSUyQ2Jhc3MlMjBsaW5lJTJDY2hvcmRzJTJDbXVzaWNvbG9neQ==" data-listing-date-sort="1697608800000" data-listing-file-modified-sort="1698989882522" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6773">
+<div class="quarto-post image-right" data-index="35" data-categories="c29wcmFubyUyMGxpbmUlMkNhbHRvJTIwbGluZSUyQ3Rlbm9yJTIwbGluZSUyQ2Jhc3MlMjBsaW5lJTJDY2hvcmRzJTJDbXVzaWNvbG9neQ==" data-listing-date-sort="1697608800000" data-listing-file-modified-sort="1698989882522" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6773">
 <div class="thumbnail"><a href="./posts/final_chords/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/final_chords/thy-will.png"  class="thumbnail-image card-img"/></p>
@@ -1490,7 +1526,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="35" data-categories="c29wcmFubyUyMGxpbmUlMkNsb3dlc3QlMjBub3RlcyUyQ211c2ljb2xvZ3k=" data-listing-date-sort="1697090400000" data-listing-file-modified-sort="1698989792928" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3236">
+<div class="quarto-post image-right" data-index="36" data-categories="c29wcmFubyUyMGxpbmUlMkNsb3dlc3QlMjBub3RlcyUyQ211c2ljb2xvZ3k=" data-listing-date-sort="1697090400000" data-listing-file-modified-sort="1698989792928" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3236">
 <div class="thumbnail"><a href="./posts/lowest_soprano/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/lowest_soprano/star-spangled_banner.png"  class="thumbnail-image card-img"/></p>
@@ -1527,7 +1563,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="36" data-categories="ZnJlcXVlbmN5JTJDZ2VuZXJhbA==" data-listing-date-sort="1696831200000" data-listing-file-modified-sort="1726286090130" data-listing-date-modified-sort="1698386400000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2801">
+<div class="quarto-post image-right" data-index="37" data-categories="ZnJlcXVlbmN5JTJDZ2VuZXJhbA==" data-listing-date-sort="1696831200000" data-listing-file-modified-sort="1726286090130" data-listing-date-modified-sort="1698386400000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2801">
 <div class="thumbnail"><a href="./posts/least-common-hymns/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -1562,7 +1598,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="37" data-categories="c29wcmFubyUyMGxpbmUlMkNtdXNpY29sb2d5JTJDaGlnaGVzdCUyMG5vdGVz" data-listing-date-sort="1696572000000" data-listing-file-modified-sort="1726458019117" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2549">
+<div class="quarto-post image-right" data-index="38" data-categories="c29wcmFubyUyMGxpbmUlMkNtdXNpY29sb2d5JTJDaGlnaGVzdCUyMG5vdGVz" data-listing-date-sort="1696572000000" data-listing-file-modified-sort="1726458019117" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2549">
 <div class="thumbnail"><a href="./posts/highest_soprano/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/highest_soprano/index_files/figure-html/unnamed-chunk-5-1.png"  class="thumbnail-image card-img"/></p>
@@ -1599,7 +1635,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="38" data-categories="ZnJlcXVlbmN5JTJDaG9saWRheXM=" data-listing-date-sort="1695448800000" data-listing-file-modified-sort="1726403475788" data-listing-date-modified-sort="1726403475000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1596">
+<div class="quarto-post image-right" data-index="39" data-categories="ZnJlcXVlbmN5JTJDaG9saWRheXM=" data-listing-date-sort="1695448800000" data-listing-file-modified-sort="1726403475788" data-listing-date-modified-sort="1726403475000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1596">
 <div class="thumbnail"><a href="./posts/general_conference/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/general_conference/genconf_annual.jpeg"  class="thumbnail-image card-img"/></p>
@@ -1634,7 +1670,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="39" data-categories="ZnJlcXVlbmN5JTJDbXVzaWNvbG9neSUyQ3NvcHJhbm8lMjBsaW5lJTJDdGVub3IlMjBsaW5l" data-listing-date-sort="1695103200000" data-listing-file-modified-sort="1726458371813" data-listing-date-modified-sort="1726458371000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3231">
+<div class="quarto-post image-right" data-index="40" data-categories="ZnJlcXVlbmN5JTJDbXVzaWNvbG9neSUyQ3NvcHJhbm8lMjBsaW5lJTJDdGVub3IlMjBsaW5l" data-listing-date-sort="1695103200000" data-listing-file-modified-sort="1726458371813" data-listing-date-modified-sort="1726458371000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3231">
 <div class="thumbnail"><a href="./posts/mens_womens_arrangements/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/mens_womens_arrangements/womens_mens.jpeg"  class="thumbnail-image card-img"/></p>
@@ -1673,7 +1709,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="40" data-categories="a2V5JTIwc2lnbmF0dXJlcyUyQ211c2ljb2xvZ3klMkNzb3ByYW5vJTIwbGluZSUyQ2Jhc3MlMjBsaW5l" data-listing-date-sort="1694844000000" data-listing-file-modified-sort="1726458059519" data-listing-date-modified-sort="1726458059000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2907">
+<div class="quarto-post image-right" data-index="41" data-categories="a2V5JTIwc2lnbmF0dXJlcyUyQ211c2ljb2xvZ3klMkNzb3ByYW5vJTIwbGluZSUyQ2Jhc3MlMjBsaW5l" data-listing-date-sort="1694844000000" data-listing-file-modified-sort="1726458059519" data-listing-date-modified-sort="1726458059000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2907">
 <div class="thumbnail"><a href="./posts/key_signatures/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/key_signatures/index_files/figure-html/fig-key_sigs-1.png"  class="thumbnail-image card-img"/></p>
@@ -1712,7 +1748,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="41" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1694325600000" data-listing-file-modified-sort="1726457859479" data-listing-date-modified-sort="1726457859000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2866">
+<div class="quarto-post image-right" data-index="42" data-categories="Z2VuZXJhbA==" data-listing-date-sort="1694325600000" data-listing-file-modified-sort="1726457859479" data-listing-date-modified-sort="1726457859000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2866">
 <div class="thumbnail"><a href="./posts/hymns_per_year/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/hymns_per_year/index_files/figure-html/unnamed-chunk-7-1.png"  class="thumbnail-image card-img"/></p>
@@ -1745,7 +1781,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="42" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeQ==" data-listing-date-sort="1694152800000" data-listing-file-modified-sort="1726490108729" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1689">
+<div class="quarto-post image-right" data-index="43" data-categories="Z2VuZXJhbCUyQ2ZyZXF1ZW5jeQ==" data-listing-date-sort="1694152800000" data-listing-file-modified-sort="1726490108729" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1689">
 <div class="thumbnail"><a href="./posts/most_common/index.html" class="no-external">
 
 <p class="card-img-top"><img data-src="posts/most_common/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
@@ -1780,7 +1816,7 @@ Joey Stanley
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="43" data-categories="c2FjcmFtZW50JTJDZnJlcXVlbmN5" data-listing-date-sort="1694066400000" data-listing-file-modified-sort="1726405445243" data-listing-date-modified-sort="1726405445000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2927">
+<div class="quarto-post image-right" data-index="44" data-categories="c2FjcmFtZW50JTJDZnJlcXVlbmN5" data-listing-date-sort="1694066400000" data-listing-file-modified-sort="1726405445243" data-listing-date-modified-sort="1726405445000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2927">
 <div class="thumbnail"><a href="./posts/sacrament/index.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/sacrament/cover.png" class="thumbnail-image">
@@ -1872,13 +1908,14 @@ Joey Stanley
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
