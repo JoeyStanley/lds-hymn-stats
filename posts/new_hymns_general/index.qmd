@@ -1,0 +1,98 @@
+---
+title: "General Analysis of the New Hymns"
+author: "Joey Stanley"
+date: "2024-06-09"
+date-modified: last-modified
+categories: 
+  - general
+  - frequency
+  - new hymns
+reference-location: margin
+draft: TRUE
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+```
+
+ 
+
+In previous posts, I have done an in-depth analysis of the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2),  [third](/posts/new_hymns_batch3), [fourth](/posts/new_hymns_batch4), and [fifth](/posts/new_hymns_batch5) batches of new hymns. This post is an analysis of all the new hymns generally. 
+
+
+In my overview page, I show which hymns have been the most popular since June 2024. But, pooling all data since then together gives an unfair advantage to the earlier batches since they have been out longer and therefore have had more chances to be sung. So, I want to show the popularity of each hymn after controlling for how many weeks it has been available. 
+
+```{r}
+freqs |> 
+    filter(hymn_num > 1000,
+           hymn_num < 1300) |> 
+    mutate(batch = case_when(hymn_num %in% batch1_hymn_nums ~ "batch1",
+                             hymn_num %in% batch2_hymn_nums ~ "batch2",
+                             hymn_num %in% batch3_hymn_nums ~ "batch3",
+                             hymn_num %in% batch4_hymn_nums ~ "batch4",
+                             hymn_num %in% batch5_hymn_nums ~ "batch5"))
+```
+
+```{r}
+get_n_times_sung <- function(.hymn_num) {
+    freqs |> 
+        filter(hymn_num == .hymn_num) |> 
+        nrow()
+}
+get_n_meetings_since_release <- function(.date) {
+    freqs |> 
+        filter(date >= .date) |> 
+        distinct(meeting_id) |> 
+        nrow()
+}
+
+weekly_results <- name_num_lookup |> 
+    filter(hymn_num %in% 1000:1300) |> 
+    
+    # Basic info
+    mutate(batch = case_when(hymn_num %in% batch1_hymn_nums ~ "batch1",
+                             hymn_num %in% batch2_hymn_nums ~ "batch2",
+                             hymn_num %in% batch3_hymn_nums ~ "batch3",
+                             hymn_num %in% batch4_hymn_nums ~ "batch4",
+                             hymn_num %in% batch5_hymn_nums ~ "batch5"),
+           release_date = case_when(hymn_num %in% batch1_hymn_nums ~ batch1_release_date,
+                                    hymn_num %in% batch2_hymn_nums ~ batch2_release_date,
+                                    hymn_num %in% batch3_hymn_nums ~ batch3_release_date,
+                                    hymn_num %in% batch4_hymn_nums ~ batch4_release_date,
+                                    hymn_num %in% batch5_hymn_nums ~ batch5_release_date)) |> 
+    
+    # Get the basic info
+    mutate(times_sung = map_int(hymn_num, get_n_times_sung),
+           sundays_since_release = as.numeric((today() - release_date)/7),
+           meetings_since_release = map_int(release_date, get_n_meetings_since_release)) |> 
+    
+    # Now get proportions
+    mutate(times_per_sunday = times_sung / sundays_since_release,
+           prop_wards = times_sung / meetings_since_release)
+```
+
+
+```{r, fig.height = 8, fig.width = 8}
+weekly_results |> 
+    arrange(prop_wards) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) |> 
+    ggplot(aes(prop_wards, label, color = batch)) + 
+    geom_point() +  
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3) + 
+    scale_x_continuous(breaks = seq(0, 0.05, 0.005),
+                       labels = percent,
+                       expand = expansion(0, c(0.02, 0.001))) +
+    scale_y_discrete(breaks = NULL) + 
+    scale_color_brewer(palette = "Set2") + 
+    labs(title = "Average percent of wards singing each new hymn since its release date",
+         x = "Percent of wards",
+         y = NULL) + 
+    theme_minimal() + 
+    theme(axis.text.y = element_blank())
+```
+
