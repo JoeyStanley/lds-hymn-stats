@@ -1,14 +1,14 @@
 ---
 title: "General Analysis of the New Hymns"
 author: "Joey Stanley"
-date: "2024-06-09"
+date: "2026-01-22"
 date-modified: last-modified
 categories: 
   - general
   - frequency
   - new hymns
 reference-location: margin
-draft: TRUE
+draft: FALSE
 ---
 
 ```{r, include = FALSE}
@@ -19,12 +19,11 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(gt)
 ```
 
- 
 
 In previous posts, I have done an in-depth analysis of the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2),  [third](/posts/new_hymns_batch3), [fourth](/posts/new_hymns_batch4), and [fifth](/posts/new_hymns_batch5) batches of new hymns. This post is an analysis of all the new hymns generally. 
 
 
-In my overview page, I show which hymns have been the most popular since June 2024. But, pooling all data since then together gives an unfair advantage to the earlier batches since they have been out longer and therefore have had more chances to be sung. So, I want to show the popularity of each hymn after controlling for how many weeks it has been available. 
+In my [overview](/overview) page, I show which hymns have been the most popular since June 2024. But, pooling together all the data since then gives an unfair advantage to the earlier batches since they have been out longer and therefore have had more chances to be sung. So, I want to show the popularity of each hymn after controlling for how many weeks it has been available. 
 
 ```{r}
 freqs |> 
@@ -52,6 +51,7 @@ get_n_meetings_since_release <- function(.date) {
 
 weekly_results <- name_num_lookup |> 
     filter(hymn_num %in% 1000:1300) |> 
+    mutate(hymn_num = as.integer(hymn_num)) |> 
     
     # Basic info
     mutate(batch = case_when(hymn_num %in% batch1_hymn_nums ~ "batch1",
@@ -59,6 +59,7 @@ weekly_results <- name_num_lookup |>
                              hymn_num %in% batch3_hymn_nums ~ "batch3",
                              hymn_num %in% batch4_hymn_nums ~ "batch4",
                              hymn_num %in% batch5_hymn_nums ~ "batch5"),
+           batch = ordered(batch),
            release_date = case_when(hymn_num %in% batch1_hymn_nums ~ batch1_release_date,
                                     hymn_num %in% batch2_hymn_nums ~ batch2_release_date,
                                     hymn_num %in% batch3_hymn_nums ~ batch3_release_date,
@@ -72,16 +73,23 @@ weekly_results <- name_num_lookup |>
     
     # Now get proportions
     mutate(times_per_sunday = times_sung / sundays_since_release,
-           prop_wards = times_sung / meetings_since_release)
+           prop_wards = times_sung / meetings_since_release) |> 
+    
+    # Mark the holidays and other special hymns (not used in plot)
+    mutate(type = case_when(hymn_num %in% c(1018, 1201:1209) ~ "holiday",
+                            hymn_num %in% c(1003, 1007, 1008, 1009, 1016, 1017, 1041, 1043) ~ "sacrament",
+                            TRUE ~ "other"))
 ```
 
 
-```{r, fig.height = 8, fig.width = 8}
+
+```{r, include = TRUE, fig.height = 8, fig.width = 8}
 weekly_results |> 
     arrange(prop_wards) |> 
     mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
            label = fct_inorder(label)) |> 
     ggplot(aes(prop_wards, label, color = batch)) + 
+    # geom_point(data = . %>% filter(type != "other"), color = "black", size = 5) +
     geom_point() +  
     geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3) + 
     scale_x_continuous(breaks = seq(0, 0.05, 0.005),
@@ -94,5 +102,84 @@ weekly_results |>
          y = NULL) + 
     theme_minimal() + 
     theme(axis.text.y = element_blank())
+```
+
+I think this plot says a lot, so let's break it down. On a general level, we see that the most common hymns are sung by 2%--3% of wards every Sunday. That's not a tremendous amount, about one out of every 40--50 wards for any one of those top six or so hymns. But that's roughly the same as saying that, this Sunday, there's something like a 20%--30% chance that at least one ward in your stake will sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, another 20%--30% chance that at least one ward in your stake will sing <hymn>As Bread is Broken (#1007)</hymn>, and so on (depending on the size of your stake, of course). Another way of thinking about it is that a typical ward will sing each of these top few hymns about once a year.^[There are usually 52 Sundays in a year, but we have two set aside for General Conference and two set aside for Stake Conference, so that leaves 48 sacrament meetings per year. 1 divided by 48 is about 0.0208. So if a hymn is sung 2.08% of the time, that's about once per year.] The ones that are sitting at over 3% might be sung once every nine months or so. This is equivalent in popularity as <hymn>I Believe in Christ (#134)</hymn>, <hymn>Come, Follow Me (#116)</hymn>, and <hymn>I Need Thee Every Hour (#98)</hymn>, which are among the most popular hymns. 
+
+On the other end of the plot, we have a list of the least common hymns. These are ones that relatively few wards have ever sung, at least as congregational hymns. Some of the lowest on this list are sitting around 0.2% of wards. That means that, for any of these bottom 10 hymns, there's only about a 1--3% chance of a ward singing it next Sunday, even for larger stakes. Your ward might sing it only once every 10 years! (Of course, these are new hymns, so it's silly to make speculations like that.) That makes these about as popular as <hymn>How Beautiful Thy Temples, Lord (#288)</hymn>, <hymn>In Our Lovely Deseret (#307)</hymn>, and <hymn>As the Dew from Heaven Distilling (#149)</hymn>. 
+
+```{r}
+get_prop_by_rank <- function(.rank) {
+    weekly_results |> 
+        arrange(-prop_wards) |> 
+        slice(.rank) |> 
+        pull(prop_wards)
+}
+get_prob_by_rank_and_wards <- function(.n_wards, .rank) {
+    1-(1-get_prop_by_rank(.rank))^.n_wards
+}
+    
+probs <- crossing(rank = 50:60, # 1:10
+             n_wards = 5:11) |> 
+    rowwise() |> 
+    mutate(prob = get_prob_by_rank_and_wards(n_wards, rank),
+           is_sung = runif(1) < prob) |> 
+    ungroup() |> 
+    print() %>%
+    ggplot(aes(n_wards, prob, color = as.factor(rank), group = rank)) + 
+    geom_point() + 
+    geom_path() + 
+    scale_y_continuous(labels = percent) + 
+    labs(title = "Percent chance of common new hymns being sung within a stake of a given size on a given Sunday")
+```
+
+One trend that I'm seeing in this plot is that many of the hymns in the earlier batches are closer to the top and many of the hymns in the later batches are close to the bottom.^[The correlation between hymn number and frequency is statistically significant according to a Kendall's rank correlation test: $\tau = -0.5638$, $z = -5.8325$, $p < 0.001$.] Here's a plot showing that relationship. I've ignored the holiday hymns since they don't quite fit the pattern.
+
+
+```{r}
+weekly_minus_holiday <- weekly_results |> 
+    filter(hymn_num < 1100)
+cor.test(weekly_minus_holiday$hymn_num, weekly_minus_holiday$prop_wards, method = "kendall")
+```
+
+```{r}
+batch5_hymn_nums
+```
+
+
+```{r}
+labels <- weekly_results |>
+    filter(hymn_num < 1200) |> 
+    summarize(hymn_num = median(hymn_num),
+              prop_wards = max(prop_wards + 0.003),
+              .by = batch)
+rects <- weekly_results |>
+    filter(hymn_num < 1200) |> 
+    summarize(xmin = min(hymn_num) - 0.5,
+              xmax = max(hymn_num) + 0.5,
+              ymin = 0, 
+              ymax = max(prop_wards) + 0.005,
+              .by = batch) |> 
+    mutate(ymax = max(ymax))
+
+weekly_results |>
+    filter(hymn_num < 1200) |> 
+    ggplot() +
+    geom_rect(data = rects, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = batch), alpha = 0.1) + 
+    geom_text(data = labels, aes(hymn_num, prop_wards, color = batch, label = batch)) + 
+    geom_point(aes(hymn_num, prop_wards, color = batch)) +
+    scale_x_continuous(breaks = seq(1001, 1100, 5),
+                       minor_breaks = 1001:1100,
+                       expand = expansion(0, 0)) + 
+    scale_y_continuous(labels = percent,
+                       expand = expansion(0, 0)) + 
+    scale_color_brewer(palette = "Set1") + 
+    scale_fill_brewer(palette = "Set1") +
+    labs(title    = "For each new hymn, what is the typical percent of wards that have sung?",
+         subtitle = "Averaged over the weeks since the release of each batch.",
+         x = "hymn number",
+         y = "percent of wards") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
 ```
 
