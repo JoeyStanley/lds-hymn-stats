@@ -1,2 +1,871 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2026-01-31">
+
+<title>What makes a new hymn popular? – LDS Hymn Stats</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c55e9d64ff39e520df18b6c2fd6a6008.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="What makes a new hymn popular? – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/new_hymns_general/index_files/figure-html/unnamed-chunk-5-1.png">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="1536">
+<meta property="og:image:width" content="1536">
+<meta name="twitter:title" content="What makes a new hymn popular? – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/new_hymns_general/index_files/figure-html/unnamed-chunk-5-1.png">
+<meta name="twitter:image-height" content="1536">
+<meta name="twitter:image-width" content="1536">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#popularity" id="toc-popularity" class="nav-link active" data-scroll-target="#popularity">Popularity</a></li>
+  <li><a href="#methods-for-statistical-analysis" id="toc-methods-for-statistical-analysis" class="nav-link" data-scroll-target="#methods-for-statistical-analysis">Methods for statistical analysis</a></li>
+  <li><a href="#batch" id="toc-batch" class="nav-link" data-scroll-target="#batch">Batch</a></li>
+  <li><a href="#arrangement" id="toc-arrangement" class="nav-link" data-scroll-target="#arrangement">Arrangement</a></li>
+  <li><a href="#flow" id="toc-flow" class="nav-link" data-scroll-target="#flow">Flow</a></li>
+  <li><a href="#sacrament-hymns" id="toc-sacrament-hymns" class="nav-link" data-scroll-target="#sacrament-hymns">Sacrament hymns</a></li>
+  <li><a href="#existing-hymns" id="toc-existing-hymns" class="nav-link" data-scroll-target="#existing-hymns">Existing hymns</a>
+  <ul class="collapse">
+  <li><a href="#existing-hymns-in-american-lds-culture" id="toc-existing-hymns-in-american-lds-culture" class="nav-link" data-scroll-target="#existing-hymns-in-american-lds-culture">Existing hymns in American LDS culture</a></li>
+  <li><a href="#existing-hymns-in-other-lds-hymnals" id="toc-existing-hymns-in-other-lds-hymnals" class="nav-link" data-scroll-target="#existing-hymns-in-other-lds-hymnals">Existing hymns in other LDS hymnals</a></li>
+  <li><a href="#existing-christian" id="toc-existing-christian" class="nav-link" data-scroll-target="#existing-christian">Existing Christian</a></li>
+  <li><a href="#african-american-spirituals" id="toc-african-american-spirituals" class="nav-link" data-scroll-target="#african-american-spirituals">African American Spirituals</a></li>
+  </ul></li>
+  <li><a href="#other-factors" id="toc-other-factors" class="nav-link" data-scroll-target="#other-factors">Other factors?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What makes a new hymn popular?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">general</div>
+    <div class="quarto-category">frequency</div>
+    <div class="quarto-category">new hymns</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 31, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">January 31, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In previous posts, I have done an in-depth analysis of the <a href="../../posts/new_hymns_batch1">first</a>, <a href="../../posts/new_hymns_batch2">second</a>, <a href="../../posts/new_hymns_batch3">third</a>, <a href="../../posts/new_hymns_batch4">fourth</a>, and <a href="../../posts/new_hymns_batch5">fifth</a> batches of new hymns. This post is an analysis of all the new hymns generally.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This post is based on 62,081 sacrament meetings since May 30, 2024 when the new batches came out.</p>
+</div>
+</div>
+<section id="popularity" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="popularity">Popularity</h2>
+<p>In my <a href="../../overview">overview</a> page, I show which hymns have been the most popular since June 2024. But, pooling together all the data since then gives an unfair advantage to the earlier batches since they have been out longer and therefore have had more chances to be sung. So, I want to show the popularity of each hymn after controlling for how many weeks it has been available.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I think this plot says a lot, so let’s break it down. On a general level, we see that the most common hymns are sung by 2%–3% of wards every Sunday. That’s not a tremendous amount, about one out of every 40–50 wards for any one of those top six or so hymns. But that’s roughly the same as saying that, this Sunday, there’s something like a 20%–30% chance that at least one ward in your stake will sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, another 20%–30% chance that at least one ward in your stake will sing <hymn>As Bread is Broken (#1007)</hymn>, and so on (depending on the size of your stake, of course). Another way of thinking about it is that a typical ward will sing each of these top few hymns about once a year.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The ones that are sitting at over 3% might be sung once every nine months or so. This is equivalent in popularity as <hymn>I Believe in Christ (#134)</hymn>, <hymn>Come, Follow Me (#116)</hymn>, and <hymn>I Need Thee Every Hour (#98)</hymn>, which are among the most popular hymns.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;There are usually 52 Sundays in a year, but we have two set aside for General Conference and two set aside for Stake Conference, so that leaves 48 sacrament meetings per year. 1 divided by 48 is about 0.0208. So if a hymn is sung 2.08% of the time, that’s about once per year.</p></div></div><p>On the other end of the plot, we have a list of the least common new hymns. These are ones that relatively few wards have ever sung, at least as congregational hymns. Some of the lowest on this list are sitting around 0.2% of wards. That means that, for any of these bottom 10 hymns, there’s only about a 1–3% chance of a ward singing it next Sunday, even for larger stakes. Your ward might sing it only once every 10 years! (Of course, these are new hymns, so it’s silly to make speculations like that.) That makes these about as popular as <hymn>How Beautiful Thy Temples, Lord (#288)</hymn>, <hymn>In Our Lovely Deseret (#307)</hymn>, and <hymn>As the Dew from Heaven Distilling (#149)</hymn>.</p>
+<p>As an interesting tidbit, I recently heard from someone who works at the church and is involved in data analysis of the new hymns. He said that the most popular new hymn is <hymn>I Will Walk with Jesus (#1004)</hymn>. According to my data, it is the 6th most common hymn. There are a few explanations for this discrepancy. It could be due to sampling differences. Of course, I don’t have data from all wards, but then again, neither does the church since not all wards input their hymns into the Library app. But, even though our samples are different, they’re both so huge that our results are likely comparable. Another source of the discrepancy may be that we are measuring popularity differently. It may also be that he just didn’t remember correctly. Either way, it’s interesting to know that the church is tracking their data and are likely doing similar analyses that I am doing. The difference is that I’m making my results public and they likely will not.</p>
+<p>To inject my opinion on these results so far, I am surprised at where some hymns are on this list. I thought for sure that when <hymn>Faith In Every Footstep (#1022)</hymn> came out that it would be about as popular as <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> Yet, it sits at 10th place and is only about half as popular. I’m also a little disappointed that the African American spirituals (<hymn>This Little Light of Mine (#1028)</hymn>, <hymn>I’m Gonna Live So God Can Use Me (#1037)</hymn>, and <hymn>Go Tell It on the Mountain (#1208)</hymn>) aren’t higher on the list. However, I am pleasantly surprised that four of the top ten hymns are arranged for unison singing.</p>
+<p>But lots of things might influence where on the plot a hymn ends up. So, let’s go through some factors that might have an influence. Fair warning, the following discussions include some statistical analysis. If you’re scared of those numbers or don’t know how to interpret them, I believe you can still get some useful information from the text. Just skip the next section and move on to the results.</p>
+</section>
+<section id="methods-for-statistical-analysis" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="methods-for-statistical-analysis">Methods for statistical analysis</h2>
+<p>Here are some details on the statistics I’m doing. I’m just doing a linear regression model. The dependent variable is the proportion of wards that each hymn has been sung in since its respective release date. Since the data was skewed right, I did a Box-Cox transformation to make it more normal. The lambda parameter was estimated to be 0.149 using Guerrero’s (1993) method. The resulting distribution was normal, according to a Shapiro-Wilk test of normality (<span class="math inline">\(W\)</span> = 0.987, <span class="math inline">\(p\)</span> = 0.791).</p>
+<p>For the dependent variables, I include the batch (coded as a categorical rather than ordinal variable) and the following binary variables: whether it’s an SATB arrangement, whether it had a complex flow (see below), whether it’s a sacrament hymn, whether it’s a hymn that was already prominent in LDS culture, whether it was already in a non-English LDS hymnal, whether it’s a well-known Christian hymn outside of LDS culture, whether it’s an African American spiritual, whether it’s a Christmas hymn, and whether it’s an Easter hymn. Most of this information was gathered from the church’s <a href="https://www.churchofjesuschrist.org/study/manual/sacred-music-gospel-study-resource-pilot?lang=eng">About the Hymns</a> resource.</p>
+<p>The model appears to satisfy the assumptions of a linear regression model. The residual were normal, according to a Shapiro-Wilk test of normality (<span class="math inline">\(W\)</span> = 0.976, <span class="math inline">\(p\)</span> = <code>r</code>p_resid`). Other model assumptions, like homogeneity of variance in the residuals and no influential observations, were also met. Overall, the model was a good fit to the data with a multiple <span class="math inline">\(R^2\)</span> of 0.677.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;In my professional life, I am an academic who works with linguistic data. I’m not used to <span class="math inline">\(R^2\)</span> values this high. Some people reading this may come from other fields that study phenomena more exact than human behavior, but I’m thrilled to get an <span class="math inline">\(R^2\)</span> that high!</p></div></div><p>In the discussion that follows, I’ll now go through each of the model predictors one by one. Since the model was on transformed predictors, I took the predicted values and did the inverse Box-Cox transformation on them. That allows me to put more interpretable numbers on the comparisons and say what effect some varible has on the popularity of hymns, all things being equal.</p>
+</section>
+<section id="batch" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="batch">Batch</h2>
+<p>I’ll start with the batch. One trend that I saw in the plot above was that many of the hymns in the earlier batches are closer to the top and many of the hymns in the later batches are close to the bottom.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Here’s a plot showing that relationship. I’ve ignored the holiday hymns since they don’t quite fit the pattern.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;I didn’t include hymn number in the statistical model but, the correlation between hymn number and frequency is statistically significant according to a Kendall’s rank correlation test: <span class="math inline">\(\tau = -0.5638\)</span>, <span class="math inline">\(z = -5.8325\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>.</p></div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, at first glance, you might be thinking “well, of course the first batch is sung more; it’s been out longer!” But these are numbers averaged over the lifetime of that batch. So for a hymn like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> to get a value of about 3.2% like it shows here, it needs to have been sung by about 3.2% of wards since June 2024.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> A hymn like <hymn>Our Prayer to Thee (#1048)</hymn> has only been out for a couple months, so the denominator is smaller, and yet it still has only been sung in about 1.1% of sacrament meetings.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> This general trend for the first batch consistently being more popular than all the others is also seen in the first plot <a href="../../posts/new_hymns_batch5">on this analysis of the fifth batch</a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Specifically, at the time of writing, it was sung 1,517 times out of 47,435 sacrament meetings I have data from between May 30, 2024 and January 28, 2026.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;I’ve seen it sung 119 times out of 11,223 sacrament meetings between September 18, 2025 and January 28, 2026.</p></div></div><p>The statistical model suggests that, all else being equal, the third, fourth, and fifth batches are sung less than the first two. Specifically, compared to the first batch, the third batch was sung in 0.74% fewer sacrament meetings each week, which makes the first batch 2 times more common. The fourth batch has been sung in 1.04% fewer sacrament meetings each week, which makes the first batch 3.32 times more common than it. And the fifth batch has been in 1.06% fewer meetings each week, making the first batch 3.46 more common. Again, all things being equal. The second batch was a little less than the first batch (0.4%), but the difference was not statistically significant.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These percentages may not seem big, but keep in mind that the most common new hymn has been sung in about 3.2% of sacrament meetings, so we’re not working on a large scale here. So a difference of 1%, relative to the range of numbers we’re looking at, is pretty big.</p>
+</div>
+</div>
+<p>I have two potential explanations for why the later batches have been less popular. First, the church might have selected for inclusion in the first batch hymns they knew were going to be popular. I think the presence of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is evidence of that happening a little bit.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> But there are some very good hymns, including beloved favorites, in subsequent batches, so I don’t know if we can attribute this difference to that alone.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Although, as shown below, that hymn doesn’t have an especially large residual, so it’s not an outlier once everything is accounted for.</p></div></div><p>The other explanation is the novelty of the first batches. There was a lot of excitement leading up to the first batch, so when it was release, it exploded into sacrament meetings and since been very well-integrated. I believe the second batch was riding on the first batch’s coattails, I think. Once the third batch came out, it had been over six months and I think people’s excitement was waning. It has taken longer for the third and subsequent batches to get incorporated into sacrament meetings. From what I can tell, fewer wards are taking time out of church meetings (like special sacrament meetings or fifth Sunday lessons) specifically to sing new hymns. I know some people feel overwhelmed with the sheer number of new hymns and maybe don’t feel like they can start the later batches until they’re satisfied with the earlier ones. The point is this though: there is a clear novelty effect.</p>
+<p>I suspect that hymns from the first and second batches will remain favorites for many years. I think a safe prediction is that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> will be among the most popular (non-sacrament) hymns. But I also think that the sacrament hymns released earlier, like <hymn>As Bread is Broken (#1007)</hymn> and <hymn>Bread of Life, Living Water (#1008)</hymn>, will always be more popular than those released later, like <hymn>O Lord, Who Gave Thy Life for Me (#1041)</hymn> and <hymn>Help Us Remember (#1043)</hymn>.</p>
+</section>
+<section id="arrangement" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="arrangement">Arrangement</h2>
+<p>There are two main kinds of arrangements in these hymns.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> About 37 hymns are SATB arrangements, or rather, they’re written in four-part harmony. Most hymns in the hymnal are like this and when you look at them, they “look” like something that fits within a hymnal. The other 23 hymns are arranged for unison singing.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> These are ones where everyone sings the melody. They’re often thought of as being for children since they “look” more like they fit in the Children’s Songbook.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> My question is whether the type of arrangement has a significant influence on how popular a hymn is, all other things being equal.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Actually, there’s a third category, arranged for a duet. <hymn>Star Bright (#1204)</hymn> is the only one in this category, so I’ve lumped it with the unisons.</p></div><div id="fn8"><p><sup>8</sup>&nbsp;<hymn>Go Tell It on the Mountain (#1208)</hymn> has a little bit of both, kinda like <hymn>I Stand All Amazed (#193)</hymn>. I’ve grouped it with the SATB hymns.</p></div><div id="fn9"><p><sup>9</sup>&nbsp;A recent <a href="https://www.churchofjesuschrist.org/study/manual/general-handbook/summary-of-recent-updates?lang=eng">update</a> to Chapter 19 of the General Handbook makes it clear that these songs are suitable for congregational singing. I think this was in response to a widespread belief that they were not.</p></div></div><p>This plot is the same as the one shown above, where the hymns are in order of how popular they’ve been. The only difference is that I’ve colored them by whether the arrangement is SATB or unison.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s not a <em>super</em> obvious trend, but there is a clear tendency for SATB arrangements to appear closer to the top of the chart and for unison arrangements to appear closer to the bottom. The statistical model supports this. In fact, other than what batch a hymn is in, whether it was an SATB arrangement was the strongest predictor. All other things being equal, unison hymns were sung 0.42% fewer sacrament meetings than SATB hymns. To put it another way, SATB hymns are 1.72 times more likely to be sung, all things being equal.</p>
+<p>One could speculate a little bit about this. If <hymn>This Is the Christ (#1017)</hymn> was instead released as an SATB hymn, it might have been a little more popular. Meanwhile, if <hymn>Faith in Every Footstep (#1022)</hymn> had been released as a unison hymn, I suspect it wouldn’t be as popular.</p>
+<p>I think the reason for why SATB arrangements are more popular I think is just that people who grow up in our Latter-day Saint musical culture often associate SATB with congregational singing and unison singing for children. The justification is that most hymns in the 1985 hymnal are arranged in SATB and most songs in the Children’s Songbook are in unison. Another reason is that the unison pieces aren’t quite as conducive to play on the organ, and some people are hesitant switch over to piano.</p>
+<p>I have a lot of thoughts about all this, so I’ll keep my comment brief. To be clear, the organ is capable of playing more than hymns arranged in SATB. A decent organist should be able to adapt pieces to sound better on organ if they need to (and organists should be willing to learn this new skill if they don’t have it already). Furthermore, we don’t have to use the organ in church. Hundreds of meetinghouses around the world don’t have one and they have just as rich, fulfilling congregational singing as those that do. So whether a hymn is suitable for organ should be irrelevant.</p>
+<p>Something else I’ve heard is that some people feel that unison singing is not suitable for congregations because the melody goes too high for people with lower voices, so having harmony lines allows everyone a chance to sing. As someone with a limited upper range and who can comfortably sing relatively few of the melodies in the 1985 hymnal,<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> I sympathize with this. But I think this argument greatly overestimates how many people actually sing harmony lines. People who are not musically inclined or who can’t read music just adapt if they want to sing still, and they often do so by singing the melody down an octave. I don’t think anyone who encounters a unison piece will think, “well, I guess this one isn’t for me”. Personally, if a piece calls for unison and I really don’t want to sing that high, I can always sing along to some lower harmony or bass line. I’m also fine having to switch to a weaker singing voice to sing the melody—that’s not going to affect my ability to worship through song. In fact, I have had great experiences singing the unison arrangements in church.</p>
+<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;See <a href="../../posts/highest_soprano/">this blog post</a> on an analysis of the highest notes in melody lines.</p></div></div></section>
+<section id="flow" class="level2">
+<h2 class="anchored" data-anchor-id="flow">Flow</h2>
+<p>The next variable I want to probe is what I’m calling the “flow” of the piece. Most hymns in the hymnal have straightforward structure: start at the top, sing to the bottom, and repeat. However, a few hymns have some slight modifications to this, such as <hymn>Families Can Be Together Forever (#300)</hymn> which has an introduction and a first and second ending (although the endings don’t affect what the congregation sings), or <hymn>That Easter Morn (#198)</hymn> which has different interludes between verses. But pretty much all the hymns are the same.</p>
+<p>The latest batch has a few of these kinds of changes to the flow. Two of them (<hymn>He Is Born, the Divine Christ Child (#1202)</hymn> and <hymn>Go Tell It on the Mountain (#1208)</hymn>) have the chorus sung before the first verse in addition to after each verse. <hymn>Were You There? (#1206)</hymn> deviates a little more and has a written interlude between the third and fourth verses.</p>
+<p>But there are four that stand out as having new kind of “flows” to them. <hymn>Gethsemane (#1009)</hymn> as a D.S. al coda, <hymn>I Have Faith in the Lord Jesus Christ (#1024)</hymn> has a tag at the end of the last verse, <hymn>Close as a Quiet Prayer (#1030)</hymn> has some extra content between the second and third verses and a D.S. al coda, and <hymn>Little Baby in a Manger (#1209)</hymn> has an extra chorus with an optional obbligato at the end. I’ve seen chatter online about these (particularly <hymn>Gethsemane (#1009)</hymn>) saying that they’re too hard to follow for congregational singing. I wondered whether, all things being equal, these four hymns with more complex “flows” were sung less than hymns with more striaghtforward flows.</p>
+<p>The statistics don’t support this hypothesis. Hymns with a new flow were indeed predicted to be less commonly sung than hymns with a more standard flow, all other things being equal. Specifically, new flow hymns were sung in about 0.16% fewer sacrament meetings per week. In other words, standard flow hymns were about 1.23 times more likely to be sung. This is not a statistically significant difference though. So it looks like the hesitancy that some music coordinators have hasn’t stopped too many of them from singing these hymns.</p>
+</section>
+<section id="sacrament-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="sacrament-hymns">Sacrament hymns</h2>
+<p>I’ve <a href="../../posts/most_common">written already</a> that most of the most popular hymns are sacrament hymns. This makes sense because every sacrament meeting has to have one, so they collectively have to make up between a third and a quarter of all hymns sung. In these new batches we have eight hymns that are tagged as being appropriate for the sacrament. You can see which ones these are and how common they are in this plot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, most of the sacrament hymns are near the top of this plot, so they’re generally sung by a fair number of wards each Sunday. The two that stand out for being lower than the rest are <hymn>O Lord, Who Gave Thy Life for Me (#1041)</hymn> and <hymn>Help Us Remember (#1043)</hymn>. But those are both from the fifth batch and, as seen above, the fifth batch is the least common so far, even after accounting for how recent it is. The question is whether a hymn, all things being equal, is sung more if it’s tagged as a sacrament hymn than if it’s not.</p>
+<p>The statistics give mixed results. On the one hand, it appears that sacrament hymns are quite a bit more common. A hymn predicted to be sung in 0.97% more wards each Sunday if it’s tagged as a sacrament hymn than if not. That equates to it being about 2.37 times more common than it would have been. That seems like a big jump. But the statistics suggest that it’s perhaps not a significant difference (<em>p</em> = 0.0205). So, we’ll wait for a few more months to see if that changes. Perhaps with more data and more new sacrament hymns, we might see that change.</p>
+</section>
+<section id="existing-hymns" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="existing-hymns">Existing hymns</h2>
+<p>Next, I want to look at whether a hymn’s previous existence in the Latter-day Saint or Christian world has an effect on its popularity. Here, I have four categories that I’ve tagged independently of each other (that is, as four binary variables).</p>
+<section id="existing-hymns-in-american-lds-culture" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="existing-hymns-in-american-lds-culture">Existing hymns in American LDS culture</h3>
+<p>First are hymns that existed in Latter-day Saint culture before the new hymnal came out. A great example of this is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. There are several that were in other church publications or productions, like <hymn>I Will Walk with Jesus (#1004)</hymn> and <hymn>I Know That My Savior Loves Me (#1021)</hymn>. Others were made popular by the Tabernacle Choir, like <hymn>My Shepherd Will Supply My Need (#1014)</hymn>, <hymn>This Is the Christ (#1017)</hymn>, <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, and <hymn>Faith in Every Footstep (#1022)</hymn>. It was a judgment call on my part to decide what falls into this category, so there might be error here.</p>
+<p>It turns out that, all other things being equal, if a hymn was previously a prominent part of the Latter-day Saint music world, it was more likely to be sung as a congregational hymn in sacrament meeting (<em>p</em> = 0.022). Specifically, it was sung by 0.56% more sacrament meetings each week.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> This is means that existing hymns are sung about 1.76 times more often than other hymns. This figure shows that almost all existing hymns are among the top 50% of most common new hymns.</p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;As a reminder, this may not seem like a lot, but we’re working with a range of 0% to 3%, so a half percentage point difference is pretty big.</p></div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>New hymns are regularly introduced into the Latter-day Saint cultural collection. Some come through formal means, like publication in the <em>Friend</em> or some other church material. Others come more organically as composers and songwriters release them and they catch on. I think people get excited when the see a song they have been singing for years get “canonized”. The new opportunity to sing these as congregational hymn likely explains why they are more popular.</p>
+</section>
+<section id="existing-hymns-in-other-lds-hymnals" class="level3">
+<h3 class="anchored" data-anchor-id="existing-hymns-in-other-lds-hymnals">Existing hymns in other LDS hymnals</h3>
+<p>The next category are hymns that existed in other languages of the hymnal, but not in English. There are a handful of these like <hymn>God’s Gracious Love (#1013)</hymn> and <hymn>I Can’t Count Them All (#1029)</hymn>) from Swedish, <hymn>Come, Hear the Word the Lord Has Spoken (#1031)</hymn> from Dutch, and <hymn>Jesus Is the Way (#1045)</hymn> from Tongan. As it turns out, these hymns were not sung more often than other hymns after controlling for everything else.</p>
+<p>It is worth pointing out that <a href="../../posts/frequency-data">most of my data comes from the United states</a>. These new ones might be very popular in those countries. I don’t have any data from France, Tonga, or Sweden since these hymns came out, so I have no way of knowing right now if they are more popular there than in the US.</p>
+</section>
+<section id="existing-christian" class="level3">
+<h3 class="anchored" data-anchor-id="existing-christian">Existing Christian</h3>
+<p>The third category of hymns are ones that are popular in other Christian hymnals but, for whatever reason, haven’t been in ours. These include hymns like <hymn>His Eye Is on the Sparrow (#1005)</hymn>, <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, <hymn>The Lord’s My Shepherd (#1038)</hymn>, and <hymn>Still, Still, Still (#1207)</hymn>. I identified 22 of these hymns. But, after controlling for all the other factors, they were not any more common than other hymns.</p>
+</section>
+<section id="african-american-spirituals" class="level3">
+<h3 class="anchored" data-anchor-id="african-american-spirituals">African American Spirituals</h3>
+<p>The last category are African American Spirituals or hymns that originate among African Americans. There are four that I know of: <hymn>This Little Light of Mine (#1028)</hymn>, <hymn>I’m Gonna Live So God Can Use Me (#1037)</hymn>, <hymn>Were You There? (#1206)</hymn>, and <hymn>Go Tell It on the Mountain (#1208)</hymn>. I wanted to include this as its own category because they’ve received some more attention compared to other hymns. The discussion often centers around whether the words, rhythms, or other characteristics of the hymns are appropriate for sacrament meeting. But, once again, after controlling for everything else, these hymns were not any more popular than others.</p>
+</section>
+</section>
+<section id="other-factors" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="other-factors">Other factors?</h2>
+<p>There are of course numerous other factors that go into how popular a hymn is generally. The ones I’ve discussed in this post are just some of them. But, even if I added a dozen more factors into the statistical model, there would still be some hymns that buck the trend. Ones that are simply more popular or less popular than we’d expect. Sometimes a hymn is just good (or bad) without any real reason.</p>
+<p>The cool thing is that with this statistical model, I can actually quantify that a little bit. In the kind of statistics I’m doing, the model tries to guess how popular each hymn is, given what I’ve told it about them and how similar kinds of hymns are. It does it’s best to find the most significant trends, but it will inevitably be off by at least little bit on all of them. (It’s like trying to connect all the dots on a page with a straight line: you can get close for some but you’ll never be able to connect all of them.) I can extract from the model exactly how far off each hymn was from where the model guess it was, and then plot those numbers.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Here is that plot.</p>
+<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;For those who know stats, I’m just plotting the residuals.</p></div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Unfortunately, the numbers along the <em>x</em>-axis aren’t very interpretable, so it’s impossible to say, for example, how much more often a hymn is sung than the model expects it to be. But, what is interpretable is the relative position of the hymns to the vertical line at zero. If a hymn’s dot is to the right of that zero, it means it was sung more than what the model guessed. If it’s to the left, it was sung less than it expected. Hymns marked in red were the ones that stood out as being quite a bit off from where the model guessed them to be.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn13"><p><sup>13</sup>&nbsp;I just scaled the residuals, and they’re the ones where the absolute values of the <em>z</em>-scores were greater than 2.</p></div></div><p>One way to think about the horizontal position on this chart is that it represents all the other unmeasurable factors that go into whether a hymn is popular or not. Sometimes, people just like a hymn and sometimes they don’t. The horizontal position captures those vibes, whatever they are.</p>
+<p>Starting with the extremes, we see that <hymn>Amazing Grace (#1010)</hymn> stands out as being sung quite a bit more than would be expected given the factors I’ve talked about. It’s from the second batch (so it should be popular) and it is SATB (which makes it more popular), but it wasn’t an existing Latter-day Saint hymn (which is a strike against it) and it’s not a sacrament hymn (which is another a strike against it). I remember as a teenager hearing people speculate about why this wasn’t in our hymnal. Perhaps people who wanted to sing it but couldn’t have been thrilled to finally see it made available. I have no idea.</p>
+<p>On the other end, we have <hymn>Joseph Prayed in Faith (#1049)</hymn>. I think there is a straightforward answer to this. I suspect that when we look back ten years from now, we’ll see that this hymn will have become seasonal. It will likely be sung around springtime, just like <hymn>Joseph Smith’s First Prayer (#26)</hymn>. And since this hymn came out in September 2025 and I’m writing this in January 2026, we haven’t had a springtime yet (at least not in the northern hemisphere). So, I’ll bet when I rerun these stats in a few months, that this one won’t be quite so low.</p>
+<p>There are a few others on the upper end of the plot that are interesting and that are worth pointing out. I’m not surprised to see <hymn>Our Prayer to Thee (#1048)</hymn> so high on the chart. I think the extra vibes not captured in this model for this one is that it was written by a prophet who died a week after it came out. I think the hidden reason for why <hymn>I Will Walk With Jesus (#1004)</hymn> is more popular than expected is because it was featured in the first Friend-to-Friend. And the unseen reason for why <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is so high on the list is because the Tabernacle Choir has an absolutely incredible version they have been singing regularly for decades.</p>
+<p>As for others on the lower end, I can only speculate. I know that a lot of people are uncomfortable with the word <em>gonna</em> in <hymn>I’m Gonna Live So God Can Use Me (#1202)</hymn>, so I wonder if that’s why it’s sung less than expected. It may be the case that <hymn>His Voice as the Sound (#1040)</hymn> is so low on this list because it is in a minor key.</p>
+<p>Anyway, I could speculate on and on about these, but the point is that there is a lot of unexplained variance leftover in the statistical model. When I think of potential factors, I’ll add them to the model and the dots in this plot will gradually tighten. But in the meantime, it’s intersting to see these trends.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this post, I took data from 62,081 sacrament meetings and looked at how many times new each hymn has been sung in sacrament meeting, on average, since its respective release date. The most common, unsurprisingly, is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, which has been sung by 3.2% sacrament meetings every week since it came out.</p>
+<p>I then looked at whether certain properties of hymns had an influence on how popular they have been. Here’s what I found:</p>
+<ul>
+<li>The first batch is far and away the most common. All things being equal a hymn in that batch is sung 2 more often than one in the third batch, 3.32 times more often than one in the fourth batch, and 3.46 times more often than one in the fifth batch. The second batch was less popular, but not significantly so.</li>
+<li>A hymn that is arranged in an SATB format is sung 1.72 times more often than one arranged for unison singing, all other things being equal.</li>
+<li>Whether a hymn has a complex flow did not significantly affect how often it was sung.</li>
+<li>Sacrament hymns are sung 2.37 times more often than an equivalent non-sacrament hymn would be.</li>
+<li>Hymns that have existed within American Latter-day Saint culture for a while were 1.76 more likely to be sung. If a hymn existed in non-English Latter-day Saint hymnals, has been sung in other Christian denominations, or started among African Americans, it didn’t affect how often it was sung.</li>
+</ul>
+<p>This has been one of my more technical blog posts. But, I think I’ve uncovered some pretty cool trends here. The most interesting is that there is a bias towards hymns that came out in the first batch or two. And there’s a clear preference for SATB hymns, rather than unison ones, being sung as congregational hymns in sacrament meeting. Again, the church only recently stated explicitly that both styles are appropriate, so we’ll see if the popularity of those unison hymns goes up.</p>
+<p>If you can think of some potential predictors for what might make hymns more or less popular, let me know and I can upate my model!</p>
+
+
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

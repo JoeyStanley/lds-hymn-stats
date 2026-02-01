@@ -1,14 +1,13 @@
 ---
-title: "General Analysis of the New Hymns"
+title: "What makes a new hymn popular?"
 author: "Joey Stanley"
-date: "2026-01-22"
+date: "2026-01-31"
 date-modified: last-modified
 categories: 
   - general
   - frequency
   - new hymns
 reference-location: margin
-draft: TRUE
 ---
 
 ```{r, include = FALSE}
@@ -17,11 +16,25 @@ knitr::opts_chunk$set(include = FALSE,
                       fig.width = 8)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(gt)
+library(broom)
 ```
 
 
 In previous posts, I have done an in-depth analysis of the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2),  [third](/posts/new_hymns_batch3), [fourth](/posts/new_hymns_batch4), and [fifth](/posts/new_hymns_batch5) batches of new hymns. This post is an analysis of all the new hymns generally. 
 
+```{r}
+n_meetings <- freqs |> 
+    filter(date >= ymd("2025-05-30")) |> 
+    nrow() |> 
+    comma()
+```
+
+
+:::{.callout-note} 
+This post is based on `r n_meetings` sacrament meetings since May 30, 2024 when the new batches came out. 
+:::
+
+## Popularity
 
 In my [overview](/overview) page, I show which hymns have been the most popular since June 2024. But, pooling together all the data since then gives an unfair advantage to the earlier batches since they have been out longer and therefore have had more chances to be sung. So, I want to show the popularity of each hymn after controlling for how many weeks it has been available. 
 
@@ -48,6 +61,19 @@ get_n_meetings_since_release <- function(.date) {
         distinct(meeting_id) |> 
         nrow()
 }
+
+satb_hymns <- c(1, 3, 5, 7, 8, 
+                10, 13, 14, 15, 16,
+                19, 20, 22, 23, 25, 27, 29, 31,
+                32, 33, 37, 38, 40, 41,
+                42, 43, 45, 48, 50, 51,
+                201, 202, 203, 205, 206, 207, 208) + 1000
+nonsatb_hymns <- c(2, 4, 6, 9,
+                   11, 12, 17, 18, 
+                   21, 24, 26, 28, 30,
+                   34, 35, 36, 39,
+                   44, 46, 47, 49,
+                   204, 209) + 1000
 
 weekly_results <- name_num_lookup |> 
     filter(hymn_num %in% 1000:1300) |> 
@@ -76,11 +102,32 @@ weekly_results <- name_num_lookup |>
            prop_wards = times_sung / meetings_since_release) |> 
     
     # Mark the holidays and other special hymns (not used in plot)
-    mutate(type = case_when(hymn_num %in% c(1018, 1201:1209) ~ "holiday",
-                            hymn_num %in% c(1003, 1007, 1008, 1009, 1016, 1017, 1041, 1043) ~ "sacrament",
-                            TRUE ~ "other"))
-```
+    mutate(is_christmas = hymn_num %in% c(1018, 1202, 1203, 1204, 1207, 1208, 1209),
+           is_easter    = hymn_num %in% c(1201, 1205, 1206),
+           is_sacrament = hymn_num %in% c(1003, 1007, 1008, 1009, 1016, 1017, 1041, 1043),
+           is_spiritual = hymn_num %in% c(1028, 1037, 1206, 1208),
+           existing_lds = hymn_num %in% c(1001, 1002, 1004, 1009, 
+                                          1011, 1014, 1017, 1018,
+                                          1020, 1021, 1022), 
+           other_lang_lds = hymn_num %in% c(
+               1013, 1029, # Swedish
+               1031, # Dutch
+               1033, 1204, # Spanish
+               1045, # Tongan
+               1202, # French
+               1207 # German
+           ),
+           existing_christian = hymn_num %in% c(1001, 1003, 1005, 
+                                                1010, 1013, 1014, 1015, 1016, 
+                                                1023, 1025, 1028, 
+                                                1037, 1038, 1040,
+                                                1042, 1046, 1050,
+                                                1201, 1202, 1203, 1206, 1207),
+           is_satb      = hymn_num %in% satb_hymns,
+           new_flow = hymn_num %in% c(1009, 1024, 1030, 1209)) #1202, 1206, 1208
 
+weekly_results
+```
 
 
 ```{r, include = TRUE, fig.height = 8, fig.width = 8}
@@ -91,7 +138,7 @@ weekly_results |>
     ggplot(aes(prop_wards, label, color = batch)) + 
     # geom_point(data = . %>% filter(type != "other"), color = "black", size = 5) +
     geom_point() +  
-    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3) + 
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3, show.legend = FALSE) + 
     scale_x_continuous(breaks = seq(0, 0.05, 0.005),
                        labels = percent,
                        expand = expansion(0, c(0.02, 0.001))) +
@@ -101,12 +148,29 @@ weekly_results |>
          x = "Percent of wards",
          y = NULL) + 
     theme_minimal() + 
-    theme(axis.text.y = element_blank())
+    theme(axis.text.y = element_blank(),
+          legend.position = c(0.8, 0.5),
+          legend.background = element_rect(fill = "white", color = "gray50"),
+          legend.text = element_text(size = 10)) + 
+    guides(color = guide_legend(override.aes = list(size = 4)))
 ```
+
+```{r}
+weekly_results |> 
+    rowid_to_column("rank") |> 
+    filter(!is_satb)
+```
+
 
 I think this plot says a lot, so let's break it down. On a general level, we see that the most common hymns are sung by 2%--3% of wards every Sunday. That's not a tremendous amount, about one out of every 40--50 wards for any one of those top six or so hymns. But that's roughly the same as saying that, this Sunday, there's something like a 20%--30% chance that at least one ward in your stake will sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, another 20%--30% chance that at least one ward in your stake will sing <hymn>As Bread is Broken (#1007)</hymn>, and so on (depending on the size of your stake, of course). Another way of thinking about it is that a typical ward will sing each of these top few hymns about once a year.^[There are usually 52 Sundays in a year, but we have two set aside for General Conference and two set aside for Stake Conference, so that leaves 48 sacrament meetings per year. 1 divided by 48 is about 0.0208. So if a hymn is sung 2.08% of the time, that's about once per year.] The ones that are sitting at over 3% might be sung once every nine months or so. This is equivalent in popularity as <hymn>I Believe in Christ (#134)</hymn>, <hymn>Come, Follow Me (#116)</hymn>, and <hymn>I Need Thee Every Hour (#98)</hymn>, which are among the most popular hymns. 
 
-On the other end of the plot, we have a list of the least common hymns. These are ones that relatively few wards have ever sung, at least as congregational hymns. Some of the lowest on this list are sitting around 0.2% of wards. That means that, for any of these bottom 10 hymns, there's only about a 1--3% chance of a ward singing it next Sunday, even for larger stakes. Your ward might sing it only once every 10 years! (Of course, these are new hymns, so it's silly to make speculations like that.) That makes these about as popular as <hymn>How Beautiful Thy Temples, Lord (#288)</hymn>, <hymn>In Our Lovely Deseret (#307)</hymn>, and <hymn>As the Dew from Heaven Distilling (#149)</hymn>. 
+On the other end of the plot, we have a list of the least common new hymns. These are ones that relatively few wards have ever sung, at least as congregational hymns. Some of the lowest on this list are sitting around 0.2% of wards. That means that, for any of these bottom 10 hymns, there's only about a 1--3% chance of a ward singing it next Sunday, even for larger stakes. Your ward might sing it only once every 10 years! (Of course, these are new hymns, so it's silly to make speculations like that.) That makes these about as popular as <hymn>How Beautiful Thy Temples, Lord (#288)</hymn>, <hymn>In Our Lovely Deseret (#307)</hymn>, and <hymn>As the Dew from Heaven Distilling (#149)</hymn>. 
+
+As an interesting tidbit, I recently heard from someone who works at the church and is involved in data analysis of the new hymns. He said that the most popular new hymn is <hymn>I Will Walk with Jesus (#1004)</hymn>. According to my data, it is the 6th most common hymn. There are a few explanations for this discrepancy. It could be due to sampling differences. Of course, I don't have data from all wards, but then again, neither does the church since not all wards input their hymns into the Library app. But, even though our samples are different, they're both so huge that our results are likely comparable. Another source of the discrepancy may be that we are measuring popularity differently. It may also be that he just didn't remember correctly. Either way, it's interesting to know that the church is tracking their data and are likely doing similar analyses that I am doing. The difference is that I'm making my results public and they likely will not. 
+
+To inject my opinion on these results so far, I am surprised at where some hymns are on this list. I thought for sure that when <hymn>Faith In Every Footstep (#1022)</hymn> came out that it would be about as popular as <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> Yet, it sits at 10th place and is only about half as popular. I'm also a little disappointed that the African American spirituals (<hymn>This Little Light of Mine (#1028)</hymn>, <hymn>I'm Gonna Live So God Can Use Me (#1037)</hymn>, and <hymn>Go Tell It on the Mountain (#1208)</hymn>) aren't higher on the list. However, I am pleasantly surprised that four of the top ten hymns are arranged for unison singing.
+
+
 
 ```{r}
 get_prop_by_rank <- function(.rank) {
@@ -119,7 +183,7 @@ get_prob_by_rank_and_wards <- function(.n_wards, .rank) {
     1-(1-get_prop_by_rank(.rank))^.n_wards
 }
     
-probs <- crossing(rank = 50:60, # 1:10
+crossing(rank = 50:60, # 1:10
              n_wards = 5:11) |> 
     rowwise() |> 
     mutate(prob = get_prob_by_rank_and_wards(n_wards, rank),
@@ -133,8 +197,59 @@ probs <- crossing(rank = 50:60, # 1:10
     labs(title = "Percent chance of common new hymns being sung within a stake of a given size on a given Sunday")
 ```
 
-One trend that I'm seeing in this plot is that many of the hymns in the earlier batches are closer to the top and many of the hymns in the later batches are close to the bottom.^[The correlation between hymn number and frequency is statistically significant according to a Kendall's rank correlation test: $\tau = -0.5638$, $z = -5.8325$, $p < 0.001$.] Here's a plot showing that relationship. I've ignored the holiday hymns since they don't quite fit the pattern.
+But lots of things might influence where on the plot a hymn ends up. So, let's go through some factors that might have an influence. Fair warning, the following discussions include some statistical analysis. If you're scared of those numbers or don't know how to interpret them, I believe you can still get some useful information from the text. Just skip the next section and move on to the results. 
 
+## Methods for statistical analysis
+
+```{r}
+# Do a BoxCox transformation
+(boxcox_lambda <- BoxCoxLambda(weekly_results$prop_wards))
+weekly_results <- weekly_results |> 
+    mutate(prop_wards_trans = BoxCox(prop_wards, lambda = boxcox_lambda))
+
+shapiro_test <- shapiro.test(weekly_results$prop_wards_trans)
+names(shapiro_test)
+
+ggplot(weekly_results, aes(prop_wards_trans)) + 
+    geom_histogram()
+```
+
+
+Here are some details on the statistics I'm doing. I'm just doing a linear regression model. The dependent variable is the proportion of wards that each hymn has been sung in since its respective release date. Since the data was skewed right, I did a Box-Cox transformation to make it more normal. The lambda parameter was estimated to be `r round(boxcox_lambda, 3)` using Guerrero's (1993) method. The resulting distribution was normal, according to a Shapiro-Wilk test of normality ($W$ = `r round(shapiro_test$statistic, 3)`, $p$ = `r round(shapiro_test$p.value, 3)`).
+
+For the dependent variables, I include the batch (coded as a categorical rather than ordinal variable) and the following binary variables: whether it's an SATB arrangement, whether it had a complex flow (see below), whether it's a sacrament hymn, whether it's a hymn that was already prominent in LDS culture, whether it was already in a non-English LDS hymnal, whether it's a well-known Christian hymn outside of LDS culture, whether it's an African American spiritual, whether it's a Christmas hymn, and whether it's an Easter hymn. Most of this information was gathered from the church's [About the Hymns](https://www.churchofjesuschrist.org/study/manual/sacred-music-gospel-study-resource-pilot?lang=eng) resource. 
+
+```{r}
+names(weekly_results)
+mdl <- weekly_results |> 
+    mutate(batch = as.character(batch)) |> 
+    lm(prop_wards_trans ~ batch + is_satb + new_flow + 
+           is_sacrament + 
+           existing_lds + other_lang_lds + existing_christian + 
+           is_spiritual + is_christmas + is_easter, data = _)
+summary(mdl)
+```
+
+```{r}
+(w_resid <- round(shapiro.test(residuals(mdl))$statistic, 3))
+(p_resid <- round(shapiro.test(residuals(mdl))$p.value, 3))
+(mdl_adjr2 <- round(summary(mdl)$adj.r.squared[1], 3))
+```
+
+The model appears to satisfy the assumptions of a linear regression model. The residual were normal, according to a Shapiro-Wilk test of normality ($W$ = `r w_resid`, $p$ = `r `p_resid`). Other model assumptions, like homogeneity of variance in the residuals and no influential observations, were also met. Overall, the model was a good fit to the data with a multiple $R^2$ of `r mdl_adjr2`.^[In my professional life, I am an academic who works with linguistic data. I'm not used to $R^2$ values this high. Some people reading this may come from other fields that study phenomena more exact than human behavior, but I'm thrilled to get an $R^2$ that high!] 
+
+```{r}
+plot(mdl)
+plot(mdl, 4, id.n = 5)
+```
+
+In the discussion that follows, I'll now go through each of the model predictors one by one. Since the model was on transformed predictors, I took the predicted values and did the inverse Box-Cox transformation on them. That allows me to put more interpretable numbers on the comparisons and say what effect some varible has on the popularity of hymns, all things being equal. 
+
+
+
+
+
+## Batch
 
 ```{r}
 weekly_minus_holiday <- weekly_results |> 
@@ -142,12 +257,12 @@ weekly_minus_holiday <- weekly_results |>
 cor.test(weekly_minus_holiday$hymn_num, weekly_minus_holiday$prop_wards, method = "kendall")
 ```
 
-```{r}
-batch5_hymn_nums
-```
+I'll start with the batch. One trend that I saw in the plot above was that many of the hymns in the earlier batches are closer to the top and many of the hymns in the later batches are close to the bottom.^[I didn't include hymn number in the statistical model but, the correlation between hymn number and frequency is statistically significant according to a Kendall's rank correlation test: $\tau = -0.5638$, $z = -5.8325$, $p < 0.001$.] Here's a plot showing that relationship. I've ignored the holiday hymns since they don't quite fit the pattern.
 
 
-```{r}
+
+
+```{r, fig.height = 5, fig.width = 8, include = TRUE}
 labels <- weekly_results |>
     filter(hymn_num < 1200) |> 
     summarize(hymn_num = median(hymn_num),
@@ -183,3 +298,369 @@ weekly_results |>
     theme(legend.position = "none")
 ```
 
+Now, at first glance, you might be thinking "well, of course the first batch is sung more; it's been out longer!" But these are numbers averaged over the lifetime of that batch. So for a hymn like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> to get a value of about 3.2% like it shows here, it needs to have been sung by about 3.2% of wards since June 2024.^[Specifically, at the time of writing, it was sung 1,517 times out of 47,435 sacrament meetings I have data from between May 30, 2024 and January 28, 2026.] A hymn like <hymn>Our Prayer to Thee (#1048)</hymn> has only been out for a couple months, so the denominator is smaller, and yet it still has only been sung in about 1.1% of sacrament meetings.^[I've seen it sung 119 times out of 11,223 sacrament meetings between September 18, 2025 and January 28, 2026.] This general trend for the first batch consistently being more popular than all the others is also seen in the first plot [on this analysis of the fifth batch](/posts/new_hymns_batch5).
+
+```{r}
+summary(mdl)
+pred_batchs <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(pred_prop = mean(pred_prop), .by = batch)
+
+diff_batch21 <- paste0(round(abs((pred_batchs$pred_prop[[2]] - pred_batchs$pred_prop[[1]]) * 100), 2), "%")
+diff_batch31 <- paste0(round(abs((pred_batchs$pred_prop[[3]] - pred_batchs$pred_prop[[1]]) * 100), 2), "%")
+diff_batch41 <- paste0(round(abs((pred_batchs$pred_prop[[4]] - pred_batchs$pred_prop[[1]]) * 100), 2), "%")
+diff_batch51 <- paste0(round(abs((pred_batchs$pred_prop[[5]] - pred_batchs$pred_prop[[1]]) * 100), 2), "%")
+
+prop_batch31 <- round(pred_batchs$pred_prop[[1]] / pred_batchs$pred_prop[[3]], 2)
+prop_batch41 <- round(pred_batchs$pred_prop[[1]] / pred_batchs$pred_prop[[4]], 2)
+prop_batch51 <- round(pred_batchs$pred_prop[[1]] / pred_batchs$pred_prop[[5]], 2)
+
+most_common_prop <- weekly_results |> 
+    arrange(-prop_wards) |> 
+    head(1) |> 
+    pull(prop_wards)
+(most_common_percent <- paste0(round(most_common_prop, 4) * 100, "%"))
+```
+
+The statistical model suggests that, all else being equal, the third, fourth, and fifth batches are sung less than the first two. Specifically, compared to the first batch, the third batch was sung in `r diff_batch31` fewer sacrament meetings each week, which makes the first batch `r prop_batch31` times more common. The fourth batch has been sung in `r diff_batch41` fewer sacrament meetings each week, which makes the first batch `r prop_batch41` times more common than it. And the fifth batch has been in `r diff_batch51` fewer meetings each week, making the first batch `r prop_batch51` more common. Again, all things being equal. The second batch was a little less than the first batch (`r diff_batch21`), but the difference was not statistically significant. 
+
+:::{.callout-note}
+These percentages may not seem big, but keep in mind that the most common new hymn has been sung in about `r most_common_percent` of sacrament meetings, so we're not working on a large scale here. So a difference of 1%, relative to the range of numbers we're looking at, is pretty big. 
+:::
+
+
+I have two potential explanations for why the later batches have been less popular. First, the church might have selected for inclusion in the first batch hymns they knew were going to be popular. I think the presence of <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is evidence of that happening a little bit.^[Although, as shown below, that hymn doesn't have an especially large residual, so it's not an outlier once everything is accounted for.] But there are some very good hymns, including beloved favorites, in subsequent batches, so I don't know if we can attribute this difference to that alone. 
+
+The other explanation is the novelty of the first batches. There was a lot of excitement leading up to the first batch, so when it was release, it exploded into sacrament meetings and since been very well-integrated. I believe the second batch was riding on the first batch's coattails, I think. Once the third batch came out, it had been over six months and I think people's excitement was waning. It has taken longer for the third and subsequent batches to get incorporated into sacrament meetings. From what I can tell, fewer wards are taking time out of church meetings (like special sacrament meetings or fifth Sunday lessons) specifically to sing new hymns. I know some people feel overwhelmed with the sheer number of new hymns and maybe don't feel like they can start the later batches until they're satisfied with the earlier ones. The point is this though: there is a clear novelty effect.
+
+I suspect that hymns from the first and second batches will remain favorites for many years. I think a safe prediction is that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> will be among the most popular (non-sacrament) hymns. But I also think that the sacrament hymns released earlier, like <hymn>As Bread is Broken (#1007)</hymn> and <hymn>Bread of Life, Living Water (#1008)</hymn>, will always be more popular than those released later, like <hymn>O Lord, Who Gave Thy Life for Me (#1041)</hymn> and <hymn>Help Us Remember (#1043)</hymn>. 
+
+
+## Arrangement
+
+There are two main kinds of arrangements in these hymns.^[Actually, there's a third category, arranged for a duet. <hymn>Star Bright (#1204)</hymn> is the only one in this category, so I've lumped it with the unisons.] About 37 hymns are SATB arrangements, or rather, they're written in four-part harmony. Most hymns in the hymnal are like this and when you look at them, they "look" like something that fits within a hymnal. The other 23 hymns are arranged for unison singing.^[<hymn>Go Tell It on the Mountain (#1208)</hymn> has a little bit of both, kinda like <hymn>I Stand All Amazed (#193)</hymn>. I've grouped it with the SATB hymns.] These are ones where everyone sings the melody. They're often thought of as being for children since they "look" more like they fit in the Children's Songbook.^[A recent [update](https://www.churchofjesuschrist.org/study/manual/general-handbook/summary-of-recent-updates?lang=eng) to Chapter 19 of the General Handbook makes it clear that these songs are suitable for congregational singing. I think this was in response to a widespread belief that they were not.] My question is whether the type of arrangement has a significant influence on how popular a hymn is, all other things being equal. 
+
+```{r}
+length(satb_hymns)
+length(nonsatb_hymns)
+```
+
+This plot is the same as the one shown above, where the hymns are in order of how popular they've been. The only difference is that I've colored them by whether the arrangement is SATB or unison. 
+
+```{r, include = TRUE, fig.height = 8, fig.width = 8}
+weekly_results |> 
+    arrange(prop_wards) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label),
+           is_satb = if_else(is_satb, "SATB", "Unison")) |> 
+    ggplot(aes(prop_wards, label, color = is_satb)) + 
+    # geom_point(data = . %>% filter(type != "other"), color = "black", size = 5) +
+    geom_point() +  
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3, show.legend = FALSE) + 
+    scale_x_continuous(breaks = seq(0, 0.05, 0.005),
+                       labels = percent,
+                       expand = expansion(0, c(0.02, 0.001))) +
+    scale_y_discrete(breaks = NULL) + 
+    scale_color_manual(values = c(ptol_green, ptol_grey)) + 
+    labs(title = "Average percent of wards singing each new hymn since its release date",
+         x = "Percent of wards",
+         y = NULL,
+         color = "Arrangement type") + 
+    theme_minimal() + 
+    theme(axis.text.y = element_blank(),
+          legend.position = c(0.8, 0.5),
+          legend.background = element_rect(fill = "white", color = "gray50"),
+          legend.text = element_text(size = 10)) + 
+    guides(color = guide_legend(override.aes = list(size = 4)))
+```
+
+```{r}
+summary(mdl)
+pred_satb <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(pred_prop = mean(pred_prop), .by = is_satb)
+
+diff_satb <- paste0(round(abs((pred_satb$pred_prop[[2]] - pred_satb$pred_prop[[1]]) * 100), 2), "%")
+prop_satb <- round(pred_satb$pred_prop[[1]] / pred_satb$pred_prop[[2]], 2)
+```
+
+It's not a *super* obvious trend, but there is a clear tendency for SATB arrangements to appear closer to the top of the chart and for unison arrangements to appear closer to the bottom. The statistical model supports this. In fact, other than what batch a hymn is in, whether it was an SATB arrangement was the strongest predictor. All other things being equal, unison hymns were sung `r diff_satb` fewer sacrament meetings than SATB hymns. To put it another way, SATB hymns are `r prop_satb` times more likely to be sung, all things being equal. 
+
+One could speculate a little bit about this. If <hymn>This Is the Christ (#1017)</hymn> was instead released as an SATB hymn, it might have been a little more popular. Meanwhile, if <hymn>Faith in Every Footstep (#1022)</hymn> had been released as a unison hymn, I suspect it wouldn't be as popular.
+
+```{r}
+weekly_results |> 
+    arrange(-prop_wards) |> 
+    relocate(is_satb, .after = hymn_num)
+weekly_results |> 
+    filter(!is_satb)
+```
+
+I think the reason for why SATB arrangements are more popular I think is just that people who grow up in our Latter-day Saint musical culture often associate SATB with congregational singing and unison singing for children. The justification is that most hymns in the 1985 hymnal are arranged in SATB and most songs in the Children's Songbook are in unison. Another reason is that the unison pieces aren't quite as conducive to play on the organ, and some people are hesitant switch over to piano.
+
+I have a lot of thoughts about all this, so I'll keep my comment brief. To be clear, the organ is capable of playing more than hymns arranged in SATB. A decent organist should be able to adapt pieces to sound better on organ if they need to (and organists should be willing to learn this new skill if they don't have it already). Furthermore, we don't have to use the organ in church. Hundreds of meetinghouses around the world don't have one and they have just as rich, fulfilling congregational singing as those that do. So whether a hymn is suitable for organ should be irrelevant.
+
+Something else I've heard is that some people feel that unison singing is not suitable for congregations because the melody goes too high for people with lower voices, so having harmony lines allows everyone a chance to sing. As someone with a limited upper range and who can comfortably sing relatively few of the melodies in the 1985 hymnal,^[See [this blog post](/posts/highest_soprano/) on an analysis of the highest notes in melody lines.] I sympathize with this. But I think this argument greatly overestimates how many people actually sing harmony lines. People who are not musically inclined or who can't read music just adapt if they want to sing still, and they often do so by singing the melody down an octave. I don't think anyone who encounters a unison piece will think, "well, I guess this one isn't for me". Personally, if a piece calls for unison and I really don't want to sing that high, I can always sing along to some lower harmony or bass line. I'm also fine having to switch to a weaker singing voice to sing the melody---that's not going to affect my ability to worship through song. In fact, I have had great experiences singing the unison arrangements in church.
+
+
+## Flow
+
+The next variable I want to probe is what I'm calling the "flow" of the piece. Most hymns in the hymnal have straightforward structure: start at the top, sing to the bottom, and repeat. However, a few hymns have some slight modifications to this, such as <hymn>Families Can Be Together Forever (#300)</hymn> which has an introduction and a first and second ending (although the endings don't affect what the congregation sings), or <hymn>That Easter Morn (#198)</hymn> which has different interludes between verses. But pretty much all the hymns are the same. 
+
+The latest batch has a few of these kinds of changes to the flow. Two of them (<hymn>He Is Born, the Divine Christ Child (#1202)</hymn> and <hymn>Go Tell It on the Mountain (#1208)</hymn>) have the chorus sung before the first verse in addition to after each verse. <hymn>Were You There? (#1206)</hymn> deviates a little more and has a written interlude between the third and fourth verses. 
+
+But there are four that stand out as having new kind of "flows" to them. <hymn>Gethsemane (#1009)</hymn> as a D.S. al coda, <hymn>I Have Faith in the Lord Jesus Christ (#1024)</hymn> has a tag at the end of the last verse, <hymn>Close as a Quiet Prayer (#1030)</hymn> has some extra content between the second and third verses and a D.S. al coda, and <hymn>Little Baby in a Manger (#1209)</hymn> has an extra chorus with an optional obbligato at the end. I've seen chatter online about these (particularly <hymn>Gethsemane (#1009)</hymn>) saying that they're too hard to follow for congregational singing. I wondered whether, all things being equal, these four hymns with more complex "flows" were sung less than hymns with more striaghtforward flows.
+
+```{r}
+summary(mdl)
+pred_flow <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(pred_prop = mean(pred_prop), .by = new_flow)
+
+(diff_flow <- paste0(round(abs((pred_flow$pred_prop[[2]] - pred_flow$pred_prop[[1]]) * 100), 2), "%"))
+(prop_flow <- round(pred_flow$pred_prop[[1]] / pred_flow$pred_prop[[2]], 2))
+```
+
+The statistics don't support this hypothesis. Hymns with a new flow were indeed predicted to be less commonly sung than hymns with a more standard flow, all other things being equal. Specifically, new flow hymns were sung in about `r diff_flow` fewer sacrament meetings per week. In other words, standard flow hymns were about `r prop_flow` times more likely to be sung. This is not a statistically significant difference though. So it looks like the hesitancy that some music coordinators have hasn't stopped too many of them from singing these hymns. 
+
+
+## Sacrament hymns
+
+I've [written already](/posts/most_common) that most of the most popular hymns are sacrament hymns. This makes sense because every sacrament meeting has to have one, so they collectively have to make up between a third and a quarter of all hymns sung. In these new batches we have eight hymns that are tagged as being appropriate for the sacrament. You can see which ones these are and how common they are in this plot. 
+
+```{r, include = TRUE, fig.height = 8, fig.width = 8}
+weekly_results |> 
+    arrange(prop_wards) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label),
+           is_sacrament = if_else(is_sacrament, "sacrament", "other"),
+           is_sacrament = fct_rev(is_sacrament)) |> 
+    ggplot(aes(prop_wards, label, color = is_sacrament)) + 
+    # geom_point(data = . %>% filter(type != "other"), color = "black", size = 5) +
+    geom_point() +  
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3, show.legend = FALSE) + 
+    scale_x_continuous(breaks = seq(0, 0.05, 0.005),
+                       labels = percent,
+                       expand = expansion(0, c(0.02, 0.001))) +
+    scale_y_discrete(breaks = NULL) + 
+    scale_color_manual(values = c(ptol_green, ptol_grey)) + 
+    labs(title = "Average percent of wards singing each new hymn since its release date",
+         x = "Percent of wards",
+         y = NULL,
+         color = "Theme") + 
+    theme_minimal() + 
+    theme(axis.text.y = element_blank(),
+          legend.position = c(0.8, 0.5),
+          legend.background = element_rect(fill = "white", color = "gray50"),
+          legend.text = element_text(size = 10)) + 
+    guides(color = guide_legend(override.aes = list(size = 4)))
+```
+
+As expected, most of the sacrament hymns are near the top of this plot, so they're generally sung by a fair number of wards each Sunday. The two that stand out for being lower than the rest are <hymn>O Lord, Who Gave Thy Life for Me (#1041)</hymn> and <hymn>Help Us Remember (#1043)</hymn>. But those are both from the fifth batch and, as seen above, the fifth batch is the least common so far, even after accounting for how recent it is. The question is whether a hymn, all things being equal, is sung more if it's tagged as a sacrament hymn than if it's not. 
+
+```{r}
+weekly_results |> 
+    filter(is_sacrament)
+```
+
+
+
+```{r}
+summary(mdl)
+pred_sac <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(pred_prop = mean(pred_prop), .by = is_sacrament)
+
+(diff_sac <- paste0(round(abs((pred_sac$pred_prop[[2]] - pred_sac$pred_prop[[1]]) * 100), 2), "%"))
+(prop_sac <- round(pred_sac$pred_prop[[2]] / pred_sac$pred_prop[[1]], 2))
+p_sac <- as.data.frame(summary(mdl)$coefficients) |> 
+    rownames_to_column("predictor") |> 
+    filter(predictor == "is_sacramentTRUE") |> 
+    janitor::clean_names() |> 
+    pull() |> 
+    round(4)
+```
+
+The statistics give mixed results. On the one hand, it appears that sacrament hymns are quite a bit more common. A hymn predicted to be sung in `r diff_sac` more wards each Sunday if it's tagged as a sacrament hymn than if not. That equates to it being about `r prop_sac` times more common than it would have been. That seems like a big jump. But the statistics suggest that it's perhaps not a significant difference (*p* = `r p_sac`). So, we'll wait for a few more months to see if that changes. Perhaps with more data and more new sacrament hymns, we might see that change.
+
+## Existing hymns
+
+Next, I want to look at whether a hymn's previous existence in the Latter-day Saint or Christian world has an effect on its popularity. Here, I have four categories that I've tagged independently of each other (that is, as four binary variables). 
+
+
+### Existing hymns in American LDS culture
+
+```{r}
+weekly_results |> 
+    filter(existing_lds)
+
+summary(mdl)
+pred_exlds <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(pred_prop = mean(pred_prop), .by = existing_lds)
+
+(diff_exlds <- paste0(round(abs((pred_exlds$pred_prop[[2]] - pred_exlds$pred_prop[[1]]) * 100), 2), "%"))
+(prop_exlds <- round(pred_exlds$pred_prop[[1]] / pred_exlds$pred_prop[[2]], 2))
+p_exlds <- as.data.frame(summary(mdl)$coefficients) |> 
+    rownames_to_column("predictor") |> 
+    filter(predictor == "existing_ldsTRUE") |> 
+    pull() |> 
+    round(3)
+```
+
+First are hymns that existed in Latter-day Saint culture before the new hymnal came out. A great example of this is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. There are several that were in other church publications or productions, like <hymn>I Will Walk with Jesus (#1004)</hymn> and <hymn>I Know That My Savior Loves Me (#1021)</hymn>. Others were made popular by the Tabernacle Choir, like <hymn>My Shepherd Will Supply My Need (#1014)</hymn>, <hymn>This Is the Christ (#1017)</hymn>, <hymn>Softly and Tenderly Jesus Is Calling (#1020)</hymn>, and <hymn>Faith in Every Footstep (#1022)</hymn>. It was a judgment call on my part to decide what falls into this category, so there might be error here. 
+
+It turns out that, all other things being equal, if a hymn was previously a prominent part of the Latter-day Saint music world, it was more likely to be sung as a congregational hymn in sacrament meeting (*p* = `r p_exlds`). Specifically, it was sung by `r diff_exlds` more sacrament meetings each week.^[As a reminder, this may not seem like a lot, but we're working with a range of 0% to 3%, so a half percentage point difference is pretty big.] This is means that existing hymns are sung about `r prop_exlds` times more often than other hymns. This figure shows that almost all existing hymns are among the top 50% of most common new hymns. 
+
+```{r, include = TRUE, fig.height = 8, fig.width = 8}
+weekly_results |> 
+    arrange(prop_wards) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label),
+           existing_lds = fct_rev(as.factor(existing_lds))) |> 
+    ggplot(aes(prop_wards, label, color = existing_lds)) + 
+    # geom_point(data = . %>% filter(type != "other"), color = "black", size = 5) +
+    geom_point() +  
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3, show.legend = FALSE) + 
+    scale_x_continuous(breaks = seq(0, 0.05, 0.005),
+                       labels = percent,
+                       expand = expansion(0, c(0.02, 0.001))) +
+    scale_y_discrete(breaks = NULL) + 
+    scale_color_manual(values = c(ptol_green, ptol_grey)) + 
+    labs(title = "Average percent of wards singing each new hymn since its release date",
+         x = "Percent of wards",
+         y = NULL,
+         color = "Existed in American\nLatter-day Saint culture") + 
+    theme_minimal() + 
+    theme(axis.text.y = element_blank(),
+          legend.position = c(0.8, 0.5),
+          legend.background = element_rect(fill = "white", color = "gray50"),
+          legend.text = element_text(size = 10)) + 
+    guides(color = guide_legend(override.aes = list(size = 4)))
+```
+
+New hymns are regularly introduced into the Latter-day Saint cultural collection. Some come through formal means, like publication in the *Friend* or some other church material. Others come more organically as composers and songwriters release them and they catch on. I think people get excited when the see a song they have been singing for years get "canonized". The new opportunity to sing these as congregational hymn likely explains why they are more popular. 
+
+
+
+### Existing hymns in other LDS hymnals
+
+The next category are hymns that existed in other languages of the hymnal, but not in English. There are a handful of these like <hymn>God's Gracious Love (#1013)</hymn> and <hymn>I Can’t Count Them All (#1029)</hymn>) from Swedish, <hymn>Come, Hear the Word the Lord Has Spoken (#1031)</hymn> from Dutch, and <hymn>Jesus Is the Way (#1045)</hymn> from Tongan. As it turns out, these hymns were not sung more often than other hymns after controlling for everything else. 
+
+It is worth pointing out that [most of my data comes from the United states](/posts/frequency-data). These new ones might be very popular in those countries. I don't have any data from France, Tonga, or Sweden since these hymns came out, so I have no way of knowing right now if they are more popular there than in the US. 
+
+```{r}
+weekly_results |> 
+    filter(other_lang_lds)
+summary(mdl)
+```
+
+```{r}
+freqs |> 
+    filter(country == "Sweden",
+           date >= ymd("2024-05-30")) |> 
+    count(name_num, sort = TRUE)
+```
+
+
+### Existing Christian
+
+The third category of hymns are ones that are popular in other Christian hymnals but, for whatever reason, haven't been in ours. These include hymns like <hymn>His Eye Is on the Sparrow (#1005)</hymn>, <hymn>Behold the Wounds in Jesus' Hands (#1016)</hymn>, <hymn>The Lord's My Shepherd (#1038)</hymn>, and <hymn>Still, Still, Still (#1207)</hymn>. I identified 22 of these hymns. But, after controlling for all the other factors, they were not any more common than other hymns. 
+
+
+```{r}
+summary(mdl)
+weekly_results |> 
+    filter(existing_christian)
+```
+
+### African American Spirituals
+
+The last category are African American Spirituals or hymns that originate among African Americans. There are four that I know of: <hymn>This Little Light of Mine (#1028)</hymn>, <hymn>I'm Gonna Live So God Can Use Me (#1037)</hymn>, <hymn>Were You There? (#1206)</hymn>, and <hymn>Go Tell It on the Mountain (#1208)</hymn>.  I wanted to include this as its own category because they've received some more attention compared to other hymns. The discussion often centers around whether the words, rhythms, or other characteristics of the hymns are appropriate for sacrament meeting. But, once again, after controlling for everything else, these hymns were not any more popular than others.
+
+
+```{r}
+weekly_results |> 
+    filter(is_spiritual)
+summary(mdl)
+```
+
+
+## Other factors?
+
+There are of course numerous other factors that go into how popular a hymn is generally. The ones I've discussed in this post are just some of them. But, even if I added a dozen more factors into the statistical model, there would still be some hymns that buck the trend. Ones that are simply more popular or less popular than we'd expect. Sometimes a hymn is just good (or bad) without any real reason. 
+
+The cool thing is that with this statistical model, I can actually quantify that a little bit. In the kind of statistics I'm doing, the model tries to guess how popular each hymn is, given what I've told it about them and how similar kinds of hymns are. It does it's best to find the most significant trends, but it will inevitably be off by at least little bit on all of them. (It's like trying to connect all the dots on a page with a straight line: you can get close for some but you'll never be able to connect all of them.) I can extract from the model exactly how far off each hymn was from where the model guess it was, and then plot those numbers.^[For those who know stats, I'm just plotting the residuals.] Here is that plot. 
+
+```{r, fig.height = 8, fig.width = 8, include = TRUE}
+augment(mdl, data = weekly_results) |> 
+    arrange(.resid) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label),
+           is_outlier = abs(scale(.resid)) > 2) |> 
+    ggplot(aes(.resid, label, color = is_outlier)) + 
+    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") + 
+    # annotate("rect", xmin = -2, xmax = 2, ymin = 0, ymax = nrow(weekly_results),
+    #          fill = "black", alpha = 0.1) +
+    geom_text(aes(label = label), nudge_x = -0.02, hjust = 1, size = 3, show.legend = FALSE) + 
+    geom_point() + 
+    scale_x_continuous(expand = expansion(0, c(0.4, 0.1))) +
+    scale_color_manual(values = c(ptol_grey, ptol_red)) + 
+    labs(title = "Standardized residuals",
+         x = "Error",
+         y = NULL) +
+    theme_minimal() + 
+    theme(axis.text.y = element_blank(),
+          legend.position = "none")
+```
+
+Unfortunately, the numbers along the *x*-axis aren't very interpretable, so it's impossible to say, for example, how much more often a hymn is sung than the model expects it to be. But, what is interpretable is the relative position of the hymns to the vertical line at zero. If a hymn's dot is to the right of that zero, it means it was sung more than what the model guessed. If it's to the  left, it was sung less than it expected. Hymns marked in red were the ones that stood out as being quite a bit off from where the model guessed them to be.^[I just scaled the residuals, and they're the ones where the absolute values of the *z*-scores were greater than 2.] 
+
+One way to think about the horizontal position on this chart is that it represents all the other unmeasurable factors that go into whether a hymn is popular or not. Sometimes, people just like a hymn and sometimes they don't. The horizontal position captures those vibes, whatever they are. 
+
+Starting with the extremes, we see that <hymn>Amazing Grace (#1010)</hymn> stands out as being sung quite a bit more than would be expected given the factors I've talked about. It's from the second batch (so it should be popular) and it is SATB (which makes it more popular), but it wasn't an existing Latter-day Saint hymn (which is a strike against it) and it's not a sacrament hymn (which is another a strike against it). I remember as a teenager hearing people speculate about why this wasn't in our hymnal. Perhaps people who wanted to sing it but couldn't have been thrilled to finally see it made available. I have no idea.
+
+On the other end, we have <hymn>Joseph Prayed in Faith (#1049)</hymn>. I think there is a straightforward answer to this. I suspect that when we look back ten years from now, we'll see that this hymn will have become seasonal. It will likely be sung around springtime, just like <hymn>Joseph Smith's First Prayer (#26)</hymn>. And since this hymn came out in September 2025 and I'm writing this in January 2026, we haven't had a springtime yet (at least not in the northern hemisphere). So, I'll bet when I rerun these stats in a few months, that this one won't be quite so low. 
+
+There are a few others on the upper end of the plot that are interesting and that are worth pointing out. I'm not surprised to see <hymn>Our Prayer to Thee (#1048)</hymn> so high on the chart. I think the extra vibes not captured in this model for this one is that it was written by a prophet who died a week after it came out. I think the hidden reason for why <hymn>I Will Walk With Jesus (#1004)</hymn> is more popular than expected is because it was featured in the first Friend-to-Friend. And the unseen reason for why <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is so high on the list is because the Tabernacle Choir has an absolutely incredible version they have been singing regularly for decades. 
+
+As for others on the lower end, I can only speculate. I know that a lot of people are uncomfortable with the word *gonna* in <hymn>I'm Gonna Live So God Can Use Me (#1202)</hymn>, so I wonder if that's why it's sung less than expected. It may be the case that <hymn>His Voice as the Sound (#1040)</hymn> is so low on this list because it is in a minor key. 
+
+Anyway, I could speculate on and on about these, but the point is that there is a lot of unexplained variance leftover in the statistical model. When I think of potential factors, I'll add them to the model and the dots in this plot will gradually tighten. But in the meantime, it's intersting to see these trends.
+
+
+```{r}
+single_hymn_lookup(26)
+
+summary(mdl)
+augment(mdl, data = weekly_results) |> 
+    arrange(.resid)
+```
+
+
+## Conclusion
+
+```{r}
+prop_1001 <- weekly_results |> 
+    filter(str_detect(hymn_name, "Fount")) |> 
+    mutate(prop_wards = prop_wards * 100) |> 
+    pull(prop_wards) |> 
+    round(2) |> 
+    paste0("%")
+    
+```
+
+
+In this post, I took data from `r n_meetings` sacrament meetings and looked at how many times new each hymn has been sung in sacrament meeting, on average, since its respective release date. The most common, unsurprisingly, is <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>, which has been sung by `r prop_1001` sacrament meetings every week since it came out. 
+
+I then looked at whether certain properties of hymns had an influence on how popular they have been. Here's what I found:
+    
+  * The first batch is far and away the most common. All things being equal a hymn in that batch is sung `r prop_batch31` more often than one in the third batch, `r prop_batch41` times more often than one in the fourth batch, and `r prop_batch51` times more often than one in the fifth batch. The second batch was less popular, but not significantly so.
+  * A hymn that is arranged in an SATB format is sung `r prop_satb` times more often than one arranged for unison singing, all other things being equal. 
+  * Whether a hymn has a complex flow did not significantly affect how often it was sung. 
+  * Sacrament hymns are sung `r prop_sac` times more often than an equivalent non-sacrament hymn would be. 
+  * Hymns that have existed within American Latter-day Saint culture for a while were `r prop_exlds` more likely to be sung. If a hymn existed in non-English Latter-day Saint hymnals, has been sung in other Christian denominations, or started among African Americans, it didn't affect how often it was sung.
+
+This has been one of my more technical blog posts. But, I think I've uncovered some pretty cool trends here. The most interesting is that there is a bias towards hymns that came out in the first batch or two. And there's a clear preference for SATB hymns, rather than unison ones, being sung as congregational hymns in sacrament meeting. Again, the church only recently stated explicitly that both styles are appropriate, so we'll see if the popularity of those unison hymns goes up. 
+
+If you can think of some potential predictors for what might make hymns more or less popular, let me know and I can upate my model! 
