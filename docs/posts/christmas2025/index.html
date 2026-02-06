@@ -79,22 +79,56 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 </script>
-<meta name="quarto:status" content="draft">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Christmas 2025 – LDS Hymn Stats">
 <meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-3-1.png">
 <meta property="og:site_name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="672">
+<meta property="og:image:width" content="1536">
 <meta name="twitter:title" content="Christmas 2025 – LDS Hymn Stats">
 <meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-3-1.png">
+<meta name="twitter:image-height" content="672">
+<meta name="twitter:image-width" content="1536">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -170,14 +204,21 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#number-of-christmas-hymns-sung" id="toc-number-of-christmas-hymns-sung" class="nav-link active" data-scroll-target="#number-of-christmas-hymns-sung">Number of Christmas hymns sung</a></li>
-  <li><a href="#canadians" id="toc-canadians" class="nav-link" data-scroll-target="#canadians">Canadians</a></li>
-  <li><a href="#how-have-the-original-hymns-changed" id="toc-how-have-the-original-hymns-changed" class="nav-link" data-scroll-target="#how-have-the-original-hymns-changed">How have the original hymns changed?</a></li>
+  <li><a href="#number-of-christmas-hymns-sung" id="toc-number-of-christmas-hymns-sung" class="nav-link active" data-scroll-target="#number-of-christmas-hymns-sung"><span class="header-section-number">1</span> Number of Christmas hymns sung</a></li>
+  <li><a href="#how-have-the-original-hymns-changed" id="toc-how-have-the-original-hymns-changed" class="nav-link" data-scroll-target="#how-have-the-original-hymns-changed"><span class="header-section-number">2</span> How have the original hymns changed?</a>
+  <ul class="collapse">
+  <li><a href="#hymns-before-2024" id="toc-hymns-before-2024" class="nav-link" data-scroll-target="#hymns-before-2024"><span class="header-section-number">2.1</span> Hymns before 2024</a></li>
+  <li><a href="#hymns-in-2024" id="toc-hymns-in-2024" class="nav-link" data-scroll-target="#hymns-in-2024"><span class="header-section-number">2.2</span> Hymns in 2024</a></li>
+  <li><a href="#hymns-in-2025" id="toc-hymns-in-2025" class="nav-link" data-scroll-target="#hymns-in-2025"><span class="header-section-number">2.3</span> Hymns in 2025</a></li>
+  <li><a href="#comparison-across-years" id="toc-comparison-across-years" class="nav-link" data-scroll-target="#comparison-across-years"><span class="header-section-number">2.4</span> Comparison across years</a></li>
+  </ul></li>
+  <li><a href="#which-hymns-are-affected-the-most" id="toc-which-hymns-are-affected-the-most" class="nav-link" data-scroll-target="#which-hymns-are-affected-the-most"><span class="header-section-number">3</span> Which hymns are affected the most?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -208,7 +249,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 28, 2026</p>
+      <p class="date-modified">February 6, 2026</p>
     </div>
   </div>
     
@@ -219,25 +260,151 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 </header>
 
 
-<p>In 2023, I did <a href="../../posts/christmas">a detailed analysis</a> of Christmas hymns that summarized all the data up to that point. Since that was the last Christmas before the new hymns were introduced, it serves as a useful final snapshot of how Christmas were used in congregational singing based on the 1985 hymnal. Last year, I <a href="../../posts/christmas2024">redid the analysis</a> to see how the new hymns were being used. In 2025, we saw additional Christmas hymns introduced so this post serves as a description of how Christmas hymns were used in congregational singing right now.</p>
+<p>In 2023, I did <a href="../../posts/christmas">a detailed analysis</a> of Christmas hymns and summarized all the data up to that point. Since that was the last Christmas before the new hymns were introduced, it serves as a useful final snapshot of how Christmas hymns were used in congregational singing based on the 1985 hymnal. Last year, I <a href="../../posts/christmas2024">redid the analysis</a> to see how the new hymns were being used. Since we saw additional Christmas hymns introduced inm 2025, this post serves as a description of how Christmas hymns were used in congregational singing right now.</p>
 <p>I’ll start off by looking at the hymns listed in the 1985 hymnal. I’ll then move on to the new hymns that were introduced. I’ll then take a step back and look at overall patterns across all hymns.</p>
-<section id="number-of-christmas-hymns-sung" class="level2">
-<h2 class="anchored" data-anchor-id="number-of-christmas-hymns-sung">Number of Christmas hymns sung</h2>
-<p>Two years ago, we only had 14 Christmas hymns in the hymnal. Even then, it was difficult to get through all of them. The traditional period of Christmastime goes from about four weeks before Christmas (what other Christian traditions call <em>Advent</em>) to about twelve days after (January 5th, or <em>Epiphony</em>). In our faith, we typically <a href="../../posts/week-after-thanksgiving">stop singing Christmas hymns</a> sooner than that. So, that means we have about (4×6=) 24 hymn slots to work with. Subtract one each week for sacrament, and that’s (24−6=) 18. Subtract two intermediate hymns on the December and January Fast Sundays, and we’re at (18−2=) 16 slots total. And that’s assuming singing Christmas hymns as early as the last Sunday of November and as late as the first Sunday in January. Yes, some wards have additional congregational hymns during a week or two in January, but those are the exception.</p>
-<p>The point is most wards didn’t get through all the hymns even then, so some were prioritized over others.</p>
-<p>Two years ago I showed a plot like this. This shows the distribution of how many Christmas hymns are sung as congregational hymns per ward. This only includes data from wards that have complete datasets, meaning from four weeks before Christmas to two weeks after. Note that this plot may look a little different than the plot in my previous blog post because that one was based on just 38 wards whereas this time it’s based on a little over 10 times that since I’ve collected quite a bit more data since then. It is noteworthy that none of the wards I have data from sang all 14 in a single year.</p>
-<p>So it is most common to sing between 7 and 10 congregational Christmas hymns each year.</p>
-<p>In 2024, there were an additional four new hymns: <hymn>He Is Born, the Divine Christ Child (1202)</hymn>, <hymn>What Child is This? (1203)</hymn>, <hymn>Star Bright (1204)</hymn>, and <hymn>Come, Lord Jesus (1018)</hymn>. In 2025, there were three more: <hymn>Still, Still, Still (1207)</hymn>, <hymn>Go Tell It on the Mountain (1208)</hymn>, and <hymn>Little Baby in a Manger (1209)</hymn>. That means of the now 23 Christmas hymns in the hymnal, a typical ward might sing a third to a half of them.</p>
-<p>Perhaps</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This blog post is based on wards from which I have a “complete dataset” for their Christmas season. By that I mean that I have data from every sacrament meeting between November 25 and January 5. In other words, six Sundays’ worth. In my data up to 2023, I have complete datasets from 391 seasons, which is from 220 different wards spanning from 2003 to 2023. In 2024, it’s from 376 wards and in 2025 it’s 286 wards.</p>
+</div>
+</div>
+<section id="number-of-christmas-hymns-sung" class="level2 page-columns page-full" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="number-of-christmas-hymns-sung"><span class="header-section-number">1</span> Number of Christmas hymns sung</h2>
+<p>Two years ago, we had 14 Christmas hymns in the hymnal. Even then, it was difficult to get through all of them. The traditional period of Christmastime goes from about four weeks before Christmas (what other Christian traditions call <em>Advent</em>) to about twelve days after (January 5th, or <em>Epiphony</em>). In our faith, we typically <a href="../../posts/new-years">stop singing Christmas hymns</a> sooner than that. So, assuming all six weeks are used we have about (4×6=) 24 hymn slots to work with. Subtract one each week for the sacrament, and that’s (24−6=) 18. Subtract two intermediate hymns on the December and January Fast Sundays, and we’re at (18−2=) 16 slots total. And that’s assuming singing Christmas hymns as early as <a href="../../posts/week-after-thanksgiving">the last Sunday of November</a> and as late as <a href="../../posts/new-years">the first Sunday in January</a>. Yes, some wards have additional congregational hymns during a week or two in December, but most don’t.</p>
+<p>The point is that most wards didn’t get through all the hymns even then. That means each year, nearly every ward will have to decide which Christmas hymns are not sung.</p>
+<p>Two years ago I showed a plot like the one below. This shows the distribution of how many Christmas hymns are sung as congregational hymns per ward. This only includes data from wards that have complete datasets, meaning from four weeks before Christmas to two weeks after. Note that this plot may look a little different than the plot in my previous blog post because that one was based on just 38 wards whereas this time it’s based on 391 since I’ve collected quite a bit more data since then. It is noteworthy that none of the wards I have data from sang all 14 in a single year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So the most common scenario is to sing between 7 and 10 congregational Christmas hymns each year.</p>
+<p>In 2024, there were an additional four new hymns: <hymn>He Is Born, the Divine Christ Child (1202)</hymn>, <hymn>What Child is This? (1203)</hymn>, <hymn>Star Bright (1204)</hymn>, and (according to many people) <hymn>Come, Lord Jesus (1018)</hymn>. In 2025, there were three more: <hymn>Still, Still, Still (1207)</hymn>, <hymn>Go Tell It on the Mountain (1208)</hymn>, and <hymn>Little Baby in a Manger (1209)</hymn>. So we have 21 Christmas hymns now, not to mention any from the <em>Children’s Songbook</em>, which are getting a little more common.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> But, the number of slots in those six weeks hasn’t changed. So if we continue to sing 7–10 Christmas hymns each week, a typical ward might only make it through a third to half of them. Did wards sing more congregational hymns as a way to get through more of them?</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Nothing from the Children’s Songbook was sung a significant amount, so I won’t mention it here.</p></div></div><p>Let’s look at the same kind of plot, but overlaying the 2024 and the 2025 data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The red plot is the same as the gray one from before. The green shows the 2024 data and the gold shows the 2025 data. Though they may not look it, the difference between all three groups was statistically significant.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> So, the data from before 2024 collectively averagted 8.92 congregational hymns per year and fell by about half a hymn per ward to 8.43 in 2024. It then fell by another 1.25 hymns in 2025 to average 7.18 per ward per year.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;This is based one a one-way ANOVA, <span class="math inline">\(F_{(2, 1041)}\)</span> = 66.06, <em>p</em> &lt; 0.001. The difference between 2025 (<span class="math inline">\(\mu\)</span> = 7.18, sd = 2.04) and 2024 (<span class="math inline">\(\mu\)</span> = 8.43, sd = 1.92) was statistically significant (diff = -1.248, <em>p</em> &lt; 0.001). The difference between 2025 and anything before 2024 (<span class="math inline">\(\mu\)</span> = 8.92, sd = 1.95) was statistically significant (diff = -1.736, <em>p</em> &lt; 0.001). And the difference between 2024 and anything before 2024 was statistically significant (diff = -0.488, <em>p</em> = 0.002)</p></div></div><p>Those numbers may seem small, but I think it’s a noteworthy jump. It seems like people are singing fewer congregational hymns around Christmastime. This may be a fluke of 2025 and it may be indicative of a larger trend of less congregational singing generally rather than around Christmas. But this is one of the first times I’ve found pretty conclusive evidence of the intuition that some people have that we’re singing less in church.</p>
 </section>
-<section id="canadians" class="level2">
-<h2 class="anchored" data-anchor-id="canadians">Canadians</h2>
+<section id="how-have-the-original-hymns-changed" class="level2 page-columns page-full" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="how-have-the-original-hymns-changed"><span class="header-section-number">2</span> How have the original hymns changed?</h2>
+<p>So, people are singing <em>fewer</em> hymns while also having <em>more</em> hymns to choose from. Since the new hymns are indeed being sung, that means some of the older hymns are being sung less than they used to be. Let’s take a look and see which older hymns were affected the most because of the new hymns.</p>
+<section id="hymns-before-2024" class="level3 page-columns page-full" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="hymns-before-2024"><span class="header-section-number">2.1</span> Hymns before 2024</h3>
+<p>In my <a href="../../posts/christmas2024">previous post on Christmas</a>, I posted a plot similar to this one below. This is an updated version of the one in my previous blog post and reflects the larger amount of data I have now compared to what I had then.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot shows what percent of wards each year sing each of the Christmas hymns as a congregation. The two most sung ones are <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, which are sung in 90% or more of wards each year. Most of the rest trail behind at anywhere between about 63% to 83% of wards. The three that lag behind all others are <hymn>With Wondering Awe (#210)</hymn> at 51% of wards, <hymn>Once in Royal David’s City (#205)</hymn> and 42% of wards, and finally <hymn>While Shepherds Watched Their Flocks (#211)</hymn> at 31%. The last one is less frequent than even some sacrament hymns!<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Specifically, <hymn>Jesus, Once of Humble Birth (#196)</hymn> (which is actually the 10th most common hymn during Christmastime, surpassing even <hymn>Away in a Manger (#206)</hymn>), <hymn>God Loved Us, So He Sent His Son (#187)</hymn>, <hymn>Jesus of Nazareth, Savior and King (#181)</hymn>, and <hymn>How Great the Wisdom and the Love (#195)</hymn>. I get it, sacrament hymns are inherently going to be <a href="../../posts/sacrament">more frequent</a>, but it’s interesting still.</p></div></div></section>
+<section id="hymns-in-2024" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="hymns-in-2024"><span class="header-section-number">2.2</span> Hymns in 2024</h3>
+<p>Here is the same plot, but showing all Christmas hymns in 2024. In this plot, I’ve color coded the hymns by whether they’re new or not.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see <hymn>What Child is This? (#1203)</hymn> was far and away the most common of the new hymns. It was sung in about 61% of wards that year, putting it on par with many other Christmas hymns. You may notice already too, especially if you look at the <em>x</em>-axis, that the bars for almost all other hymns don’t go quite as far to the right as they did befor 2024. That means that the new hymns cut into the old hymns a little bit. I’ll look at those numbers below.</p>
+<p>As for the other ones, they were sung in a fair number of wards, but they weren’t especially frequent. <hymn>He Is Born, the Divine Christ Child (#1202)</hymn> was on par with some of less common ones I pointed out above. And <hymn>Star Bright (#1204)</hymn> was the new least commonly sung Christmas hymn, only being sung in 20% of wards, which is less than 11 sacrament hymns. In my statistical analysis of <a href="../../posts/new_hymns_general">what makes the new hymns more or less common</a>, I find that hymns that are not arranged in an SATB format are sung less often than ones that are. That, and that fact that it’s not familiar to English-speaking Latter-day Saints might mean that, given the small number of slots to fill during Christmastime, wards weren’t willing to take a risk by singing an unfamiliar hymn when there are plenty of familiar ones still available.</p>
 </section>
-<section id="how-have-the-original-hymns-changed" class="level2">
-<h2 class="anchored" data-anchor-id="how-have-the-original-hymns-changed">How have the original hymns changed?</h2>
+<section id="hymns-in-2025" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="hymns-in-2025"><span class="header-section-number">2.3</span> Hymns in 2025</h3>
+<p>Finally, here is a similar plot showing all the Christmas hymns and how often they were sung in 2025.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><hymn>What Child is This? (#1203)</hymn> continues to be pretty frequent. It was sung in fewer wards than 2024 (about 50% compared to 61%), but so was everything else. And it actually jumped from 8th most common to 5th most common Christmas hymn.</p>
+<p>All the other ones were sung about the same as the three least sung ones that I mentioned above. <hymn>Still, Still, Still (#1207)</hymn>, which was new to 2025, was the next most frequent new Christmas hymn and was sung in about 31% of wards. <hymn>Go Tell It on the Mountain (#1208)</hymn> surpassed <hymn>He Is Born, the Divine Christ Child (#1202)</hymn> by a small amount, both sitting around 22% of wards. We’re now entering the territory of how frequent many sacrament hymns are, some of which are sung between 20% and 30% of wards each year.</p>
+<p>On the lowest end, we have <hymn>Star Bright (#1204)</hymn> by p<hymn>While Shepherds Watched Their Flocks (#211)</hymn>, both of which were sung in around 13% of wards. These were about as frequent as most other sacrament hymns. In fact, they were less frequent than <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> which, as far as I can tell, doesn’t really have anything to do with Christmas. They were also about as frequent as <hymn>Come, Lord Jesus (#1018)</hymn>, which is kinda sorta a Christmas hymn (mostly in the first verse, similar to <hymn>Jesus, Once of Humble Birth (#196)</hymn>).</p>
+<p>But this year the new least common Christmas hymn was <hymn>Little Baby in a Manger (#1209)</hymn>. Only about 8% of wards sang it. Most sacrament hymns were sung more than this one during Christmastime. In fact, more wards sang <hymn>Praise to the Man (#27)</hymn> than sang this hymn, presumably because of Joseph Smith’s birthday on December 23rd. Again, new hymns not arranged in SATB are less common generally, but a handful of other factors might have worked against this one, like it being unfamiliar and it having a different third verse.</p>
+</section>
+<section id="comparison-across-years" class="level3 page-columns page-full" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="comparison-across-years"><span class="header-section-number">2.4</span> Comparison across years</h3>
+<p>This next plot shows the percentage of wards that sang each hymn across the three years (2025, 2024, and 2023 or earlier). This makes it easier to see the changes year over year for each hymn. I’ve sorted them by hymn number.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;It’s interesting that there seems to be a correlation between hymn number and frequency!</p></div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There’s a lot to dissect in this plot, but there are a few things to notice. First, for all but one hymn, the leftmost dot is yellow, which means that it was sung less in 2025 than it was in either 2024 or before. The one exception is <hymn>Come, Lord Jesus (#1018)</hymn> which actually saw a very small increase from 2024.</p>
+<p>Similarly, in almost all cases, the middle dot is green and the rightmost dot was red. That means that almost all hymns were sung less in 2024 than they were before 2024. The exceptions are <hymn>Angels We Have Heard on High (#203)</hymn> and <hymn>Away in a Manger (#206)</hymn>, which were most frequent by a small margin in 2024.</p>
+<p>So, this plot shows that the introduction of the new hymns took slice out of the frequency of all existing hymns. Even the introduction of the hymns for the 2025 season cut into the amount that the hymns new in 2024 were sung.</p>
+</section>
+</section>
+<section id="which-hymns-are-affected-the-most" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="which-hymns-are-affected-the-most"><span class="header-section-number">3</span> Which hymns are affected the most?</h2>
+<p>The question I have now is this: if all hymns decreased as a result of there being more hymns available in the same number of slots, which hymns were affected the most? I suspect that not all old hymns were equally likely to be cut this year. If a music coordinator is selecting hymns for the Christmas season and they want to add a new hymn, is a popular hymn like <hymn>Joy to the World (#201)</hymn> more likely to make it into this year’s rotation, or a less popular hymn like <hymn>While Shepherds Watched their Flocks (#211)?</hymn></p>
+<p>The way I measured this is to compare what percentage of wards each old hymn was sung in prior to 2024 to what percentage they were sung in in 2025. But rather than taking the difference, I divided the two. To explain this, let me show some actual numbers. 93.6% of wards sang <hymn>Joy to the World (#201)</hymn> prior to 2024. In 2025, it was 75.1%. That’s an 18.4% drop. Meanwhile, 31.5% of wards sang <hymn>While Shepherds Watched Their Flocks (#211)</hymn> prior to 2024, and 12.9% in 2025. That’s about an 18.5% drop. So the differences are almost the same the same. Does that mean they were impacted the same way?</p>
+<p>I don’t think so. If we divide the 2023 data by the 2025 data, we get very different numbers. For <hymn>Joy to the World (#201)</hymn>, about (<span class="math inline">\(93.6\div75.1=\)</span>) 80.3% of wards that sang it in 2023 sang it in 2025. That’s a 19.7% drop. Meanwhile, <hymn>Joy to the World (#201)</hymn>, about (<span class="math inline">\(31.4\div12.9=\)</span>) 41.1%. That means only 41% of wards that sang it in 2023 sang it in 2025. That’s about a 59% drop. So, even though the differences are the same, the <em>proportion</em> of wards singing it from one year to the next is quite different.</p>
+<p>So, with that in mind, here is a plot that shows the proportional drops from 2023 to 2025 for the old hymns. On the <em>x</em>-axis, I have how frequent the hymns were prior to the introduction of the new hymns. On the <em>y</em>-axis I have that proportional drop.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, there’s a pretty clear trend.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> The dots are arranged from the bottom left to the top right. What this means is that the popular a hymn was before 2024 (i.e.&nbsp;further to the right of the chart), the less of a drop it had in 2025 (i.e.&nbsp;higher on the chart). Basically, what is comes down to is that the most popular hymns are still being sung by lots of wards, but the less popular ones are being sung by fewer wards, in two cases by less than half as many as before and in many cases, close to half as many.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The correlation between them is statistically significant according to a Pearson’s product-moment correlation test, <span class="math inline">\(r = 0.8542\)</span>, <span class="math inline">\(t = 5.6919\)</span>, df <span class="math inline">\(= 12\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>.</p></div></div><p>Another way of putting it is that when people sing new hymns, they swap out the less popular hymns rather than the most popular hymn.</p>
+<p>Again, this makes sense. When considering singing a new hymn like <hymn>He Is Born, the Divine Christ Child (#1202)</hymn>, there’s a risk involved because many people may not know it. Music in sacrament meetings “increases faith in Jesus Christ, … invites the Spirit and teaches doctrine, … [and] creates a feeling of reverence, unifies members, and provides a way to worship Heavenly Father and Jesus Christ.”<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> While not required, being familiar with the hymns and actively and confidently singing along with them likely help. So given choice between a beloved favorite like <hymn>The First Noel (#213)</hymn>, which most people know and can sing along to, and a new one, it’s easier to fulfill the purpose of music in sacrament meetings by choosing the favorite hymn. But if an unfamiliar hymn does less good of a job of fulfilling that purpose, then the potential “loss” by singing a new hymn is smaller. Now, that’s not to say that there isn’t value in these hymns or in singing new and unfamiliar hymns generally. But, I can understand why music coordinators may not choose these hymns and why the correlation shown in the above plot is so apparent.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;See the <a href="https://www.churchofjesuschrist.org/study/manual/general-handbook/19-music?lang=eng"><em>General Handbook</em> chapter 19</a>.</p></div></div></section>
+<section id="conclusion" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4</span> Conclusion</h2>
+<p>In this post, I have analyzed congregational hymns during the six weeks of the 2025 Christmas season and compared them to the 2024 season and all the years before 2024. Here are some highlights:</p>
+<ul>
+<li>The number of “slots” to sing Christmas hymns hasn’t changed. A ward can really only sing about 16, unless they start earlier in November, end later in January, or sing multiple intermediate hymns. The number of Christmas hymns in the hymnal went from 14 to 21.</li>
+<li>Compared to before the new hymns came out, people are singing slightly fewer unique hymns. The average number of hymns per ward dropped from 8.92 before 2024 to 7.18 in 2025. I don’t have a good explanation for that drop.</li>
+<li><hymn>What Child is This? (#1203)</hymn> is the most commonly sung new Christmas hymn. It was 5th most frequent and was sung by about half of wards in 2025. <hymn>Little Baby in a Manger (#1209)</hymn> was the least sung Christmas hymn (new or old).</li>
+<li>The other new hymns are about as frequent as the three least common older Christmas hymns.</li>
+<li>All older hymns were sung less in 2025 compared to before 2024 with the introduction of the new hymns.</li>
+<li>The more popular a hymn was before 2024, the less of a drop it experienced in 2025. This means that new hymns largely took the place of the less popular older hymns.</li>
+</ul>
+<p>I imagine we’ll get some new Christmas hymns in the 2026 batches and perhaps even more in the full hymnal, so it’s interesting to see this snapshot right now. I look forward to doing another analysis in a year or two to see how the numbers have changed again.</p>
 
 
 </section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

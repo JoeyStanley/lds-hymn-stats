@@ -210,6 +210,166 @@ Note
   <pubDate>Sat, 31 Jan 2026 07:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Christmas 2025</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/christmas2025/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>In 2023, I did <a href="../../posts/christmas">a detailed analysis</a> of Christmas hymns and summarized all the data up to that point. Since that was the last Christmas before the new hymns were introduced, it serves as a useful final snapshot of how Christmas hymns were used in congregational singing based on the 1985 hymnal. Last year, I <a href="../../posts/christmas2024">redid the analysis</a> to see how the new hymns were being used. Since we saw additional Christmas hymns introduced inm 2025, this post serves as a description of how Christmas hymns were used in congregational singing right now.</p>
+<p>I’ll start off by looking at the hymns listed in the 1985 hymnal. I’ll then move on to the new hymns that were introduced. I’ll then take a step back and look at overall patterns across all hymns.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This blog post is based on wards from which I have a “complete dataset” for their Christmas season. By that I mean that I have data from every sacrament meeting between November 25 and January 5. In other words, six Sundays’ worth. In my data up to 2023, I have complete datasets from 391 seasons, which is from 220 different wards spanning from 2003 to 2023. In 2024, it’s from 376 wards and in 2025 it’s 286 wards.</p>
+</div>
+</div>
+<section id="number-of-christmas-hymns-sung" class="level2 page-columns page-full" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="number-of-christmas-hymns-sung"><span class="header-section-number">1</span> Number of Christmas hymns sung</h2>
+<p>Two years ago, we had 14 Christmas hymns in the hymnal. Even then, it was difficult to get through all of them. The traditional period of Christmastime goes from about four weeks before Christmas (what other Christian traditions call <em>Advent</em>) to about twelve days after (January 5th, or <em>Epiphony</em>). In our faith, we typically <a href="../../posts/new-years">stop singing Christmas hymns</a> sooner than that. So, assuming all six weeks are used we have about (4×6=) 24 hymn slots to work with. Subtract one each week for the sacrament, and that’s (24−6=) 18. Subtract two intermediate hymns on the December and January Fast Sundays, and we’re at (18−2=) 16 slots total. And that’s assuming singing Christmas hymns as early as <a href="../../posts/week-after-thanksgiving">the last Sunday of November</a> and as late as <a href="../../posts/new-years">the first Sunday in January</a>. Yes, some wards have additional congregational hymns during a week or two in December, but most don’t.</p>
+<p>The point is that most wards didn’t get through all the hymns even then. That means each year, nearly every ward will have to decide which Christmas hymns are not sung.</p>
+<p>Two years ago I showed a plot like the one below. This shows the distribution of how many Christmas hymns are sung as congregational hymns per ward. This only includes data from wards that have complete datasets, meaning from four weeks before Christmas to two weeks after. Note that this plot may look a little different than the plot in my previous blog post because that one was based on just 38 wards whereas this time it’s based on 391 since I’ve collected quite a bit more data since then. It is noteworthy that none of the wards I have data from sang all 14 in a single year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So the most common scenario is to sing between 7 and 10 congregational Christmas hymns each year.</p>
+<p>In 2024, there were an additional four new hymns: <hymn>He Is Born, the Divine Christ Child (1202)</hymn>, <hymn>What Child is This? (1203)</hymn>, <hymn>Star Bright (1204)</hymn>, and (according to many people) <hymn>Come, Lord Jesus (1018)</hymn>. In 2025, there were three more: <hymn>Still, Still, Still (1207)</hymn>, <hymn>Go Tell It on the Mountain (1208)</hymn>, and <hymn>Little Baby in a Manger (1209)</hymn>. So we have 21 Christmas hymns now, not to mention any from the <em>Children’s Songbook</em>, which are getting a little more common.<sup>1</sup> But, the number of slots in those six weeks hasn’t changed. So if we continue to sing 7–10 Christmas hymns each week, a typical ward might only make it through a third to half of them. Did wards sing more congregational hymns as a way to get through more of them?</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Nothing from the Children’s Songbook was sung a significant amount, so I won’t mention it here.</p></div></div><p>Let’s look at the same kind of plot, but overlaying the 2024 and the 2025 data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The red plot is the same as the gray one from before. The green shows the 2024 data and the gold shows the 2025 data. Though they may not look it, the difference between all three groups was statistically significant.<sup>2</sup> So, the data from before 2024 collectively averagted 8.92 congregational hymns per year and fell by about half a hymn per ward to 8.43 in 2024. It then fell by another 1.25 hymns in 2025 to average 7.18 per ward per year.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;This is based one a one-way ANOVA, <img src="https://latex.codecogs.com/png.latex?F_%7B(2,%201041)%7D"> = 66.06, <em>p</em> &lt; 0.001. The difference between 2025 (<img src="https://latex.codecogs.com/png.latex?%5Cmu"> = 7.18, sd = 2.04) and 2024 (<img src="https://latex.codecogs.com/png.latex?%5Cmu"> = 8.43, sd = 1.92) was statistically significant (diff = -1.248, <em>p</em> &lt; 0.001). The difference between 2025 and anything before 2024 (<img src="https://latex.codecogs.com/png.latex?%5Cmu"> = 8.92, sd = 1.95) was statistically significant (diff = -1.736, <em>p</em> &lt; 0.001). And the difference between 2024 and anything before 2024 was statistically significant (diff = -0.488, <em>p</em> = 0.002)</p></div></div><p>Those numbers may seem small, but I think it’s a noteworthy jump. It seems like people are singing fewer congregational hymns around Christmastime. This may be a fluke of 2025 and it may be indicative of a larger trend of less congregational singing generally rather than around Christmas. But this is one of the first times I’ve found pretty conclusive evidence of the intuition that some people have that we’re singing less in church.</p>
+</section>
+<section id="how-have-the-original-hymns-changed" class="level2 page-columns page-full" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="how-have-the-original-hymns-changed"><span class="header-section-number">2</span> How have the original hymns changed?</h2>
+<p>So, people are singing <em>fewer</em> hymns while also having <em>more</em> hymns to choose from. Since the new hymns are indeed being sung, that means some of the older hymns are being sung less than they used to be. Let’s take a look and see which older hymns were affected the most because of the new hymns.</p>
+<section id="hymns-before-2024" class="level3 page-columns page-full" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="hymns-before-2024"><span class="header-section-number">2.1</span> Hymns before 2024</h3>
+<p>In my <a href="../../posts/christmas2024">previous post on Christmas</a>, I posted a plot similar to this one below. This is an updated version of the one in my previous blog post and reflects the larger amount of data I have now compared to what I had then.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot shows what percent of wards each year sing each of the Christmas hymns as a congregation. The two most sung ones are <hymn>Joy to the World (#201)</hymn> and <hymn>Oh, Come, All Ye Faithful (#202)</hymn>, which are sung in 90% or more of wards each year. Most of the rest trail behind at anywhere between about 63% to 83% of wards. The three that lag behind all others are <hymn>With Wondering Awe (#210)</hymn> at 51% of wards, <hymn>Once in Royal David’s City (#205)</hymn> and 42% of wards, and finally <hymn>While Shepherds Watched Their Flocks (#211)</hymn> at 31%. The last one is less frequent than even some sacrament hymns!<sup>3</sup></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Specifically, <hymn>Jesus, Once of Humble Birth (#196)</hymn> (which is actually the 10th most common hymn during Christmastime, surpassing even <hymn>Away in a Manger (#206)</hymn>), <hymn>God Loved Us, So He Sent His Son (#187)</hymn>, <hymn>Jesus of Nazareth, Savior and King (#181)</hymn>, and <hymn>How Great the Wisdom and the Love (#195)</hymn>. I get it, sacrament hymns are inherently going to be <a href="../../posts/sacrament">more frequent</a>, but it’s interesting still.</p></div></div></section>
+<section id="hymns-in-2024" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="hymns-in-2024"><span class="header-section-number">2.2</span> Hymns in 2024</h3>
+<p>Here is the same plot, but showing all Christmas hymns in 2024. In this plot, I’ve color coded the hymns by whether they’re new or not.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see <hymn>What Child is This? (#1203)</hymn> was far and away the most common of the new hymns. It was sung in about 61% of wards that year, putting it on par with many other Christmas hymns. You may notice already too, especially if you look at the <em>x</em>-axis, that the bars for almost all other hymns don’t go quite as far to the right as they did befor 2024. That means that the new hymns cut into the old hymns a little bit. I’ll look at those numbers below.</p>
+<p>As for the other ones, they were sung in a fair number of wards, but they weren’t especially frequent. <hymn>He Is Born, the Divine Christ Child (#1202)</hymn> was on par with some of less common ones I pointed out above. And <hymn>Star Bright (#1204)</hymn> was the new least commonly sung Christmas hymn, only being sung in 20% of wards, which is less than 11 sacrament hymns. In my statistical analysis of <a href="../../posts/new_hymns_general">what makes the new hymns more or less common</a>, I find that hymns that are not arranged in an SATB format are sung less often than ones that are. That, and that fact that it’s not familiar to English-speaking Latter-day Saints might mean that, given the small number of slots to fill during Christmastime, wards weren’t willing to take a risk by singing an unfamiliar hymn when there are plenty of familiar ones still available.</p>
+</section>
+<section id="hymns-in-2025" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="hymns-in-2025"><span class="header-section-number">2.3</span> Hymns in 2025</h3>
+<p>Finally, here is a similar plot showing all the Christmas hymns and how often they were sung in 2025.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><hymn>What Child is This? (#1203)</hymn> continues to be pretty frequent. It was sung in fewer wards than 2024 (about 50% compared to 61%), but so was everything else. And it actually jumped from 8th most common to 5th most common Christmas hymn.</p>
+<p>All the other ones were sung about the same as the three least sung ones that I mentioned above. <hymn>Still, Still, Still (#1207)</hymn>, which was new to 2025, was the next most frequent new Christmas hymn and was sung in about 31% of wards. <hymn>Go Tell It on the Mountain (#1208)</hymn> surpassed <hymn>He Is Born, the Divine Christ Child (#1202)</hymn> by a small amount, both sitting around 22% of wards. We’re now entering the territory of how frequent many sacrament hymns are, some of which are sung between 20% and 30% of wards each year.</p>
+<p>On the lowest end, we have <hymn>Star Bright (#1204)</hymn> by p<hymn>While Shepherds Watched Their Flocks (#211)</hymn>, both of which were sung in around 13% of wards. These were about as frequent as most other sacrament hymns. In fact, they were less frequent than <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> which, as far as I can tell, doesn’t really have anything to do with Christmas. They were also about as frequent as <hymn>Come, Lord Jesus (#1018)</hymn>, which is kinda sorta a Christmas hymn (mostly in the first verse, similar to <hymn>Jesus, Once of Humble Birth (#196)</hymn>).</p>
+<p>But this year the new least common Christmas hymn was <hymn>Little Baby in a Manger (#1209)</hymn>. Only about 8% of wards sang it. Most sacrament hymns were sung more than this one during Christmastime. In fact, more wards sang <hymn>Praise to the Man (#27)</hymn> than sang this hymn, presumably because of Joseph Smith’s birthday on December 23rd. Again, new hymns not arranged in SATB are less common generally, but a handful of other factors might have worked against this one, like it being unfamiliar and it having a different third verse.</p>
+</section>
+<section id="comparison-across-years" class="level3 page-columns page-full" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="comparison-across-years"><span class="header-section-number">2.4</span> Comparison across years</h3>
+<p>This next plot shows the percentage of wards that sang each hymn across the three years (2025, 2024, and 2023 or earlier). This makes it easier to see the changes year over year for each hymn. I’ve sorted them by hymn number.<sup>4</sup></p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;It’s interesting that there seems to be a correlation between hymn number and frequency!</p></div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There’s a lot to dissect in this plot, but there are a few things to notice. First, for all but one hymn, the leftmost dot is yellow, which means that it was sung less in 2025 than it was in either 2024 or before. The one exception is <hymn>Come, Lord Jesus (#1018)</hymn> which actually saw a very small increase from 2024.</p>
+<p>Similarly, in almost all cases, the middle dot is green and the rightmost dot was red. That means that almost all hymns were sung less in 2024 than they were before 2024. The exceptions are <hymn>Angels We Have Heard on High (#203)</hymn> and <hymn>Away in a Manger (#206)</hymn>, which were most frequent by a small margin in 2024.</p>
+<p>So, this plot shows that the introduction of the new hymns took slice out of the frequency of all existing hymns. Even the introduction of the hymns for the 2025 season cut into the amount that the hymns new in 2024 were sung.</p>
+</section>
+</section>
+<section id="which-hymns-are-affected-the-most" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="which-hymns-are-affected-the-most"><span class="header-section-number">3</span> Which hymns are affected the most?</h2>
+<p>The question I have now is this: if all hymns decreased as a result of there being more hymns available in the same number of slots, which hymns were affected the most? I suspect that not all old hymns were equally likely to be cut this year. If a music coordinator is selecting hymns for the Christmas season and they want to add a new hymn, is a popular hymn like <hymn>Joy to the World (#201)</hymn> more likely to make it into this year’s rotation, or a less popular hymn like <hymn>While Shepherds Watched their Flocks (#211)?</hymn></p>
+<p>The way I measured this is to compare what percentage of wards each old hymn was sung in prior to 2024 to what percentage they were sung in in 2025. But rather than taking the difference, I divided the two. To explain this, let me show some actual numbers. 93.6% of wards sang <hymn>Joy to the World (#201)</hymn> prior to 2024. In 2025, it was 75.1%. That’s an 18.4% drop. Meanwhile, 31.5% of wards sang <hymn>While Shepherds Watched Their Flocks (#211)</hymn> prior to 2024, and 12.9% in 2025. That’s about an 18.5% drop. So the differences are almost the same the same. Does that mean they were impacted the same way?</p>
+<p>I don’t think so. If we divide the 2023 data by the 2025 data, we get very different numbers. For <hymn>Joy to the World (#201)</hymn>, about (<img src="https://latex.codecogs.com/png.latex?93.6%5Cdiv75.1=">) 80.3% of wards that sang it in 2023 sang it in 2025. That’s a 19.7% drop. Meanwhile, <hymn>Joy to the World (#201)</hymn>, about (<img src="https://latex.codecogs.com/png.latex?31.4%5Cdiv12.9=">) 41.1%. That means only 41% of wards that sang it in 2023 sang it in 2025. That’s about a 59% drop. So, even though the differences are the same, the <em>proportion</em> of wards singing it from one year to the next is quite different.</p>
+<p>So, with that in mind, here is a plot that shows the proportional drops from 2023 to 2025 for the old hymns. On the <em>x</em>-axis, I have how frequent the hymns were prior to the introduction of the new hymns. On the <em>y</em>-axis I have that proportional drop.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/christmas2025/index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, there’s a pretty clear trend.<sup>5</sup> The dots are arranged from the bottom left to the top right. What this means is that the popular a hymn was before 2024 (i.e.&nbsp;further to the right of the chart), the less of a drop it had in 2025 (i.e.&nbsp;higher on the chart). Basically, what is comes down to is that the most popular hymns are still being sung by lots of wards, but the less popular ones are being sung by fewer wards, in two cases by less than half as many as before and in many cases, close to half as many.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The correlation between them is statistically significant according to a Pearson’s product-moment correlation test, <img src="https://latex.codecogs.com/png.latex?r%20=%200.8542">, <img src="https://latex.codecogs.com/png.latex?t%20=%205.6919">, df <img src="https://latex.codecogs.com/png.latex?=%2012">, <img src="https://latex.codecogs.com/png.latex?p%20%3C%200.001">.</p></div></div><p>Another way of putting it is that when people sing new hymns, they swap out the less popular hymns rather than the most popular hymn.</p>
+<p>Again, this makes sense. When considering singing a new hymn like <hymn>He Is Born, the Divine Christ Child (#1202)</hymn>, there’s a risk involved because many people may not know it. Music in sacrament meetings “increases faith in Jesus Christ, … invites the Spirit and teaches doctrine, … [and] creates a feeling of reverence, unifies members, and provides a way to worship Heavenly Father and Jesus Christ.”<sup>6</sup> While not required, being familiar with the hymns and actively and confidently singing along with them likely help. So given choice between a beloved favorite like <hymn>The First Noel (#213)</hymn>, which most people know and can sing along to, and a new one, it’s easier to fulfill the purpose of music in sacrament meetings by choosing the favorite hymn. But if an unfamiliar hymn does less good of a job of fulfilling that purpose, then the potential “loss” by singing a new hymn is smaller. Now, that’s not to say that there isn’t value in these hymns or in singing new and unfamiliar hymns generally. But, I can understand why music coordinators may not choose these hymns and why the correlation shown in the above plot is so apparent.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;See the <a href="https://www.churchofjesuschrist.org/study/manual/general-handbook/19-music?lang=eng"><em>General Handbook</em> chapter 19</a>.</p></div></div></section>
+<section id="conclusion" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4</span> Conclusion</h2>
+<p>In this post, I have analyzed congregational hymns during the six weeks of the 2025 Christmas season and compared them to the 2024 season and all the years before 2024. Here are some highlights:</p>
+<ul>
+<li>The number of “slots” to sing Christmas hymns hasn’t changed. A ward can really only sing about 16, unless they start earlier in November, end later in January, or sing multiple intermediate hymns. The number of Christmas hymns in the hymnal went from 14 to 21.</li>
+<li>Compared to before the new hymns came out, people are singing slightly fewer unique hymns. The average number of hymns per ward dropped from 8.92 before 2024 to 7.18 in 2025. I don’t have a good explanation for that drop.</li>
+<li><hymn>What Child is This? (#1203)</hymn> is the most commonly sung new Christmas hymn. It was 5th most frequent and was sung by about half of wards in 2025. <hymn>Little Baby in a Manger (#1209)</hymn> was the least sung Christmas hymn (new or old).</li>
+<li>The other new hymns are about as frequent as the three least common older Christmas hymns.</li>
+<li>All older hymns were sung less in 2025 compared to before 2024 with the introduction of the new hymns.</li>
+<li>The more popular a hymn was before 2024, the less of a drop it experienced in 2025. This means that new hymns largely took the place of the less popular older hymns.</li>
+</ul>
+<p>I imagine we’ll get some new Christmas hymns in the 2026 batches and perhaps even more in the full hymnal, so it’s interesting to see this snapshot right now. I look forward to doing another analysis in a year or two to see how the numbers have changed again.</p>
+
+
+</section>
+
+
+ ]]></description>
+  <category>holidays</category>
+  <guid>https://hymnstats.joeystanley.com/posts/christmas2025/</guid>
+  <pubDate>Thu, 25 Dec 2025 07:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Honoring President Nelson</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/president_nelsons_death/</link>
@@ -18361,1059 +18521,6 @@ Note
   <category>frequency</category>
   <category>new hymns</category>
   <guid>https://hymnstats.joeystanley.com/posts/new_hymns_week3/</guid>
-  <pubDate>Sun, 09 Jun 2024 06:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>The second Sunday with new hymns!</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/new_hymns_week2/</link>
-  <description><![CDATA[ 
-
-
-
-<p>This is the second week since new hymns were introduced! There was a little less hype about it online and I didn’t do as much petitioning (i.e begging) for data, but I did manage to get data from 65 wards. <a href="../../posts/new_hymns_week1">Last week</a>, we saw that a little less than half of wards introduced new hymns, with about two thirds of those singing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. Let’s see how things changed for week 2.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that this blog post will update as I collect more data. I originally collected data about June 9th from 39 wards when I first published this post. I now have 65. As more come in, we’ll have a more accurate view of what happened.</p>
-</div>
-</div>
-<p>So, while only abut a third of wards sang new hymns on June 2, it looks like there were fewer that sang a new one during week 2. It looks like a little over a quarter of wards sang at least one new hymn during this second week. This figure below shows these numbers and how they have changed from June 2nd to June 9th.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/new_hymns_week2/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="624"></p>
-</div>
-</div>
-<p>There are lots of reasons for this drop. Many wards appear to be resistant to new hymns entirely, either because they don’t want to introduce them or perhaps because they are not aware of their release. For 44 wards, I have data from both June 2nd and Jun 9th. Around half of them didn’t introduce new hymns either week. About a third introduced a new hymn during one of the two weeks. The rest introduced a new hymn both weeks. Perhaps people were so anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, then they decided to ease the rest of them in a little bit, possibly to give the organist time to practice.</p>
-<p>Last time, we saw that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was far and away the most popular on June 2nd. Is that how it was on June 9th too? As explained already, I have less data and fewer wards sang new hymns, so it’s hard to say for sure. But the preliminary results are that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was indeed the most popular, but not quite as much. This time, only roughly a third of wards sang it, compared to two thirds on June 2nd.</p>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="sqmqsiprfc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sqmqsiprfc table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#sqmqsiprfc thead, #sqmqsiprfc tbody, #sqmqsiprfc tfoot, #sqmqsiprfc tr, #sqmqsiprfc td, #sqmqsiprfc th {
-  border-style: none;
-}
-
-#sqmqsiprfc p {
-  margin: 0;
-  padding: 0;
-}
-
-#sqmqsiprfc .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#sqmqsiprfc .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#sqmqsiprfc .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#sqmqsiprfc .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#sqmqsiprfc .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#sqmqsiprfc .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#sqmqsiprfc .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#sqmqsiprfc .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#sqmqsiprfc .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#sqmqsiprfc .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#sqmqsiprfc .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#sqmqsiprfc .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#sqmqsiprfc .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#sqmqsiprfc .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#sqmqsiprfc .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#sqmqsiprfc .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#sqmqsiprfc .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#sqmqsiprfc .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#sqmqsiprfc .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#sqmqsiprfc .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#sqmqsiprfc .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#sqmqsiprfc .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#sqmqsiprfc .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#sqmqsiprfc .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#sqmqsiprfc .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#sqmqsiprfc .gt_left {
-  text-align: left;
-}
-
-#sqmqsiprfc .gt_center {
-  text-align: center;
-}
-
-#sqmqsiprfc .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#sqmqsiprfc .gt_font_normal {
-  font-weight: normal;
-}
-
-#sqmqsiprfc .gt_font_bold {
-  font-weight: bold;
-}
-
-#sqmqsiprfc .gt_font_italic {
-  font-style: italic;
-}
-
-#sqmqsiprfc .gt_super {
-  font-size: 65%;
-}
-
-#sqmqsiprfc .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#sqmqsiprfc .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#sqmqsiprfc .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#sqmqsiprfc .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#sqmqsiprfc .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#sqmqsiprfc .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#sqmqsiprfc .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style="">What new hymns were sung on June 9, 2024?</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Based on the wards that sang new hymns</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="new hymn">new hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wards">wards</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="new hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="wards" class="gt_row gt_right">9</td>
-<td headers="proportion" class="gt_row gt_right">47.4%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="wards" class="gt_row gt_right">2</td>
-<td headers="proportion" class="gt_row gt_right">10.5%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="wards" class="gt_row gt_right">2</td>
-<td headers="proportion" class="gt_row gt_right">10.5%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="wards" class="gt_row gt_right">2</td>
-<td headers="proportion" class="gt_row gt_right">10.5%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="wards" class="gt_row gt_right">2</td>
-<td headers="proportion" class="gt_row gt_right">10.5%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="wards" class="gt_row gt_right">1</td>
-<td headers="proportion" class="gt_row gt_right">5.3%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="wards" class="gt_row gt_right">1</td>
-<td headers="proportion" class="gt_row gt_right">5.3%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0.0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0.0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Hail the Day that Sees Him Rise (1201)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0.0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">He Is Born, the Divine Christ Child (1202)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0.0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">What Child is This? (1203)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0.0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Star Bright (1204)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0.0%</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-<p>If we compare these proportions to last week, we can get a glimpse into some trends. The figure below shows what proportion of wards sang what hymns each week.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/new_hymns_week2/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<p>The biggest change is the drop in <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. That makes sense because it was so popular during the first week. Pretty much all other hymns had an increase from June 2nd to June 9th. I think this shows that people were anxious to sing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> and once they got that out of the way, they felt at more liberty to try some of the other ones.</p>
-<p>As for when during the meeting these new hymns were introduced, it’s hard to say for sure with such sparse data, but there again seems to be a trend of singing new hymns towards the ends of meetings, with the exception of course of sacrament hymns.</p>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="zwyuzfiaqt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zwyuzfiaqt table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#zwyuzfiaqt thead, #zwyuzfiaqt tbody, #zwyuzfiaqt tfoot, #zwyuzfiaqt tr, #zwyuzfiaqt td, #zwyuzfiaqt th {
-  border-style: none;
-}
-
-#zwyuzfiaqt p {
-  margin: 0;
-  padding: 0;
-}
-
-#zwyuzfiaqt .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#zwyuzfiaqt .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#zwyuzfiaqt .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#zwyuzfiaqt .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#zwyuzfiaqt .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#zwyuzfiaqt .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#zwyuzfiaqt .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#zwyuzfiaqt .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#zwyuzfiaqt .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#zwyuzfiaqt .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#zwyuzfiaqt .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#zwyuzfiaqt .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#zwyuzfiaqt .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#zwyuzfiaqt .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#zwyuzfiaqt .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#zwyuzfiaqt .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#zwyuzfiaqt .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#zwyuzfiaqt .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#zwyuzfiaqt .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#zwyuzfiaqt .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#zwyuzfiaqt .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#zwyuzfiaqt .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#zwyuzfiaqt .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#zwyuzfiaqt .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#zwyuzfiaqt .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#zwyuzfiaqt .gt_left {
-  text-align: left;
-}
-
-#zwyuzfiaqt .gt_center {
-  text-align: center;
-}
-
-#zwyuzfiaqt .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#zwyuzfiaqt .gt_font_normal {
-  font-weight: normal;
-}
-
-#zwyuzfiaqt .gt_font_bold {
-  font-weight: bold;
-}
-
-#zwyuzfiaqt .gt_font_italic {
-  font-style: italic;
-}
-
-#zwyuzfiaqt .gt_super {
-  font-size: 65%;
-}
-
-#zwyuzfiaqt .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#zwyuzfiaqt .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#zwyuzfiaqt .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#zwyuzfiaqt .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#zwyuzfiaqt .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#zwyuzfiaqt .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#zwyuzfiaqt .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">When were new hymns sung in sacramnt meeting?</td>
-    </tr>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="New Hymn">New Hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Opening">Opening</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Sacrament">Sacrament</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Intermediate">Intermediate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Closing">Closing</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="New Hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="Opening" class="gt_row gt_right">2</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">3</td>
-<td headers="Closing" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">1</td>
-<td headers="Closing" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="Opening" class="gt_row gt_right">1</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">2</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">0</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">2</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">0</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">1</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">0</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-<p>That’s it for now! I’ll try to post weekly updates over the next few hymns so we can get an idea of how they are being adopted by wards.</p>
-
-
-
- ]]></description>
-  <category>general</category>
-  <category>frequency</category>
-  <category>new hymns</category>
-  <guid>https://hymnstats.joeystanley.com/posts/new_hymns_week2/</guid>
   <pubDate>Sun, 09 Jun 2024 06:00:00 GMT</pubDate>
 </item>
 </channel>
