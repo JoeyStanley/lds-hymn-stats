@@ -1,0 +1,505 @@
+---
+title: "The 80:20 rule"
+author: "Joey Stanley"
+date: 2026-02-13
+date-modified: last-modified
+categories:
+number-sections: false
+number-depth: 3
+reference-location: margin
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8,
+                      cache = TRUE)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+When talking to people about this hymn stats project, I often hear comments that make reference to the 80:20 rule.^[This is more formally called the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle).] These comments suggest (usually disparangingly) that 80% of the hymns sung come from 20% of the hymnal. This is something I've never looked into directly, so I thought I'd do a brief analysis to see whether these proportions are indeed real. 
+
+```{r}
+joey_percent <- function(.num, .digits = 2, .pad = 0) {
+    n <- round(.num, digits = .digits)
+    n_char <- as.character(n * 100)
+    if (.pad > 0) {
+        n_char <- if_else(str_detect(n_char, "\\.") & .pad > 0, n_char, paste0(n_char, ".0"))
+        n_char <- str_pad(n_char, width = .pad, side = "right", pad = "0")
+    }
+    n_char <- paste0(n_char, "%")
+    return(n_char)
+}
+```
+
+
+## Methods
+
+
+To do this analysis, I had to make some methodological choices. In particular, I had to clearly delineate what counts as a hymn. If we include all hymns that I've ever seen in the 90,000 or so sacrament meetings I have data for, that about 512 unique entries. That includes anything from the 1985 hymnal, the new hymns that have come out, 93 different entries from the Children's Songbook, and another 24 hymns that are either not in the English hymnal or are just other hymns that wards choose to sing. For the purposes of this post, I'll just focus on the 1985 hymnal and the new hymns that have come out recently. Adding all the other ones increases the denominator in the calculations and when people talk about the 80:20 rule in the hymnal, I don't think they're thinking about them anyway.   
+
+```{r}
+freqs |> 
+    mutate(category = case_when(hymn_num %in% 1:341 ~ "1985",
+                                hymn_num %in% 1000:1250 ~ "new hymnal",
+                                hymn_num %in% 500:524 ~ "other",
+                                hymn_num >= 2000 ~ "children's songbook")) |> 
+    # count(category, hymn_num, hymn_name)
+    distinct(category, name_num) |> 
+    count(category)
+```
+
+
+```{r}
+n_total_hymns <- length(c(1:341, 
+                          batch1_hymn_nums,
+                          batch2_hymn_nums,
+                          batch3_hymn_nums,
+                          batch4_hymn_nums,
+                          batch5_hymn_nums))
+# Overall
+props_overall <- freqs |> 
+    filter(hymn_num %in% c(1:341, 1001:1250)) |>
+    # filter(hymn_num %in% c(1:341)) |>
+    
+    count(name_num) |> 
+    mutate(prop = n/sum(n)) |> 
+    arrange(-n) |> 
+    mutate(cumprop = cumsum(prop),
+           rank = rank(-prop),
+           proprank = rank/n_total_hymns) |> # Fix it at 401 (green + new hymns). 2020 had a high value but it's because people weren't singing rare hymns so the max rank was a low number. When this is fixed, 2020 does what I expect.
+    
+    # Get the landmarks
+    mutate(rank_mod = cumprop %% 0.1,
+           new_landmark = rank_mod <= lag(rank_mod))
+```
+
+```{r}
+4651 / 280591
+n_obs <- freqs |> 
+    nrow() |> 
+    scales::comma()
+n_193 <- freqs |> 
+    count(hymn_num, sort = TRUE) |> 
+    pull(n) |> 
+    head(1) |> 
+    scales::comma()
+prop_193 <- freqs |> 
+    count(hymn_num, sort = TRUE) |> 
+    mutate(prop = n/sum(n)) |> 
+    pull(prop) |> 
+    head(1) |> 
+    round(4)
+perc_193 <- joey_percent(prop_193, .digits = 4)
+
+perc_top2 <- freqs |> 
+    count(hymn_num, sort = TRUE) |> 
+    mutate(prop = n/sum(n),
+           cumprop = cumsum(prop)) |> 
+    slice(2) |> 
+    pull(cumprop) |> 
+    joey_percent(.digits = 4)
+```
+
+
+Here's the method to see how close we are to the 80:20 rule.
+
+1. I started by taking all `r scales::comma(nrow(freqs))` individual data points I have. Each data point represents an instance of one congregation singing a hymn. So a single sacrament meeting usually contributes three or four observations. 
+1. After filtering out anything that isn't in the green hymnal or one of the new hymns, I then counted how many times each hymn occurred in the dataset. For example, <hymn>I Stand All Amazed (#193)</hymn> is the most frequent hymn and occurs `r n_193` times in my dataset.
+1. I then took those numbers and converted them to proportions. So, for example, I took the `r n_193` instances of <hymn>I Stand All Amazed (#193)</hymn>, and divided it by the `r scales::comma(nrow(freqs))` total observations to get a proportion of `r prop_193` So, that one hymn makes up `r perc_193` of all the hymns sung in my dataset. 
+1. From there, I put the hymns in order from most frequent to least frequent, and calculated the cumulative percent. So, the cumulative percent of the first two hymns is the percent from the most common plus the second most common hymn, <hymn>As Now We Take the Sacrament (#169)</hymn>, which ends up being `r perc_top2`. I then go down the spreadsheet, adding the percents to the total amount, until I get to the bottom where it equals 100%. In the following table, that column is called `percent of hymns sung`. 
+1. To get a percent of how much of the hymnal corresponds to the percent of hymns sung, I created a new column that is the rank of the hymn, from 1 to 401, which is how many hymns we have between the two collections. I then rescaled those numbers so that instead of going from 1 to 401, they go from 0 to 1. That column is called `percent of hymns in the hymnal`. 
+
+I know there are probably other ways of calculating this. The biggest factor is whether the new hymns should be included in the calculation. After going through multiple versions of this analysis, I think this method is the best one.
+
+## So, do we follow the 80:20 rule?
+
+The full table was a little too long to show, so I've abbreviated it by highlighting ten or so landmarks. Here is that shortened table and the results of the analysis:
+
+```{r, include = TRUE}
+props_overall |> 
+    filter(new_landmark) |> 
+    mutate(cumprop = joey_percent(cumprop, .digits = 1, .pad = 0),
+           proprank = joey_percent(proprank, .digits = 3, .pad = 2)) |>
+    select(`percent of hymns sung` = cumprop, `percent of hymns in the hymnal` = proprank, `number of hymns` = rank) |> 
+    knitr::kable(align = "rr", ) |>
+    kableExtra::kable_styling(fixed_thead = TRUE, full_width = FALSE) |>
+    # scroll_box(height = "1080px") |>
+    kableExtra::row_spec(row = 8, background = "#b3cde3")
+```
+
+```{r}
+row_8020 <- props_overall |> 
+    filter(new_landmark) |> 
+    filter(near(cumprop, 0.8, tol = 0.02)) 
+num_8020 <- row_8020 |> 
+    pull(proprank) |> 
+    joey_percent(.digits = 3)
+rank_8020 <- row_8020 |> 
+    pull(rank)
+
+row_9010 <- props_overall |> 
+    filter(new_landmark) |> 
+    filter(near(cumprop, 0.9, tol = 0.02)) 
+num_9010 <- row_9010 |> 
+    pull(proprank) |> 
+    joey_percent(.digits = 3)
+rank_9010 <- row_9010 |> 
+    pull(rank)
+```
+
+
+So, do we follow the 80:20 rule in our hymn singing? Not quite. I've highlighted the relevant row: about 80% of the hymns we sing in church come from `r num_8020` of the hymnal or `r rank_8020` hymns. So a little over a third of them. The next row down shows that 90% of the hymns that we sing come from `r num_9010` of the hymnal, which is about `r rank_9010` hymns. 
+
+So, we don't follow the 80:20 rule exactly. We follow something like the 80:35 rule. Not as satisfying of a number, but that's what is reflected in the data.
+
+
+
+
+
+
+To get a feel for all the numbers and what the larger pattern is, here is a plot that shows the complete dataset. The green dots are the same numbers plotted on the table above and are positioned vertically at 10% intervals along the *y*-axis. The black line connects them and follows the rest of the points.
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+ggplot(props_overall, aes(proprank, cumprop, color = new_landmark)) + 
+    geom_path(data = filter(props_overall, !new_landmark)) + 
+    geom_point(data = filter(props_overall, new_landmark), size = 3) +
+    scale_x_continuous(breaks = seq(0, 1, 0.1), label = label_percent(), expand = expansion(0, 0.01)) + 
+    scale_y_continuous(breaks = seq(0, 1, 0.1), label = label_percent(), expand = expansion(0, 0.01)) + 
+    scale_color_manual(values = c("gray20", ptol_green)) + 
+    # scale_size_manual(values = c(, 3)) + 
+    labs(x = "percent of hymns in the hymnal",
+         y = "percent of hymns sung") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+You can see that there's a tapering off. A relatively small portion of the hymnal accounts for a large percentage of the hymns sung. But as we get into the infrequent hymns, since they're sung so rarely, they contribute only a small amount to the hymns sung, so it takes many more of them to move the line up. 
+
+```{r}
+freqs |> 
+    summarize(n = n(),
+              n_unique_meetings = length(unique(meeting_id))) |> 
+    mutate(n/n_unique_meetings)
+```
+
+This plot shows that yes, about 90% of hymns that are actually sung make up less than half of the hymnal (including the new hymns). The remaining half of the hymnal (about 170 hymns), I've heard it jokingly called the "sealed portion." So even though the "sealed portion" is just as big as the "unsealed" portion, it's only makes up 10% of the hymns sung.
+
+But that 10% isn't nothing. On average, wards sing about 3.13 hymns per sacrament meeting. That means about once every four weeks you might expect a hymn from that "sealed portion." You might sing 15 of these hymns a year. We can't expect all hymns to be sung with equal frequency, and I'm glad we have the chance to change things up every few weeks and sing a less common hymn. Removing the "sealed portion" would only exacerbate the perceived problem of singing the same hymns all the time.
+
+
+
+
+## Does it change with the new hymns?
+
+I was curious to see what the data looked like before the introduction of the new hymns. Here's a table that is calculated in the same eway, but it only includes sacrament meetings from before June 2024.
+
+```{r, include= TRUE}
+freqs |> 
+    filter(hymn_num %in% c(1:341),
+           date <= ymd("2024-06-01")) |>
+    
+    count(name_num) |> 
+    mutate(prop = n/sum(n)) |> 
+    arrange(-n) |> 
+    mutate(cumprop = cumsum(prop),
+           rank = rank(-prop),
+           proprank = rank/341) |> 
+    
+    # Get the landmarks
+    mutate(rank_mod = cumprop %% 0.1,
+           new_landmark = rank_mod <= lag(rank_mod)) |> 
+    
+    filter(new_landmark) |> 
+    mutate(cumprop = joey_percent(cumprop, .digits = 1, .pad = 0),
+           proprank = joey_percent(proprank, .digits = 3, .pad = 2)) |>
+    select(`percent of hymns sung` = cumprop, `percent of hymns in the hymnal` = proprank, `number of hymns` = rank) |> 
+    knitr::kable(align = "rr", ) |>
+    kableExtra::kable_styling(fixed_thead = TRUE, full_width = FALSE) |>
+    # scroll_box(height = "1080px") |>
+    kableExtra::row_spec(row = 8, background = "#b3cde3")
+```
+
+So, prior to the introduction of the new hymns, 80% of the hymns sung came from 37.8% of the hymnal. So, a bit higher than the `r num_8020` we saw above. Granted, this is based on 341 hymns instead of 401 of them, and smaller denominators will result in a larger number if the numerator is the same. Higher numbers here reflect greater diversity in hymn selection. I don't think that necessarily means we're focusing on fewer hymns or that we're singing the same hymns more so than we used to. I think people are excited about the new hymns and are choosing from that smaller pool rather than choosing from the 100 or so infrequent hymns in the 1985 hymnal.
+
+Here's a table that shows the same thing but *since* the introduction of the new hymns.
+
+```{r, include = TRUE}
+freqs |> 
+    filter(hymn_num %in% c(1:341, 1000:1250),
+           date >= ymd("2024-06-01")) |>
+    
+    count(name_num) |> 
+    mutate(prop = n/sum(n)) |> 
+    arrange(-n) |> 
+    mutate(cumprop = cumsum(prop),
+           rank = rank(-prop),
+           proprank = rank/n_total_hymns) |> 
+    
+    # Get the landmarks
+    mutate(rank_mod = cumprop %% 0.1,
+           new_landmark = rank_mod <= lag(rank_mod)) |> 
+    
+    filter(new_landmark) |> 
+    mutate(cumprop = joey_percent(cumprop, .digits = 1, .pad = 0),
+           proprank = joey_percent(proprank, .digits = 3, .pad = 2)) |>
+    select(`percent of hymns sung` = cumprop, `percent of hymns in the hymnal` = proprank, `number of hymns` = rank) |> 
+    knitr::kable(align = "rr", ) |>
+    kableExtra::kable_styling(fixed_thead = TRUE, full_width = FALSE) |>
+    # scroll_box(height = "1080px") |>
+    kableExtra::row_spec(row = 8, background = "#b3cde3")
+```
+
+So the number drops a little bit to 33.9%. But, we've increased the denominator (total number of hymns), so the overall value will go up. Regardless of how I look at the data, the number is still right around 33%--38% of hymns. So I think it's still safe to say that the pattern we follow is about 80:35, rather than 80:20. 
+
+
+
+
+
+
+## Changes over time?
+
+The above tables and plot are based on all my data pooled together. But I have data spanning many years. Is it possible that that `r num_8020` has changed over time?
+
+The following plot shows the same calculation that I described above, but split up by year. I only show from 2015 onward since my data from before then is a bit sparse and therefore unreliable. And I won't show 2026 quite yet since we're not far enough into the year to get a good reading of it. The *y*-axis on this plot shows the percentage of the hymnal it takes to hit 80% of hymns sung. 
+
+```{r}
+props_years <- freqs |> 
+    filter(hymn_num %in% c(1:341, 1000:1250)) |>
+    group_by(year) |> 
+    count(name_num) |> 
+    mutate(prop = n/sum(n)) |> 
+    arrange(year, -n) |> 
+    mutate(cumprop = cumsum(prop),
+           rank = rank(-prop),
+           hymns_available = case_when(year < 2024 ~ 341,
+                                       year == 2024 ~ length(c(1:341, batch1_hymn_nums, batch2_hymn_nums)),
+                                       year == 2025 ~ n_total_hymns),
+           proprank = rank/hymns_available) |> 
+    
+    # Get the landmarks
+    mutate(rank_mod = cumprop %% 0.1,
+           new_landmark = rank_mod <= lag(rank_mod)) |> 
+    ungroup() 
+```
+
+```{r, eval = FALSE}
+freqs |> 
+    count(year) |> 
+    ggplot(aes(year, n)) + 
+    geom_point()
+```
+
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+props_years |> 
+    filter(new_landmark,
+           year %in% 2015:2025) |> 
+    select(year, rank, name_num, prop_of_hymns_sung = cumprop, prop_of_hymns_in_hymnal = proprank) |> 
+    filter(near(prop_of_hymns_sung, 0.8, tol = 0.02)) |> 
+    ggplot(aes(year, prop_of_hymns_in_hymnal)) + 
+    geom_path() + 
+    geom_point() + 
+    scale_x_continuous(breaks = seq(2000, 2050, 2)) + 
+    scale_y_continuous(breaks = seq(0, 1, 0.02),
+                       labels = percent) +
+    labs(title = "How many hymns does it take to account for 80% of the hymns sung in church?",
+         y = "percent of hymns in the hymnal") + 
+    theme_minimal()
+```
+
+
+```{r}
+props_years |> 
+    filter(new_landmark,
+           year %in% 2015:2025) |> 
+    select(year, rank, name_num, prop_of_hymns_sung = cumprop, prop_of_hymns_in_hymnal = proprank) |> 
+    filter(near(prop_of_hymns_sung, 0.8, tol = 0.02)) |> 
+    ggplot(aes(year, rank)) + 
+    geom_path() + 
+    geom_point() + 
+    scale_x_continuous(breaks = seq(2000, 2050, 2)) + 
+    scale_y_continuous(breaks = seq(0, 160, 10)) +
+    labs(title = "How many hymns does it take to account for 80% of the hymns sung in church?",
+         y = "number of hymns") + 
+    theme_minimal()
+```
+
+The most obvious thing in this plot is the dip in 2020. Fewer wards were having in-person meetings. And if they were, not many were singing all three hymns. So since many were singing just sacrament hymns, there wasn't opportunity to sing too many other ones. I've noticed too that the other hymns that wards were singing then tended to be familiar favorites. So, there wasn't a lot of hymn diversity in 2020. It makes sense then why it took only about 20% of hymns (102 of them) to account for 80% of the hymns sung in church that year. 
+
+The other less obvious trend is the general decline in the past 10 years. Again, lower numbers suggest less hymn diversity in our meetings. However, I'm not 100% convinced this trend is real because the number is dependent on how much data I have and on how many hymns are available at that time, which is not consistent across the years represented in this chart. Maybe the trend in the church generall is indeed real, but if it is, it's not a very strong pattern, certainly not strong enough to be percieved by people.
+
+<!-- 
+
+I thought bootstrapping might solve that problem, but there seems to be some issues with weekly analyses. Some weeks are super high and others are super low. Not sure what the problem is.
+
+```{r}
+set.seed(260213)
+do_bootstrap <- function(.n_obs, .date) {
+    freqs |> 
+        # sample from within 6 months of this range
+        filter(hymn_num %in% c(1:341),  #, 1000:1250),
+               date >= .date - 365/2,
+               date <= .date + 365/2) |>
+        slice_sample(n = .n_obs, by = date, replace = FALSE) |> 
+        
+        # count the hymns in the date (pass on the date)
+        count(date, name_num) |>
+        mutate(prop = n/sum(n)) |>
+        
+        # Get cumulative proportions
+        arrange(date, -n) |>
+        mutate(cumprop = cumsum(prop),
+               rank = rank(-prop),
+               hymns_available = 341,
+               # hymns_available = case_when(date < batch1_release_date ~ 341,
+               #                             date < batch2_release_date ~ length(c(1:341, batch1_hymn_nums)),
+               #                             date < batch3_release_date ~ length(c(1:341, batch1_hymn_nums,
+               #                                                                   batch2_hymn_nums)),
+               #                             date < batch4_release_date ~ length(c(1:341,
+               #                                                                   batch1_hymn_nums,
+               #                                                                   batch2_hymn_nums,
+               #                                                                   batch3_hymn_nums)),
+               #                             date < batch5_release_date ~ length(c(1:341,
+               #                                                                   batch1_hymn_nums,
+               #                                                                   batch2_hymn_nums,
+               #                                                                   batch3_hymn_nums,
+               #                                                                   batch4_hymn_nums)),
+               #                             date > batch5_release_date ~ length(c(1:341,
+               #                                                                   batch1_hymn_nums,
+               #                                                                   batch2_hymn_nums,
+               #                                                                   batch3_hymn_nums,
+               #                                                                   batch4_hymn_nums,
+               #                                                                   batch5_hymn_nums))),
+               proprank = rank/hymns_available) |>
+
+        # Get the one closest to 80%.
+        arrange(abs(cumprop - 0.8)) |> 
+        slice_head(n = 1, by = date) |> 
+        filter(proprank < 1) |> 
+        
+        select(-date) # redundant once we unnest
+}
+boots <- freqs |> 
+    filter(year(date) >= 2023,
+           date < today() - 365/2) |> 
+    distinct(date) |> 
+    crossing(iteration = 1:10) |> 
+    mutate(temp = map(date, ~do_bootstrap(100, .date = .))) |> 
+    unnest(temp) |> 
+    print()
+
+boots |> 
+    summarize(proprank = median(proprank), .by = date) |> 
+    ggplot(aes(date, proprank)) + 
+    # geom_boxplot() + 
+    geom_path() + 
+    geom_point() +
+    scale_y_continuous(breaks = seq(0, 1, 0.1),
+                       labels = percent) +
+    theme_minimal()
+```
+
+-->
+
+<!-- # A weekly analysis
+```{r, eval = FALSE}
+props_years |> 
+    filter(year == 2025) |> 
+    # filter(new_landmark) |> 
+    rename(prop_of_hymns_sung = cumprop, 
+           prop_of_hymns_in_hymnal = proprank) |> 
+    select(-rank_mod, -new_landmark)
+```
+
+
+```{r, eval = FALSE}
+props_weeks <- freqs |> 
+    filter(hymn_num %in% c(1:341, 1000:1250)) |>
+    group_by(date) |> 
+    add_count(name = "obs") |> 
+    count(name_num, obs) |> 
+    mutate(prop = n/sum(n)) |> 
+    arrange(date, -n) |> 
+    mutate(cumprop = cumsum(prop),
+           rank = rank(-prop),
+           hymns_available = case_when(date < batch1_release_date ~ 341,
+                                       date < batch2_release_date ~ length(c(1:341, batch1_hymn_nums)),
+                                       date < batch3_release_date ~ length(c(1:341, batch1_hymn_nums,
+                                                                           batch2_hymn_nums)),
+                                       date < batch4_release_date ~ length(c(1:341, 
+                                                                           batch1_hymn_nums,
+                                                                           batch2_hymn_nums,
+                                                                           batch3_hymn_nums)),
+                                       date < batch5_release_date ~ length(c(1:341, 
+                                                                           batch1_hymn_nums,
+                                                                           batch2_hymn_nums,
+                                                                           batch3_hymn_nums,
+                                                                           batch4_hymn_nums)),
+                                       date > batch5_release_date ~ length(c(1:341, 
+                                                                           batch1_hymn_nums,
+                                                                           batch2_hymn_nums,
+                                                                           batch3_hymn_nums,
+                                                                           batch4_hymn_nums,
+                                                                           batch5_hymn_nums))),
+           proprank = rank/hymns_available) |> 
+    
+    # Get the landmarks
+    mutate(rank_mod = cumprop %% 0.1,
+           new_landmark = rank_mod <= lag(rank_mod)) |> 
+    ungroup() 
+```
+
+
+```{r, eval = FALSE}
+# going back too far shows that it's just a function of how much data I have
+props_weeks |> 
+    filter(new_landmark,
+           year(date) %in% 2015:2025) |> 
+    select(date, obs, rank, name_num, prop_of_hymns_sung = cumprop, prop_of_hymns_in_hymnal = proprank) |> 
+    filter(near(prop_of_hymns_sung, 0.8, tol = 0.02)) |> 
+    ggplot(aes(date, prop_of_hymns_in_hymnal, color = log(obs))) + 
+    geom_path() + 
+    # geom_point() +
+    scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+    scale_y_continuous(breaks = seq(0, 1, 0.02),
+                       labels = percent) +
+    labs(title = "How many hymns does it take to account for 80% of the hymns sung in church?",
+         y = "percent of hymns in the hymnal") + 
+    theme_minimal()
+```
+
+
+
+
+```{r, eval = FALSE}
+props_weeks |>
+    filter(new_landmark,
+           year(date) %in% 2020:2025) |>
+    select(date, obs, rank, name_num, prop_of_hymns_sung = cumprop, prop_of_hymns_in_hymnal = proprank) |>
+    filter(near(prop_of_hymns_sung, 0.8, tol = 0.02)) |>
+    ggplot(aes(date, prop_of_hymns_in_hymnal)) +
+    geom_vline(xintercept = c(batch1_release_date, batch2_release_date,
+                              batch3_release_date, batch4_release_date,
+                              batch5_release_date),
+               linetype = "dashed", color = "gray") +
+    geom_path() +
+    # geom_point() +
+    scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+    scale_y_continuous(breaks = seq(0, 1, 0.02),
+                       labels = percent) +
+    labs(title = "How many hymns does it take to account for 80% of the hymns sung in church?",
+         y = "percent of hymns in the hymnal") +
+    theme_minimal()
+```
+
+-->
+
+## Conclusion
+
+So that's it. Not too much more I could say here. About `r num_8020` of the hymnal accounts for 80% of the hymns sung. So, not quite 80:20. 
+
+While this post is largely to satisfy my curiosity, there is one useful application for this. Pianists and organists, particularly new ones, may want to prepare a smaller set of hymns until they're comfortable sight-reading from the hymnal. Knowing that they would only need to learn `r num_8020` of hymns to cover 80% of the hymns sung in church may be comforting thought. Or, going back to one of the plots above, learning only about 15% of the hymnal is enough to play half the time. Someone in this position may want to consult the [overview page](/overview) to see a list of hymns in order of frequency. They may find that by learning them in that order is an efficient way to quickly get involved in providing music for church meetings.
+
+While `r num_8020` may seem low to some people, in fairness, I think lots of things in nature and in human behavior behave this way. Particularly categorical variables like hymns in a hymnal. I don't see this as a flaw or a problem at all and I think we should enjoy the infrequent hymns when they come up and enjoy the frequent hymns when they are sung. 
+

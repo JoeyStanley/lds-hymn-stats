@@ -10,7 +10,293 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 06 Feb 2026 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 13 Feb 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>The 80:20 rule</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/the_80-20_rule/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>When talking to people about this hymn stats project, I often hear comments that make reference to the 80:20 rule.<sup>1</sup> These comments suggest (usually disparangingly) that 80% of the hymns sung come from 20% of the hymnal. This is something I’ve never looked into directly, so I thought I’d do a brief analysis to see whether these proportions are indeed real.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;This is more formally called the <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a>.</p></div></div><section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>To do this analysis, I had to make some methodological choices. In particular, I had to clearly delineate what counts as a hymn. If we include all hymns that I’ve ever seen in the 90,000 or so sacrament meetings I have data for, that about 512 unique entries. That includes anything from the 1985 hymnal, the new hymns that have come out, 93 different entries from the Children’s Songbook, and another 24 hymns that are either not in the English hymnal or are just other hymns that wards choose to sing. For the purposes of this post, I’ll just focus on the 1985 hymnal and the new hymns that have come out recently. Adding all the other ones increases the denominator in the calculations and when people talk about the 80:20 rule in the hymnal, I don’t think they’re thinking about them anyway.</p>
+<p>Here’s the method to see how close we are to the 80:20 rule.</p>
+<ol type="1">
+<li>I started by taking all 284,216 individual data points I have. Each data point represents an instance of one congregation singing a hymn. So a single sacrament meeting usually contributes three or four observations.</li>
+<li>After filtering out anything that isn’t in the green hymnal or one of the new hymns, I then counted how many times each hymn occurred in the dataset. For example, <hymn>I Stand All Amazed (#193)</hymn> is the most frequent hymn and occurs 4,714 times in my dataset.</li>
+<li>I then took those numbers and converted them to proportions. So, for example, I took the 4,714 instances of <hymn>I Stand All Amazed (#193)</hymn>, and divided it by the 284,216 total observations to get a proportion of 0.0166 So, that one hymn makes up 1.66% of all the hymns sung in my dataset.</li>
+<li>From there, I put the hymns in order from most frequent to least frequent, and calculated the cumulative percent. So, the cumulative percent of the first two hymns is the percent from the most common plus the second most common hymn, <hymn>As Now We Take the Sacrament (#169)</hymn>, which ends up being 3.16%. I then go down the spreadsheet, adding the percents to the total amount, until I get to the bottom where it equals 100%. In the following table, that column is called <code>percent of hymns sung</code>.</li>
+<li>To get a percent of how much of the hymnal corresponds to the percent of hymns sung, I created a new column that is the rank of the hymn, from 1 to 401, which is how many hymns we have between the two collections. I then rescaled those numbers so that instead of going from 1 to 401, they go from 0 to 1. That column is called <code>percent of hymns in the hymnal</code>.</li>
+</ol>
+<p>I know there are probably other ways of calculating this. The biggest factor is whether the new hymns should be included in the calculation. After going through multiple versions of this analysis, I think this method is the best one.</p>
+</section>
+<section id="so-do-we-follow-the-8020-rule" class="level2">
+<h2 class="anchored" data-anchor-id="so-do-we-follow-the-8020-rule">So, do we follow the 80:20 rule?</h2>
+<p>The full table was a little too long to show, so I’ve abbreviated it by highlighting ten or so landmarks. Here is that shortened table and the results of the analysis:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns sung</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns in the hymnal</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">number of hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">2.0%</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20%</td>
+<td style="text-align: right;">4.2%</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">7.2%</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">10.7%</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">15.2%</td>
+<td style="text-align: right;">61</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60%</td>
+<td style="text-align: right;">20.4%</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">26.7%</td>
+<td style="text-align: right;">107</td>
+</tr>
+<tr class="even">
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">80%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">34.4%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">138</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">46.9%</td>
+<td style="text-align: right;">188</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>So, do we follow the 80:20 rule in our hymn singing? Not quite. I’ve highlighted the relevant row: about 80% of the hymns we sing in church come from 34.4% of the hymnal or 138 hymns. So a little over a third of them. The next row down shows that 90% of the hymns that we sing come from 46.9% of the hymnal, which is about 188 hymns.</p>
+<p>So, we don’t follow the 80:20 rule exactly. We follow something like the 80:35 rule. Not as satisfying of a number, but that’s what is reflected in the data.</p>
+<p>To get a feel for all the numbers and what the larger pattern is, here is a plot that shows the complete dataset. The green dots are the same numbers plotted on the table above and are positioned vertically at 10% intervals along the <em>y</em>-axis. The black line connects them and follows the rest of the points.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/the_80-20_rule/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can see that there’s a tapering off. A relatively small portion of the hymnal accounts for a large percentage of the hymns sung. But as we get into the infrequent hymns, since they’re sung so rarely, they contribute only a small amount to the hymns sung, so it takes many more of them to move the line up.</p>
+<p>This plot shows that yes, about 90% of hymns that are actually sung make up less than half of the hymnal (including the new hymns). The remaining half of the hymnal (about 170 hymns), I’ve heard it jokingly called the “sealed portion.” So even though the “sealed portion” is just as big as the “unsealed” portion, it’s only makes up 10% of the hymns sung.</p>
+<p>But that 10% isn’t nothing. On average, wards sing about 3.13 hymns per sacrament meeting. That means about once every four weeks you might expect a hymn from that “sealed portion.” You might sing 15 of these hymns a year. We can’t expect all hymns to be sung with equal frequency, and I’m glad we have the chance to change things up every few weeks and sing a less common hymn. Removing the “sealed portion” would only exacerbate the perceived problem of singing the same hymns all the time.</p>
+</section>
+<section id="does-it-change-with-the-new-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="does-it-change-with-the-new-hymns">Does it change with the new hymns?</h2>
+<p>I was curious to see what the data looked like before the introduction of the new hymns. Here’s a table that is calculated in the same eway, but it only includes sacrament meetings from before June 2024.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns sung</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns in the hymnal</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">number of hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">2.3%</td>
+<td style="text-align: right;">8.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20%</td>
+<td style="text-align: right;">4.7%</td>
+<td style="text-align: right;">16.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">7.9%</td>
+<td style="text-align: right;">27.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">12.0%</td>
+<td style="text-align: right;">41.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">17.0%</td>
+<td style="text-align: right;">58.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60%</td>
+<td style="text-align: right;">22.9%</td>
+<td style="text-align: right;">78.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">29.6%</td>
+<td style="text-align: right;">101.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">80%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">37.8%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">129.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">50.0%</td>
+<td style="text-align: right;">170.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>So, prior to the introduction of the new hymns, 80% of the hymns sung came from 37.8% of the hymnal. So, a bit higher than the 34.4% we saw above. Granted, this is based on 341 hymns instead of 401 of them, and smaller denominators will result in a larger number if the numerator is the same. Higher numbers here reflect greater diversity in hymn selection. I don’t think that necessarily means we’re focusing on fewer hymns or that we’re singing the same hymns more so than we used to. I think people are excited about the new hymns and are choosing from that smaller pool rather than choosing from the 100 or so infrequent hymns in the 1985 hymnal.</p>
+<p>Here’s a table that shows the same thing but <em>since</em> the introduction of the new hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns sung</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns in the hymnal</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">number of hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">2.0%</td>
+<td style="text-align: right;">8.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20%</td>
+<td style="text-align: right;">4.2%</td>
+<td style="text-align: right;">17.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">7.2%</td>
+<td style="text-align: right;">29.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">10.6%</td>
+<td style="text-align: right;">42.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">14.5%</td>
+<td style="text-align: right;">58.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60%</td>
+<td style="text-align: right;">19.7%</td>
+<td style="text-align: right;">79.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">25.9%</td>
+<td style="text-align: right;">104.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">80%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">33.9%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">136.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">46.1%</td>
+<td style="text-align: right;">185.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">96.5%</td>
+<td style="text-align: right;">387.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>So the number drops a little bit to 33.9%. But, we’ve increased the denominator (total number of hymns), so the overall value will go up. Regardless of how I look at the data, the number is still right around 33%–38% of hymns. So I think it’s still safe to say that the pattern we follow is about 80:35, rather than 80:20.</p>
+</section>
+<section id="changes-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="changes-over-time">Changes over time?</h2>
+<p>The above tables and plot are based on all my data pooled together. But I have data spanning many years. Is it possible that that 34.4% has changed over time?</p>
+<p>The following plot shows the same calculation that I described above, but split up by year. I only show from 2015 onward since my data from before then is a bit sparse and therefore unreliable. And I won’t show 2026 quite yet since we’re not far enough into the year to get a good reading of it. The <em>y</em>-axis on this plot shows the percentage of the hymnal it takes to hit 80% of hymns sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/the_80-20_rule/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The most obvious thing in this plot is the dip in 2020. Fewer wards were having in-person meetings. And if they were, not many were singing all three hymns. So since many were singing just sacrament hymns, there wasn’t opportunity to sing too many other ones. I’ve noticed too that the other hymns that wards were singing then tended to be familiar favorites. So, there wasn’t a lot of hymn diversity in 2020. It makes sense then why it took only about 20% of hymns (102 of them) to account for 80% of the hymns sung in church that year.</p>
+<p>The other less obvious trend is the general decline in the past 10 years. Again, lower numbers suggest less hymn diversity in our meetings. However, I’m not 100% convinced this trend is real because the number is dependent on how much data I have and on how many hymns are available at that time, which is not consistent across the years represented in this chart. Maybe the trend in the church generall is indeed real, but if it is, it’s not a very strong pattern, certainly not strong enough to be percieved by people.</p>
+<!-- 
+
+I thought bootstrapping might solve that problem, but there seems to be some issues with weekly analyses. Some weeks are super high and others are super low. Not sure what the problem is.
+
+
+
+-->
+<!-- # A weekly analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>So that’s it. Not too much more I could say here. About 34.4% of the hymnal accounts for 80% of the hymns sung. So, not quite 80:20.</p>
+<p>While this post is largely to satisfy my curiosity, there is one useful application for this. Pianists and organists, particularly new ones, may want to prepare a smaller set of hymns until they’re comfortable sight-reading from the hymnal. Knowing that they would only need to learn 34.4% of hymns to cover 80% of the hymns sung in church may be comforting thought. Or, going back to one of the plots above, learning only about 15% of the hymnal is enough to play half the time. Someone in this position may want to consult the <a href="../../overview">overview page</a> to see a list of hymns in order of frequency. They may find that by learning them in that order is an efficient way to quickly get involved in providing music for church meetings.</p>
+<p>While 34.4% may seem low to some people, in fairness, I think lots of things in nature and in human behavior behave this way. Particularly categorical variables like hymns in a hymnal. I don’t see this as a flaw or a problem at all and I think we should enjoy the infrequent hymns when they come up and enjoy the frequent hymns when they are sung.</p>
+
+
+</section>
+
+
+ ]]></description>
+  <guid>https://hymnstats.joeystanley.com/posts/the_80-20_rule/</guid>
+  <pubDate>Fri, 13 Feb 2026 07:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Christmas 2025</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -966,26 +1252,26 @@ Note
 
 
 <p>On September 18, 2025, the church <a href="https://newsroom.churchofjesuschrist.org/article/hymn-written-by-president-nelson-included-in-latest-release">released</a> the fifth batch of new hymns, which features another African American spiritual, a hymn written by a Tongan saint, and lyrics written by President Nelson. In previous posts, I have covered in detail the <a href="../../posts/new_hymns_batch1">first</a>, <a href="../../posts/new_hymns_batch2">second</a>, <a href="../../posts/new_hymns_batch3">third</a>, and <a href="../../posts/new_hymns_batch4">fourth</a> batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fifth batch came out and will update weekly as more data comes in.</p>
-<p>Currently I have data from 11,956 sacrament meetings from 1,223 wards since September 21, 2025. Here’s how much data I have for each week so far, just so you have an idea of what I’m working with.</p>
+<p>Currently I have data from 12,549 sacrament meetings from 1,231 wards since September 21, 2025. Here’s how much data I have for each week so far, just so you have an idea of what I’m working with.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="uothspwnbw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uothspwnbw table {
+<div id="wotaqzwwmc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wotaqzwwmc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uothspwnbw thead, #uothspwnbw tbody, #uothspwnbw tfoot, #uothspwnbw tr, #uothspwnbw td, #uothspwnbw th {
+#wotaqzwwmc thead, #wotaqzwwmc tbody, #wotaqzwwmc tfoot, #wotaqzwwmc tr, #wotaqzwwmc td, #wotaqzwwmc th {
   border-style: none;
 }
 
-#uothspwnbw p {
+#wotaqzwwmc p {
   margin: 0;
   padding: 0;
 }
 
-#uothspwnbw .gt_table {
+#wotaqzwwmc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1011,12 +1297,12 @@ Note
   border-left-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_caption {
+#wotaqzwwmc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uothspwnbw .gt_title {
+#wotaqzwwmc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1028,7 +1314,7 @@ Note
   border-bottom-width: 0;
 }
 
-#uothspwnbw .gt_subtitle {
+#wotaqzwwmc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1040,7 +1326,7 @@ Note
   border-top-width: 0;
 }
 
-#uothspwnbw .gt_heading {
+#wotaqzwwmc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1052,13 +1338,13 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_bottom_border {
+#wotaqzwwmc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_col_headings {
+#wotaqzwwmc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1073,7 +1359,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_col_heading {
+#wotaqzwwmc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1093,7 +1379,7 @@ Note
   overflow-x: hidden;
 }
 
-#uothspwnbw .gt_column_spanner_outer {
+#wotaqzwwmc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1105,15 +1391,15 @@ Note
   padding-right: 4px;
 }
 
-#uothspwnbw .gt_column_spanner_outer:first-child {
+#wotaqzwwmc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uothspwnbw .gt_column_spanner_outer:last-child {
+#wotaqzwwmc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uothspwnbw .gt_column_spanner {
+#wotaqzwwmc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1125,11 +1411,11 @@ Note
   width: 100%;
 }
 
-#uothspwnbw .gt_spanner_row {
+#wotaqzwwmc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uothspwnbw .gt_group_heading {
+#wotaqzwwmc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1155,7 +1441,7 @@ Note
   text-align: left;
 }
 
-#uothspwnbw .gt_empty_group_heading {
+#wotaqzwwmc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1170,15 +1456,15 @@ Note
   vertical-align: middle;
 }
 
-#uothspwnbw .gt_from_md > :first-child {
+#wotaqzwwmc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uothspwnbw .gt_from_md > :last-child {
+#wotaqzwwmc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uothspwnbw .gt_row {
+#wotaqzwwmc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1197,7 +1483,7 @@ Note
   overflow-x: hidden;
 }
 
-#uothspwnbw .gt_stub {
+#wotaqzwwmc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1210,7 +1496,7 @@ Note
   padding-right: 5px;
 }
 
-#uothspwnbw .gt_stub_row_group {
+#wotaqzwwmc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1224,15 +1510,15 @@ Note
   vertical-align: top;
 }
 
-#uothspwnbw .gt_row_group_first td {
+#wotaqzwwmc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uothspwnbw .gt_row_group_first th {
+#wotaqzwwmc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uothspwnbw .gt_summary_row {
+#wotaqzwwmc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1242,16 +1528,16 @@ Note
   padding-right: 5px;
 }
 
-#uothspwnbw .gt_first_summary_row {
+#wotaqzwwmc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_first_summary_row.thick {
+#wotaqzwwmc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uothspwnbw .gt_last_summary_row {
+#wotaqzwwmc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1261,7 +1547,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_grand_summary_row {
+#wotaqzwwmc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1271,7 +1557,7 @@ Note
   padding-right: 5px;
 }
 
-#uothspwnbw .gt_first_grand_summary_row {
+#wotaqzwwmc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1281,7 +1567,7 @@ Note
   border-top-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_last_grand_summary_row_top {
+#wotaqzwwmc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1291,11 +1577,11 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_striped {
+#wotaqzwwmc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uothspwnbw .gt_table_body {
+#wotaqzwwmc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1304,7 +1590,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_footnotes {
+#wotaqzwwmc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1318,7 +1604,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_footnote {
+#wotaqzwwmc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1327,7 +1613,7 @@ Note
   padding-right: 5px;
 }
 
-#uothspwnbw .gt_sourcenotes {
+#wotaqzwwmc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1341,7 +1627,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#uothspwnbw .gt_sourcenote {
+#wotaqzwwmc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1349,72 +1635,72 @@ Note
   padding-right: 5px;
 }
 
-#uothspwnbw .gt_left {
+#wotaqzwwmc .gt_left {
   text-align: left;
 }
 
-#uothspwnbw .gt_center {
+#wotaqzwwmc .gt_center {
   text-align: center;
 }
 
-#uothspwnbw .gt_right {
+#wotaqzwwmc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uothspwnbw .gt_font_normal {
+#wotaqzwwmc .gt_font_normal {
   font-weight: normal;
 }
 
-#uothspwnbw .gt_font_bold {
+#wotaqzwwmc .gt_font_bold {
   font-weight: bold;
 }
 
-#uothspwnbw .gt_font_italic {
+#wotaqzwwmc .gt_font_italic {
   font-style: italic;
 }
 
-#uothspwnbw .gt_super {
+#wotaqzwwmc .gt_super {
   font-size: 65%;
 }
 
-#uothspwnbw .gt_footnote_marks {
+#wotaqzwwmc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uothspwnbw .gt_asterisk {
+#wotaqzwwmc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uothspwnbw .gt_indent_1 {
+#wotaqzwwmc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uothspwnbw .gt_indent_2 {
+#wotaqzwwmc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uothspwnbw .gt_indent_3 {
+#wotaqzwwmc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uothspwnbw .gt_indent_4 {
+#wotaqzwwmc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uothspwnbw .gt_indent_5 {
+#wotaqzwwmc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#uothspwnbw .katex-display {
+#wotaqzwwmc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#uothspwnbw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wotaqzwwmc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1499,15 +1785,19 @@ Note
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="date">January 18</td>
-<td class="gt_row gt_right" headers="wards">813</td>
+<td class="gt_row gt_right" headers="wards">814</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="date">January 25</td>
-<td class="gt_row gt_right" headers="wards">427</td>
+<td class="gt_row gt_right" headers="wards">633</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="date">February 01</td>
-<td class="gt_row gt_right" headers="wards">38</td>
+<td class="gt_row gt_right" headers="wards">362</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">February 08</td>
+<td class="gt_row gt_right" headers="wards">62</td>
 </tr>
 </tbody>
 </table>
@@ -1549,23 +1839,23 @@ Note
 <p>The following table shows the hymns from the fifth batch in order of how popular they are.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="lpiaznitln" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lpiaznitln table {
+<div id="ysklwxrxhp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ysklwxrxhp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lpiaznitln thead, #lpiaznitln tbody, #lpiaznitln tfoot, #lpiaznitln tr, #lpiaznitln td, #lpiaznitln th {
+#ysklwxrxhp thead, #ysklwxrxhp tbody, #ysklwxrxhp tfoot, #ysklwxrxhp tr, #ysklwxrxhp td, #ysklwxrxhp th {
   border-style: none;
 }
 
-#lpiaznitln p {
+#ysklwxrxhp p {
   margin: 0;
   padding: 0;
 }
 
-#lpiaznitln .gt_table {
+#ysklwxrxhp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1591,12 +1881,12 @@ Note
   border-left-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_caption {
+#ysklwxrxhp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lpiaznitln .gt_title {
+#ysklwxrxhp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1608,7 +1898,7 @@ Note
   border-bottom-width: 0;
 }
 
-#lpiaznitln .gt_subtitle {
+#ysklwxrxhp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1620,7 +1910,7 @@ Note
   border-top-width: 0;
 }
 
-#lpiaznitln .gt_heading {
+#ysklwxrxhp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1632,13 +1922,13 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_bottom_border {
+#ysklwxrxhp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_col_headings {
+#ysklwxrxhp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1653,7 +1943,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_col_heading {
+#ysklwxrxhp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1673,7 +1963,7 @@ Note
   overflow-x: hidden;
 }
 
-#lpiaznitln .gt_column_spanner_outer {
+#ysklwxrxhp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1685,15 +1975,15 @@ Note
   padding-right: 4px;
 }
 
-#lpiaznitln .gt_column_spanner_outer:first-child {
+#ysklwxrxhp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lpiaznitln .gt_column_spanner_outer:last-child {
+#ysklwxrxhp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lpiaznitln .gt_column_spanner {
+#ysklwxrxhp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1705,11 +1995,11 @@ Note
   width: 100%;
 }
 
-#lpiaznitln .gt_spanner_row {
+#ysklwxrxhp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lpiaznitln .gt_group_heading {
+#ysklwxrxhp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1735,7 +2025,7 @@ Note
   text-align: left;
 }
 
-#lpiaznitln .gt_empty_group_heading {
+#ysklwxrxhp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1750,15 +2040,15 @@ Note
   vertical-align: middle;
 }
 
-#lpiaznitln .gt_from_md > :first-child {
+#ysklwxrxhp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lpiaznitln .gt_from_md > :last-child {
+#ysklwxrxhp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lpiaznitln .gt_row {
+#ysklwxrxhp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1777,7 +2067,7 @@ Note
   overflow-x: hidden;
 }
 
-#lpiaznitln .gt_stub {
+#ysklwxrxhp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1790,7 +2080,7 @@ Note
   padding-right: 5px;
 }
 
-#lpiaznitln .gt_stub_row_group {
+#ysklwxrxhp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1804,15 +2094,15 @@ Note
   vertical-align: top;
 }
 
-#lpiaznitln .gt_row_group_first td {
+#ysklwxrxhp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lpiaznitln .gt_row_group_first th {
+#ysklwxrxhp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lpiaznitln .gt_summary_row {
+#ysklwxrxhp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1822,16 +2112,16 @@ Note
   padding-right: 5px;
 }
 
-#lpiaznitln .gt_first_summary_row {
+#ysklwxrxhp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_first_summary_row.thick {
+#ysklwxrxhp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lpiaznitln .gt_last_summary_row {
+#ysklwxrxhp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1841,7 +2131,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_grand_summary_row {
+#ysklwxrxhp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1851,7 +2141,7 @@ Note
   padding-right: 5px;
 }
 
-#lpiaznitln .gt_first_grand_summary_row {
+#ysklwxrxhp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1861,7 +2151,7 @@ Note
   border-top-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_last_grand_summary_row_top {
+#ysklwxrxhp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1871,11 +2161,11 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_striped {
+#ysklwxrxhp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lpiaznitln .gt_table_body {
+#ysklwxrxhp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1884,7 +2174,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_footnotes {
+#ysklwxrxhp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1898,7 +2188,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_footnote {
+#ysklwxrxhp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1907,7 +2197,7 @@ Note
   padding-right: 5px;
 }
 
-#lpiaznitln .gt_sourcenotes {
+#ysklwxrxhp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1921,7 +2211,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#lpiaznitln .gt_sourcenote {
+#ysklwxrxhp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1929,72 +2219,72 @@ Note
   padding-right: 5px;
 }
 
-#lpiaznitln .gt_left {
+#ysklwxrxhp .gt_left {
   text-align: left;
 }
 
-#lpiaznitln .gt_center {
+#ysklwxrxhp .gt_center {
   text-align: center;
 }
 
-#lpiaznitln .gt_right {
+#ysklwxrxhp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lpiaznitln .gt_font_normal {
+#ysklwxrxhp .gt_font_normal {
   font-weight: normal;
 }
 
-#lpiaznitln .gt_font_bold {
+#ysklwxrxhp .gt_font_bold {
   font-weight: bold;
 }
 
-#lpiaznitln .gt_font_italic {
+#ysklwxrxhp .gt_font_italic {
   font-style: italic;
 }
 
-#lpiaznitln .gt_super {
+#ysklwxrxhp .gt_super {
   font-size: 65%;
 }
 
-#lpiaznitln .gt_footnote_marks {
+#ysklwxrxhp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lpiaznitln .gt_asterisk {
+#ysklwxrxhp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lpiaznitln .gt_indent_1 {
+#ysklwxrxhp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lpiaznitln .gt_indent_2 {
+#ysklwxrxhp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lpiaznitln .gt_indent_3 {
+#ysklwxrxhp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lpiaznitln .gt_indent_4 {
+#ysklwxrxhp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lpiaznitln .gt_indent_5 {
+#ysklwxrxhp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lpiaznitln .katex-display {
+#ysklwxrxhp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lpiaznitln div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ysklwxrxhp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2015,51 +2305,51 @@ Note
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Go Tell It on the Mountain (1208)</td>
-<td class="gt_row gt_right" headers="percent of wards">11.20%</td>
+<td class="gt_row gt_right" headers="percent of wards">11.2%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Our Prayer to Thee (1048)</td>
-<td class="gt_row gt_right" headers="percent of wards">8.70%</td>
+<td class="gt_row gt_right" headers="percent of wards">9.0%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Help Us Remember (1043)</td>
-<td class="gt_row gt_right" headers="percent of wards">7.10%</td>
+<td class="gt_row gt_right" headers="percent of wards">8.2%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Thou Gracious Lord, Whose Mercy Lends (1042)</td>
-<td class="gt_row gt_right" headers="percent of wards">4.70%</td>
+<td class="gt_row gt_right" headers="percent of wards">5.5%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">This Day Is a Good Day, Lord (1051)</td>
-<td class="gt_row gt_right" headers="percent of wards">4.30%</td>
+<td class="gt_row gt_right" headers="percent of wards">5.1%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Little Baby in a Manger (1209)</td>
-<td class="gt_row gt_right" headers="percent of wards">3.90%</td>
+<td class="gt_row gt_right" headers="percent of wards">3.9%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Jesus Is the Way (1045)</td>
-<td class="gt_row gt_right" headers="percent of wards">3.30%</td>
+<td class="gt_row gt_right" headers="percent of wards">3.6%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Hymn">Can You Count the Stars in Heaven? (1046)</td>
-<td class="gt_row gt_right" headers="percent of wards">2.10%</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">How Did the Savior Minister? (1044)</td>
-<td class="gt_row gt_right" headers="percent of wards">2.00%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">Stand by Me (1050)</td>
-<td class="gt_row gt_right" headers="percent of wards">1.80%</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">He Cares for Me (1047)</td>
-<td class="gt_row gt_right" headers="percent of wards">1.70%</td>
+<td class="gt_row gt_right" headers="percent of wards">2.6%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Can You Count the Stars in Heaven? (1046)</td>
+<td class="gt_row gt_right" headers="percent of wards">2.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">How Did the Savior Minister? (1044)</td>
+<td class="gt_row gt_right" headers="percent of wards">2.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">Stand by Me (1050)</td>
+<td class="gt_row gt_right" headers="percent of wards">1.7%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Joseph Prayed in Faith (1049)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.40%</td>
+<td class="gt_row gt_right" headers="percent of wards">0.7%</td>
 </tr>
 </tbody>
 </table>
@@ -2092,23 +2382,23 @@ Note
 <p>This table shows when during sacrament meetings these hymns have been sung.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="qbortefuzf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qbortefuzf table {
+<div id="xfgrtyukob" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xfgrtyukob table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qbortefuzf thead, #qbortefuzf tbody, #qbortefuzf tfoot, #qbortefuzf tr, #qbortefuzf td, #qbortefuzf th {
+#xfgrtyukob thead, #xfgrtyukob tbody, #xfgrtyukob tfoot, #xfgrtyukob tr, #xfgrtyukob td, #xfgrtyukob th {
   border-style: none;
 }
 
-#qbortefuzf p {
+#xfgrtyukob p {
   margin: 0;
   padding: 0;
 }
 
-#qbortefuzf .gt_table {
+#xfgrtyukob .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2134,12 +2424,12 @@ Note
   border-left-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_caption {
+#xfgrtyukob .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qbortefuzf .gt_title {
+#xfgrtyukob .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2151,7 +2441,7 @@ Note
   border-bottom-width: 0;
 }
 
-#qbortefuzf .gt_subtitle {
+#xfgrtyukob .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2163,7 +2453,7 @@ Note
   border-top-width: 0;
 }
 
-#qbortefuzf .gt_heading {
+#xfgrtyukob .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2175,13 +2465,13 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_bottom_border {
+#xfgrtyukob .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_col_headings {
+#xfgrtyukob .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2196,7 +2486,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_col_heading {
+#xfgrtyukob .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2216,7 +2506,7 @@ Note
   overflow-x: hidden;
 }
 
-#qbortefuzf .gt_column_spanner_outer {
+#xfgrtyukob .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2228,15 +2518,15 @@ Note
   padding-right: 4px;
 }
 
-#qbortefuzf .gt_column_spanner_outer:first-child {
+#xfgrtyukob .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qbortefuzf .gt_column_spanner_outer:last-child {
+#xfgrtyukob .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qbortefuzf .gt_column_spanner {
+#xfgrtyukob .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2248,11 +2538,11 @@ Note
   width: 100%;
 }
 
-#qbortefuzf .gt_spanner_row {
+#xfgrtyukob .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qbortefuzf .gt_group_heading {
+#xfgrtyukob .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2278,7 +2568,7 @@ Note
   text-align: left;
 }
 
-#qbortefuzf .gt_empty_group_heading {
+#xfgrtyukob .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2293,15 +2583,15 @@ Note
   vertical-align: middle;
 }
 
-#qbortefuzf .gt_from_md > :first-child {
+#xfgrtyukob .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qbortefuzf .gt_from_md > :last-child {
+#xfgrtyukob .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qbortefuzf .gt_row {
+#xfgrtyukob .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2320,7 +2610,7 @@ Note
   overflow-x: hidden;
 }
 
-#qbortefuzf .gt_stub {
+#xfgrtyukob .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2333,7 +2623,7 @@ Note
   padding-right: 5px;
 }
 
-#qbortefuzf .gt_stub_row_group {
+#xfgrtyukob .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2347,15 +2637,15 @@ Note
   vertical-align: top;
 }
 
-#qbortefuzf .gt_row_group_first td {
+#xfgrtyukob .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qbortefuzf .gt_row_group_first th {
+#xfgrtyukob .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qbortefuzf .gt_summary_row {
+#xfgrtyukob .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2365,16 +2655,16 @@ Note
   padding-right: 5px;
 }
 
-#qbortefuzf .gt_first_summary_row {
+#xfgrtyukob .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_first_summary_row.thick {
+#xfgrtyukob .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qbortefuzf .gt_last_summary_row {
+#xfgrtyukob .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2384,7 +2674,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_grand_summary_row {
+#xfgrtyukob .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2394,7 +2684,7 @@ Note
   padding-right: 5px;
 }
 
-#qbortefuzf .gt_first_grand_summary_row {
+#xfgrtyukob .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2404,7 +2694,7 @@ Note
   border-top-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_last_grand_summary_row_top {
+#xfgrtyukob .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2414,11 +2704,11 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_striped {
+#xfgrtyukob .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qbortefuzf .gt_table_body {
+#xfgrtyukob .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2427,7 +2717,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_footnotes {
+#xfgrtyukob .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2441,7 +2731,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_footnote {
+#xfgrtyukob .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2450,7 +2740,7 @@ Note
   padding-right: 5px;
 }
 
-#qbortefuzf .gt_sourcenotes {
+#xfgrtyukob .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2464,7 +2754,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#qbortefuzf .gt_sourcenote {
+#xfgrtyukob .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2472,72 +2762,72 @@ Note
   padding-right: 5px;
 }
 
-#qbortefuzf .gt_left {
+#xfgrtyukob .gt_left {
   text-align: left;
 }
 
-#qbortefuzf .gt_center {
+#xfgrtyukob .gt_center {
   text-align: center;
 }
 
-#qbortefuzf .gt_right {
+#xfgrtyukob .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qbortefuzf .gt_font_normal {
+#xfgrtyukob .gt_font_normal {
   font-weight: normal;
 }
 
-#qbortefuzf .gt_font_bold {
+#xfgrtyukob .gt_font_bold {
   font-weight: bold;
 }
 
-#qbortefuzf .gt_font_italic {
+#xfgrtyukob .gt_font_italic {
   font-style: italic;
 }
 
-#qbortefuzf .gt_super {
+#xfgrtyukob .gt_super {
   font-size: 65%;
 }
 
-#qbortefuzf .gt_footnote_marks {
+#xfgrtyukob .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qbortefuzf .gt_asterisk {
+#xfgrtyukob .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qbortefuzf .gt_indent_1 {
+#xfgrtyukob .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qbortefuzf .gt_indent_2 {
+#xfgrtyukob .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qbortefuzf .gt_indent_3 {
+#xfgrtyukob .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qbortefuzf .gt_indent_4 {
+#xfgrtyukob .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qbortefuzf .gt_indent_5 {
+#xfgrtyukob .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qbortefuzf .katex-display {
+#xfgrtyukob .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qbortefuzf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xfgrtyukob div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2572,13 +2862,13 @@ Note
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:27%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">27%</span>
+<div style="background:#4F2B47;width:26%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">26%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:33%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">33%</span>
+<div style="background:#4F2B47;width:34%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">34%</span>
 </div>
 </div></td>
 </tr>
@@ -2608,31 +2898,8 @@ Note
 <tr class="odd">
 <td class="gt_row gt_left" headers="New Hymn">How Did the Savior Minister? (1044)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:44%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">44%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:22%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:22px;font-weight:bold;font-size:14px;">22%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:33%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">33%</span>
-</div>
-</div></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="New Hymn">Jesus Is the Way (1045)</td>
-<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:42%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">42%</span>
+<div style="background:#4F2B47;width:41%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">41%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -2646,16 +2913,39 @@ Note
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:30%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">30%</span>
+<div style="background:#4F2B47;width:31%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">31%</span>
+</div>
+</div></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">Jesus Is the Way (1045)</td>
+<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:44%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">44%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:27%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">27%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:29%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">29%</span>
 </div>
 </div></td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="New Hymn">Can You Count the Stars in Heaven? (1046)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:33%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">33%</span>
+<div style="background:#4F2B47;width:32%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">32%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -2664,21 +2954,21 @@ Note
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:37%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">37%</span>
+<div style="background:#4F2B47;width:39%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">39%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:30%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">30%</span>
+<div style="background:#4F2B47;width:29%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">29%</span>
 </div>
 </div></td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="New Hymn">He Cares for Me (1047)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:46%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">46%</span>
+<div style="background:#4F2B47;width:48%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">48%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -2687,13 +2977,13 @@ Note
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:29%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">29%</span>
+<div style="background:#4F2B47;width:26%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">26%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:25%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">25%</span>
+<div style="background:#4F2B47;width:26%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">26%</span>
 </div>
 </div></td>
 </tr>
@@ -2710,21 +3000,21 @@ Note
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:20%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:20px;font-weight:bold;font-size:14px;">20%</span>
+<div style="background:#4F2B47;width:19%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:19px;font-weight:bold;font-size:14px;">19%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:30%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">30%</span>
+<div style="background:#4F2B47;width:31%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">31%</span>
 </div>
 </div></td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="New Hymn">Joseph Prayed in Faith (1049)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:20%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:20px;font-weight:bold;font-size:14px;">20%</span>
+<div style="background:#4F2B47;width:25%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">25%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -2733,13 +3023,13 @@ Note
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:60%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">60%</span>
+<div style="background:#4F2B47;width:50%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">50%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:20%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">20%</span>
+<div style="background:#4F2B47;width:25%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">25%</span>
 </div>
 </div></td>
 </tr>
@@ -2779,8 +3069,8 @@ Note
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:14%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:14px;font-weight:bold;font-size:14px;">14%</span>
+<div style="background:#4F2B47;width:13%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:13px;font-weight:bold;font-size:14px;">13%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -11354,15 +11644,15 @@ Note
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
-<tr class="header gt_heading">
-<th colspan="2" class="gt_heading gt_title gt_font_normal">Number of wards I have data from, by week</th>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal">Number of wards I have data from, by week</td>
 </tr>
-<tr class="odd gt_heading">
-<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since September 15th</th>
+<tr class="gt_heading even">
+<td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since September 15th</td>
 </tr>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
 <th id="wards" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wards</th>
 </tr>
@@ -11925,15 +12215,15 @@ Note
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
-<tr class="header gt_heading">
-<th colspan="2" class="gt_heading gt_title gt_font_normal">Approximate percentage of wards new hymns have been sung in</th>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal">Approximate percentage of wards new hymns have been sung in</td>
 </tr>
-<tr class="odd gt_heading">
-<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since September 15</th>
+<tr class="gt_heading even">
+<td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since September 15</td>
 </tr>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="Hymn" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Hymn</th>
 <th id="percent of wards" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">percent of wards</th>
 </tr>
@@ -12446,15 +12736,15 @@ Note
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
-<tr class="header gt_heading">
-<th colspan="5" class="gt_heading gt_title gt_font_normal">When were new hymns sung in sacrament meeting?</th>
+<tr class="gt_heading header">
+<td colspan="5" class="gt_heading gt_title gt_font_normal">When were new hymns sung in sacrament meeting?</td>
 </tr>
-<tr class="odd gt_heading">
-<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since September 15</th>
+<tr class="gt_heading even">
+<td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since September 15</td>
 </tr>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="New Hymn" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">New Hymn</th>
 <th id="Opening" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Opening</th>
 <th id="Sacrament" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sacrament</th>
@@ -12671,7 +12961,7 @@ Note
 </div></td>
 </tr>
 </tbody><tfoot class="gt_sourcenotes">
-<tr class="even">
+<tr class="odd">
 <td colspan="5" class="gt_sourcenote">Note: Each row adds up to 100%.</td>
 </tr>
 </tfoot>
@@ -16962,1566 +17252,6 @@ Removed 1 row containing missing values or values outside the scale range
   <category>frequency</category>
   <guid>https://hymnstats.joeystanley.com/posts/fathers_day/</guid>
   <pubDate>Sun, 16 Jun 2024 06:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>The third Sunday with new hymns!</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/new_hymns_week3/</link>
-  <description><![CDATA[ 
-
-
-
-<p>This is the third week since new hymns were introduced! We had some competition with <a href="../../posts/fathers_day">Father’s Day</a> this year, so I was curious to see what the hymns would be. Currently I have data from 274 sacrament meetings since June 2nd from 158 wards. <a href="../../posts/new_hymns_week1">Two weeks ago</a>, I found that about a third of wards introduced new hymns, with about two thirds of those singing <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn>. <a href="../../posts/new_hymns_week2">Last week</a> week, only about quarter of wards sang new hymns. Let’s see how Week 3 went.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that this blog post will update as I collect more data. I originally collected data from 71 wards from June 16th when I first published this post. As more come in, we’ll have a more accurate view of what happened.</p>
-</div>
-</div>
-<p>Looks like things are about the same as where they were last week. About a quarter of wards introduced a new hymn this week. The following plot shows how many new hymns were introduced each week.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/new_hymns_week3/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="624"></p>
-</div>
-</div>
-<p>The numbers are lower than I expected. Fewer wards are singing new hymns than I expected. However, a lot of my data comes from single-week contributions from various wards, so just just because a ward didn’t sing a new hymn this week doesn’t mean they haven’t done any yet.</p>
-<p>To see what proportion of wards have introduced new hymns up to this point, I took a look at the wards that I have data from from every week since the first batch of hymns came out. Currently, that’s 32 wards. Around half of them haven’t sung new hymns at all yet. Only 11% of wards have sung at least one new hymn each week so far.</p>
-<p>Earlier, I showed that <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> was far and away the most popular on June 2nd but that other hymns were slightly more popular on the 9th. This week, on June 16th, the most popular hymn was <hymn>As Bread is Broken (#1007)</hymn>. Part of the reason for that may be so that opening and closing hymns could be related to Father’s Day. Or it simply could be because we have new sacrament hymns and they’ll need to be introduced at some point.</p>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="rdkoatrkvx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rdkoatrkvx table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#rdkoatrkvx thead, #rdkoatrkvx tbody, #rdkoatrkvx tfoot, #rdkoatrkvx tr, #rdkoatrkvx td, #rdkoatrkvx th {
-  border-style: none;
-}
-
-#rdkoatrkvx p {
-  margin: 0;
-  padding: 0;
-}
-
-#rdkoatrkvx .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#rdkoatrkvx .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#rdkoatrkvx .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#rdkoatrkvx .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#rdkoatrkvx .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#rdkoatrkvx .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#rdkoatrkvx .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#rdkoatrkvx .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#rdkoatrkvx .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#rdkoatrkvx .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#rdkoatrkvx .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#rdkoatrkvx .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#rdkoatrkvx .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#rdkoatrkvx .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#rdkoatrkvx .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rdkoatrkvx .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#rdkoatrkvx .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#rdkoatrkvx .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#rdkoatrkvx .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rdkoatrkvx .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#rdkoatrkvx .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rdkoatrkvx .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#rdkoatrkvx .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rdkoatrkvx .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rdkoatrkvx .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rdkoatrkvx .gt_left {
-  text-align: left;
-}
-
-#rdkoatrkvx .gt_center {
-  text-align: center;
-}
-
-#rdkoatrkvx .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#rdkoatrkvx .gt_font_normal {
-  font-weight: normal;
-}
-
-#rdkoatrkvx .gt_font_bold {
-  font-weight: bold;
-}
-
-#rdkoatrkvx .gt_font_italic {
-  font-style: italic;
-}
-
-#rdkoatrkvx .gt_super {
-  font-size: 65%;
-}
-
-#rdkoatrkvx .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#rdkoatrkvx .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#rdkoatrkvx .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#rdkoatrkvx .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#rdkoatrkvx .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#rdkoatrkvx .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#rdkoatrkvx .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style="">What new hymns were sung on June 16, 2024?</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Based on the wards that sang new hymns</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="new hymn">new hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wards">wards</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="new hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="wards" class="gt_row gt_right">9</td>
-<td headers="proportion" class="gt_row gt_right">36%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="wards" class="gt_row gt_right">5</td>
-<td headers="proportion" class="gt_row gt_right">20%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
-<td headers="wards" class="gt_row gt_right">4</td>
-<td headers="proportion" class="gt_row gt_right">16%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="wards" class="gt_row gt_right">3</td>
-<td headers="proportion" class="gt_row gt_right">12%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="wards" class="gt_row gt_right">2</td>
-<td headers="proportion" class="gt_row gt_right">8%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="wards" class="gt_row gt_right">1</td>
-<td headers="proportion" class="gt_row gt_right">4%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="wards" class="gt_row gt_right">1</td>
-<td headers="proportion" class="gt_row gt_right">4%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Hail the Day that Sees Him Rise (1201)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">He Is Born, the Divine Christ Child (1202)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">What Child is This? (1203)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0%</td></tr>
-    <tr><td headers="new hymn" class="gt_row gt_left">Star Bright (1204)</td>
-<td headers="wards" class="gt_row gt_right">0</td>
-<td headers="proportion" class="gt_row gt_right">0%</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-<p>If we compare these proportions across weeks, we can get a glimpse into some trends. The figure below shows what proportion of wards sang what hymns each week.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/new_hymns_week3/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<p>The drop in <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> continues into Week 3. And this time though the biggest surprise was the increase in popularity of <hymn>As Bread is Broken (#1007)</hymn> this week.</p>
-<p>Combining now all three weeks so far, we can see when these hymns tend to be sung and get an overall look at the popularity of the first batch of hymns. Looks like <hymn>Come, Thou Fount of Every Blessing (#1001)</hymn> is leaning more towards being a closing hymn a little bit. <hymn>It Is Well with My Soul (1003)</hymn> has definitely been more common as a closing hymn. Other than the sacrament ones, the data is too sparse to say much yet.</p>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="ladifqvpmc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ladifqvpmc table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#ladifqvpmc thead, #ladifqvpmc tbody, #ladifqvpmc tfoot, #ladifqvpmc tr, #ladifqvpmc td, #ladifqvpmc th {
-  border-style: none;
-}
-
-#ladifqvpmc p {
-  margin: 0;
-  padding: 0;
-}
-
-#ladifqvpmc .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#ladifqvpmc .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#ladifqvpmc .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#ladifqvpmc .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#ladifqvpmc .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#ladifqvpmc .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#ladifqvpmc .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#ladifqvpmc .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#ladifqvpmc .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#ladifqvpmc .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#ladifqvpmc .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#ladifqvpmc .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#ladifqvpmc .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#ladifqvpmc .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#ladifqvpmc .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ladifqvpmc .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#ladifqvpmc .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#ladifqvpmc .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#ladifqvpmc .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ladifqvpmc .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#ladifqvpmc .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ladifqvpmc .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#ladifqvpmc .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ladifqvpmc .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ladifqvpmc .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ladifqvpmc .gt_left {
-  text-align: left;
-}
-
-#ladifqvpmc .gt_center {
-  text-align: center;
-}
-
-#ladifqvpmc .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#ladifqvpmc .gt_font_normal {
-  font-weight: normal;
-}
-
-#ladifqvpmc .gt_font_bold {
-  font-weight: bold;
-}
-
-#ladifqvpmc .gt_font_italic {
-  font-style: italic;
-}
-
-#ladifqvpmc .gt_super {
-  font-size: 65%;
-}
-
-#ladifqvpmc .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#ladifqvpmc .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#ladifqvpmc .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#ladifqvpmc .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#ladifqvpmc .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#ladifqvpmc .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#ladifqvpmc .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">When were new hymns sung in sacramnt meeting?</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Since June 2</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="New Hymn">New Hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Opening">Opening</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Sacrament">Sacrament</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Intermediate">Intermediate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Closing">Closing</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="New Hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="Opening" class="gt_row gt_right">16</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">4</td>
-<td headers="Closing" class="gt_row gt_right">24</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">1</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="Opening" class="gt_row gt_right">2</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">1</td>
-<td headers="Closing" class="gt_row gt_right">8</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
-<td headers="Opening" class="gt_row gt_right">2</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">1</td>
-<td headers="Closing" class="gt_row gt_right">1</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="Opening" class="gt_row gt_right">1</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">3</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
-<td headers="Opening" class="gt_row gt_right">1</td>
-<td headers="Sacrament" class="gt_row gt_right">0</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">0</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">15</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">0</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">7</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">0</td></tr>
-    <tr><td headers="New Hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="Opening" class="gt_row gt_right">0</td>
-<td headers="Sacrament" class="gt_row gt_right">2</td>
-<td headers="Intermediate" class="gt_row gt_right">0</td>
-<td headers="Closing" class="gt_row gt_right">1</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-<p>Finally, we can get an overall look at how popular the new hymns are compared to each other. Again, <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU1a0RH6RwfM3KmkdopDXtxXqPgmDfOVZKhs8PO2EcjOukhQ/viewform">Tom Anderson</a> is distributing a survey on social media to keep track of what hymns new are sung. He has generously allowed me access to the results. Thanks, Tom!</p>
-<p>When combined with my data, we can start to get a good picture of how much more common some hymns are compared to others. Note that the <code>proportion</code> column in this table refers to the proportion of new hymns sung. Another way of thinking of it is this: given that a new hymn will be sung, what are the odds that it’ll be, say, <hymn>Come, Thou Fount of Every Blessing (1001)</hymn>? Here, we can see that <hymn>Come, Thou Fount of Every Blessing (1001)</hymn> is quite a bit more common than rest. We can also see how uncommon others like <hymn>Think a Sacred Song (1006)</hymn> and <hymn>When the Savior Comes Again (1002)</hymn> are.</p>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="evoivmjhpp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#evoivmjhpp table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#evoivmjhpp thead, #evoivmjhpp tbody, #evoivmjhpp tfoot, #evoivmjhpp tr, #evoivmjhpp td, #evoivmjhpp th {
-  border-style: none;
-}
-
-#evoivmjhpp p {
-  margin: 0;
-  padding: 0;
-}
-
-#evoivmjhpp .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#evoivmjhpp .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#evoivmjhpp .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#evoivmjhpp .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#evoivmjhpp .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#evoivmjhpp .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#evoivmjhpp .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#evoivmjhpp .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#evoivmjhpp .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#evoivmjhpp .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#evoivmjhpp .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#evoivmjhpp .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#evoivmjhpp .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#evoivmjhpp .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#evoivmjhpp .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#evoivmjhpp .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#evoivmjhpp .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#evoivmjhpp .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#evoivmjhpp .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#evoivmjhpp .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#evoivmjhpp .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#evoivmjhpp .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#evoivmjhpp .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#evoivmjhpp .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#evoivmjhpp .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#evoivmjhpp .gt_left {
-  text-align: left;
-}
-
-#evoivmjhpp .gt_center {
-  text-align: center;
-}
-
-#evoivmjhpp .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#evoivmjhpp .gt_font_normal {
-  font-weight: normal;
-}
-
-#evoivmjhpp .gt_font_bold {
-  font-weight: bold;
-}
-
-#evoivmjhpp .gt_font_italic {
-  font-style: italic;
-}
-
-#evoivmjhpp .gt_super {
-  font-size: 65%;
-}
-
-#evoivmjhpp .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#evoivmjhpp .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#evoivmjhpp .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#evoivmjhpp .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#evoivmjhpp .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#evoivmjhpp .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#evoivmjhpp .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style="">New hymns' popularity since June 2, 2024?</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Based on 261 sacrament meetings that had new hymns</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wards">wards</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="new hymn">new hymn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="wards" class="gt_row gt_right">91</td>
-<td headers="new hymn" class="gt_row gt_left">Come, Thou Fount of Every Blessing (1001)</td>
-<td headers="proportion" class="gt_row gt_right">47.89%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">28</td>
-<td headers="new hymn" class="gt_row gt_left">As Bread is Broken (1007)</td>
-<td headers="proportion" class="gt_row gt_right">14.74%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">27</td>
-<td headers="new hymn" class="gt_row gt_left">It Is Well with My Soul (1003)</td>
-<td headers="proportion" class="gt_row gt_right">14.21%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">13</td>
-<td headers="new hymn" class="gt_row gt_left">Bread of Life, Living Water (1008)</td>
-<td headers="proportion" class="gt_row gt_right">6.84%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">13</td>
-<td headers="new hymn" class="gt_row gt_left">I Will Walk with Jesus (1004)</td>
-<td headers="proportion" class="gt_row gt_right">6.84%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">9</td>
-<td headers="new hymn" class="gt_row gt_left">His Eye Is on the Sparrow (1005)</td>
-<td headers="proportion" class="gt_row gt_right">4.74%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">4</td>
-<td headers="new hymn" class="gt_row gt_left">Gethsemane (1009)</td>
-<td headers="proportion" class="gt_row gt_right">2.11%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">3</td>
-<td headers="new hymn" class="gt_row gt_left">When the Savior Comes Again (1002)</td>
-<td headers="proportion" class="gt_row gt_right">1.58%</td></tr>
-    <tr><td headers="wards" class="gt_row gt_right">2</td>
-<td headers="new hymn" class="gt_row gt_left">Think a Sacred Song (1006)</td>
-<td headers="proportion" class="gt_row gt_right">1.05%</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-<p>That’s it for now! Stay tuned for next week’s post!</p>
-
-
-
- ]]></description>
-  <category>general</category>
-  <category>frequency</category>
-  <category>new hymns</category>
-  <guid>https://hymnstats.joeystanley.com/posts/new_hymns_week3/</guid>
-  <pubDate>Sun, 09 Jun 2024 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

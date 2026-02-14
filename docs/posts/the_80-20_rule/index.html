@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joey Stanley">
+<meta name="dcterms.date" content="2026-02-13">
+
+<title>The 80:20 rule – LDS Hymn Stats</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c55e9d64ff39e520df18b6c2fd6a6008.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SG4E42NZ2F"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
+</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="The 80:20 rule – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/the_80-20_rule/index_files/figure-html/unnamed-chunk-8-1.png">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="1536">
+<meta name="twitter:title" content="The 80:20 rule – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/the_80-20_rule/index_files/figure-html/unnamed-chunk-8-1.png">
+<meta name="twitter:image-height" content="768">
+<meta name="twitter:image-width" content="1536">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LDS Hymn Stats</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="../../images/logo.jpeg" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#so-do-we-follow-the-8020-rule" id="toc-so-do-we-follow-the-8020-rule" class="nav-link" data-scroll-target="#so-do-we-follow-the-8020-rule">So, do we follow the 80:20 rule?</a></li>
+  <li><a href="#does-it-change-with-the-new-hymns" id="toc-does-it-change-with-the-new-hymns" class="nav-link" data-scroll-target="#does-it-change-with-the-new-hymns">Does it change with the new hymns?</a></li>
+  <li><a href="#changes-over-time" id="toc-changes-over-time" class="nav-link" data-scroll-target="#changes-over-time">Changes over time?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The 80:20 rule</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Joey Stanley </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 13, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 13, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>When talking to people about this hymn stats project, I often hear comments that make reference to the 80:20 rule.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> These comments suggest (usually disparangingly) that 80% of the hymns sung come from 20% of the hymnal. This is something I’ve never looked into directly, so I thought I’d do a brief analysis to see whether these proportions are indeed real.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;This is more formally called the <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a>.</p></div></div><section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>To do this analysis, I had to make some methodological choices. In particular, I had to clearly delineate what counts as a hymn. If we include all hymns that I’ve ever seen in the 90,000 or so sacrament meetings I have data for, that about 512 unique entries. That includes anything from the 1985 hymnal, the new hymns that have come out, 93 different entries from the Children’s Songbook, and another 24 hymns that are either not in the English hymnal or are just other hymns that wards choose to sing. For the purposes of this post, I’ll just focus on the 1985 hymnal and the new hymns that have come out recently. Adding all the other ones increases the denominator in the calculations and when people talk about the 80:20 rule in the hymnal, I don’t think they’re thinking about them anyway.</p>
+<p>Here’s the method to see how close we are to the 80:20 rule.</p>
+<ol type="1">
+<li>I started by taking all 284,216 individual data points I have. Each data point represents an instance of one congregation singing a hymn. So a single sacrament meeting usually contributes three or four observations.</li>
+<li>After filtering out anything that isn’t in the green hymnal or one of the new hymns, I then counted how many times each hymn occurred in the dataset. For example, <hymn>I Stand All Amazed (#193)</hymn> is the most frequent hymn and occurs 4,714 times in my dataset.</li>
+<li>I then took those numbers and converted them to proportions. So, for example, I took the 4,714 instances of <hymn>I Stand All Amazed (#193)</hymn>, and divided it by the 284,216 total observations to get a proportion of 0.0166 So, that one hymn makes up 1.66% of all the hymns sung in my dataset.</li>
+<li>From there, I put the hymns in order from most frequent to least frequent, and calculated the cumulative percent. So, the cumulative percent of the first two hymns is the percent from the most common plus the second most common hymn, <hymn>As Now We Take the Sacrament (#169)</hymn>, which ends up being 3.16%. I then go down the spreadsheet, adding the percents to the total amount, until I get to the bottom where it equals 100%. In the following table, that column is called <code>percent of hymns sung</code>.</li>
+<li>To get a percent of how much of the hymnal corresponds to the percent of hymns sung, I created a new column that is the rank of the hymn, from 1 to 401, which is how many hymns we have between the two collections. I then rescaled those numbers so that instead of going from 1 to 401, they go from 0 to 1. That column is called <code>percent of hymns in the hymnal</code>.</li>
+</ol>
+<p>I know there are probably other ways of calculating this. The biggest factor is whether the new hymns should be included in the calculation. After going through multiple versions of this analysis, I think this method is the best one.</p>
+</section>
+<section id="so-do-we-follow-the-8020-rule" class="level2">
+<h2 class="anchored" data-anchor-id="so-do-we-follow-the-8020-rule">So, do we follow the 80:20 rule?</h2>
+<p>The full table was a little too long to show, so I’ve abbreviated it by highlighting ten or so landmarks. Here is that shortened table and the results of the analysis:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns sung</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns in the hymnal</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">number of hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">2.0%</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20%</td>
+<td style="text-align: right;">4.2%</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">7.2%</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">10.7%</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">15.2%</td>
+<td style="text-align: right;">61</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60%</td>
+<td style="text-align: right;">20.4%</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">26.7%</td>
+<td style="text-align: right;">107</td>
+</tr>
+<tr class="even">
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">80%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">34.4%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">138</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">46.9%</td>
+<td style="text-align: right;">188</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>So, do we follow the 80:20 rule in our hymn singing? Not quite. I’ve highlighted the relevant row: about 80% of the hymns we sing in church come from 34.4% of the hymnal or 138 hymns. So a little over a third of them. The next row down shows that 90% of the hymns that we sing come from 46.9% of the hymnal, which is about 188 hymns.</p>
+<p>So, we don’t follow the 80:20 rule exactly. We follow something like the 80:35 rule. Not as satisfying of a number, but that’s what is reflected in the data.</p>
+<p>To get a feel for all the numbers and what the larger pattern is, here is a plot that shows the complete dataset. The green dots are the same numbers plotted on the table above and are positioned vertically at 10% intervals along the <em>y</em>-axis. The black line connects them and follows the rest of the points.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can see that there’s a tapering off. A relatively small portion of the hymnal accounts for a large percentage of the hymns sung. But as we get into the infrequent hymns, since they’re sung so rarely, they contribute only a small amount to the hymns sung, so it takes many more of them to move the line up.</p>
+<p>This plot shows that yes, about 90% of hymns that are actually sung make up less than half of the hymnal (including the new hymns). The remaining half of the hymnal (about 170 hymns), I’ve heard it jokingly called the “sealed portion.” So even though the “sealed portion” is just as big as the “unsealed” portion, it’s only makes up 10% of the hymns sung.</p>
+<p>But that 10% isn’t nothing. On average, wards sing about 3.13 hymns per sacrament meeting. That means about once every four weeks you might expect a hymn from that “sealed portion.” You might sing 15 of these hymns a year. We can’t expect all hymns to be sung with equal frequency, and I’m glad we have the chance to change things up every few weeks and sing a less common hymn. Removing the “sealed portion” would only exacerbate the perceived problem of singing the same hymns all the time.</p>
+</section>
+<section id="does-it-change-with-the-new-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="does-it-change-with-the-new-hymns">Does it change with the new hymns?</h2>
+<p>I was curious to see what the data looked like before the introduction of the new hymns. Here’s a table that is calculated in the same eway, but it only includes sacrament meetings from before June 2024.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns sung</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns in the hymnal</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">number of hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">2.3%</td>
+<td style="text-align: right;">8.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20%</td>
+<td style="text-align: right;">4.7%</td>
+<td style="text-align: right;">16.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">7.9%</td>
+<td style="text-align: right;">27.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">12.0%</td>
+<td style="text-align: right;">41.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">17.0%</td>
+<td style="text-align: right;">58.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60%</td>
+<td style="text-align: right;">22.9%</td>
+<td style="text-align: right;">78.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">29.6%</td>
+<td style="text-align: right;">101.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">80%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">37.8%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">129.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">50.0%</td>
+<td style="text-align: right;">170.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>So, prior to the introduction of the new hymns, 80% of the hymns sung came from 37.8% of the hymnal. So, a bit higher than the 34.4% we saw above. Granted, this is based on 341 hymns instead of 401 of them, and smaller denominators will result in a larger number if the numerator is the same. Higher numbers here reflect greater diversity in hymn selection. I don’t think that necessarily means we’re focusing on fewer hymns or that we’re singing the same hymns more so than we used to. I think people are excited about the new hymns and are choosing from that smaller pool rather than choosing from the 100 or so infrequent hymns in the 1985 hymnal.</p>
+<p>Here’s a table that shows the same thing but <em>since</em> the introduction of the new hymns.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns sung</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">percent of hymns in the hymnal</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">number of hymns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">2.0%</td>
+<td style="text-align: right;">8.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20%</td>
+<td style="text-align: right;">4.2%</td>
+<td style="text-align: right;">17.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">7.2%</td>
+<td style="text-align: right;">29.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">10.6%</td>
+<td style="text-align: right;">42.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">14.5%</td>
+<td style="text-align: right;">58.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60%</td>
+<td style="text-align: right;">19.7%</td>
+<td style="text-align: right;">79.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">70%</td>
+<td style="text-align: right;">25.9%</td>
+<td style="text-align: right;">104.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">80%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">33.9%</td>
+<td style="text-align: right; background-color: rgba(179, 205, 227, 255) !important;">136.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">46.1%</td>
+<td style="text-align: right;">185.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">96.5%</td>
+<td style="text-align: right;">387.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>So the number drops a little bit to 33.9%. But, we’ve increased the denominator (total number of hymns), so the overall value will go up. Regardless of how I look at the data, the number is still right around 33%–38% of hymns. So I think it’s still safe to say that the pattern we follow is about 80:35, rather than 80:20.</p>
+</section>
+<section id="changes-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="changes-over-time">Changes over time?</h2>
+<p>The above tables and plot are based on all my data pooled together. But I have data spanning many years. Is it possible that that 34.4% has changed over time?</p>
+<p>The following plot shows the same calculation that I described above, but split up by year. I only show from 2015 onward since my data from before then is a bit sparse and therefore unreliable. And I won’t show 2026 quite yet since we’re not far enough into the year to get a good reading of it. The <em>y</em>-axis on this plot shows the percentage of the hymnal it takes to hit 80% of hymns sung.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The most obvious thing in this plot is the dip in 2020. Fewer wards were having in-person meetings. And if they were, not many were singing all three hymns. So since many were singing just sacrament hymns, there wasn’t opportunity to sing too many other ones. I’ve noticed too that the other hymns that wards were singing then tended to be familiar favorites. So, there wasn’t a lot of hymn diversity in 2020. It makes sense then why it took only about 20% of hymns (102 of them) to account for 80% of the hymns sung in church that year.</p>
+<p>The other less obvious trend is the general decline in the past 10 years. Again, lower numbers suggest less hymn diversity in our meetings. However, I’m not 100% convinced this trend is real because the number is dependent on how much data I have and on how many hymns are available at that time, which is not consistent across the years represented in this chart. Maybe the trend in the church generall is indeed real, but if it is, it’s not a very strong pattern, certainly not strong enough to be percieved by people.</p>
+<!-- 
+
+I thought bootstrapping might solve that problem, but there seems to be some issues with weekly analyses. Some weeks are super high and others are super low. Not sure what the problem is.
+
+
+
+-->
+<!-- # A weekly analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>So that’s it. Not too much more I could say here. About 34.4% of the hymnal accounts for 80% of the hymns sung. So, not quite 80:20.</p>
+<p>While this post is largely to satisfy my curiosity, there is one useful application for this. Pianists and organists, particularly new ones, may want to prepare a smaller set of hymns until they’re comfortable sight-reading from the hymnal. Knowing that they would only need to learn 34.4% of hymns to cover 80% of the hymns sung in church may be comforting thought. Or, going back to one of the plots above, learning only about 15% of the hymnal is enough to play half the time. Someone in this position may want to consult the <a href="../../overview">overview page</a> to see a list of hymns in order of frequency. They may find that by learning them in that order is an efficient way to quickly get involved in providing music for church meetings.</p>
+<p>While 34.4% may seem low to some people, in fairness, I think lots of things in nature and in human behavior behave this way. Particularly categorical variables like hymns in a hymnal. I don’t see this as a flaw or a problem at all and I think we should enjoy the infrequent hymns when they come up and enjoy the frequent hymns when they are sung.</p>
+
+
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
