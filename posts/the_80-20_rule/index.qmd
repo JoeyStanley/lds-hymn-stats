@@ -503,3 +503,34 @@ While this post is largely to satisfy my curiosity, there is one useful applicat
 
 While `r num_8020` may seem low to some people, in fairness, I think lots of things in nature and in human behavior behave this way. Particularly categorical variables like hymns in a hymnal. I don't see this as a flaw or a problem at all and I think we should enjoy the infrequent hymns when they come up and enjoy the frequent hymns when they are sung. 
 
+```{r, eval = FALSE}
+freqs |> 
+    filter(hymn_num %in% c(1:341),
+           date <= ymd("2024-06-01"),
+           !is.na(type)) |>
+    
+    count(name_num, type) |> 
+    mutate(prop = n/sum(n), .by = type) |> 
+    arrange(-n) |> 
+    mutate(cumprop = cumsum(prop),
+           rank = rank(-prop),
+           proprank = rank/341,
+           .by = type) |> 
+    
+    # Get the landmarks
+    mutate(rank_mod = cumprop %% 0.1,
+           new_landmark = rank_mod <= lag(rank_mod)) |> 
+    
+    filter(new_landmark) |> 
+    
+    ggplot(aes(proprank, cumprop, color = type)) + 
+    geom_path() +
+    scale_x_continuous(breaks = seq(0, 1, 0.1), label = label_percent(), expand = expansion(0, 0.01)) + 
+    scale_y_continuous(breaks = seq(0, 1, 0.1), label = label_percent(), expand = expansion(0, 0.01)) + 
+    # scale_color_manual(values = c("gray20", ptol_green)) + 
+    # scale_size_manual(values = c(, 3)) + 
+    labs(x = "percent of hymns in the hymnal",
+         y = "percent of hymns sung") + 
+    theme_minimal()
+```
+
