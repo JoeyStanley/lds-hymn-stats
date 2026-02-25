@@ -1,0 +1,46 @@
+---
+title: "Has it become more common to sing songs from the Children's Songbook?"
+author: "Joey Stanley"
+date: 2026-02-06
+date-modified: last-modified
+categories:
+number-sections: true
+number-depth: 3
+reference-location: margin
+draft: TRUE
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+
+
+```{r}
+prop_children <- freqs |> 
+    
+    # filter date range
+    filter(year >= 2022,
+           date <= today()) |> 
+    
+    # Classify hymns
+    mutate(books = case_when(hymn_num %in% 1:341 ~ "1985 book",
+                             hymn_num %in% 1001:1250 ~ "new hymnal",
+                             hymn_num > 2000 ~ "children's songbook",
+                             TRUE ~ "other")) |> 
+    
+    # Count how many per collection per date, get a total per date, and a proportion per collection
+    count(books, date) |> 
+    mutate(total = sum(n), .by = date) |> 
+    pivot_wider(names_from= books, values_from = n, values_fill = 0) |> 
+    mutate(prop_children = `children's songbook` / total)
+
+ggplot(prop_children, aes(date, prop_children)) + 
+    geom_point() + 
+    scale_y_continuous(breaks = seq(0, 0.05, 0.005), labels = percent)
+```
+
+This is dependent on how far back I've swept the Ward Bullet stuff. Revisit this post once I've swept past at least to April 2022, which I think is a year before they added the feature where people can add the hymns to the Library app. 
