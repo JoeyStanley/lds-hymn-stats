@@ -1,10 +1,12 @@
 ---
-title: "New to 1985"
+title: "Which hymns were new in 1985 and how popular have they been since then?"
 author: "Joey Stanley"
-date: "2024-04-06"
+date: "2026-02-26"
 categories:
+    - general
 reference-location: margin
-draft: TRUE
+number-sections: true
+number-depth: 3
 ---
 
 ```{r, include = FALSE}
@@ -16,18 +18,515 @@ library(gt)
 ```
 
 
+
+We are in the middle of a gradual rollout of new hymns. It's an exciting time! But it's not the first time the church has introduced new hymns as part of a new hymns. So, I thought it'd be interesting to look at the 92 hymns that were new to the 1985 hymnal to see how they have fared over the past 41 years. Perhaps by looking at how the formally new hymns are used now, we can make a guess for how the current new hymns will be used over the next 41 years. 
+
+:::{.callout-note}
+The list of hymns that I am working with is from [this Reddit post](https://www.reddit.com/r/latterdaysaints/comments/1e9rvqk/changes_from_the_1950_to_the_1985_hymnbook/), posted on r/LatterDaySaints on July 22, 2024 by an anonymous user. That post takes information that was originally found in the 1988 book [*Our Latter-day Hymns: The Stories and The Messages*](https://www.deseretbook.com/product/5087800.html?srsltid=AfmBOoqiJOiVqd0mAq5cyMCVlzuhxcisrRkQvVrfKfW6LFWHK3UYKCpE) by Karen Lynn Davidson. I'll admit I haven't fact-checked the Reddit post to the original book, so I acknowledge that there may be a few errors in this post.
+:::
+
+## New in what way?
+
+I'll start off by examining the list of hymns and dividing them into categories of their "newness." As it turns out, there are lots of different ways that a hymn can be new, and it's interesting to see those differences. For each category, I also include examples from the first five batches of new hymns in *Hymns for Home and Church*. Let's break down these hymns and look at what I mean by "new".
+
 ```{r}
-new_hymns <- c(8, 22, 28, 47, 71, 81, 113, 123, 128, 129, 130, 134, 135, 137, 138, 139, 148, 151, 154, 155, 168, 169, 171, 198, 220, 253, 261, 263, 277, 279, 281, 287, 290, 291, 293, 295, 297, 298, 309, 310, 311, 320, 325, 329)
+# New Latter-day Saint Compositions
+totally_new <- c(8, 22, 28, 47, 71, 81, 113, 123, 128, 129, 130, 134, 135, 137, 138, 139, 148, 151, 154, 155, 168, 169, 171, 198, 220, 253, 261, 263, 277, 279, 281, 287, 290, 291, 293, 295, 297, 298, 309, 310, 311, 320, 325, 329)
+
+# Hymns and Songs Previously Published in Latter-day Saint Music Collections
+previous_lds <- c(64, 176, 249, 264, 300, 301, 302, 303, 304, 305, 306, 307, 308, 327)
+
+# Newly Borrowed Non-Latter-day Saint Texts and Tunes
+new_to_us <- c(60, 69, 82, 84, 86, 92, 93, 124, 203, 205, 206, 219, 265, 296, 299)
+
+# New Latter-day Saint Texts with Newly Borrowed Non-Latter-day Saint Tunes
+new_text <- c(12, 143, 197, 231, 256)
+
+# Texts from the 1950 Hymnbook with New Latter-day Saint Tunes
+new_tune <- c(24, 51, 56, 57, 188, 240)
+    
+# Texts from the 1950 Hymnbook with Newly Borrowed Non- Latter-day Saint Tunes
+borrowed_tune <- c(15, 41, 46, 48, 54, 283, 284, 324)
 ```
 
 
 ```{r}
-single_hymn_lookup(new_hymns)
+length(totally_new)
 ```
 
-```{r, fig.height = 5, fig.width = 5}
+### New compositions
+
+The largest category of new hymns are ones with brand new texts and tunes. These 44 hymns are entirely new compositions. Among the most popular of these include <hymn>As Now We Take the Sacrament (#169)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, and <hymn>Press Forward, Saints (#81)</hymn>. Some analogous ones in the *Hymns for Home and Church* would be <hymn>As Bread Is Broken (#1007)</hymn> or <hymn>To Love like Thee (#1019)</hymn>. The following figure shows these hymns in order of frequency. 
+```{r, include = TRUE, fig.height = 5.5, fig.width = 8}
 freqs |> 
-    filter(hymn_num %in% new_hymns) |> 
-    cleveland_plot()
+    filter(date < ymd("2024-06-01")) |> 
+    cleveland(hymns_to_plot = totally_new) + 
+    scale_x_continuous(expand = expansion(0, c(0, 1)),
+                       breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1)) + 
+    labs(title = "Frequency of new compositions in the 1985 hymnal",
+         subtitle = "Through May 2024")
 ```
 
+We have some very commonly sung ones, including sacrament and non-sacrament hymns. We also have some that are not sung very often at all, including some men's and women's hymns at the back of the hymnal and others. So in this category, we have the full range of hymns. 
+
+
+### Previously-published LDS hymns
+
+The next category of hymns are ones that were previously published in various church music publications or were otherwise part of the music repertoire of the church and then became "canonized" by being put into the hymnal in 1985. 
+
+One of the more popular ones from this category include <hymn>Teach Me to Walk in the Light (#304)</hymn>. According to [this write-up](https://www.reliefsocietywomen.com/blog/2011/02/28/my-heavenly-father-loves-me/https://www.reliefsocietywomen.com/blog/2011/02/28/my-heavenly-father-loves-me/), this hymn was written by Clara W. McMaster in 1958. McMaster was a member of the Primary General Board and a member of the Mormon Tabernacle Choir. She was asked to write a piece for the General Primary Conference. It was too late to be incorporated into the previous hymnal, so it wasn't until 1985, 27 years later, when it became "official."
+
+Some of the more popular hymns in *Hymns for Home and Church* that would belong in this category include <hymn>I Will Walk with Jesus (#1004)</hymn>, which was debuted in the [November 2019 Face to Face broadcast](https://www.youtube.com/watch?v=1xUFtZcFI8g). Others include <hymn>Gethsemane (#1009)</hymn>, <hymn>This Is the Christ (#1017)</hymn>, and <hymn>Faith In Every Footstep (#1022)</hymn>. 
+
+Here is a plot showing the popularity of the hymns that fall into this category in the 1985 hymnal. There are fewer of them and they span a range of frequencies. Some are pretty popular, being sung one or more times per year on average per ward. Others are far less common. 
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+freqs |> 
+    filter(date < ymd("2024-06-01")) |> 
+    cleveland(hymns_to_plot = previous_lds) + 
+    scale_x_continuous(expand = expansion(0, c(0, 1)),
+                       breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1)) + 
+    labs(title = "Frequency of previously-published LDS hymns in the 1985 hymnal",
+         subtitle = "Through May 2024")
+```
+
+One pattern that I can't help but notice is that many of the new hymns that fall into this category were originally written for children. The same is true for the *Hymns for Home and Church*. While that's not necessarily a bad thing, I've shown already that [hymns arranged for unison singing tend to be a little less popular than ones arranged for SATB](/posts/new_hymns_general). In general though, these ones from the 1985 hymnal are doing pretty well---better on average than the other brand new compositions. In the second half of this post, I show statistical support for that. If the trend holds true in the latest rollout of new hymns, we may see that these new hymns get a little more common as the years pass.
+
+### New English translations
+
+One sub-category that I should mention is that there are hymns that are new to the English hymnal because they are (new) translations of hymns in Latter-day Saint hymnals in other languages. There are several among the new hymns, like <hymn>God's Gracious Love (#1013)</hymn> and <hymn>I Can’t Count Them All (#1029)</hymn> from Swedish, <hymn>Come, Hear the Word the Lord Has Spoken (#1031)</hymn> from Dutch, and <hymn>Jesus Is the Way (#1045)</hymn> from Tongan. I don't know of any new English translations like this in the 1985 hymnal, so I won't explore this category further, but I thought I'd mention it anyway.
+
+
+### Existing Christian hymns
+
+The next category includes hymns that previously existed in Christiandom but for whatever reason were not included in an LDS hymnal. The most popular one in this category is <hymn>Because I Have Been Given Much (#219)</hymn>. According to [hymnary.org](https://hymnary.org/text/because_i_have_been_given_much), this was written in 1930 by Grace Noll Crowell, a prolific poet from Iowa. I can't find any information about her religious affiliation, but there's nothing about her being a member of the Church of Jesus Christ of Latter-day Saints. The hymn has been published in 16 hymnals---not a tremendous amount---as early as the 1937. Including it in our 1948/1950 hymnal followed the trend of several other churches at the time.
+
+There are lots of recent new hymns that fall into this category. One of the most popular is <hymn>It Is Well with My Soul (#1003)</hymn>, which was written by Horatio Gates Spafford in 1873 and is found in [hundreds](https://hymnary.org/text/when_peace_like_a_river_attendeth_my_way) of hymnals. Others include <hymn>Behold the Wounds in Jesus' Hands (#1016)</hymn>, <hymn>Go Tell It on the Mountain (#1208)</hymn>, and  and <hymn>What Child is This? (#1203)</hymn>.
+
+The following plot shows the popularity of these hymns from the 1985 hymnal. Two have become very popular and are sung one or more times a year on average: <hymn>Because I Have Been Given Much (#219)</hymn> and <hymn>For the Beauty of the Earth (#92)</hymn>. 
+
+```{r, include = TRUE, fig.height = 3, fig.width = 8}
+freqs |> 
+    filter(date < ymd("2024-06-01")) |> 
+    cleveland(hymns_to_plot = new_to_us) + 
+    scale_x_continuous(expand = expansion(0, c(0, 1)),
+                       breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1)) + 
+    labs(title = "Frequency of newly borrowed Christian hymns in the 1985 hymnal",
+         subtitle = "Through May 2024")
+```
+
+As will be shown below, this category tends to produce commonly sung hymns. I suspect that we will see more of these hymns from other Christian hymnals being incorporated into the new hymnal and if the data from the past 40 years is any indicator, we may find that these new ones in *Hymns for Home and Church* are likewise among the more common hymns.
+
+### New texts with newly borrowed tunes
+
+The next categories of hymns are ones that are partially new. These are ones where either the text or the tune already existed in the previous edition of the hymnal from the 1950s but were paired with something new---or at least new to us. It may seem weird to mix and match texts with tunes, but keep in mind that that was once common practice, which is why we have a meters index in the back of the 1985 hymnal. My understanding is that it's a relatively recent thing for a text and tune to be tightly associated with each other. 
+
+The first category in this type are hymns where the lyrics are new and they were paired with tunes that already existed but not in our hymnal. So, someone who is unaware of hymns outside of our church would see these as new compositions while converts would at least recognize the melody. There are only five hymns that fit this category, the most popular of which is <hymn>Let the Holy Spirit Guide (#143)</hymn>, which is [unique](https://hymnary.org/text/let_the_holy_spirit_guide) to LDS hymnals. The tune was written by Martin Shaw around 1915 is called GENTLE JESUS. It has been paired with other lyrics, which you can explore [here](https://hymnary.org/tune/gentle_jesus_shaw). Another one is <hymn>As Zion's Youth in Latter Days (#256)</hymn>, which uses the tune from an Irish melody.^[7th grader me was surprised to hear that melody in a piece we played in band class!]
+
+One example of this kind of hymn in the newly-released collection is <hymn>Let Easter Anthems Ring (#1205)</hymn>. The text is new. It was written in 2012 by Larry A. Hiller, who worked as a writer for the Church magazines, and was published in the [April 2012 *Ensign*](https://www.churchofjesuschrist.org/study/ensign/2012/04/rise-up-ye-saints-rejoice?lang=eng). It was paired with DIADEMATA, a very popular tune in Christian hymns. It was written in 1868 and is most often paired with the text ["Crown Him With Many Crowns"](https://hymnary.org/tune/diademata_elvey). 
+
+Here is a plot showing the popularity of the five hymns in this category in the 1985 hymnal. There are two that are somewhat common, one that is only sung about once every five years, and two that are very uncommon.
+
+```{r, include = TRUE, fig.height = 2, fig.width = 8}
+freqs |> 
+    filter(date < ymd("2024-06-01")) |> 
+    cleveland(hymns_to_plot = new_text) + 
+    scale_x_continuous(expand = expansion(0, c(0, 1)),
+                       breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1)) + 
+    labs(title = "Frequency of hymns with new lyrics and newly borrowed tunes in the 1985 hymnal",
+         subtitle = "Through May 2024")
+
+```
+
+### Existing texts with new tunes
+
+The previous category was about new texts being paired with existing tunes. This category is the opposite: texts that existed in the previous hymnal but were paired with newly written tunes. One example of this is the <hymn>God Bless Our Prophet Dear (#24)</hymn>. The text was written by Bernard Shaw in the 19th century but the tune is called EPHRAIM and was written by Harry A. Dean sometime around 1985, so presumably for the 1985 hymnal. As far as I can tell, there aren't any hymns that quite fit this description in the newly released hymns.
+
+The following plot shows the six hymns that fit this category in the 1985 hymnal. As you can see, <hymn>Thy Will, O Lord, Be Done (#188)</hymn> stands out because it's a sacrament hymn. None of the rest are very common. Personally, I'm surprised that <hymn>God Bless Our Prophet Dear (#24)</hymn> isn't more common since it's a perfectly good hymn.^[Perhaps <hymn>We Thank Thee, O God, For a Prophet (#19)</hymn> has monopolized situations where singing a prophet-related hymn would be appropriate!] The last one, <hymn>Sons of Michael, He Approaches (#51)</hymn> is the rarest hymn in the 1985 hymnal, excluding some of the men's and women's arrangements in the back.
+
+
+```{r, include = TRUE, fig.height = 2.25, fig.width = 8}
+freqs |> 
+    filter(date < ymd("2024-06-01")) |> 
+    cleveland(hymns_to_plot = new_tune) + 
+    scale_x_continuous(expand = expansion(0, c(0, 1)),
+                       breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1)) + 
+    labs(title = "Frequency of hymns with existing lyrics but newly written tunes in the 1985 hymnal",
+         subtitle = "Through May 2024")
+
+```
+
+So, pairing a familiar text with a new tune was not a very common thing even 40 years ago and I suspect it'll be at least as rare if not rarer. Perhaps a music historian or something can write to me if they know whether mixing-and-matching tunes with texts is less common than it used to be generally.
+
+### New texts with existing tunes
+
+One type of new hymn that is worth mentioning is a newly written text paired with a tune that already existed in the hymnal. As far as I know, we didn't see this in the 1985 hymnal. *Technically*, we have one so far among the new hymns. The text to <hymn>Our Prayer to Thee (#1048)</hymn> was newly written by Russell M. Nelson. The tune may seem new but it was actually used in the hymn <hymn>O Home Beloved (#337)</hymn>. In the over 90,000 sacrament meetings I have data from, *not one* has sung that hymn. It's a nice tune though, so I'm glad they were able to repurpose it for a hymn that will likely become pretty popular. 
+
+### Existing texts with existing tunes
+
+The last category of hymns includes ones where there was an existing text in the earlier hymnal but the tune was changed to something that already existed outside our church and was newly borrowed for the 1985 hymnal. One hymn in this category is <hymn>If You Could Hie To Kolob (#284)</hymn>. The text was written by William W. Phelps and was published in 1856. In the 1948/1950 hymnal, it was [paired](https://singpraises.net/texts/284/if-you-could-hie-to-kolob) with a tune called [KOLOB](https://hymnary.org/tune/if_you_could_hie_to_kolob_daynes), written by Joseph J. Daynes. In 1985, it was [changed](https://www.thetabernaclechoir.org/articles/if-you-could-hie-to-kolob-mormon-tabernacle-choir.html?lang=eng) to a traditional English folk tune attributed to Ralph Vaughan Williams.^[I remember playing that traditional tune in middle school band class too!]
+
+The one partial case that I can find in the new hymnal is the last verse of <hymn>His Voice as the Sound (#1040)</hymn>. The tune is an American folk tune called SAMANTHRA. The lyrics come from a poem written by Joseph Swain in the 1800s and are mostly new to us. But the last verse also appears as the sixth verse of <hymn>Redeemer of Israel (#6)</hymn>. From what I can tell, this verse historically pairs with the other verses in <hymn>His Voice as the Sound (#1040)</hymn> and it was William W. Phelps who borrowed just the one stanza to be included in <hymn>Redeemer of Israel (#6)</hymn>. 
+
+Here are the the hymns from the 1985 hymnal that fall into this category. As you can see, there aren't too many of them and none are especially popular.
+
+```{r, include = TRUE, fig.height = 2.25, fig.width = 8}
+freqs |> 
+    filter(date < ymd("2024-06-01")) |> 
+    cleveland(hymns_to_plot = borrowed_tune) + 
+    scale_x_continuous(expand = expansion(0, c(0, 1)),
+                       breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1)) + 
+    labs(title = "Frequency of hymns with existing texts and existing tunes in the 1985 hymnal",
+         subtitle = "Through May 2024")
+```
+
+
+### Interim summary
+
+So, there are about eight different ways that a hymn can be new:
+
+1. Brand new compositions (<hymn>Press Forward, Saints (#81)</hymn> or <hymn>As Bread Is Broken (#1007)</hymn>)
+1. Previously published Latter-day Saints hymns (<hymn>Teach Me to Walk in the Light (#304)</hymn> or <hymn>I Will Walk with Jesus (#1004)</hymn>)
+1. New English translations of Latter-day Saint hymns in other languages (<hymn>Jesus Is the Way (#1045)</hymn>)
+1. Existing Christian hymns with an established tune and text pair (<hymn>Because I Have Been Given Much (#219)</hymn> or <hymn>It Is Well with My Soul (#1003)</hymn>)
+1. New texts with tunes that already existed but are new to us (<hymn>Let the Holy Spirit Guide (#143)</hymn> or <hymn>Let Easter Anthems Ring (#1205)</hymn>)
+1. Texts that already existed in the hymnal but were paired with newly composed tunes (<hymn>God Bless Our Prophet Dear (#24)</hymn>)
+1. Newly written texts that are paired with with a tune that was already in the hymnal (<hymn>Our Prayer to Thee (#1048)</hymn>)
+1. Pairing an existing text with a tune that existed alrady but not in our hymnal (<hymn>If You Could Hie To Kolob (#284)</hymn> or <hymn>His Voice as the Sound (#1040)</hymn>)
+
+Just in sheer numbers, the brand new category is the biggest in the 1985 hymnal. That's followed by previously published LDS hymns and borrowing established Christian hymns. 
+
+The following plot shows all 92 new hymns, color-coded by their category. As you can see, these range from very common sacrament hymns all the way down to extremely uncommon hymns and choir arrangements. 
+
+```{r, include = TRUE, fig.height = 10, fig.width = 8}
+new_hymns <- c(totally_new, previous_lds, new_to_us, new_text, new_tune, borrowed_tune)
+freqs |> 
+    filter(date < ymd("2024-06-01")) |> 
+    mutate(category = case_when(hymn_num %in% totally_new ~ "totally new",
+                                hymn_num %in% previous_lds ~ "previous LDS",
+                                hymn_num %in% new_to_us ~ "newly borrowed",
+                                hymn_num %in% new_text ~ "new text with borrowed tune",
+                                hymn_num %in% new_tune ~ "existing text with new tune",
+                                hymn_num %in% borrowed_tune ~ "existing text with borrowed tune",
+                                TRUE ~ "not new")) |> 
+    cleveland(hymns_to_plot = new_hymns, extra_cols = category, color = category) + 
+    ggthemes::scale_color_ptol() + 
+    scale_x_continuous(expand = expansion(0, c(0, 1)),
+                       breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1)) + 
+    labs(title = "Frequency of hymns with existing texts and existing tunes in the 1985 hymnal",
+         subtitle = "Through May 2024")
+
+```
+
+The question I have now is this: all things considered, which category is the most likely to produce commonly sung hymns? Let's jump into a statistical analysis to explore that a little further.
+
+## Which categories are most popular?
+
+Recently, I did [an analysis](/posts/new_hymns_general) of the 60 new hymns from the first five batches. The analysis was among my more technical posts since I dive into some actual statistics. 
+
+The gist is this though: I wanted to see what factors influence how common a new hymn has been so far. I included things like what batch it came from, whether it was arranged in SATB or in unison, whether it has a more complex "flow", whether it's a holiday hymn, whether it's a sacrament hymn, and whether it's an existing hymn. I'll apply the same methods here as I did in that analysis, although I won't go into as much detail on the statistical side of things.
+
+
+```{r}
+n_unique_meetings <- freqs |> 
+    filter(date < ymd("2024-06-01")) |>
+    pull(meeting_id) |> 
+    length()
+
+get_n_times_sung <- function(.hymn_num) {
+    freqs |> 
+        filter(hymn_num == .hymn_num) |> 
+        nrow()
+}
+
+weekly_results <- name_num_lookup |> 
+    filter(hymn_num %in% new_hymns) |>
+    mutate(hymn_num = as.integer(hymn_num)) |>
+
+    # Basic info
+    mutate(times_sung = map_int(hymn_num, get_n_times_sung),
+           prop_wards = times_sung / n_unique_meetings,
+           log_prop_wards = log(prop_wards)) |> 
+
+    # Mark the holidays and other special hymns (not used in plot)
+    mutate(is_christmas = hymn_num %in% c(201:2014),
+           is_easter    = hymn_num %in% c(197:200),
+           is_sacrament = hymn_num %in% c(169:196),
+           category = case_when(hymn_num %in% totally_new ~ "totally new",
+                                hymn_num %in% previous_lds ~ "previous LDS",
+                                hymn_num %in% new_to_us ~ "newly borrowed",
+                                hymn_num %in% new_text ~ "new text with borrowed tune",
+                                hymn_num %in% new_tune ~ "existing text with new tune",
+                                hymn_num %in% borrowed_tune ~ "existing text with borrowed tune",
+                                TRUE ~ "not new"),
+           is_childrens = hymn_num %in% 300:308,
+           is_arrangement = hymn_num %in% 309:337,
+           not_satb = !hymn_num %in% c(82, 82, 154, 219, 220, 249, 256, 
+                                       300, 302, 303, 304, 306, 308, 309:337)) |> 
+    filter(hymn_num != 329) |> # never attested
+    print()
+```
+
+```{r}
+ggplot(weekly_results, aes(category, prop_wards)) + 
+    geom_boxplot()
+new_order <- weekly_results |> 
+    summarize(prop_wards = median(prop_wards), .by = category) |> 
+    arrange(prop_wards) |> 
+    print() |> 
+    pull(category)
+# weekly_results <- weekly_results |> 
+    # mutate(category = fct_relevel(category, levels = new_order))
+weekly_results <- weekly_results |>
+    mutate(category = fct_relevel(category, "previous LDS"))
+```
+
+
+```{r}
+# Do a BoxCox transformation
+(boxcox_lambda <- BoxCoxLambda(weekly_results$prop_wards))
+weekly_results <- weekly_results |> 
+    mutate(prop_wards_trans = BoxCox(prop_wards, lambda = boxcox_lambda))
+
+(shapiro_test <- shapiro.test(weekly_results$prop_wards_trans))
+shapiro_test
+
+weekly_results |> 
+    arrange(prop_wards_trans)
+
+ggplot(weekly_results, aes(prop_wards_trans)) + 
+    geom_histogram()
+
+# Not quite normal, mostly because of the many infrequent hymns.
+```
+
+```{r}
+weekly_results |> 
+    mutate(prop_wards = log(prop_wards)) |> 
+    ggplot(aes(prop_wards)) + 
+    geom_histogram()
+```
+
+```{r}
+mdl <- weekly_results |> 
+    lm(prop_wards_trans ~ 
+           #is_christmas + 
+           #is_easter + 
+           is_sacrament + 
+           category + 
+           #is_childrens +  
+           #not_satb + 
+           is_arrangement, 
+       data = _)
+summary(mdl)
+BIC(mdl)
+```
+
+```{r}
+(w_resid <- round(shapiro.test(residuals(mdl))$statistic, 3))
+(p_resid <- round(shapiro.test(residuals(mdl))$p.value, 3))
+(mdl_adjr2 <- round(summary(mdl)$adj.r.squared[1], 3))
+```
+
+
+:::{.callout-note title="Statistical details for nerds" collapse="true"}
+For those that are curious, I ran a linear regression model on the 91 observations in this dataset. I excluded <hymn>Thy Servants Are Prepared [Men's Choir] (#329)</hymn> because it never occurred in my dataset. The dependent variable was the the proportion of meetings each hymn has been sung in in my dataset up through June 1, 2024. I did a Box-Cox transformation on the data to help satisfy the assumption of normality in the residuals. 
+
+For independent variables, I included the category it belongs to from the categories listed above, whether it's a Christmas hymn, whether it's an Easter hymn, whether it's a sacrament hymn, whether it's a children's hymn (i.e. hymns 301--308), whether it's a men's/women's arrangement (i.e hymns 309--337), and whether it's arranged in something other than straight SATB. All were binary variables except for category. 
+
+That's a lot of variables for not a lot of data and I didn't want the a bunch of nonsignificant predictors to chew up the statistical power for analyzing the category variable, which was my primary focus. So, I removed variables iteratively in a step-down procedure until I settled on a model that had the lowest BIC score. Doing so removed the variables for Easter, Christmas, Children's and not-SATB arrangements and retained category, sacrament and whether it's an arrangement. (That makes sense: sacrament hymns make a hymn way more popular and arrangements make a hymn way less popular.) 
+
+The model was a pretty good fit to the data with an $R^2$ values of `r mdl_adjr2`. A Shapiro-Wilk test suggests that the residuals were normal ($W$ = `r w_resid`, $p$ = `r p_resid`). 
+
+Here is the summary for the final model:
+
+```{r, include = TRUE}
+summary(mdl)
+```
+
+:::
+
+
+
+```{r}
+library(broom)
+summary(mdl)
+pred_sac <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(pred_prop = mean(pred_prop), .by = is_sacrament)
+
+(diff_sac <- paste0(round(abs((pred_sac$pred_prop[[2]] - pred_sac$pred_prop[[1]]) * 100), 2), "%"))
+(prop_sac <- round(pred_sac$pred_prop[[2]] / pred_sac$pred_prop[[1]], 2))
+```
+
+```{r}
+pred_arr <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(pred_prop = mean(pred_prop), .by = is_arrangement)
+
+(diff_arr <- paste0(round(abs((pred_arr$pred_prop[[2]] - pred_arr$pred_prop[[1]]) * 100), 2), "%"))
+(prop_arr <- round(pred_arr$pred_prop[[1]] / pred_arr$pred_prop[[2]], 2))
+```
+
+Before I get to my primary focus, the category, I'll first explain the other variables. I found that whether a hymn is an Easter hymn, a Christmas hymn, a children's hymn, or an arrangement that isn't a straightforward SATB had no influence on how popular it was, once all the other variables were accounted for. I did find however, unsurprisingly, that sacrament hymns were more popular. On average, holding all other things equal, if a hymn is a sacrament hymn it was sung in `r diff_sac` more sacrament meetings, making it `r prop_sac` times more popular than a non-sacrament hymn. Also unsurprisingly, if a hymn is marked as a men's or women's arrangement, it was quite a bit less popular. It was sung in `r diff_arr` fewer sacrament meetings, which may not seem like a lot until you realize that the average number of sacrament meetings for these hymns in about 0.52%. Overall, these arrangements are a whopping `r prop_arr` times less popular than an equivalent SATB hymn. 
+
+
+```{r}
+weekly_results |> 
+    ggplot(aes(prop_wards)) + 
+    geom_histogram()
+summary(weekly_results$prop_wards*100)
+```
+
+As interesting as that is, now let's focus on the whole point of this blog post---seeing whether the category of new hymn has an influence on how popular a hymn was after being introduced in the 1985 hymnal. The following table shows the percent of sacrament meetings each hymn is predicted to be in each week. This is after accounting for whether it's a sacrament hymn and whether it's a women's or men's arrangement.
+
+```{r, include = TRUE}
+pred_percents <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    summarize(across(c(pred_prop), mean),
+              n = n(),
+              .by = category) |> 
+    mutate(n_per_year = pred_prop * 48,
+           every_n_years = 1/n_per_year)
+    
+pred_percents |> 
+    mutate(`percent of meetings` = paste0(round(pred_prop * 100, 2), "%"),
+           n_per_year = round(n_per_year, 2),
+           every_n_years = round(every_n_years, 1)) |> 
+    arrange(-pred_prop) |> 
+    select(-pred_prop) |> 
+    rename(`n hymns` = n,
+           `times per year` = n_per_year,
+           `every n years` = every_n_years) |> 
+    gt() |> 
+    cols_align(align = "left", columns = "category") |> 
+    tab_header(title = "Estimated popularity new-to-1985 hymns are sung in, by category") |> 
+    tab_footnote(footnote = "Based on 91 new hymns in the 1985 hymnal, after accounting for whether a hymn is a sacrament hymn and whether it's a women's or men's arrangement.")
+```
+
+```{r}
+prop_sac_meetings <- augment(mdl, data = weekly_results) |> 
+    mutate(pred_prop = BoxCoxInv(.fitted, lambda = boxcox_lambda)) |> 
+    pull(pred_prop) |> 
+    sum()
+prop_sac_meetings
+```
+
+Here you can see that the most popular new hymns in the 1985 hymnal are ones that were previously published in some Latter-day Saint publication already. Each of these hymns accounts for about 0.82% of sacrament meetings, which is about 0.39 times per year, or once every 2.5 years. That number may not seem like a lot, but keep in mind that there are 14 hymns in this category and, on average, all 14 will be sung every two and a half years. So, you'll likely see one about every other month. The totally new ones were less popular, but between the 48 of them, you're also likely to see one about every other month. Adding all these together, it looks like at least one of the 91 hymns was sung in 34% of sacrament meetings. That means people have been singing at least one "new" hymn every three weeks for 41 years.
+
+```{r}
+freqs |> 
+    filter(date >= ymd("2024-06-01")) |> 
+    summarize(n_new_hymn = sum(hymn_num %in% 1000:1250) > 0, .by = meeting_id) |> 
+    count(n_new_hymn) |> 
+    mutate(prop = n/sum(n)) |> 
+    print()
+
+freqs |> 
+    filter(date >= ymd("2024-06-01")) |> 
+    count(is_new = hymn_num %in% 1000:1250) |> 
+    mutate(prop = n/sum(n)) |>
+    print()
+```
+
+To put that in today's terms that's like seeing one of those four-digit new hymns every three weeks for the next several decades. 
+
+That's actually pretty close to the numbers we actually see. I have data from 50,340  sacrament meetings since the new hymns came out. Of those, 20,010, or 39.7%, contained at least one new hymn. So, we've been a little more eager to sing new hymns in 2024--2026 than we were in 2002--2024, but after a decade or so I suspect that those numbers will wane a little bit and we'll settle to about the same range. 
+
+```{r, cache = TRUE}
+n_sacrament   <- sum(new_hymns %in% 169:196)
+n_arrangement <- sum(new_hymns %in% 309:337)
+n_others <- sum(!new_hymns %in% c(169:196, 309:337))
+get_sample_of_hymns <- function(.i) {
+    set.seed(.i)
+    random_sacrament   <- sample(169:196, size = n_sacrament,   replace = FALSE)
+    random_arrangement <- sample(309:337, size = n_arrangement, replace = FALSE)
+    random_others      <- sample(c(1:168,197:308,338:341), size = n_others, replace = FALSE)
+    c(random_sacrament, random_arrangement, random_others)
+}
+get_prop_sac_meetings <- function(.hymn_nums) {
+    freqs |> 
+        filter(date <= ymd("2024-06-01")) |> 
+        summarize(n_in_sample = sum(hymn_num %in% .hymn_nums) > 0, .by = meeting_id) |> 
+        count(n_in_sample) |> 
+        mutate(prop = n/sum(n)) |> 
+        filter(n_in_sample) |> 
+        pull(prop)
+}
+
+# Takes about 2 minutes
+start_time <- Sys.time()
+random_sets <- tibble(iteration = 1:1000) |> 
+    mutate(hymn_nums = map(iteration, get_sample_of_hymns),
+           prop = map_dbl(hymn_nums, get_prop_sac_meetings)) |> 
+    print()
+Sys.time() - start_time
+beepr::beep()
+
+```
+
+Now, maybe it's the case that there's nothing special about those new hymns. Maybe any random selection of 91 hymns would be sung in about a third of the sacrament meetings. So, to test that, I got a random sample of 91 hymns from the 1985 hymnal, ensuring that exactly four of them were sacrament hymns and exactly eight of them were arrangements at the back of the hymnal, just as we see with the 1985 new hymns. I then queried my data from before June 2024 and got the proportion of sacrament meetings that contained at least one of those hymns. I repeated that experiment 1000 times. The figure below shows the results of that.
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+ bind_rows(`91 random hymns` = random_sets, 
+           `new to 1985` = tibble(prop = prop_sac_meetings),
+            .id = "sample") |> 
+    ggplot(aes(prop, fill = sample)) + 
+    geom_histogram(binwidth = 0.01) + 
+    scale_fill_manual(values = c("gray50", "#00563F")) + 
+    scale_x_continuous(breaks = seq(0, 1, 0.05), 
+                       minor_breaks = seq(0, 1, 0.01), 
+                       labels = percent) + 
+    scale_y_continuous(expand = expansion(0, 5)) + 
+    annotate(geom = "curve", 
+             x = 0.53, xend = 0.56, 
+             y = 100, yend = 75,
+             curvature = 0.2,
+             arrow = arrow(angle = 20, length = unit(0.15, "in"), type = "closed")) + 
+    annotate(geom = "text", 
+             label = "1,000 random subsets\nof 91 hymns",
+             x = 0.54, y = 110, hjust = 1) + 
+    
+    annotate(geom = "curve", 
+             x = 0.35, xend = 0.35, 
+             y = 40, yend = 4,
+             curvature = 0,
+             color = "#00563F",
+             arrow = arrow(angle = 20, length = unit(0.15, "in"), type = "closed")) + 
+    annotate(geom = "text", 
+             label = "Hymns that were\nnew in 1985",
+             color = "#00563F",
+             x = 0.32, y = 52, hjust = 0) + 
+    labs(title = "The 91 new hymns in 1985 are collectively less popular a random selection of 91 hymns",
+        y = NULL,
+         x = "percent of sacrament meetings") + 
+    theme_minimal() + 
+    theme(legend.position = "none")
+```
+
+```{r}
+shapiro.test(random_sets$prop)
+mean(random_sets$prop)
+sd(random_sets$prop)
+
+(mean(random_sets$prop) - prop_sac_meetings)/sd(random_sets$prop)
+pnorm(q = prop_sac_meetings, mean = mean(random_sets$prop), sd = sd(random_sets$prop))
+```
+
+
+As you can see, random selections of 91 hymns are far more popular. They are normally distributed^[This is confirmed by a Shapiro-Wilk test, $W$ = 0.999, *p* = 0.895.] with an average of 59.8% and a standard deviation of 3.15%. The probability of a random set of 91 hymns being collectively as infrequent (or less) as the new set in 1985 is $4.29\times10^{-16}$. This suggests that the new hymns in 1985 are actually *not* more common and in fact are collectively quite a bit less common. To me, this suggests that we value the long-standing hymns in our sacrament meetings and it may take generations for something to catch on.
+
+
+
+Going back to the statistical model, the differences between some pairs were statistically significant. The difference between newly borrowed (Protestant) hymns and hymns previously appearing in Latter-day Saint publications, was not significant. The difference between them and new texts with borrowed tunes and totally new hymns was marginally significant. But the difference between them and existing texts with either borrowed or new tunes was significant. Basically one could argue we have three tiers of popularity: the previously published ones, the new texts, and the existing texts. This matches somewhat [my findings](/posts/new_general) for *Hymns for Home and Church* where previously published LDS hymns were the most common category.
+
+## Conclusion
+
+In this post, I've done a deep dive into the hymns that were new in 1985 and compared their patterns to the new hymns in *Hymns for Home and Church*. There are perhaps eight different ways that a hymn can be new, and we see examples of most of them in 1985 and in the recent new hymns. I then ran some statistics to see whether the category of new hymn correlates with how popular the hymns are. After accounting for sacrament hymns and the arrangements in the back of the hymnal, I found that previously published hymn were the most common, which matches what was found for the recent new hymns. 

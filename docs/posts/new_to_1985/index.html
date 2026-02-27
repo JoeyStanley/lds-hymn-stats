@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joey Stanley">
-<meta name="dcterms.date" content="2024-04-06">
+<meta name="dcterms.date" content="2026-02-26">
 
-<title>LDS Hymn Stats - New to 1985</title>
+<title>Which hymns were new in 1985 and how popular have they been since then? – LDS Hymn Stats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,22 +32,30 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c55e9d64ff39e520df18b6c2fd6a6008.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +64,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -71,69 +80,109 @@ gtag('js', new Date());
 gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="LDS Hymn Stats - New to 1985">
-<meta property="og:site-name" content="LDS Hymn Stats">
-<meta name="twitter:title" content="LDS Hymn Stats - New to 1985">
-<meta name="twitter:card" content="summary">
+<meta property="og:title" content="New to 1985 – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta property="og:image" content="https://hymnstats.joeystanley.com/posts/new_to_1985/index_files/figure-html/unnamed-chunk-4-1.png">
+<meta property="og:site_name" content="LDS Hymn Stats">
+<meta property="og:image:height" content="1056">
+<meta property="og:image:width" content="1536">
+<meta name="twitter:title" content="New to 1985 – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
+<meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/new_to_1985/index_files/figure-html/unnamed-chunk-4-1.png">
+<meta name="twitter:image-height" content="1056">
+<meta name="twitter:image-width" content="1536">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../findings.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../overview.html" rel="" target="">
- <span class="menu-text">Summarized Data</span></a>
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../contribute.html" rel="" target="">
- <span class="menu-text">Contribute</span></a>
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -141,7 +190,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -152,15 +200,37 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
 <p><img src="../../images/logo.jpeg" class="img-fluid"></p>
 </div></div>
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#new-in-what-way" id="toc-new-in-what-way" class="nav-link active" data-scroll-target="#new-in-what-way">New in what way?</a>
+  <ul class="collapse">
+  <li><a href="#new-compositions" id="toc-new-compositions" class="nav-link" data-scroll-target="#new-compositions">New compositions</a></li>
+  <li><a href="#previously-published-lds-hymns" id="toc-previously-published-lds-hymns" class="nav-link" data-scroll-target="#previously-published-lds-hymns">Previously-published LDS hymns</a></li>
+  <li><a href="#new-english-translations" id="toc-new-english-translations" class="nav-link" data-scroll-target="#new-english-translations">New English translations</a></li>
+  <li><a href="#existing-christian-hymns" id="toc-existing-christian-hymns" class="nav-link" data-scroll-target="#existing-christian-hymns">Existing Christian hymns</a></li>
+  <li><a href="#new-texts-with-newly-borrowed-tunes" id="toc-new-texts-with-newly-borrowed-tunes" class="nav-link" data-scroll-target="#new-texts-with-newly-borrowed-tunes">New texts with newly borrowed tunes</a></li>
+  <li><a href="#existing-texts-with-new-tunes" id="toc-existing-texts-with-new-tunes" class="nav-link" data-scroll-target="#existing-texts-with-new-tunes">Existing texts with new tunes</a></li>
+  <li><a href="#new-texts-with-existing-tunes" id="toc-new-texts-with-existing-tunes" class="nav-link" data-scroll-target="#new-texts-with-existing-tunes">New texts with existing tunes</a></li>
+  <li><a href="#existing-texts-with-existing-tunes" id="toc-existing-texts-with-existing-tunes" class="nav-link" data-scroll-target="#existing-texts-with-existing-tunes">Existing texts with existing tunes</a></li>
+  <li><a href="#interim-summary" id="toc-interim-summary" class="nav-link" data-scroll-target="#interim-summary">Interim summary</a></li>
+  </ul></li>
+  <li><a href="#which-categories-are-most-popular" id="toc-which-categories-are-most-popular" class="nav-link" data-scroll-target="#which-categories-are-most-popular">Which categories are most popular?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">New to 1985</h1>
-</div>
+<h1 class="title">Which hymns were new in 1985 and how popular have they been since then?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">general</div>
+  </div>
+  </div>
 
 
 
@@ -176,7 +246,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 6, 2024</p>
+      <p class="date">February 26, 2026</p>
     </div>
   </div>
   
@@ -184,50 +254,816 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
 
 
+<p>We are in the middle of a gradual rollout of new hymns. It’s an exciting time! But it’s not the first time the church has introduced new hymns as part of a new hymns. So, I thought it’d be interesting to look at the 92 hymns that were new to the 1985 hymnal to see how they have fared over the past 41 years. Perhaps by looking at how the formally new hymns are used now, we can make a guess for how the current new hymns will be used over the next 41 years.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The list of hymns that I am working with is from <a href="https://www.reddit.com/r/latterdaysaints/comments/1e9rvqk/changes_from_the_1950_to_the_1985_hymnbook/">this Reddit post</a>, posted on r/LatterDaySaints on July 22, 2024 by an anonymous user. That post takes information that was originally found in the 1988 book <a href="https://www.deseretbook.com/product/5087800.html?srsltid=AfmBOoqiJOiVqd0mAq5cyMCVlzuhxcisrRkQvVrfKfW6LFWHK3UYKCpE"><em>Our Latter-day Hymns: The Stories and The Messages</em></a> by Karen Lynn Davidson. I’ll admit I haven’t fact-checked the Reddit post to the original book, so I acknowledge that there may be a few errors in this post.</p>
+</div>
+</div>
+<section id="new-in-what-way" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="new-in-what-way">New in what way?</h2>
+<p>I’ll start off by examining the list of hymns and dividing them into categories of their “newness.” As it turns out, there are lots of different ways that a hymn can be new, and it’s interesting to see those differences. For each category, I also include examples from the first five batches of new hymns in <em>Hymns for Home and Church</em>. Let’s break down these hymns and look at what I mean by “new”.</p>
+<section id="new-compositions" class="level3">
+<h3 class="anchored" data-anchor-id="new-compositions">New compositions</h3>
+<p>The largest category of new hymns are ones with brand new texts and tunes. These 44 hymns are entirely new compositions. Among the most popular of these include <hymn>As Now We Take the Sacrament (#169)</hymn>, <hymn>I Believe in Christ (#134)</hymn>, and <hymn>Press Forward, Saints (#81)</hymn>. Some analogous ones in the <em>Hymns for Home and Church</em> would be <hymn>As Bread Is Broken (#1007)</hymn> or <hymn>To Love like Thee (#1019)</hymn>. The following figure shows these hymns in order of frequency.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We have some very commonly sung ones, including sacrament and non-sacrament hymns. We also have some that are not sung very often at all, including some men’s and women’s hymns at the back of the hymnal and others. So in this category, we have the full range of hymns.</p>
+</section>
+<section id="previously-published-lds-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="previously-published-lds-hymns">Previously-published LDS hymns</h3>
+<p>The next category of hymns are ones that were previously published in various church music publications or were otherwise part of the music repertoire of the church and then became “canonized” by being put into the hymnal in 1985.</p>
+<p>One of the more popular ones from this category include <hymn>Teach Me to Walk in the Light (#304)</hymn>. According to <a href="https://www.reliefsocietywomen.com/blog/2011/02/28/my-heavenly-father-loves-me/https://www.reliefsocietywomen.com/blog/2011/02/28/my-heavenly-father-loves-me/">this write-up</a>, this hymn was written by Clara W. McMaster in 1958. McMaster was a member of the Primary General Board and a member of the Mormon Tabernacle Choir. She was asked to write a piece for the General Primary Conference. It was too late to be incorporated into the previous hymnal, so it wasn’t until 1985, 27 years later, when it became “official.”</p>
+<p>Some of the more popular hymns in <em>Hymns for Home and Church</em> that would belong in this category include <hymn>I Will Walk with Jesus (#1004)</hymn>, which was debuted in the <a href="https://www.youtube.com/watch?v=1xUFtZcFI8g">November 2019 Face to Face broadcast</a>. Others include <hymn>Gethsemane (#1009)</hymn>, <hymn>This Is the Christ (#1017)</hymn>, and <hymn>Faith In Every Footstep (#1022)</hymn>.</p>
+<p>Here is a plot showing the popularity of the hymns that fall into this category in the 1985 hymnal. There are fewer of them and they span a range of frequencies. Some are pretty popular, being sung one or more times per year on average per ward. Others are far less common.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>One pattern that I can’t help but notice is that many of the new hymns that fall into this category were originally written for children. The same is true for the <em>Hymns for Home and Church</em>. While that’s not necessarily a bad thing, I’ve shown already that <a href="../../posts/new_hymns_general">hymns arranged for unison singing tend to be a little less popular than ones arranged for SATB</a>. In general though, these ones from the 1985 hymnal are doing pretty well—better on average than the other brand new compositions. In the second half of this post, I show statistical support for that. If the trend holds true in the latest rollout of new hymns, we may see that these new hymns get a little more common as the years pass.</p>
+</section>
+<section id="new-english-translations" class="level3">
+<h3 class="anchored" data-anchor-id="new-english-translations">New English translations</h3>
+<p>One sub-category that I should mention is that there are hymns that are new to the English hymnal because they are (new) translations of hymns in Latter-day Saint hymnals in other languages. There are several among the new hymns, like <hymn>God’s Gracious Love (#1013)</hymn> and <hymn>I Can’t Count Them All (#1029)</hymn> from Swedish, <hymn>Come, Hear the Word the Lord Has Spoken (#1031)</hymn> from Dutch, and <hymn>Jesus Is the Way (#1045)</hymn> from Tongan. I don’t know of any new English translations like this in the 1985 hymnal, so I won’t explore this category further, but I thought I’d mention it anyway.</p>
+</section>
+<section id="existing-christian-hymns" class="level3">
+<h3 class="anchored" data-anchor-id="existing-christian-hymns">Existing Christian hymns</h3>
+<p>The next category includes hymns that previously existed in Christiandom but for whatever reason were not included in an LDS hymnal. The most popular one in this category is <hymn>Because I Have Been Given Much (#219)</hymn>. According to <a href="https://hymnary.org/text/because_i_have_been_given_much">hymnary.org</a>, this was written in 1930 by Grace Noll Crowell, a prolific poet from Iowa. I can’t find any information about her religious affiliation, but there’s nothing about her being a member of the Church of Jesus Christ of Latter-day Saints. The hymn has been published in 16 hymnals—not a tremendous amount—as early as the 1937. Including it in our 1948/1950 hymnal followed the trend of several other churches at the time.</p>
+<p>There are lots of recent new hymns that fall into this category. One of the most popular is <hymn>It Is Well with My Soul (#1003)</hymn>, which was written by Horatio Gates Spafford in 1873 and is found in <a href="https://hymnary.org/text/when_peace_like_a_river_attendeth_my_way">hundreds</a> of hymnals. Others include <hymn>Behold the Wounds in Jesus’ Hands (#1016)</hymn>, <hymn>Go Tell It on the Mountain (#1208)</hymn>, and and <hymn>What Child is This? (#1203)</hymn>.</p>
+<p>The following plot shows the popularity of these hymns from the 1985 hymnal. Two have become very popular and are sung one or more times a year on average: <hymn>Because I Have Been Given Much (#219)</hymn> and <hymn>For the Beauty of the Earth (#92)</hymn>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As will be shown below, this category tends to produce commonly sung hymns. I suspect that we will see more of these hymns from other Christian hymnals being incorporated into the new hymnal and if the data from the past 40 years is any indicator, we may find that these new ones in <em>Hymns for Home and Church</em> are likewise among the more common hymns.</p>
+</section>
+<section id="new-texts-with-newly-borrowed-tunes" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="new-texts-with-newly-borrowed-tunes">New texts with newly borrowed tunes</h3>
+<p>The next categories of hymns are ones that are partially new. These are ones where either the text or the tune already existed in the previous edition of the hymnal from the 1950s but were paired with something new—or at least new to us. It may seem weird to mix and match texts with tunes, but keep in mind that that was once common practice, which is why we have a meters index in the back of the 1985 hymnal. My understanding is that it’s a relatively recent thing for a text and tune to be tightly associated with each other.</p>
+<p>The first category in this type are hymns where the lyrics are new and they were paired with tunes that already existed but not in our hymnal. So, someone who is unaware of hymns outside of our church would see these as new compositions while converts would at least recognize the melody. There are only five hymns that fit this category, the most popular of which is <hymn>Let the Holy Spirit Guide (#143)</hymn>, which is <a href="https://hymnary.org/text/let_the_holy_spirit_guide">unique</a> to LDS hymnals. The tune was written by Martin Shaw around 1915 is called GENTLE JESUS. It has been paired with other lyrics, which you can explore <a href="https://hymnary.org/tune/gentle_jesus_shaw">here</a>. Another one is <hymn>As Zion’s Youth in Latter Days (#256)</hymn>, which uses the tune from an Irish melody.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;7th grader me was surprised to hear that melody in a piece we played in band class!</p></div></div><p>One example of this kind of hymn in the newly-released collection is <hymn>Let Easter Anthems Ring (#1205)</hymn>. The text is new. It was written in 2012 by Larry A. Hiller, who worked as a writer for the Church magazines, and was published in the <a href="https://www.churchofjesuschrist.org/study/ensign/2012/04/rise-up-ye-saints-rejoice?lang=eng">April 2012 <em>Ensign</em></a>. It was paired with DIADEMATA, a very popular tune in Christian hymns. It was written in 1868 and is most often paired with the text <a href="https://hymnary.org/tune/diademata_elvey">“Crown Him With Many Crowns”</a>.</p>
+<p>Here is a plot showing the popularity of the five hymns in this category in the 1985 hymnal. There are two that are somewhat common, one that is only sung about once every five years, and two that are very uncommon.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="existing-texts-with-new-tunes" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="existing-texts-with-new-tunes">Existing texts with new tunes</h3>
+<p>The previous category was about new texts being paired with existing tunes. This category is the opposite: texts that existed in the previous hymnal but were paired with newly written tunes. One example of this is the <hymn>God Bless Our Prophet Dear (#24)</hymn>. The text was written by Bernard Shaw in the 19th century but the tune is called EPHRAIM and was written by Harry A. Dean sometime around 1985, so presumably for the 1985 hymnal. As far as I can tell, there aren’t any hymns that quite fit this description in the newly released hymns.</p>
+<p>The following plot shows the six hymns that fit this category in the 1985 hymnal. As you can see, <hymn>Thy Will, O Lord, Be Done (#188)</hymn> stands out because it’s a sacrament hymn. None of the rest are very common. Personally, I’m surprised that <hymn>God Bless Our Prophet Dear (#24)</hymn> isn’t more common since it’s a perfectly good hymn.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The last one, <hymn>Sons of Michael, He Approaches (#51)</hymn> is the rarest hymn in the 1985 hymnal, excluding some of the men’s and women’s arrangements in the back.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Perhaps <hymn>We Thank Thee, O God, For a Prophet (#19)</hymn> has monopolized situations where singing a prophet-related hymn would be appropriate!</p></div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So, pairing a familiar text with a new tune was not a very common thing even 40 years ago and I suspect it’ll be at least as rare if not rarer. Perhaps a music historian or something can write to me if they know whether mixing-and-matching tunes with texts is less common than it used to be generally.</p>
+</section>
+<section id="new-texts-with-existing-tunes" class="level3">
+<h3 class="anchored" data-anchor-id="new-texts-with-existing-tunes">New texts with existing tunes</h3>
+<p>One type of new hymn that is worth mentioning is a newly written text paired with a tune that already existed in the hymnal. As far as I know, we didn’t see this in the 1985 hymnal. <em>Technically</em>, we have one so far among the new hymns. The text to <hymn>Our Prayer to Thee (#1048)</hymn> was newly written by Russell M. Nelson. The tune may seem new but it was actually used in the hymn <hymn>O Home Beloved (#337)</hymn>. In the over 90,000 sacrament meetings I have data from, <em>not one</em> has sung that hymn. It’s a nice tune though, so I’m glad they were able to repurpose it for a hymn that will likely become pretty popular.</p>
+</section>
+<section id="existing-texts-with-existing-tunes" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="existing-texts-with-existing-tunes">Existing texts with existing tunes</h3>
+<p>The last category of hymns includes ones where there was an existing text in the earlier hymnal but the tune was changed to something that already existed outside our church and was newly borrowed for the 1985 hymnal. One hymn in this category is <hymn>If You Could Hie To Kolob (#284)</hymn>. The text was written by William W. Phelps and was published in 1856. In the 1948/1950 hymnal, it was <a href="https://singpraises.net/texts/284/if-you-could-hie-to-kolob">paired</a> with a tune called <a href="https://hymnary.org/tune/if_you_could_hie_to_kolob_daynes">KOLOB</a>, written by Joseph J. Daynes. In 1985, it was <a href="https://www.thetabernaclechoir.org/articles/if-you-could-hie-to-kolob-mormon-tabernacle-choir.html?lang=eng">changed</a> to a traditional English folk tune attributed to Ralph Vaughan Williams.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;I remember playing that traditional tune in middle school band class too!</p></div></div><p>The one partial case that I can find in the new hymnal is the last verse of <hymn>His Voice as the Sound (#1040)</hymn>. The tune is an American folk tune called SAMANTHRA. The lyrics come from a poem written by Joseph Swain in the 1800s and are mostly new to us. But the last verse also appears as the sixth verse of <hymn>Redeemer of Israel (#6)</hymn>. From what I can tell, this verse historically pairs with the other verses in <hymn>His Voice as the Sound (#1040)</hymn> and it was William W. Phelps who borrowed just the one stanza to be included in <hymn>Redeemer of Israel (#6)</hymn>.</p>
+<p>Here are the the hymns from the 1985 hymnal that fall into this category. As you can see, there aren’t too many of them and none are especially popular.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interim-summary" class="level3">
+<h3 class="anchored" data-anchor-id="interim-summary">Interim summary</h3>
+<p>So, there are about eight different ways that a hymn can be new:</p>
+<ol type="1">
+<li>Brand new compositions (<hymn>Press Forward, Saints (#81)</hymn> or <hymn>As Bread Is Broken (#1007)</hymn>)</li>
+<li>Previously published Latter-day Saints hymns (<hymn>Teach Me to Walk in the Light (#304)</hymn> or <hymn>I Will Walk with Jesus (#1004)</hymn>)</li>
+<li>New English translations of Latter-day Saint hymns in other languages (<hymn>Jesus Is the Way (#1045)</hymn>)</li>
+<li>Existing Christian hymns with an established tune and text pair (<hymn>Because I Have Been Given Much (#219)</hymn> or <hymn>It Is Well with My Soul (#1003)</hymn>)</li>
+<li>New texts with tunes that already existed but are new to us (<hymn>Let the Holy Spirit Guide (#143)</hymn> or <hymn>Let Easter Anthems Ring (#1205)</hymn>)</li>
+<li>Texts that already existed in the hymnal but were paired with newly composed tunes (<hymn>God Bless Our Prophet Dear (#24)</hymn>)</li>
+<li>Newly written texts that are paired with with a tune that was already in the hymnal (<hymn>Our Prayer to Thee (#1048)</hymn>)</li>
+<li>Pairing an existing text with a tune that existed alrady but not in our hymnal (<hymn>If You Could Hie To Kolob (#284)</hymn> or <hymn>His Voice as the Sound (#1040)</hymn>)</li>
+</ol>
+<p>Just in sheer numbers, the brand new category is the biggest in the 1985 hymnal. That’s followed by previously published LDS hymns and borrowing established Christian hymns.</p>
+<p>The following plot shows all 92 new hymns, color-coded by their category. As you can see, these range from very common sacrament hymns all the way down to extremely uncommon hymns and choir arrangements.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The question I have now is this: all things considered, which category is the most likely to produce commonly sung hymns? Let’s jump into a statistical analysis to explore that a little further.</p>
+</section>
+</section>
+<section id="which-categories-are-most-popular" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="which-categories-are-most-popular">Which categories are most popular?</h2>
+<p>Recently, I did <a href="../../posts/new_hymns_general">an analysis</a> of the 60 new hymns from the first five batches. The analysis was among my more technical posts since I dive into some actual statistics.</p>
+<p>The gist is this though: I wanted to see what factors influence how common a new hymn has been so far. I included things like what batch it came from, whether it was arranged in SATB or in unison, whether it has a more complex “flow”, whether it’s a holiday hymn, whether it’s a sacrament hymn, and whether it’s an existing hymn. I’ll apply the same methods here as I did in that analysis, although I won’t go into as much detail on the statistical side of things.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Statistical details for nerds">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Statistical details for nerds
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For those that are curious, I ran a linear regression model on the 91 observations in this dataset. I excluded <hymn>Thy Servants Are Prepared [Men’s Choir] (#329)</hymn> because it never occurred in my dataset. The dependent variable was the the proportion of meetings each hymn has been sung in in my dataset up through June 1, 2024. I did a Box-Cox transformation on the data to help satisfy the assumption of normality in the residuals.</p>
+<p>For independent variables, I included the category it belongs to from the categories listed above, whether it’s a Christmas hymn, whether it’s an Easter hymn, whether it’s a sacrament hymn, whether it’s a children’s hymn (i.e.&nbsp;hymns 301–308), whether it’s a men’s/women’s arrangement (i.e hymns 309–337), and whether it’s arranged in something other than straight SATB. All were binary variables except for category.</p>
+<p>That’s a lot of variables for not a lot of data and I didn’t want the a bunch of nonsignificant predictors to chew up the statistical power for analyzing the category variable, which was my primary focus. So, I removed variables iteratively in a step-down procedure until I settled on a model that had the lowest BIC score. Doing so removed the variables for Easter, Christmas, Children’s and not-SATB arrangements and retained category, sacrament and whether it’s an arrangement. (That makes sense: sacrament hymns make a hymn way more popular and arrangements make a hymn way less popular.)</p>
+<p>The model was a pretty good fit to the data with an <span class="math inline">\(R^2\)</span> values of 0.542. A Shapiro-Wilk test suggests that the residuals were normal (<span class="math inline">\(W\)</span> = 0.975, <span class="math inline">\(p\)</span> = 0.081).</p>
+<p>Here is the summary for the final model:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = prop_wards_trans ~ is_sacrament + category + is_arrangement, 
+    data = weekly_results)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.1387 -1.0115  0.1172  1.1854  2.7043 
+
+Coefficients:
+                                         Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                              -5.67284    0.38903 -14.582  &lt; 2e-16
+is_sacramentTRUE                          2.79628    0.74922   3.732 0.000346
+categoryexisting text with borrowed tune -1.90819    0.63758  -2.993 0.003640
+categoryexisting text with new tune      -2.88540    0.70340  -4.102 9.51e-05
+categorynew text with borrowed tune      -1.24605    0.74938  -1.663 0.100131
+categorynewly borrowed                    0.03664    0.53674   0.068 0.945734
+categorytotally new                      -0.81094    0.44177  -1.836 0.069990
+is_arrangementTRUE                       -4.69992    0.57532  -8.169 2.99e-12
+                                            
+(Intercept)                              ***
+is_sacramentTRUE                         ***
+categoryexisting text with borrowed tune ** 
+categoryexisting text with new tune      ***
+categorynew text with borrowed tune         
+categorynewly borrowed                      
+categorytotally new                      .  
+is_arrangementTRUE                       ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.432 on 83 degrees of freedom
+Multiple R-squared:  0.5779,    Adjusted R-squared:  0.5423 
+F-statistic: 16.23 on 7 and 83 DF,  p-value: 2.807e-13</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Before I get to my primary focus, the category, I’ll first explain the other variables. I found that whether a hymn is an Easter hymn, a Christmas hymn, a children’s hymn, or an arrangement that isn’t a straightforward SATB had no influence on how popular it was, once all the other variables were accounted for. I did find however, unsurprisingly, that sacrament hymns were more popular. On average, holding all other things equal, if a hymn is a sacrament hymn it was sung in 2.81% more sacrament meetings, making it 11.76 times more popular than a non-sacrament hymn. Also unsurprisingly, if a hymn is marked as a men’s or women’s arrangement, it was quite a bit less popular. It was sung in 0.41% fewer sacrament meetings, which may not seem like a lot until you realize that the average number of sacrament meetings for these hymns in about 0.52%. Overall, these arrangements are a whopping 92.6 times less popular than an equivalent SATB hymn.</p>
+<p>As interesting as that is, now let’s focus on the whole point of this blog post—seeing whether the category of new hymn has an influence on how popular a hymn was after being introduced in the 1985 hymnal. The following table shows the percent of sacrament meetings each hymn is predicted to be in each week. This is after accounting for whether it’s a sacrament hymn and whether it’s a women’s or men’s arrangement.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htfjnehmhm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#htfjnehmhm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#htfjnehmhm thead, #htfjnehmhm tbody, #htfjnehmhm tfoot, #htfjnehmhm tr, #htfjnehmhm td, #htfjnehmhm th {
+  border-style: none;
+}
+
+#htfjnehmhm p {
+  margin: 0;
+  padding: 0;
+}
+
+#htfjnehmhm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#htfjnehmhm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#htfjnehmhm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#htfjnehmhm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#htfjnehmhm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#htfjnehmhm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#htfjnehmhm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#htfjnehmhm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#htfjnehmhm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#htfjnehmhm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#htfjnehmhm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#htfjnehmhm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#htfjnehmhm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#htfjnehmhm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#htfjnehmhm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#htfjnehmhm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#htfjnehmhm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#htfjnehmhm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#htfjnehmhm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#htfjnehmhm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#htfjnehmhm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#htfjnehmhm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#htfjnehmhm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#htfjnehmhm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#htfjnehmhm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#htfjnehmhm .gt_left {
+  text-align: left;
+}
+
+#htfjnehmhm .gt_center {
+  text-align: center;
+}
+
+#htfjnehmhm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#htfjnehmhm .gt_font_normal {
+  font-weight: normal;
+}
+
+#htfjnehmhm .gt_font_bold {
+  font-weight: bold;
+}
+
+#htfjnehmhm .gt_font_italic {
+  font-style: italic;
+}
+
+#htfjnehmhm .gt_super {
+  font-size: 65%;
+}
+
+#htfjnehmhm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#htfjnehmhm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#htfjnehmhm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#htfjnehmhm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#htfjnehmhm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#htfjnehmhm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#htfjnehmhm .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#htfjnehmhm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#htfjnehmhm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border">Estimated popularity new-to-1985 hymns are sung in, by category</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="category" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">category</th>
+<th id="n-hymns" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n hymns</th>
+<th id="times-per-year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">times per year</th>
+<th id="every-n-years" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">every n years</th>
+<th id="percent-of-meetings" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">percent of meetings</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="category">previous LDS</td>
+<td class="gt_row gt_right" headers="n hymns">14</td>
+<td class="gt_row gt_right" headers="times per year">0.40</td>
+<td class="gt_row gt_right" headers="every n years">2.5</td>
+<td class="gt_row gt_right" headers="percent of meetings">0.84%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="category">newly borrowed</td>
+<td class="gt_row gt_right" headers="n hymns">15</td>
+<td class="gt_row gt_right" headers="times per year">0.23</td>
+<td class="gt_row gt_right" headers="every n years">4.3</td>
+<td class="gt_row gt_right" headers="percent of meetings">0.48%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="category">totally new</td>
+<td class="gt_row gt_right" headers="n hymns">43</td>
+<td class="gt_row gt_right" headers="times per year">0.16</td>
+<td class="gt_row gt_right" headers="every n years">6.4</td>
+<td class="gt_row gt_right" headers="percent of meetings">0.32%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="category">new text with borrowed tune</td>
+<td class="gt_row gt_right" headers="n hymns">5</td>
+<td class="gt_row gt_right" headers="times per year">0.07</td>
+<td class="gt_row gt_right" headers="every n years">13.4</td>
+<td class="gt_row gt_right" headers="percent of meetings">0.16%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="category">existing text with new tune</td>
+<td class="gt_row gt_right" headers="n hymns">6</td>
+<td class="gt_row gt_right" headers="times per year">0.05</td>
+<td class="gt_row gt_right" headers="every n years">20.1</td>
+<td class="gt_row gt_right" headers="percent of meetings">0.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="category">existing text with borrowed tune</td>
+<td class="gt_row gt_right" headers="n hymns">8</td>
+<td class="gt_row gt_right" headers="times per year">0.04</td>
+<td class="gt_row gt_right" headers="every n years">27.2</td>
+<td class="gt_row gt_right" headers="percent of meetings">0.08%</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="5" class="gt_footnote">Based on 91 new hymns in the 1985 hymnal, after accounting for whether a hymn is a sacrament hymn and whether it's a women's or men's arrangement.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>Here you can see that the most popular new hymns in the 1985 hymnal are ones that were previously published in some Latter-day Saint publication already. Each of these hymns accounts for about 0.82% of sacrament meetings, which is about 0.39 times per year, or once every 2.5 years. That number may not seem like a lot, but keep in mind that there are 14 hymns in this category and, on average, all 14 will be sung every two and a half years. So, you’ll likely see one about every other month. The totally new ones were less popular, but between the 48 of them, you’re also likely to see one about every other month. Adding all these together, it looks like at least one of the 91 hymns was sung in 34% of sacrament meetings. That means people have been singing at least one “new” hymn every three weeks for 41 years.</p>
+<p>To put that in today’s terms that’s like seeing one of those four-digit new hymns every three weeks for the next several decades.</p>
+<p>That’s actually pretty close to the numbers we actually see. I have data from 50,340 sacrament meetings since the new hymns came out. Of those, 20,010, or 39.7%, contained at least one new hymn. So, we’ve been a little more eager to sing new hymns in 2024–2026 than we were in 2002–2024, but after a decade or so I suspect that those numbers will wane a little bit and we’ll settle to about the same range.</p>
+<p>Now, maybe it’s the case that there’s nothing special about those new hymns. Maybe any random selection of 91 hymns would be sung in about a third of the sacrament meetings. So, to test that, I got a random sample of 91 hymns from the 1985 hymnal, ensuring that exactly four of them were sacrament hymns and exactly eight of them were arrangements at the back of the hymnal, just as we see with the 1985 new hymns. I then queried my data from before June 2024 and got the proportion of sacrament meetings that contained at least one of those hymns. I repeated that experiment 1000 times. The figure below shows the results of that.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, random selections of 91 hymns are far more popular. They are normally distributed<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> with an average of 59.8% and a standard deviation of 3.15%. The probability of a random set of 91 hymns being collectively as infrequent (or less) as the new set in 1985 is <span class="math inline">\(4.29\times10^{-16}\)</span>. This suggests that the new hymns in 1985 are actually <em>not</em> more common and in fact are collectively quite a bit less common. To me, this suggests that we value the long-standing hymns in our sacrament meetings and it may take generations for something to catch on.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;This is confirmed by a Shapiro-Wilk test, <span class="math inline">\(W\)</span> = 0.999, <em>p</em> = 0.895.</p></div></div><p>Going back to the statistical model, the differences between some pairs were statistically significant. The difference between newly borrowed (Protestant) hymns and hymns previously appearing in Latter-day Saint publications, was not significant. The difference between them and new texts with borrowed tunes and totally new hymns was marginally significant. But the difference between them and existing texts with either borrowed or new tunes was significant. Basically one could argue we have three tiers of popularity: the previously published ones, the new texts, and the existing texts. This matches somewhat <a href="../../posts/new_general">my findings</a> for <em>Hymns for Home and Church</em> where previously published LDS hymns were the most common category.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this post, I’ve done a deep dive into the hymns that were new in 1985 and compared their patterns to the new hymns in <em>Hymns for Home and Church</em>. There are perhaps eight different ways that a hymn can be new, and we see examples of most of them in 1985 and in the recent new hymns. I then ran some statistics to see whether the category of new hymn correlates with how popular the hymns are. After accounting for sacrament hymns and the arrangements in the back of the hymnal, I found that previously published hymn were the most common, which matches what was found for the recent new hymns.</p>
+
+
+</section>
 
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -235,206 +1071,361 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
