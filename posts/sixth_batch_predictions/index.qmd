@@ -1,0 +1,272 @@
+---
+title: "Predicting the popularity of the sixth batch of hymns"
+author: "Joey Stanley"
+date: "2026-02-27"
+#date-modified: last-modified
+categories: 
+  - general
+  - frequency
+  - new hymns
+reference-location: margin
+number-sections: true
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8,
+                      cache = TRUE)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+library(gt)
+library(broom)
+```
+
+The sixth batch of hymns came out yesterday! Recently I did [a statistical analysis](/posts/new_hymns_general) of the first five batches of new hymns so that I could see perhaps what makes a hymn more or less popular. I found that things like whether it's an SATB arrangement, whether it's a sacrament hymn, and a few other things correlated with how often a hymn was sung. I'm now in an interesting position to test this out. So, in this post, I take the analysis from the first five batches and use it to make predictions about the sixth batch. 
+
+:::{.callout-note}
+I am planning on keeping this post stagnant until the seventh batch comes out, at which point I will revisit my predictions and see how I did.
+:::
+
+## Revisiting the statistical model
+
+In a previous post, I fit a statistical model to the first five batches. Specifically, I looked at what proportion of sacrament meetings each hymns was sung in since its respective release date. To help explain/predict that number, I had the model account for the following variables:
+
+
+```{r}
+get_n_times_sung <- function(.hymn_num) {
+    freqs |> 
+        filter(hymn_num == .hymn_num) |> 
+        nrow()
+}
+get_n_meetings_since_release <- function(.date) {
+    freqs |> 
+        filter(date >= .date) |> 
+        distinct(meeting_id) |> 
+        nrow()
+}
+
+satb_hymns <- c(1, 3, 5, 7, 8, 
+                10, 13, 14, 15, 16,
+                19, 20, 22, 23, 25, 27, 29, 31,
+                32, 33, 37, 38, 40, 41,
+                42, 43, 45, 48, 50, 51,
+                201, 202, 203, 205, 206, 207, 208) + 1000
+nonsatb_hymns <- c(2, 4, 6, 9,
+                   11, 12, 17, 18, 
+                   21, 24, 26, 28, 30,
+                   34, 35, 36, 39,
+                   44, 46, 47, 49,
+                   204, 209) + 1000
+
+weekly_results <- name_num_lookup |> 
+    filter(hymn_num %in% c(1000:1051, 1201:1209)) |> 
+    mutate(hymn_num = as.integer(hymn_num)) |> 
+    
+    # Basic info
+    mutate(batch = case_when(hymn_num %in% batch1_hymn_nums ~ "batch1",
+                             hymn_num %in% batch2_hymn_nums ~ "batch2",
+                             hymn_num %in% batch3_hymn_nums ~ "batch3",
+                             hymn_num %in% batch4_hymn_nums ~ "batch4",
+                             hymn_num %in% batch5_hymn_nums ~ "batch5"),
+           batch = ordered(batch),
+           release_date = case_when(hymn_num %in% batch1_hymn_nums ~ batch1_release_date,
+                                    hymn_num %in% batch2_hymn_nums ~ batch2_release_date,
+                                    hymn_num %in% batch3_hymn_nums ~ batch3_release_date,
+                                    hymn_num %in% batch4_hymn_nums ~ batch4_release_date,
+                                    hymn_num %in% batch5_hymn_nums ~ batch5_release_date)) |> 
+    
+    # Get the basic info
+    mutate(times_sung = map_int(hymn_num, get_n_times_sung),
+           sundays_since_release = as.numeric((today() - release_date)/7),
+           meetings_since_release = map_int(release_date, get_n_meetings_since_release)) |> 
+    
+    # Now get proportions
+    mutate(times_per_sunday = times_sung / sundays_since_release,
+           prop_wards = times_sung / meetings_since_release) |> 
+    
+    # Mark the holidays and other special hymns (not used in plot)
+    mutate(is_christmas = hymn_num %in% c(1018, 1202, 1203, 1204, 1207, 1208, 1209),
+           is_easter    = hymn_num %in% c(1201, 1205, 1206),
+           is_sacrament = hymn_num %in% c(1003, 1007, 1008, 1009, 1016, 1017, 1041, 1043),
+           is_spiritual = hymn_num %in% c(1028, 1037, 1206, 1208),
+           existing_lds = hymn_num %in% c(1001, 1002, 1004, 1009, 
+                                          1011, 1014, 1017, 1018,
+                                          1020, 1021, 1022), 
+           other_lang_lds = hymn_num %in% c(
+               1013, 1029, # Swedish
+               1031, # Dutch
+               1033, 1204, # Spanish
+               1045, # Tongan
+               1202, # French
+               1207 # German
+           ),
+           existing_christian = hymn_num %in% c(1001, 1003, 1005, 
+                                                1010, 1013, 1014, 1015, 1016, 
+                                                1023, 1025, 1028, 
+                                                1037, 1038, 1040,
+                                                1042, 1046, 1050,
+                                                1201, 1202, 1203, 1206, 1207),
+           is_satb      = hymn_num %in% satb_hymns,
+           new_flow = hymn_num %in% c(1009, 1024, 1030, 1209)) #1202, 1206, 1208
+
+```
+
+
+```{r}
+# Do a BoxCox transformation
+(boxcox_lambda <- BoxCoxLambda(weekly_results$prop_wards))
+weekly_results <- weekly_results |> 
+    mutate(prop_wards_trans = BoxCox(prop_wards, lambda = boxcox_lambda))
+```
+
+
+```{r}
+mdl <- weekly_results |> 
+    mutate(batch = as.character(batch)) |> 
+    lm(prop_wards_trans ~ batch + is_satb + new_flow + 
+           is_sacrament + 
+           existing_lds + other_lang_lds + existing_christian + 
+           is_spiritual + is_christmas + is_easter, data = _)
+```
+
+* what batch it's in
+* whether it's arranged in SATB or in unison
+* whether it's a sacrament hymn
+* whether it's a Christmas hymn
+* whether it's an Easter hymn
+* whether it has some "flow" like interludes, DS al Codas, or special endings
+* whether it has been previously appeared in an LDS publication
+* whether it's an African American spiritual
+* whether it's a translation of a hymn in another language's hymnal
+* whether it's otherwise an existing Christian hymn
+
+```{r}
+summary(mdl)
+```
+
+
+I found that the batch was the strongest strong predictor. Other strong factors were whether it's a sacrament hymn, whether it's arranged in SATB format, and whether it's an Easter hymn, whether it has already appeared in a Latter-day Saint publication. So, let's see what that means for the sixth batch.
+
+## Coding the sixth batch of hymns
+
+Here are the sixth batch of hymns and how I coded them. I'll assume the most common configuration of properties (SATB, non-sacrament, non-Christmas, non-Easter, no special flow, not previously published, not an African American spiritual, not a translation, and not an otherwise existing Christian hymn) and will mention it only if it deviates from that.
+
+* <hymn>Joyfully Bound (#1052)</hymn>: This hymn is tagged as a sacrament hymn.
+* <hymn>My Covenants (#1053)</hymn>: This is not an SATB arrangement and has a non-traditional flow. While it was originally written in Swedish, it hasn't previously appeared in the Swedish hymnal, so I haven't tagged as being a new translation an existing hymn.
+* <hymn>When I Am Baptized (#1054)</hymn>: This is not an SATB arrangement and already existed in the *Children's Songbook*.
+* <hymn>The Power of the Holy Ghost (#1055)</hymn>: This is coded for all default properties.
+* <hymn>Elijah and the Still, Small Voice (#1056)</hymn>: This not an SATB arrangement.
+* <hymn>Jesus Is My Shepherd (#1057)</hymn>: This is not an SATB arrangement and has a non-traditional flow.
+* <hymn>My Song in the Night (#1058)</hymn>: The text and tune of this hymn was borrowed from already-existing non--Latter-day Saint sources.
+* <hymn>This Is My Father's World (#1059)</hymn>: The text and tune of this hymn was borrowed from already-existing non--Latter-day Saint sources.
+* <hymn> Build an Ark (#1060)</hymn>: This is not an SATB arrangement, has a non-traditional flow, and was previously published in the [September 2010 issue of the *Friend*](https://www.churchofjesuschrist.org/study/friend/2010/09/build-an-ark?lang=eng).
+* <hymn>Love Will Bless Our Home (#1061)</hymn>: This is coded for all default properties.
+* <hymn>Lord, Accept Our Humble Fast (#1062)</hymn>: This is coded for all default properties.
+* <hymn>Long Ago, Within a Garden (#1210)</hymn>: This is an Easter hymn.
+
+```{r}
+batch6 <- name_num_lookup |> 
+    filter(hymn_num %in% batch6_hymn_nums) |> 
+    mutate(
+        batch = "batch5",
+        is_satb = !hymn_num %in% c(1053, 1054, 1056, 1057),
+        new_flow = hymn_num %in% c(1053, 1054, 1060),
+        is_sacrament = hymn_num %in% c(1052),
+        existing_lds = hymn_num %in% c(1054, 1060),
+        other_lang_lds = FALSE,
+        existing_christian = hymn_num %in% c(1058, 1059),
+        is_spiritual = FALSE,
+        is_christmas = FALSE,
+        is_easter = hymn_num %in% 1210) %>%
+    
+    # now get the predicted values
+    mutate(pred = predict(mdl, newdata = .)) |> 
+    mutate(prop_wards = BoxCoxInv(pred, lambda = boxcox_lambda)) |> 
+    
+    print()
+# View(batch6)
+```
+
+## Predictions for the sixth batch
+
+So, what I've done is take this information about each hymn and used the model to make predictions about how popular each hymn will be. The result is this plot here. This plot shows the *actual* rate of frequency of the first five batches of hymns in sacrament meetings, after accounting for when they came out. Interspersed in yellow are the sixth batch hymns.
+
+```{r, include = TRUE, fig.height = 9, fig.width = 8}
+weekly_results |> 
+    # Add the batch6
+    bind_rows(batch6) |>
+    mutate(batch = if_else(hymn_num %in% batch6_hymn_nums, "batch6", batch)) |> 
+    
+    # do all the rest as before
+    arrange(prop_wards) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) |> 
+    ggplot(aes(prop_wards, label, color = batch)) + 
+    geom_point() +
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3, show.legend = FALSE) +
+    scale_x_continuous(breaks = seq(0, 0.05, 0.005),
+                       labels = percent,
+                       expand = expansion(0, c(0.02, 0.001))) +
+    scale_y_discrete(breaks = NULL) +
+    scale_color_brewer(palette = "Set2") +
+    labs(title = "Predicted popularity of the sixth batch of hymns",
+         subtitle = "Shown in the context of how popular the first five batches have been",
+         x = "Percent of wards since hymns' respective release dates",
+         y = NULL) +
+    theme_minimal() + 
+    theme(axis.text.y = element_blank(),
+          legend.position = c(0.8, 0.5),
+          legend.background = element_rect(fill = "white", color = "gray50"),
+          legend.text = element_text(size = 10)) + 
+    guides(color = guide_legend(override.aes = list(size = 4)))
+```
+
+The sixth batch hymns are spread out over the bottom half of the plot. The hymn that is predicted to be most common is <hymn>Joyfully Bound (#1052)</hymn>, probably because it's coded as a sacrament hymn and sacrament hymns inherently tend to be more commonly sung. However, I feel like it's a bit more upbeat than other sacrament hymns so I wonder if that'll affect how much it's sung.
+
+The next most popular hymn is predicted to be <hymn>Build an Ark (#1060)</hymn>. While it does have a non-traditional flow and it's arranged for unison singing, I think the fact that it was previously published is what made it the most likely. Surprisingly, <hymn>When I Am Baptized (#1054)</hymn> which is also in unison and previously published but also has a traditional flow, and it's interesting that that appears to be a strike against it. For what it's worth, I think because that hymn is traditionally sung at baptisms or in primary, I think it is reasonable to expect it to be relatively uncommon as a congregational hymn in sacrament meeting, but you never know!
+
+Next, we have <hymn>Lord, Accept Our Humble Fast (#1062)</hymn>, <hymn>Love Will Bless Our Home (#1061)</hymn>, and <hymn>The Power of the Holy Ghost (#1055)</hymn>. These are all coded identically with the default properties, so they are predicted to have similar frequencies. A little bit further down is <hymn>My Song in the Night (#1058)</hymn> and <hymn>This Is My Father's World (#1059)</hymn> which are borrowed hymns. Such borrowed hymns that were new in the 1985 hymnal [tended to be more common](/posts/new_to_1985) than other kinds of new hymns.
+
+Close to the bottom we have <hymn>Jesus Is My Shepherd (#1057)</hymn> and <hymn>Elijah and the Still, Small Voice (#1056)</hymn>. They both are arranged in unison but the second one has a nontraditional flow to it. Unlike <hymn>When I Am Baptized (#1054)</hymn> though, it was not previously published, so that's the strike against it. 
+
+Finally, we have <hymn>My Covenants (#1053)</hymn> and <hymn>Long Ago, Within a Garden (#1210)</hymn>. The first is in unison and has a non-traditional flow, but it wasn't previously published in an LDS publication (as far as I know). The last one is an Easter hymn, although, since Easter is coming up, we might see it more popular than expected. 
+
+```{r}
+summary(mdl)$coefficients |> 
+    as_tibble() |> 
+    select(estimate = Estimate) |> 
+    head(5) |> 
+    rowid_to_column("batch") |> 
+    mutate(intercept = head(estimate, 1),
+           estimate = if_else(batch == 1, estimate, intercept + estimate)) |> 
+    ggplot(aes(batch, estimate)) + 
+    geom_point()
+```
+
+Here is a summary of how popular I suspect the sixth batch hymns will be.
+
+```{r, include = TRUE}
+batch6 |> 
+    arrange(-prop_wards) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           prop_wards = paste0(str_pad(round(prop_wards * 100, 2), width = 4, side = "right", pad = "0"), "%")) |> 
+    select(`hymn` = label, `percent of sacrament meetings` = prop_wards) |> 
+    gt() |> 
+    tab_header(title = "Predicted percent of sacrament meetings each hymn from the 6th batch of hymns will be sung in between their release and when the 7th batch comes out",
+               subtitle = "Predictions are made February 27th based on frequency information for the first five batches of hymns.") |> 
+    opt_align_table_header(align = "left") |> 
+    tab_footnote(footnote = "For context, the most popular new hymns range between 1% and 3% of sacrament meetings.")
+```
+
+
+
+:::{.callout-note}
+An important caveat is that all of these hymns come from the sixth batch which is a variable that the previous model hasn't encountered. If the trend continues, where each batch is less popular than the one before it, we may see that these numbers are inflated estimates and the hymns may in fact be even less popular. 
+:::
+
+The cool thing about this prediction is that *surely* my guesses will be off. That means that there are idiosyncratic things about each hymn that was not accounted for in the model. Sometimes people just like certain hymns and don't like others. The ones that show up right next to each other in the plot I think serve as interesting mini case studies because the actual numbers will diverge from these predicted values, which makes them useful points of comparison with each other and may help me figure out what those hidden predictor variables are. 
+
+## Conclusion
+
+In this post, I have taken frequency data from the first five batches to make predictions about the popularity of the sixth batch of hymns. The statistics suggest that <hymn>Joyfully Bound (#1052)</hymn> and <hymn>Build an Ark (#1060)</hymn> will be the most popular from this batch. My guesses will likely be really far off, and I look forward to exploring why those are and using that to make more accurate predictions later on. 
