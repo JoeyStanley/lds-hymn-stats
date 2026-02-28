@@ -20,7 +20,8 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 sf <- stamp("June 2", quiet = TRUE)
 
 # get last Sunday
-last_sunday <- ymd(floor_date(today(), "week"))
+# last_sunday <- ymd(floor_date(today(), "week"))
+last_sunday <- batch6_release_date
 library(gtExtras)
 ```
 
@@ -30,7 +31,7 @@ general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04", "2025-
 get_meetings_since_release <- function(.date) {
     freqs |> 
         filter(date >= ymd(.date),
-               date <= last_sunday,
+               date <= ymd(last_sunday),
                !date %in% general_conference_dates)
 }
 meetings_since_release1 <- get_meetings_since_release(batch1_release_date)
@@ -68,9 +69,9 @@ n_weeks_since_release5 <- get_n_weeks_since_release(meetings_since_release5)
 ```
 
 
-On September 18, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/hymn-written-by-president-nelson-included-in-latest-release) the fifth batch of new hymns, which features another African American spiritual, a hymn written by a Tongan saint, and lyrics written by President Nelson. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2),  [third](/posts/new_hymns_batch3), and [fourth](/posts/new_hymns_batch4) batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fifth batch came out and will update weekly as more data comes in. 
+On September 18, 2025, the church [released](https://newsroom.churchofjesuschrist.org/article/hymn-written-by-president-nelson-included-in-latest-release) the fifth batch of new hymns, which features another African American spiritual, a hymn written by a Tongan saint, and lyrics written by President Nelson. In previous posts, I have covered in detail the [first](/posts/new_hymns_batch1), [second](/posts/new_hymns_batch2),  [third](/posts/new_hymns_batch3), and [fourth](/posts/new_hymns_batch4) batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the fifth batch came out until when the sixth batch came out.
 
-Currently I have data from `r scales::comma(n_meetings_since_release5)` sacrament meetings from `r scales::comma(n_wards_since_release5)` wards since September 21, 2025. Here's how much data I have for each week so far, just so you have an idea of what I'm working with.
+Currently I have data from `r scales::comma(n_meetings_since_release5)` sacrament meetings from `r scales::comma(n_wards_since_release5)` wards between September 21, 2025 and February 26, 2026. Here's how much data I have for each week so far, just so you have an idea of what I'm working with.
 
 ```{r, include = TRUE}
 meetings_since_release5 |> 
@@ -240,9 +241,9 @@ There is a noticeable jump after General Conference though. More wards sang from
 
 Since General Conference and through Christmastime, the fifth batch has held pretty constant at around 5%--10% of wards each week. Meanwhile, the other batches (notably the second and third) experience some slumps during Christmas time. 
 
-A noteworthy landmark is that October 26 was the day where the most number of wards sang at least one new hymn: about 55%. We've seen a handful of weeks were right around half of wards sang new hymns, but that day was quite a bit more than others. We hit came close to this again on November 30, presumably as many wards started to sing the new Christmas hymns. In January 2026, we're seeing even more wards singing new hymns.
+A noteworthy landmark is that October 26 was the day where the most number of wards sang at least one new hymn: about 55%. We've seen a handful of weeks were right around half of wards sang new hymns, but that day was quite a bit more than others. After the Christmas season and into February 2026, we saw about as many wards singing new hymns.
 
-An interesting trend generally is that the first batch of hymns continues to be the most popular among any of the other ones. Even a year and a half after its release it still outperforms almost all of the more recent hymns. 
+An interesting trend generally is that the first batch of hymns continues to be the most popular among any of the other ones. Even a year and a half after its release it still outperforms almost all of the more recent hymns. See my analysis of all the new hymns [here](/posts/new_hymns_general).
 
 
 ```{r}
@@ -307,7 +308,7 @@ data_to_plot |>
          title = "Percentage of wards singing new hymns since their release date",
          subtitle = paste("Based on data from", comma(n_meetings_since_release1), "sacrament meetings from", comma(n_wards_since_release1), "wards")) + 
     theme_minimal(base_size = 16) +
-    theme(legend.position = "none")
+    theme(legend.position = "bottom")
 ```
 
 In this version of the plot, it's easier to compare batches. Thanks to that post--General Conference surge, the fifth batch was nearly as popular as the third batch for one week. Since then, it seems to be about as popular as the fourth batch was around this time. But it's still not super popular: it's as common to sing fifth batch hymns as it was to sing second batch hymns during Christmastime 2024.
@@ -345,13 +346,13 @@ meetings_since_release5 |>
 
 The most popular hymn during this batch is <hymn>Go Tell It on the Mountain (#1208)</hymn>. This is almost certainly because it is a Christmas hymn and we recently celebrated Christmas. Since it is a Christmas hymn, we likely won't see it sung very often until the end of November 2026, which means other hymns will get a chance to be sung. We'll have to wait a full 52 weeks to see how <hymn>Go Tell It on the Mountain (#1208)</hymn> compares to the other hymns in this batch, but I suspect it might lose its place as the most popular hymn in this batch. 
 
-A distant second is <hymn>Our Prayer to Thee (#1048)</hymn>. There may be a few reasons for this. One, I think it's objectively a good hymn. Two, it uses a tune that is well known in the Christian world. In fact, we used this tune in the previous hymnal for <hymn>O Home Beloved (#337)</hymn>. But in the 85,000 sacrament meetings I have data for I have *not once* seen that hymn being sung. So I'm glad they're repurposing it for this hymn. And finally, President Russell M. Nelson wrote the lyrics to the hymn. Now, it might be a coincidence, but he passed away just after this hymn was released and I can't help but wonder whether it's as popular as it is because a fair number of wards sang it soon after that presumably in his honor. We'll never know. 
+In second is <hymn>Our Prayer to Thee (#1048)</hymn>. There may be a few reasons for why this one is next in line. One, I think it's just a good hymn. Two, it uses a tune that is well known in the Christian world and borrowed hymns tend to do well both [in the 1985 hymnal](/posts/new_to_1985) and [in these recent batches](/posts/new_hymns_general). In fact, we used this tune in the previous hymnal for <hymn>O Home Beloved (#337)</hymn>, but in over 90,000 sacrament meetings I have *not once* seen that hymn being sung. So I'm glad they're repurposing it for this hymn. And finally, President Russell M. Nelson wrote the lyrics to the hymn. Now, it might be a coincidence, but he passed away just after this hymn was released and I can't help but wonder whether it's as popular as it is because a fair number of wards sang it soon after that presumably in his honor. We'll never know. 
 
 The next one, <hymn>Help Us Remember (#1043)</hymn> is the only sacrament hymn in this batch, and [sacrament hymns tend to be sung more](/posts/sacrament).
 
 The rest of the hymns trail behind. I personally am a fan of <hymn>This Day Is a Good Day, Lord (#1051)</hymn>, so I'm glad to see it as high as it is on this list. It is interesting that while <hymn>Go Tell It on the Mountain (#1208)</hymn> was popular during Christmas, <hymn>Little Baby in a Manger (#1209)</hymn> was not so much. Familiarity and prior exposure to the hymn likely is an influence, but also I think maybe some wards are uncomfortable with that style of melody in congregational singing still. 
 
-There is a clear least popular hymn, <hymn>Joseph Prayed in Faith (#1049)</hymn>. While I have seen each of the other hymns sung at least a dozen times, this one I've only seen twice. My guess is that it'll become more popular in the spring when people tend to sing Joseph Smith--related hymns. So, I don't think it's any worse of a hymn, but it's just not the time of year for it.
+There is a clear least popular hymn, <hymn>Joseph Prayed in Faith (#1049)</hymn>. My guess is that it'll become more popular in the spring when people tend to sing Joseph Smith--related hymns. So, I don't think it's any worse of a hymn, but it's just not the time of year for it.
 
 
 
@@ -438,5 +439,3 @@ Like many other hymns and batches of hymns, each hymn here has their own story. 
 ## Conclusion
 
 That's all for now. Overall, there are some cool things we learn from this batch. On the one hand, more wards are singing at least one new hymn each week. But, as seen in the first plot above, the first batch is where all the action is at. All batches are getting some attention, but the fifth batch is not doing any better than any of the other ones. In general, it seems like people are still enthusiastically singing new hymns, but not *all* the new hymns. 
-
-We're due for a sixth batch anytime now I believe, so I can't wait to see what we'll get to sing soon!
