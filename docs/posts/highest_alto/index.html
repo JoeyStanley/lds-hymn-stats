@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joey Stanley">
 <meta name="dcterms.date" content="2023-11-02">
 
-<title>LDS Hymn Stats - What are the highest notes in alto lines?</title>
+<title>What are the highest notes in alto lines? – LDS Hymn Stats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,22 +32,30 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c55e9d64ff39e520df18b6c2fd6a6008.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +64,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -73,75 +82,78 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="LDS Hymn Stats - What are the highest notes in alto lines?">
-<meta property="og:description" content="">
+<meta property="og:title" content="What are the highest notes in alto lines? – LDS Hymn Stats">
+<meta property="og:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
 <meta property="og:image" content="https://hymnstats.joeystanley.com/posts/highest_alto/saints.png">
-<meta property="og:site-name" content="LDS Hymn Stats">
+<meta property="og:site_name" content="LDS Hymn Stats">
 <meta property="og:image:height" content="704">
 <meta property="og:image:width" content="2076">
-<meta name="twitter:title" content="LDS Hymn Stats - What are the highest notes in alto lines?">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="What are the highest notes in alto lines? – LDS Hymn Stats">
+<meta name="twitter:description" content="Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.">
 <meta name="twitter:image" content="https://hymnstats.joeystanley.com/posts/highest_alto/saints.png">
 <meta name="twitter:image-height" content="704">
 <meta name="twitter:image-width" content="2076">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LDS Hymn Stats</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../findings.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../findings.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../overview.html" rel="" target="">
- <span class="menu-text">Summarized Data</span></a>
+    <a class="nav-link" href="../../overview.html"> 
+<span class="menu-text">Summarized Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../contribute.html" rel="" target="">
- <span class="menu-text">Contribute</span></a>
+    <a class="nav-link" href="../../contribute.html"> 
+<span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ldshymnstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ldshymnstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/JoeyStanley/lds-hymn-stats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../findings.xml" rel="" target=""><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../findings.xml"> <i class="bi bi-rss" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -149,7 +161,6 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -216,7 +227,9 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
+
 
 <p>Previously, I’ve discussed in depth the <a href="../../posts/highest_melody">highest</a> and <a href="../../posts/lowest_melody">lowest</a> notes a soprano line is expected to go. In this post, I’ll explore the highest notes alto are expected to sing.</p>
 <section id="the-highest-alto-notes" class="level2 page-columns page-full">
@@ -228,7 +241,7 @@ gtag('config', 'G-SG4E42NZ2F', { 'anonymize_ip': true});
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Fun Fact
+<span class="screen-reader-only">Tip</span>Fun Fact
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -237,12 +250,12 @@ Fun Fact
 </div>
 <p>However, we may have to qualify those a little bit. In the first four hymns, the alto is in unison with the soprano. I think it’s noteworthy that the alto only goes that high if it’s singing the melody (i.e.&nbsp;the soprano line) in unison for whatever musical purposes the arranger intended. I’ll leave it up to you about whether you want to consider that a true “alto” line, but I think it’s worth mentioning that detail.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see those hymns
+<span class="screen-reader-only">Tip</span>Click to see those hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -251,28 +264,28 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="saints.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Saints, Behold How Great Jehovah (#28)</figcaption>
+<figcaption>Saints, Behold How Great Jehovah (#28)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="arise.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Arise, O Glorious Zion (#40)</figcaption>
+<figcaption>Arise, O Glorious Zion (#40)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="father.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Father, Thy Children to Thee Now Raise (#91)</figcaption>
+<figcaption>Father, Thy Children to Thee Now Raise (#91)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="anew.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Come, Let Us Anew (#217)</figcaption>
+<figcaption>Come, Let Us Anew (#217)</figcaption>
 </figure>
 </div>
 </div>
@@ -282,17 +295,17 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="shepherd.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">The Lord Is My Shepherd (#316)</figcaption>
+<figcaption>The Lord Is My Shepherd (#316)</figcaption>
 </figure>
 </div>
-<div class="page-columns page-full"><p>Okay fine, so if we ignore alto lines that are in unison with sopranos <em>and</em> the women’s arrangements in the back of the book, the highest alto note is actually a C5, which is found in three hymns: <hymn>Again We Meet Around the Board (#186)</hymn>, <hymn>We Meet Again in Sabbath School (#282)</hymn>, and <hymn>The Star-Spangled Banner (#340)</hymn>.</p><div class="no-row-height column-margin column-container"><span class="">As it turns out, there are a six of other hymns that have alto notes going up to a C5, but it’s only when in unison with sopranos again. They are <hymn>Saints, Behold How Great Jehovah (#28)</hymn>, <hymn>Rejoice, the Lord Is King! (#66)</hymn>, <hymn>Glory to God on High (#67)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>O Thou Rock of Our Salvation (#258)</hymn>, and <hymn>America the Beautiful (#338)</hymn>.</span></div></div>
+<div class="page-columns page-full"><p>Okay fine, so if we ignore alto lines that are in unison with sopranos <em>and</em> the women’s arrangements in the back of the book, the highest alto note is actually a C5, which is found in three hymns: <hymn>Again We Meet Around the Board (#186)</hymn>, <hymn>We Meet Again in Sabbath School (#282)</hymn>, and <hymn>The Star-Spangled Banner (#340)</hymn>.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">As it turns out, there are a six of other hymns that have alto notes going up to a C5, but it’s only when in unison with sopranos again. They are <hymn>Saints, Behold How Great Jehovah (#28)</hymn>, <hymn>Rejoice, the Lord Is King! (#66)</hymn>, <hymn>Glory to God on High (#67)</hymn>, <hymn>God Speed the Right (#106)</hymn>, <hymn>O Thou Rock of Our Salvation (#258)</hymn>, and <hymn>America the Beautiful (#338)</hymn>.</span></div></div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see those hymns
+<span class="screen-reader-only">Tip</span>Click to see those hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -301,21 +314,21 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="again.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Again We Meet Around the Board (#186)</figcaption>
+<figcaption>Again We Meet Around the Board (#186)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="meet.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">We Meet Again in Sabbath School (#282)</figcaption>
+<figcaption>We Meet Again in Sabbath School (#282)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="star.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">The Star-Spangled Banner (#340)</figcaption>
+<figcaption>The Star-Spangled Banner (#340)</figcaption>
 </figure>
 </div>
 </div>
@@ -326,13 +339,17 @@ Click to see those hymns
 </section>
 <section id="overall-distribution-of-highest-alto-notes" class="level2">
 <h2 class="anchored" data-anchor-id="overall-distribution-of-highest-alto-notes">Overall distribution of highest alto notes</h2>
-<p>Now that we’ve established what notes are the highest, let’s look at the distribution of highest alto notes across the hymnal. First, <a href="#fig-distribution-raw">Figure&nbsp;1</a> shows the distribution of highest notes in an alto line, excluding the women’s arrangements.</p>
+<p>Now that we’ve established what notes are the highest, let’s look at the distribution of highest alto notes across the hymnal. First, <a href="#fig-distribution-raw" class="quarto-xref">Figure&nbsp;1</a> shows the distribution of highest notes in an alto line, excluding the women’s arrangements.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-distribution-raw" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-distribution-raw-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Distribution of highest alto notes (women’s arrangements excluded)</figcaption>
+<div id="fig-distribution-raw" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distribution-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-distribution-raw-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distribution-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of highest alto notes (women’s arrangements excluded)
+</figcaption>
 </figure>
 </div>
 </div>
@@ -342,24 +359,28 @@ Click to see those hymns
 </section>
 <section id="b4" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="b4">B4</h2>
-<p>Exactly 11 hymns have B4 (the middle of the treble clef) as the highest alto note. The most common is <hymn>Love at Home (#294)</hymn> with <hymn>I Am a Child of God (#301)</hymn> as a close second. The least common is <hymn>Nay, Speak No Ill (#233)</hymn>. All 11 are plotted in <a href="#fig-b4_cleveland">Figure&nbsp;2</a>, in order of frequency.</p>
+<p>Exactly 11 hymns have B4 (the middle of the treble clef) as the highest alto note. The most common is <hymn>Love at Home (#294)</hymn> with <hymn>I Am a Child of God (#301)</hymn> as a close second. The least common is <hymn>Nay, Speak No Ill (#233)</hymn>. All 11 are plotted in <a href="#fig-b4_cleveland" class="quarto-xref">Figure&nbsp;2</a>, in order of frequency.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-b4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-b4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Frequency of hymns with B4 as the highest alto note</figcaption>
+<div id="fig-b4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-b4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-b4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-b4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Frequency of hymns with B4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see a sample of those hymns
+<span class="screen-reader-only">Tip</span>Click to see a sample of those hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -368,31 +389,31 @@ Click to see a sample of those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="love.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Love at Home (#294)</figcaption>
+<figcaption>Love at Home (#294)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="child.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">I Am a Child of God (#301)</figcaption>
+<figcaption>I Am a Child of God (#301)</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div class="page-columns page-full"><p>There are some similarities across these hymns. Most of them are in the key of G major, and the soprano note at the point where the alto sings the B4 is a D5. Another thing they pretty much all have in common is that for most of the phrase that the altos sing the B4 in, the sopranos and altos are in parallel thirds. We see this in <hymn>Love at Home (#294)</hymn> and <hymn>I Am a Child of God (#301)</hymn>. Here’s another example in <hymn>Come Along, Come Along (#244)</hymn>.</p><div class="no-row-height column-margin column-container"><span class="">This pattern of high alto notes only being found in passages with parallel thirds extends to the three cases of C5 as well.</span></div></div>
+<div class="page-columns page-full"><p>There are some similarities across these hymns. Most of them are in the key of G major, and the soprano note at the point where the alto sings the B4 is a D5. Another thing they pretty much all have in common is that for most of the phrase that the altos sing the B4 in, the sopranos and altos are in parallel thirds. We see this in <hymn>Love at Home (#294)</hymn> and <hymn>I Am a Child of God (#301)</hymn>. Here’s another example in <hymn>Come Along, Come Along (#244)</hymn>.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">This pattern of high alto notes only being found in passages with parallel thirds extends to the three cases of C5 as well.</span></div></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="come.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Come Along, Come Along (#244)</figcaption>
+<figcaption>Come Along, Come Along (#244)</figcaption>
 </figure>
 </div>
 <p>The exception to this is in <hymn>Have I Done Any Good? (#223)</hymn> where the altos have an interesting moving line while the sopranos are on the same note.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="done.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Have I Done Any Good? (#223)</figcaption>
+<figcaption>Have I Done Any Good? (#223)</figcaption>
 </figure>
 </div>
 </section>
@@ -400,12 +421,12 @@ Click to see a sample of those hymns
 <h2 class="anchored" data-anchor-id="b4-1">B♭4</h2>
 <p>We now move on to the 22 hymns that have B♭4 as the highest note for the alto line. Half of these only go that high because they’re singing the melody in unison with the sopranos, like in <hymn>’Tis Sweet to Sing the Matchless Love (#177)</hymn> and <hymn>Hope of Israel (#259)</hymn>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see those hymns
+<span class="screen-reader-only">Tip</span>Click to see those hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -414,14 +435,14 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="sweet.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">’Tis Sweet to Sing the Matchless Love (#177)</figcaption>
+<figcaption>’Tis Sweet to Sing the Matchless Love (#177)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hope.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Hope of Israel (#259)</figcaption>
+<figcaption>Hope of Israel (#259)</figcaption>
 </figure>
 </div>
 </div>
@@ -429,12 +450,12 @@ Click to see those hymns
 </div>
 <p>What about the 11 that have a B♭4 as the highest note with a soprano note above it? They include some sacrament hymns, some otherwise common hymns, and some less-common hymns. Most of the time, the sopranos are singing a D5 above the B♭4, but not always, like in <hymn>All Creatures of Our God and King (#62)</hymn> and <hymn>As the Shadows Fall (#168)</hymn>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see those hymns
+<span class="screen-reader-only">Tip</span>Click to see those hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -443,33 +464,37 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="as-now.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">As Now We Take the Sacrament (#169)</figcaption>
+<figcaption>As Now We Take the Sacrament (#169)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hark.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Hark! The Herald Angels Sing (#209)</figcaption>
+<figcaption>Hark! The Herald Angels Sing (#209)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="shadows.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">As The Shadows Fall (#168)</figcaption>
+<figcaption>As The Shadows Fall (#168)</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>Finally, <a href="#fig-bb4_cleveland">Figure&nbsp;3</a> shows all 22 hymns that have B♭ as the highest note for the altos, regardless of whether they’re in unison or not.</p>
+<p>Finally, <a href="#fig-bb4_cleveland" class="quarto-xref">Figure&nbsp;3</a> shows all 22 hymns that have B♭ as the highest note for the altos, regardless of whether they’re in unison or not.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bb4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-bb4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Frequency of hymns with Bb4 as the highest alto note</figcaption>
+<div id="fig-bb4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bb4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-bb4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bb4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Frequency of hymns with Bb4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
@@ -477,15 +502,15 @@ Click to see those hymns
 </section>
 <section id="a4" class="level2">
 <h2 class="anchored" data-anchor-id="a4">A4</h2>
-<p><a href="#fig-distribution-raw">Figure&nbsp;1</a> showed that there are many hymns that have A4 as the highest alto note. I’m not going to dive into each one, but I can explain a few from each of the different categories.</p>
+<p><a href="#fig-distribution-raw" class="quarto-xref">Figure&nbsp;1</a> showed that there are many hymns that have A4 as the highest alto note. I’m not going to dive into each one, but I can explain a few from each of the different categories.</p>
 <p>The first are the six hymns that have A4 as the highest note but only when it’s singing the melody in unison with the sopranos. Here, we’re starting to get into the sticky area of what is unison with the sopranos because of a stylistic choice, verses unison because it made the most sense to do so for just one note. In something like <hymn>O God, the Eternal Father (#175)</hymn>, it’s clearly a deliberate choice because all four parts are in unison. However, in something like <hymn>High on the Mountain Top (#5)</hymn>, it’s technically in unison with the sopranos, but only because it would have created awkward voice leading to do otherwise. So, maybe I’m splitting hairs by creating these separate categories, but it’s hard to programatically determine which of these types of unisons we’re looking at without going through every hymn, and I don’t particularly want to go through every hymn.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see those hymns
+<span class="screen-reader-only">Tip</span>Click to see those hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -494,26 +519,30 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="o-god.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">O God, the Eternal Father (#175)</figcaption>
+<figcaption>O God, the Eternal Father (#175)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="high.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">High on the Mountain Top (#5)</figcaption>
+<figcaption>High on the Mountain Top (#5)</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>Fortunately, there are relatively few hymns that have the alto line going up to an A4 only during unison passages. A full 54 hymns have “legitimate” alto lines—with soprano notes above them—that only go up to an A4. Instead of going through all of them, I’ll just show them here in <a href="#fig-a4_cleveland">Figure&nbsp;4</a>.</p>
+<p>Fortunately, there are relatively few hymns that have the alto line going up to an A4 only during unison passages. A full 54 hymns have “legitimate” alto lines—with soprano notes above them—that only go up to an A4. Instead of going through all of them, I’ll just show them here in <a href="#fig-a4_cleveland" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-a4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-a4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Frequency of hymns with A4 as the highest alto note</figcaption>
+<div id="fig-a4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-a4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Frequency of hymns with A4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
@@ -522,32 +551,36 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="songs.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">With Songs of Praise (#71)</figcaption>
+<figcaption>With Songs of Praise (#71)</figcaption>
 </figure>
 </div>
 <p>To summarize briefly the A4 hymns, there are 54 that for sure count. Another six fall into this category if we don’t mind including unison passages. Another two fall into this category if we ignore the unison passages and look at the next highest note.</p>
 </section>
 <section id="a4-1" class="level2">
 <h2 class="anchored" data-anchor-id="a4-1">A♭4</h2>
-<p>As we saw in <a href="#fig-distribution-raw">Figure&nbsp;1</a>, there are far fewer hymns that have A♭4 as the highest alto note, likely because A♭s don’t come up as often in the most common key signatures in the hymnal.</p>
-<p>I would start with hymns with alto lines that go up to A♭ only when in unison with the sopranos, but there are none; instead we’ll look at the 10 hymns where A♭4 is the highest and there are soprano notes higher than it. <a href="#fig-a4_cleveland">Figure&nbsp;4</a> shows these hymns in order. There’s not much to be said about these, other than <hymn>Prayer of Thanksgiving (#93)</hymn> technically has a G♯ instead of an A♭, but that’s not a big deal.</p>
+<p>As we saw in <a href="#fig-distribution-raw" class="quarto-xref">Figure&nbsp;1</a>, there are far fewer hymns that have A♭4 as the highest alto note, likely because A♭s don’t come up as often in the most common key signatures in the hymnal.</p>
+<p>I would start with hymns with alto lines that go up to A♭ only when in unison with the sopranos, but there are none; instead we’ll look at the 10 hymns where A♭4 is the highest and there are soprano notes higher than it. <a href="#fig-a4_cleveland" class="quarto-xref">Figure&nbsp;4</a> shows these hymns in order. There’s not much to be said about these, other than <hymn>Prayer of Thanksgiving (#93)</hymn> technically has a G♯ instead of an A♭, but that’s not a big deal.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ab4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-ab4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Frequency of hymns with A♭4 as the highest alto note</figcaption>
+<div id="fig-ab4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ab4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-ab4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ab4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Frequency of hymns with A♭4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see some of these hymns
+<span class="screen-reader-only">Tip</span>Click to see some of these hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -556,14 +589,14 @@ Click to see some of these hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="each.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Each Life that Touches Ours for Good (#293)</figcaption>
+<figcaption>Each Life that Touches Ours for Good (#293)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="prayer.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Prayer of Thanksgiving (#93)</figcaption>
+<figcaption>Prayer of Thanksgiving (#93)</figcaption>
 </figure>
 </div>
 </div>
@@ -571,12 +604,12 @@ Click to see some of these hymns
 </div>
 <p>There are another three hymns that do have alto lines going higher than A♭4, but only in unison passages with the sopranos. Ignoring those passages, their highest alto notes are A♭4. They include <hymn>For the Strength of the Hills (#35)</hymn>, <hymn>Abide with Me; ’Tis Eventide (#165)</hymn>, and <hymn>Home Can Be a Heaven on Earth (#298)</hymn>. Again, though, we’re splitting hairs a little bit, and these three really nice exemplify the continuum of how “unison” should be defined. <hymn>For the Strength of the Hills (#35)</hymn> is a great example of a case where the alto line goes high when singing melody, but not as high otherwise. <hymn>Home Can Be a Heaven on Earth (#298)</hymn> is a case where the highest note really shouldn’t be considered a melody passage and is only technically unison because of voice leading. Meanwhile, <hymn>Abide with Me; ’Tis Eventide (#165)</hymn> is somewhere in the middle. It only goes up to that B♭4 for just one note, but all voices are unison there, so it appears to have been a stylistic choice rather than for some voice leading reason.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Click to see those hymns
+<span class="screen-reader-only">Tip</span>Click to see those hymns
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -585,21 +618,21 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="for-the.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Clear jump to the melody in For the Strength of the Hills (#35)</figcaption>
+<figcaption>Clear jump to the melody in For the Strength of the Hills (#35)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="abide.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Brief unison for stylistic reasons in Abide with Me; ’Tis Eventide (#165)</figcaption>
+<figcaption>Brief unison for stylistic reasons in Abide with Me; ’Tis Eventide (#165)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="home.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Unison only for voice leading reasons in Home Can Be a Heaven on Earth (#298)</figcaption>
+<figcaption>Unison only for voice leading reasons in Home Can Be a Heaven on Earth (#298)</figcaption>
 </figure>
 </div>
 </div>
@@ -608,21 +641,25 @@ Click to see those hymns
 </section>
 <section id="g4" class="level2">
 <h2 class="anchored" data-anchor-id="g4">G4</h2>
-<p>We now move on to the most common highest note for alto lines, G4. <a href="#fig-distribution-raw">Figure&nbsp;1</a> shows that there are well over a hundred hymns have have G4 has the highest note in the alto line, regardless of how you count them. All three categories of “highest notes” that we saw with the A4 hymns above are represented here though, so let’s look at each one of those.</p>
+<p>We now move on to the most common highest note for alto lines, G4. <a href="#fig-distribution-raw" class="quarto-xref">Figure&nbsp;1</a> shows that there are well over a hundred hymns have have G4 has the highest note in the alto line, regardless of how you count them. All three categories of “highest notes” that we saw with the A4 hymns above are represented here though, so let’s look at each one of those.</p>
 <p>First, we can look at the hymns that have G4, but only when singing melody in unison with sopranos. Of the four potentials, <hymn>Come, Listen to a Prophet’s Voice (#21)</hymn> is the only one that has a clear unison passage. The other three (<hymn>Praise Ye the Lord (#74)</hymn>, <hymn>How Great the Wisdom and the Love (195)</hymn>, and <hymn>We Are Marching On to Glory (#225)</hymn>) are only in this category because of voice leading. As far as I can tell, this is the lowest alto line like this, where its highest note is in unison with the sopranos.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="listen.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Come, Listen to a Prophet’s Voice (#21)</figcaption>
+<figcaption>Come, Listen to a Prophet’s Voice (#21)</figcaption>
 </figure>
 </div>
-<p>The largest category is the most boring: hymns that have G4 as the highest note in the alto line while having a higher soprano note. There are many of these, and I won’t go into detail about them. But <a href="#fig-g4_cleveland">Figure&nbsp;6</a> shows them in order of frequency.</p>
+<p>The largest category is the most boring: hymns that have G4 as the highest note in the alto line while having a higher soprano note. There are many of these, and I won’t go into detail about them. But <a href="#fig-g4_cleveland" class="quarto-xref">Figure&nbsp;6</a> shows them in order of frequency.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-g4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-g4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: Frequency of hymns with G4 as the highest alto note</figcaption>
+<div id="fig-g4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-g4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-g4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-g4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Frequency of hymns with G4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
@@ -631,7 +668,7 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="behold.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Saints, Behold How Great Jehovah (#28)</figcaption>
+<figcaption>Saints, Behold How Great Jehovah (#28)</figcaption>
 </figure>
 </div>
 </section>
@@ -640,10 +677,14 @@ Click to see those hymns
 <p>There are far fewer hymns that never even reach a G4. Only about seven hymns have F♯4 as their highest note and there’s a soprano note above it. The most common is <hymn>Upon the Cross of Calvary (#184)</hymn>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-fsharp4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-fsharp4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;7: Frequency of hymns with F#4 as the highest alto note</figcaption>
+<div id="fig-fsharp4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fsharp4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-fsharp4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fsharp4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Frequency of hymns with F#4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
@@ -651,26 +692,30 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="upon.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Upon the Cross of Calvary (#184)</figcaption>
+<figcaption>Upon the Cross of Calvary (#184)</figcaption>
 </figure>
 </div>
 <p>Two hymns go higher than an F♯4 in melody passages, but otherwise only to an F♯4. One is <hymn>Come, Listen to a Prophet’s Voice (#21)</hymn>, but the other (and perhaps widest difference between unison highest notes and regular highest notes) is <hymn>Father, Thy Children to Thee Now Raise (#91)</hymn>, which goes up to a D5 in the first note, but then never again gets higher than an F♯4 and otherwise has a pretty limited range of just a fourth. To put it another way, the top five highest notes in the alto line in that hymn are the first five notes of the hymn.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="raise.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Father, Thy Children to Thee Now Raise (#91)</figcaption>
+<figcaption>Father, Thy Children to Thee Now Raise (#91)</figcaption>
 </figure>
 </div>
 </section>
 <section id="f4-1" class="level2">
 <h2 class="anchored" data-anchor-id="f4-1">F4</h2>
-<p>After G4 and A4, the next most common highest note for an alto line is F4. About 27 hymns fall into this category, all of which are shown in <a href="#fig-f4_cleveland">Figure&nbsp;8</a>. <hymn>Come, Follow Me (#116)</hymn> is shown below as an example of these lower hymns.</p>
+<p>After G4 and A4, the next most common highest note for an alto line is F4. About 27 hymns fall into this category, all of which are shown in <a href="#fig-f4_cleveland" class="quarto-xref">Figure&nbsp;8</a>. <hymn>Come, Follow Me (#116)</hymn> is shown below as an example of these lower hymns.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-f4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-f4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;8: Frequency of hymns with F4 as the highest alto note</figcaption>
+<div id="fig-f4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-f4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Frequency of hymns with F4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
@@ -678,7 +723,7 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="follow.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Come, Follow Me (#116)</figcaption>
+<figcaption>Come, Follow Me (#116)</figcaption>
 </figure>
 </div>
 </section>
@@ -689,16 +734,20 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="builders.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">They, the Builders of the Nation (#36)</figcaption>
+<figcaption>They, the Builders of the Nation (#36)</figcaption>
 </figure>
 </div>
-<p>As for the sacrament hymns that only have E4 as the highest alto note, I’m fine with that. The purpose of those hymns is to contemplative, so in my opinion, singing in a lower register fits with that. You can see the hymns that only go up to E4 in <a href="#fig-e4_cleveland">Figure&nbsp;9</a>.</p>
+<p>As for the sacrament hymns that only have E4 as the highest alto note, I’m fine with that. The purpose of those hymns is to contemplative, so in my opinion, singing in a lower register fits with that. You can see the hymns that only go up to E4 in <a href="#fig-e4_cleveland" class="quarto-xref">Figure&nbsp;9</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-e4_cleveland" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-e4_cleveland-1.png" class="img-fluid figure-img" width="624"></p>
-<figcaption class="figure-caption">Figure&nbsp;9: Frequency of hymns with E4 as the highest alto note</figcaption>
+<div id="fig-e4_cleveland" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-e4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-e4_cleveland-1.png" class="img-fluid figure-img" width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-e4_cleveland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Frequency of hymns with E4 as the highest alto note
+</figcaption>
 </figure>
 </div>
 </div>
@@ -711,7 +760,7 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="over.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Now the Day Is Over (#159)</figcaption>
+<figcaption>Now the Day Is Over (#159)</figcaption>
 </figure>
 </div>
 </section>
@@ -721,14 +770,14 @@ Click to see those hymns
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="testimony.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Testimony (#137)</figcaption>
+<figcaption>Testimony (#137)</figcaption>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="improve.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Improve the Shining Moments (#226)</figcaption>
+<figcaption>Improve the Shining Moments (#226)</figcaption>
 </figure>
 </div>
 <p>As we’ll see in a later blog post, the alto line doesn’t get too much lower than this, so these hymns really hang out in the lower register for altos pretty much the whole time, often while the other parts are more exciting and have wider ranges.</p>
@@ -743,7 +792,7 @@ Click to see those hymns
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Recommendation for the next hymnal
+<span class="screen-reader-only">Tip</span>Recommendation for the next hymnal
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -756,7 +805,7 @@ Recommendation for the next hymnal
 <p>For anyone who is interested, here is a raw spreadsheet of the highest notes. There are 306 rows in this table; some hymns are excluded because they do not have alto lines, either because they are written as unison lines or because they are men’s choir arrangements. In the <code>highest with unisons</code> column, a blank appears if there are no alto notes that are in unison with the soprano line.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 46%">
@@ -2618,43 +2667,58 @@ Recommendation for the next hymnal
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -2662,206 +2726,361 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hymnstats\.joeystanley\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2023, Joey Stanley</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Joey Stanley</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

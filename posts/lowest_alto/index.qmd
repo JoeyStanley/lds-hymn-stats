@@ -1,7 +1,7 @@
 ---
 title: "What are the altos' lowest notes?"
 author: "Joey Stanley"
-date: "03/02/2026"
+date: "03/03/2026"
 date-modified: last-modified
 categories:
   - soprano line
@@ -59,15 +59,6 @@ Let's cut to the chase: the lowest note that an alto part has in the 1985 hymnal
 * God of Our Fathers, Known of Old (#80)
 * Up, Awake, Ye Defenders of Zion (#248)
 
-:::{.callout-tip collapse="true" title="Click to see those hymns"}
-
-![title](name)
-
----
-
-![title]name)
-
-:::
 
 Several of these deserve some commentary. First, as mentioned I reported on the [lowest soprano notes](/posts/lowest_soprano), that G3 in <hymn>There Is Sunshine in My Soul Today (#227)</hymn> is sung with the lowest melody note that is not in unison with the alto. <hymn>Keep the Commandments (#303)</hymn> is a legitimate alto line, but it's only a duet, rather than a full SATB arrangement. The rest seem to be just simply lower-than-usual notes in otherwise normal arrangements.
 
@@ -91,10 +82,6 @@ alto %>%
     filter(note_label == "Ab3") |> 
     pull(hymn_num) |> 
     single_hymn_lookup()
-highest_lowest_note_stats("alto", "Ab3", "low")
-```
-
-```{r}
 highest_lowest_note_stats("alto", "Ab3", "low")
 ```
 
@@ -152,7 +139,9 @@ freqs |>
     theme_minimal() 
 ```
 
-The trend I think is purely coincidental. I don't think it says anything about culture, music, or anything of real significance. 
+The trend I think is purely coincidental. I don't think it says anything about culture, music, or anything of real significance. It's just interesting that a lot of Christmas hymns have A3 as the lowest alto note.
+
+### B♭3
 
 ```{r}
 alto %>%
@@ -199,7 +188,9 @@ freqs |>
 
 Again, I don't think this is a particularly meaningful insight and is probably nothing more than coincidence. But the size of that difference is pretty striking. Especially when compared to the distribution of A3 hymns, which is almost exactly even between Opening, Sacrament, and Closing hymns, with intermediate hymns being lower likely from the sheer fact that not all sacrament meetings have an intermediate hymn.
 
-The most common lowest note for altos is a B3. This is found in 94 total hymns and makes up about a quarter of the hymns sung in sacrament meeting. These include some sacrament hymns like <hymn>Upon the Cross of Calvary (#184)</hymn> as well as numerous other common hymns like <hymn>Come, Come, Ye Saints (#30)</hymn>, <hymn>Choose the Right (#239)</hymn>, and <hymn>He Is Risen! (#199)</hymn>.
+### B3
+
+The most common lowest note for altos is a B3. This is found in 94 total hymns and makes up about a quarter of the hymns sung in sacrament meeting. These include some sacrament hymns like <hymn>Upon the Cross of Calvary (#184)</hymn> as well as numerous other common hymns like <hymn>Come, Come, Ye Saints (#30)</hymn>, <hymn>Choose the Right (#239)</hymn>, and <hymn>He Is Risen! (#199)</hymn>. There's nothing too interesting about the distribution of these hymns across the year or within the meeting.
 
 ```{r}
 alto %>%
@@ -211,3 +202,52 @@ alto %>%
 highest_lowest_note_stats("alto", "B3", "low")
 ```
 
+## Highest lowest notes
+
+Now we enter the territory of the confusingly named "highest lowest notes". If we look at the lowest also notes across all hymns, some will be higher than others. This section looks at the ones that never go very low. If you're a soprano and have trouble singing below a middle C, for example, this might give you an idea of what hymns you could sing alto on.
+
+### C4
+
+```{r}
+alto %>%
+    filter(midi == min(midi), .by = name_num,
+           note_label == "C4") |> 
+    pull(hymn_num) |> 
+    unique() |> 
+    single_hymn_lookup()
+highest_lowest_note_stats("alto", "C4", "low")
+```
+
+There are 25 hymns that have a C4 (middle C) as the lowest alto note. The most common one by a long shot in this group is the one sacrament hymn, <hymn>In Humility, Our Savior (#172)</hymn>. The next most common one is <hymn>I'll Go Where You Want Me to Go (#270)</hymn> which is sung only about every 16 months. The other hymns include several well-known hymns like <hymn>Put Your Shoulder to the Wheel (#252)</hymn>, <hymn>My Redeemer Lives (#135)</hymn>, and <hymn>Abide with Me; 'Tis Eventide (#165)</hymn>. On average, you're likely to see one of these hymns about every 5.6 weeks. 
+
+### C♯4
+
+```{r}
+alto %>%
+    filter(midi == min(midi), .by = name_num,
+           note_label == "C#4") |> 
+    pull(hymn_num) |> 
+    unique() |> 
+    single_hymn_lookup()
+highest_lowest_note_stats("alto", "C#4", "low")
+```
+
+There are also 25 hymns that have C♯4 as the lowest alto note. None of these are sacrament hymns, but they do include more regular ones like <hymn>Lord, I Would Follow Thee (#220)</hymn>, <hymn>We Thank Thee, O God, for a Prophet (#19)</hymn>, and <hymn>Joy to the World (#201)</hymn>. In general, these are more common than the C4 hymns and on average you'll likely see one about every 4.2 weeks. 
+
+### D4
+
+```{r}
+alto %>%
+    filter(midi == min(midi), .by = name_num,
+           note_label == "D4") |> 
+    pull(hymn_num) |> 
+    unique() |> 
+    single_hymn_lookup()
+highest_lowest_note_stats("alto", "D4", "low")
+```
+
+Finally, 11 hymns have the highest lowest alto note have alto lines that never go below a D4. <hymn>While of These Emblems We Partake (#174)</hymn> is the only sacrament hymn. Other include <hymn>Come, Ye Children of the Lord (#58)</hymn>, <hymn>It Came upon the Midnight Clear (#163)</hymn>, <hymn>Lord, Dismiss Us with Thy Blessing (#163)</hymn>, and <hymn>Abide with Me! (#166)</hymn>. I will show in later blog posts that some of these stand out in other ways as well: <hymn>Come, Ye Children of the Lord (#58)</hymn> generally has higher notes for everyone and <hymn>Lord, Dismiss Us with Thy Blessing (#163)</hymn> rather infamously has the most boring line ever (alto or otherwise). 
+
+## Conclusion
+
+In this post, I looked on the lowest notes for just the altos. I've shown that the lowest note that an alto would need to be able to sing in the hymnal is a G3. Some hymns though never go below a D4. Generally though, the lowest notes for altos is between A3 and Bb3.
