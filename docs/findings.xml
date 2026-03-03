@@ -10,7 +10,115 @@
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 27 Feb 2026 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 02 Mar 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>What are the altos’ lowest notes?</title>
+  <dc:creator>Joey Stanley</dc:creator>
+  <link>https://hymnstats.joeystanley.com/posts/lowest_alto/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>While my primary focus with this hymns stats blog has been to explore how the hymns are used in sacrament meetings, a secondary focus is to look at the music itself. I have already done a handful of posts on the music of the hymns, such as <a href="../../posts/highest_melody">the highest alto notes</a> and [the lowest soprano notes](/posts/lowest_soprano]. In this years-overdue post, we’ll explore the lowest notes the alto line sings. Mark Mitchell has already done <a href="https://markmitchell-music.com/music/documents/HymnStats.pdf">fantastic work</a> related to this. I hope to add to what he’s reported already.</p>
+<p>Here’s a plot that shows the distribution of lowest also notes across all the hymns in the 1985 hymnal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_alto/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see there are three main categories of low notes: G3 and A♭3, A3 through B3, and C4 and above. Let’s work through those three cateogires.</p>
+<section id="lowest-alto-notes" class="level2">
+<h2 class="anchored" data-anchor-id="lowest-alto-notes">Lowest alto notes</h2>
+<section id="g3" class="level3">
+<h3 class="anchored" data-anchor-id="g3">G3</h3>
+<p>Let’s cut to the chase: the lowest note that an alto part has in the 1985 hymnal is a G3, which is the G below the treble clef. This occurs in eight different hymns for sure. Here they are in order of how common those hymns are sung as congregational hymns in sacrament meeting:</p>
+<ul>
+<li>Because I Have Been Given Much (#219)</li>
+<li>There Is Sunshine in My Soul Today (#227)</li>
+<li>In Fasting We Approach Thee (#139)</li>
+<li>Be Thou Humble (#130)</li>
+<li>Keep the Commandments (#303)</li>
+<li>Know This, That Every Soul Is Free (#240)</li>
+<li>God of Our Fathers, Known of Old (#80)</li>
+<li>Up, Awake, Ye Defenders of Zion (#248)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Click to see those hymns">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Click to see those hymns
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_alto/name.png" class="img-fluid figure-img"></p>
+<figcaption>title</figcaption>
+</figure>
+</div>
+<hr>
+<p>![title]name)</p>
+</div>
+</div>
+</div>
+<p>Several of these deserve some commentary. First, as mentioned I reported on the <a href="../../posts/lowest_soprano">lowest soprano notes</a>, that G3 in <hymn>There Is Sunshine in My Soul Today (#227)</hymn> is sung with the lowest melody note that is not in unison with the alto. <hymn>Keep the Commandments (#303)</hymn> is a legitimate alto line, but it’s only a duet, rather than a full SATB arrangement. The rest seem to be just simply lower-than-usual notes in otherwise normal arrangements.</p>
+<p>There are two more in the <a href="../../posts/mens_womens_arrangements">men’s and women’s arrangements</a> in the back of the hymnal. One is in <hymn>Love at Home [Women] (#318)</hymn>, but I’m hesitant to treat that the same as the others because it’s a SSA arrangement, so it’s a little bit different than an SATB hymn. And the other is kinda not really an alto part in <hymn>The Priesthood of Our Lord [Men] (#320)</hymn>, which doesn’t really count because it appears to be more of a unison hymn anyway, and that’s if we should even consider a tenor harmony line an “alto” part.</p>
+<p>Because some of these hymns are pretty common, singing this record-low note happens fairly often, a little less than once every three months on average.</p>
+</section>
+<section id="a3" class="level3">
+<h3 class="anchored" data-anchor-id="a3">A♭3</h3>
+<p>The next lowest note, A♭3, is about as rare and is found in 10 hymns, including <hymn>I Stand All Amazed (#193)</hymn>, <hymn>As Now We Take the Sacrament (#169)</hymn>, and <hymn>A Poor Wayfaring Man of Grief (#29)</hymn>. Since the sacrament hymns that fall into this category are common and most of the non-sacrament hymns are not very common, it’s primarily during the sacrament hymns that you see these low A♭s.</p>
+</section>
+</section>
+<section id="typical-lowest-notes" class="level2">
+<h2 class="anchored" data-anchor-id="typical-lowest-notes">Typical lowest notes</h2>
+<p>So, we’ve established that G3 and A♭3 are unusually low. Looking at the distribution of the lowest notes across the hymnal in the plot above, let’s move now on to the typical low end of alto lines, which is around an A3, B♭3, or B3.</p>
+<section id="a3-1" class="level3">
+<h3 class="anchored" data-anchor-id="a3-1">A3</h3>
+<p>There are 79 hymns that have A3 as the lowest note for the altos. This includes sacrament hymns like <hymn>How Great the Wisdom and the Love (#195)</hymn>, other common hymns like <hymn>I Need Thee Every Hour (#98)</hymn>, and a surprising number of Christmas hymns, like <hymn>Hark! the Herald Angels Sing (#209)</hymn>. In fact, six of the fourteen Christmas hymns fall into this category, which makes singing A3 as the lowest note more common around Christmastime. The following chart shows this trend!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_alto/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The trend I think is purely coincidental. I don’t think it says anything about culture, music, or anything of real significance.</p>
+<p>Next are hymns where the lowest alto note is a B♭3. There are 64 hymns that fit into this category. Over half the time this type of hymn is sung is as a sacrament hymn since 9 of the 28 sacrament hymns have B♭3 as the lowest alto note, including <hymn>There Is a Green Hill Far Away (#194)</hymn> and <hymn>God Loved Us, So He Sent His Son (#187)</hymn>. This plot shows how often hymns where the lowest alto note is a B♭3 are sung:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/lowest_alto/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Again, I don’t think this is a particularly meaningful insight and is probably nothing more than coincidence. But the size of that difference is pretty striking. Especially when compared to the distribution of A3 hymns, which is almost exactly even between Opening, Sacrament, and Closing hymns, with intermediate hymns being lower likely from the sheer fact that not all sacrament meetings have an intermediate hymn.</p>
+<p>The most common lowest note for altos is a B3. This is found in 94 total hymns and makes up about a quarter of the hymns sung in sacrament meeting. These include some sacrament hymns like <hymn>Upon the Cross of Calvary (#184)</hymn> as well as numerous other common hymns like <hymn>Come, Come, Ye Saints (#30)</hymn>, <hymn>Choose the Right (#239)</hymn>, and <hymn>He Is Risen! (#199)</hymn>.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>soprano line</category>
+  <category>lowest notes</category>
+  <category>musicology</category>
+  <guid>https://hymnstats.joeystanley.com/posts/lowest_alto/</guid>
+  <pubDate>Mon, 02 Mar 2026 07:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Predicting the popularity of the sixth batch of hymns</title>
   <dc:creator>Joey Stanley</dc:creator>
@@ -16834,42 +16942,6 @@ Figure&nbsp;5: Popularity of five patriotic hymns by date
   <category>frequency</category>
   <guid>https://hymnstats.joeystanley.com/posts/4th_of_july/</guid>
   <pubDate>Thu, 04 Jul 2024 06:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>What hymns are sung around the martyrdom of Joseph Smith?</title>
-  <dc:creator>Joey Stanley</dc:creator>
-  <link>https://hymnstats.joeystanley.com/posts/martyrdom/</link>
-  <description><![CDATA[ 
-
-
-
-<p>As I’ve been collecting data this month with a focus on the new hymnal, I noticed that a fair number of wards sang hymns related to Joseph Smith. One ward explained why: it’s because the anniversary of his martyrdom was on June 27th. How common is it to sing Joseph Smith–related songs at the end of June?</p>
-<p>First, let’s look at hymns sung on the closest Sunday to June 27th. So, this would be between June 24 and June 30, or rather, the last Sunday of June.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/martyrdom/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<p>Well would you look at that! The most common hymn on the last week on June (excluding sacrament hymns) is <hymn>Praise to the Man (#27)</hymn>. We have some competition with the Fourth of July, so we see some patriotic hymns in there. We also see some generic common hymns. But not too far down the line, we see <hymn>A Poor Wayfaring Man of Grief (#29)</hymn> and <hymn>Joseph Smith’s First Prayer (#26)</hymn>. Singing Joseph Smith–related hymns around the time of his martyrdom is not something I had considered before, but apparently it’s a common enough trend to break through the noise.</p>
-<p>Now, if you look at the <em>x</em>-axis of that plot, you’ll see some low numbers. Only about 7% of wards sing <hymn>Praise to the Man (#27)</hymn>, so it’s not like tons of people are doing this. Looking at all three of those hymns together, it looks like about 10% of wards sing one of them, 2% sing two of them, and twice I have instances of wards singing all three of them. Most of the time (88%), people don’t sing them. But again, it’s interesting that those three hymns were able to cut through the noise of all the other hymns sung on the last week of June.</p>
-<p>So when do Joseph Smith hymns peak? When I started this analysis, I figured the Sunday closest to the 27th would have the most. But, as we saw, there was some interference with the 4th of July. Besides, holiday hymns are most common the Sunday <em>before</em> and not necessarily the <em>closest</em> Sunday.</p>
-<p>The following figure shows what proportion of wards sing at least one of those three Joseph Smith hymns per day. Keep in mind that I have data spanning 22 years, so even though though the anniversary of the martyrdom was Thursday this year, it falls on different days depending on the year. Please note that the data has been smoothed a little bit. Because the amount of data I have per year varies, the true underlying data was a little bit messy. So, what you’re seeing here is the percent of wards that sing at least one of the three Joseph Smith hymns <em>within a three-day window</em> the date shown on the plot.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="https://hymnstats.joeystanley.com/posts/martyrdom/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<p>What I see in this plot is that in the three-day window around (and including) about June 22nd–27th, we see the most number of Joseph Smith–related hymns. The number quickly drops off after that, likely due to 4th of July. But, during those days, about 15% of wards sing at least one of those three hymns. To put that into perspective, that’s about as common as singing <hymn>Our Savior’s Love (#113)</hymn> is around <a href="../../posts/valentines">Valentine’s Day</a> and only a little less common than singing <hymn>Ring Out, Wild Bells (#215)</hymn> on <a href="../../posts/new-years">New Year’s Eve</a>.</p>
-<p>I learned something new today! I had no idea that so many wards honored Joseph Smith through song around the anniversary of his Martyrdom!</p>
-
-
-
- ]]></description>
-  <category>holidays</category>
-  <category>frequency</category>
-  <guid>https://hymnstats.joeystanley.com/posts/martyrdom/</guid>
-  <pubDate>Mon, 01 Jul 2024 06:00:00 GMT</pubDate>
-  <media:content url="https://hymnstats.joeystanley.com/posts/martyrdom/cover.png" medium="image" type="image/png" height="89" width="144"/>
 </item>
 </channel>
 </rss>
