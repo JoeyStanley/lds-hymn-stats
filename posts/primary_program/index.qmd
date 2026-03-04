@@ -32,7 +32,7 @@ freqs %>%
     filter(month == 10,
            !hymn_num %in% 169:196,
            !hymn_num %in% c(19)) %>%
-    cleveland_plot(return = "table") %>%
+    cleveland(return = "table") %>%
     mutate(n = n/n_october_meetings,
            n = round(n, 4),
            n = scales::percent(n)) %>%
@@ -213,7 +213,7 @@ halloween <- freqs %>%
     filter(month == 10,
            day %in% 25:31)
 halloween %>%
-    cleveland_plot(filter_n = 20)
+    cleveland(filter_n = 20)
 halloween %>%
     count(meeting_id)
 freqs %>%
