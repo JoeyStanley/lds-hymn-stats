@@ -1694,10 +1694,19 @@ I thought bootstrapping might solve that problem, but there seems to be some iss
   <pubDate>Fri, 13 Feb 2026 07:00:00 GMT</pubDate>
 </item>
 <item>
-  <title></title>
+  <title>Has it become more common to sing songs from the Children’s Songbook?</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/childrens_songbook/</link>
-  <description><![CDATA[ undefined ]]></description>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is dependent on how far back I’ve swept the Ward Bullet stuff. Revisit this post once I’ve swept past at least to April 2022, which I think is a year before they added the feature where people can add the hymns to the Library app.</p>
+
+
+
+ ]]></description>
   <guid>https://hymnstats.joeystanley.com/posts/childrens_songbook/</guid>
   <pubDate>Fri, 06 Feb 2026 07:00:00 GMT</pubDate>
 </item>
@@ -6418,10 +6427,642 @@ Note
   <pubDate>Sun, 15 Jun 2025 06:00:00 GMT</pubDate>
 </item>
 <item>
-  <title></title>
+  <title>One Year of New Hymns</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/one_year_of_new_hymns/</link>
-  <description><![CDATA[ undefined ]]></description>
+  <description><![CDATA[ 
+
+
+
+
+<p>It has been one year since the first batch of new hymns has been updated. In this post, I want to give a general overview of how these hymns have been used as congregational hymns in sacrament meeting. This will overlap partially with my dedicated posts on the <a href="../../posts/new_hymns_batch_1">first</a>, <a href="../../posts/new_hymns_batch_2">second</a>, and <a href="../../posts/new_hymns_batch_3">third</a> batches, but it also presents some new analyses now found in those posts.</p>
+<p>The data for this post is based on</p>
+<section id="incorporation" class="level2">
+<h2 class="anchored" data-anchor-id="incorporation">Incorporation</h2>
+<p>First, let’s talk about how often these hymns collectively have been sung in sacrament meetings. This plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="ytuihydzjk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ytuihydzjk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ytuihydzjk thead, #ytuihydzjk tbody, #ytuihydzjk tfoot, #ytuihydzjk tr, #ytuihydzjk td, #ytuihydzjk th {
+  border-style: none;
+}
+
+#ytuihydzjk p {
+  margin: 0;
+  padding: 0;
+}
+
+#ytuihydzjk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ytuihydzjk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ytuihydzjk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ytuihydzjk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ytuihydzjk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ytuihydzjk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ytuihydzjk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ytuihydzjk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ytuihydzjk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ytuihydzjk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ytuihydzjk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ytuihydzjk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ytuihydzjk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ytuihydzjk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ytuihydzjk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ytuihydzjk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ytuihydzjk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ytuihydzjk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ytuihydzjk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ytuihydzjk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ytuihydzjk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ytuihydzjk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ytuihydzjk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ytuihydzjk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ytuihydzjk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ytuihydzjk .gt_left {
+  text-align: left;
+}
+
+#ytuihydzjk .gt_center {
+  text-align: center;
+}
+
+#ytuihydzjk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ytuihydzjk .gt_font_normal {
+  font-weight: normal;
+}
+
+#ytuihydzjk .gt_font_bold {
+  font-weight: bold;
+}
+
+#ytuihydzjk .gt_font_italic {
+  font-style: italic;
+}
+
+#ytuihydzjk .gt_super {
+  font-size: 65%;
+}
+
+#ytuihydzjk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ytuihydzjk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ytuihydzjk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ytuihydzjk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ytuihydzjk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ytuihydzjk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ytuihydzjk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ytuihydzjk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ytuihydzjk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal">Number of wards I have data from, by week</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Since February 16th</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">date</th>
+<th id="wards" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wards</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">February 16</td>
+<td class="gt_row gt_right" headers="wards">574</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">February 23</td>
+<td class="gt_row gt_right" headers="wards">461</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">March 02</td>
+<td class="gt_row gt_right" headers="wards">625</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">March 09</td>
+<td class="gt_row gt_right" headers="wards">572</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">March 16</td>
+<td class="gt_row gt_right" headers="wards">529</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">March 23</td>
+<td class="gt_row gt_right" headers="wards">560</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">March 30</td>
+<td class="gt_row gt_right" headers="wards">523</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">April 13</td>
+<td class="gt_row gt_right" headers="wards">666</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">April 20</td>
+<td class="gt_row gt_right" headers="wards">543</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">April 27</td>
+<td class="gt_row gt_right" headers="wards">390</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 04</td>
+<td class="gt_row gt_right" headers="wards">405</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 11</td>
+<td class="gt_row gt_right" headers="wards">80</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 18</td>
+<td class="gt_row gt_right" headers="wards">183</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 25</td>
+<td class="gt_row gt_right" headers="wards">113</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 01</td>
+<td class="gt_row gt_right" headers="wards">489</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">June 08</td>
+<td class="gt_row gt_right" headers="wards">563</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 15</td>
+<td class="gt_row gt_right" headers="wards">607</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">June 22</td>
+<td class="gt_row gt_right" headers="wards">529</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 29</td>
+<td class="gt_row gt_right" headers="wards">455</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">July 06</td>
+<td class="gt_row gt_right" headers="wards">731</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">July 13</td>
+<td class="gt_row gt_right" headers="wards">766</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">July 20</td>
+<td class="gt_row gt_right" headers="wards">691</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">July 27</td>
+<td class="gt_row gt_right" headers="wards">661</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 03</td>
+<td class="gt_row gt_right" headers="wards">736</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 10</td>
+<td class="gt_row gt_right" headers="wards">539</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 17</td>
+<td class="gt_row gt_right" headers="wards">431</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">August 24</td>
+<td class="gt_row gt_right" headers="wards">597</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">August 31</td>
+<td class="gt_row gt_right" headers="wards">652</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">September 07</td>
+<td class="gt_row gt_right" headers="wards">435</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">September 14</td>
+<td class="gt_row gt_right" headers="wards">421</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">September 21</td>
+<td class="gt_row gt_right" headers="wards">17</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="how-many-wards-sang-new-hymns-each-week" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="how-many-wards-sang-new-hymns-each-week">How many wards sang new hymns each week?</h2>
+<p>The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I’ve included data from all three batches just so you can compare them to each other.</p>
+<div class="cell page-columns page-full">
+<div class="cell-output cell-output-stderr">
+<pre><code>Ignoring unknown labels:
+• fill : "date"</code></pre>
+</div>
+<div class="cell-output-display page-columns page-full">
+<div class="page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/one_year_of_new_hymns/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img column-page" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Same plot, but with the start times overlayed.</p>
+</section>
+<section id="popularity" class="level2">
+<h2 class="anchored" data-anchor-id="popularity">Popularity</h2>
+<p>How popular are each of the new hymns. Normalize to number of weeks of being available. Account for holidays. Account for sacrament hymns.</p>
+
+
+</section>
+
+ ]]></description>
   <category>general</category>
   <category>new hymns</category>
   <guid>https://hymnstats.joeystanley.com/posts/one_year_of_new_hymns/</guid>
@@ -6586,10 +7227,44 @@ Figure&nbsp;5: When during sacrament meeting is each Easter hymn sung?
   <media:content url="https://hymnstats.joeystanley.com/posts/easter2025/cover.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
-  <title></title>
+  <title>Are these hymns appropriate for sacrament meeting?</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/appropriateness/</link>
-  <description><![CDATA[ undefined ]]></description>
+  <description><![CDATA[ 
+
+
+
+
+<p>Yes, of course they are. If Christ approves, then I approve, and who am I to say otherwise?</p>
+<section id="playing-piano-acommpaniments-on-the-organ" class="level2">
+<h2 class="anchored" data-anchor-id="playing-piano-acommpaniments-on-the-organ">Playing piano acommpaniments on the organ</h2>
+<p>Some people have complained that the new hymns are arranged specifically for piano and that playing them as-is on the organ doesn’t sound good. I can see where they are coming from, but ultimately that is a matter of personal taste. I see three rather obvious solutions to solve this problem:</p>
+<ol type="1">
+<li><p>A good organist should be able to adapt simple arrangements like these on the fly to be more suitable for organ accompaniment.</p></li>
+<li><p>Just go play the piano.</p></li>
+<li><p>Church members need to expand their idea of what is considered suitable music for sacrament meeting.</p></li>
+</ol>
+</section>
+<section id="they-simply-cant-be-played-on-the-organ" class="level2">
+<h2 class="anchored" data-anchor-id="they-simply-cant-be-played-on-the-organ">They simply can’t be played on the organ</h2>
+<p>You need to understand that the organ is capable of more than SATB arrangements.</p>
+</section>
+<section id="but-brother-so-and-so-has-a-low-voice-what-is-he-supposed-to-sing-then" class="level2">
+<h2 class="anchored" data-anchor-id="but-brother-so-and-so-has-a-low-voice-what-is-he-supposed-to-sing-then">But Brother So-and-So has a low voice! What is he supposed to sing then??</h2>
+<p>Do you honestly think that every single member of your ward is singing the part suitable for their voice? Absolutely not. There are tons of people without much musical training or ability that get along just fine with singing the melody in whatever range they feel comfortable with. If that means they’re singing an octave lower than they “““should”“” be singing, that’s fine. When confronted with a new hymn without parts, they’re keep doing what they have been doing and will sing that melody in a way that works best for them.</p>
+<p>If someone has musical ability and struggles with the range of the melody, I’m pretty sure they’ll find a way. They’ll make up a harmony line based on the accompaniment or maybe sing down an octave. I don’t think people will stop singing simply because there are no harmony lines.</p>
+</section>
+<section id="songs-vs.-hymns" class="level2">
+<h2 class="anchored" data-anchor-id="songs-vs.-hymns">“Songs” vs.&nbsp;“Hymns”</h2>
+<p>As <a href="joeystanley.com">a linguist by day</a>, I can tell you that words are powerful. And unfortunately, I’m seeing a subtle shift in how the words <em>song</em> and <em>hymn</em> are used. I’m noticing that people are using the word <em>song</em> to refer to musical pieces that were originally published with a melody line and piano accompaniment, while <em>hymn</em> is for musical pieces that are traditionally sung in SATB. With this distinction, “I Will Walk with Jesus” would be a <em>song</em> while “Come, Thou Fount of Every Blessing” would be a <em>hymn</em>.</p>
+<p>This distinction might stem from the fact that for the past couple decades, the two main books of music we’ve been using are called “Hymns” and “Children’s Songbook.” The distinction is reinforced by the fact that the table of contents to “Hymns” has section called “Children’s Songs” that contains several pieces that, by the above definition, would be considered “songs.”</p>
+<p>I’m rather opposed to this distinction. For one, it doesn’t hold up to scrutiny. Are “Because I Have Been Given Much”, “Come, Rejoice”, “As Zion’s Youth in Latter Days”, “Families Can Be Together Forever”, and “I Know My Father Lives” not hymns? Do “Ye Simple Souls Who Stray”, “I Know That My Redeemer Lives”, “I Stand All Amazed”, “Carry On”, “Called to Serve”, and “Behold! A Royal Army” switch between being hymns and songs partway through? Are verses 1, 2, and 5 of “For All the Saints” songs, while verses 3 and 4 are hymns? What makes “The Light Divine” and “In Our Lovely Deseret” any more of a hymn than “Families Can Be Together Forever”, other than they happen to be arranged in this book in SATB? What makes “Beautiful Savior”, which is essentially written in SATB in the Children’s Songbook, a “song” and not a “hymn”? Even worse are the occasional comments that imply that African American spirituals are not “hymns.” Specifically, I’m talking about “This Little Light of Mine”.</p>
+<p>Perhaps at a deeper level, the use of <em>songs</em> for something like “I Will Walk with Jesus” seems rather pejorative. Are musical pieces intended for children not “worthy” of being called <em>hymns</em>?</p>
+
+
+</section>
+
+ ]]></description>
   <category>general</category>
   <category>new hymns</category>
   <guid>https://hymnstats.joeystanley.com/posts/appropriateness/</guid>
@@ -9283,10 +9958,38 @@ Note
   <pubDate>Wed, 06 Nov 2024 07:00:00 GMT</pubDate>
 </item>
 <item>
-  <title></title>
+  <title>Math on the Hymn Boards (Part 2)</title>
   <dc:creator>Joey Stanley</dc:creator>
   <link>https://hymnstats.joeystanley.com/posts/math2/</link>
-  <description><![CDATA[ undefined ]]></description>
+  <description><![CDATA[ 
+
+
+
+
+<section id="ranges" class="level2">
+<h2 class="anchored" data-anchor-id="ranges">Ranges</h2>
+<p>The follow-up question I have is this: what are the widest and narrowest ranges of hymns shown on the hymn board? Have I ever seen, for example hymn 1 and hymn 341 in the same meeting? Or maybe three hymns that are all very close to each other? The following plot shows the distribution of the ranges of these hymns when they’re in increasing or decreasing order. For now, I’ve excluded weeks that included any of the new hymns because they throw things off quite a bit.</p>
+<p>Looks like the small ones are mostly Christmas and some Easter.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://hymnstats.joeystanley.com/posts/math2/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="similar-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="similar-numbers">Similar numbers</h2>
+<p>111,222, etc.</p>
+<p>37, 137, 237, etc.</p>
+<p>50, 100, 150 or other integer multiples</p>
+
+
+</section>
+
+ ]]></description>
   <category>general</category>
   <guid>https://hymnstats.joeystanley.com/posts/math2/</guid>
   <pubDate>Wed, 09 Oct 2024 06:00:00 GMT</pubDate>
