@@ -8,7 +8,7 @@ categories:
   - frequency
   - new hymns
 reference-location: margin
-
+draft: true
 ---
 
 ```{r, include = FALSE}
@@ -277,7 +277,6 @@ data_to_plot |>
     print()
 ```
 
-
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
 
 ```{r, include = TRUE, fig.height = 4.5, fig.width = 14}
@@ -387,31 +386,31 @@ meetings_since_release6 |>
 
 This table shows when during sacrament meetings these hymns have been sung. 
 
-```{r, include = TRUE}
-meetings_since_release6 |>
-    filter(hymn_num %in% batch6_hymn_nums,
-           !is.na(type)) |>
-    count(name_num, hymn_num, type) |>
-    mutate(n = round(n/sum(n), 2)*100,
-           .by = name_num) |>
-    pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
-    arrange(hymn_num) |>
-    select(-hymn_num) |>
-    select(name_num,
-           Opening, Sacrament, Intermediate, Closing) |>
-    rename(`New Hymn` = name_num) |>
-    gt() |>
-    gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
-                   fill = "#4F2B47", height = 20, font_size = "14px") |>
-    gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
-                   fill = "#4F2B47", height = 20, font_size = "14px") |>
-    gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE,
-                   fill = "#4F2B47", height = 20, font_size = "14px") |>
-    gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE,
-                   fill = "#4F2B47", height = 20, font_size = "14px") |>
-    tab_header(title = "When were new hymns sung in sacrament meeting?",
-               subtitle = "Since February 26, 2026") |>
-    tab_source_note("Note: Each row adds up to 100%.")
+```{r, include = FALSE}
+# meetings_since_release6 |>
+#     filter(hymn_num %in% batch6_hymn_nums,
+#            !is.na(type)) |>
+#     count(name_num, hymn_num, type) |>
+#     mutate(n = round(n/sum(n), 2)*100,
+#            .by = name_num) |>
+#     pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
+#     arrange(hymn_num) |>
+#     select(-hymn_num) |>
+#     select(name_num,
+#            Opening, Sacrament, Intermediate, Closing) |>
+#     rename(`New Hymn` = name_num) |>
+#     gt() |>
+#     gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE,
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE,
+#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
+#     tab_header(title = "When were new hymns sung in sacrament meeting?",
+#                subtitle = "Since February 26, 2026") |>
+#     tab_source_note("Note: Each row adds up to 100%.")
 ```
 
 
