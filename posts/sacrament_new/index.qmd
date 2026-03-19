@@ -1,0 +1,266 @@
+---
+title: "What are the most and least common Sacrament Hymns?"
+author: "Joey Stanley"
+date: "9/7/23"
+date-modified: last-modified
+categories:
+  - sacrament
+  - frequency
+aliases:
+  - findings.html#sacrament-hymns
+image: cover.png
+reference-location: margin
+number-sections: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8,
+                      freeze = TRUE)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+```{r}
+freqs_1985 <- freqs |> 
+    filter(date <= batch1_release_date)
+```
+
+## New hymns {#sec-new}
+
+### Which new hymns are sacrament hymns?
+
+Since this analysis was first posted in September 2023, we've been blessed with the addition of many new hymns. At the time of writing (March 2026), we've seen 72 new hymns, about 9 of which have been tagged as sacrament hymns.^[When looking through the hymns, I'm seeing which ones are tagged with "the Sacrament". (I'm not sure why it's *the* sacrament and not just *sacrament* like all other tags.) I'm getting conflicting results when I search on the website, the Library app, and the now-defunct music app, so I'll just put all of them here.] Here they are:
+
+* `r hymn(1003)`
+* `r hymn(1007)`
+* `r hymn(1008)`
+* `r hymn(1009)`
+* `r hymn(1016)`
+* `r hymn(1017)`
+* `r hymn(1041)`
+* `r hymn(1043)`
+* `r hymn(1052)`
+* `r hymn(1206)`
+
+
+```{r}
+new_sac_hymns <- c(1003, 1007, 1008, 1009, 1016, 1017, 1041, 1043, 1052, 1206)
+```
+
+@tbl-new shows how commonly sung each of these hymns are as opening, sacrament, intermediate, and closing hymns. You'll have to take some of these numbers with a grain of salt, particularly <hymn>`r hymn(1041)`</hymn>, <hymn>`r hymn(1043)`</hymn>, and <hymn>`r hymn(1052)`</hymn> because they are among the newer batches so there has been less time for them to be used. 
+
+```{r}
+batch4_hymn_nums
+```
+
+
+```{r, include = TRUE}
+#| label: tbl-new
+#| tbl-cap: "Frequency of new sacrament hymns"
+freqs |> 
+    filter(hymn_num > 1000,
+           hymn_num < 2000,
+           !is.na(type)) |>
+    count(hymn_num, name_num, type) |> 
+    mutate(prop = n/sum(n), .by = name_num) |> 
+    select(-n) |> 
+    pivot_wider(names_from = type, values_from = prop, values_fill = 0) |>
+    filter(hymn_num %in% new_sac_hymns) |> 
+    arrange(-Sacrament) |> 
+    mutate(across(Opening:Closing, ~paste0(round(. * 100, 1), "%"))) |>
+    select(-hymn_num) |> 
+    rename(hymn = name_num) |> 
+    gt()
+```
+
+Recall that even <hymn>`r hymn(193)`</hymn>, which is sung the most *not* during the sacrament slot, was still sung in the sacrament slot over 90% of the time. But for whatever reason, only three of these hymns have been as consistently sung in the sacrament slot as the 1985 sacrament hymns: <hymn>`r hymn(1007)`</hymn>, <hymn>`r hymn(1043)`</hymn>, and <hymn>`r hymn(1008)`</hymn>. There are two older releases and one newer one, so it's not something to do with amount of time they've been out. And I checked across the months and the proportion of time they've been used as sacrament hymns has been pretty steady since their release. (This is true of all the new hymns.) Perhaps it's that the connection to the sacrament is especially transparent in the title and lyrics. 
+
+```{r, fig.height = 12, fig.width = 8}
+freqs |> 
+    filter(hymn_num > 1000, 
+           hymn_num < 2000,
+           !is.na(type)) |> 
+    count(name_num, hymn_num, type, date) |> 
+    pivot_wider(names_from = type, values_from = n, values_fill = 0) |> 
+    rowwise() |> 
+    mutate(prop_sac = Sacrament/sum(c(Opening, Sacrament, Intermediate, Closing))) |> 
+    ungroup() |> 
+    filter(hymn_num %in% new_sac_hymns) |> 
+    mutate(month = month(date),
+           year = year(date)) |> 
+    summarize(prop_sac = mean(prop_sac), .by = c(month, year, name_num)) |> 
+    mutate(date = my(paste(month, year))) |> 
+    ggplot(aes(date, prop_sac)) + 
+    geom_point() + 
+    facet_wrap(~name_num, scales = "free_x", ncol = 2) + 
+    geom_smooth(method = 'loess',
+                formula = 'y ~ x',se = FALSE) + 
+    scale_y_continuous(limits = c(0, 1),
+                       expand = expansion(0, 0.05)) 
+```
+
+The other hymns are used a fair amount in other times during the meeting. They include <hymn>`r hymn(1016)`</hymn> and <hymn>`r hymn(1041)`</hymn> which are used as a sacrament hymn most of the time. They also include <hymn>`r hymn(1009)`</hymn> and <hymn>`r hymn(1017)`</hymn>, which were not sung as sacrament hymns the majority of the time. This may be because they existed in Latter-day Saint music culture before their inclusion in the hymnal and it's a hard switch to turn them into sacrament hymns. Perhaps because they're arranged in unison and we don't otherwise have any non-SATB sacrament hymns. <hymn>`r hymn(193)`</hymn> comes the closest with its duet verse. Then there's <hymn>`r hymn(1206)`</hymn>, which might not be sung as a sacrament hymn very often because it's seen more as an Easter hymn. Although the same could be said of <hymn>`r hymn(197)`</hymn>. Finally there's <hymn>`r hymn(1003)`</hymn> which is only marginally on this list anyway and was very rarely sung as a sacrament hymn, so maybe I should take it off the list. 
+
+```{r}
+single_hymn_lookup(197)
+```
+
+I suspect that the reason why most of these are not as commonly sung during the sacrament slot is simply because of their location among the new hymns. It's easy to remember which are sacrament hymns in the 1986 hymnal because they're arranged all next to each other and in the middle of the printed book. These ones are scattered throughout the new hymns. I suspect that the sacrament hymns in the new printed hymnal will also be placed next to each other, and I predict that these will be more often sung during the sacrament slot and less often in other slots in the meeting. Come back in a few years and maybe I'll do a follow-up analysis!
+
+### How popular have the new sacrament hymns been?
+
+Anyway, let's see how popular these new hymns have been compared to the other 1985 hymns. For this portion of the analysis, I'll focus on the data *since* June 2024 when the new ones came out. @fig-freq_all_sacs shows this data, which is essentially the same as @fig-freqs_plus_honorary but with the new hymns added to the mix. 
+
+For the new hymns, I've adjusted the calculation based on how long they've been out, which just means I'm looking at the number of times it has been sung divided by the number of sacrament meetings I have data for since its release date. So, a hymn like <hymn>`r hymn(1008)`</hymn> has been sung a lot, but it's also had many opportunities to be sung in the 21 months since its release. Meanwhile a hymn like <hymn>`r hymn(1043)`</hymn> has only been out for a few months, so while it has only been sung a relatively small number of times, its denominator is smaller because it's only based on a few months of data.
+
+```{r}
+new_sac_hymn_no1003 <- c(1007, 1008, 1009, 1016, 1017, 1041, 1043, 1052, 1206)
+
+get_meetings_since_release <- function(.date) {
+    freqs |> 
+        filter(date >= .date) |> 
+        get_n_distinct_meetings()
+}
+
+freqs_since_release <- freqs |> 
+    filter(date >= batch1_release_date,
+           hymn_num %in% c(146, 169:196, 197, new_sac_hymn_no1003)) |> 
+    count(name_num, hymn_num) |> 
+    mutate(category = case_when(hymn_num %in% 169:196 ~ "canonical",
+                                hymn_num %in% c(146, 197) ~ "honorary",
+                                hymn_num %in% new_sac_hymn_no1003 ~ "new"),
+           release_date = case_when(hymn_num %in% batch1_hymn_nums ~ batch1_release_date,
+                                    hymn_num %in% batch2_hymn_nums ~ batch2_release_date,
+                                    hymn_num %in% batch3_hymn_nums ~ batch3_release_date,
+                                    hymn_num %in% batch4_hymn_nums ~ batch4_release_date,
+                                    hymn_num %in% batch5_hymn_nums ~ batch5_release_date,
+                                    hymn_num %in% batch6_hymn_nums ~ batch6_release_date,
+                                    TRUE ~ batch1_release_date)) |> 
+    mutate(meetings_since_release = map_int(release_date, get_meetings_since_release),
+           prop_of_meetings = n / meetings_since_release,
+           times_per_year = prop_of_meetings * 48) |> 
+    arrange(times_per_year) |> 
+    mutate(name_num = fct_inorder(name_num))
+```
+
+
+```{r, include = TRUE, fig.height = 6, fig.width = 8}
+#| label: fig-freq_all_sacs
+#| fig-cap: "Approximate frequency of all sacrament hymns, adjusted for how long they have been out"
+ggplot(freqs_since_release, aes(times_per_year, name_num, color = category)) +
+    geom_segment(aes(xend = 0, yend = name_num)) + 
+    geom_point() + 
+    geom_text(aes(label = name_num), hjust = 0, nudge_x = 0.05, size = 3, show.legend = FALSE) + 
+    ggthemes::scale_color_ptol() + 
+    scale_x_continuous(breaks = seq(0, 2.4, 0.2),
+                       minor_breaks = seq(0, 2.4, 0.1),
+                       expand = expansion(0, c(0, 0.6))) + 
+    scale_y_discrete(breaks = NULL) + 
+    labs(title = "Approximate frequency of all sacrament hymns",
+         subtitle = "Adjusted for how long they have been out",
+         x = "estimated number of times sung per year",
+         y = NULL) +
+    theme_minimal(base_size = 14, base_family = "Avenir") + 
+    theme(legend.position = c(0.9, 0.5)) + 
+    theme(axis.text.y = element_blank())
+```
+
+Because the previous plots in this post were based on data from before the new hymns came out and this plot is based on the data after the new hymns came out, there are some slight differences in the 1985 sacrament hymns. Notably, <hymn>`r hymn(146)`</hymn> has been more more popular than both <hymn>`r hymn(186)`</hymn> and <hymn>`r hymn(189)`</hymn> over the past 21 months compared to before. But otherwise, how often a sacrament hymn was sung before the new hymns came out is about as often as they are since. They've all taken a small hit---on average, an additional approximately seven weeks pass before each singing of each hymn---but that seems to apply across the board. This is in contrast to the existing Christmas hymns; I [found](/posts/christmas2025) that the least popular existing hymns were sung less often to make room for the new ones but the most popular ones weren't affected.  
+
+:::{.callout-note title="Stats for nerds" collapse="true"}
+
+```{r}
+before_and_after <- freqs_1985 |> 
+    cleveland(return = "table") |> 
+    mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
+    inner_join(freqs_since_release, by = join_by(hymn_num))
+```
+
+```{r}
+cor_coef <- round(cor(before_and_after$avg_per_year, before_and_after$times_per_year), 3)
+cor.test(before_and_after$avg_per_year, before_and_after$times_per_year)
+```
+
+
+The correlation between how common a sacrament hymn was before the new hymns came out and how common it was after they came out is quite high and statistically significant, according to a Pearson's product-moment correlation ($r = `r cor_coef`, p < 0.001$). @fig-cor shows that correlation.
+
+```{r, include = TRUE, fig.height = 5, fig.width = 8}
+#| label: fig-cor
+#| fig-cap: "How many times per year are sacrament hymns sung?"
+ggplot(before_and_after, aes(avg_per_year, times_per_year)) + 
+    stat_smooth(method = "lm", formula = "y~x") + 
+    geom_text(aes(label = hymn_name), hjust = 0, size = 3, nudge_x = 0.01, alpha = 0.5) + 
+    geom_point() + 
+    scale_x_continuous(breaks = seq(0, 2.8, 0.2),
+                       minor_breaks = NULL,
+                       expand = expansion(0, c(0, 0.4))) + 
+    scale_y_continuous(breaks = seq(0, 2.4, 0.2)) + 
+    labs(title = "How many times per year are sacrament hymns sung?",
+         subtitle = "Expressed in mean times per year per ward",
+         x = "before June 2024",
+         y = "after June 2024") + 
+    theme_minimal()
+```
+
+
+@fig-paired shows the same data but arranged a little differently. 
+
+```{r}
+before_and_after_pivoted <- before_and_after |> 
+    select(hymn_num, hymn_name, before = avg_per_year, after = times_per_year) |> 
+    pivot_longer(cols = c(before, after), names_to = "era", values_to = "times_per_year") |> 
+    mutate(era = fct_rev(era),
+           label = paste0(hymn_name, " (", hymn_num, ")"))
+```
+
+
+```{r, include = TRUE, fig.height = 4, fid.width = 8}
+#| label: fig-paired
+#| fig-cap: "How often sacrament hymns are sung relative to when the new hymns came out"
+ggplot(before_and_after_pivoted, aes(era, times_per_year)) + 
+    geom_path(aes(group = label)) + 
+    geom_point() + 
+    geom_text(data = . %>% filter(era == "after"), 
+               aes(label = label),
+              hjust = 0, nudge_x = 0.01, size = 3, alpha = 0.5) + 
+    scale_x_discrete(expand = expansion(0, c(0.5, 1))) + 
+    scale_y_continuous(breaks = seq(0, 2.4, 0.2)) + 
+    labs(title = "How many times per year are sacrament hymns sung?",
+         subtitle = "Expressed in mean times per year per ward",
+         x = NULL,
+         y = "mean times per year per ward") + 
+    theme_minimal()
+```
+
+
+```{r}
+paired_t_test <- t.test(before_and_after$avg_per_year, before_and_after$every_x_years, 
+                        alternative = "greater", paired = TRUE)
+t_value <- round(paired_t_test$statistic, 3)
+t_df    <- round(paired_t_test$parameter, 3)
+t_p    <- round(paired_t_test$p.value, 3)
+```
+
+As you can see all hymns decrease in overall frequency. This makes sense since we have a few more hymns to fit into the same number of slots. Crucially though, there isn't a systematic pattern to the lines. If it were like the Christmas hymns, where the least popular ones took the biggest hit, we'd see steeper lines at the bottom of the plot. But we don't see that here. A one-tailed, paired *t*-test to accompany this plot suggests that the difference between the two is statistically significant ($t = `r t_value`$, $df = `r t_df`$, $p < 0.001$). 
+
+```{r}
+sac_lm <- lm(times_per_year ~ era, data = before_and_after_pivoted)
+summary(sac_lm)
+summary(sac_lm)$coefficients
+(intercept <- round(summary(sac_lm)$coefficients[1,1], 3))
+(after_est <- round(summary(sac_lm)$coefficients[2,1], 3))
+(after_p   <- round(summary(sac_lm)$coefficients[2,4], 3))
+```
+
+```{r}
+pred_before <- round((1/intercept) * 48, 1)
+pred_after  <- round((1/(intercept + after_est)) * 48, 1)
+```
+
+
+A careful look at the axes in @fig-cor shows that the numbers from before 2024 are slightly lower than the numbers from after June 2024. A linear regression on these numbers (modeled as `lm(times_per_year ~ before_vs_after)`) suggests that the estimated number of times each sacrament hymn was sung per ward per year across all sacrament hymns before June 2024 is about `r intercept` (about once every `r pred_before` weeks). This number makes sense since there were about 28--30 to choose from anyway. Since June 2024, the estimated value drops to `r intercept+after_est` times per year, or about once every `r pred_after` weeks, which again makes sense since we have about eight new ones to choose from. This difference, according to the linear regression model, is statistically significant ($p = `r after_p`$).
+
+:::
+
+These numbers match my intuition about what's going on. A ward that has a habit of cycling through all the sacrament hymns, without repeating any before getting through all of them, might find it easiest to just add the new hymns to the rotation. A ward that does that would fit these numbers nearly perfectly. So, while relatively few wards may do that exact thing, it seems like that's what many wards are doing collectively. Some wards are avoiding the new hymns while others are singing them a little more often. In the end, it balances out I think.

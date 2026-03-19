@@ -29,7 +29,11 @@ freqs_1985 <- freqs |>
 
 One of the trickiest things to work with when examining how popular the hymns are is the sacrament hymns. While opening, sacrament, and closing hymns are all sung by congregations,^[See [§19.3.2](https://www.churchofjesuschrist.org/study/manual/general-handbook/19-music?lang=eng)), although I swear the *Handbook* used to say that the opening hymn could be sung by the ward choir, but I'm not 100% sure on that.] the sacrament hymn itself is different because only a relatively small set of hymns are allowed. This means that those hymns will be among the most commonly sung hymns because there are fewer hymns to pick from but just as many chances to sing them, compared to other hymns. So, in this post, I dive into sacrament hymns. 
 
-In @sec-counts, I first define what I mean by a "Sacrament hymn." Then in @sec-freq show how common each sacrament hymn is when it's sung in the sacrament slot in the meeting. Staying on the theme of the sacrament slot, @sec-nonsac then looks at other hymns that are sung as if they were a sacrament hymn. @sec-elsewhere then returns to the canonical list and looks at when else they were sung. Finally, @sec-new is a new addition that looks at the sacrament hymns released since 2024 to see how they compare. 
+In @sec-counts, I first define what I mean by a "Sacrament hymn." Then in @sec-freq show how common each sacrament hymn is when it's sung in the sacrament slot in the meeting. Staying on the theme of the sacrament slot, @sec-nonsac then looks at other hymns that are sung as if they were a sacrament hymn. @sec-elsewhere then returns to the canonical list and looks at when else they were sung. 
+
+:::{.callout-note}
+This post is based entirely on data from before the new hymns came out in June 2024. [Here](/posts/sacrament_new) is an analysis of the new hymns and how the 1985 sacrament hymns were affected by them.
+:::
 
 
 
@@ -242,7 +246,7 @@ freqs_1985 %>%
                        name = NULL) + 
     labs(title = "Sacrament hymns including \"honorary\" sacrament hymns", 
          subtitle = "Includes hymns 169 through 196, plus 146 and 197") + 
-    theme(legend.position = "bottom")
+    theme(legend.position = c(0.8, 0.1))
 ```
 
 ```{r}
@@ -380,86 +384,6 @@ years_per_elsewhere <- round(1/(meetings_with_sac_elsewhere/get_n_distinct_meeti
 ```
 
 Overall, while singing a specific sacrament hymn elsewhere in the meeting is pretty unusual, the odds of singing *any* of the sacrament hymns is more common since their frequencies add together. It happened in `r meetings_with_sac_elsewhere` of the `r comma(get_n_distinct_meetings(freqs_1985))` sacrament meetings I have data from, or `r perc_elsewhere` of them. That means, on average, a ward might since hymn 169--196 at some other point in the meeting approximately once every `r years_per_elsewhere` years.
-
-
-## New hymns {#sec-new}
-
-Since this analysis was first posted in September 2023, we've been blessed with the addition of many new hymns. At the time of writing (March 2026), we've seen 72 new hymns, about 9 of which have been tagged as sacrament hymns.^[When looking through the hymns, I'm seeing which ones are tagged with "the Sacrament". (I'm not sure why it's *the* sacrament and not just *sacrament* like all other tags.) I'm getting conflicting results when I search on the website, the Library app, and the now-defunct music app, so I'll just put all of them here.] Here they are:
-
-* `r hymn(1003)`
-* `r hymn(1007)`
-* `r hymn(1008)`
-* `r hymn(1009)`
-* `r hymn(1016)`
-* `r hymn(1017)`
-* `r hymn(1041)`
-* `r hymn(1043)`
-* `r hymn(1052)`
-* `r hymn(1206)`
-
-
-```{r}
-new_sac_hymns <- c(1003, 1007, 1008, 1009, 1016, 1017, 1041, 1043, 1052, 1206)
-```
-
-@tab-new shows how commonly sung each of these hymns are as opening, sacrament, intermediate, and closing hymns. You'll have to take some of these numbers with a grain of salt, particularly <hymn>`r hymn(1041)`</hymn>, <hymn>`r hymn(1043)`</hymn>, and <hymn>`r hymn(1052)`</hymn> because they are among the newer batches so there has been less time for them to be used. 
-
-```{r}
-batch4_hymn_nums
-```
-
-
-```{r}
-#| label: tab-new
-#| fig-cap: "Frequency of new sacrament hymns"
-freqs |> 
-    filter(hymn_num > 1000,
-           hymn_num < 2000,
-           !is.na(type)) |>
-    count(hymn_num, name_num, type) |> 
-    pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
-    rowwise() |> 
-    mutate(prop_sac = Sacrament/sum(c(Opening, Sacrament, Intermediate, Closing))) |> 
-    arrange(-prop_sac) |> 
-    filter(hymn_num %in% new_sac_hymns) |> 
-    mutate(prop_sac = paste0(round(prop_sac * 100, 1), "%")) |> 
-    select(name_num, `% sung as sacrament hymn` = prop_sac) |> 
-    gt()
-```
-
-Recall that even <hymn>`r hymn(193)`</hymn>, which is sung the most *not* during the sacrament slot, was still sung in the sacrament slot over 90% of the time. But for whatever reason, only three of these hymns have been as consistently sung in the sacrament slot as the 1985 sacrament hymns: <hymn>`r hymn(1007)`</hymn>, <hymn>`r hymn(1043)`</hymn>, and <hymn>`r hymn(1008)`</hymn>. There are two older releases and one newer one, so it's not something to do with amount of time they've been out. And I checked across the months and the proportion of time they've been used as sacrament hymns has been pretty steady since their release. (This is true of all the new hymns.) Perhaps it's that the connection to the sacrament is especially transparent in the title and lyrics. 
-
-```{r, fig.height = 12, fig.width = 8}
-freqs |> 
-    filter(hymn_num > 1000, 
-           hymn_num < 2000,
-           !is.na(type)) |> 
-    count(name_num, hymn_num, type, date) |> 
-    pivot_wider(names_from = type, values_from = n, values_fill = 0) |> 
-    rowwise() |> 
-    mutate(prop_sac = Sacrament/sum(c(Opening, Sacrament, Intermediate, Closing))) |> 
-    ungroup() |> 
-    filter(hymn_num %in% new_sac_hymns) |> 
-    mutate(month = month(date),
-           year = year(date)) |> 
-    summarize(prop_sac = mean(prop_sac), .by = c(month, year, name_num)) |> 
-    mutate(date = my(paste(month, year))) |> 
-    ggplot(aes(date, prop_sac)) + 
-    geom_point() + 
-    facet_wrap(~name_num, scales = "free_x", ncol = 2) + 
-    geom_smooth(method = 'loess',
-                formula = 'y ~ x',se = FALSE) + 
-    scale_y_continuous(limits = c(0, 1),
-                       expand = expansion(0, 0.05)) 
-```
-
-The other hymns are used a fair amount in other times during the meeting. They include <hymn>`r hymn(1016)`</hymn> and <hymn>`r hymn(1041)`</hymn> which are used as a sacrament hymn most of the time. They also include <hymn>`r hymn(1009)`</hymn> and <hymn>`r hymn(1017)`</hymn>, which were not sung as sacrament hymns the majority of the time. This may be because they existed in Latter-day Saint music culture before their inclusion in the hymnal and it's a hard switch to turn them into sacrament hymns. Perhaps because they're arranged in unison and we don't otherwise have any non-SATB sacrament hymns. <hymn>`r hymn(193)`</hymn> comes the closest with its duet verse. Then there's <hymn>`r hymn(1206)`</hymn>, which might not be sung as a sacrament hymn very often because it's seen more as an Easter hymn. Although the same could be said of <hymn>`r hymn(197)`</hymn>. Finally there's <hymn>`r hymn(1003)`</hymn> which is only marginally on this list anyway and was very rarely sung as a sacrament hymn, so maybe I should take it off the list. 
-
-```{r}
-single_hymn_lookup(197)
-```
-
-I suspect that the reason why most of these are not as commonly sung during the sacrament slot is simply because of their location among the new hymns. It's easy to remember which are sacrament hymns in the 1986 hymnal because they're arranged all next to each other and in the middle of the printed book. These ones are scattered throughout the new hymns. I suspect that the sacrament hymns in the new printed hymnal will also be placed next to each other, and I predict that these will be more often sung during the sacrament slot and less often in other slots in the meeting. Come back in a few years and maybe I'll do a follow-up analysis!
 
 
 ## Conclusion
