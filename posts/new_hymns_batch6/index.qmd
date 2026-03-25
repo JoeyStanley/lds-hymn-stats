@@ -90,6 +90,12 @@ meetings_since_release6 |>
 ```
 
 
+```{r}
+# show all sixth batch data
+meetings_since_release6 |> 
+    filter(hymn_num %in% batch6_hymn_nums)
+```
+
 
 ## How many wards sang new hymns each week?
 
@@ -324,7 +330,7 @@ meetings_since_release6 |>
               hymns_to_plot = batch6_hymn_nums) |> 
     mutate(hymn_num = as.numeric(as.character(hymn_num))) |> 
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) |> 
-    filter(hymn_num %in% batch5_hymn_nums) |>
+    filter(hymn_num %in% batch6_hymn_nums) |>
     mutate(sum_prop_wards = scales::percent(round(sum_prop_wards, 3))) |> 
     
     # add label for missing hymns
