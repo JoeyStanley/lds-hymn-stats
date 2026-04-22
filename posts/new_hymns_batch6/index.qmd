@@ -8,7 +8,6 @@ categories:
   - frequency
   - new hymns
 reference-location: margin
-draft: true
 ---
 
 ```{r, include = FALSE}
@@ -28,7 +27,7 @@ library(gtExtras)
 
 
 ```{r}
-general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04", "2025-10-05")
+general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04", "2025-10-05", "2026-04-05")
 get_meetings_since_release <- function(.date) {
     freqs |> 
         filter(date >= ymd(.date),
@@ -244,6 +243,9 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     theme(legend.position = "none")
 ```
 
+As you can see, the sixth batch (highlighted in yellow) hasn't been sung in sacrament meeting very often as a congregataional hymn. After almost two months, we're still only seeing it in less than 2% of wards each week. Every batch since the third batch took a few weeks to get warmed up, and each batch seems to be less popular than the one previous. 
+
+One interesting thing to note though is the gray line---which represents the percent of wards that sang zero new hymns each week, is mostly staying under thte 50% mark. That means that for the past several months, more wards are singing at least on new hymn than not. The steady decline from June 2024 to now I think is pretty remarkable. It takes a few months for a batch to ramp up to its full usage, and none have really changed in popularity all that much over time. That means that we're steadily incorporating more new hymns as the batches come out. If we're singing a Batch 1 hymn every three or four weeks, we'll sprinkle in a second and third batch one every five weeks. And when a new batch comes out, it gets slid into remaining slots. The result is fewer weeks without any new hymns. It also seems like no batches are "eating into" previous ones. I think we really are just adding to the new hymns we're already singing.
 
 
 
@@ -312,6 +314,7 @@ data_to_plot |>
 ```
 
 
+Here it's easier to see that the first two months of the sixth batch have been the least popular out of any batch so far.
 
 
 ## What hymns are most popular?
@@ -344,10 +347,11 @@ meetings_since_release6 |>
 ```
 
 
+The most popular one currently is <hymn>`r hymn(1210)`</hymn>. This is likely because of Easter. I suspect that that hymn won't be sung all that much until next Easter, allowing the others to catch up. The next most popular one is <hymn>`r hymn(1062)`</hymn> and I suspect that one will jump up at the start of each month. So far I haven't seen <hymn>`r hymn(1053)`</hymn> yet I don't thinik, but otherwise I've seen all of them sung at least once. 
 
 ## What hymns are most popular each week?
 
-This plot shows how popular each hymn is each week. 
+This plot shows how popular each hymn is each week. Take these numbers with a grain of salt, particularly the left sides of each panel, because there's not a lot of data to work with.
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
@@ -388,39 +392,43 @@ meetings_since_release6 |>
 ```
 
 
+The clearest trend is the rise and fall of <hymn>`r hymn(1210)`</hymn> around Easter. There seems to be a possible trend of wards trying out some other new ones in the past week or so. But we'll have to wait a few weeks to see if that pans out. 
+
 ## When during meetings are these hymns sung?
 
-This table shows when during sacrament meetings these hymns have been sung. 
+This table shows when during sacrament meetings these hymns have been sung. Again, because I've only seen most of these hymns sung a few times, take these numbers with a grain of salt. 
 
-```{r, include = FALSE}
-# meetings_since_release6 |>
-#     filter(hymn_num %in% batch6_hymn_nums,
-#            !is.na(type)) |>
-#     count(name_num, hymn_num, type) |>
-#     mutate(n = round(n/sum(n), 2)*100,
-#            .by = name_num) |>
-#     pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
-#     arrange(hymn_num) |>
-#     select(-hymn_num) |>
-#     select(name_num,
-#            Opening, Sacrament, Intermediate, Closing) |>
-#     rename(`New Hymn` = name_num) |>
-#     gt() |>
-#     gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE,
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE,
-#                    fill = "#4F2B47", height = 20, font_size = "14px") |>
-#     tab_header(title = "When were new hymns sung in sacrament meeting?",
-#                subtitle = "Since February 26, 2026") |>
-#     tab_source_note("Note: Each row adds up to 100%.")
+```{r, include = TRUE}
+meetings_since_release6 |>
+    filter(hymn_num %in% batch6_hymn_nums,
+           !is.na(type)) |>
+    count(name_num, hymn_num, type) |>
+    mutate(n = round(n/sum(n), 2)*100,
+           .by = name_num) |>
+    pivot_wider(names_from = type, values_from = n, values_fill = 0) |>
+    arrange(hymn_num) |>
+    select(-hymn_num) |>
+    select(name_num,
+           Opening, Sacrament, Intermediate, Closing) |>
+    rename(`New Hymn` = name_num) |>
+    gt() |>
+    gt_plt_bar_pct(column = c(Opening), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Sacrament), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Intermediate), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    gt_plt_bar_pct(column = c(Closing), scaled = TRUE, labels = TRUE,
+                   fill = "#4F2B47", height = 20, font_size = "14px") |>
+    tab_header(title = "When were new hymns sung in sacrament meeting?",
+               subtitle = "Since February 26, 2026") |>
+    tab_source_note("Note: Each row adds up to 100%.")
 ```
+
 
 
 
 
 ## Conclusion
 
+Even though the sixth batch has been out for two months, relatively few wards have sung any of those hymns. This makes it difficult to run stats (and indeed is the reason why it took until the end of April to finally publish this analysis). This is just a continuation of the trend seen since the second batch came out---newer batches are less popular. I've said this before in previous analyses, but it might be because the newness is losing its excitement. It might also be that the hymnal committee purposely chose hymns they anticipated being popular at the beginning. I'm thinking ahead to when the full hymnal gets released because presumably we'll get a whole bunch of new ones then. I'm curious if those new ones will ever become as popular as the ones released in these batches. 
