@@ -1,0 +1,375 @@
+---
+title: "Which hymns cluster with each other?"
+author: "Joey Stanley"
+date: "3/26/26"
+date-modified: last-modified
+categories:
+reference-location: margin
+number-sections: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = FALSE,
+                      echo = FALSE,
+                      fig.width = 8,
+                      freeze = TRUE)
+rmarkdown::render("../../_scripts/analysis_functions.Rmd")
+```
+
+Some hymns tend to be sung during the same meeting as other hymns; they co-occur. This is most apparent in holiday hymns. For example, if <hymn>`r hymn(199)`</hymn> is sung, there's a decent chance that <hymn>`r hymn(200)`</hymn> is also sung. What other pairs like this exist and do groups of hymns form clusters? In this post, I explore the the co-occurrence of hymns primarily through network analysis. 
+
+## Methods
+
+Since this is a somewhat technical post, let me take a moment to explain my methods. First, I start off with my entire dataset, which contains data from over 95,000 sacrament meetings. 
+
+```{r}
+this_df <- freqs |> 
+        filter(!ward %in% c("Unknown", "Anonymous"))
+get_n_distinct_meetings(this_df)
+```
+
+
+```{r, eval = FALSE}
+get_network_stats <- function(.x, .y) {
+    
+    meetings_with_x <- this_df |> 
+        filter(hymn_num == .x) |> 
+        pull(meeting_id)
+    meetings_with_y <- this_df |> 
+        
+        filter(hymn_num == .y) |> 
+        pull(meeting_id)
+    
+    meetings_with_both <- intersect(meetings_with_x, meetings_with_y)
+    
+    n_meetings_with_x <- length(meetings_with_x)
+    n_meetings_with_y <- length(meetings_with_y)
+    n_meetings_with_both <- length(meetings_with_both)
+    n_meetings = get_n_distinct_meetings(this_df)
+    
+    to_return <- tibble(n_meetings_with_x = n_meetings_with_x,
+                        n_meetings_with_y = n_meetings_with_y,
+                        n_meetings_with_both = n_meetings_with_both,
+                        n_meetings = n_meetings) |> 
+        mutate(prop_of_x_has_y = n_meetings_with_both / n_meetings_with_x,
+               prop_of_y_has_x = n_meetings_with_both / n_meetings_with_y)
+    
+    return(to_return)
+    
+}
+
+# Takes 1h 15 minutes.
+start_time <- Sys.time()
+crossing_stats <- crossing(hymn1 = name_num_lookup$hymn_num,
+                           hymn2 = name_num_lookup$hymn_num) |> 
+    filter(hymn2 > hymn1) |> 
+    # head(1000) |>
+    mutate(df = map2(hymn1, hymn2, get_network_stats)) |> 
+    unnest(df)
+Sys.time() - start_time
+beepr::beep()
+
+crossing_stats |> 
+    arrange(-prop_of_x_has_y)
+
+# write_csv(crossing_stats, "../../data/co-occurrence_260326.csv")
+```
+
+```{r}
+crossing_stats <- read_csv("../../data/co-occurrence_260326.csv")
+```
+
+```{r}
+crossing_stats |> 
+    filter(hymn1 == 1,
+           hymn2 == 2)
+```
+
+
+To check co-occurrence of all hymns, here's my procedure. I started with <hymn>`r hymn(1)`</hymn> and found how many times it occurred in my dataset (662 times). I then looked at <hymn>`r hymn(2)`</hymn> and looked at how many times it occurred (1,886 times). I then looked at those two lists of meetings and identified any where both of them occurred (17 times). I can now get some interesting numbers. Of the meetings that <hymn>`r hymn(1)`</hymn> occured, $17 \div 662 = 2.57%$ of them also contained <hymn>`r hymn(2)`</hymn>. Similarly, of the meetings that <hymn>`r hymn(2)`</hymn> is sung in, $17 \div 1886 = 0.90%$ of them also contained <hymn>`r hymn(1)`</hymn>. 
+
+```{r}
+crossing_stats |> 
+    count(n_meetings_with_both == 0) |> 
+    mutate(prop = n/sum(n))
+
+
+crossing_stats |> 
+    filter(n_meetings_with_both == 0) |> 
+    select(hymn1, hymn2) |> 
+    left_join(count(freqs, hymn_num), by = c("hymn1" = "hymn_num")) |> 
+    rename(freq1 = n) |> 
+    left_join(count(freqs, hymn_num), by = c("hymn2" = "hymn_num")) |> 
+    rename(freq2 = n) |> 
+    mutate(mean_log_freq = (log(freq1) + log(freq2)) / 2) |> 
+    arrange(-mean_log_freq) |> 
+    # filter(!(hymn1 %in% 169:214 & hymn2 %in% 169:214)) |> 
+    filter(!hymn1 %in% c(169:214, 1000:2000),
+           !hymn2 %in% c(169:214, 1000:2000))
+```
+
+
+I then repeated this procedure for every pair of hymns, all the way until <hymn>`r hymn(1209)`</hymn> and <hymn>`r hymn(1210)`</hymn>. That's something like 138,000 unique combinations of hymns. 
+
+Most combinations---100,007 or 72.1% of them---were actually not attested in my dataset. Some of these include pairs of sacrament hymns, such as <hymn>`r hymn(169)`</hymn> and <hymn>`r hymn(194)`</hymn>. That makes sense since we usually don't see two sacrament hymns in the same meeting. Others were between hymns from two different holidays, like <hymn>`r hymn(201)`</hymn> and <hymn>`r hymn(338)`</hymn>. Still others were between holiday hymns and certain non-holiday hymns, like <hymn>`r hymn(202)`</hymn> and <hymn>`r hymn(85)`</hymn>. Some pairs of common enough non-holiday hymns that didn't occur in the same meeting in my dataset, purely due to chance, include <hymn>`r hymn(3)`</hymn> and <hymn>`r hymn(10)`</hymn>, <hymn>`r hymn(64)`</hymn> and <hymn>`r hymn(140)`</hymn>, and <hymn>`r hymn(36)`</hymn> and <hymn>`r hymn(137)`</hymn>. Of course the list goes on and on for other pairs that weren't attested in my dataset.
+
+
+
+
+
+
+```{r}
+best_pairs <- crossing_stats |> 
+    filter(n_meetings_with_both > 5) |> 
+    arrange(-prop_of_x_has_y) |> 
+    rowwise() |> 
+    mutate(avg_prop = mean(c(prop_of_x_has_y, prop_of_y_has_x)),
+           abs_prop_diff = abs(prop_of_x_has_y - prop_of_y_has_x)) |> 
+    ungroup()
+```
+
+But that means I did see 38,594 different combinations, which is a lot. It's obviously way too large of a task to try and go through or explain all those pairs. So, I needed to find some sort of cutoff point between the most strongly paired hymns and others that happened to occur together.
+
+## Distribution of co-occurrences
+
+@fig-distribution shows the distribution of these 38,594 pairs of hymns and how often they occur in the same meeting. 
+
+```{r}
+# What's with the bimodal distribution?
+ggplot(best_pairs, aes(prop_of_x_has_y)) + 
+    geom_histogram() + 
+    scale_x_log10()
+
+ggplot(best_pairs, aes(prop_of_y_has_x)) + 
+    geom_histogram() + 
+    scale_x_log10(labels = label_percent())
+
+ggplot(best_pairs, aes(avg_prop)) + 
+    geom_histogram() + 
+    scale_x_log10(labels = label_percent())
+```
+
+```{r, include = TRUE, fig.height = 4, fig.width = 8}
+#| label: fig-distribution
+#| fig-cap: "Distribution of co-occurrence frequencies"
+ggplot(best_pairs, aes(avg_prop)) + 
+    geom_histogram(bins = 30) + 
+    scale_x_log10(labels = label_percent()) + 
+    labs(title = "Distribution of co-occurrence frequencies",
+         x = "percent co-occurred (log10 transformed)",
+         y = "meetings") + 
+    theme_minimal()
+```
+
+The *x*-axis in this plot is log10 transformed because there were *many* pairs that didn't occur in very many meetings and a few pairs that occurred in a lot; transforming it like this makes it easier to see the distribution. For example, on the far left of the plot, we see some very short bars. This means that a few pairs of hymns rarely occurred together. In this case, all of of these very short bars were combinations of two sacrament hymns. It is [pretty rare](/posts/sacrament_new) for a sacrament hymn to be sung during a different slot in the meeting, so to divide that small number by the very large number of times that those sacrament hymns are otherwise sung results in a small co-occurrence rate. 
+
+The middle of the plot shows where the majority of the data lies. The most frequent co-occurrences by sheer number of meetings were actually not very interesting because they usually involve a sacrament hymn. In some cases, the pairs are between somewhat less frequent hymns like <hymn>`r hymn(101)`</hymn> (which is only sung about every `r round(single_hymn_lookup(101)[[1]]$every_x_years, 1)` years) and sacrament hymns like <hymn>`r hymn(170)`</hymn>. So, while there's no inherent connection between the two, the sheer fact that one of them isn't sung very often just means that whatever it happens to show up with will seem like a lot. In other cases, they're between a sacrament hymn and a common hymn, like <hymn>`r hymn(175)`</hymn> and <hymn>`r hymn(130)`</hymn>. Again, not very interesting because there doesn't seem to be a clear connection between the hymns. 
+
+```{r}
+best_pairs |> 
+    arrange(avg_prop) |> 
+    filter(avg_prop < 0.003)
+round(single_hymn_lookup(101)[[1]]$every_x_years, 1)
+
+best_pairs |> 
+    filter(near(avg_prop, 0.02, tol = 0.0001))
+
+best_pairs |> 
+    filter(near(avg_prop, 0.01, tol = 0.0001))
+
+best_pairs |> 
+    filter(near(avg_prop, 0.03, tol = 0.0001))
+```
+
+
+```{r}
+best_pairs |> 
+    filter(avg_prop > 0.1)
+```
+
+
+But then we get to the far right of @fig-distribution. There were a few pairs of hymns that maybe didn't occur in too many meetings, but when one of them did the other one tended to as well. This is what I'm most interested in. As mentioned above, the strongest pair was <hymn>`r hymn(199)`</hymn> and <hymn>`r hymn(200)`</hymn>. If you sing one of those in church, there's a 57% chance you'll sing the other. The next two most tightly paired hymns are between those two and <hymn>`r hymn(198)`</hymn>! So, there's certainly something up with the three Easter hymns! I'll talk more about that below. Other pairs that were strongly connected were between other holiday hymns like Thanksgiving hymns, New Year's hymns, patriotic hymns, and some Christmas hymns. 
+
+
+```{r}
+# The average proportion is the average of the two. 
+best_pairs |> 
+    arrange(-avg_prop)
+ggplot(best_pairs, aes(avg_prop)) + 
+    geom_histogram() + 
+    scale_x_log10()
+
+# The absolute value of the difference in proportions helps find symmetrical (close to zero) and symmetrical (larger) pairs
+# Asymmetrical
+best_pairs |> 
+    arrange(-abs_prop_diff)
+
+# Symmetrical
+best_pairs |> 
+    arrange(abs_prop_diff)
+```
+
+Let's further explore these pairs in a little more detail and in a way that's a little more interesting to look at.
+
+## Clusters
+
+
+
+
+```{r}
+library(ggraph)
+library(tidygraph)
+```
+
+```{r}
+# This block works for some reason, but nothing else does.
+edges_df <- best_pairs |> 
+    head(200) |>
+    select(from = hymn1, to = hymn2, n_meetings_with_both, n_meetings, prop_of_x_has_y, prop_of_y_has_x, avg_prop, abs_prop_diff)
+
+node_df <- this_df |> 
+    count(hymn_num, hymn_name) |> 
+    mutate(holiday = case_when(hymn_num %in% c(13, 18, 25) ~ "Restoration",
+                               hymn_num %in% c(19, 21) ~ "Prophets",
+                               hymn_num %in% 26:27 ~ "Joseph Smith",
+                               hymn_num %in% c(30, 33:36) ~ "Pioneer",
+                               hymn_num %in% 91:94 ~ "Thanksgiving",
+                               hymn_num %in% c(137) ~ "Testimony",
+                               hymn_num %in% 169:196 ~ "Sacrament",
+                               hymn_num %in% 197:200 ~ "Easter",
+                               hymn_num %in% 201:214 ~ "Christmas",
+                               hymn_num %in% c(215, 217) ~ "New Years",
+                               hymn_num %in% c(216, 249, 270) ~ "Missionary Work",
+                               hymn_num %in% c(287:289) ~ "Temples",
+                               hymn_num %in% 291:308 ~ "Home and Family",
+                               hymn_num %in% c(60, 78, 80, 338:340) ~ "Patriotic",
+                               TRUE ~ "other"))
+    
+network_df <- tbl_graph(nodes = node_df, edges = edges_df)
+```
+
+```{r}
+split_title <- function(.txt) {
+    
+    if (str_detect(.txt, " ")) {
+        
+        newline_index <- as_tibble(str_locate_all(.txt, " ")[[1]]) |> 
+            mutate(length = str_length(.txt)) |> 
+            mutate(dist_from_half = abs(length/2 - start)) |> 
+            arrange(dist_from_half) |> 
+            slice_head(n = 1) |> 
+            pull(start)
+        return(paste0(str_sub(.txt, end = newline_index-1), "\n", str_sub(.txt, start = newline_index+1)))
+    } else {
+        return(.txt)
+    }
+}
+# split_title("God Be with you til me meet again")
+# split_title("testimony")
+```
+
+```{r}
+search_titles("Heard")
+single_hymn_lookup(25)
+```
+
+
+
+```{r}
+hymns_to_exclude <- c(10, 12, 59, 98, 130, 172, 180, 181, 182, 233, 135, 234, 237, 240, 274, 277, 279, 2082)
+
+edges_df <- best_pairs |> 
+    # slice_head(prop = 0.01) |> 
+    filter(avg_prop > 0.05,
+           !hymn1 %in% hymns_to_exclude,
+           !hymn2 %in% hymns_to_exclude) |>
+    select(from = hymn1, to = hymn2, n_meetings_with_both, n_meetings, 
+           prop_of_x_has_y, prop_of_y_has_x, avg_prop, abs_prop_diff) |> 
+    mutate(across(c(from, to), as.character))
+
+nodes_with_edges <- unique(sort(c(edges_df$from, edges_df$to)))
+
+
+node_df <- this_df |> 
+    count(hymn_num, hymn_name) |> 
+    mutate(holiday = case_when(hymn_num %in% c(13, 15, 25) ~ "Restoration",
+                               hymn_num %in% c(18:24, 26:27) ~ "Prophets",
+                               hymn_num %in% c(30, 33:36) ~ "Pioneer",
+                               hymn_num %in% 91:95 ~ "Thanksgiving",
+                               hymn_num %in% c(136, 137) ~ "Testimony",
+                               hymn_num %in% 169:196 ~ "Sacrament",
+                               hymn_num %in% c(69, 197:200) ~ "Easter",
+                               hymn_num %in% 201:214 ~ "Christmas",
+                               hymn_num %in% c(215, 217) ~ "New Years",
+                               hymn_num %in% c(216, 249, 270) ~ "Missionary Work",
+                               hymn_num %in% c(287:289) ~ "Temples",
+                               hymn_num %in% 291:308 ~ "Home and Family",
+                               hymn_num %in% c(60, 78, 80, 338:340) ~ "Patriotic",
+                               TRUE ~ "other")) |> 
+    filter(hymn_num %in% nodes_with_edges,
+           !hymn_num %in% hymns_to_exclude) |> 
+    mutate(hymn_num = as.character(hymn_num),
+           hymn_name = map_chr(hymn_name, split_title))
+    
+network_df <- tbl_graph(nodes = node_df, edges = edges_df)
+```
+
+
+```{r}
+node_df |> 
+    filter(holiday == "other")
+edges_df |> 
+    filter(from == "59" | to == "59")
+```
+
+
+
+```{r, fig.height = 6, fig.width = 9}
+ptol_full <- c('#E8ECFB', '#D9CCE3', '#D1BBD7', '#CAACCB', '#BA8DB4', '#AE76A3', '#AA6F9E', '#994F88', '#882E72', '#1965B0', '#437DBF', '#5289C7', '#6195CF', '#7BAFDE', '#4EB265', '#90C987', '#CAE0AB', '#F7F056', '#F7CB45', '#F6C141', '#F4A736', '#F1932D', '#EE8026', '#E8601C', '#E65518', '#DC050C', '#A5170E', '#72190E', '#42150A')
+ptol_14 <- ptol_full[c(3, 6, 10, 12, 14, 15, 16, 17, 18, 20, 22, 24, 26, 28)]
+color_lookup <- c(`Christmas` = ptol_14[1],
+                  `Easter`    = ptol_14[2],
+                  `Home and Family` = ptol_14[3],
+                  `Joseph Smith` = ptol_14[4],
+                  `Missionary Work` = ptol_14[5],
+                  `New Years` = ptol_14[6],
+                  `Patriotic` = ptol_14[7],
+                  `Pioneer` = ptol_14[8],
+                  `Prophets` = ptol_14[9],
+                  `Restoration` = ptol_14[10],
+                  `Sacrament` = ptol_14[11],
+                  `Temples` = ptol_14[12],
+                  `Testimony` = ptol_14[13],
+                  `Thanksgiving` = ptol_14[14],
+                  `other` = "#777777")
+```
+
+
+@fig-network is a network visualization of the most commonly co-occurring pairs of hymns. There are lots of decisions that go into creating a plot like this, so don't take it as the absolute truth. For one, I couldn't show every pair of hymns because it would be far too cluttered. So I had to decide on a cutoff point. Based on @fig-distribution, I knew that a cutoff of roughly 10% co-occurred would likely be a good starting point since pairs above that point were what I expected to see and many pairs below that were not. After toying around with it, I eventually settled on pairs of hymns that occurred with each other 7% of the time. 
+
+```{r, include = TRUE, fig.height = 6, fig.width = 9}
+#| label: fig-network
+#| fig-cap: "Most frequently co-occurring pairs of hymns. [Large version here](network.pdf)"
+
+p <- ggraph(network_df, layout = "stress", weights = avg_prop) + 
+    geom_edge_link(aes(alpha = log10(avg_prop)), 
+                   color = "gray50",
+                   show.legend = FALSE) + 
+    geom_node_text(aes(label = hymn_name), size = 2, alpha = 0.6, lineheight = 0.75) +
+    geom_node_point(aes(color = holiday)) +  # filter = !node_is_isolated() if I don't otherwise filter them
+    scale_color_manual(values = color_lookup) + 
+    theme_void()
+p
+```
+
+```{r}
+ggsave("network.pdf", height = 15, width = 15)
+```
+
+
+```{r}
+p + 
+    xlim(0, 11) + 
+    ylim(0, 0.5)
+```
+
