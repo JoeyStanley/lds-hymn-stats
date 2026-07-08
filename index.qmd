@@ -6,7 +6,7 @@ date-modified: last-modified
 ---
 
 ```{r, include = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
-freqs <- readr::read_csv("data/freqs.csv", show_col_types = FALSE)
+freqs <- readr::read_csv("data/combine/freqs.csv", show_col_types = FALSE)
 (n_meetings <- length(unique(freqs$meeting_id)))
 (n_wards    <- length(unique(freqs$ward)))
 ```
