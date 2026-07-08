@@ -72,11 +72,11 @@ beepr::beep()
 crossing_stats |> 
     arrange(-prop_of_x_has_y)
 
-# write_csv(crossing_stats, "../../data/co-occurrence_260326.csv")
+# write_csv(crossing_stats, "../../data/derived/co-occurrence_260326.csv")
 ```
 
 ```{r}
-crossing_stats <- read_csv("../../data/co-occurrence_260326.csv")
+crossing_stats <- read_csv("../../data/derived/co-occurrence_260326.csv")
 ```
 
 ```{r}
