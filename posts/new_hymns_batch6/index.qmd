@@ -26,6 +26,8 @@ library(gtExtras)
 ```
 
 
+
+
 ```{r}
 general_conference_dates <- ymd("2024-10-06", "2025-04-06", "2025-10-04", "2025-10-05", "2026-04-05")
 get_meetings_since_release <- function(.date) {
@@ -148,9 +150,9 @@ date_minor_breaks <- tibble(weeks_since = 0:weeks_since_initial_release,
     mutate(date = last_sunday - weeks_since*7) |> 
     filter(date >= batch1_release_date)
 date_breaks <- date_minor_breaks |> 
-    filter(weeks_since %% 5 == 0)
+    filter(weeks_since %% 6 == 0)
 batch6_date_breaks <- date_minor_breaks |> 
-    filter(weeks_since %% 1 == 0)
+    filter(weeks_since %% 2 == 0)
 ```
 
 
@@ -180,9 +182,8 @@ easter_data_to_highlight <- data_to_plot |>
 ```
 
 
-```{r, include = TRUE, fig.height = 5.5, fig.width = 14}
-#| column: screen
-ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
+```{r}
+p <- ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     
     # Christmas annotations
     ggforce::geom_mark_ellipse(data = christmas2024_data_to_highlight, group = 1, color = "gray50") + 
@@ -198,25 +199,25 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
              curvature = -0.25, arrow = arrow(length = unit(2, "mm"))) + 
     
     # Easter
-    ggforce::geom_mark_ellipse(data = easter_data_to_highlight, group = 1, color = "gray50") +
-    annotate(geom = "segment", color = "gray50",
-             x = ymd("2025-04-20"), xend = ymd("2025-04-20"), y = 0.35, yend = 0.275, 
-             arrow = arrow(length = unit(2, "mm"))) +
-    annotate(geom = "text", x = ymd("2025-04-20"), y = 0.37, label = "Easter", hjust = 0.5, color = "gray50") +
-    
-    # Mother's Day
-    annotate(geom = "segment", 
-             x = ymd("2025-05-11"), xend = ymd("2025-05-11"), y = 0.28, yend = 0.18, 
-             arrow = arrow(length = unit(2, "mm")), color = "gray50") +
-    annotate(geom = "text", x = ymd("2025-05-11"), y = 0.29, label = "Mother's\nDay", 
-             vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
-    
-    # Father's Day
-    annotate(geom = "segment", 
-             x = ymd("2025-06-15"), xend = ymd("2025-06-15"), y = 0.28, yend = 0.18, 
-             arrow = arrow(length = unit(2, "mm")), color = "gray50") +
-    annotate(geom = "text", x = ymd("2025-06-15"), y = 0.29, label = "Father's\nDay", 
-             vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
+    # ggforce::geom_mark_ellipse(data = easter_data_to_highlight, group = 1, color = "gray50") +
+    # annotate(geom = "segment", color = "gray50",
+    #          x = ymd("2025-04-20"), xend = ymd("2025-04-20"), y = 0.35, yend = 0.275, 
+    #          arrow = arrow(length = unit(2, "mm"))) +
+    # annotate(geom = "text", x = ymd("2025-04-20"), y = 0.37, label = "Easter", hjust = 0.5, color = "gray50") +
+    # 
+    # # Mother's Day
+    # annotate(geom = "segment", 
+    #          x = ymd("2025-05-11"), xend = ymd("2025-05-11"), y = 0.28, yend = 0.18, 
+    #          arrow = arrow(length = unit(2, "mm")), color = "gray50") +
+    # annotate(geom = "text", x = ymd("2025-05-11"), y = 0.29, label = "Mother's\nDay", 
+    #          vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
+    # 
+    # # Father's Day
+    # annotate(geom = "segment", 
+    #          x = ymd("2025-06-15"), xend = ymd("2025-06-15"), y = 0.28, yend = 0.18, 
+    #          arrow = arrow(length = unit(2, "mm")), color = "gray50") +
+    # annotate(geom = "text", x = ymd("2025-06-15"), y = 0.29, label = "Father's\nDay", 
+    #          vjust = 0, hjust = 0.5, lineheight = 0.75, color = "gray50") +
     
     
     geom_path(linewidth = 1) +
@@ -232,8 +233,8 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
                        breaks = seq(0, 1, 0.1),
                        labels = scales::percent) +
     scale_color_manual(breaks = c("none", "batch1", "batch2", "batch3", "batch4", "batch5", "batch6"),
-                       # Color brewer Set1
-                       values = c("gray66", "#e41a1c",  "#377eb8",  "#4daf4a", "#984ea3", "#ff7f00", "#ffff33")) +
+                       # Polychrome::kelly.colors
+                       values = c("#848482", "#be0032",  "#0067a5",  "#008856", "#875692", "#f38400", "#8db600")) +
     labs(x = NULL,
          y = "percentage of wards",
          color = "number of new hymns",
@@ -243,10 +244,34 @@ ggplot(data_to_plot, aes(date, prop_sung, group = batch, color = batch)) +
     theme(legend.position = "none")
 ```
 
-As you can see, the sixth batch (highlighted in yellow) hasn't been sung in sacrament meeting very often as a congregataional hymn. After almost two months, we're still only seeing it in less than 2% of wards each week. Every batch since the third batch took a few weeks to get warmed up, and each batch seems to be less popular than the one previous. 
 
-One interesting thing to note though is the gray line---which represents the percent of wards that sang zero new hymns each week, is mostly staying under thte 50% mark. That means that for the past several months, more wards are singing at least on new hymn than not. The steady decline from June 2024 to now I think is pretty remarkable. It takes a few months for a batch to ramp up to its full usage, and none have really changed in popularity all that much over time. That means that we're steadily incorporating more new hymns as the batches come out. If we're singing a Batch 1 hymn every three or four weeks, we'll sprinkle in a second and third batch one every five weeks. And when a new batch comes out, it gets slid into remaining slots. The result is fewer weeks without any new hymns. It also seems like no batches are "eating into" previous ones. I think we really are just adding to the new hymns we're already singing.
+::: {.panel-tabset}
 
+### The last six months
+
+```{r, include = TRUE, fig.height = 5.5, fig.width = 14, warning = FALSE}
+#| column: screen
+six_months_ago <- last_sunday - round(365/2)
+
+p + 
+    labs(title = paste0("Percentage of wards singing new hymns since ", sf(six_months_ago), ", ", year(six_months_ago))) + 
+    coord_cartesian(xlim = c(ymd(batch5_release_date), ymd(last_sunday)))
+```
+### Since the new hymns came out
+
+```{r, include = TRUE, fig.height = 5.5, fig.width = 14}
+#| column: screen
+p
+```
+:::
+
+
+The sixth batch (highlighted in yellowish-green) took a few months to get incorporated into sacrament meetings as a congregational hymn. For the first two months, it was extremely rare to see it sung. In late April and into May, it picked up a little bit. I suspect that whoever plans music in wards had six or so weeks planned out already when the batch came out, so it was sung more when those preplanned ones had already passed. However, it's worth noting that every batch since the third batch took a few weeks to get warmed up, and each batch seems to be less popular than the one previous. But the sixth batch took an especially long time to get going.
+
+Since then though, it has done somewhat well. It is about as popular as the fourth and fifth batches. It's still not as popular as the second and third and certainly not the first batch. One thing we see though it a small spike on Fast Sundays, which is from <hymn>`r hymn(1062)`</hymn> being sung then. In fact, if you look at the gray line, which represents the percent of wards that sang zero new hymns each week, for the past two years there is a spike *up* on Fast Sunday as people continue to sing the typical [Fast Sunday](/posts/fast_sunday) hymns. That might be going away a little bit now that we clearly have a new hymn to throw into the mix.
+
+
+It's worth pointing one more thing about that gray line. Since about October 2025, it's is mostly staying under the 50% mark. That means that on a given Sunday, there are more wards that sing a new hymn than there are that don't. The steady decline from June 2024 to now I think is pretty remarkable. The lowest point was on May 17, 2026 when 56.4% of wards sang at least one new hymn. It takes a few months for a batch to ramp up to its full usage, and none have really changed in popularity all that much over time. That means that we're steadily incorporating more new hymns as the batches come out. If we're singing a Batch 1 hymn every three or four weeks, we'll sprinkle in a second and third batch one every five weeks. And when a new batch comes out, it gets slid into remaining slots. The result is fewer weeks without any new hymns. It also seems like no batches are "eating into" previous ones. I think we really are just adding to the new hymns we're already singing.
 
 
 ```{r}
@@ -281,8 +306,7 @@ data_to_plot |>
 data_to_plot |> 
     filter(batch == "none") |> 
     arrange(prop_sung) |> 
-    mutate(1-prop_sung) |> 
-    print()
+    mutate(1-prop_sung)
 ```
 
 Here's another version of the same plot but instead of the actual dates, it's in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.
@@ -294,16 +318,16 @@ data_to_plot |>
     filter(!batch %in% "none") |> 
     ggplot(aes(weeks_since_release, prop_sung, group = batch, color = batch)) +
     geom_path(linewidth = 1) +
-    geom_point(size = 3) +
-    scale_x_continuous(breaks = seq(2, 100, 2),
+    geom_point(size = 2) +
+    scale_x_continuous(breaks = seq(2, 150, 4),
                        expand = expansion(0, c(0.2, 2))) + 
     scale_y_continuous(expand = expansion(0, c(0.01, 0.02)),
                        breaks = seq(0, 1, 0.1),
                        minor_breaks = seq(0, 1, 0.02),
                        labels = scales::percent) +
     scale_color_manual(breaks = c("none", "batch1", "batch2", "batch3", "batch4", "batch5", "batch6"),
-                       # Color brewer Set 1
-                       values = c("gray66", "#e41a1c",  "#377eb8",  "#4daf4a", "#984ea3", "#ff7f00", "#ffff33")) +
+                       # Polychrome::kelly.colors
+                       values = c("#848482", "#be0032",  "#0067a5",  "#008856", "#875692", "#f38400", "#8db600")) +
     labs(x = "weeks since release",
          y = "percentage of wards",
          color = "number of new hymns",
@@ -314,7 +338,7 @@ data_to_plot |>
 ```
 
 
-Here it's easier to see that the first two months of the sixth batch have been the least popular out of any batch so far.
+Here it's easier to see that the first two months of the sixth batch have been the least popular out of any batch so far. It has gotten about as popular as the other batches since then, but it still lags just a little bit.
 
 
 ## What hymns are most popular?
@@ -327,6 +351,8 @@ meetings_since_release6 |>
     # I can't take it as the raw frequency. I'll have to remove duplicates.
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |> 
     filter(nth_time == 1) |> 
+    
+    mutate(hymn_num = convert_to_2000(hymn_num)) |> 
     
     cleveland(return = "table", 
               stat_to_plot = sum_prop_wards,
@@ -346,12 +372,11 @@ meetings_since_release6 |>
                subtitle = "Since February 26, 2026")
 ```
 
-
-The most popular one currently is <hymn>`r hymn(1210)`</hymn>. This is likely because of Easter. I suspect that that hymn won't be sung all that much until next Easter, allowing the others to catch up. The next most popular one is <hymn>`r hymn(1062)`</hymn> and I suspect that one will jump up at the start of each month. So far I haven't seen <hymn>`r hymn(1053)`</hymn> yet I don't thinik, but otherwise I've seen all of them sung at least once. 
+The two most popular hymns in this batch are <hymn>`hymn(1062)`</hymn> and <hymn>`hymn(1061)`</hymn>. The first one is explained because it's a Fast Sunday hymn so there's a good reason to sing it every month. The second was popular around [Father's Day](/posts/fathers_day) and [Mother's Day](/posts/mothers_day). While not apparent in this table, <hymn>`r hymn(1210)`</hymn> was also somewhat popular around [Easter](/posts/easter). It was brand new then, so it didn't get sung much, but I suspect next year we'll see it sung more.  It's pretty cool to see new hymns being introduced in those categories since the number of hymns in each one of those is pretty small.
 
 ## What hymns are most popular each week?
 
-This plot shows how popular each hymn is each week. Take these numbers with a grain of salt, particularly the left sides of each panel, because there's not a lot of data to work with.
+This plot shows how popular each hymn is each week. Take these numbers with a grain of salt, particularly the left sides of each panel, because there's not a lot of data to work with. 
 
 ```{r, include = TRUE, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 13}
 #| column: page
@@ -392,14 +417,15 @@ meetings_since_release6 |>
 ```
 
 
-The clearest trend is the rise and fall of <hymn>`r hymn(1210)`</hymn> around Easter. There seems to be a possible trend of wards trying out some other new ones in the past week or so. But we'll have to wait a few weeks to see if that pans out. 
+The clearest trend is the rise and fall of <hymn>`r hymn(1210)`</hymn> around Easter. The other one is the regular spike in <hymn>`r hymn(1062)`</hymn> each month. We can also see <hymn>`r hymn(1061)`</hymn> spiking around Mother's Day and Father's Day. The other hymns don't show too clear of a pattern. 
 
 ## When during meetings are these hymns sung?
 
-This table shows when during sacrament meetings these hymns have been sung. Again, because I've only seen most of these hymns sung a few times, take these numbers with a grain of salt. 
+This table shows when during sacrament meetings these hymns have been sung.
 
 ```{r, include = TRUE}
 meetings_since_release6 |>
+    mutate(hymn_num = convert_to_2000(hymn_num)) |> 
     filter(hymn_num %in% batch6_hymn_nums,
            !is.na(type)) |>
     count(name_num, hymn_num, type) |>
@@ -426,9 +452,14 @@ meetings_since_release6 |>
 ```
 
 
+Like we've seen with other batches and pretty much any other hymn, each hymn has its own story. I don't know if there's much to be said about this data. 
+
+
 
 
 
 ## Conclusion
 
-Even though the sixth batch has been out for two months, relatively few wards have sung any of those hymns. This makes it difficult to run stats (and indeed is the reason why it took until the end of April to finally publish this analysis). This is just a continuation of the trend seen since the second batch came out---newer batches are less popular. I've said this before in previous analyses, but it might be because the newness is losing its excitement. It might also be that the hymnal committee purposely chose hymns they anticipated being popular at the beginning. I'm thinking ahead to when the full hymnal gets released because presumably we'll get a whole bunch of new ones then. I'm curious if those new ones will ever become as popular as the ones released in these batches. 
+It took a few weeks to get started, but the sixth batch is being incorporated into sacrament meetings. Since we have some topical hymns, it'll take a few years for the true popularity of them to be evened out across the months and years. In general though, it does seem to be the least popular batch so far.
+
+This is just a continuation of the trend seen since the second batch came out---newer batches are less popular. I've said this before in previous analyses, but it might be because the newness is losing its excitement. It might also be that the hymnal committee purposely chose hymns they anticipated being popular at the beginning. I'm thinking ahead to when the full hymnal gets released because presumably we'll get a whole bunch of new ones then. I'm curious if those new ones will ever become as popular as the ones released in these batches. 

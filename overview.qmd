@@ -91,6 +91,7 @@ process_table <- function(.df) {
 ```{r, include = TRUE, echo = FALSE}
 #| column: page
 freqs %>%
+    mutate(hymn_num = convert_to_2000(hymn_num)) |> 
     cleveland(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
@@ -114,6 +115,7 @@ This table includes data from before any new hymns were introduced. It is likely
 ```{r, include = TRUE, echo = FALSE}
 #| column: page
 freqs %>%
+    mutate(hymn_num = convert_to_2000(hymn_num)) |> 
     filter(date <= ymd("2024-06-01")) |> 
     cleveland(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
@@ -149,6 +151,7 @@ weeks_since_june2 <- freqs |>
 ```{r, include = TRUE, echo = FALSE}
 #| column: page
 freqs %>%
+    mutate(hymn_num = convert_to_2000(hymn_num)) |> 
     filter(date >= ymd("2024-06-01")) |> 
     cleveland(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
@@ -178,6 +181,7 @@ post_june_data <- freqs %>%
     mutate(nth_time = row_number(), .by = c(ward, hymn_num)) |>
     filter(nth_time == 1) |>
     
+    mutate(hymn_num = convert_to_2000(hymn_num)) |> 
     cleveland(return = "table") %>%
     mutate(hymn_num = as.numeric(as.character(hymn_num))) %>%
     full_join(name_num_lookup, by = c("hymn_name", "hymn_num")) %>%
@@ -205,6 +209,7 @@ batch2_rows <- get_rows_of_new_hymns(batch2_hymn_nums)
 batch3_rows <- get_rows_of_new_hymns(batch3_hymn_nums)
 batch4_rows <- get_rows_of_new_hymns(batch4_hymn_nums)
 batch5_rows <- get_rows_of_new_hymns(batch5_hymn_nums)
+batch5_rows <- get_rows_of_new_hymns(batch6_hymn_nums)
 
 post_june_data |> 
     select(`#` = hymn_num,
@@ -224,7 +229,8 @@ post_june_data |>
     row_spec(row = batch2_rows, background = "#fbb4ae") |> 
     row_spec(row = batch3_rows, background = "#ccebc5") |> 
     row_spec(row = batch4_rows, background = "#decbe4") |> 
-    row_spec(row = batch5_rows, background = "#fed9a6")
+    row_spec(row = batch5_rows, background = "#fed9a6") |> 
+    row_spec(row = batch5_rows, background = "#ffffcc")
 ```
 
 :::
@@ -236,6 +242,7 @@ Here is the same information, but as a plot. Note that songs from the Children's
 
 ```{r, echo = FALSE, fig.height = 45, fig.width = 8}
 freqs %>%
+    mutate(hymn_num = convert_to_2000(hymn_num)) |> 
     cleveland(return = "plot") + 
     scale_x_continuous(expand = expansion(0, c(0.02, 0.6))) + 
     labs(title = "Frequency of all hymns",

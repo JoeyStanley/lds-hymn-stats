@@ -9,7 +9,7 @@
 <link>https://hymnstats.joeystanley.com/findings.html</link>
 <atom:link href="https://hymnstats.joeystanley.com/findings.xml" rel="self" type="application/rss+xml"/>
 <description>Trends, patterns, stats, and trivia about LDS hymns. Based on data collected from over 25,000 sacrament meetings.</description>
-<generator>quarto-1.8.25</generator>
+<generator>quarto-1.9.36</generator>
 <lastBuildDate>Thu, 26 Mar 2026 06:00:00 GMT</lastBuildDate>
 <item>
   <title>Which hymns cluster with each other?</title>
@@ -767,26 +767,26 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 
 
 <p>On February 26, 2026, the church <a href="https://newsroom.churchofjesuschrist.org/article/old-testament–themed-hymns-join-hymns-for-home-and-church">released</a> the sixth batch of new hymns. In previous posts, I have covered in detail the previous batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the sixth batch came out until now.</p>
-<p>Currently I have data from 5,459 sacrament meetings from 1,117 wards since February 26, 2026. Here’s how much data I have for each week so far, just so you have an idea of what I’m working with.</p>
+<p>Currently I have data from 13,508 sacrament meetings from 1,235 wards since February 26, 2026. Here’s how much data I have for each week so far, just so you have an idea of what I’m working with.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="gphtbqgotu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gphtbqgotu table {
+<div id="yoeaiurbfy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yoeaiurbfy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gphtbqgotu thead, #gphtbqgotu tbody, #gphtbqgotu tfoot, #gphtbqgotu tr, #gphtbqgotu td, #gphtbqgotu th {
+#yoeaiurbfy thead, #yoeaiurbfy tbody, #yoeaiurbfy tfoot, #yoeaiurbfy tr, #yoeaiurbfy td, #yoeaiurbfy th {
   border-style: none;
 }
 
-#gphtbqgotu p {
+#yoeaiurbfy p {
   margin: 0;
   padding: 0;
 }
 
-#gphtbqgotu .gt_table {
+#yoeaiurbfy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -812,12 +812,12 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-left-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_caption {
+#yoeaiurbfy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gphtbqgotu .gt_title {
+#yoeaiurbfy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -829,7 +829,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-width: 0;
 }
 
-#gphtbqgotu .gt_subtitle {
+#yoeaiurbfy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -841,7 +841,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-top-width: 0;
 }
 
-#gphtbqgotu .gt_heading {
+#yoeaiurbfy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -853,13 +853,13 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_bottom_border {
+#yoeaiurbfy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_col_headings {
+#yoeaiurbfy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -874,7 +874,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_col_heading {
+#yoeaiurbfy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -894,7 +894,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   overflow-x: hidden;
 }
 
-#gphtbqgotu .gt_column_spanner_outer {
+#yoeaiurbfy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -906,15 +906,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 4px;
 }
 
-#gphtbqgotu .gt_column_spanner_outer:first-child {
+#yoeaiurbfy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gphtbqgotu .gt_column_spanner_outer:last-child {
+#yoeaiurbfy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gphtbqgotu .gt_column_spanner {
+#yoeaiurbfy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -926,11 +926,11 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   width: 100%;
 }
 
-#gphtbqgotu .gt_spanner_row {
+#yoeaiurbfy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gphtbqgotu .gt_group_heading {
+#yoeaiurbfy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -956,7 +956,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   text-align: left;
 }
 
-#gphtbqgotu .gt_empty_group_heading {
+#yoeaiurbfy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -971,15 +971,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   vertical-align: middle;
 }
 
-#gphtbqgotu .gt_from_md > :first-child {
+#yoeaiurbfy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gphtbqgotu .gt_from_md > :last-child {
+#yoeaiurbfy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gphtbqgotu .gt_row {
+#yoeaiurbfy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -998,7 +998,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   overflow-x: hidden;
 }
 
-#gphtbqgotu .gt_stub {
+#yoeaiurbfy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1011,7 +1011,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#gphtbqgotu .gt_stub_row_group {
+#yoeaiurbfy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1025,15 +1025,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   vertical-align: top;
 }
 
-#gphtbqgotu .gt_row_group_first td {
+#yoeaiurbfy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gphtbqgotu .gt_row_group_first th {
+#yoeaiurbfy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gphtbqgotu .gt_summary_row {
+#yoeaiurbfy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1043,16 +1043,16 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#gphtbqgotu .gt_first_summary_row {
+#yoeaiurbfy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_first_summary_row.thick {
+#yoeaiurbfy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gphtbqgotu .gt_last_summary_row {
+#yoeaiurbfy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1062,7 +1062,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_grand_summary_row {
+#yoeaiurbfy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1072,7 +1072,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#gphtbqgotu .gt_first_grand_summary_row {
+#yoeaiurbfy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1082,7 +1082,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-top-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_last_grand_summary_row_top {
+#yoeaiurbfy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1092,11 +1092,11 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_striped {
+#yoeaiurbfy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gphtbqgotu .gt_table_body {
+#yoeaiurbfy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1105,7 +1105,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_footnotes {
+#yoeaiurbfy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1119,7 +1119,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_footnote {
+#yoeaiurbfy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1128,7 +1128,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#gphtbqgotu .gt_sourcenotes {
+#yoeaiurbfy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1142,7 +1142,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#gphtbqgotu .gt_sourcenote {
+#yoeaiurbfy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1150,72 +1150,72 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#gphtbqgotu .gt_left {
+#yoeaiurbfy .gt_left {
   text-align: left;
 }
 
-#gphtbqgotu .gt_center {
+#yoeaiurbfy .gt_center {
   text-align: center;
 }
 
-#gphtbqgotu .gt_right {
+#yoeaiurbfy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gphtbqgotu .gt_font_normal {
+#yoeaiurbfy .gt_font_normal {
   font-weight: normal;
 }
 
-#gphtbqgotu .gt_font_bold {
+#yoeaiurbfy .gt_font_bold {
   font-weight: bold;
 }
 
-#gphtbqgotu .gt_font_italic {
+#yoeaiurbfy .gt_font_italic {
   font-style: italic;
 }
 
-#gphtbqgotu .gt_super {
+#yoeaiurbfy .gt_super {
   font-size: 65%;
 }
 
-#gphtbqgotu .gt_footnote_marks {
+#yoeaiurbfy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gphtbqgotu .gt_asterisk {
+#yoeaiurbfy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gphtbqgotu .gt_indent_1 {
+#yoeaiurbfy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gphtbqgotu .gt_indent_2 {
+#yoeaiurbfy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gphtbqgotu .gt_indent_3 {
+#yoeaiurbfy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gphtbqgotu .gt_indent_4 {
+#yoeaiurbfy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gphtbqgotu .gt_indent_5 {
+#yoeaiurbfy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gphtbqgotu .katex-display {
+#yoeaiurbfy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gphtbqgotu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yoeaiurbfy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1236,31 +1236,79 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="date">March 01</td>
-<td class="gt_row gt_right" headers="wards">819</td>
+<td class="gt_row gt_right" headers="wards">838</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="date">March 08</td>
-<td class="gt_row gt_right" headers="wards">796</td>
+<td class="gt_row gt_right" headers="wards">824</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="date">March 15</td>
-<td class="gt_row gt_right" headers="wards">808</td>
+<td class="gt_row gt_right" headers="wards">855</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="date">March 22</td>
-<td class="gt_row gt_right" headers="wards">740</td>
+<td class="gt_row gt_right" headers="wards">848</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="date">March 29</td>
-<td class="gt_row gt_right" headers="wards">685</td>
+<td class="gt_row gt_right" headers="wards">792</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="date">April 12</td>
-<td class="gt_row gt_right" headers="wards">781</td>
+<td class="gt_row gt_right" headers="wards">811</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="date">April 19</td>
-<td class="gt_row gt_right" headers="wards">830</td>
+<td class="gt_row gt_right" headers="wards">860</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">April 26</td>
+<td class="gt_row gt_right" headers="wards">773</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 03</td>
+<td class="gt_row gt_right" headers="wards">743</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 10</td>
+<td class="gt_row gt_right" headers="wards">807</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 17</td>
+<td class="gt_row gt_right" headers="wards">764</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">May 24</td>
+<td class="gt_row gt_right" headers="wards">803</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">May 31</td>
+<td class="gt_row gt_right" headers="wards">758</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">June 07</td>
+<td class="gt_row gt_right" headers="wards">754</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 14</td>
+<td class="gt_row gt_right" headers="wards">648</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">June 21</td>
+<td class="gt_row gt_right" headers="wards">802</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">June 28</td>
+<td class="gt_row gt_right" headers="wards">647</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="date">July 05</td>
+<td class="gt_row gt_right" headers="wards">114</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="date">July 12</td>
+<td class="gt_row gt_right" headers="wards">67</td>
 </tr>
 </tbody>
 </table>
@@ -1271,51 +1319,70 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 <section id="how-many-wards-sang-new-hymns-each-week" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="how-many-wards-sang-new-hymns-each-week">How many wards sang new hymns each week?</h2>
 <p>The following plot show what percentage of wards sang from each of the new batches of hymns, per week, since June 2024 when the new hymns started getting rolled out. I’ve included data from all batches just so you can compare them to each other.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">The last six months</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Since the new hymns came out</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-1-1" class="tab-pane active page-columns page-full" aria-labelledby="tabset-1-1-tab">
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div class="page-columns page-full">
 <figure class="figure page-columns page-full">
-<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch6/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img column-screen" width="1344"></p>
+<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch6/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img column-screen" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>As you can see, the sixth batch (highlighted in yellow) hasn’t been sung in sacrament meeting very often as a congregataional hymn. After almost two months, we’re still only seeing it in less than 2% of wards each week. Every batch since the third batch took a few weeks to get warmed up, and each batch seems to be less popular than the one previous.</p>
-<p>One interesting thing to note though is the gray line—which represents the percent of wards that sang zero new hymns each week, is mostly staying under thte 50% mark. That means that for the past several months, more wards are singing at least on new hymn than not. The steady decline from June 2024 to now I think is pretty remarkable. It takes a few months for a batch to ramp up to its full usage, and none have really changed in popularity all that much over time. That means that we’re steadily incorporating more new hymns as the batches come out. If we’re singing a Batch 1 hymn every three or four weeks, we’ll sprinkle in a second and third batch one every five weeks. And when a new batch comes out, it gets slid into remaining slots. The result is fewer weeks without any new hymns. It also seems like no batches are “eating into” previous ones. I think we really are just adding to the new hymns we’re already singing.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane page-columns page-full" aria-labelledby="tabset-1-2-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch6/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img column-screen" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The sixth batch (highlighted in yellowish-green) took a few months to get incorporated into sacrament meetings as a congregational hymn. For the first two months, it was extremely rare to see it sung. In late April and into May, it picked up a little bit. I suspect that whoever plans music in wards had six or so weeks planned out already when the batch came out, so it was sung more when those preplanned ones had already passed. However, it’s worth noting that every batch since the third batch took a few weeks to get warmed up, and each batch seems to be less popular than the one previous. But the sixth batch took an especially long time to get going.</p>
+<p>Since then though, it has done somewhat well. It is about as popular as the fourth and fifth batches. It’s still not as popular as the second and third and certainly not the first batch. One thing we see though it a small spike on Fast Sundays, which is from <hymn>Lord, Accept Our Humble Fast (#1062)</hymn> being sung then. In fact, if you look at the gray line, which represents the percent of wards that sang zero new hymns each week, for the past two years there is a spike <em>up</em> on Fast Sunday as people continue to sing the typical <a href="../../posts/fast_sunday">Fast Sunday</a> hymns. That might be going away a little bit now that we clearly have a new hymn to throw into the mix.</p>
+<p>It’s worth pointing one more thing about that gray line. Since about October 2025, it’s is mostly staying under the 50% mark. That means that on a given Sunday, there are more wards that sing a new hymn than there are that don’t. The steady decline from June 2024 to now I think is pretty remarkable. The lowest point was on May 17, 2026 when 56.4% of wards sang at least one new hymn. It takes a few months for a batch to ramp up to its full usage, and none have really changed in popularity all that much over time. That means that we’re steadily incorporating more new hymns as the batches come out. If we’re singing a Batch 1 hymn every three or four weeks, we’ll sprinkle in a second and third batch one every five weeks. And when a new batch comes out, it gets slid into remaining slots. The result is fewer weeks without any new hymns. It also seems like no batches are “eating into” previous ones. I think we really are just adding to the new hymns we’re already singing.</p>
 <p>Here’s another version of the same plot but instead of the actual dates, it’s in terms of how many weeks since the batches came out. This version of the plot is useful to spot any parallel trends across the batches, especially in the first few weeks of their release.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div class="page-columns page-full">
 <figure class="figure page-columns page-full">
-<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch6/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img column-page" width="1344"></p>
+<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch6/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img column-page" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Here it’s easier to see that the first two months of the sixth batch have been the least popular out of any batch so far.</p>
+<p>Here it’s easier to see that the first two months of the sixth batch have been the least popular out of any batch so far. It has gotten about as popular as the other batches since then, but it still lags just a little bit.</p>
 </section>
 <section id="what-hymns-are-most-popular" class="level2">
 <h2 class="anchored" data-anchor-id="what-hymns-are-most-popular">What hymns are most popular?</h2>
 <p>The following table shows the hymns from the sixth batch in order of how popular they are.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="zukzbqhgji" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zukzbqhgji table {
+<div id="bvvubjcqjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bvvubjcqjo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zukzbqhgji thead, #zukzbqhgji tbody, #zukzbqhgji tfoot, #zukzbqhgji tr, #zukzbqhgji td, #zukzbqhgji th {
+#bvvubjcqjo thead, #bvvubjcqjo tbody, #bvvubjcqjo tfoot, #bvvubjcqjo tr, #bvvubjcqjo td, #bvvubjcqjo th {
   border-style: none;
 }
 
-#zukzbqhgji p {
+#bvvubjcqjo p {
   margin: 0;
   padding: 0;
 }
 
-#zukzbqhgji .gt_table {
+#bvvubjcqjo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1341,12 +1408,12 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-left-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_caption {
+#bvvubjcqjo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zukzbqhgji .gt_title {
+#bvvubjcqjo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1358,7 +1425,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-width: 0;
 }
 
-#zukzbqhgji .gt_subtitle {
+#bvvubjcqjo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1370,7 +1437,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-top-width: 0;
 }
 
-#zukzbqhgji .gt_heading {
+#bvvubjcqjo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1382,13 +1449,13 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_bottom_border {
+#bvvubjcqjo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_col_headings {
+#bvvubjcqjo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1403,7 +1470,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_col_heading {
+#bvvubjcqjo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1423,7 +1490,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   overflow-x: hidden;
 }
 
-#zukzbqhgji .gt_column_spanner_outer {
+#bvvubjcqjo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1435,15 +1502,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 4px;
 }
 
-#zukzbqhgji .gt_column_spanner_outer:first-child {
+#bvvubjcqjo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zukzbqhgji .gt_column_spanner_outer:last-child {
+#bvvubjcqjo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zukzbqhgji .gt_column_spanner {
+#bvvubjcqjo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1455,11 +1522,11 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   width: 100%;
 }
 
-#zukzbqhgji .gt_spanner_row {
+#bvvubjcqjo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zukzbqhgji .gt_group_heading {
+#bvvubjcqjo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1485,7 +1552,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   text-align: left;
 }
 
-#zukzbqhgji .gt_empty_group_heading {
+#bvvubjcqjo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1500,15 +1567,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   vertical-align: middle;
 }
 
-#zukzbqhgji .gt_from_md > :first-child {
+#bvvubjcqjo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zukzbqhgji .gt_from_md > :last-child {
+#bvvubjcqjo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zukzbqhgji .gt_row {
+#bvvubjcqjo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1527,7 +1594,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   overflow-x: hidden;
 }
 
-#zukzbqhgji .gt_stub {
+#bvvubjcqjo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1540,7 +1607,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#zukzbqhgji .gt_stub_row_group {
+#bvvubjcqjo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1554,15 +1621,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   vertical-align: top;
 }
 
-#zukzbqhgji .gt_row_group_first td {
+#bvvubjcqjo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zukzbqhgji .gt_row_group_first th {
+#bvvubjcqjo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zukzbqhgji .gt_summary_row {
+#bvvubjcqjo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1572,16 +1639,16 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#zukzbqhgji .gt_first_summary_row {
+#bvvubjcqjo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_first_summary_row.thick {
+#bvvubjcqjo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zukzbqhgji .gt_last_summary_row {
+#bvvubjcqjo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1591,7 +1658,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_grand_summary_row {
+#bvvubjcqjo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1601,7 +1668,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#zukzbqhgji .gt_first_grand_summary_row {
+#bvvubjcqjo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1611,7 +1678,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-top-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_last_grand_summary_row_top {
+#bvvubjcqjo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1621,11 +1688,11 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_striped {
+#bvvubjcqjo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zukzbqhgji .gt_table_body {
+#bvvubjcqjo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1634,7 +1701,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_footnotes {
+#bvvubjcqjo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1648,7 +1715,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_footnote {
+#bvvubjcqjo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1657,7 +1724,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#zukzbqhgji .gt_sourcenotes {
+#bvvubjcqjo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1671,7 +1738,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#zukzbqhgji .gt_sourcenote {
+#bvvubjcqjo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1679,72 +1746,72 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#zukzbqhgji .gt_left {
+#bvvubjcqjo .gt_left {
   text-align: left;
 }
 
-#zukzbqhgji .gt_center {
+#bvvubjcqjo .gt_center {
   text-align: center;
 }
 
-#zukzbqhgji .gt_right {
+#bvvubjcqjo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zukzbqhgji .gt_font_normal {
+#bvvubjcqjo .gt_font_normal {
   font-weight: normal;
 }
 
-#zukzbqhgji .gt_font_bold {
+#bvvubjcqjo .gt_font_bold {
   font-weight: bold;
 }
 
-#zukzbqhgji .gt_font_italic {
+#bvvubjcqjo .gt_font_italic {
   font-style: italic;
 }
 
-#zukzbqhgji .gt_super {
+#bvvubjcqjo .gt_super {
   font-size: 65%;
 }
 
-#zukzbqhgji .gt_footnote_marks {
+#bvvubjcqjo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zukzbqhgji .gt_asterisk {
+#bvvubjcqjo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zukzbqhgji .gt_indent_1 {
+#bvvubjcqjo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zukzbqhgji .gt_indent_2 {
+#bvvubjcqjo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zukzbqhgji .gt_indent_3 {
+#bvvubjcqjo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zukzbqhgji .gt_indent_4 {
+#bvvubjcqjo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zukzbqhgji .gt_indent_5 {
+#bvvubjcqjo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zukzbqhgji .katex-display {
+#bvvubjcqjo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zukzbqhgji div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bvvubjcqjo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1764,52 +1831,52 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">Long Ago, Within a Garden (1210)</td>
-<td class="gt_row gt_right" headers="percent of wards">3.1%</td>
-</tr>
-<tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Lord, Accept Our Humble Fast (1062)</td>
-<td class="gt_row gt_right" headers="percent of wards">1.3%</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">This Is My Father's World (1059)</td>
-<td class="gt_row gt_right" headers="percent of wards">1.1%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">Joyfully Bound (1052)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.7%</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">Build an Ark (1060)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.6%</td>
+<td class="gt_row gt_right" headers="percent of wards">13.8%</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Hymn">Love Will Bless Our Home (1061)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.4%</td>
+<td class="gt_row gt_right" headers="percent of wards">13.6%</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">Jesus Is My Shepherd (1057)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.3%</td>
+<td class="gt_row gt_left" headers="Hymn">This Is My Father's World (1059)</td>
+<td class="gt_row gt_right" headers="percent of wards">8.2%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Hymn">The Power of the Holy Ghost (1055)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.3%</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Hymn">When I Am Baptized (1054)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.2%</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Hymn">My Song in the Night (1058)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.1%</td>
+<td class="gt_row gt_left" headers="Hymn">Joyfully Bound (1052)</td>
+<td class="gt_row gt_right" headers="percent of wards">8.0%</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">Elijah and the Still, Small Voice (1056)</td>
-<td class="gt_row gt_right" headers="percent of wards">0.1%</td>
+<td class="gt_row gt_right" headers="percent of wards">4.0%</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Hymn">My Song in the Night (1058)</td>
+<td class="gt_row gt_right" headers="percent of wards">3.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">The Power of the Holy Ghost (1055)</td>
+<td class="gt_row gt_right" headers="percent of wards">3.5%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">Build an Ark (1060)</td>
+<td class="gt_row gt_right" headers="percent of wards">3.1%</td>
+</tr>
+<tr class="odd">
 <td class="gt_row gt_left" headers="Hymn">My Covenants (1053)</td>
-<td class="gt_row gt_right" headers="percent of wards">0%</td>
+<td class="gt_row gt_right" headers="percent of wards">2.8%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">Long Ago, Within a Garden (1210)</td>
+<td class="gt_row gt_right" headers="percent of wards">2.1%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Hymn">When I Am Baptized (1054)</td>
+<td class="gt_row gt_right" headers="percent of wards">2.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Hymn">Jesus Is My Shepherd (1057)</td>
+<td class="gt_row gt_right" headers="percent of wards">1.5%</td>
 </tr>
 </tbody>
 </table>
@@ -1817,7 +1884,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 </div>
 </div>
 </div>
-<p>The most popular one currently is <hymn>Long Ago, Within a Garden (#1210)</hymn>. This is likely because of Easter. I suspect that that hymn won’t be sung all that much until next Easter, allowing the others to catch up. The next most popular one is <hymn>Lord, Accept Our Humble Fast (#1062)</hymn> and I suspect that one will jump up at the start of each month. So far I haven’t seen <hymn>My Covenants (#1053)</hymn> yet I don’t thinik, but otherwise I’ve seen all of them sung at least once.</p>
+<p>The two most popular hymns in this batch are <hymn><code>hymn(1062)</code></hymn> and <hymn><code>hymn(1061)</code></hymn>. The first one is explained because it’s a Fast Sunday hymn so there’s a good reason to sing it every month. The second was popular around <a href="../../posts/fathers_day">Father’s Day</a> and <a href="../../posts/mothers_day">Mother’s Day</a>. While not apparent in this table, <hymn>Long Ago, Within a Garden (#1210)</hymn> was also somewhat popular around <a href="../../posts/easter">Easter</a>. It was brand new then, so it didn’t get sung much, but I suspect next year we’ll see it sung more. It’s pretty cool to see new hymns being introduced in those categories since the number of hymns in each one of those is pretty small.</p>
 </section>
 <section id="what-hymns-are-most-popular-each-week" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="what-hymns-are-most-popular-each-week">What hymns are most popular each week?</h2>
@@ -1826,35 +1893,35 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 <div class="cell-output-display page-columns page-full">
 <div class="page-columns page-full">
 <figure class="figure page-columns page-full">
-<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch6/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img column-page" width="1248"></p>
+<p class="page-columns page-full"><img src="https://hymnstats.joeystanley.com/posts/new_hymns_batch6/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img column-page" width="1248"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The clearest trend is the rise and fall of <hymn>Long Ago, Within a Garden (#1210)</hymn> around Easter. There seems to be a possible trend of wards trying out some other new ones in the past week or so. But we’ll have to wait a few weeks to see if that pans out.</p>
+<p>The clearest trend is the rise and fall of <hymn>Long Ago, Within a Garden (#1210)</hymn> around Easter. The other one is the regular spike in <hymn>Lord, Accept Our Humble Fast (#1062)</hymn> each month. We can also see <hymn>Love Will Bless Our Home (#1061)</hymn> spiking around Mother’s Day and Father’s Day. The other hymns don’t show too clear of a pattern.</p>
 </section>
 <section id="when-during-meetings-are-these-hymns-sung" class="level2">
 <h2 class="anchored" data-anchor-id="when-during-meetings-are-these-hymns-sung">When during meetings are these hymns sung?</h2>
-<p>This table shows when during sacrament meetings these hymns have been sung. Again, because I’ve only seen most of these hymns sung a few times, take these numbers with a grain of salt.</p>
+<p>This table shows when during sacrament meetings these hymns have been sung.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="qkxhtfpixz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qkxhtfpixz table {
+<div id="jkglosfkwl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jkglosfkwl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qkxhtfpixz thead, #qkxhtfpixz tbody, #qkxhtfpixz tfoot, #qkxhtfpixz tr, #qkxhtfpixz td, #qkxhtfpixz th {
+#jkglosfkwl thead, #jkglosfkwl tbody, #jkglosfkwl tfoot, #jkglosfkwl tr, #jkglosfkwl td, #jkglosfkwl th {
   border-style: none;
 }
 
-#qkxhtfpixz p {
+#jkglosfkwl p {
   margin: 0;
   padding: 0;
 }
 
-#qkxhtfpixz .gt_table {
+#jkglosfkwl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1880,12 +1947,12 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-left-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_caption {
+#jkglosfkwl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qkxhtfpixz .gt_title {
+#jkglosfkwl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1897,7 +1964,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-width: 0;
 }
 
-#qkxhtfpixz .gt_subtitle {
+#jkglosfkwl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1909,7 +1976,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-top-width: 0;
 }
 
-#qkxhtfpixz .gt_heading {
+#jkglosfkwl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1921,13 +1988,13 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_bottom_border {
+#jkglosfkwl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_col_headings {
+#jkglosfkwl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1942,7 +2009,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_col_heading {
+#jkglosfkwl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1962,7 +2029,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   overflow-x: hidden;
 }
 
-#qkxhtfpixz .gt_column_spanner_outer {
+#jkglosfkwl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1974,15 +2041,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 4px;
 }
 
-#qkxhtfpixz .gt_column_spanner_outer:first-child {
+#jkglosfkwl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qkxhtfpixz .gt_column_spanner_outer:last-child {
+#jkglosfkwl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qkxhtfpixz .gt_column_spanner {
+#jkglosfkwl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1994,11 +2061,11 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   width: 100%;
 }
 
-#qkxhtfpixz .gt_spanner_row {
+#jkglosfkwl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qkxhtfpixz .gt_group_heading {
+#jkglosfkwl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2024,7 +2091,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   text-align: left;
 }
 
-#qkxhtfpixz .gt_empty_group_heading {
+#jkglosfkwl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2039,15 +2106,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   vertical-align: middle;
 }
 
-#qkxhtfpixz .gt_from_md > :first-child {
+#jkglosfkwl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qkxhtfpixz .gt_from_md > :last-child {
+#jkglosfkwl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qkxhtfpixz .gt_row {
+#jkglosfkwl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2066,7 +2133,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   overflow-x: hidden;
 }
 
-#qkxhtfpixz .gt_stub {
+#jkglosfkwl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2079,7 +2146,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#qkxhtfpixz .gt_stub_row_group {
+#jkglosfkwl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2093,15 +2160,15 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   vertical-align: top;
 }
 
-#qkxhtfpixz .gt_row_group_first td {
+#jkglosfkwl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qkxhtfpixz .gt_row_group_first th {
+#jkglosfkwl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qkxhtfpixz .gt_summary_row {
+#jkglosfkwl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2111,16 +2178,16 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#qkxhtfpixz .gt_first_summary_row {
+#jkglosfkwl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_first_summary_row.thick {
+#jkglosfkwl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qkxhtfpixz .gt_last_summary_row {
+#jkglosfkwl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2130,7 +2197,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_grand_summary_row {
+#jkglosfkwl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2140,7 +2207,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#qkxhtfpixz .gt_first_grand_summary_row {
+#jkglosfkwl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2150,7 +2217,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-top-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_last_grand_summary_row_top {
+#jkglosfkwl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2160,11 +2227,11 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_striped {
+#jkglosfkwl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qkxhtfpixz .gt_table_body {
+#jkglosfkwl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2173,7 +2240,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-bottom-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_footnotes {
+#jkglosfkwl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2187,7 +2254,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_footnote {
+#jkglosfkwl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2196,7 +2263,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#qkxhtfpixz .gt_sourcenotes {
+#jkglosfkwl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2210,7 +2277,7 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   border-right-color: #D3D3D3;
 }
 
-#qkxhtfpixz .gt_sourcenote {
+#jkglosfkwl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2218,72 +2285,72 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
   padding-right: 5px;
 }
 
-#qkxhtfpixz .gt_left {
+#jkglosfkwl .gt_left {
   text-align: left;
 }
 
-#qkxhtfpixz .gt_center {
+#jkglosfkwl .gt_center {
   text-align: center;
 }
 
-#qkxhtfpixz .gt_right {
+#jkglosfkwl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qkxhtfpixz .gt_font_normal {
+#jkglosfkwl .gt_font_normal {
   font-weight: normal;
 }
 
-#qkxhtfpixz .gt_font_bold {
+#jkglosfkwl .gt_font_bold {
   font-weight: bold;
 }
 
-#qkxhtfpixz .gt_font_italic {
+#jkglosfkwl .gt_font_italic {
   font-style: italic;
 }
 
-#qkxhtfpixz .gt_super {
+#jkglosfkwl .gt_super {
   font-size: 65%;
 }
 
-#qkxhtfpixz .gt_footnote_marks {
+#jkglosfkwl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qkxhtfpixz .gt_asterisk {
+#jkglosfkwl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qkxhtfpixz .gt_indent_1 {
+#jkglosfkwl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qkxhtfpixz .gt_indent_2 {
+#jkglosfkwl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qkxhtfpixz .gt_indent_3 {
+#jkglosfkwl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qkxhtfpixz .gt_indent_4 {
+#jkglosfkwl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qkxhtfpixz .gt_indent_5 {
+#jkglosfkwl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qkxhtfpixz .katex-display {
+#jkglosfkwl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qkxhtfpixz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jkglosfkwl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2308,31 +2375,31 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 <tr class="odd">
 <td class="gt_row gt_left" headers="New Hymn">Joyfully Bound (1052)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:83%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">83%</span>
+<div style="background:#4F2B47;width:35%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">35%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:17%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">17%</span>
+<div style="background:#4F2B47;width:21%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">21%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+<div style="background:#4F2B47;width:33%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">33%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+<div style="background:#4F2B47;width:12%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:12px;font-weight:bold;font-size:14px;">12%</span>
 </div>
 </div></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="New Hymn">When I Am Baptized (1054)</td>
+<td class="gt_row gt_left" headers="New Hymn">My Covenants (1053)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+<div style="background:#4F2B47;width:25%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:25px;font-weight:bold;font-size:14px;">25%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -2341,21 +2408,21 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:100%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">100%</span>
+<div style="background:#4F2B47;width:45%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">45%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+<div style="background:#4F2B47;width:30%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">30%</span>
 </div>
 </div></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="New Hymn">The Power of the Holy Ghost (1055)</td>
+<td class="gt_row gt_left" headers="New Hymn">When I Am Baptized (1054)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:50%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">50%</span>
+<div style="background:#4F2B47;width:33%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">33%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -2364,17 +2431,40 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:50%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">50%</span>
+<div style="background:#4F2B47;width:53%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">53%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+<div style="background:#4F2B47;width:13%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:13px;font-weight:bold;font-size:14px;">13%</span>
 </div>
 </div></td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">The Power of the Holy Ghost (1055)</td>
+<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:28%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">28%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:28%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:28px;font-weight:bold;font-size:14px;">28%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:45%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">45%</span>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
 <td class="gt_row gt_left" headers="New Hymn">Elijah and the Still, Small Voice (1056)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
 <div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
@@ -2387,21 +2477,21 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:100%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">100%</span>
+<div style="background:#4F2B47;width:78%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">78%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+<div style="background:#4F2B47;width:22%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">22%</span>
 </div>
 </div></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td class="gt_row gt_left" headers="New Hymn">Jesus Is My Shepherd (1057)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:50%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">50%</span>
+<div style="background:#4F2B47;width:17%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:17px;font-weight:bold;font-size:14px;">17%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
@@ -2410,156 +2500,156 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+<div style="background:#4F2B47;width:42%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">42%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:50%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">50%</span>
+<div style="background:#4F2B47;width:42%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">42%</span>
 </div>
 </div></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td class="gt_row gt_left" headers="New Hymn">My Song in the Night (1058)</td>
 <td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:100%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">100%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="New Hymn">This Is My Father's World (1059)</td>
-<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:67%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">67%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:22%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:22px;font-weight:bold;font-size:14px;">22%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:11%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:11px;font-weight:bold;font-size:14px;">11%</span>
-</div>
-</div></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="New Hymn">Build an Ark (1060)</td>
-<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:20%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">20%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:60%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">60%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:20%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:20px;font-weight:bold;font-size:14px;">20%</span>
-</div>
-</div></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="New Hymn">Love Will Bless Our Home (1061)</td>
-<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:33%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:33px;font-weight:bold;font-size:14px;">33%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:67%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">67%</span>
-</div>
-</div></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="New Hymn">Lord, Accept Our Humble Fast (1062)</td>
-<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:40%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">40%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:30%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:30px;font-weight:bold;font-size:14px;">30%</span>
-</div>
-</div></td>
-<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
 <div style="background:#4F2B47;width:30%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
 <span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">30%</span>
 </div>
 </div></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="New Hymn">Long Ago, Within a Garden (1210)</td>
-<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:35%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">35%</span>
-</div>
-</div></td>
 <td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:4%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:4px;font-weight:bold;font-size:14px;">4%</span>
+<div style="background:#4F2B47;width:7%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:7px;font-weight:bold;font-size:14px;">7%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:48%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
-<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">48%</span>
+<div style="background:#4F2B47;width:19%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:19px;font-weight:bold;font-size:14px;">19%</span>
 </div>
 </div></td>
 <td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
-<div style="background:#4F2B47;width:13%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
-<span style="color:#000000;position:absolute;left:0%;margin-left:13px;font-weight:bold;font-size:14px;">13%</span>
+<div style="background:#4F2B47;width:44%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">44%</span>
 </div>
 </div></td>
 </tr>
-</tbody><tfoot class="gt_sourcenotes">
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">This Is My Father's World (1059)</td>
+<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:39%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">39%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:25%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:25px;font-weight:bold;font-size:14px;">25%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:36%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">36%</span>
+</div>
+</div></td>
+</tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="New Hymn">Build an Ark (1060)</td>
+<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:8%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:8px;font-weight:bold;font-size:14px;">8%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:62%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">62%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:31%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">31%</span>
+</div>
+</div></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">Love Will Bless Our Home (1061)</td>
+<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:38%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">38%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:0%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:0px;font-weight:bold;font-size:14px;">0%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:15%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:15px;font-weight:bold;font-size:14px;">15%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:46%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">46%</span>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="New Hymn">Lord, Accept Our Humble Fast (1062)</td>
+<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:64%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">64%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:3%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:3px;font-weight:bold;font-size:14px;">3%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:1%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:1px;font-weight:bold;font-size:14px;">1%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:31%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">31%</span>
+</div>
+</div></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="New Hymn">Long Ago, Within a Garden (1210)</td>
+<td class="gt_row gt_left" headers="Opening"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:25%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:25px;font-weight:bold;font-size:14px;">25%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Sacrament"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:19%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">19%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Intermediate"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:19%;height:20px;display:flex;align-items:center;justify-content:center;color:#000000;font-weight:bold;font-size:14px;position:relative;">
+<span style="color:#000000;position:absolute;left:0%;margin-left:19px;font-weight:bold;font-size:14px;">19%</span>
+</div>
+</div></td>
+<td class="gt_row gt_left" headers="Closing"><div style="flex-grow:1;margin-left:8px;background:#e1e1e1;">
+<div style="background:#4F2B47;width:38%;height:20px;display:flex;align-items:center;justify-content:flex-start;position:relative;">
+<span style="color:#FFFFFF;position:absolute;left:0px;margin-left:5px;font-weight:bold;font-size:14px;">38%</span>
+</div>
+</div></td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
 <td colspan="5" class="gt_sourcenote">Note: Each row adds up to 100%.</td>
 </tr>
 </tfoot>
@@ -2569,10 +2659,12 @@ Figure&nbsp;4: How often sacrament hymns are sung relative to when the new hymns
 </div>
 </div>
 </div>
+<p>Like we’ve seen with other batches and pretty much any other hymn, each hymn has its own story. I don’t know if there’s much to be said about this data.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Even though the sixth batch has been out for two months, relatively few wards have sung any of those hymns. This makes it difficult to run stats (and indeed is the reason why it took until the end of April to finally publish this analysis). This is just a continuation of the trend seen since the second batch came out—newer batches are less popular. I’ve said this before in previous analyses, but it might be because the newness is losing its excitement. It might also be that the hymnal committee purposely chose hymns they anticipated being popular at the beginning. I’m thinking ahead to when the full hymnal gets released because presumably we’ll get a whole bunch of new ones then. I’m curious if those new ones will ever become as popular as the ones released in these batches.</p>
+<p>It took a few weeks to get started, but the sixth batch is being incorporated into sacrament meetings. Since we have some topical hymns, it’ll take a few years for the true popularity of them to be evened out across the months and years. In general though, it does seem to be the least popular batch so far.</p>
+<p>This is just a continuation of the trend seen since the second batch came out—newer batches are less popular. I’ve said this before in previous analyses, but it might be because the newness is losing its excitement. It might also be that the hymnal committee purposely chose hymns they anticipated being popular at the beginning. I’m thinking ahead to when the full hymnal gets released because presumably we’ll get a whole bunch of new ones then. I’m curious if those new ones will ever become as popular as the ones released in these batches.</p>
 
 
 </section>
