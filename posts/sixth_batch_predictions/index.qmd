@@ -17,6 +17,7 @@ knitr::opts_chunk$set(include = FALSE,
                       echo = FALSE,
                       fig.width = 8,
                       cache = TRUE)
+library(tidyverse)
 rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 library(gt)
 library(broom)
@@ -78,7 +79,7 @@ weekly_results <- name_num_lookup |>
     
     # Get the basic info
     mutate(times_sung = map_int(hymn_num, get_n_times_sung),
-           sundays_since_release = as.numeric((today() - release_date)/7),
+           sundays_since_release = floor(as.numeric((batch6_release_date - release_date)/7)),
            meetings_since_release = map_int(release_date, get_n_meetings_since_release)) |> 
     
     # Now get proportions
@@ -166,7 +167,7 @@ Here are the sixth batch of hymns and how I coded them. I'll assume the most com
 * <hymn>Long Ago, Within a Garden (#1210)</hymn>: This is an Easter hymn.
 
 ```{r}
-batch6 <- name_num_lookup |> 
+batch6_preds <- name_num_lookup |> 
     filter(hymn_num %in% batch6_hymn_nums) |> 
     mutate(
         batch = "batch5",
@@ -185,7 +186,7 @@ batch6 <- name_num_lookup |>
     mutate(prop_wards = BoxCoxInv(pred, lambda = boxcox_lambda)) |> 
     
     print()
-# View(batch6)
+# View(batch6_preds)
 ```
 
 ## Predictions for the sixth batch
@@ -195,7 +196,7 @@ So, what I've done is take this information about each hymn and used the model t
 ```{r, include = TRUE, fig.height = 9, fig.width = 8}
 weekly_results |> 
     # Add the batch6
-    bind_rows(batch6) |>
+    bind_rows(batch6_preds) |>
     mutate(batch = if_else(hymn_num %in% batch6_hymn_nums, "batch6", batch)) |> 
     
     # do all the rest as before
@@ -247,7 +248,7 @@ summary(mdl)$coefficients |>
 Here is a summary of how popular I suspect the sixth batch hymns will be.
 
 ```{r, include = TRUE}
-batch6 |> 
+batch6_preds |> 
     arrange(-prop_wards) |> 
     mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
            prop_wards = paste0(str_pad(round(prop_wards * 100, 2), width = 4, side = "right", pad = "0"), "%")) |> 
@@ -267,6 +268,141 @@ An important caveat is that all of these hymns come from the sixth batch which i
 
 The cool thing about this prediction is that *surely* my guesses will be off. That means that there are idiosyncratic things about each hymn that was not accounted for in the model. Sometimes people just like certain hymns and don't like others. The ones that show up right next to each other in the plot I think serve as interesting mini case studies because the actual numbers will diverge from these predicted values, which makes them useful points of comparison with each other and may help me figure out what those hidden predictor variables are. 
 
+
+## How did I do?
+
+Everything above was written on February 27, 2026 soon after the sixth batch was released, before I look at any frequency data, and has been unchanged since then. Everything in this section was written after the seventh batch was released, around July 28, 2026. Let's see how I did.
+
+The following table shows the predicted frequency of each hymn compared to its actual frequency. This is in terms of estimated percent of sacrament meetings since February that each hymn has been sung in. I've put them in order of their predicted frequency.
+
+```{r}
+batch6_actual <- name_num_lookup |> 
+    filter(hymn_num %in% batch6_hymn_nums) |> 
+    mutate(hymn_num = as.integer(hymn_num)) |> 
+    
+    # Basic info
+    mutate(batch = "batch6",
+           release_date = batch6_release_date) |> 
+    
+    # Get the basic info
+    mutate(times_sung = map_int(hymn_num, get_n_times_sung),
+           sundays_since_release = floor(as.numeric((today() - release_date)/7)),
+           meetings_since_release = map_int(release_date, get_n_meetings_since_release)) |> 
+    
+    # Now get proportions
+    mutate(times_per_sunday = times_sung / sundays_since_release,
+           prop_wards = times_sung / meetings_since_release)
+```
+
+
+```{r, include=TRUE}
+predicted_df <- batch6_preds |> 
+    arrange(-prop_wards) |> 
+    select(hymn_num, `predicted` = prop_wards)
+
+actual_df <- batch6_actual |> 
+    select(hymn_num, `actual` = prop_wards)
+
+pred_vs_actual <- actual_df |> 
+    left_join(predicted_df, by = "hymn_num") |> 
+    left_join(name_num_lookup, by = "hymn_num") |> 
+    arrange(-predicted) |> 
+    mutate(difference = actual - predicted)
+
+pred_vs_actual |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           across(c(actual, predicted, difference), ~paste0(str_pad(round(. * 100, 2), 
+                                                    width = 4, side = "right", pad = "0"), "%"))) |> 
+    select(Hymn = label, predicted, actual, difference) |> 
+    gt() |> 
+    tab_header(title = "Predicted percent of sacrament meetings and actual percent of sacrament meeting each hymn from the 6th batch of hymns",
+               subtitle = "Predictions are made February 27th based on frequency information for the first five batches of hymns. Actual results based on data collected through July 23rd.") |> 
+    opt_align_table_header(align = "left") |> 
+    tab_footnote(footnote = "For context, the most popular new hymns range between 1% and 3% of sacrament meetings.")
+
+    
+```
+
+In June, I predicted that <hymn>`r hymn(1052)`</hymn> would be the most common, in large part because it's tagged as a sacrament hymn. Next was <hymn>`r hymn(1060)`</hymn>, partly because it had already been released in a church publication before. As it turns out though, the most commonly sung hymn from the sixth batch was <hymn>`r hymn(1061)`</hymn>. I suspect it was because it was somewhat popular around Mother's Day and Father's Day. But, once we get data from a full year, the influence of those two Sundays will level out, and it might be overtaken by another hymn. The next most common hymn was <hymn>`r hymn(1062)`</hymn>, which saw a small spike on each Fast Sunday. I didn't anticipate either of those when I made my predictions and I'll have to incorporate them into future predictions.
+
+
+```{r, include = FALSE}
+# Not a strong correlation I don't think.
+pred_vs_actual |> 
+    ggplot(aes(predicted, actual)) + 
+    geom_point() + 
+    geom_abline() + 
+    geom_text(aes(label = hymn_name), nudge_x = 0.0001, hjust = 0) + 
+    scale_x_continuous(labels = label_percent()) + 
+    scale_y_continuous(labels = label_percent())
+
+# This makes sense I think because of just a floor effect.
+# I don't think this really says anything.
+pred_vs_actual |> 
+    ggplot(aes(predicted, difference)) + 
+    geom_point() + 
+    geom_text(aes(label = hymn_name), nudge_x = 0.0001, hjust = 0) + 
+    scale_x_continuous(labels = label_percent()) + 
+    scale_y_continuous(labels = label_percent())
+```
+
+While I didn't get the top two right, I did accurately predict the five or so least commonly sung hymns. <hymn>`r hymn(1053)`</hymn>, <hymn>`r hymn(1054)`</hymn>, <hymn>`r hymn(1056)`</hymn>, <hymn>`r hymn(1057)`</hymn>, (unsurprisingly since it's an Easter hymn) <hymn>`r hymn(1210)`</hymn>, and to a lesser extent <hymn>`r hymn(1058)`</hymn> were predicted to be unpopular, and that turned out to be true. These were predicted to be less popular because they were either hymns borrowed from other denominations (which tend to be less popular than original Latter-day Saint compositions), because they're arranged in unison (and are sometimes seen by some people as being "for kids" and therefore not appropriate for sacrament meeting), have a nontraditional flow, and/or were not previously published. 
+
+Something that is definitely noteworthy is that, with the exception of <hymn>`r hymn(1061)`</hymn>, all hymns were sung less often than I expected. In my predictions, I did say outright that all the numbers are likely inflated because each batch seems to be less common than the one previous. So, I did get that part of my prediction right. In retrospect, I should have accounted for this difference by subtracting each prediction by some amount, but I didn't really know how to calcuate what what would be. So, I'll have to take that into account for the next batch.
+
+So, here is the same plot as above where I show how popular I guessed each new hymn would be. 
+
+::: {.panel-tabset}
+
+```{r}
+make_new_hymns_plot <- function(.df, .title) {
+    .df |> 
+    arrange(prop_wards) |> 
+    mutate(label = paste0(hymn_name, " (", hymn_num, ")"),
+           label = fct_inorder(label)) |> 
+    ggplot(aes(prop_wards, label, color = batch)) + 
+    geom_point() +
+    geom_text(aes(label = label), hjust = 1, nudge_x = -0.0005, size = 3, show.legend = FALSE) +
+    scale_x_continuous(breaks = seq(0, 0.05, 0.005),
+                       labels = percent,
+                       expand = expansion(0, c(0.02, 0.001))) +
+    scale_y_discrete(breaks = NULL) +
+    scale_color_brewer(palette = "Set2") +
+    labs(title = .title,
+         subtitle = "Shown in the context of how popular the first five batches have been",
+         x = "Percent of wards since hymns' respective release dates",
+         y = NULL) +
+    theme_minimal() + 
+    theme(axis.text.y = element_blank(),
+          legend.position = c(0.8, 0.5),
+          legend.background = element_rect(fill = "white", color = "gray50"),
+          legend.text = element_text(size = 10)) + 
+    guides(color = guide_legend(override.aes = list(size = 4)))
+}
+```
+
+
+### Predicted
+
+```{r, include = TRUE, fig.height = 9, fig.width = 8}
+weekly_results |> 
+    # Add the batch6
+    bind_rows(batch6_preds) |>
+    mutate(batch = if_else(hymn_num %in% batch6_hymn_nums, "batch6", batch)) |> 
+    
+    make_new_hymns_plot(.title = "Predicted popularity of the sixth batch of hymns")
+```
+
+### Actual
+
+```{r, include = TRUE, fig.height = 9, fig.width = 8}
+weekly_results |> 
+    bind_rows(batch6_actual) |>
+    make_new_hymns_plot(.title = "Actual popularity of the sixth batch of hymns")
+```
+
+:::
+
 ## Conclusion
 
-In this post, I have taken frequency data from the first five batches to make predictions about the popularity of the sixth batch of hymns. The statistics suggest that <hymn>Joyfully Bound (#1052)</hymn> and <hymn>Build an Ark (#1060)</hymn> will be the most popular from this batch. My guesses will likely be really far off, and I look forward to exploring why those are and using that to make more accurate predictions later on. 
+In this post, I took frequency data from the first five batches to make predictions about the popularity of the sixth batch of hymns. The statistics suggest that <hymn>Joyfully Bound (#1052)</hymn> and <hymn>Build an Ark (#1060)</hymn> would be the most popular from this batch. In reality, <hymn>`r hymn(1061)`</hymn> and <hymn>`r hymn(1062)`</hymn> were the most common. However, most of my guesses were fairly close, although they were almost all inflated by a little bit. I look forward to learning from this and making more accurate predictions for the seventh batch!

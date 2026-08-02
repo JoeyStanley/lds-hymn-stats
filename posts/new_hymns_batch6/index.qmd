@@ -20,8 +20,8 @@ rmarkdown::render("../../_scripts/analysis_functions.Rmd")
 sf <- stamp("June 2", quiet = TRUE)
 
 # get last Sunday
-last_sunday <- ymd(floor_date(today(), "week"))
-# last_sunday <- batch6_release_date
+# last_sunday <- ymd(floor_date(today(), "week"))
+last_sunday <- batch7_release_date
 library(gtExtras)
 ```
 
@@ -75,7 +75,7 @@ n_weeks_since_release6 <- get_n_weeks_since_release(meetings_since_release6)
 ```
 
 
-On February 26, 2026, the church [released](https://newsroom.churchofjesuschrist.org/article/old-testament–themed-hymns-join-hymns-for-home-and-church) the sixth batch of new hymns. In previous posts, I have covered in detail the previous batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the sixth batch came out until now.
+On February 26, 2026, the church [released](https://newsroom.churchofjesuschrist.org/article/old-testament–themed-hymns-join-hymns-for-home-and-church) the sixth batch of new hymns. In previous posts, I have covered in detail the previous batches of hymns and how they were incorporated into sacrament meetings. This page covers period since when the sixth batch came out until when the seventh batch came out on July 23, 2026.
 
 Currently I have data from `r scales::comma(n_meetings_since_release6)` sacrament meetings from `r scales::comma(n_wards_since_release6)` wards since February 26, 2026. Here's how much data I have for each week so far, just so you have an idea of what I'm working with.
 
@@ -255,7 +255,7 @@ six_months_ago <- last_sunday - round(365/2)
 
 p + 
     labs(title = paste0("Percentage of wards singing new hymns since ", sf(six_months_ago), ", ", year(six_months_ago))) + 
-    coord_cartesian(xlim = c(ymd(batch5_release_date), ymd(last_sunday)))
+    coord_cartesian(xlim = c(ymd(batch5_release_date), ymd(last_sunday)+1))
 ```
 ### Since the new hymns came out
 
@@ -266,12 +266,11 @@ p
 :::
 
 
-The sixth batch (highlighted in yellowish-green) took a few months to get incorporated into sacrament meetings as a congregational hymn. For the first two months, it was extremely rare to see it sung. In late April and into May, it picked up a little bit. I suspect that whoever plans music in wards had six or so weeks planned out already when the batch came out, so it was sung more when those preplanned ones had already passed. However, it's worth noting that every batch since the third batch took a few weeks to get warmed up, and each batch seems to be less popular than the one previous. But the sixth batch took an especially long time to get going.
+The sixth batch (highlighted in yellowish-green) took a few months to get incorporated into sacrament meetings as a congregational hymn. For the first two months, it was extremely rare to see it sung. In late April and into May, it picked up a little bit. I suspect that many wards had six or so weeks planned out already when the batch came out, so it was sung more once those preplanned ones had already passed. However, it's worth noting that every batch since the third batch took a few weeks to get warmed up, and each batch seems to be less popular than the one previous. But the sixth batch took an especially long time to get going.
 
 Since then though, it has done somewhat well. It is about as popular as the fourth and fifth batches. It's still not as popular as the second and third and certainly not the first batch. One thing we see though it a small spike on Fast Sundays, which is from <hymn>`r hymn(1062)`</hymn> being sung then. In fact, if you look at the gray line, which represents the percent of wards that sang zero new hymns each week, for the past two years there is a spike *up* on Fast Sunday as people continue to sing the typical [Fast Sunday](/posts/fast_sunday) hymns. That might be going away a little bit now that we clearly have a new hymn to throw into the mix.
 
-
-It's worth pointing one more thing about that gray line. Since about October 2025, it's is mostly staying under the 50% mark. That means that on a given Sunday, there are more wards that sing a new hymn than there are that don't. The steady decline from June 2024 to now I think is pretty remarkable. The lowest point was on May 17, 2026 when 56.4% of wards sang at least one new hymn. It takes a few months for a batch to ramp up to its full usage, and none have really changed in popularity all that much over time. That means that we're steadily incorporating more new hymns as the batches come out. If we're singing a Batch 1 hymn every three or four weeks, we'll sprinkle in a second and third batch one every five weeks. And when a new batch comes out, it gets slid into remaining slots. The result is fewer weeks without any new hymns. It also seems like no batches are "eating into" previous ones. I think we really are just adding to the new hymns we're already singing.
+It's worth pointing one more thing about that gray line. Since about October 2025, it's is mostly staying under the 50% mark. That means that on a given Sunday, there are more wards that sing a new hymn than there are that don't. The steady decline from June 2024 to now I think is pretty remarkable. The lowest point was on May 17, 2026 when 56.4% of wards sang at least one new hymn. It takes a few months for a batch to ramp up to its full usage, and none have really changed in popularity all that much over time. That means that we're steadily incorporating more new hymns as the batches come out. If we're singing a Batch 1 hymn every three or four weeks, we'll sprinkle in a second and third batch one every five weeks. And when a new batch comes out, it gets slid into remaining slots. The result is fewer weeks without any new hymns. It also seems like no batches are "eating into" previous ones. I think we really are just adding to the new hymns we're already singing. For the past six months or so, that gray line is above 50% mostly around holidays (Easter, Mother's Day, 4th of July, etc). 
 
 
 ```{r}
@@ -372,7 +371,7 @@ meetings_since_release6 |>
                subtitle = "Since February 26, 2026")
 ```
 
-The two most popular hymns in this batch are <hymn>`hymn(1062)`</hymn> and <hymn>`hymn(1061)`</hymn>. The first one is explained because it's a Fast Sunday hymn so there's a good reason to sing it every month. The second was popular around [Father's Day](/posts/fathers_day) and [Mother's Day](/posts/mothers_day). While not apparent in this table, <hymn>`r hymn(1210)`</hymn> was also somewhat popular around [Easter](/posts/easter). It was brand new then, so it didn't get sung much, but I suspect next year we'll see it sung more.  It's pretty cool to see new hymns being introduced in those categories since the number of hymns in each one of those is pretty small.
+The two most popular hymns in this batch are <hymn>`r hymn(1062)`</hymn> and <hymn>`r hymn(1061)`</hymn>. The first one is explained because it's a Fast Sunday hymn so there's a good reason to sing it every month. The second was popular around [Father's Day](/posts/fathers_day) and [Mother's Day](/posts/mothers_day). While not apparent in this table, <hymn>`r hymn(1210)`</hymn> was also somewhat popular around [Easter](/posts/easter). It was brand new then, so it didn't get sung much, but I suspect next year we'll see it sung more.  It's pretty cool to see new hymns being introduced in those categories since the number of hymns in each one of those is pretty small.
 
 ## What hymns are most popular each week?
 
